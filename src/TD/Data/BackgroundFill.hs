@@ -18,17 +18,17 @@ data BackgroundFill
   | BackgroundFillFreeformGradient -- ^ Describes a freeform gradient fill of a background
     { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradients in the RGB24 format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BackgroundFill where
-  show BackgroundFillSolid
+instance I.ShortShow BackgroundFill where
+  shortShow BackgroundFillSolid
     { color = color_
     }
       = "BackgroundFillSolid"
         ++ I.cc
         [ "color" `I.p` color_
         ]
-  show BackgroundFillGradient
+  shortShow BackgroundFillGradient
     { top_color      = top_color_
     , bottom_color   = bottom_color_
     , rotation_angle = rotation_angle_
@@ -39,7 +39,7 @@ instance Show BackgroundFill where
         , "bottom_color"   `I.p` bottom_color_
         , "rotation_angle" `I.p` rotation_angle_
         ]
-  show BackgroundFillFreeformGradient
+  shortShow BackgroundFillFreeformGradient
     { colors = colors_
     }
       = "BackgroundFillFreeformGradient"

@@ -15,10 +15,10 @@ data SetStickerKeywords
     { sticker  :: Maybe InputFile.InputFile -- ^ Sticker
     , keywords :: Maybe [T.Text]            -- ^ List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerKeywords where
-  show
+instance I.ShortShow SetStickerKeywords where
+  shortShow
     SetStickerKeywords
       { sticker  = sticker_
       , keywords = keywords_

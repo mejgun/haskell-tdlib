@@ -21,32 +21,32 @@ data BotCommandScope
     { chat_id :: Maybe Int -- ^ Chat identifier
     , user_id :: Maybe Int -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BotCommandScope where
-  show BotCommandScopeDefault
+instance I.ShortShow BotCommandScope where
+  shortShow BotCommandScopeDefault
       = "BotCommandScopeDefault"
-  show BotCommandScopeAllPrivateChats
+  shortShow BotCommandScopeAllPrivateChats
       = "BotCommandScopeAllPrivateChats"
-  show BotCommandScopeAllGroupChats
+  shortShow BotCommandScopeAllGroupChats
       = "BotCommandScopeAllGroupChats"
-  show BotCommandScopeAllChatAdministrators
+  shortShow BotCommandScopeAllChatAdministrators
       = "BotCommandScopeAllChatAdministrators"
-  show BotCommandScopeChat
+  shortShow BotCommandScopeChat
     { chat_id = chat_id_
     }
       = "BotCommandScopeChat"
         ++ I.cc
         [ "chat_id" `I.p` chat_id_
         ]
-  show BotCommandScopeChatAdministrators
+  shortShow BotCommandScopeChatAdministrators
     { chat_id = chat_id_
     }
       = "BotCommandScopeChatAdministrators"
         ++ I.cc
         [ "chat_id" `I.p` chat_id_
         ]
-  show BotCommandScopeChatMember
+  shortShow BotCommandScopeChatMember
     { chat_id = chat_id_
     , user_id = user_id_
     }

@@ -12,10 +12,10 @@ data AutoDownloadSettingsPresets
     , medium :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with medium settings; supposed to be used by default when using mobile data
     , high   :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AutoDownloadSettingsPresets where
-  show AutoDownloadSettingsPresets
+instance I.ShortShow AutoDownloadSettingsPresets where
+  shortShow AutoDownloadSettingsPresets
     { low    = low_
     , medium = medium_
     , high   = high_

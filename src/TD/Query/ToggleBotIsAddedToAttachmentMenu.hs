@@ -14,10 +14,10 @@ data ToggleBotIsAddedToAttachmentMenu
     , is_added           :: Maybe Bool -- ^ Pass true to add the bot to attachment menu; pass false to remove the bot from attachment menu
     , allow_write_access :: Maybe Bool -- ^ Pass true if the current user allowed the bot to send them messages. Ignored if is_added is false
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleBotIsAddedToAttachmentMenu where
-  show
+instance I.ShortShow ToggleBotIsAddedToAttachmentMenu where
+  shortShow
     ToggleBotIsAddedToAttachmentMenu
       { bot_user_id        = bot_user_id_
       , is_added           = is_added_

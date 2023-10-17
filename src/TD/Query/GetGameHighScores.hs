@@ -14,10 +14,10 @@ data GetGameHighScores
     , message_id :: Maybe Int -- ^ Identifier of the message
     , user_id    :: Maybe Int -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGameHighScores where
-  show
+instance I.ShortShow GetGameHighScores where
+  shortShow
     GetGameHighScores
       { chat_id    = chat_id_
       , message_id = message_id_

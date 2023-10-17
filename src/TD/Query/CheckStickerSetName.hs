@@ -12,10 +12,10 @@ data CheckStickerSetName
   = CheckStickerSetName
     { name :: Maybe T.Text -- ^ Name to be checked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckStickerSetName where
-  show
+instance I.ShortShow CheckStickerSetName where
+  shortShow
     CheckStickerSetName
       { name = name_
       }

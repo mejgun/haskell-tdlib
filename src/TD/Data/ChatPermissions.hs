@@ -24,10 +24,10 @@ data ChatPermissions
     , can_pin_messages          :: Maybe Bool -- ^ True, if the user can pin messages
     , can_manage_topics         :: Maybe Bool -- ^ True, if the user can manage topics
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPermissions where
-  show ChatPermissions
+instance I.ShortShow ChatPermissions where
+  shortShow ChatPermissions
     { can_send_basic_messages   = can_send_basic_messages_
     , can_send_audios           = can_send_audios_
     , can_send_documents        = can_send_documents_

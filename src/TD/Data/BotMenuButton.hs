@@ -13,10 +13,10 @@ data BotMenuButton
     { text :: Maybe T.Text -- ^ Text of the button
     , url  :: Maybe T.Text -- ^ URL to be passed to openWebApp
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BotMenuButton where
-  show BotMenuButton
+instance I.ShortShow BotMenuButton where
+  shortShow BotMenuButton
     { text = text_
     , url  = url_
     }

@@ -21,10 +21,10 @@ data Animation
     , thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ Animation thumbnail in JPEG or MPEG4 format; may be null
     , animation     :: Maybe File.File                   -- ^ File containing the animation
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Animation where
-  show Animation
+instance I.ShortShow Animation where
+  shortShow Animation
     { duration      = duration_
     , width         = width_
     , height        = height_

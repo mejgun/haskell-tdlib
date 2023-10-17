@@ -15,10 +15,10 @@ data GetStatisticalGraph
     , token   :: Maybe T.Text -- ^ The token for graph loading
     , x       :: Maybe Int    -- ^ X-value for zoomed in graph or 0 otherwise
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStatisticalGraph where
-  show
+instance I.ShortShow GetStatisticalGraph where
+  shortShow
     GetStatisticalGraph
       { chat_id = chat_id_
       , token   = token_

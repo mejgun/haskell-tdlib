@@ -11,10 +11,10 @@ data ToggleSupergroupIsBroadcastGroup
   = ToggleSupergroupIsBroadcastGroup
     { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupIsBroadcastGroup where
-  show
+instance I.ShortShow ToggleSupergroupIsBroadcastGroup where
+  shortShow
     ToggleSupergroupIsBroadcastGroup
       { supergroup_id = supergroup_id_
       }

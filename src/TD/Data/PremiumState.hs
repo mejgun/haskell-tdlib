@@ -14,10 +14,10 @@ data PremiumState
     , payment_options :: Maybe [PremiumStatePaymentOption.PremiumStatePaymentOption]               -- ^ The list of available options for buying Telegram Premium
     , animations      :: Maybe [PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation] -- ^ The list of available promotion animations for Premium features
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumState where
-  show PremiumState
+instance I.ShortShow PremiumState where
+  shortShow PremiumState
     { state           = state_
     , payment_options = payment_options_
     , animations      = animations_

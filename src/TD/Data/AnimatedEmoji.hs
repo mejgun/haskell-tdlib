@@ -15,10 +15,10 @@ data AnimatedEmoji
     , fitzpatrick_type :: Maybe Int             -- ^ Emoji modifier fitzpatrick type; 0-6; 0 if none
     , sound            :: Maybe File.File       -- ^ File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnimatedEmoji where
-  show AnimatedEmoji
+instance I.ShortShow AnimatedEmoji where
+  shortShow AnimatedEmoji
     { sticker          = sticker_
     , sticker_width    = sticker_width_
     , sticker_height   = sticker_height_

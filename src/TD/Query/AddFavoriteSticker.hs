@@ -12,10 +12,10 @@ data AddFavoriteSticker
   = AddFavoriteSticker
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker file to add
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddFavoriteSticker where
-  show
+instance I.ShortShow AddFavoriteSticker where
+  shortShow
     AddFavoriteSticker
       { sticker = sticker_
       }

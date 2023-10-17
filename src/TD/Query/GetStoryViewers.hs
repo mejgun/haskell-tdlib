@@ -15,10 +15,10 @@ data GetStoryViewers
     , offset_viewer :: Maybe MessageViewer.MessageViewer -- ^ A viewer from which to return next viewers; pass null to get results from the beginning
     , limit         :: Maybe Int                         -- ^ The maximum number of story viewers to return For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStoryViewers where
-  show
+instance I.ShortShow GetStoryViewers where
+  shortShow
     GetStoryViewers
       { story_id      = story_id_
       , offset_viewer = offset_viewer_

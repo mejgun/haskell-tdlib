@@ -55,10 +55,10 @@ data Chat
     , draft_message                :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the chat; may be null if none
     , client_data                  :: Maybe T.Text                                            -- ^ Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Chat where
-  show Chat
+instance I.ShortShow Chat where
+  shortShow Chat
     { _id                          = _id_
     , _type                        = _type_
     , title                        = title_

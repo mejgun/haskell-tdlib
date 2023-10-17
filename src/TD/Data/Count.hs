@@ -9,10 +9,10 @@ data Count
   = Count -- ^ Contains a counter
     { count :: Maybe Int -- ^ Count
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Count where
-  show Count
+instance I.ShortShow Count where
+  shortShow Count
     { count = count_
     }
       = "Count"

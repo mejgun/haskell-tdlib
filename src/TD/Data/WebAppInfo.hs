@@ -11,10 +11,10 @@ data WebAppInfo
     { launch_id :: Maybe Int    -- ^ Unique identifier for the Web App launch
     , url       :: Maybe T.Text -- ^ A Web App URL to open in a web view
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show WebAppInfo where
-  show WebAppInfo
+instance I.ShortShow WebAppInfo where
+  shortShow WebAppInfo
     { launch_id = launch_id_
     , url       = url_
     }

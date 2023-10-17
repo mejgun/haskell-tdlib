@@ -15,10 +15,10 @@ data TransferChatOwnership
     , user_id  :: Maybe Int    -- ^ Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
     , password :: Maybe T.Text -- ^ The 2-step verification password of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TransferChatOwnership where
-  show
+instance I.ShortShow TransferChatOwnership where
+  shortShow
     TransferChatOwnership
       { chat_id  = chat_id_
       , user_id  = user_id_

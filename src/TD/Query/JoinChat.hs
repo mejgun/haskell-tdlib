@@ -11,10 +11,10 @@ data JoinChat
   = JoinChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show JoinChat where
-  show
+instance I.ShortShow JoinChat where
+  shortShow
     JoinChat
       { chat_id = chat_id_
       }

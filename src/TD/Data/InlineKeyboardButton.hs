@@ -14,10 +14,10 @@ data InlineKeyboardButton
     { text  :: Maybe T.Text                                            -- ^ Text of the button
     , _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType -- ^ Type of the button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineKeyboardButton where
-  show InlineKeyboardButton
+instance I.ShortShow InlineKeyboardButton where
+  shortShow InlineKeyboardButton
     { text  = text_
     , _type = _type_
     }

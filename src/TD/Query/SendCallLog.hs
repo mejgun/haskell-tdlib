@@ -14,10 +14,10 @@ data SendCallLog
     { call_id  :: Maybe Int                 -- ^ Call identifier
     , log_file :: Maybe InputFile.InputFile -- ^ Call log file. Only inputFileLocal and inputFileGenerated are supported
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendCallLog where
-  show
+instance I.ShortShow SendCallLog where
+  shortShow
     SendCallLog
       { call_id  = call_id_
       , log_file = log_file_

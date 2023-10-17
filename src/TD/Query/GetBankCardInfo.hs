@@ -12,10 +12,10 @@ data GetBankCardInfo
   = GetBankCardInfo
     { bank_card_number :: Maybe T.Text -- ^ The bank card number
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBankCardInfo where
-  show
+instance I.ShortShow GetBankCardInfo where
+  shortShow
     GetBankCardInfo
       { bank_card_number = bank_card_number_
       }

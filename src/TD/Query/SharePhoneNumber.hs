@@ -11,10 +11,10 @@ data SharePhoneNumber
   = SharePhoneNumber
     { user_id :: Maybe Int -- ^ Identifier of the user with whom to share the phone number. The user must be a mutual contact
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SharePhoneNumber where
-  show
+instance I.ShortShow SharePhoneNumber where
+  shortShow
     SharePhoneNumber
       { user_id = user_id_
       }

@@ -26,10 +26,10 @@ data NotificationType
     , is_outgoing :: Maybe Bool                                  -- ^ True, if the message is outgoing
     , content     :: Maybe PushMessageContent.PushMessageContent -- ^ Push message content
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NotificationType where
-  show NotificationTypeNewMessage
+instance I.ShortShow NotificationType where
+  shortShow NotificationTypeNewMessage
     { message      = message_
     , show_preview = show_preview_
     }
@@ -38,16 +38,16 @@ instance Show NotificationType where
         [ "message"      `I.p` message_
         , "show_preview" `I.p` show_preview_
         ]
-  show NotificationTypeNewSecretChat
+  shortShow NotificationTypeNewSecretChat
       = "NotificationTypeNewSecretChat"
-  show NotificationTypeNewCall
+  shortShow NotificationTypeNewCall
     { call_id = call_id_
     }
       = "NotificationTypeNewCall"
         ++ I.cc
         [ "call_id" `I.p` call_id_
         ]
-  show NotificationTypeNewPushMessage
+  shortShow NotificationTypeNewPushMessage
     { message_id  = message_id_
     , sender_id   = sender_id_
     , sender_name = sender_name_

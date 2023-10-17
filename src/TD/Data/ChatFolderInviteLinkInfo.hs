@@ -12,10 +12,10 @@ data ChatFolderInviteLinkInfo
     , missing_chat_ids :: Maybe [Int]                         -- ^ Identifiers of the chats from the link, which aren't added to the folder yet
     , added_chat_ids   :: Maybe [Int]                         -- ^ Identifiers of the chats from the link, which are added to the folder already
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolderInviteLinkInfo where
-  show ChatFolderInviteLinkInfo
+instance I.ShortShow ChatFolderInviteLinkInfo where
+  shortShow ChatFolderInviteLinkInfo
     { chat_folder_info = chat_folder_info_
     , missing_chat_ids = missing_chat_ids_
     , added_chat_ids   = added_chat_ids_

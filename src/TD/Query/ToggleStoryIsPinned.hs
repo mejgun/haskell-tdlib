@@ -13,10 +13,10 @@ data ToggleStoryIsPinned
     { story_id  :: Maybe Int  -- ^ Identifier of the story
     , is_pinned :: Maybe Bool -- ^ Pass true to make the story accessible after expiration; pass false to make it private
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleStoryIsPinned where
-  show
+instance I.ShortShow ToggleStoryIsPinned where
+  shortShow
     ToggleStoryIsPinned
       { story_id  = story_id_
       , is_pinned = is_pinned_

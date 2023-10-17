@@ -13,10 +13,10 @@ data UnreadReaction
     , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender, added the reaction
     , is_big    :: Maybe Bool                        -- ^ True, if the reaction was added with a big animation
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UnreadReaction where
-  show UnreadReaction
+instance I.ShortShow UnreadReaction where
+  shortShow UnreadReaction
     { _type     = _type_
     , sender_id = sender_id_
     , is_big    = is_big_

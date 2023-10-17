@@ -13,10 +13,10 @@ data CancelDownloadFile
     { file_id         :: Maybe Int  -- ^ Identifier of a file to stop downloading
     , only_if_pending :: Maybe Bool -- ^ Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CancelDownloadFile where
-  show
+instance I.ShortShow CancelDownloadFile where
+  shortShow
     CancelDownloadFile
       { file_id         = file_id_
       , only_if_pending = only_if_pending_

@@ -12,10 +12,10 @@ data PremiumLimit
     , default_value :: Maybe Int                               -- ^ Default value of the limit
     , premium_value :: Maybe Int                               -- ^ Value of the limit for Premium users
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumLimit where
-  show PremiumLimit
+instance I.ShortShow PremiumLimit where
+  shortShow PremiumLimit
     { _type         = _type_
     , default_value = default_value_
     , premium_value = premium_value_

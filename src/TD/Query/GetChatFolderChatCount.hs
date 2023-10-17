@@ -12,10 +12,10 @@ data GetChatFolderChatCount
   = GetChatFolderChatCount
     { folder :: Maybe ChatFolder.ChatFolder -- ^ The new chat folder
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatFolderChatCount where
-  show
+instance I.ShortShow GetChatFolderChatCount where
+  shortShow
     GetChatFolderChatCount
       { folder = folder_
       }

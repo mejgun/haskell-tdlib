@@ -18,10 +18,10 @@ data InputStoryContent
     , duration               :: Maybe Double              -- ^ Precise duration of the video, in seconds; 0-60
     , is_animation           :: Maybe Bool                -- ^ True, if the video has no sound
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputStoryContent where
-  show InputStoryContentPhoto
+instance I.ShortShow InputStoryContent where
+  shortShow InputStoryContentPhoto
     { photo                  = photo_
     , added_sticker_file_ids = added_sticker_file_ids_
     }
@@ -30,7 +30,7 @@ instance Show InputStoryContent where
         [ "photo"                  `I.p` photo_
         , "added_sticker_file_ids" `I.p` added_sticker_file_ids_
         ]
-  show InputStoryContentVideo
+  shortShow InputStoryContentVideo
     { video                  = video_
     , added_sticker_file_ids = added_sticker_file_ids_
     , duration               = duration_

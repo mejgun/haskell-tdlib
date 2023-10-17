@@ -15,10 +15,10 @@ data SetCustomLanguagePackString
     { language_pack_id :: Maybe T.Text                                -- ^ Identifier of a previously added custom local language pack in the current localization target
     , new_string       :: Maybe LanguagePackString.LanguagePackString -- ^ New language pack string
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetCustomLanguagePackString where
-  show
+instance I.ShortShow SetCustomLanguagePackString where
+  shortShow
     SetCustomLanguagePackString
       { language_pack_id = language_pack_id_
       , new_string       = new_string_

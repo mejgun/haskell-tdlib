@@ -14,10 +14,10 @@ data GetPassportAuthorizationFormAvailableElements
     { authorization_form_id :: Maybe Int    -- ^ Authorization form identifier
     , password              :: Maybe T.Text -- ^ The 2-step verification password of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPassportAuthorizationFormAvailableElements where
-  show
+instance I.ShortShow GetPassportAuthorizationFormAvailableElements where
+  shortShow
     GetPassportAuthorizationFormAvailableElements
       { authorization_form_id = authorization_form_id_
       , password              = password_

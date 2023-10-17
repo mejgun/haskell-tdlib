@@ -20,10 +20,10 @@ data CreateNewSupergroupChat
     , message_auto_delete_time :: Maybe Int                       -- ^ Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     , for_import               :: Maybe Bool                      -- ^ Pass true to create a supergroup for importing messages using importMessage
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateNewSupergroupChat where
-  show
+instance I.ShortShow CreateNewSupergroupChat where
+  shortShow
     CreateNewSupergroupChat
       { title                    = title_
       , is_forum                 = is_forum_

@@ -11,10 +11,10 @@ data GetCustomEmojiStickers
   = GetCustomEmojiStickers
     { custom_emoji_ids :: Maybe [Int] -- ^ Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCustomEmojiStickers where
-  show
+instance I.ShortShow GetCustomEmojiStickers where
+  shortShow
     GetCustomEmojiStickers
       { custom_emoji_ids = custom_emoji_ids_
       }

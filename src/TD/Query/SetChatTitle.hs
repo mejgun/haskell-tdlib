@@ -14,10 +14,10 @@ data SetChatTitle
     { chat_id :: Maybe Int    -- ^ Chat identifier
     , title   :: Maybe T.Text -- ^ New title of the chat; 1-128 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatTitle where
-  show
+instance I.ShortShow SetChatTitle where
+  shortShow
     SetChatTitle
       { chat_id = chat_id_
       , title   = title_

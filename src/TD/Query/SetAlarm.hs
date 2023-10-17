@@ -11,10 +11,10 @@ data SetAlarm
   = SetAlarm
     { seconds :: Maybe Double -- ^ Number of seconds before the function returns
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetAlarm where
-  show
+instance I.ShortShow SetAlarm where
+  shortShow
     SetAlarm
       { seconds = seconds_
       }

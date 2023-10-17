@@ -11,10 +11,10 @@ data GetStickerSet
   = GetStickerSet
     { set_id :: Maybe Int -- ^ Identifier of the sticker set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStickerSet where
-  show
+instance I.ShortShow GetStickerSet where
+  shortShow
     GetStickerSet
       { set_id = set_id_
       }

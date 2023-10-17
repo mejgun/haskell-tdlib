@@ -19,10 +19,10 @@ data AddLocalMessage
     , disable_notification  :: Maybe Bool                                    -- ^ Pass true to disable notification for the message
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be added
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddLocalMessage where
-  show
+instance I.ShortShow AddLocalMessage where
+  shortShow
     AddLocalMessage
       { chat_id               = chat_id_
       , sender_id             = sender_id_

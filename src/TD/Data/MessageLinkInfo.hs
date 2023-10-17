@@ -15,10 +15,10 @@ data MessageLinkInfo
     , media_timestamp   :: Maybe Int             -- ^ Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
     , for_album         :: Maybe Bool            -- ^ True, if the whole media album to which the message belongs is linked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageLinkInfo where
-  show MessageLinkInfo
+instance I.ShortShow MessageLinkInfo where
+  shortShow MessageLinkInfo
     { is_public         = is_public_
     , chat_id           = chat_id_
     , message_thread_id = message_thread_id_

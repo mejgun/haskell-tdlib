@@ -12,10 +12,10 @@ data CheckAuthenticationPassword
   = CheckAuthenticationPassword
     { password :: Maybe T.Text -- ^ The 2-step verification password to check
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckAuthenticationPassword where
-  show
+instance I.ShortShow CheckAuthenticationPassword where
+  shortShow
     CheckAuthenticationPassword
       { password = password_
       }

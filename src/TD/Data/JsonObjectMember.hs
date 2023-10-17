@@ -14,10 +14,10 @@ data JsonObjectMember
     { key   :: Maybe T.Text              -- ^ Member's key
     , value :: Maybe JsonValue.JsonValue -- ^ Member's value
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show JsonObjectMember where
-  show JsonObjectMember
+instance I.ShortShow JsonObjectMember where
+  shortShow JsonObjectMember
     { key   = key_
     , value = value_
     }

@@ -10,10 +10,10 @@ data Animations
   = Animations -- ^ Represents a list of animations
     { animations :: Maybe [Animation.Animation] -- ^ List of animations
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Animations where
-  show Animations
+instance I.ShortShow Animations where
+  shortShow Animations
     { animations = animations_
     }
       = "Animations"

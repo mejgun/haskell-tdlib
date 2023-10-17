@@ -15,10 +15,10 @@ data ShippingOption
     , title       :: Maybe T.Text                              -- ^ Option title
     , price_parts :: Maybe [LabeledPricePart.LabeledPricePart] -- ^ A list of objects used to calculate the total shipping costs
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ShippingOption where
-  show ShippingOption
+instance I.ShortShow ShippingOption where
+  shortShow ShippingOption
     { _id         = _id_
     , title       = title_
     , price_parts = price_parts_

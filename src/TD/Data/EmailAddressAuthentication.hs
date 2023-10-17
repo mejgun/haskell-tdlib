@@ -17,24 +17,24 @@ data EmailAddressAuthentication
   | EmailAddressAuthenticationGoogleId -- ^ An authentication token received through Google ID
     { token :: Maybe T.Text -- ^ The token
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmailAddressAuthentication where
-  show EmailAddressAuthenticationCode
+instance I.ShortShow EmailAddressAuthentication where
+  shortShow EmailAddressAuthenticationCode
     { code = code_
     }
       = "EmailAddressAuthenticationCode"
         ++ I.cc
         [ "code" `I.p` code_
         ]
-  show EmailAddressAuthenticationAppleId
+  shortShow EmailAddressAuthenticationAppleId
     { token = token_
     }
       = "EmailAddressAuthenticationAppleId"
         ++ I.cc
         [ "token" `I.p` token_
         ]
-  show EmailAddressAuthenticationGoogleId
+  shortShow EmailAddressAuthenticationGoogleId
     { token = token_
     }
       = "EmailAddressAuthenticationGoogleId"

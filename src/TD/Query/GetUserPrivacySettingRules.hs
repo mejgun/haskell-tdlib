@@ -12,10 +12,10 @@ data GetUserPrivacySettingRules
   = GetUserPrivacySettingRules
     { setting :: Maybe UserPrivacySetting.UserPrivacySetting -- ^ The privacy setting
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetUserPrivacySettingRules where
-  show
+instance I.ShortShow GetUserPrivacySettingRules where
+  shortShow
     GetUserPrivacySettingRules
       { setting = setting_
       }

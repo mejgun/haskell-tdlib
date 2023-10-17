@@ -19,24 +19,24 @@ data StickerFullType
     { custom_emoji_id  :: Maybe Int  -- ^ Identifier of the custom emoji
     , needs_repainting :: Maybe Bool -- ^ True, if the sticker must be repainted to a text color in messages, the color of the Telegram Premium badge in emoji status, white color on chat photos, or another appropriate color in other places
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerFullType where
-  show StickerFullTypeRegular
+instance I.ShortShow StickerFullType where
+  shortShow StickerFullTypeRegular
     { premium_animation = premium_animation_
     }
       = "StickerFullTypeRegular"
         ++ I.cc
         [ "premium_animation" `I.p` premium_animation_
         ]
-  show StickerFullTypeMask
+  shortShow StickerFullTypeMask
     { mask_position = mask_position_
     }
       = "StickerFullTypeMask"
         ++ I.cc
         [ "mask_position" `I.p` mask_position_
         ]
-  show StickerFullTypeCustomEmoji
+  shortShow StickerFullTypeCustomEmoji
     { custom_emoji_id  = custom_emoji_id_
     , needs_repainting = needs_repainting_
     }

@@ -12,10 +12,10 @@ data DeletePassportElement
   = DeletePassportElement
     { _type :: Maybe PassportElementType.PassportElementType -- ^ Element type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeletePassportElement where
-  show
+instance I.ShortShow DeletePassportElement where
+  shortShow
     DeletePassportElement
       { _type = _type_
       }

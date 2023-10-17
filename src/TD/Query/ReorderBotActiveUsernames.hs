@@ -14,10 +14,10 @@ data ReorderBotActiveUsernames
     { bot_user_id :: Maybe Int      -- ^ Identifier of the target bot
     , usernames   :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReorderBotActiveUsernames where
-  show
+instance I.ShortShow ReorderBotActiveUsernames where
+  shortShow
     ReorderBotActiveUsernames
       { bot_user_id = bot_user_id_
       , usernames   = usernames_

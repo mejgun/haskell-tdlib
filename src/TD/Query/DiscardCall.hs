@@ -16,10 +16,10 @@ data DiscardCall
     , is_video        :: Maybe Bool -- ^ Pass true if the call was a video call
     , connection_id   :: Maybe Int  -- ^ Identifier of the connection used during the call
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DiscardCall where
-  show
+instance I.ShortShow DiscardCall where
+  shortShow
     DiscardCall
       { call_id         = call_id_
       , is_disconnected = is_disconnected_

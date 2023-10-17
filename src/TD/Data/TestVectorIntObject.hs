@@ -10,10 +10,10 @@ data TestVectorIntObject
   = TestVectorIntObject -- ^ A simple object containing a vector of objects that hold a number; for testing only
     { value :: Maybe [TestInt.TestInt] -- ^ Vector of objects
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestVectorIntObject where
-  show TestVectorIntObject
+instance I.ShortShow TestVectorIntObject where
+  shortShow TestVectorIntObject
     { value = value_
     }
       = "TestVectorIntObject"

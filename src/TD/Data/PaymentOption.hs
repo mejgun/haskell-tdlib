@@ -11,10 +11,10 @@ data PaymentOption
     { title :: Maybe T.Text -- ^ Title for the payment option
     , url   :: Maybe T.Text -- ^ Payment form URL to be opened in a web view
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PaymentOption where
-  show PaymentOption
+instance I.ShortShow PaymentOption where
+  shortShow PaymentOption
     { title = title_
     , url   = url_
     }

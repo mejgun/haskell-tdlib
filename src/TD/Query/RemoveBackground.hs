@@ -11,10 +11,10 @@ data RemoveBackground
   = RemoveBackground
     { background_id :: Maybe Int -- ^ The background identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveBackground where
-  show
+instance I.ShortShow RemoveBackground where
+  shortShow
     RemoveBackground
       { background_id = background_id_
       }

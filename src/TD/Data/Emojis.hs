@@ -10,10 +10,10 @@ data Emojis
   = Emojis -- ^ Represents a list of emoji
     { emojis :: Maybe [T.Text] -- ^ List of emojis
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Emojis where
-  show Emojis
+instance I.ShortShow Emojis where
+  shortShow Emojis
     { emojis = emojis_
     }
       = "Emojis"

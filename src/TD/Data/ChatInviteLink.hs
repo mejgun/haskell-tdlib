@@ -21,10 +21,10 @@ data ChatInviteLink
     , is_primary                 :: Maybe Bool   -- ^ True, if the link is primary. Primary invite link can't have name, expiration date, or usage limit. There is exactly one primary invite link for each administrator with can_invite_users right at a given time
     , is_revoked                 :: Maybe Bool   -- ^ True, if the link was revoked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLink where
-  show ChatInviteLink
+instance I.ShortShow ChatInviteLink where
+  shortShow ChatInviteLink
     { invite_link                = invite_link_
     , name                       = name_
     , creator_user_id            = creator_user_id_

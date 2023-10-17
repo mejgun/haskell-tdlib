@@ -14,10 +14,10 @@ data Call
     , is_video    :: Maybe Bool                -- ^ True, if the call is a video call
     , state       :: Maybe CallState.CallState -- ^ Call state
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Call where
-  show Call
+instance I.ShortShow Call where
+  shortShow Call
     { _id         = _id_
     , user_id     = user_id_
     , is_outgoing = is_outgoing_

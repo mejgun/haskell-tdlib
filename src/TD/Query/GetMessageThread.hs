@@ -13,10 +13,10 @@ data GetMessageThread
     { chat_id    :: Maybe Int -- ^ Chat identifier
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageThread where
-  show
+instance I.ShortShow GetMessageThread where
+  shortShow
     GetMessageThread
       { chat_id    = chat_id_
       , message_id = message_id_

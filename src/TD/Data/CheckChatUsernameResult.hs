@@ -3,6 +3,7 @@ module TD.Data.CheckChatUsernameResult
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents result of checking whether a username can be set for a chat
 data CheckChatUsernameResult
@@ -12,20 +13,20 @@ data CheckChatUsernameResult
   | CheckChatUsernameResultUsernamePurchasable -- ^ The username can be purchased at fragment.com
   | CheckChatUsernameResultPublicChatsTooMany -- ^ The user has too many chats with username, one of them must be made private first
   | CheckChatUsernameResultPublicGroupsUnavailable -- ^ The user can't be a member of a public supergroup
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckChatUsernameResult where
-  show CheckChatUsernameResultOk
+instance I.ShortShow CheckChatUsernameResult where
+  shortShow CheckChatUsernameResultOk
       = "CheckChatUsernameResultOk"
-  show CheckChatUsernameResultUsernameInvalid
+  shortShow CheckChatUsernameResultUsernameInvalid
       = "CheckChatUsernameResultUsernameInvalid"
-  show CheckChatUsernameResultUsernameOccupied
+  shortShow CheckChatUsernameResultUsernameOccupied
       = "CheckChatUsernameResultUsernameOccupied"
-  show CheckChatUsernameResultUsernamePurchasable
+  shortShow CheckChatUsernameResultUsernamePurchasable
       = "CheckChatUsernameResultUsernamePurchasable"
-  show CheckChatUsernameResultPublicChatsTooMany
+  shortShow CheckChatUsernameResultPublicChatsTooMany
       = "CheckChatUsernameResultPublicChatsTooMany"
-  show CheckChatUsernameResultPublicGroupsUnavailable
+  shortShow CheckChatUsernameResultPublicGroupsUnavailable
       = "CheckChatUsernameResultPublicGroupsUnavailable"
 
 instance AT.FromJSON CheckChatUsernameResult where

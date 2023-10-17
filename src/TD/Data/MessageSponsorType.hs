@@ -25,10 +25,10 @@ data MessageSponsorType
     { url  :: Maybe T.Text -- ^ URL of the website
     , name :: Maybe T.Text -- ^ Name of the website
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSponsorType where
-  show MessageSponsorTypeBot
+instance I.ShortShow MessageSponsorType where
+  shortShow MessageSponsorTypeBot
     { bot_user_id = bot_user_id_
     , link        = link_
     }
@@ -37,7 +37,7 @@ instance Show MessageSponsorType where
         [ "bot_user_id" `I.p` bot_user_id_
         , "link"        `I.p` link_
         ]
-  show MessageSponsorTypePublicChannel
+  shortShow MessageSponsorTypePublicChannel
     { chat_id = chat_id_
     , link    = link_
     }
@@ -46,7 +46,7 @@ instance Show MessageSponsorType where
         [ "chat_id" `I.p` chat_id_
         , "link"    `I.p` link_
         ]
-  show MessageSponsorTypePrivateChannel
+  shortShow MessageSponsorTypePrivateChannel
     { title       = title_
     , invite_link = invite_link_
     }
@@ -55,7 +55,7 @@ instance Show MessageSponsorType where
         [ "title"       `I.p` title_
         , "invite_link" `I.p` invite_link_
         ]
-  show MessageSponsorTypeWebsite
+  shortShow MessageSponsorTypeWebsite
     { url  = url_
     , name = name_
     }

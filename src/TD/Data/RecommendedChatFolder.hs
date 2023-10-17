@@ -12,10 +12,10 @@ data RecommendedChatFolder
     { folder      :: Maybe ChatFolder.ChatFolder -- ^ The chat folder
     , description :: Maybe T.Text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RecommendedChatFolder where
-  show RecommendedChatFolder
+instance I.ShortShow RecommendedChatFolder where
+  shortShow RecommendedChatFolder
     { folder      = folder_
     , description = description_
     }

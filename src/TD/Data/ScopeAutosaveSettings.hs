@@ -13,10 +13,10 @@ data ScopeAutosaveSettings
     , autosave_videos     :: Maybe Bool -- ^ True, if video autosave is enabled
     , max_video_file_size :: Maybe Int  -- ^ The maximum size of a video file to be autosaved, in bytes; 512 KB - 4000 MB
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ScopeAutosaveSettings where
-  show ScopeAutosaveSettings
+instance I.ShortShow ScopeAutosaveSettings where
+  shortShow ScopeAutosaveSettings
     { autosave_photos     = autosave_photos_
     , autosave_videos     = autosave_videos_
     , max_video_file_size = max_video_file_size_

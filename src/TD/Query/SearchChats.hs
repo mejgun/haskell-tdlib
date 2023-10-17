@@ -14,10 +14,10 @@ data SearchChats
     { query :: Maybe T.Text -- ^ Query to search for. If the query is empty, returns up to 50 recently found chats
     , limit :: Maybe Int    -- ^ The maximum number of chats to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchChats where
-  show
+instance I.ShortShow SearchChats where
+  shortShow
     SearchChats
       { query = query_
       , limit = limit_

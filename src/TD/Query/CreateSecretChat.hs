@@ -11,10 +11,10 @@ data CreateSecretChat
   = CreateSecretChat
     { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateSecretChat where
-  show
+instance I.ShortShow CreateSecretChat where
+  shortShow
     CreateSecretChat
       { secret_chat_id = secret_chat_id_
       }

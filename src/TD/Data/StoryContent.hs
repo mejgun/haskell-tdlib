@@ -17,17 +17,17 @@ data StoryContent
     , alternative_video :: Maybe StoryVideo.StoryVideo -- ^ Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
     }
   | StoryContentUnsupported -- ^ A story content that is not supported in the current TDLib version
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryContent where
-  show StoryContentPhoto
+instance I.ShortShow StoryContent where
+  shortShow StoryContentPhoto
     { photo = photo_
     }
       = "StoryContentPhoto"
         ++ I.cc
         [ "photo" `I.p` photo_
         ]
-  show StoryContentVideo
+  shortShow StoryContentVideo
     { video             = video_
     , alternative_video = alternative_video_
     }
@@ -36,7 +36,7 @@ instance Show StoryContent where
         [ "video"             `I.p` video_
         , "alternative_video" `I.p` alternative_video_
         ]
-  show StoryContentUnsupported
+  shortShow StoryContentUnsupported
       = "StoryContentUnsupported"
 
 instance AT.FromJSON StoryContent where

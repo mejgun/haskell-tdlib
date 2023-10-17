@@ -11,10 +11,10 @@ data GetUser
   = GetUser
     { user_id :: Maybe Int -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetUser where
-  show
+instance I.ShortShow GetUser where
+  shortShow
     GetUser
       { user_id = user_id_
       }

@@ -13,10 +13,10 @@ data ReorderChatFolders
     { chat_folder_ids         :: Maybe [Int] -- ^ Identifiers of chat folders in the new correct order
     , main_chat_list_position :: Maybe Int   -- ^ Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReorderChatFolders where
-  show
+instance I.ShortShow ReorderChatFolders where
+  shortShow
     ReorderChatFolders
       { chat_folder_ids         = chat_folder_ids_
       , main_chat_list_position = main_chat_list_position_

@@ -14,10 +14,10 @@ data SetSupergroupUsername
     { supergroup_id :: Maybe Int    -- ^ Identifier of the supergroup or channel
     , username      :: Maybe T.Text -- ^ New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetSupergroupUsername where
-  show
+instance I.ShortShow SetSupergroupUsername where
+  shortShow
     SetSupergroupUsername
       { supergroup_id = supergroup_id_
       , username      = username_

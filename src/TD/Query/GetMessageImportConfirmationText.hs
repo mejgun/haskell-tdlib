@@ -11,10 +11,10 @@ data GetMessageImportConfirmationText
   = GetMessageImportConfirmationText
     { chat_id :: Maybe Int -- ^ Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageImportConfirmationText where
-  show
+instance I.ShortShow GetMessageImportConfirmationText where
+  shortShow
     GetMessageImportConfirmationText
       { chat_id = chat_id_
       }

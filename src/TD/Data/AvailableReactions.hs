@@ -13,10 +13,10 @@ data AvailableReactions
     , popular_reactions  :: Maybe [AvailableReaction.AvailableReaction] -- ^ List of popular reactions
     , allow_custom_emoji :: Maybe Bool                                  -- ^ True, if custom emoji reactions could be added by Telegram Premium subscribers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AvailableReactions where
-  show AvailableReactions
+instance I.ShortShow AvailableReactions where
+  shortShow AvailableReactions
     { top_reactions      = top_reactions_
     , recent_reactions   = recent_reactions_
     , popular_reactions  = popular_reactions_

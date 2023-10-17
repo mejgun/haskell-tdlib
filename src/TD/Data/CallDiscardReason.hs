@@ -3,6 +3,7 @@ module TD.Data.CallDiscardReason
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the reason why a call was discarded
 data CallDiscardReason
@@ -11,18 +12,18 @@ data CallDiscardReason
   | CallDiscardReasonDeclined -- ^ The call was ended before the conversation started. It was declined by the other party
   | CallDiscardReasonDisconnected -- ^ The call was ended during the conversation because the users were disconnected
   | CallDiscardReasonHungUp -- ^ The call was ended because one of the parties hung up
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallDiscardReason where
-  show CallDiscardReasonEmpty
+instance I.ShortShow CallDiscardReason where
+  shortShow CallDiscardReasonEmpty
       = "CallDiscardReasonEmpty"
-  show CallDiscardReasonMissed
+  shortShow CallDiscardReasonMissed
       = "CallDiscardReasonMissed"
-  show CallDiscardReasonDeclined
+  shortShow CallDiscardReasonDeclined
       = "CallDiscardReasonDeclined"
-  show CallDiscardReasonDisconnected
+  shortShow CallDiscardReasonDisconnected
       = "CallDiscardReasonDisconnected"
-  show CallDiscardReasonHungUp
+  shortShow CallDiscardReasonHungUp
       = "CallDiscardReasonHungUp"
 
 instance AT.FromJSON CallDiscardReason where

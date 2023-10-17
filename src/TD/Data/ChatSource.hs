@@ -13,12 +13,12 @@ data ChatSource
     { _type :: Maybe T.Text -- ^ The type of the announcement
     , text  :: Maybe T.Text -- ^ The text of the announcement
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatSource where
-  show ChatSourceMtprotoProxy
+instance I.ShortShow ChatSource where
+  shortShow ChatSourceMtprotoProxy
       = "ChatSourceMtprotoProxy"
-  show ChatSourcePublicServiceAnnouncement
+  shortShow ChatSourcePublicServiceAnnouncement
     { _type = _type_
     , text  = text_
     }

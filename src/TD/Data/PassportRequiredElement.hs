@@ -10,10 +10,10 @@ data PassportRequiredElement
   = PassportRequiredElement -- ^ Contains a description of the required Telegram Passport element that was requested by a service
     { suitable_elements :: Maybe [PassportSuitableElement.PassportSuitableElement] -- ^ List of Telegram Passport elements any of which is enough to provide
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportRequiredElement where
-  show PassportRequiredElement
+instance I.ShortShow PassportRequiredElement where
+  shortShow PassportRequiredElement
     { suitable_elements = suitable_elements_
     }
       = "PassportRequiredElement"

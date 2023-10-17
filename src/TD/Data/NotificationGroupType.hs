@@ -3,6 +3,7 @@ module TD.Data.NotificationGroupType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the type of notifications in a notification group
 data NotificationGroupType
@@ -10,16 +11,16 @@ data NotificationGroupType
   | NotificationGroupTypeMentions -- ^ A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
   | NotificationGroupTypeSecretChat -- ^ A group containing a notification of type notificationTypeNewSecretChat
   | NotificationGroupTypeCalls -- ^ A group containing notifications of type notificationTypeNewCall
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NotificationGroupType where
-  show NotificationGroupTypeMessages
+instance I.ShortShow NotificationGroupType where
+  shortShow NotificationGroupTypeMessages
       = "NotificationGroupTypeMessages"
-  show NotificationGroupTypeMentions
+  shortShow NotificationGroupTypeMentions
       = "NotificationGroupTypeMentions"
-  show NotificationGroupTypeSecretChat
+  shortShow NotificationGroupTypeSecretChat
       = "NotificationGroupTypeSecretChat"
-  show NotificationGroupTypeCalls
+  shortShow NotificationGroupTypeCalls
       = "NotificationGroupTypeCalls"
 
 instance AT.FromJSON NotificationGroupType where

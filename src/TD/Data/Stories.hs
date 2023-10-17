@@ -11,10 +11,10 @@ data Stories
     { total_count :: Maybe Int           -- ^ Approximate total number of stories found
     , stories     :: Maybe [Story.Story] -- ^ The list of stories
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Stories where
-  show Stories
+instance I.ShortShow Stories where
+  shortShow Stories
     { total_count = total_count_
     , stories     = stories_
     }

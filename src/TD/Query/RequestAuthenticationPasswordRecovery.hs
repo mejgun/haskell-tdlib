@@ -4,14 +4,15 @@ module TD.Query.RequestAuthenticationPasswordRecovery
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
 data RequestAuthenticationPasswordRecovery
   = RequestAuthenticationPasswordRecovery
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RequestAuthenticationPasswordRecovery where
-  show
+instance I.ShortShow RequestAuthenticationPasswordRecovery where
+  shortShow
     RequestAuthenticationPasswordRecovery
         = "RequestAuthenticationPasswordRecovery"
 

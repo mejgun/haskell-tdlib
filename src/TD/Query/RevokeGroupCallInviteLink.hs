@@ -11,10 +11,10 @@ data RevokeGroupCallInviteLink
   = RevokeGroupCallInviteLink
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RevokeGroupCallInviteLink where
-  show
+instance I.ShortShow RevokeGroupCallInviteLink where
+  shortShow
     RevokeGroupCallInviteLink
       { group_call_id = group_call_id_
       }

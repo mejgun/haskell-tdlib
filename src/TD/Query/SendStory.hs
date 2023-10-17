@@ -20,10 +20,10 @@ data SendStory
     , is_pinned        :: Maybe Bool                                      -- ^ Pass true to keep the story accessible after expiration
     , protect_content  :: Maybe Bool                                      -- ^ Pass true if the content of the story must be protected from forwarding and screenshotting
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendStory where
-  show
+instance I.ShortShow SendStory where
+  shortShow
     SendStory
       { content          = content_
       , caption          = caption_

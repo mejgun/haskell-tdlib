@@ -15,10 +15,10 @@ data MessageReplyTo
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
     , story_id             :: Maybe Int -- ^ The identifier of the replied story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageReplyTo where
-  show MessageReplyToMessage
+instance I.ShortShow MessageReplyTo where
+  shortShow MessageReplyToMessage
     { chat_id    = chat_id_
     , message_id = message_id_
     }
@@ -27,7 +27,7 @@ instance Show MessageReplyTo where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
-  show MessageReplyToStory
+  shortShow MessageReplyToStory
     { story_sender_chat_id = story_sender_chat_id_
     , story_id             = story_id_
     }

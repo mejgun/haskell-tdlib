@@ -24,10 +24,10 @@ data LanguagePackInfo
     , local_string_count      :: Maybe Int    -- ^ Total number of non-deleted strings from the language pack available locally
     , translation_url         :: Maybe T.Text -- ^ Link to language translation interface; empty for custom local language packs
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LanguagePackInfo where
-  show LanguagePackInfo
+instance I.ShortShow LanguagePackInfo where
+  shortShow LanguagePackInfo
     { _id                     = _id_
     , base_language_pack_id   = base_language_pack_id_
     , name                    = name_

@@ -15,10 +15,10 @@ data SetBotName
     , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code. If empty, the name will be shown to all users for whose languages there is no dedicated name
     , name          :: Maybe T.Text -- ^ New bot's name on the specified language; 0-64 characters; must be non-empty if language code is empty
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBotName where
-  show
+instance I.ShortShow SetBotName where
+  shortShow
     SetBotName
       { bot_user_id   = bot_user_id_
       , language_code = language_code_

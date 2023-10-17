@@ -10,10 +10,10 @@ data RecoveryEmailAddress
   = RecoveryEmailAddress -- ^ Contains information about the current recovery email address
     { recovery_email_address :: Maybe T.Text -- ^ Recovery email address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RecoveryEmailAddress where
-  show RecoveryEmailAddress
+instance I.ShortShow RecoveryEmailAddress where
+  shortShow RecoveryEmailAddress
     { recovery_email_address = recovery_email_address_
     }
       = "RecoveryEmailAddress"

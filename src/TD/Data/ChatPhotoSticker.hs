@@ -14,10 +14,10 @@ data ChatPhotoSticker
     { _type           :: Maybe ChatPhotoStickerType.ChatPhotoStickerType -- ^ Type of the sticker
     , background_fill :: Maybe BackgroundFill.BackgroundFill             -- ^ The fill to be used as background for the sticker; rotation angle in backgroundFillGradient isn't supported
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPhotoSticker where
-  show ChatPhotoSticker
+instance I.ShortShow ChatPhotoSticker where
+  shortShow ChatPhotoSticker
     { _type           = _type_
     , background_fill = background_fill_
     }

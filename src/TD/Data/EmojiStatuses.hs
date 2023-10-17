@@ -9,10 +9,10 @@ data EmojiStatuses
   = EmojiStatuses -- ^ Contains a list of custom emoji identifiers, which can be set as emoji statuses
     { custom_emoji_ids :: Maybe [Int] -- ^ The list of custom emoji identifiers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiStatuses where
-  show EmojiStatuses
+instance I.ShortShow EmojiStatuses where
+  shortShow EmojiStatuses
     { custom_emoji_ids = custom_emoji_ids_
     }
       = "EmojiStatuses"

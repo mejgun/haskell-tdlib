@@ -12,10 +12,10 @@ data SearchStickerSet
   = SearchStickerSet
     { name :: Maybe T.Text -- ^ Name of the sticker set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchStickerSet where
-  show
+instance I.ShortShow SearchStickerSet where
+  shortShow
     SearchStickerSet
       { name = name_
       }

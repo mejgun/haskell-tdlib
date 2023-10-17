@@ -11,10 +11,10 @@ data BankCardActionOpenUrl
     { text :: Maybe T.Text -- ^ Action text
     , url  :: Maybe T.Text -- ^ The URL to be opened
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BankCardActionOpenUrl where
-  show BankCardActionOpenUrl
+instance I.ShortShow BankCardActionOpenUrl where
+  shortShow BankCardActionOpenUrl
     { text = text_
     , url  = url_
     }

@@ -8,6 +8,7 @@
   * Reduced GeneralResult constructors count
   * Added default values (nothings)
   * Moved html docs to own repo
+  * Renamed custom show class to ShortShow
 
 ### 0.0.1 2020-04-20
 

@@ -26,10 +26,10 @@ data ChatFolder
     , include_groups       :: Maybe Bool                          -- ^ True, if basic groups and supergroups need to be included
     , include_channels     :: Maybe Bool                          -- ^ True, if channels need to be included
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolder where
-  show ChatFolder
+instance I.ShortShow ChatFolder where
+  shortShow ChatFolder
     { title                = title_
     , icon                 = icon_
     , is_shareable         = is_shareable_

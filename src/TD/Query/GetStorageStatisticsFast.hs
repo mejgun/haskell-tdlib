@@ -4,14 +4,15 @@ module TD.Query.GetStorageStatisticsFast
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Quickly returns approximate storage usage statistics. Can be called before authorization
 data GetStorageStatisticsFast
   = GetStorageStatisticsFast
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStorageStatisticsFast where
-  show
+instance I.ShortShow GetStorageStatisticsFast where
+  shortShow
     GetStorageStatisticsFast
         = "GetStorageStatisticsFast"
 

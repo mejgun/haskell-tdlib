@@ -3,6 +3,7 @@ module TD.Data.PassportElementType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Contains the type of a Telegram Passport element
 data PassportElementType
@@ -19,34 +20,34 @@ data PassportElementType
   | PassportElementTypeTemporaryRegistration -- ^ A Telegram Passport element containing the user's temporary registration
   | PassportElementTypePhoneNumber -- ^ A Telegram Passport element containing the user's phone number
   | PassportElementTypeEmailAddress -- ^ A Telegram Passport element containing the user's email address
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportElementType where
-  show PassportElementTypePersonalDetails
+instance I.ShortShow PassportElementType where
+  shortShow PassportElementTypePersonalDetails
       = "PassportElementTypePersonalDetails"
-  show PassportElementTypePassport
+  shortShow PassportElementTypePassport
       = "PassportElementTypePassport"
-  show PassportElementTypeDriverLicense
+  shortShow PassportElementTypeDriverLicense
       = "PassportElementTypeDriverLicense"
-  show PassportElementTypeIdentityCard
+  shortShow PassportElementTypeIdentityCard
       = "PassportElementTypeIdentityCard"
-  show PassportElementTypeInternalPassport
+  shortShow PassportElementTypeInternalPassport
       = "PassportElementTypeInternalPassport"
-  show PassportElementTypeAddress
+  shortShow PassportElementTypeAddress
       = "PassportElementTypeAddress"
-  show PassportElementTypeUtilityBill
+  shortShow PassportElementTypeUtilityBill
       = "PassportElementTypeUtilityBill"
-  show PassportElementTypeBankStatement
+  shortShow PassportElementTypeBankStatement
       = "PassportElementTypeBankStatement"
-  show PassportElementTypeRentalAgreement
+  shortShow PassportElementTypeRentalAgreement
       = "PassportElementTypeRentalAgreement"
-  show PassportElementTypePassportRegistration
+  shortShow PassportElementTypePassportRegistration
       = "PassportElementTypePassportRegistration"
-  show PassportElementTypeTemporaryRegistration
+  shortShow PassportElementTypeTemporaryRegistration
       = "PassportElementTypeTemporaryRegistration"
-  show PassportElementTypePhoneNumber
+  shortShow PassportElementTypePhoneNumber
       = "PassportElementTypePhoneNumber"
-  show PassportElementTypeEmailAddress
+  shortShow PassportElementTypeEmailAddress
       = "PassportElementTypeEmailAddress"
 
 instance AT.FromJSON PassportElementType where

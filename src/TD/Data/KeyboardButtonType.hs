@@ -38,16 +38,16 @@ data KeyboardButtonType
   | KeyboardButtonTypeWebApp -- ^ A button that opens a Web App by calling getWebAppUrl
     { url :: Maybe T.Text -- ^ An HTTP URL to pass to getWebAppUrl
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show KeyboardButtonType where
-  show KeyboardButtonTypeText
+instance I.ShortShow KeyboardButtonType where
+  shortShow KeyboardButtonTypeText
       = "KeyboardButtonTypeText"
-  show KeyboardButtonTypeRequestPhoneNumber
+  shortShow KeyboardButtonTypeRequestPhoneNumber
       = "KeyboardButtonTypeRequestPhoneNumber"
-  show KeyboardButtonTypeRequestLocation
+  shortShow KeyboardButtonTypeRequestLocation
       = "KeyboardButtonTypeRequestLocation"
-  show KeyboardButtonTypeRequestPoll
+  shortShow KeyboardButtonTypeRequestPoll
     { force_regular = force_regular_
     , force_quiz    = force_quiz_
     }
@@ -56,7 +56,7 @@ instance Show KeyboardButtonType where
         [ "force_regular" `I.p` force_regular_
         , "force_quiz"    `I.p` force_quiz_
         ]
-  show KeyboardButtonTypeRequestUser
+  shortShow KeyboardButtonTypeRequestUser
     { _id                      = _id_
     , restrict_user_is_bot     = restrict_user_is_bot_
     , user_is_bot              = user_is_bot_
@@ -71,7 +71,7 @@ instance Show KeyboardButtonType where
         , "restrict_user_is_premium" `I.p` restrict_user_is_premium_
         , "user_is_premium"          `I.p` user_is_premium_
         ]
-  show KeyboardButtonTypeRequestChat
+  shortShow KeyboardButtonTypeRequestChat
     { _id                        = _id_
     , chat_is_channel            = chat_is_channel_
     , restrict_chat_is_forum     = restrict_chat_is_forum_
@@ -96,7 +96,7 @@ instance Show KeyboardButtonType where
         , "bot_administrator_rights"   `I.p` bot_administrator_rights_
         , "bot_is_member"              `I.p` bot_is_member_
         ]
-  show KeyboardButtonTypeWebApp
+  shortShow KeyboardButtonTypeWebApp
     { url = url_
     }
       = "KeyboardButtonTypeWebApp"

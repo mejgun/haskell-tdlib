@@ -12,10 +12,10 @@ data CheckChatFolderInviteLink
   = CheckChatFolderInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link to be checked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckChatFolderInviteLink where
-  show
+instance I.ShortShow CheckChatFolderInviteLink where
+  shortShow
     CheckChatFolderInviteLink
       { invite_link = invite_link_
       }

@@ -11,10 +11,10 @@ data CloseWebApp
   = CloseWebApp
     { web_app_launch_id :: Maybe Int -- ^ Identifier of Web App launch, received from openWebApp
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CloseWebApp where
-  show
+instance I.ShortShow CloseWebApp where
+  shortShow
     CloseWebApp
       { web_app_launch_id = web_app_launch_id_
       }

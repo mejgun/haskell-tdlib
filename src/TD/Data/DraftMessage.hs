@@ -14,10 +14,10 @@ data DraftMessage
     , date                :: Maybe Int                                     -- ^ Point in time (Unix timestamp) when the draft was created
     , input_message_text  :: Maybe InputMessageContent.InputMessageContent -- ^ Content of the message draft; must be of the type inputMessageText
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DraftMessage where
-  show DraftMessage
+instance I.ShortShow DraftMessage where
+  shortShow DraftMessage
     { reply_to_message_id = reply_to_message_id_
     , date                = date_
     , input_message_text  = input_message_text_

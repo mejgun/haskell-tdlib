@@ -15,10 +15,10 @@ data SetBotInfoDescription
     , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
     , description   :: Maybe T.Text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBotInfoDescription where
-  show
+instance I.ShortShow SetBotInfoDescription where
+  shortShow
     SetBotInfoDescription
       { bot_user_id   = bot_user_id_
       , language_code = language_code_

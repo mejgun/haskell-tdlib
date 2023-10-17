@@ -11,10 +11,10 @@ data LeaveGroupCall
   = LeaveGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LeaveGroupCall where
-  show
+instance I.ShortShow LeaveGroupCall where
+  shortShow
     LeaveGroupCall
       { group_call_id = group_call_id_
       }

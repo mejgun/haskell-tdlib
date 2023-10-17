@@ -13,10 +13,10 @@ data EmojiCategory
     , icon   :: Maybe Sticker.Sticker -- ^ Custom emoji sticker, which represents icon of the category
     , emojis :: Maybe [T.Text]        -- ^ List of emojis in the category
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiCategory where
-  show EmojiCategory
+instance I.ShortShow EmojiCategory where
+  shortShow EmojiCategory
     { name   = name_
     , icon   = icon_
     , emojis = emojis_

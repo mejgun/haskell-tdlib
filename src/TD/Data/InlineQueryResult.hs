@@ -84,10 +84,10 @@ data InlineQueryResult
     , voice_note :: Maybe VoiceNote.VoiceNote -- ^ Voice note
     , title      :: Maybe T.Text              -- ^ Title of the voice note
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineQueryResult where
-  show InlineQueryResultArticle
+instance I.ShortShow InlineQueryResult where
+  shortShow InlineQueryResultArticle
     { _id         = _id_
     , url         = url_
     , hide_url    = hide_url_
@@ -104,7 +104,7 @@ instance Show InlineQueryResult where
         , "description" `I.p` description_
         , "thumbnail"   `I.p` thumbnail_
         ]
-  show InlineQueryResultContact
+  shortShow InlineQueryResultContact
     { _id       = _id_
     , contact   = contact_
     , thumbnail = thumbnail_
@@ -115,7 +115,7 @@ instance Show InlineQueryResult where
         , "contact"   `I.p` contact_
         , "thumbnail" `I.p` thumbnail_
         ]
-  show InlineQueryResultLocation
+  shortShow InlineQueryResultLocation
     { _id       = _id_
     , location  = location_
     , title     = title_
@@ -128,7 +128,7 @@ instance Show InlineQueryResult where
         , "title"     `I.p` title_
         , "thumbnail" `I.p` thumbnail_
         ]
-  show InlineQueryResultVenue
+  shortShow InlineQueryResultVenue
     { _id       = _id_
     , venue     = venue_
     , thumbnail = thumbnail_
@@ -139,7 +139,7 @@ instance Show InlineQueryResult where
         , "venue"     `I.p` venue_
         , "thumbnail" `I.p` thumbnail_
         ]
-  show InlineQueryResultGame
+  shortShow InlineQueryResultGame
     { _id  = _id_
     , game = game_
     }
@@ -148,7 +148,7 @@ instance Show InlineQueryResult where
         [ "_id"  `I.p` _id_
         , "game" `I.p` game_
         ]
-  show InlineQueryResultAnimation
+  shortShow InlineQueryResultAnimation
     { _id       = _id_
     , animation = animation_
     , title     = title_
@@ -159,7 +159,7 @@ instance Show InlineQueryResult where
         , "animation" `I.p` animation_
         , "title"     `I.p` title_
         ]
-  show InlineQueryResultAudio
+  shortShow InlineQueryResultAudio
     { _id   = _id_
     , audio = audio_
     }
@@ -168,7 +168,7 @@ instance Show InlineQueryResult where
         [ "_id"   `I.p` _id_
         , "audio" `I.p` audio_
         ]
-  show InlineQueryResultDocument
+  shortShow InlineQueryResultDocument
     { _id         = _id_
     , document    = document_
     , title       = title_
@@ -181,7 +181,7 @@ instance Show InlineQueryResult where
         , "title"       `I.p` title_
         , "description" `I.p` description_
         ]
-  show InlineQueryResultPhoto
+  shortShow InlineQueryResultPhoto
     { _id         = _id_
     , photo       = photo_
     , title       = title_
@@ -194,7 +194,7 @@ instance Show InlineQueryResult where
         , "title"       `I.p` title_
         , "description" `I.p` description_
         ]
-  show InlineQueryResultSticker
+  shortShow InlineQueryResultSticker
     { _id     = _id_
     , sticker = sticker_
     }
@@ -203,7 +203,7 @@ instance Show InlineQueryResult where
         [ "_id"     `I.p` _id_
         , "sticker" `I.p` sticker_
         ]
-  show InlineQueryResultVideo
+  shortShow InlineQueryResultVideo
     { _id         = _id_
     , video       = video_
     , title       = title_
@@ -216,7 +216,7 @@ instance Show InlineQueryResult where
         , "title"       `I.p` title_
         , "description" `I.p` description_
         ]
-  show InlineQueryResultVoiceNote
+  shortShow InlineQueryResultVoiceNote
     { _id        = _id_
     , voice_note = voice_note_
     , title      = title_

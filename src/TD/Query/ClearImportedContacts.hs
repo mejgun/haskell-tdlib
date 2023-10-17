@@ -4,14 +4,15 @@ module TD.Query.ClearImportedContacts
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Clears all imported contacts, contact list remains unchanged
 data ClearImportedContacts
   = ClearImportedContacts
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClearImportedContacts where
-  show
+instance I.ShortShow ClearImportedContacts where
+  shortShow
     ClearImportedContacts
         = "ClearImportedContacts"
 

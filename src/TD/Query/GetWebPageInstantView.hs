@@ -14,10 +14,10 @@ data GetWebPageInstantView
     { url        :: Maybe T.Text -- ^ The web page URL
     , force_full :: Maybe Bool   -- ^ Pass true to get full instant view for the web page
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetWebPageInstantView where
-  show
+instance I.ShortShow GetWebPageInstantView where
+  shortShow
     GetWebPageInstantView
       { url        = url_
       , force_full = force_full_

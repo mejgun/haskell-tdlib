@@ -10,10 +10,10 @@ data CustomRequestResult
   = CustomRequestResult -- ^ Contains the result of a custom request
     { result :: Maybe T.Text -- ^ A JSON-serialized result
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CustomRequestResult where
-  show CustomRequestResult
+instance I.ShortShow CustomRequestResult where
+  shortShow CustomRequestResult
     { result = result_
     }
       = "CustomRequestResult"

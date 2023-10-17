@@ -14,10 +14,10 @@ data SetStickerSetTitle
     { name  :: Maybe T.Text -- ^ Sticker set name
     , title :: Maybe T.Text -- ^ New sticker set title
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerSetTitle where
-  show
+instance I.ShortShow SetStickerSetTitle where
+  shortShow
     SetStickerSetTitle
       { name  = name_
       , title = title_

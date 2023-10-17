@@ -21,10 +21,10 @@ data SendMessage
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendMessage where
-  show
+instance I.ShortShow SendMessage where
+  shortShow
     SendMessage
       { chat_id               = chat_id_
       , message_thread_id     = message_thread_id_

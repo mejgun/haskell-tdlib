@@ -4,14 +4,15 @@ module TD.Query.GetMe
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns the current user
 data GetMe
   = GetMe
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMe where
-  show
+instance I.ShortShow GetMe where
+  shortShow
     GetMe
         = "GetMe"
 

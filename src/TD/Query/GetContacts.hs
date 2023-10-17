@@ -4,14 +4,15 @@ module TD.Query.GetContacts
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns all contacts of the user
 data GetContacts
   = GetContacts
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetContacts where
-  show
+instance I.ShortShow GetContacts where
+  shortShow
     GetContacts
         = "GetContacts"
 

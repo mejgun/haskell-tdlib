@@ -27,10 +27,10 @@ data Story
     , content                  :: Maybe StoryContent.StoryContent                 -- ^ Content of the story
     , caption                  :: Maybe FormattedText.FormattedText               -- ^ Caption of the story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Story where
-  show Story
+instance I.ShortShow Story where
+  shortShow Story
     { _id                      = _id_
     , sender_chat_id           = sender_chat_id_
     , date                     = date_

@@ -16,10 +16,10 @@ data GetPassportAuthorizationForm
     , public_key  :: Maybe T.Text -- ^ Service's public key
     , nonce       :: Maybe T.Text -- ^ Unique request identifier provided by the service
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPassportAuthorizationForm where
-  show
+instance I.ShortShow GetPassportAuthorizationForm where
+  shortShow
     GetPassportAuthorizationForm
       { bot_user_id = bot_user_id_
       , scope       = scope_

@@ -12,10 +12,10 @@ data EditCustomLanguagePackInfo
   = EditCustomLanguagePackInfo
     { info :: Maybe LanguagePackInfo.LanguagePackInfo -- ^ New information about the custom local language pack
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditCustomLanguagePackInfo where
-  show
+instance I.ShortShow EditCustomLanguagePackInfo where
+  shortShow
     EditCustomLanguagePackInfo
       { info = info_
       }

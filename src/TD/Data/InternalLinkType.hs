@@ -128,12 +128,12 @@ data InternalLinkType
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InternalLinkType where
-  show InternalLinkTypeActiveSessions
+instance I.ShortShow InternalLinkType where
+  shortShow InternalLinkTypeActiveSessions
       = "InternalLinkTypeActiveSessions"
-  show InternalLinkTypeAttachmentMenuBot
+  shortShow InternalLinkTypeAttachmentMenuBot
     { target_chat  = target_chat_
     , bot_username = bot_username_
     , url          = url_
@@ -144,21 +144,21 @@ instance Show InternalLinkType where
         , "bot_username" `I.p` bot_username_
         , "url"          `I.p` url_
         ]
-  show InternalLinkTypeAuthenticationCode
+  shortShow InternalLinkTypeAuthenticationCode
     { code = code_
     }
       = "InternalLinkTypeAuthenticationCode"
         ++ I.cc
         [ "code" `I.p` code_
         ]
-  show InternalLinkTypeBackground
+  shortShow InternalLinkTypeBackground
     { background_name = background_name_
     }
       = "InternalLinkTypeBackground"
         ++ I.cc
         [ "background_name" `I.p` background_name_
         ]
-  show InternalLinkTypeBotAddToChannel
+  shortShow InternalLinkTypeBotAddToChannel
     { bot_username         = bot_username_
     , administrator_rights = administrator_rights_
     }
@@ -167,7 +167,7 @@ instance Show InternalLinkType where
         [ "bot_username"         `I.p` bot_username_
         , "administrator_rights" `I.p` administrator_rights_
         ]
-  show InternalLinkTypeBotStart
+  shortShow InternalLinkTypeBotStart
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
     , autostart       = autostart_
@@ -178,7 +178,7 @@ instance Show InternalLinkType where
         , "start_parameter" `I.p` start_parameter_
         , "autostart"       `I.p` autostart_
         ]
-  show InternalLinkTypeBotStartInGroup
+  shortShow InternalLinkTypeBotStartInGroup
     { bot_username         = bot_username_
     , start_parameter      = start_parameter_
     , administrator_rights = administrator_rights_
@@ -189,29 +189,29 @@ instance Show InternalLinkType where
         , "start_parameter"      `I.p` start_parameter_
         , "administrator_rights" `I.p` administrator_rights_
         ]
-  show InternalLinkTypeChangePhoneNumber
+  shortShow InternalLinkTypeChangePhoneNumber
       = "InternalLinkTypeChangePhoneNumber"
-  show InternalLinkTypeChatFolderInvite
+  shortShow InternalLinkTypeChatFolderInvite
     { invite_link = invite_link_
     }
       = "InternalLinkTypeChatFolderInvite"
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  show InternalLinkTypeChatFolderSettings
+  shortShow InternalLinkTypeChatFolderSettings
       = "InternalLinkTypeChatFolderSettings"
-  show InternalLinkTypeChatInvite
+  shortShow InternalLinkTypeChatInvite
     { invite_link = invite_link_
     }
       = "InternalLinkTypeChatInvite"
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  show InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+  shortShow InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
       = "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings"
-  show InternalLinkTypeEditProfileSettings
+  shortShow InternalLinkTypeEditProfileSettings
       = "InternalLinkTypeEditProfileSettings"
-  show InternalLinkTypeGame
+  shortShow InternalLinkTypeGame
     { bot_username    = bot_username_
     , game_short_name = game_short_name_
     }
@@ -220,7 +220,7 @@ instance Show InternalLinkType where
         [ "bot_username"    `I.p` bot_username_
         , "game_short_name" `I.p` game_short_name_
         ]
-  show InternalLinkTypeInstantView
+  shortShow InternalLinkTypeInstantView
     { url          = url_
     , fallback_url = fallback_url_
     }
@@ -229,30 +229,30 @@ instance Show InternalLinkType where
         [ "url"          `I.p` url_
         , "fallback_url" `I.p` fallback_url_
         ]
-  show InternalLinkTypeInvoice
+  shortShow InternalLinkTypeInvoice
     { invoice_name = invoice_name_
     }
       = "InternalLinkTypeInvoice"
         ++ I.cc
         [ "invoice_name" `I.p` invoice_name_
         ]
-  show InternalLinkTypeLanguagePack
+  shortShow InternalLinkTypeLanguagePack
     { language_pack_id = language_pack_id_
     }
       = "InternalLinkTypeLanguagePack"
         ++ I.cc
         [ "language_pack_id" `I.p` language_pack_id_
         ]
-  show InternalLinkTypeLanguageSettings
+  shortShow InternalLinkTypeLanguageSettings
       = "InternalLinkTypeLanguageSettings"
-  show InternalLinkTypeMessage
+  shortShow InternalLinkTypeMessage
     { url = url_
     }
       = "InternalLinkTypeMessage"
         ++ I.cc
         [ "url" `I.p` url_
         ]
-  show InternalLinkTypeMessageDraft
+  shortShow InternalLinkTypeMessageDraft
     { text          = text_
     , contains_link = contains_link_
     }
@@ -261,7 +261,7 @@ instance Show InternalLinkType where
         [ "text"          `I.p` text_
         , "contains_link" `I.p` contains_link_
         ]
-  show InternalLinkTypePassportDataRequest
+  shortShow InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_
     , scope        = scope_
     , public_key   = public_key_
@@ -276,7 +276,7 @@ instance Show InternalLinkType where
         , "nonce"        `I.p` nonce_
         , "callback_url" `I.p` callback_url_
         ]
-  show InternalLinkTypePhoneNumberConfirmation
+  shortShow InternalLinkTypePhoneNumberConfirmation
     { hash         = hash_
     , phone_number = phone_number_
     }
@@ -285,16 +285,16 @@ instance Show InternalLinkType where
         [ "hash"         `I.p` hash_
         , "phone_number" `I.p` phone_number_
         ]
-  show InternalLinkTypePremiumFeatures
+  shortShow InternalLinkTypePremiumFeatures
     { referrer = referrer_
     }
       = "InternalLinkTypePremiumFeatures"
         ++ I.cc
         [ "referrer" `I.p` referrer_
         ]
-  show InternalLinkTypePrivacyAndSecuritySettings
+  shortShow InternalLinkTypePrivacyAndSecuritySettings
       = "InternalLinkTypePrivacyAndSecuritySettings"
-  show InternalLinkTypeProxy
+  shortShow InternalLinkTypeProxy
     { server = server_
     , port   = port_
     , _type  = _type_
@@ -305,20 +305,20 @@ instance Show InternalLinkType where
         , "port"   `I.p` port_
         , "_type"  `I.p` _type_
         ]
-  show InternalLinkTypePublicChat
+  shortShow InternalLinkTypePublicChat
     { chat_username = chat_username_
     }
       = "InternalLinkTypePublicChat"
         ++ I.cc
         [ "chat_username" `I.p` chat_username_
         ]
-  show InternalLinkTypeQrCodeAuthentication
+  shortShow InternalLinkTypeQrCodeAuthentication
       = "InternalLinkTypeQrCodeAuthentication"
-  show InternalLinkTypeRestorePurchases
+  shortShow InternalLinkTypeRestorePurchases
       = "InternalLinkTypeRestorePurchases"
-  show InternalLinkTypeSettings
+  shortShow InternalLinkTypeSettings
       = "InternalLinkTypeSettings"
-  show InternalLinkTypeStickerSet
+  shortShow InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
     , expect_custom_emoji = expect_custom_emoji_
     }
@@ -327,7 +327,7 @@ instance Show InternalLinkType where
         [ "sticker_set_name"    `I.p` sticker_set_name_
         , "expect_custom_emoji" `I.p` expect_custom_emoji_
         ]
-  show InternalLinkTypeStory
+  shortShow InternalLinkTypeStory
     { story_sender_username = story_sender_username_
     , story_id              = story_id_
     }
@@ -336,39 +336,39 @@ instance Show InternalLinkType where
         [ "story_sender_username" `I.p` story_sender_username_
         , "story_id"              `I.p` story_id_
         ]
-  show InternalLinkTypeTheme
+  shortShow InternalLinkTypeTheme
     { theme_name = theme_name_
     }
       = "InternalLinkTypeTheme"
         ++ I.cc
         [ "theme_name" `I.p` theme_name_
         ]
-  show InternalLinkTypeThemeSettings
+  shortShow InternalLinkTypeThemeSettings
       = "InternalLinkTypeThemeSettings"
-  show InternalLinkTypeUnknownDeepLink
+  shortShow InternalLinkTypeUnknownDeepLink
     { link = link_
     }
       = "InternalLinkTypeUnknownDeepLink"
         ++ I.cc
         [ "link" `I.p` link_
         ]
-  show InternalLinkTypeUnsupportedProxy
+  shortShow InternalLinkTypeUnsupportedProxy
       = "InternalLinkTypeUnsupportedProxy"
-  show InternalLinkTypeUserPhoneNumber
+  shortShow InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
     }
       = "InternalLinkTypeUserPhoneNumber"
         ++ I.cc
         [ "phone_number" `I.p` phone_number_
         ]
-  show InternalLinkTypeUserToken
+  shortShow InternalLinkTypeUserToken
     { token = token_
     }
       = "InternalLinkTypeUserToken"
         ++ I.cc
         [ "token" `I.p` token_
         ]
-  show InternalLinkTypeVideoChat
+  shortShow InternalLinkTypeVideoChat
     { chat_username  = chat_username_
     , invite_hash    = invite_hash_
     , is_live_stream = is_live_stream_
@@ -379,7 +379,7 @@ instance Show InternalLinkType where
         , "invite_hash"    `I.p` invite_hash_
         , "is_live_stream" `I.p` is_live_stream_
         ]
-  show InternalLinkTypeWebApp
+  shortShow InternalLinkTypeWebApp
     { bot_username       = bot_username_
     , web_app_short_name = web_app_short_name_
     , start_parameter    = start_parameter_

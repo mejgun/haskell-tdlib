@@ -11,10 +11,10 @@ data ToggleAllDownloadsArePaused
   = ToggleAllDownloadsArePaused
     { are_paused :: Maybe Bool -- ^ Pass true to pause all downloads; pass false to unpause them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleAllDownloadsArePaused where
-  show
+instance I.ShortShow ToggleAllDownloadsArePaused where
+  shortShow
     ToggleAllDownloadsArePaused
       { are_paused = are_paused_
       }

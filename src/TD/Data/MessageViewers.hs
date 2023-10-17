@@ -10,10 +10,10 @@ data MessageViewers
   = MessageViewers -- ^ Represents a list of message viewers
     { viewers :: Maybe [MessageViewer.MessageViewer] -- ^ List of message viewers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageViewers where
-  show MessageViewers
+instance I.ShortShow MessageViewers where
+  shortShow MessageViewers
     { viewers = viewers_
     }
       = "MessageViewers"

@@ -14,10 +14,10 @@ data ChatLocation
     { location :: Maybe Location.Location -- ^ The location
     , address  :: Maybe T.Text            -- ^ Location address; 1-64 characters, as defined by the chat owner
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatLocation where
-  show ChatLocation
+instance I.ShortShow ChatLocation where
+  shortShow ChatLocation
     { location = location_
     , address  = address_
     }

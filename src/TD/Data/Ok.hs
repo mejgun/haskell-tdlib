@@ -3,13 +3,14 @@ module TD.Data.Ok
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 data Ok
   = Ok -- ^ An object of this type is returned on a successful function call for certain functions
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Ok where
-  show Ok
+instance I.ShortShow Ok where
+  shortShow Ok
       = "Ok"
 
 instance AT.FromJSON Ok where

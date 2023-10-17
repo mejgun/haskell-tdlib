@@ -15,10 +15,10 @@ data NotificationGroup
     , total_count   :: Maybe Int                                         -- ^ Total number of active notifications in the group
     , notifications :: Maybe [Notification.Notification]                 -- ^ The list of active notifications
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NotificationGroup where
-  show NotificationGroup
+instance I.ShortShow NotificationGroup where
+  shortShow NotificationGroup
     { _id           = _id_
     , _type         = _type_
     , chat_id       = chat_id_

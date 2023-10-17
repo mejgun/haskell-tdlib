@@ -12,10 +12,10 @@ data GetChatFolderDefaultIconName
   = GetChatFolderDefaultIconName
     { folder :: Maybe ChatFolder.ChatFolder -- ^ Chat folder
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatFolderDefaultIconName where
-  show
+instance I.ShortShow GetChatFolderDefaultIconName where
+  shortShow
     GetChatFolderDefaultIconName
       { folder = folder_
       }

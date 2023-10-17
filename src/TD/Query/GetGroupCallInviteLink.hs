@@ -13,10 +13,10 @@ data GetGroupCallInviteLink
     { group_call_id   :: Maybe Int  -- ^ Group call identifier
     , can_self_unmute :: Maybe Bool -- ^ Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGroupCallInviteLink where
-  show
+instance I.ShortShow GetGroupCallInviteLink where
+  shortShow
     GetGroupCallInviteLink
       { group_call_id   = group_call_id_
       , can_self_unmute = can_self_unmute_

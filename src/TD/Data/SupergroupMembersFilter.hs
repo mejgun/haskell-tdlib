@@ -27,42 +27,42 @@ data SupergroupMembersFilter
     , message_thread_id :: Maybe Int    -- ^ If non-zero, the identifier of the current message thread
     }
   | SupergroupMembersFilterBots -- ^ Returns bot members of the supergroup or channel
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SupergroupMembersFilter where
-  show SupergroupMembersFilterRecent
+instance I.ShortShow SupergroupMembersFilter where
+  shortShow SupergroupMembersFilterRecent
       = "SupergroupMembersFilterRecent"
-  show SupergroupMembersFilterContacts
+  shortShow SupergroupMembersFilterContacts
     { query = query_
     }
       = "SupergroupMembersFilterContacts"
         ++ I.cc
         [ "query" `I.p` query_
         ]
-  show SupergroupMembersFilterAdministrators
+  shortShow SupergroupMembersFilterAdministrators
       = "SupergroupMembersFilterAdministrators"
-  show SupergroupMembersFilterSearch
+  shortShow SupergroupMembersFilterSearch
     { query = query_
     }
       = "SupergroupMembersFilterSearch"
         ++ I.cc
         [ "query" `I.p` query_
         ]
-  show SupergroupMembersFilterRestricted
+  shortShow SupergroupMembersFilterRestricted
     { query = query_
     }
       = "SupergroupMembersFilterRestricted"
         ++ I.cc
         [ "query" `I.p` query_
         ]
-  show SupergroupMembersFilterBanned
+  shortShow SupergroupMembersFilterBanned
     { query = query_
     }
       = "SupergroupMembersFilterBanned"
         ++ I.cc
         [ "query" `I.p` query_
         ]
-  show SupergroupMembersFilterMention
+  shortShow SupergroupMembersFilterMention
     { query             = query_
     , message_thread_id = message_thread_id_
     }
@@ -71,7 +71,7 @@ instance Show SupergroupMembersFilter where
         [ "query"             `I.p` query_
         , "message_thread_id" `I.p` message_thread_id_
         ]
-  show SupergroupMembersFilterBots
+  shortShow SupergroupMembersFilterBots
       = "SupergroupMembersFilterBots"
 
 instance AT.FromJSON SupergroupMembersFilter where

@@ -15,10 +15,10 @@ data EditMessageSchedulingState
     , message_id       :: Maybe Int                                           -- ^ Identifier of the message
     , scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ The new message scheduling state; pass null to send the message immediately
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditMessageSchedulingState where
-  show
+instance I.ShortShow EditMessageSchedulingState where
+  shortShow
     EditMessageSchedulingState
       { chat_id          = chat_id_
       , message_id       = message_id_

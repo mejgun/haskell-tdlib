@@ -17,10 +17,10 @@ data PasswordState
     , login_email_address_pattern      :: Maybe T.Text                                                                -- ^ Pattern of the email address set up for logging in
     , pending_reset_date               :: Maybe Int                                                                   -- ^ If not 0, point in time (Unix timestamp) after which the 2-step verification password can be reset immediately using resetPassword
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PasswordState where
-  show PasswordState
+instance I.ShortShow PasswordState where
+  shortShow PasswordState
     { has_password                     = has_password_
     , password_hint                    = password_hint_
     , has_recovery_email_address       = has_recovery_email_address_

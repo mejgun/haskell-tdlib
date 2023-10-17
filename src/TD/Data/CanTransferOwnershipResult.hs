@@ -15,21 +15,21 @@ data CanTransferOwnershipResult
   | CanTransferOwnershipResultSessionTooFresh -- ^ The session was created recently, user needs to wait
     { retry_after :: Maybe Int -- ^ Time left before the session can be used to transfer ownership of a chat, in seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CanTransferOwnershipResult where
-  show CanTransferOwnershipResultOk
+instance I.ShortShow CanTransferOwnershipResult where
+  shortShow CanTransferOwnershipResultOk
       = "CanTransferOwnershipResultOk"
-  show CanTransferOwnershipResultPasswordNeeded
+  shortShow CanTransferOwnershipResultPasswordNeeded
       = "CanTransferOwnershipResultPasswordNeeded"
-  show CanTransferOwnershipResultPasswordTooFresh
+  shortShow CanTransferOwnershipResultPasswordTooFresh
     { retry_after = retry_after_
     }
       = "CanTransferOwnershipResultPasswordTooFresh"
         ++ I.cc
         [ "retry_after" `I.p` retry_after_
         ]
-  show CanTransferOwnershipResultSessionTooFresh
+  shortShow CanTransferOwnershipResultSessionTooFresh
     { retry_after = retry_after_
     }
       = "CanTransferOwnershipResultSessionTooFresh"

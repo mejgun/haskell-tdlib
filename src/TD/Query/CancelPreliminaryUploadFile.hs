@@ -11,10 +11,10 @@ data CancelPreliminaryUploadFile
   = CancelPreliminaryUploadFile
     { file_id :: Maybe Int -- ^ Identifier of the file to stop uploading
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CancelPreliminaryUploadFile where
-  show
+instance I.ShortShow CancelPreliminaryUploadFile where
+  shortShow
     CancelPreliminaryUploadFile
       { file_id = file_id_
       }

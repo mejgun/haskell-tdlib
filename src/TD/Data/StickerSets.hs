@@ -11,10 +11,10 @@ data StickerSets
     { total_count :: Maybe Int                             -- ^ Approximate total number of sticker sets found
     , sets        :: Maybe [StickerSetInfo.StickerSetInfo] -- ^ List of sticker sets
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerSets where
-  show StickerSets
+instance I.ShortShow StickerSets where
+  shortShow StickerSets
     { total_count = total_count_
     , sets        = sets_
     }

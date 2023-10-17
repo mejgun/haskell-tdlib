@@ -11,10 +11,10 @@ data OpenChat
   = OpenChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OpenChat where
-  show
+instance I.ShortShow OpenChat where
+  shortShow
     OpenChat
       { chat_id = chat_id_
       }

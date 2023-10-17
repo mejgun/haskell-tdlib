@@ -11,10 +11,10 @@ data DisableAllSupergroupUsernames
   = DisableAllSupergroupUsernames
     { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup or channel
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DisableAllSupergroupUsernames where
-  show
+instance I.ShortShow DisableAllSupergroupUsernames where
+  shortShow
     DisableAllSupergroupUsernames
       { supergroup_id = supergroup_id_
       }

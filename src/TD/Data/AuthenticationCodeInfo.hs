@@ -14,10 +14,10 @@ data AuthenticationCodeInfo
     , next_type    :: Maybe AuthenticationCodeType.AuthenticationCodeType -- ^ The way the next code will be sent to the user; may be null
     , timeout      :: Maybe Int                                           -- ^ Timeout before the code can be re-sent, in seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AuthenticationCodeInfo where
-  show AuthenticationCodeInfo
+instance I.ShortShow AuthenticationCodeInfo where
+  shortShow AuthenticationCodeInfo
     { phone_number = phone_number_
     , _type        = _type_
     , next_type    = next_type_

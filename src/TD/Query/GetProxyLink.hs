@@ -11,10 +11,10 @@ data GetProxyLink
   = GetProxyLink
     { proxy_id :: Maybe Int -- ^ Proxy identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetProxyLink where
-  show
+instance I.ShortShow GetProxyLink where
+  shortShow
     GetProxyLink
       { proxy_id = proxy_id_
       }

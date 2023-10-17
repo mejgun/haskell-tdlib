@@ -20,10 +20,10 @@ data StoryVideo
     , preload_prefix_size :: Maybe Int                         -- ^ Size of file prefix, which is supposed to be preloaded, in bytes
     , video               :: Maybe File.File                   -- ^ File containing the video
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryVideo where
-  show StoryVideo
+instance I.ShortShow StoryVideo where
+  shortShow StoryVideo
     { duration            = duration_
     , width               = width_
     , height              = height_

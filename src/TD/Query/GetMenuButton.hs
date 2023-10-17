@@ -11,10 +11,10 @@ data GetMenuButton
   = GetMenuButton
     { user_id :: Maybe Int -- ^ Identifier of the user or 0 to get the default menu button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMenuButton where
-  show
+instance I.ShortShow GetMenuButton where
+  shortShow
     GetMenuButton
       { user_id = user_id_
       }

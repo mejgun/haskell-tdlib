@@ -13,10 +13,10 @@ data OpenMessageContent
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
     , message_id :: Maybe Int -- ^ Identifier of the message with the opened content
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OpenMessageContent where
-  show
+instance I.ShortShow OpenMessageContent where
+  shortShow
     OpenMessageContent
       { chat_id    = chat_id_
       , message_id = message_id_

@@ -14,10 +14,10 @@ data SetUserPersonalProfilePhoto
     { user_id :: Maybe Int                           -- ^ User identifier
     , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set; pass null to delete the photo; inputChatPhotoPrevious isn't supported in this function
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetUserPersonalProfilePhoto where
-  show
+instance I.ShortShow SetUserPersonalProfilePhoto where
+  shortShow
     SetUserPersonalProfilePhoto
       { user_id = user_id_
       , photo   = photo_

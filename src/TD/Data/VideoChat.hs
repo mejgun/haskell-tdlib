@@ -12,10 +12,10 @@ data VideoChat
     , has_participants       :: Maybe Bool                        -- ^ True, if the video chat has participants
     , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chat; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show VideoChat where
-  show VideoChat
+instance I.ShortShow VideoChat where
+  shortShow VideoChat
     { group_call_id          = group_call_id_
     , has_participants       = has_participants_
     , default_participant_id = default_participant_id_

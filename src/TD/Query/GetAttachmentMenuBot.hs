@@ -11,10 +11,10 @@ data GetAttachmentMenuBot
   = GetAttachmentMenuBot
     { bot_user_id :: Maybe Int -- ^ Bot's user identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAttachmentMenuBot where
-  show
+instance I.ShortShow GetAttachmentMenuBot where
+  shortShow
     GetAttachmentMenuBot
       { bot_user_id = bot_user_id_
       }

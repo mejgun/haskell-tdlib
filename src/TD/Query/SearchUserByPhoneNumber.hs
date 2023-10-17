@@ -12,10 +12,10 @@ data SearchUserByPhoneNumber
   = SearchUserByPhoneNumber
     { phone_number :: Maybe T.Text -- ^ Phone number to search for
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchUserByPhoneNumber where
-  show
+instance I.ShortShow SearchUserByPhoneNumber where
+  shortShow
     SearchUserByPhoneNumber
       { phone_number = phone_number_
       }

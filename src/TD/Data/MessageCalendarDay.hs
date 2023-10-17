@@ -11,10 +11,10 @@ data MessageCalendarDay
     { total_count :: Maybe Int             -- ^ Total number of found messages sent on the day
     , message     :: Maybe Message.Message -- ^ First message sent on the day
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageCalendarDay where
-  show MessageCalendarDay
+instance I.ShortShow MessageCalendarDay where
+  shortShow MessageCalendarDay
     { total_count = total_count_
     , message     = message_
     }

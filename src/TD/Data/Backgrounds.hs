@@ -10,10 +10,10 @@ data Backgrounds
   = Backgrounds -- ^ Contains a list of backgrounds
     { backgrounds :: Maybe [Background.Background] -- ^ A list of backgrounds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Backgrounds where
-  show Backgrounds
+instance I.ShortShow Backgrounds where
+  shortShow Backgrounds
     { backgrounds = backgrounds_
     }
       = "Backgrounds"

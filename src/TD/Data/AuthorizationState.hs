@@ -43,14 +43,14 @@ data AuthorizationState
   | AuthorizationStateLoggingOut -- ^ The user is currently logging out
   | AuthorizationStateClosing -- ^ TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
   | AuthorizationStateClosed -- ^ TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one must create a new instance of the TDLib client
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AuthorizationState where
-  show AuthorizationStateWaitTdlibParameters
+instance I.ShortShow AuthorizationState where
+  shortShow AuthorizationStateWaitTdlibParameters
       = "AuthorizationStateWaitTdlibParameters"
-  show AuthorizationStateWaitPhoneNumber
+  shortShow AuthorizationStateWaitPhoneNumber
       = "AuthorizationStateWaitPhoneNumber"
-  show AuthorizationStateWaitEmailAddress
+  shortShow AuthorizationStateWaitEmailAddress
     { allow_apple_id  = allow_apple_id_
     , allow_google_id = allow_google_id_
     }
@@ -59,7 +59,7 @@ instance Show AuthorizationState where
         [ "allow_apple_id"  `I.p` allow_apple_id_
         , "allow_google_id" `I.p` allow_google_id_
         ]
-  show AuthorizationStateWaitEmailCode
+  shortShow AuthorizationStateWaitEmailCode
     { allow_apple_id            = allow_apple_id_
     , allow_google_id           = allow_google_id_
     , code_info                 = code_info_
@@ -72,28 +72,28 @@ instance Show AuthorizationState where
         , "code_info"                 `I.p` code_info_
         , "email_address_reset_state" `I.p` email_address_reset_state_
         ]
-  show AuthorizationStateWaitCode
+  shortShow AuthorizationStateWaitCode
     { _code_info = _code_info_
     }
       = "AuthorizationStateWaitCode"
         ++ I.cc
         [ "_code_info" `I.p` _code_info_
         ]
-  show AuthorizationStateWaitOtherDeviceConfirmation
+  shortShow AuthorizationStateWaitOtherDeviceConfirmation
     { link = link_
     }
       = "AuthorizationStateWaitOtherDeviceConfirmation"
         ++ I.cc
         [ "link" `I.p` link_
         ]
-  show AuthorizationStateWaitRegistration
+  shortShow AuthorizationStateWaitRegistration
     { terms_of_service = terms_of_service_
     }
       = "AuthorizationStateWaitRegistration"
         ++ I.cc
         [ "terms_of_service" `I.p` terms_of_service_
         ]
-  show AuthorizationStateWaitPassword
+  shortShow AuthorizationStateWaitPassword
     { password_hint                  = password_hint_
     , has_recovery_email_address     = has_recovery_email_address_
     , has_passport_data              = has_passport_data_
@@ -106,13 +106,13 @@ instance Show AuthorizationState where
         , "has_passport_data"              `I.p` has_passport_data_
         , "recovery_email_address_pattern" `I.p` recovery_email_address_pattern_
         ]
-  show AuthorizationStateReady
+  shortShow AuthorizationStateReady
       = "AuthorizationStateReady"
-  show AuthorizationStateLoggingOut
+  shortShow AuthorizationStateLoggingOut
       = "AuthorizationStateLoggingOut"
-  show AuthorizationStateClosing
+  shortShow AuthorizationStateClosing
       = "AuthorizationStateClosing"
-  show AuthorizationStateClosed
+  shortShow AuthorizationStateClosed
       = "AuthorizationStateClosed"
 
 instance AT.FromJSON AuthorizationState where

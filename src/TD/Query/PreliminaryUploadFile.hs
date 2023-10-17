@@ -16,10 +16,10 @@ data PreliminaryUploadFile
     , file_type :: Maybe FileType.FileType   -- ^ File type; pass null if unknown
     , priority  :: Maybe Int                 -- ^ Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which preliminaryUploadFile was called will be uploaded first
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PreliminaryUploadFile where
-  show
+instance I.ShortShow PreliminaryUploadFile where
+  shortShow
     PreliminaryUploadFile
       { file      = file_
       , file_type = file_type_

@@ -13,16 +13,16 @@ data AutosaveSettingsScope
   | AutosaveSettingsScopeChat -- ^ Autosave settings applied to a chat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AutosaveSettingsScope where
-  show AutosaveSettingsScopePrivateChats
+instance I.ShortShow AutosaveSettingsScope where
+  shortShow AutosaveSettingsScopePrivateChats
       = "AutosaveSettingsScopePrivateChats"
-  show AutosaveSettingsScopeGroupChats
+  shortShow AutosaveSettingsScopeGroupChats
       = "AutosaveSettingsScopeGroupChats"
-  show AutosaveSettingsScopeChannelChats
+  shortShow AutosaveSettingsScopeChannelChats
       = "AutosaveSettingsScopeChannelChats"
-  show AutosaveSettingsScopeChat
+  shortShow AutosaveSettingsScopeChat
     { chat_id = chat_id_
     }
       = "AutosaveSettingsScopeChat"

@@ -13,10 +13,10 @@ data ReportSupergroupAntiSpamFalsePositive
     { supergroup_id :: Maybe Int -- ^ Supergroup identifier
     , message_id    :: Maybe Int -- ^ Identifier of the erroneously deleted message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReportSupergroupAntiSpamFalsePositive where
-  show
+instance I.ShortShow ReportSupergroupAntiSpamFalsePositive where
+  shortShow
     ReportSupergroupAntiSpamFalsePositive
       { supergroup_id = supergroup_id_
       , message_id    = message_id_

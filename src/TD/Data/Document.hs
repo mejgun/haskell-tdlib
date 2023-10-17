@@ -17,10 +17,10 @@ data Document
     , thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
     , document      :: Maybe File.File                   -- ^ File containing the document
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Document where
-  show Document
+instance I.ShortShow Document where
+  shortShow Document
     { file_name     = file_name_
     , mime_type     = mime_type_
     , minithumbnail = minithumbnail_

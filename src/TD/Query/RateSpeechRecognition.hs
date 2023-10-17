@@ -14,10 +14,10 @@ data RateSpeechRecognition
     , message_id :: Maybe Int  -- ^ Identifier of the message
     , is_good    :: Maybe Bool -- ^ Pass true if the speech recognition is good
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RateSpeechRecognition where
-  show
+instance I.ShortShow RateSpeechRecognition where
+  shortShow
     RateSpeechRecognition
       { chat_id    = chat_id_
       , message_id = message_id_

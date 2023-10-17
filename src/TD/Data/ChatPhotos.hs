@@ -11,10 +11,10 @@ data ChatPhotos
     { total_count :: Maybe Int                   -- ^ Total number of photos
     , photos      :: Maybe [ChatPhoto.ChatPhoto] -- ^ List of photos
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPhotos where
-  show ChatPhotos
+instance I.ShortShow ChatPhotos where
+  shortShow ChatPhotos
     { total_count = total_count_
     , photos      = photos_
     }

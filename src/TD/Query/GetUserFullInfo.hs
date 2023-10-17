@@ -11,10 +11,10 @@ data GetUserFullInfo
   = GetUserFullInfo
     { user_id :: Maybe Int -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetUserFullInfo where
-  show
+instance I.ShortShow GetUserFullInfo where
+  shortShow
     GetUserFullInfo
       { user_id = user_id_
       }

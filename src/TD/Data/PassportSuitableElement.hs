@@ -13,10 +13,10 @@ data PassportSuitableElement
     , is_translation_required :: Maybe Bool                                    -- ^ True, if a certified English translation is required with the document
     , is_native_name_required :: Maybe Bool                                    -- ^ True, if personal details must include the user's name in the language of their country of residence
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportSuitableElement where
-  show PassportSuitableElement
+instance I.ShortShow PassportSuitableElement where
+  shortShow PassportSuitableElement
     { _type                   = _type_
     , is_selfie_required      = is_selfie_required_
     , is_translation_required = is_translation_required_

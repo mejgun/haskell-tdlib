@@ -15,10 +15,10 @@ data ChatFolderInfo
     , is_shareable        :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
     , has_my_invite_links :: Maybe Bool                          -- ^ True, if the chat folder has invite links created by the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolderInfo where
-  show ChatFolderInfo
+instance I.ShortShow ChatFolderInfo where
+  shortShow ChatFolderInfo
     { _id                 = _id_
     , title               = title_
     , icon                = icon_

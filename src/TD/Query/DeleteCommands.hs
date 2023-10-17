@@ -15,10 +15,10 @@ data DeleteCommands
     { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
     , language_code :: Maybe T.Text                          -- ^ A two-letter ISO 639-1 language code or an empty string
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteCommands where
-  show
+instance I.ShortShow DeleteCommands where
+  shortShow
     DeleteCommands
       { scope         = scope_
       , language_code = language_code_

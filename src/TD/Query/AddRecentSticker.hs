@@ -14,10 +14,10 @@ data AddRecentSticker
     { is_attached :: Maybe Bool                -- ^ Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
     , sticker     :: Maybe InputFile.InputFile -- ^ Sticker file to add
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddRecentSticker where
-  show
+instance I.ShortShow AddRecentSticker where
+  shortShow
     AddRecentSticker
       { is_attached = is_attached_
       , sticker     = sticker_

@@ -14,10 +14,10 @@ data SearchHashtags
     { prefix :: Maybe T.Text -- ^ Hashtag prefix to search for
     , limit  :: Maybe Int    -- ^ The maximum number of hashtags to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchHashtags where
-  show
+instance I.ShortShow SearchHashtags where
+  shortShow
     SearchHashtags
       { prefix = prefix_
       , limit  = limit_

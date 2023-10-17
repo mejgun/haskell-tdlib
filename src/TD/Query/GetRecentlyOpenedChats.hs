@@ -11,10 +11,10 @@ data GetRecentlyOpenedChats
   = GetRecentlyOpenedChats
     { limit :: Maybe Int -- ^ The maximum number of chats to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRecentlyOpenedChats where
-  show
+instance I.ShortShow GetRecentlyOpenedChats where
+  shortShow
     GetRecentlyOpenedChats
       { limit = limit_
       }

@@ -29,10 +29,10 @@ data Supergroup
     , is_scam               :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a scam
     , is_fake               :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a fake account
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Supergroup where
-  show Supergroup
+instance I.ShortShow Supergroup where
+  shortShow Supergroup
     { _id                   = _id_
     , usernames             = usernames_
     , date                  = date_

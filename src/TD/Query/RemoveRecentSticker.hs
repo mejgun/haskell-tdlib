@@ -14,10 +14,10 @@ data RemoveRecentSticker
     { is_attached :: Maybe Bool                -- ^ Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
     , sticker     :: Maybe InputFile.InputFile -- ^ Sticker file to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveRecentSticker where
-  show
+instance I.ShortShow RemoveRecentSticker where
+  shortShow
     RemoveRecentSticker
       { is_attached = is_attached_
       , sticker     = sticker_

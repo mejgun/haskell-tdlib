@@ -3,20 +3,21 @@ module TD.Data.StickerFormat
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes format of a sticker
 data StickerFormat
   = StickerFormatWebp -- ^ The sticker is an image in WEBP format
   | StickerFormatTgs -- ^ The sticker is an animation in TGS format
   | StickerFormatWebm -- ^ The sticker is a video in WEBM format
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerFormat where
-  show StickerFormatWebp
+instance I.ShortShow StickerFormat where
+  shortShow StickerFormatWebp
       = "StickerFormatWebp"
-  show StickerFormatTgs
+  shortShow StickerFormatTgs
       = "StickerFormatTgs"
-  show StickerFormatWebm
+  shortShow StickerFormatWebm
       = "StickerFormatWebm"
 
 instance AT.FromJSON StickerFormat where

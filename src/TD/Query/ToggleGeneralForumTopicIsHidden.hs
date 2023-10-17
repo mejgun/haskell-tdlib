@@ -13,10 +13,10 @@ data ToggleGeneralForumTopicIsHidden
     { chat_id   :: Maybe Int  -- ^ Identifier of the chat
     , is_hidden :: Maybe Bool -- ^ Pass true to hide and close the General topic; pass false to unhide it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGeneralForumTopicIsHidden where
-  show
+instance I.ShortShow ToggleGeneralForumTopicIsHidden where
+  shortShow
     ToggleGeneralForumTopicIsHidden
       { chat_id   = chat_id_
       , is_hidden = is_hidden_

@@ -14,10 +14,10 @@ data SetMenuButton
     { user_id     :: Maybe Int                         -- ^ Identifier of the user or 0 to set menu button for all users
     , menu_button :: Maybe BotMenuButton.BotMenuButton -- ^ New menu button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetMenuButton where
-  show
+instance I.ShortShow SetMenuButton where
+  shortShow
     SetMenuButton
       { user_id     = user_id_
       , menu_button = menu_button_

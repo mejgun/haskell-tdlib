@@ -14,10 +14,10 @@ data ChatJoinRequest
     , date    :: Maybe Int    -- ^ Point in time (Unix timestamp) when the user sent the join request
     , bio     :: Maybe T.Text -- ^ A short bio of the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatJoinRequest where
-  show ChatJoinRequest
+instance I.ShortShow ChatJoinRequest where
+  shortShow ChatJoinRequest
     { user_id = user_id_
     , date    = date_
     , bio     = bio_

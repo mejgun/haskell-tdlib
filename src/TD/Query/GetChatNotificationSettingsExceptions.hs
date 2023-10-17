@@ -14,10 +14,10 @@ data GetChatNotificationSettingsExceptions
     { scope         :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ If specified, only chats from the scope will be returned; pass null to return chats from all scopes
     , compare_sound :: Maybe Bool                                                -- ^ Pass true to include in the response chats with only non-default sound
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatNotificationSettingsExceptions where
-  show
+instance I.ShortShow GetChatNotificationSettingsExceptions where
+  shortShow
     GetChatNotificationSettingsExceptions
       { scope         = scope_
       , compare_sound = compare_sound_

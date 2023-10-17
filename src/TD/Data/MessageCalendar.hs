@@ -11,10 +11,10 @@ data MessageCalendar
     { total_count :: Maybe Int                                     -- ^ Total number of found messages
     , days        :: Maybe [MessageCalendarDay.MessageCalendarDay] -- ^ Information about messages sent
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageCalendar where
-  show MessageCalendar
+instance I.ShortShow MessageCalendar where
+  shortShow MessageCalendar
     { total_count = total_count_
     , days        = days_
     }

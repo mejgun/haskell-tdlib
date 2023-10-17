@@ -23,10 +23,10 @@ data CreateNewStickerSet
     , stickers         :: Maybe [InputSticker.InputSticker] -- ^ List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     , source           :: Maybe T.Text                      -- ^ Source of the sticker set; may be empty if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateNewStickerSet where
-  show
+instance I.ShortShow CreateNewStickerSet where
+  shortShow
     CreateNewStickerSet
       { user_id          = user_id_
       , title            = title_

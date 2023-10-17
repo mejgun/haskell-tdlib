@@ -18,10 +18,10 @@ data ConnectedWebsite
     , ip               :: Maybe T.Text -- ^ IP address from which the user was logged in, in human-readable format
     , location         :: Maybe T.Text -- ^ Human-readable description of a country and a region from which the user was logged in, based on the IP address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ConnectedWebsite where
-  show ConnectedWebsite
+instance I.ShortShow ConnectedWebsite where
+  shortShow ConnectedWebsite
     { _id              = _id_
     , domain_name      = domain_name_
     , bot_user_id      = bot_user_id_

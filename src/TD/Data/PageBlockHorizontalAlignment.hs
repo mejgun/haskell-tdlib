@@ -3,20 +3,21 @@ module TD.Data.PageBlockHorizontalAlignment
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a horizontal alignment of a table cell content
 data PageBlockHorizontalAlignment
   = PageBlockHorizontalAlignmentLeft -- ^ The content must be left-aligned
   | PageBlockHorizontalAlignmentCenter -- ^ The content must be center-aligned
   | PageBlockHorizontalAlignmentRight -- ^ The content must be right-aligned
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlockHorizontalAlignment where
-  show PageBlockHorizontalAlignmentLeft
+instance I.ShortShow PageBlockHorizontalAlignment where
+  shortShow PageBlockHorizontalAlignmentLeft
       = "PageBlockHorizontalAlignmentLeft"
-  show PageBlockHorizontalAlignmentCenter
+  shortShow PageBlockHorizontalAlignmentCenter
       = "PageBlockHorizontalAlignmentCenter"
-  show PageBlockHorizontalAlignmentRight
+  shortShow PageBlockHorizontalAlignmentRight
       = "PageBlockHorizontalAlignmentRight"
 
 instance AT.FromJSON PageBlockHorizontalAlignment where

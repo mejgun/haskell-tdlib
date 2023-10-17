@@ -4,14 +4,15 @@ module TD.Query.GetAutoDownloadSettingsPresets
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns auto-download settings presets for the current user
 data GetAutoDownloadSettingsPresets
   = GetAutoDownloadSettingsPresets
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAutoDownloadSettingsPresets where
-  show
+instance I.ShortShow GetAutoDownloadSettingsPresets where
+  shortShow
     GetAutoDownloadSettingsPresets
         = "GetAutoDownloadSettingsPresets"
 

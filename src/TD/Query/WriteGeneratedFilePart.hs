@@ -15,10 +15,10 @@ data WriteGeneratedFilePart
     , offset        :: Maybe Int           -- ^ The offset from which to write the data to the file
     , _data         :: Maybe BS.ByteString -- ^ The data to write
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show WriteGeneratedFilePart where
-  show
+instance I.ShortShow WriteGeneratedFilePart where
+  shortShow
     WriteGeneratedFilePart
       { generation_id = generation_id_
       , offset        = offset_

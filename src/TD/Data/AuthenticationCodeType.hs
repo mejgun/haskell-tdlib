@@ -38,38 +38,38 @@ data AuthenticationCodeType
     , push_timeout :: Maybe Int    -- ^ Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
     , _length      :: Maybe Int    -- ^ Length of the code
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AuthenticationCodeType where
-  show AuthenticationCodeTypeTelegramMessage
+instance I.ShortShow AuthenticationCodeType where
+  shortShow AuthenticationCodeTypeTelegramMessage
     { _length = _length_
     }
       = "AuthenticationCodeTypeTelegramMessage"
         ++ I.cc
         [ "_length" `I.p` _length_
         ]
-  show AuthenticationCodeTypeSms
+  shortShow AuthenticationCodeTypeSms
     { _length = _length_
     }
       = "AuthenticationCodeTypeSms"
         ++ I.cc
         [ "_length" `I.p` _length_
         ]
-  show AuthenticationCodeTypeCall
+  shortShow AuthenticationCodeTypeCall
     { _length = _length_
     }
       = "AuthenticationCodeTypeCall"
         ++ I.cc
         [ "_length" `I.p` _length_
         ]
-  show AuthenticationCodeTypeFlashCall
+  shortShow AuthenticationCodeTypeFlashCall
     { pattern = pattern_
     }
       = "AuthenticationCodeTypeFlashCall"
         ++ I.cc
         [ "pattern" `I.p` pattern_
         ]
-  show AuthenticationCodeTypeMissedCall
+  shortShow AuthenticationCodeTypeMissedCall
     { phone_number_prefix = phone_number_prefix_
     , _length             = _length_
     }
@@ -78,7 +78,7 @@ instance Show AuthenticationCodeType where
         [ "phone_number_prefix" `I.p` phone_number_prefix_
         , "_length"             `I.p` _length_
         ]
-  show AuthenticationCodeTypeFragment
+  shortShow AuthenticationCodeTypeFragment
     { url     = url_
     , _length = _length_
     }
@@ -87,7 +87,7 @@ instance Show AuthenticationCodeType where
         [ "url"     `I.p` url_
         , "_length" `I.p` _length_
         ]
-  show AuthenticationCodeTypeFirebaseAndroid
+  shortShow AuthenticationCodeTypeFirebaseAndroid
     { nonce   = nonce_
     , _length = _length_
     }
@@ -96,7 +96,7 @@ instance Show AuthenticationCodeType where
         [ "nonce"   `I.p` nonce_
         , "_length" `I.p` _length_
         ]
-  show AuthenticationCodeTypeFirebaseIos
+  shortShow AuthenticationCodeTypeFirebaseIos
     { receipt      = receipt_
     , push_timeout = push_timeout_
     , _length      = _length_

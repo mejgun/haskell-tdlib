@@ -11,10 +11,10 @@ data UserLink
     { url        :: Maybe T.Text -- ^ The URL
     , expires_in :: Maybe Int    -- ^ Left time for which the link is valid, in seconds; 0 if the link is a public username link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserLink where
-  show UserLink
+instance I.ShortShow UserLink where
+  shortShow UserLink
     { url        = url_
     , expires_in = expires_in_
     }

@@ -12,10 +12,10 @@ data StorageStatisticsByFileType
     , size      :: Maybe Int               -- ^ Total size of the files, in bytes
     , count     :: Maybe Int               -- ^ Total number of files
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StorageStatisticsByFileType where
-  show StorageStatisticsByFileType
+instance I.ShortShow StorageStatisticsByFileType where
+  shortShow StorageStatisticsByFileType
     { file_type = file_type_
     , size      = size_
     , count     = count_

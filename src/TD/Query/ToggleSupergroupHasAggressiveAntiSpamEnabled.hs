@@ -13,10 +13,10 @@ data ToggleSupergroupHasAggressiveAntiSpamEnabled
     { supergroup_id                    :: Maybe Int  -- ^ The identifier of the supergroup, which isn't a broadcast group
     , has_aggressive_anti_spam_enabled :: Maybe Bool -- ^ The new value of has_aggressive_anti_spam_enabled
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupHasAggressiveAntiSpamEnabled where
-  show
+instance I.ShortShow ToggleSupergroupHasAggressiveAntiSpamEnabled where
+  shortShow
     ToggleSupergroupHasAggressiveAntiSpamEnabled
       { supergroup_id                    = supergroup_id_
       , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_

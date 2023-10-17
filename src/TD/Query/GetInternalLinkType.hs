@@ -12,10 +12,10 @@ data GetInternalLinkType
   = GetInternalLinkType
     { link :: Maybe T.Text -- ^ The link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInternalLinkType where
-  show
+instance I.ShortShow GetInternalLinkType where
+  shortShow
     GetInternalLinkType
       { link = link_
       }

@@ -12,10 +12,10 @@ data GetEmojiCategories
   = GetEmojiCategories
     { _type :: Maybe EmojiCategoryType.EmojiCategoryType -- ^ Type of emoji categories to return; pass null to get default emoji categories
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetEmojiCategories where
-  show
+instance I.ShortShow GetEmojiCategories where
+  shortShow
     GetEmojiCategories
       { _type = _type_
       }

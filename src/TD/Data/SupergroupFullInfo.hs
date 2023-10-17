@@ -37,10 +37,10 @@ data SupergroupFullInfo
     , upgraded_from_basic_group_id     :: Maybe Int                           -- ^ Identifier of the basic group from which supergroup was upgraded; 0 if none
     , upgraded_from_max_message_id     :: Maybe Int                           -- ^ Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SupergroupFullInfo where
-  show SupergroupFullInfo
+instance I.ShortShow SupergroupFullInfo where
+  shortShow SupergroupFullInfo
     { photo                            = photo_
     , description                      = description_
     , member_count                     = member_count_

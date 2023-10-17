@@ -17,10 +17,10 @@ data LocalFile
     , downloaded_prefix_size   :: Maybe Int    -- ^ If is_downloading_completed is false, then only some prefix of the file starting from download_offset is ready to be read. downloaded_prefix_size is the size of that prefix in bytes
     , downloaded_size          :: Maybe Int    -- ^ Total downloaded file size, in bytes. Can be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LocalFile where
-  show LocalFile
+instance I.ShortShow LocalFile where
+  shortShow LocalFile
     { path                     = path_
     , can_be_downloaded        = can_be_downloaded_
     , can_be_deleted           = can_be_deleted_

@@ -9,10 +9,10 @@ data PushReceiverId
   = PushReceiverId -- ^ Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification
     { _id :: Maybe Int -- ^ The globally unique identifier of push notification subscription
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PushReceiverId where
-  show PushReceiverId
+instance I.ShortShow PushReceiverId where
+  shortShow PushReceiverId
     { _id = _id_
     }
       = "PushReceiverId"

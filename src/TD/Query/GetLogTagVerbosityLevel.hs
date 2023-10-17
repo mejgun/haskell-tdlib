@@ -12,10 +12,10 @@ data GetLogTagVerbosityLevel
   = GetLogTagVerbosityLevel
     { tag :: Maybe T.Text -- ^ Logging tag to change verbosity level
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLogTagVerbosityLevel where
-  show
+instance I.ShortShow GetLogTagVerbosityLevel where
+  shortShow
     GetLogTagVerbosityLevel
       { tag = tag_
       }

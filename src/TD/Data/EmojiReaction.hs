@@ -20,10 +20,10 @@ data EmojiReaction
     , around_animation   :: Maybe Sticker.Sticker -- ^ Around animation for the reaction; may be null
     , center_animation   :: Maybe Sticker.Sticker -- ^ Center animation for the reaction; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiReaction where
-  show EmojiReaction
+instance I.ShortShow EmojiReaction where
+  shortShow EmojiReaction
     { emoji              = emoji_
     , title              = title_
     , is_active          = is_active_

@@ -11,10 +11,10 @@ data PingProxy
   = PingProxy
     { proxy_id :: Maybe Int -- ^ Proxy identifier. Use 0 to ping a Telegram server without a proxy
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PingProxy where
-  show
+instance I.ShortShow PingProxy where
+  shortShow
     PingProxy
       { proxy_id = proxy_id_
       }

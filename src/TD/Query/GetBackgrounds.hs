@@ -11,10 +11,10 @@ data GetBackgrounds
   = GetBackgrounds
     { for_dark_theme :: Maybe Bool -- ^ Pass true to order returned backgrounds for a dark theme
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBackgrounds where
-  show
+instance I.ShortShow GetBackgrounds where
+  shortShow
     GetBackgrounds
       { for_dark_theme = for_dark_theme_
       }

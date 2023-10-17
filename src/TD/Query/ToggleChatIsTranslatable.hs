@@ -13,10 +13,10 @@ data ToggleChatIsTranslatable
     { chat_id         :: Maybe Int  -- ^ Chat identifier
     , is_translatable :: Maybe Bool -- ^ New value of is_translatable
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleChatIsTranslatable where
-  show
+instance I.ShortShow ToggleChatIsTranslatable where
+  shortShow
     ToggleChatIsTranslatable
       { chat_id         = chat_id_
       , is_translatable = is_translatable_

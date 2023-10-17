@@ -13,17 +13,17 @@ data EmailAddressResetState
   | EmailAddressResetStatePending -- ^ Email address reset has already been requested. Call resetAuthenticationEmailAddress to check whether immediate reset is possible
     { reset_in :: Maybe Int -- ^ Left time before the email address will be reset, in seconds. updateAuthorizationState is not sent when this field changes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmailAddressResetState where
-  show EmailAddressResetStateAvailable
+instance I.ShortShow EmailAddressResetState where
+  shortShow EmailAddressResetStateAvailable
     { wait_period = wait_period_
     }
       = "EmailAddressResetStateAvailable"
         ++ I.cc
         [ "wait_period" `I.p` wait_period_
         ]
-  show EmailAddressResetStatePending
+  shortShow EmailAddressResetStatePending
     { reset_in = reset_in_
     }
       = "EmailAddressResetStatePending"

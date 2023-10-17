@@ -14,10 +14,10 @@ data BasicGroup
     , is_active                 :: Maybe Bool                              -- ^ True, if the group is active
     , upgraded_to_supergroup_id :: Maybe Int                               -- ^ Identifier of the supergroup to which this group was upgraded; 0 if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BasicGroup where
-  show BasicGroup
+instance I.ShortShow BasicGroup where
+  shortShow BasicGroup
     { _id                       = _id_
     , member_count              = member_count_
     , status                    = status_

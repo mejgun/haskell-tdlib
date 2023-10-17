@@ -11,10 +11,10 @@ data GetNetworkStatistics
   = GetNetworkStatistics
     { only_current :: Maybe Bool -- ^ Pass true to get statistics only for the current library launch
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetNetworkStatistics where
-  show
+instance I.ShortShow GetNetworkStatistics where
+  shortShow
     GetNetworkStatistics
       { only_current = only_current_
       }

@@ -15,10 +15,10 @@ data SetStickerEmojis
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker
     , emojis  :: Maybe T.Text              -- ^ New string with 1-20 emoji corresponding to the sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerEmojis where
-  show
+instance I.ShortShow SetStickerEmojis where
+  shortShow
     SetStickerEmojis
       { sticker = sticker_
       , emojis  = emojis_

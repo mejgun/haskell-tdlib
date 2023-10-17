@@ -12,10 +12,10 @@ data MessageViewer
     { user_id   :: Maybe Int -- ^ User identifier of the viewer
     , view_date :: Maybe Int -- ^ Approximate point in time (Unix timestamp) when the message was viewed
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageViewer where
-  show MessageViewer
+instance I.ShortShow MessageViewer where
+  shortShow MessageViewer
     { user_id   = user_id_
     , view_date = view_date_
     }

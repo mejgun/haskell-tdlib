@@ -11,10 +11,10 @@ data DeleteAllCallMessages
   = DeleteAllCallMessages
     { revoke :: Maybe Bool -- ^ Pass true to delete the messages for all users
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteAllCallMessages where
-  show
+instance I.ShortShow DeleteAllCallMessages where
+  shortShow
     DeleteAllCallMessages
       { revoke = revoke_
       }

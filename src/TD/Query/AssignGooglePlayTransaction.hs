@@ -17,10 +17,10 @@ data AssignGooglePlayTransaction
     , purchase_token   :: Maybe T.Text                                  -- ^ Google Play purchase token
     , purpose          :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AssignGooglePlayTransaction where
-  show
+instance I.ShortShow AssignGooglePlayTransaction where
+  shortShow
     AssignGooglePlayTransaction
       { package_name     = package_name_
       , store_product_id = store_product_id_

@@ -12,10 +12,10 @@ data GetOption
   = GetOption
     { name :: Maybe T.Text -- ^ The name of the option
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetOption where
-  show
+instance I.ShortShow GetOption where
+  shortShow
     GetOption
       { name = name_
       }

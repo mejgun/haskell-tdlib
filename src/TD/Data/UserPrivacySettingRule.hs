@@ -23,39 +23,39 @@ data UserPrivacySettingRule
   | UserPrivacySettingRuleRestrictChatMembers -- ^ A rule to restrict all members of specified basic groups and supergroups from doing something
     { chat_ids :: Maybe [Int] -- ^ The chat identifiers, total number of chats in all rules must not exceed 20
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserPrivacySettingRule where
-  show UserPrivacySettingRuleAllowAll
+instance I.ShortShow UserPrivacySettingRule where
+  shortShow UserPrivacySettingRuleAllowAll
       = "UserPrivacySettingRuleAllowAll"
-  show UserPrivacySettingRuleAllowContacts
+  shortShow UserPrivacySettingRuleAllowContacts
       = "UserPrivacySettingRuleAllowContacts"
-  show UserPrivacySettingRuleAllowUsers
+  shortShow UserPrivacySettingRuleAllowUsers
     { user_ids = user_ids_
     }
       = "UserPrivacySettingRuleAllowUsers"
         ++ I.cc
         [ "user_ids" `I.p` user_ids_
         ]
-  show UserPrivacySettingRuleAllowChatMembers
+  shortShow UserPrivacySettingRuleAllowChatMembers
     { chat_ids = chat_ids_
     }
       = "UserPrivacySettingRuleAllowChatMembers"
         ++ I.cc
         [ "chat_ids" `I.p` chat_ids_
         ]
-  show UserPrivacySettingRuleRestrictAll
+  shortShow UserPrivacySettingRuleRestrictAll
       = "UserPrivacySettingRuleRestrictAll"
-  show UserPrivacySettingRuleRestrictContacts
+  shortShow UserPrivacySettingRuleRestrictContacts
       = "UserPrivacySettingRuleRestrictContacts"
-  show UserPrivacySettingRuleRestrictUsers
+  shortShow UserPrivacySettingRuleRestrictUsers
     { user_ids = user_ids_
     }
       = "UserPrivacySettingRuleRestrictUsers"
         ++ I.cc
         [ "user_ids" `I.p` user_ids_
         ]
-  show UserPrivacySettingRuleRestrictChatMembers
+  shortShow UserPrivacySettingRuleRestrictChatMembers
     { chat_ids = chat_ids_
     }
       = "UserPrivacySettingRuleRestrictChatMembers"

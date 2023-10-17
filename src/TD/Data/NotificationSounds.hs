@@ -10,10 +10,10 @@ data NotificationSounds
   = NotificationSounds -- ^ Contains a list of notification sounds
     { notification_sounds :: Maybe [NotificationSound.NotificationSound] -- ^ A list of notification sounds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NotificationSounds where
-  show NotificationSounds
+instance I.ShortShow NotificationSounds where
+  shortShow NotificationSounds
     { notification_sounds = notification_sounds_
     }
       = "NotificationSounds"

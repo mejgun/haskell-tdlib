@@ -11,10 +11,10 @@ data ChatStatisticsMessageInteractionInfo
     , view_count    :: Maybe Int -- ^ Number of times the message was viewed
     , forward_count :: Maybe Int -- ^ Number of times the message was forwarded
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsMessageInteractionInfo where
-  show ChatStatisticsMessageInteractionInfo
+instance I.ShortShow ChatStatisticsMessageInteractionInfo where
+  shortShow ChatStatisticsMessageInteractionInfo
     { message_id    = message_id_
     , view_count    = view_count_
     , forward_count = forward_count_

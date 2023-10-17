@@ -13,10 +13,10 @@ data GetChatMessageByDate
     { chat_id :: Maybe Int -- ^ Chat identifier
     , date    :: Maybe Int -- ^ Point in time (Unix timestamp) relative to which to search for messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatMessageByDate where
-  show
+instance I.ShortShow GetChatMessageByDate where
+  shortShow
     GetChatMessageByDate
       { chat_id = chat_id_
       , date    = date_

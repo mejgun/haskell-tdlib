@@ -10,10 +10,10 @@ data ChatEvents
   = ChatEvents -- ^ Contains a list of chat events
     { events :: Maybe [ChatEvent.ChatEvent] -- ^ List of events
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatEvents where
-  show ChatEvents
+instance I.ShortShow ChatEvents where
+  shortShow ChatEvents
     { events = events_
     }
       = "ChatEvents"

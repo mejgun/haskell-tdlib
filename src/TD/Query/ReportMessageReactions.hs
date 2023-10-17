@@ -15,10 +15,10 @@ data ReportMessageReactions
     , message_id :: Maybe Int                         -- ^ Message identifier
     , sender_id  :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender, which added the reaction
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReportMessageReactions where
-  show
+instance I.ShortShow ReportMessageReactions where
+  shortShow
     ReportMessageReactions
       { chat_id    = chat_id_
       , message_id = message_id_

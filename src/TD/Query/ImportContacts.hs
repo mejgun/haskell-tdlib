@@ -12,10 +12,10 @@ data ImportContacts
   = ImportContacts
     { contacts :: Maybe [Contact.Contact] -- ^ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ImportContacts where
-  show
+instance I.ShortShow ImportContacts where
+  shortShow
     ImportContacts
       { contacts = contacts_
       }

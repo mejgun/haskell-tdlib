@@ -4,14 +4,15 @@ module TD.Query.GetPremiumStickerExamples
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns examples of premium stickers for demonstration purposes
 data GetPremiumStickerExamples
   = GetPremiumStickerExamples
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPremiumStickerExamples where
-  show
+instance I.ShortShow GetPremiumStickerExamples where
+  shortShow
     GetPremiumStickerExamples
         = "GetPremiumStickerExamples"
 

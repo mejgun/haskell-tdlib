@@ -13,10 +13,10 @@ data SetPinnedForumTopics
     { chat_id            :: Maybe Int   -- ^ Chat identifier
     , message_thread_ids :: Maybe [Int] -- ^ The new list of pinned forum topics
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPinnedForumTopics where
-  show
+instance I.ShortShow SetPinnedForumTopics where
+  shortShow
     SetPinnedForumTopics
       { chat_id            = chat_id_
       , message_thread_ids = message_thread_ids_

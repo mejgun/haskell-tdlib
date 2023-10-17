@@ -10,10 +10,10 @@ data Point
     { x :: Maybe Double -- ^ The point's first coordinate
     , y :: Maybe Double -- ^ The point's second coordinate
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Point where
-  show Point
+instance I.ShortShow Point where
+  shortShow Point
     { x = x_
     , y = y_
     }

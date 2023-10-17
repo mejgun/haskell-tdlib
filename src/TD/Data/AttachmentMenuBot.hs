@@ -28,10 +28,10 @@ data AttachmentMenuBot
     , icon_color             :: Maybe AttachmentMenuBotColor.AttachmentMenuBotColor -- ^ Color to highlight selected icon of the bot if appropriate; may be null
     , web_app_placeholder    :: Maybe File.File                                     -- ^ Default placeholder for opened Web Apps in SVG format; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AttachmentMenuBot where
-  show AttachmentMenuBot
+instance I.ShortShow AttachmentMenuBot where
+  shortShow AttachmentMenuBot
     { bot_user_id            = bot_user_id_
     , supports_self_chat     = supports_self_chat_
     , supports_user_chats    = supports_user_chats_

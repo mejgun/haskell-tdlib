@@ -15,10 +15,10 @@ data ProcessChatJoinRequests
     , invite_link :: Maybe T.Text -- ^ Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     , approve     :: Maybe Bool   -- ^ Pass true to approve all requests; pass false to decline them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProcessChatJoinRequests where
-  show
+instance I.ShortShow ProcessChatJoinRequests where
+  shortShow
     ProcessChatJoinRequests
       { chat_id     = chat_id_
       , invite_link = invite_link_

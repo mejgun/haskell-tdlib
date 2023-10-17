@@ -22,10 +22,10 @@ data PersonalDetails
     , country_code           :: Maybe T.Text    -- ^ A two-letter ISO 3166-1 alpha-2 country code of the user's country
     , residence_country_code :: Maybe T.Text    -- ^ A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PersonalDetails where
-  show PersonalDetails
+instance I.ShortShow PersonalDetails where
+  shortShow PersonalDetails
     { first_name             = first_name_
     , middle_name            = middle_name_
     , last_name              = last_name_

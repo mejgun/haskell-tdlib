@@ -13,10 +13,10 @@ data PassportAuthorizationForm
     , required_elements  :: Maybe [PassportRequiredElement.PassportRequiredElement] -- ^ Telegram Passport elements that must be provided to complete the form
     , privacy_policy_url :: Maybe T.Text                                            -- ^ URL for the privacy policy of the service; may be empty
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportAuthorizationForm where
-  show PassportAuthorizationForm
+instance I.ShortShow PassportAuthorizationForm where
+  shortShow PassportAuthorizationForm
     { _id                = _id_
     , required_elements  = required_elements_
     , privacy_policy_url = privacy_policy_url_

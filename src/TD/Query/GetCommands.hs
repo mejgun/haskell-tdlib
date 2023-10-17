@@ -15,10 +15,10 @@ data GetCommands
     { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to get commands in the default bot command scope
     , language_code :: Maybe T.Text                          -- ^ A two-letter ISO 639-1 language code or an empty string
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCommands where
-  show
+instance I.ShortShow GetCommands where
+  shortShow
     GetCommands
       { scope         = scope_
       , language_code = language_code_

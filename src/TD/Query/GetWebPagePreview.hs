@@ -12,10 +12,10 @@ data GetWebPagePreview
   = GetWebPagePreview
     { text :: Maybe FormattedText.FormattedText -- ^ Message text with formatting
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetWebPagePreview where
-  show
+instance I.ShortShow GetWebPagePreview where
+  shortShow
     GetWebPagePreview
       { text = text_
       }

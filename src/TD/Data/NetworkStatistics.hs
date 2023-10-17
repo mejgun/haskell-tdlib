@@ -11,10 +11,10 @@ data NetworkStatistics
     { since_date :: Maybe Int                                             -- ^ Point in time (Unix timestamp) from which the statistics are collected
     , entries    :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry] -- ^ Network statistics entries
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NetworkStatistics where
-  show NetworkStatistics
+instance I.ShortShow NetworkStatistics where
+  shortShow NetworkStatistics
     { since_date = since_date_
     , entries    = entries_
     }

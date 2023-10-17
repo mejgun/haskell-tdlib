@@ -18,10 +18,10 @@ data GetForumTopics
     , offset_message_thread_id :: Maybe Int    -- ^ The message thread identifier of the last found topic, or 0 for the first request
     , limit                    :: Maybe Int    -- ^ The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetForumTopics where
-  show
+instance I.ShortShow GetForumTopics where
+  shortShow
     GetForumTopics
       { chat_id                  = chat_id_
       , query                    = query_

@@ -11,10 +11,10 @@ data EmailAddressAuthenticationCodeInfo
     { email_address_pattern :: Maybe T.Text -- ^ Pattern of the email address to which an authentication code was sent
     , _length               :: Maybe Int    -- ^ Length of the code; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmailAddressAuthenticationCodeInfo where
-  show EmailAddressAuthenticationCodeInfo
+instance I.ShortShow EmailAddressAuthenticationCodeInfo where
+  shortShow EmailAddressAuthenticationCodeInfo
     { email_address_pattern = email_address_pattern_
     , _length               = _length_
     }

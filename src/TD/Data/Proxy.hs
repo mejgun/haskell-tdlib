@@ -16,10 +16,10 @@ data Proxy
     , is_enabled     :: Maybe Bool                -- ^ True, if the proxy is enabled now
     , _type          :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Proxy where
-  show Proxy
+instance I.ShortShow Proxy where
+  shortShow Proxy
     { _id            = _id_
     , server         = server_
     , port           = port_

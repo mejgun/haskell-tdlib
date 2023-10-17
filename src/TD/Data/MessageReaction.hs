@@ -14,10 +14,10 @@ data MessageReaction
     , is_chosen         :: Maybe Bool                          -- ^ True, if the reaction is chosen by the current user
     , recent_sender_ids :: Maybe [MessageSender.MessageSender] -- ^ Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageReaction where
-  show MessageReaction
+instance I.ShortShow MessageReaction where
+  shortShow MessageReaction
     { _type             = _type_
     , total_count       = total_count_
     , is_chosen         = is_chosen_

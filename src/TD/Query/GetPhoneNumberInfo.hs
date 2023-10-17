@@ -12,10 +12,10 @@ data GetPhoneNumberInfo
   = GetPhoneNumberInfo
     { phone_number_prefix :: Maybe T.Text -- ^ The phone number prefix
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPhoneNumberInfo where
-  show
+instance I.ShortShow GetPhoneNumberInfo where
+  shortShow
     GetPhoneNumberInfo
       { phone_number_prefix = phone_number_prefix_
       }

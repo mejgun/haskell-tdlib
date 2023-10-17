@@ -3,6 +3,7 @@ module TD.Data.CallProblem
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the exact type of a problem with a call
 data CallProblem
@@ -15,26 +16,26 @@ data CallProblem
   | CallProblemDropped -- ^ The call ended unexpectedly
   | CallProblemDistortedVideo -- ^ The video was distorted
   | CallProblemPixelatedVideo -- ^ The video was pixelated
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallProblem where
-  show CallProblemEcho
+instance I.ShortShow CallProblem where
+  shortShow CallProblemEcho
       = "CallProblemEcho"
-  show CallProblemNoise
+  shortShow CallProblemNoise
       = "CallProblemNoise"
-  show CallProblemInterruptions
+  shortShow CallProblemInterruptions
       = "CallProblemInterruptions"
-  show CallProblemDistortedSpeech
+  shortShow CallProblemDistortedSpeech
       = "CallProblemDistortedSpeech"
-  show CallProblemSilentLocal
+  shortShow CallProblemSilentLocal
       = "CallProblemSilentLocal"
-  show CallProblemSilentRemote
+  shortShow CallProblemSilentRemote
       = "CallProblemSilentRemote"
-  show CallProblemDropped
+  shortShow CallProblemDropped
       = "CallProblemDropped"
-  show CallProblemDistortedVideo
+  shortShow CallProblemDistortedVideo
       = "CallProblemDistortedVideo"
-  show CallProblemPixelatedVideo
+  shortShow CallProblemPixelatedVideo
       = "CallProblemPixelatedVideo"
 
 instance AT.FromJSON CallProblem where

@@ -12,10 +12,10 @@ data RemoveRecentHashtag
   = RemoveRecentHashtag
     { hashtag :: Maybe T.Text -- ^ Hashtag to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveRecentHashtag where
-  show
+instance I.ShortShow RemoveRecentHashtag where
+  shortShow
     RemoveRecentHashtag
       { hashtag = hashtag_
       }

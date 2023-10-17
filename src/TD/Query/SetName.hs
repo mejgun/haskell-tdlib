@@ -14,10 +14,10 @@ data SetName
     { first_name :: Maybe T.Text -- ^ The new value of the first name for the current user; 1-64 characters
     , last_name  :: Maybe T.Text -- ^ The new value of the optional last name for the current user; 0-64 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetName where
-  show
+instance I.ShortShow SetName where
+  shortShow
     SetName
       { first_name = first_name_
       , last_name  = last_name_

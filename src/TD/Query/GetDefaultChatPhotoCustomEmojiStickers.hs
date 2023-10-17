@@ -4,14 +4,15 @@ module TD.Query.GetDefaultChatPhotoCustomEmojiStickers
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns default list of custom emoji stickers for placing on a chat photo
 data GetDefaultChatPhotoCustomEmojiStickers
   = GetDefaultChatPhotoCustomEmojiStickers
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetDefaultChatPhotoCustomEmojiStickers where
-  show
+instance I.ShortShow GetDefaultChatPhotoCustomEmojiStickers where
+  shortShow
     GetDefaultChatPhotoCustomEmojiStickers
         = "GetDefaultChatPhotoCustomEmojiStickers"
 

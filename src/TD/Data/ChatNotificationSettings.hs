@@ -26,10 +26,10 @@ data ChatNotificationSettings
     , use_default_disable_mention_notifications        :: Maybe Bool -- ^ If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     , disable_mention_notifications                    :: Maybe Bool -- ^ If true, notifications for messages with mentions will be created as for an ordinary unread message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatNotificationSettings where
-  show ChatNotificationSettings
+instance I.ShortShow ChatNotificationSettings where
+  shortShow ChatNotificationSettings
     { use_default_mute_for                             = use_default_mute_for_
     , mute_for                                         = mute_for_
     , use_default_sound                                = use_default_sound_

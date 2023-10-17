@@ -283,10 +283,10 @@ data MessageContent
     , distance    :: Maybe Int                         -- ^ The distance between the users
     }
   | MessageUnsupported -- ^ A message content that is not supported in the current TDLib version
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageContent where
-  show MessageText
+instance I.ShortShow MessageContent where
+  shortShow MessageText
     { text     = text_
     , web_page = web_page_
     }
@@ -295,7 +295,7 @@ instance Show MessageContent where
         [ "text"     `I.p` text_
         , "web_page" `I.p` web_page_
         ]
-  show MessageAnimation
+  shortShow MessageAnimation
     { animation   = animation_
     , caption     = caption_
     , has_spoiler = has_spoiler_
@@ -308,7 +308,7 @@ instance Show MessageContent where
         , "has_spoiler" `I.p` has_spoiler_
         , "is_secret"   `I.p` is_secret_
         ]
-  show MessageAudio
+  shortShow MessageAudio
     { audio   = audio_
     , caption = caption_
     }
@@ -317,7 +317,7 @@ instance Show MessageContent where
         [ "audio"   `I.p` audio_
         , "caption" `I.p` caption_
         ]
-  show MessageDocument
+  shortShow MessageDocument
     { document = document_
     , caption  = caption_
     }
@@ -326,7 +326,7 @@ instance Show MessageContent where
         [ "document" `I.p` document_
         , "caption"  `I.p` caption_
         ]
-  show MessagePhoto
+  shortShow MessagePhoto
     { photo       = photo_
     , caption     = caption_
     , has_spoiler = has_spoiler_
@@ -339,9 +339,9 @@ instance Show MessageContent where
         , "has_spoiler" `I.p` has_spoiler_
         , "is_secret"   `I.p` is_secret_
         ]
-  show MessageExpiredPhoto
+  shortShow MessageExpiredPhoto
       = "MessageExpiredPhoto"
-  show MessageSticker
+  shortShow MessageSticker
     { sticker    = sticker_
     , is_premium = is_premium_
     }
@@ -350,7 +350,7 @@ instance Show MessageContent where
         [ "sticker"    `I.p` sticker_
         , "is_premium" `I.p` is_premium_
         ]
-  show MessageVideo
+  shortShow MessageVideo
     { video       = video_
     , caption     = caption_
     , has_spoiler = has_spoiler_
@@ -363,9 +363,9 @@ instance Show MessageContent where
         , "has_spoiler" `I.p` has_spoiler_
         , "is_secret"   `I.p` is_secret_
         ]
-  show MessageExpiredVideo
+  shortShow MessageExpiredVideo
       = "MessageExpiredVideo"
-  show MessageVideoNote
+  shortShow MessageVideoNote
     { video_note = video_note_
     , is_viewed  = is_viewed_
     , is_secret  = is_secret_
@@ -376,7 +376,7 @@ instance Show MessageContent where
         , "is_viewed"  `I.p` is_viewed_
         , "is_secret"  `I.p` is_secret_
         ]
-  show MessageVoiceNote
+  shortShow MessageVoiceNote
     { voice_note  = voice_note_
     , caption     = caption_
     , is_listened = is_listened_
@@ -387,7 +387,7 @@ instance Show MessageContent where
         , "caption"     `I.p` caption_
         , "is_listened" `I.p` is_listened_
         ]
-  show MessageLocation
+  shortShow MessageLocation
     { location               = location_
     , live_period            = live_period_
     , expires_in             = expires_in_
@@ -402,21 +402,21 @@ instance Show MessageContent where
         , "heading"                `I.p` heading_
         , "proximity_alert_radius" `I.p` proximity_alert_radius_
         ]
-  show MessageVenue
+  shortShow MessageVenue
     { venue = venue_
     }
       = "MessageVenue"
         ++ I.cc
         [ "venue" `I.p` venue_
         ]
-  show MessageContact
+  shortShow MessageContact
     { contact = contact_
     }
       = "MessageContact"
         ++ I.cc
         [ "contact" `I.p` contact_
         ]
-  show MessageAnimatedEmoji
+  shortShow MessageAnimatedEmoji
     { animated_emoji = animated_emoji_
     , emoji          = emoji_
     }
@@ -425,7 +425,7 @@ instance Show MessageContent where
         [ "animated_emoji" `I.p` animated_emoji_
         , "emoji"          `I.p` emoji_
         ]
-  show MessageDice
+  shortShow MessageDice
     { initial_state                  = initial_state_
     , final_state                    = final_state_
     , emoji                          = emoji_
@@ -440,21 +440,21 @@ instance Show MessageContent where
         , "value"                          `I.p` value_
         , "success_animation_frame_number" `I.p` success_animation_frame_number_
         ]
-  show MessageGame
+  shortShow MessageGame
     { game = game_
     }
       = "MessageGame"
         ++ I.cc
         [ "game" `I.p` game_
         ]
-  show MessagePoll
+  shortShow MessagePoll
     { poll = poll_
     }
       = "MessagePoll"
         ++ I.cc
         [ "poll" `I.p` poll_
         ]
-  show MessageStory
+  shortShow MessageStory
     { story_sender_chat_id = story_sender_chat_id_
     , story_id             = story_id_
     , via_mention          = via_mention_
@@ -465,7 +465,7 @@ instance Show MessageContent where
         , "story_id"             `I.p` story_id_
         , "via_mention"          `I.p` via_mention_
         ]
-  show MessageInvoice
+  shortShow MessageInvoice
     { title                 = title_
     , description           = description_
     , photo                 = photo_
@@ -490,7 +490,7 @@ instance Show MessageContent where
         , "receipt_message_id"    `I.p` receipt_message_id_
         , "extended_media"        `I.p` extended_media_
         ]
-  show MessageCall
+  shortShow MessageCall
     { is_video       = is_video_
     , discard_reason = discard_reason_
     , duration       = duration_
@@ -501,7 +501,7 @@ instance Show MessageContent where
         , "discard_reason" `I.p` discard_reason_
         , "duration"       `I.p` duration_
         ]
-  show MessageVideoChatScheduled
+  shortShow MessageVideoChatScheduled
     { group_call_id = group_call_id_
     , start_date    = start_date_
     }
@@ -510,21 +510,21 @@ instance Show MessageContent where
         [ "group_call_id" `I.p` group_call_id_
         , "start_date"    `I.p` start_date_
         ]
-  show MessageVideoChatStarted
+  shortShow MessageVideoChatStarted
     { group_call_id = group_call_id_
     }
       = "MessageVideoChatStarted"
         ++ I.cc
         [ "group_call_id" `I.p` group_call_id_
         ]
-  show MessageVideoChatEnded
+  shortShow MessageVideoChatEnded
     { duration = duration_
     }
       = "MessageVideoChatEnded"
         ++ I.cc
         [ "duration" `I.p` duration_
         ]
-  show MessageInviteVideoChatParticipants
+  shortShow MessageInviteVideoChatParticipants
     { group_call_id = group_call_id_
     , user_ids      = user_ids_
     }
@@ -533,7 +533,7 @@ instance Show MessageContent where
         [ "group_call_id" `I.p` group_call_id_
         , "user_ids"      `I.p` user_ids_
         ]
-  show MessageBasicGroupChatCreate
+  shortShow MessageBasicGroupChatCreate
     { title           = title_
     , member_user_ids = member_user_ids_
     }
@@ -542,55 +542,55 @@ instance Show MessageContent where
         [ "title"           `I.p` title_
         , "member_user_ids" `I.p` member_user_ids_
         ]
-  show MessageSupergroupChatCreate
+  shortShow MessageSupergroupChatCreate
     { title = title_
     }
       = "MessageSupergroupChatCreate"
         ++ I.cc
         [ "title" `I.p` title_
         ]
-  show MessageChatChangeTitle
+  shortShow MessageChatChangeTitle
     { title = title_
     }
       = "MessageChatChangeTitle"
         ++ I.cc
         [ "title" `I.p` title_
         ]
-  show MessageChatChangePhoto
+  shortShow MessageChatChangePhoto
     { _photo = _photo_
     }
       = "MessageChatChangePhoto"
         ++ I.cc
         [ "_photo" `I.p` _photo_
         ]
-  show MessageChatDeletePhoto
+  shortShow MessageChatDeletePhoto
       = "MessageChatDeletePhoto"
-  show MessageChatAddMembers
+  shortShow MessageChatAddMembers
     { member_user_ids = member_user_ids_
     }
       = "MessageChatAddMembers"
         ++ I.cc
         [ "member_user_ids" `I.p` member_user_ids_
         ]
-  show MessageChatJoinByLink
+  shortShow MessageChatJoinByLink
       = "MessageChatJoinByLink"
-  show MessageChatJoinByRequest
+  shortShow MessageChatJoinByRequest
       = "MessageChatJoinByRequest"
-  show MessageChatDeleteMember
+  shortShow MessageChatDeleteMember
     { user_id = user_id_
     }
       = "MessageChatDeleteMember"
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
-  show MessageChatUpgradeTo
+  shortShow MessageChatUpgradeTo
     { supergroup_id = supergroup_id_
     }
       = "MessageChatUpgradeTo"
         ++ I.cc
         [ "supergroup_id" `I.p` supergroup_id_
         ]
-  show MessageChatUpgradeFrom
+  shortShow MessageChatUpgradeFrom
     { title          = title_
     , basic_group_id = basic_group_id_
     }
@@ -599,16 +599,16 @@ instance Show MessageContent where
         [ "title"          `I.p` title_
         , "basic_group_id" `I.p` basic_group_id_
         ]
-  show MessagePinMessage
+  shortShow MessagePinMessage
     { message_id = message_id_
     }
       = "MessagePinMessage"
         ++ I.cc
         [ "message_id" `I.p` message_id_
         ]
-  show MessageScreenshotTaken
+  shortShow MessageScreenshotTaken
       = "MessageScreenshotTaken"
-  show MessageChatSetBackground
+  shortShow MessageChatSetBackground
     { old_background_message_id = old_background_message_id_
     , background                = background_
     }
@@ -617,14 +617,14 @@ instance Show MessageContent where
         [ "old_background_message_id" `I.p` old_background_message_id_
         , "background"                `I.p` background_
         ]
-  show MessageChatSetTheme
+  shortShow MessageChatSetTheme
     { theme_name = theme_name_
     }
       = "MessageChatSetTheme"
         ++ I.cc
         [ "theme_name" `I.p` theme_name_
         ]
-  show MessageChatSetMessageAutoDeleteTime
+  shortShow MessageChatSetMessageAutoDeleteTime
     { message_auto_delete_time = message_auto_delete_time_
     , from_user_id             = from_user_id_
     }
@@ -633,7 +633,7 @@ instance Show MessageContent where
         [ "message_auto_delete_time" `I.p` message_auto_delete_time_
         , "from_user_id"             `I.p` from_user_id_
         ]
-  show MessageForumTopicCreated
+  shortShow MessageForumTopicCreated
     { name = name_
     , icon = icon_
     }
@@ -642,7 +642,7 @@ instance Show MessageContent where
         [ "name" `I.p` name_
         , "icon" `I.p` icon_
         ]
-  show MessageForumTopicEdited
+  shortShow MessageForumTopicEdited
     { name                      = name_
     , edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_
     , icon_custom_emoji_id      = icon_custom_emoji_id_
@@ -653,35 +653,35 @@ instance Show MessageContent where
         , "edit_icon_custom_emoji_id" `I.p` edit_icon_custom_emoji_id_
         , "icon_custom_emoji_id"      `I.p` icon_custom_emoji_id_
         ]
-  show MessageForumTopicIsClosedToggled
+  shortShow MessageForumTopicIsClosedToggled
     { is_closed = is_closed_
     }
       = "MessageForumTopicIsClosedToggled"
         ++ I.cc
         [ "is_closed" `I.p` is_closed_
         ]
-  show MessageForumTopicIsHiddenToggled
+  shortShow MessageForumTopicIsHiddenToggled
     { is_hidden = is_hidden_
     }
       = "MessageForumTopicIsHiddenToggled"
         ++ I.cc
         [ "is_hidden" `I.p` is_hidden_
         ]
-  show MessageSuggestProfilePhoto
+  shortShow MessageSuggestProfilePhoto
     { _photo = _photo_
     }
       = "MessageSuggestProfilePhoto"
         ++ I.cc
         [ "_photo" `I.p` _photo_
         ]
-  show MessageCustomServiceAction
+  shortShow MessageCustomServiceAction
     { _text = _text_
     }
       = "MessageCustomServiceAction"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show MessageGameScore
+  shortShow MessageGameScore
     { game_message_id = game_message_id_
     , game_id         = game_id_
     , score           = score_
@@ -692,7 +692,7 @@ instance Show MessageContent where
         , "game_id"         `I.p` game_id_
         , "score"           `I.p` score_
         ]
-  show MessagePaymentSuccessful
+  shortShow MessagePaymentSuccessful
     { invoice_chat_id    = invoice_chat_id_
     , invoice_message_id = invoice_message_id_
     , currency           = currency_
@@ -711,7 +711,7 @@ instance Show MessageContent where
         , "is_first_recurring" `I.p` is_first_recurring_
         , "invoice_name"       `I.p` invoice_name_
         ]
-  show MessagePaymentSuccessfulBot
+  shortShow MessagePaymentSuccessfulBot
     { currency                   = currency_
     , total_amount               = total_amount_
     , is_recurring               = is_recurring_
@@ -734,7 +734,7 @@ instance Show MessageContent where
         , "telegram_payment_charge_id" `I.p` telegram_payment_charge_id_
         , "provider_payment_charge_id" `I.p` provider_payment_charge_id_
         ]
-  show MessageGiftedPremium
+  shortShow MessageGiftedPremium
     { gifter_user_id        = gifter_user_id_
     , currency              = currency_
     , amount                = amount_
@@ -753,9 +753,9 @@ instance Show MessageContent where
         , "month_count"           `I.p` month_count_
         , "sticker"               `I.p` sticker_
         ]
-  show MessageContactRegistered
+  shortShow MessageContactRegistered
       = "MessageContactRegistered"
-  show MessageUserShared
+  shortShow MessageUserShared
     { user_id   = user_id_
     , button_id = button_id_
     }
@@ -764,7 +764,7 @@ instance Show MessageContent where
         [ "user_id"   `I.p` user_id_
         , "button_id" `I.p` button_id_
         ]
-  show MessageChatShared
+  shortShow MessageChatShared
     { chat_id   = chat_id_
     , button_id = button_id_
     }
@@ -773,28 +773,28 @@ instance Show MessageContent where
         [ "chat_id"   `I.p` chat_id_
         , "button_id" `I.p` button_id_
         ]
-  show MessageWebsiteConnected
+  shortShow MessageWebsiteConnected
     { domain_name = domain_name_
     }
       = "MessageWebsiteConnected"
         ++ I.cc
         [ "domain_name" `I.p` domain_name_
         ]
-  show MessageBotWriteAccessAllowed
+  shortShow MessageBotWriteAccessAllowed
     { web_app = web_app_
     }
       = "MessageBotWriteAccessAllowed"
         ++ I.cc
         [ "web_app" `I.p` web_app_
         ]
-  show MessageWebAppDataSent
+  shortShow MessageWebAppDataSent
     { button_text = button_text_
     }
       = "MessageWebAppDataSent"
         ++ I.cc
         [ "button_text" `I.p` button_text_
         ]
-  show MessageWebAppDataReceived
+  shortShow MessageWebAppDataReceived
     { button_text = button_text_
     , _data       = _data_
     }
@@ -803,14 +803,14 @@ instance Show MessageContent where
         [ "button_text" `I.p` button_text_
         , "_data"       `I.p` _data_
         ]
-  show MessagePassportDataSent
+  shortShow MessagePassportDataSent
     { types = types_
     }
       = "MessagePassportDataSent"
         ++ I.cc
         [ "types" `I.p` types_
         ]
-  show MessagePassportDataReceived
+  shortShow MessagePassportDataReceived
     { elements    = elements_
     , credentials = credentials_
     }
@@ -819,7 +819,7 @@ instance Show MessageContent where
         [ "elements"    `I.p` elements_
         , "credentials" `I.p` credentials_
         ]
-  show MessageProximityAlertTriggered
+  shortShow MessageProximityAlertTriggered
     { traveler_id = traveler_id_
     , watcher_id  = watcher_id_
     , distance    = distance_
@@ -830,7 +830,7 @@ instance Show MessageContent where
         , "watcher_id"  `I.p` watcher_id_
         , "distance"    `I.p` distance_
         ]
-  show MessageUnsupported
+  shortShow MessageUnsupported
       = "MessageUnsupported"
 
 instance AT.FromJSON MessageContent where

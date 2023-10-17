@@ -25,10 +25,10 @@ data Invoice
     , send_email_address_to_provider         :: Maybe Bool                                -- ^ True, if the user's email address will be sent to the provider
     , is_flexible                            :: Maybe Bool                                -- ^ True, if the total price depends on the shipping method
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Invoice where
-  show Invoice
+instance I.ShortShow Invoice where
+  shortShow Invoice
     { currency                               = currency_
     , price_parts                            = price_parts_
     , max_tip_amount                         = max_tip_amount_

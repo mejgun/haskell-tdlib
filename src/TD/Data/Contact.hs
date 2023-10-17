@@ -16,10 +16,10 @@ data Contact
     , vcard        :: Maybe T.Text -- ^ Additional data about the user in a form of vCard; 0-2048 bytes in length
     , user_id      :: Maybe Int    -- ^ Identifier of the user, if known; 0 otherwise
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Contact where
-  show Contact
+instance I.ShortShow Contact where
+  shortShow Contact
     { phone_number = phone_number_
     , first_name   = first_name_
     , last_name    = last_name_

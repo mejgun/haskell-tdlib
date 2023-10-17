@@ -4,14 +4,15 @@ module TD.Query.GetCurrentState
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
 data GetCurrentState
   = GetCurrentState
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCurrentState where
-  show
+instance I.ShortShow GetCurrentState where
+  shortShow
     GetCurrentState
         = "GetCurrentState"
 

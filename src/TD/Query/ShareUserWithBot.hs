@@ -16,10 +16,10 @@ data ShareUserWithBot
     , shared_user_id :: Maybe Int  -- ^ Identifier of the shared user
     , only_check     :: Maybe Bool -- ^ Pass true to check that the user can be shared by the button instead of actually sharing them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ShareUserWithBot where
-  show
+instance I.ShortShow ShareUserWithBot where
+  shortShow
     ShareUserWithBot
       { chat_id        = chat_id_
       , message_id     = message_id_

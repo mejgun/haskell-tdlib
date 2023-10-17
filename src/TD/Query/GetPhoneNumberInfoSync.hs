@@ -14,10 +14,10 @@ data GetPhoneNumberInfoSync
     { language_code       :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code for country information localization
     , phone_number_prefix :: Maybe T.Text -- ^ The phone number prefix
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPhoneNumberInfoSync where
-  show
+instance I.ShortShow GetPhoneNumberInfoSync where
+  shortShow
     GetPhoneNumberInfoSync
       { language_code       = language_code_
       , phone_number_prefix = phone_number_prefix_

@@ -15,10 +15,10 @@ data EditMessageReplyMarkup
     , message_id   :: Maybe Int                     -- ^ Identifier of the message
     , reply_markup :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditMessageReplyMarkup where
-  show
+instance I.ShortShow EditMessageReplyMarkup where
+  shortShow
     EditMessageReplyMarkup
       { chat_id      = chat_id_
       , message_id   = message_id_

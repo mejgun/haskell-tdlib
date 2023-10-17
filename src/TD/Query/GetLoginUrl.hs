@@ -15,10 +15,10 @@ data GetLoginUrl
     , button_id          :: Maybe Int  -- ^ Button identifier
     , allow_write_access :: Maybe Bool -- ^ Pass true to allow the bot to send messages to the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLoginUrl where
-  show
+instance I.ShortShow GetLoginUrl where
+  shortShow
     GetLoginUrl
       { chat_id            = chat_id_
       , message_id         = message_id_

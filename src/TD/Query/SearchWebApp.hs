@@ -14,10 +14,10 @@ data SearchWebApp
     { bot_user_id        :: Maybe Int    -- ^ Identifier of the target bot
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchWebApp where
-  show
+instance I.ShortShow SearchWebApp where
+  shortShow
     SearchWebApp
       { bot_user_id        = bot_user_id_
       , web_app_short_name = web_app_short_name_

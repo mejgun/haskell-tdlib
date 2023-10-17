@@ -12,10 +12,10 @@ data GetStickerEmojis
   = GetStickerEmojis
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker file identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStickerEmojis where
-  show
+instance I.ShortShow GetStickerEmojis where
+  shortShow
     GetStickerEmojis
       { sticker = sticker_
       }

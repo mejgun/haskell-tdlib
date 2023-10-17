@@ -29,10 +29,10 @@ data MessageExtendedMedia
   | MessageExtendedMediaUnsupported -- ^ The media is unsupported
     { caption :: Maybe FormattedText.FormattedText -- ^ Media caption
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageExtendedMedia where
-  show MessageExtendedMediaPreview
+instance I.ShortShow MessageExtendedMedia where
+  shortShow MessageExtendedMediaPreview
     { width         = width_
     , height        = height_
     , duration      = duration_
@@ -47,7 +47,7 @@ instance Show MessageExtendedMedia where
         , "minithumbnail" `I.p` minithumbnail_
         , "caption"       `I.p` caption_
         ]
-  show MessageExtendedMediaPhoto
+  shortShow MessageExtendedMediaPhoto
     { photo   = photo_
     , caption = caption_
     }
@@ -56,7 +56,7 @@ instance Show MessageExtendedMedia where
         [ "photo"   `I.p` photo_
         , "caption" `I.p` caption_
         ]
-  show MessageExtendedMediaVideo
+  shortShow MessageExtendedMediaVideo
     { video   = video_
     , caption = caption_
     }
@@ -65,7 +65,7 @@ instance Show MessageExtendedMedia where
         [ "video"   `I.p` video_
         , "caption" `I.p` caption_
         ]
-  show MessageExtendedMediaUnsupported
+  shortShow MessageExtendedMediaUnsupported
     { caption = caption_
     }
       = "MessageExtendedMediaUnsupported"

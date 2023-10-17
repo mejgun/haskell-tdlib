@@ -14,10 +14,10 @@ data SetChatClientData
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , client_data :: Maybe T.Text -- ^ New value of client_data
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatClientData where
-  show
+instance I.ShortShow SetChatClientData where
+  shortShow
     SetChatClientData
       { chat_id     = chat_id_
       , client_data = client_data_

@@ -15,10 +15,10 @@ data InlineQueryResults
     , results         :: Maybe [InlineQueryResult.InlineQueryResult]             -- ^ Results of the query
     , next_offset     :: Maybe T.Text                                            -- ^ The offset for the next request. If empty, there are no more results
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineQueryResults where
-  show InlineQueryResults
+instance I.ShortShow InlineQueryResults where
+  shortShow InlineQueryResults
     { inline_query_id = inline_query_id_
     , button          = button_
     , results         = results_

@@ -11,10 +11,10 @@ data GetVideoChatAvailableParticipants
   = GetVideoChatAvailableParticipants
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetVideoChatAvailableParticipants where
-  show
+instance I.ShortShow GetVideoChatAvailableParticipants where
+  shortShow
     GetVideoChatAvailableParticipants
       { chat_id = chat_id_
       }

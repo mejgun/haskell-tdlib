@@ -4,14 +4,15 @@ module TD.Query.ResetAllNotificationSettings
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
 data ResetAllNotificationSettings
   = ResetAllNotificationSettings
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ResetAllNotificationSettings where
-  show
+instance I.ShortShow ResetAllNotificationSettings where
+  shortShow
     ResetAllNotificationSettings
         = "ResetAllNotificationSettings"
 

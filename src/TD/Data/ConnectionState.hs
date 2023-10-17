@@ -3,6 +3,7 @@ module TD.Data.ConnectionState
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the current state of the connection to Telegram servers
 data ConnectionState
@@ -11,18 +12,18 @@ data ConnectionState
   | ConnectionStateConnecting -- ^ Currently establishing a connection to the Telegram servers
   | ConnectionStateUpdating -- ^ Downloading data received while the application was offline
   | ConnectionStateReady -- ^ There is a working connection to the Telegram servers
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ConnectionState where
-  show ConnectionStateWaitingForNetwork
+instance I.ShortShow ConnectionState where
+  shortShow ConnectionStateWaitingForNetwork
       = "ConnectionStateWaitingForNetwork"
-  show ConnectionStateConnectingToProxy
+  shortShow ConnectionStateConnectingToProxy
       = "ConnectionStateConnectingToProxy"
-  show ConnectionStateConnecting
+  shortShow ConnectionStateConnecting
       = "ConnectionStateConnecting"
-  show ConnectionStateUpdating
+  shortShow ConnectionStateUpdating
       = "ConnectionStateUpdating"
-  show ConnectionStateReady
+  shortShow ConnectionStateReady
       = "ConnectionStateReady"
 
 instance AT.FromJSON ConnectionState where

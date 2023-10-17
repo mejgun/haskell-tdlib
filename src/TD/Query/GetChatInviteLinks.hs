@@ -18,10 +18,10 @@ data GetChatInviteLinks
     , offset_invite_link :: Maybe T.Text -- ^ Invite link starting after which to return invite links; use empty string to get results from the beginning
     , limit              :: Maybe Int    -- ^ The maximum number of invite links to return; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatInviteLinks where
-  show
+instance I.ShortShow GetChatInviteLinks where
+  shortShow
     GetChatInviteLinks
       { chat_id            = chat_id_
       , creator_user_id    = creator_user_id_

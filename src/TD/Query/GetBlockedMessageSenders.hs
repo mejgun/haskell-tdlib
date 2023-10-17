@@ -13,10 +13,10 @@ data GetBlockedMessageSenders
     { offset :: Maybe Int -- ^ Number of users and chats to skip in the result; must be non-negative
     , limit  :: Maybe Int -- ^ The maximum number of users and chats to return; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBlockedMessageSenders where
-  show
+instance I.ShortShow GetBlockedMessageSenders where
+  shortShow
     GetBlockedMessageSenders
       { offset = offset_
       , limit  = limit_

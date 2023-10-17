@@ -10,10 +10,10 @@ data ChatJoinRequestsInfo
     { total_count :: Maybe Int   -- ^ Total number of pending join requests
     , user_ids    :: Maybe [Int] -- ^ Identifiers of at most 3 users sent the newest pending join requests
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatJoinRequestsInfo where
-  show ChatJoinRequestsInfo
+instance I.ShortShow ChatJoinRequestsInfo where
+  shortShow ChatJoinRequestsInfo
     { total_count = total_count_
     , user_ids    = user_ids_
     }

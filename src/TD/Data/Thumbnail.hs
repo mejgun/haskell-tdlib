@@ -14,10 +14,10 @@ data Thumbnail
     , height :: Maybe Int                             -- ^ Thumbnail height
     , file   :: Maybe File.File                       -- ^ The thumbnail
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Thumbnail where
-  show Thumbnail
+instance I.ShortShow Thumbnail where
+  shortShow Thumbnail
     { format = format_
     , width  = width_
     , height = height_

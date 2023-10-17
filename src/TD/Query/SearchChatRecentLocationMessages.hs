@@ -13,10 +13,10 @@ data SearchChatRecentLocationMessages
     { chat_id :: Maybe Int -- ^ Chat identifier
     , limit   :: Maybe Int -- ^ The maximum number of messages to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchChatRecentLocationMessages where
-  show
+instance I.ShortShow SearchChatRecentLocationMessages where
+  shortShow
     SearchChatRecentLocationMessages
       { chat_id = chat_id_
       , limit   = limit_

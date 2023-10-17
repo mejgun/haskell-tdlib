@@ -13,10 +13,10 @@ data StorageStatisticsFast
     , language_pack_database_size :: Maybe Int -- ^ Size of the language pack database
     , log_size                    :: Maybe Int -- ^ Size of the TDLib internal log
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StorageStatisticsFast where
-  show StorageStatisticsFast
+instance I.ShortShow StorageStatisticsFast where
+  shortShow StorageStatisticsFast
     { files_size                  = files_size_
     , file_count                  = file_count_
     , database_size               = database_size_

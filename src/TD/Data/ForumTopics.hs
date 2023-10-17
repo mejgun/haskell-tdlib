@@ -14,10 +14,10 @@ data ForumTopics
     , next_offset_message_id        :: Maybe Int                     -- ^ Offset message identifier for the next getForumTopics request
     , next_offset_message_thread_id :: Maybe Int                     -- ^ Offset message thread identifier for the next getForumTopics request
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ForumTopics where
-  show ForumTopics
+instance I.ShortShow ForumTopics where
+  shortShow ForumTopics
     { total_count                   = total_count_
     , topics                        = topics_
     , next_offset_date              = next_offset_date_

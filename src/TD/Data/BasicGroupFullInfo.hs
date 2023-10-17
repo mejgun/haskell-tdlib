@@ -21,10 +21,10 @@ data BasicGroupFullInfo
     , invite_link                     :: Maybe ChatInviteLink.ChatInviteLink -- ^ Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
     , bot_commands                    :: Maybe [BotCommands.BotCommands]     -- ^ List of commands of bots in the group
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BasicGroupFullInfo where
-  show BasicGroupFullInfo
+instance I.ShortShow BasicGroupFullInfo where
+  shortShow BasicGroupFullInfo
     { photo                           = photo_
     , description                     = description_
     , creator_user_id                 = creator_user_id_

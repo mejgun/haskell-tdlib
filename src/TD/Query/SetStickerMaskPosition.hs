@@ -15,10 +15,10 @@ data SetStickerMaskPosition
     { sticker       :: Maybe InputFile.InputFile       -- ^ Sticker
     , mask_position :: Maybe MaskPosition.MaskPosition -- ^ Position where the mask is placed; pass null to remove mask position
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerMaskPosition where
-  show
+instance I.ShortShow SetStickerMaskPosition where
+  shortShow
     SetStickerMaskPosition
       { sticker       = sticker_
       , mask_position = mask_position_

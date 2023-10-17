@@ -14,10 +14,10 @@ data SetChatActiveStoriesList
     { chat_id    :: Maybe Int                 -- ^ Identifier of the chat that posted stories
     , story_list :: Maybe StoryList.StoryList -- ^ New list for active stories posted by the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatActiveStoriesList where
-  show
+instance I.ShortShow SetChatActiveStoriesList where
+  shortShow
     SetChatActiveStoriesList
       { chat_id    = chat_id_
       , story_list = story_list_

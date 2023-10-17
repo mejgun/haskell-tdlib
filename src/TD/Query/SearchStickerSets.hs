@@ -12,10 +12,10 @@ data SearchStickerSets
   = SearchStickerSets
     { query :: Maybe T.Text -- ^ Query to search for
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchStickerSets where
-  show
+instance I.ShortShow SearchStickerSets where
+  shortShow
     SearchStickerSets
       { query = query_
       }

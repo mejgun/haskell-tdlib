@@ -18,10 +18,10 @@ data Venue
     , _id      :: Maybe T.Text            -- ^ Identifier of the venue in the provider database; as defined by the sender
     , _type    :: Maybe T.Text            -- ^ Type of the venue in the provider database; as defined by the sender
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Venue where
-  show Venue
+instance I.ShortShow Venue where
+  shortShow Venue
     { location = location_
     , title    = title_
     , address  = address_

@@ -10,10 +10,10 @@ data Proxies
   = Proxies -- ^ Represents a list of proxy servers
     { proxies :: Maybe [Proxy.Proxy] -- ^ List of proxy servers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Proxies where
-  show Proxies
+instance I.ShortShow Proxies where
+  shortShow Proxies
     { proxies = proxies_
     }
       = "Proxies"

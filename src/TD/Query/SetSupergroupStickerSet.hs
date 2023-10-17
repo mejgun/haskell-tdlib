@@ -13,10 +13,10 @@ data SetSupergroupStickerSet
     { supergroup_id  :: Maybe Int -- ^ Identifier of the supergroup
     , sticker_set_id :: Maybe Int -- ^ New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetSupergroupStickerSet where
-  show
+instance I.ShortShow SetSupergroupStickerSet where
+  shortShow
     SetSupergroupStickerSet
       { supergroup_id  = supergroup_id_
       , sticker_set_id = sticker_set_id_

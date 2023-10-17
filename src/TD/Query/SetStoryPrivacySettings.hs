@@ -14,10 +14,10 @@ data SetStoryPrivacySettings
     { story_id         :: Maybe Int                                       -- ^ Identifier of the story
     , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The new privacy settigs for the story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStoryPrivacySettings where
-  show
+instance I.ShortShow SetStoryPrivacySettings where
+  shortShow
     SetStoryPrivacySettings
       { story_id         = story_id_
       , privacy_settings = privacy_settings_

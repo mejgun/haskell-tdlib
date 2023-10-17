@@ -18,10 +18,10 @@ data GetInlineQueryResults
     , query         :: Maybe T.Text            -- ^ Text of the query
     , offset        :: Maybe T.Text            -- ^ Offset of the first entry to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInlineQueryResults where
-  show
+instance I.ShortShow GetInlineQueryResults where
+  shortShow
     GetInlineQueryResults
       { bot_user_id   = bot_user_id_
       , chat_id       = chat_id_

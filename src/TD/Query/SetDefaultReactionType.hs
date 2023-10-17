@@ -12,10 +12,10 @@ data SetDefaultReactionType
   = SetDefaultReactionType
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ New type of the default reaction
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetDefaultReactionType where
-  show
+instance I.ShortShow SetDefaultReactionType where
+  shortShow
     SetDefaultReactionType
       { reaction_type = reaction_type_
       }

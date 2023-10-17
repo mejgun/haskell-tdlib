@@ -10,10 +10,10 @@ data TemporaryPasswordState
     { has_password :: Maybe Bool -- ^ True, if a temporary password is available
     , valid_for    :: Maybe Int  -- ^ Time left before the temporary password expires, in seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TemporaryPasswordState where
-  show TemporaryPasswordState
+instance I.ShortShow TemporaryPasswordState where
+  shortShow TemporaryPasswordState
     { has_password = has_password_
     , valid_for    = valid_for_
     }

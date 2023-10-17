@@ -13,10 +13,10 @@ data ReadAllMessageThreadMentions
     { chat_id           :: Maybe Int -- ^ Chat identifier
     , message_thread_id :: Maybe Int -- ^ Message thread identifier in which mentions are marked as read
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReadAllMessageThreadMentions where
-  show
+instance I.ShortShow ReadAllMessageThreadMentions where
+  shortShow
     ReadAllMessageThreadMentions
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

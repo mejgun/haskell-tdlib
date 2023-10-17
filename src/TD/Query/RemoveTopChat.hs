@@ -14,10 +14,10 @@ data RemoveTopChat
     { category :: Maybe TopChatCategory.TopChatCategory -- ^ Category of frequently used chats
     , chat_id  :: Maybe Int                             -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveTopChat where
-  show
+instance I.ShortShow RemoveTopChat where
+  shortShow
     RemoveTopChat
       { category = category_
       , chat_id  = chat_id_

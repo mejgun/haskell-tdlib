@@ -12,10 +12,10 @@ data EncryptedCredentials
     , hash   :: Maybe BS.ByteString -- ^ The decrypted data hash
     , secret :: Maybe BS.ByteString -- ^ Secret for data decryption, encrypted with the service's public key
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EncryptedCredentials where
-  show EncryptedCredentials
+instance I.ShortShow EncryptedCredentials where
+  shortShow EncryptedCredentials
     { _data  = _data_
     , hash   = hash_
     , secret = secret_

@@ -21,17 +21,17 @@ data InputCredentials
   | InputCredentialsGooglePay -- ^ Applies if a user enters new credentials using Google Pay
     { _data :: Maybe T.Text -- ^ JSON-encoded data with the credential identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputCredentials where
-  show InputCredentialsSaved
+instance I.ShortShow InputCredentials where
+  shortShow InputCredentialsSaved
     { saved_credentials_id = saved_credentials_id_
     }
       = "InputCredentialsSaved"
         ++ I.cc
         [ "saved_credentials_id" `I.p` saved_credentials_id_
         ]
-  show InputCredentialsNew
+  shortShow InputCredentialsNew
     { _data      = _data_
     , allow_save = allow_save_
     }
@@ -40,14 +40,14 @@ instance Show InputCredentials where
         [ "_data"      `I.p` _data_
         , "allow_save" `I.p` allow_save_
         ]
-  show InputCredentialsApplePay
+  shortShow InputCredentialsApplePay
     { _data = _data_
     }
       = "InputCredentialsApplePay"
         ++ I.cc
         [ "_data" `I.p` _data_
         ]
-  show InputCredentialsGooglePay
+  shortShow InputCredentialsGooglePay
     { _data = _data_
     }
       = "InputCredentialsGooglePay"

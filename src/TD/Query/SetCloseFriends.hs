@@ -11,10 +11,10 @@ data SetCloseFriends
   = SetCloseFriends
     { user_ids :: Maybe [Int] -- ^ User identifiers of close friends; the users must be contacts of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetCloseFriends where
-  show
+instance I.ShortShow SetCloseFriends where
+  shortShow
     SetCloseFriends
       { user_ids = user_ids_
       }

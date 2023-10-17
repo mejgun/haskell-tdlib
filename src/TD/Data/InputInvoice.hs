@@ -15,10 +15,10 @@ data InputInvoice
   | InputInvoiceName -- ^ An invoice from a link of the type internalLinkTypeInvoice
     { name :: Maybe T.Text -- ^ Name of the invoice
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputInvoice where
-  show InputInvoiceMessage
+instance I.ShortShow InputInvoice where
+  shortShow InputInvoiceMessage
     { chat_id    = chat_id_
     , message_id = message_id_
     }
@@ -27,7 +27,7 @@ instance Show InputInvoice where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
-  show InputInvoiceName
+  shortShow InputInvoiceName
     { name = name_
     }
       = "InputInvoiceName"

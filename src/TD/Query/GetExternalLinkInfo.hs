@@ -12,10 +12,10 @@ data GetExternalLinkInfo
   = GetExternalLinkInfo
     { link :: Maybe T.Text -- ^ The link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetExternalLinkInfo where
-  show
+instance I.ShortShow GetExternalLinkInfo where
+  shortShow
     GetExternalLinkInfo
       { link = link_
       }

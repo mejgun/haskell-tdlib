@@ -12,10 +12,10 @@ data CheckAuthenticationPasswordRecoveryCode
   = CheckAuthenticationPasswordRecoveryCode
     { recovery_code :: Maybe T.Text -- ^ Recovery code to check
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckAuthenticationPasswordRecoveryCode where
-  show
+instance I.ShortShow CheckAuthenticationPasswordRecoveryCode where
+  shortShow
     CheckAuthenticationPasswordRecoveryCode
       { recovery_code = recovery_code_
       }

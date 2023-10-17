@@ -14,10 +14,10 @@ data DeleteAccount
     { reason   :: Maybe T.Text -- ^ The reason why the account was deleted; optional
     , password :: Maybe T.Text -- ^ The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteAccount where
-  show
+instance I.ShortShow DeleteAccount where
+  shortShow
     DeleteAccount
       { reason   = reason_
       , password = password_

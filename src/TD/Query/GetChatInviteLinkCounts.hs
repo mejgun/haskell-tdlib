@@ -11,10 +11,10 @@ data GetChatInviteLinkCounts
   = GetChatInviteLinkCounts
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatInviteLinkCounts where
-  show
+instance I.ShortShow GetChatInviteLinkCounts where
+  shortShow
     GetChatInviteLinkCounts
       { chat_id = chat_id_
       }

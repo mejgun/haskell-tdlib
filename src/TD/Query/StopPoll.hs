@@ -15,10 +15,10 @@ data StopPoll
     , message_id   :: Maybe Int                     -- ^ Identifier of the message containing the poll
     , reply_markup :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none; for bots only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StopPoll where
-  show
+instance I.ShortShow StopPoll where
+  shortShow
     StopPoll
       { chat_id      = chat_id_
       , message_id   = message_id_

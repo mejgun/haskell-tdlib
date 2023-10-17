@@ -14,10 +14,10 @@ data DeleteChatHistory
     , remove_from_chat_list :: Maybe Bool -- ^ Pass true to remove the chat from all chat lists
     , revoke                :: Maybe Bool -- ^ Pass true to delete chat history for all users
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatHistory where
-  show
+instance I.ShortShow DeleteChatHistory where
+  shortShow
     DeleteChatHistory
       { chat_id               = chat_id_
       , remove_from_chat_list = remove_from_chat_list_

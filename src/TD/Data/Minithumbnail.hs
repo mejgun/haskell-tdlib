@@ -12,10 +12,10 @@ data Minithumbnail
     , height :: Maybe Int           -- ^ Thumbnail height, usually doesn't exceed 40
     , _data  :: Maybe BS.ByteString -- ^ The thumbnail in JPEG format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Minithumbnail where
-  show Minithumbnail
+instance I.ShortShow Minithumbnail where
+  shortShow Minithumbnail
     { width  = width_
     , height = height_
     , _data  = _data_

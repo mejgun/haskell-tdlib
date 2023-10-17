@@ -11,10 +11,10 @@ data ClearRecentStickers
   = ClearRecentStickers
     { is_attached :: Maybe Bool -- ^ Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClearRecentStickers where
-  show
+instance I.ShortShow ClearRecentStickers where
+  shortShow
     ClearRecentStickers
       { is_attached = is_attached_
       }

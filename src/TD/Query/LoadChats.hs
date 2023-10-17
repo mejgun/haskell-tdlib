@@ -14,10 +14,10 @@ data LoadChats
     { chat_list :: Maybe ChatList.ChatList -- ^ The chat list in which to load chats; pass null to load chats from the main chat list
     , limit     :: Maybe Int               -- ^ The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LoadChats where
-  show
+instance I.ShortShow LoadChats where
+  shortShow
     LoadChats
       { chat_list = chat_list_
       , limit     = limit_

@@ -14,10 +14,10 @@ data PhoneNumberInfo
     , formatted_phone_number :: Maybe T.Text                  -- ^ The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
     , is_anonymous           :: Maybe Bool                    -- ^ True, if the phone number was bought on Fragment and isn't tied to a SIM card
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PhoneNumberInfo where
-  show PhoneNumberInfo
+instance I.ShortShow PhoneNumberInfo where
+  shortShow PhoneNumberInfo
     { country                = country_
     , country_calling_code   = country_calling_code_
     , formatted_phone_number = formatted_phone_number_

@@ -18,17 +18,17 @@ data DiceStickers
     , center_reel :: Maybe Sticker.Sticker -- ^ The animated sticker with the center reel
     , right_reel  :: Maybe Sticker.Sticker -- ^ The animated sticker with the right reel
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DiceStickers where
-  show DiceStickersRegular
+instance I.ShortShow DiceStickers where
+  shortShow DiceStickersRegular
     { sticker = sticker_
     }
       = "DiceStickersRegular"
         ++ I.cc
         [ "sticker" `I.p` sticker_
         ]
-  show DiceStickersSlotMachine
+  shortShow DiceStickersSlotMachine
     { background  = background_
     , lever       = lever_
     , left_reel   = left_reel_

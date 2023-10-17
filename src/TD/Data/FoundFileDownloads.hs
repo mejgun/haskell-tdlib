@@ -14,10 +14,10 @@ data FoundFileDownloads
     , files        :: Maybe [FileDownload.FileDownload]               -- ^ The list of files
     , next_offset  :: Maybe T.Text                                    -- ^ The offset for the next request. If empty, there are no more results
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FoundFileDownloads where
-  show FoundFileDownloads
+instance I.ShortShow FoundFileDownloads where
+  shortShow FoundFileDownloads
     { total_counts = total_counts_
     , files        = files_
     , next_offset  = next_offset_

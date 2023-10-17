@@ -12,10 +12,10 @@ data GetLanguagePackInfo
   = GetLanguagePackInfo
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLanguagePackInfo where
-  show
+instance I.ShortShow GetLanguagePackInfo where
+  shortShow
     GetLanguagePackInfo
       { language_pack_id = language_pack_id_
       }

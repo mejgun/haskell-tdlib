@@ -20,14 +20,14 @@ data UserType
     , can_be_added_to_attachment_menu :: Maybe Bool   -- ^ True, if the bot can be added to attachment menu
     }
   | UserTypeUnknown -- ^ No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserType where
-  show UserTypeRegular
+instance I.ShortShow UserType where
+  shortShow UserTypeRegular
       = "UserTypeRegular"
-  show UserTypeDeleted
+  shortShow UserTypeDeleted
       = "UserTypeDeleted"
-  show UserTypeBot
+  shortShow UserTypeBot
     { can_be_edited                   = can_be_edited_
     , can_join_groups                 = can_join_groups_
     , can_read_all_group_messages     = can_read_all_group_messages_
@@ -46,7 +46,7 @@ instance Show UserType where
         , "need_location"                   `I.p` need_location_
         , "can_be_added_to_attachment_menu" `I.p` can_be_added_to_attachment_menu_
         ]
-  show UserTypeUnknown
+  shortShow UserTypeUnknown
       = "UserTypeUnknown"
 
 instance AT.FromJSON UserType where

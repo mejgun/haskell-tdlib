@@ -15,10 +15,10 @@ data AnswerWebAppQuery
     { web_app_query_id :: Maybe T.Text                                        -- ^ Identifier of the Web App query
     , result           :: Maybe InputInlineQueryResult.InputInlineQueryResult -- ^ The result of the query
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerWebAppQuery where
-  show
+instance I.ShortShow AnswerWebAppQuery where
+  shortShow
     AnswerWebAppQuery
       { web_app_query_id = web_app_query_id_
       , result           = result_

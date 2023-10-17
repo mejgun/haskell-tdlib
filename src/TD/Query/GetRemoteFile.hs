@@ -15,10 +15,10 @@ data GetRemoteFile
     { remote_file_id :: Maybe T.Text            -- ^ Remote identifier of the file to get
     , file_type      :: Maybe FileType.FileType -- ^ File type; pass null if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRemoteFile where
-  show
+instance I.ShortShow GetRemoteFile where
+  shortShow
     GetRemoteFile
       { remote_file_id = remote_file_id_
       , file_type      = file_type_

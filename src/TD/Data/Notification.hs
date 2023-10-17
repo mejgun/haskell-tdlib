@@ -13,10 +13,10 @@ data Notification
     , is_silent :: Maybe Bool                              -- ^ True, if the notification was explicitly sent without sound
     , _type     :: Maybe NotificationType.NotificationType -- ^ Notification type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Notification where
-  show Notification
+instance I.ShortShow Notification where
+  shortShow Notification
     { _id       = _id_
     , date      = date_
     , is_silent = is_silent_

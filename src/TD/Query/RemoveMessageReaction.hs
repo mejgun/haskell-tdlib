@@ -15,10 +15,10 @@ data RemoveMessageReaction
     , message_id    :: Maybe Int                       -- ^ Identifier of the message
     , reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to remove
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveMessageReaction where
-  show
+instance I.ShortShow RemoveMessageReaction where
+  shortShow
     RemoveMessageReaction
       { chat_id       = chat_id_
       , message_id    = message_id_

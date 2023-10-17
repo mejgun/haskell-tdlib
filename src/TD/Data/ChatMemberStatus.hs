@@ -30,10 +30,10 @@ data ChatMemberStatus
   | ChatMemberStatusBanned -- ^ The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a video chat of the chat
     { banned_until_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Always 0 in basic groups
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMemberStatus where
-  show ChatMemberStatusCreator
+instance I.ShortShow ChatMemberStatus where
+  shortShow ChatMemberStatusCreator
     { custom_title = custom_title_
     , is_anonymous = is_anonymous_
     , is_member    = is_member_
@@ -44,7 +44,7 @@ instance Show ChatMemberStatus where
         , "is_anonymous" `I.p` is_anonymous_
         , "is_member"    `I.p` is_member_
         ]
-  show ChatMemberStatusAdministrator
+  shortShow ChatMemberStatusAdministrator
     { custom_title  = custom_title_
     , can_be_edited = can_be_edited_
     , rights        = rights_
@@ -55,9 +55,9 @@ instance Show ChatMemberStatus where
         , "can_be_edited" `I.p` can_be_edited_
         , "rights"        `I.p` rights_
         ]
-  show ChatMemberStatusMember
+  shortShow ChatMemberStatusMember
       = "ChatMemberStatusMember"
-  show ChatMemberStatusRestricted
+  shortShow ChatMemberStatusRestricted
     { is_member             = is_member_
     , restricted_until_date = restricted_until_date_
     , permissions           = permissions_
@@ -68,9 +68,9 @@ instance Show ChatMemberStatus where
         , "restricted_until_date" `I.p` restricted_until_date_
         , "permissions"           `I.p` permissions_
         ]
-  show ChatMemberStatusLeft
+  shortShow ChatMemberStatusLeft
       = "ChatMemberStatusLeft"
-  show ChatMemberStatusBanned
+  shortShow ChatMemberStatusBanned
     { banned_until_date = banned_until_date_
     }
       = "ChatMemberStatusBanned"

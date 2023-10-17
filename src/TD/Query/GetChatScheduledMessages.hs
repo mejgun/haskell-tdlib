@@ -11,10 +11,10 @@ data GetChatScheduledMessages
   = GetChatScheduledMessages
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatScheduledMessages where
-  show
+instance I.ShortShow GetChatScheduledMessages where
+  shortShow
     GetChatScheduledMessages
       { chat_id = chat_id_
       }

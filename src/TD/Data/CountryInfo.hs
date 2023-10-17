@@ -14,10 +14,10 @@ data CountryInfo
     , is_hidden     :: Maybe Bool     -- ^ True, if the country must be hidden from the list of all countries
     , calling_codes :: Maybe [T.Text] -- ^ List of country calling codes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CountryInfo where
-  show CountryInfo
+instance I.ShortShow CountryInfo where
+  shortShow CountryInfo
     { country_code  = country_code_
     , name          = name_
     , english_name  = english_name_

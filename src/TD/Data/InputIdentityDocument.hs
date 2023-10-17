@@ -19,10 +19,10 @@ data InputIdentityDocument
     , selfie          :: Maybe InputFile.InputFile   -- ^ Selfie with the document; pass null if unavailable
     , translation     :: Maybe [InputFile.InputFile] -- ^ List of files containing a certified English translation of the document
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputIdentityDocument where
-  show InputIdentityDocument
+instance I.ShortShow InputIdentityDocument where
+  shortShow InputIdentityDocument
     { number          = number_
     , expiration_date = expiration_date_
     , front_side      = front_side_

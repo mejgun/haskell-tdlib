@@ -11,10 +11,10 @@ data GetGroupCall
   = GetGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGroupCall where
-  show
+instance I.ShortShow GetGroupCall where
+  shortShow
     GetGroupCall
       { group_call_id = group_call_id_
       }

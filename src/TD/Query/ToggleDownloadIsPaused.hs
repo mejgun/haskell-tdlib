@@ -13,10 +13,10 @@ data ToggleDownloadIsPaused
     { file_id   :: Maybe Int  -- ^ Identifier of the downloaded file
     , is_paused :: Maybe Bool -- ^ Pass true if the download is paused
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleDownloadIsPaused where
-  show
+instance I.ShortShow ToggleDownloadIsPaused where
+  shortShow
     ToggleDownloadIsPaused
       { file_id   = file_id_
       , is_paused = is_paused_

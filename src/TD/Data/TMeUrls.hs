@@ -10,10 +10,10 @@ data TMeUrls
   = TMeUrls -- ^ Contains a list of t.me URLs
     { urls :: Maybe [TMeUrl.TMeUrl] -- ^ List of URLs
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TMeUrls where
-  show TMeUrls
+instance I.ShortShow TMeUrls where
+  shortShow TMeUrls
     { urls = urls_
     }
       = "TMeUrls"

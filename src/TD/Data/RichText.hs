@@ -70,52 +70,52 @@ data RichText
   | RichTexts -- ^ A concatenation of rich texts
     { texts :: Maybe [RichText] -- ^ Texts
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RichText where
-  show RichTextPlain
+instance I.ShortShow RichText where
+  shortShow RichTextPlain
     { text = text_
     }
       = "RichTextPlain"
         ++ I.cc
         [ "text" `I.p` text_
         ]
-  show RichTextBold
+  shortShow RichTextBold
     { _text = _text_
     }
       = "RichTextBold"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextItalic
+  shortShow RichTextItalic
     { _text = _text_
     }
       = "RichTextItalic"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextUnderline
+  shortShow RichTextUnderline
     { _text = _text_
     }
       = "RichTextUnderline"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextStrikethrough
+  shortShow RichTextStrikethrough
     { _text = _text_
     }
       = "RichTextStrikethrough"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextFixed
+  shortShow RichTextFixed
     { _text = _text_
     }
       = "RichTextFixed"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextUrl
+  shortShow RichTextUrl
     { _text     = _text_
     , url       = url_
     , is_cached = is_cached_
@@ -126,7 +126,7 @@ instance Show RichText where
         , "url"       `I.p` url_
         , "is_cached" `I.p` is_cached_
         ]
-  show RichTextEmailAddress
+  shortShow RichTextEmailAddress
     { _text         = _text_
     , email_address = email_address_
     }
@@ -135,28 +135,28 @@ instance Show RichText where
         [ "_text"         `I.p` _text_
         , "email_address" `I.p` email_address_
         ]
-  show RichTextSubscript
+  shortShow RichTextSubscript
     { _text = _text_
     }
       = "RichTextSubscript"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextSuperscript
+  shortShow RichTextSuperscript
     { _text = _text_
     }
       = "RichTextSuperscript"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextMarked
+  shortShow RichTextMarked
     { _text = _text_
     }
       = "RichTextMarked"
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
-  show RichTextPhoneNumber
+  shortShow RichTextPhoneNumber
     { _text        = _text_
     , phone_number = phone_number_
     }
@@ -165,7 +165,7 @@ instance Show RichText where
         [ "_text"        `I.p` _text_
         , "phone_number" `I.p` phone_number_
         ]
-  show RichTextIcon
+  shortShow RichTextIcon
     { document = document_
     , width    = width_
     , height   = height_
@@ -176,7 +176,7 @@ instance Show RichText where
         , "width"    `I.p` width_
         , "height"   `I.p` height_
         ]
-  show RichTextReference
+  shortShow RichTextReference
     { _text       = _text_
     , anchor_name = anchor_name_
     , url         = url_
@@ -187,14 +187,14 @@ instance Show RichText where
         , "anchor_name" `I.p` anchor_name_
         , "url"         `I.p` url_
         ]
-  show RichTextAnchor
+  shortShow RichTextAnchor
     { name = name_
     }
       = "RichTextAnchor"
         ++ I.cc
         [ "name" `I.p` name_
         ]
-  show RichTextAnchorLink
+  shortShow RichTextAnchorLink
     { _text       = _text_
     , anchor_name = anchor_name_
     , url         = url_
@@ -205,7 +205,7 @@ instance Show RichText where
         , "anchor_name" `I.p` anchor_name_
         , "url"         `I.p` url_
         ]
-  show RichTexts
+  shortShow RichTexts
     { texts = texts_
     }
       = "RichTexts"

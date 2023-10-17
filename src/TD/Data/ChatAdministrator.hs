@@ -12,10 +12,10 @@ data ChatAdministrator
     , custom_title :: Maybe T.Text -- ^ Custom title of the administrator
     , is_owner     :: Maybe Bool   -- ^ True, if the user is the owner of the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatAdministrator where
-  show ChatAdministrator
+instance I.ShortShow ChatAdministrator where
+  shortShow ChatAdministrator
     { user_id      = user_id_
     , custom_title = custom_title_
     , is_owner     = is_owner_

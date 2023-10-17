@@ -19,10 +19,10 @@ data EditInlineMessageLiveLocation
     , heading                :: Maybe Int                     -- ^ The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     , proximity_alert_radius :: Maybe Int                     -- ^ The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageLiveLocation where
-  show
+instance I.ShortShow EditInlineMessageLiveLocation where
+  shortShow
     EditInlineMessageLiveLocation
       { inline_message_id      = inline_message_id_
       , reply_markup           = reply_markup_

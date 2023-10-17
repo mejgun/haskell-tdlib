@@ -25,10 +25,10 @@ data PaymentReceipt
     , credentials_title        :: Maybe T.Text                        -- ^ Title of the saved credentials chosen by the buyer
     , tip_amount               :: Maybe Int                           -- ^ The amount of tip chosen by the buyer in the smallest units of the currency
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PaymentReceipt where
-  show PaymentReceipt
+instance I.ShortShow PaymentReceipt where
+  shortShow PaymentReceipt
     { title                    = title_
     , description              = description_
     , photo                    = photo_

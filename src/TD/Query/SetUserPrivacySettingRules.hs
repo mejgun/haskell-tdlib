@@ -15,10 +15,10 @@ data SetUserPrivacySettingRules
     { setting :: Maybe UserPrivacySetting.UserPrivacySetting           -- ^ The privacy setting
     , rules   :: Maybe UserPrivacySettingRules.UserPrivacySettingRules -- ^ The new privacy rules
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetUserPrivacySettingRules where
-  show
+instance I.ShortShow SetUserPrivacySettingRules where
+  shortShow
     SetUserPrivacySettingRules
       { setting = setting_
       , rules   = rules_

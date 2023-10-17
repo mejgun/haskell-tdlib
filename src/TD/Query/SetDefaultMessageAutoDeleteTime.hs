@@ -12,10 +12,10 @@ data SetDefaultMessageAutoDeleteTime
   = SetDefaultMessageAutoDeleteTime
     { message_auto_delete_time :: Maybe MessageAutoDeleteTime.MessageAutoDeleteTime -- ^ New default message auto-delete time; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetDefaultMessageAutoDeleteTime where
-  show
+instance I.ShortShow SetDefaultMessageAutoDeleteTime where
+  shortShow
     SetDefaultMessageAutoDeleteTime
       { message_auto_delete_time = message_auto_delete_time_
       }

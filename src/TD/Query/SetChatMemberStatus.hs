@@ -16,10 +16,10 @@ data SetChatMemberStatus
     , member_id :: Maybe MessageSender.MessageSender       -- ^ Member identifier. Chats can be only banned and unbanned in supergroups and channels
     , status    :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ The new status of the member in the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatMemberStatus where
-  show
+instance I.ShortShow SetChatMemberStatus where
+  shortShow
     SetChatMemberStatus
       { chat_id   = chat_id_
       , member_id = member_id_

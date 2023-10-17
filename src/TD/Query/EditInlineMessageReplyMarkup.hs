@@ -15,10 +15,10 @@ data EditInlineMessageReplyMarkup
     { inline_message_id :: Maybe T.Text                  -- ^ Inline message identifier
     , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageReplyMarkup where
-  show
+instance I.ShortShow EditInlineMessageReplyMarkup where
+  shortShow
     EditInlineMessageReplyMarkup
       { inline_message_id = inline_message_id_
       , reply_markup      = reply_markup_

@@ -11,10 +11,10 @@ data GetChatListsToAddChat
   = GetChatListsToAddChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatListsToAddChat where
-  show
+instance I.ShortShow GetChatListsToAddChat where
+  shortShow
     GetChatListsToAddChat
       { chat_id = chat_id_
       }

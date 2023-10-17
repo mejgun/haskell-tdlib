@@ -14,10 +14,10 @@ data GetExternalLink
     { link               :: Maybe T.Text -- ^ The HTTP link
     , allow_write_access :: Maybe Bool   -- ^ Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetExternalLink where
-  show
+instance I.ShortShow GetExternalLink where
+  shortShow
     GetExternalLink
       { link               = link_
       , allow_write_access = allow_write_access_

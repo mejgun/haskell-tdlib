@@ -14,10 +14,10 @@ data PremiumFeatures
     , limits       :: Maybe [PremiumLimit.PremiumLimit]       -- ^ The list of limits, increased for Premium users
     , payment_link :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened to pay for Telegram Premium if store payment isn't possible; may be null if direct payment isn't available
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumFeatures where
-  show PremiumFeatures
+instance I.ShortShow PremiumFeatures where
+  shortShow PremiumFeatures
     { features     = features_
     , limits       = limits_
     , payment_link = payment_link_

@@ -12,10 +12,10 @@ data SetLogStream
   = SetLogStream
     { log_stream :: Maybe LogStream.LogStream -- ^ New log stream
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetLogStream where
-  show
+instance I.ShortShow SetLogStream where
+  shortShow
     SetLogStream
       { log_stream = log_stream_
       }

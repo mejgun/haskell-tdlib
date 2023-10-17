@@ -10,10 +10,10 @@ data ChatNearby
     { chat_id  :: Maybe Int -- ^ Chat identifier
     , distance :: Maybe Int -- ^ Distance to the chat location, in meters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatNearby where
-  show ChatNearby
+instance I.ShortShow ChatNearby where
+  shortShow ChatNearby
     { chat_id  = chat_id_
     , distance = distance_
     }

@@ -20,31 +20,31 @@ data TMeUrlType
   | TMeUrlTypeStickerSet -- ^ A URL linking to a sticker set
     { sticker_set_id :: Maybe Int -- ^ Identifier of the sticker set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TMeUrlType where
-  show TMeUrlTypeUser
+instance I.ShortShow TMeUrlType where
+  shortShow TMeUrlTypeUser
     { user_id = user_id_
     }
       = "TMeUrlTypeUser"
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
-  show TMeUrlTypeSupergroup
+  shortShow TMeUrlTypeSupergroup
     { supergroup_id = supergroup_id_
     }
       = "TMeUrlTypeSupergroup"
         ++ I.cc
         [ "supergroup_id" `I.p` supergroup_id_
         ]
-  show TMeUrlTypeChatInvite
+  shortShow TMeUrlTypeChatInvite
     { info = info_
     }
       = "TMeUrlTypeChatInvite"
         ++ I.cc
         [ "info" `I.p` info_
         ]
-  show TMeUrlTypeStickerSet
+  shortShow TMeUrlTypeStickerSet
     { sticker_set_id = sticker_set_id_
     }
       = "TMeUrlTypeStickerSet"

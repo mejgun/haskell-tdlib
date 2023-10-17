@@ -18,17 +18,17 @@ data MessageSendingState
     , need_another_sender :: Maybe Bool   -- ^ True, if the message can be re-sent only on behalf of a different sender
     , retry_after         :: Maybe Double -- ^ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSendingState where
-  show MessageSendingStatePending
+instance I.ShortShow MessageSendingState where
+  shortShow MessageSendingStatePending
     { sending_id = sending_id_
     }
       = "MessageSendingStatePending"
         ++ I.cc
         [ "sending_id" `I.p` sending_id_
         ]
-  show MessageSendingStateFailed
+  shortShow MessageSendingStateFailed
     { error_code          = error_code_
     , error_message       = error_message_
     , can_retry           = can_retry_

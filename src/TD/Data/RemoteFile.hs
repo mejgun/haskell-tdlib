@@ -14,10 +14,10 @@ data RemoteFile
     , is_uploading_completed :: Maybe Bool   -- ^ True, if a remote copy is fully available
     , uploaded_size          :: Maybe Int    -- ^ Size of the remote available part of the file, in bytes; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoteFile where
-  show RemoteFile
+instance I.ShortShow RemoteFile where
+  shortShow RemoteFile
     { _id                    = _id_
     , unique_id              = unique_id_
     , is_uploading_active    = is_uploading_active_

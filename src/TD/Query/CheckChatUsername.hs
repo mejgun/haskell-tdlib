@@ -14,10 +14,10 @@ data CheckChatUsername
     { chat_id  :: Maybe Int    -- ^ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
     , username :: Maybe T.Text -- ^ Username to be checked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckChatUsername where
-  show
+instance I.ShortShow CheckChatUsername where
+  shortShow
     CheckChatUsername
       { chat_id  = chat_id_
       , username = username_

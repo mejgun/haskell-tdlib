@@ -13,10 +13,10 @@ data InviteGroupCallParticipants
     { group_call_id :: Maybe Int   -- ^ Group call identifier
     , user_ids      :: Maybe [Int] -- ^ User identifiers. At most 10 users can be invited simultaneously
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InviteGroupCallParticipants where
-  show
+instance I.ShortShow InviteGroupCallParticipants where
+  shortShow
     InviteGroupCallParticipants
       { group_call_id = group_call_id_
       , user_ids      = user_ids_

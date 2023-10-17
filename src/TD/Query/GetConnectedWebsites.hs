@@ -4,14 +4,15 @@ module TD.Query.GetConnectedWebsites
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns all website where the current user used Telegram to log in
 data GetConnectedWebsites
   = GetConnectedWebsites
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetConnectedWebsites where
-  show
+instance I.ShortShow GetConnectedWebsites where
+  shortShow
     GetConnectedWebsites
         = "GetConnectedWebsites"
 

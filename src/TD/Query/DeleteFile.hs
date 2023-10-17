@@ -11,10 +11,10 @@ data DeleteFile
   = DeleteFile
     { file_id :: Maybe Int -- ^ Identifier of the file to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteFile where
-  show
+instance I.ShortShow DeleteFile where
+  shortShow
     DeleteFile
       { file_id = file_id_
       }

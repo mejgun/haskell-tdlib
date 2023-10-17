@@ -11,10 +11,10 @@ data GetLocalizationTargetInfo
   = GetLocalizationTargetInfo
     { only_local :: Maybe Bool -- ^ Pass true to get only locally available information without sending network requests
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLocalizationTargetInfo where
-  show
+instance I.ShortShow GetLocalizationTargetInfo where
+  shortShow
     GetLocalizationTargetInfo
       { only_local = only_local_
       }

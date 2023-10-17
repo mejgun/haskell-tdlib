@@ -13,10 +13,10 @@ data GetFileDownloadedPrefixSize
     { file_id :: Maybe Int -- ^ Identifier of the file
     , offset  :: Maybe Int -- ^ Offset from which downloaded prefix size needs to be calculated
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetFileDownloadedPrefixSize where
-  show
+instance I.ShortShow GetFileDownloadedPrefixSize where
+  shortShow
     GetFileDownloadedPrefixSize
       { file_id = file_id_
       , offset  = offset_

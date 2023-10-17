@@ -11,10 +11,10 @@ data UnpinAllChatMessages
   = UnpinAllChatMessages
     { chat_id :: Maybe Int -- ^ Identifier of the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UnpinAllChatMessages where
-  show
+instance I.ShortShow UnpinAllChatMessages where
+  shortShow
     UnpinAllChatMessages
       { chat_id = chat_id_
       }

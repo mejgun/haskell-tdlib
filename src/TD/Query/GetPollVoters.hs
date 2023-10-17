@@ -16,10 +16,10 @@ data GetPollVoters
     , offset     :: Maybe Int -- ^ Number of voters to skip in the result; must be non-negative
     , limit      :: Maybe Int -- ^ The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPollVoters where
-  show
+instance I.ShortShow GetPollVoters where
+  shortShow
     GetPollVoters
       { chat_id    = chat_id_
       , message_id = message_id_

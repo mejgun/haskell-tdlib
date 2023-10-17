@@ -10,10 +10,10 @@ data ChatAdministrators
   = ChatAdministrators -- ^ Represents a list of chat administrators
     { administrators :: Maybe [ChatAdministrator.ChatAdministrator] -- ^ A list of chat administrators
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatAdministrators where
-  show ChatAdministrators
+instance I.ShortShow ChatAdministrators where
+  shortShow ChatAdministrators
     { administrators = administrators_
     }
       = "ChatAdministrators"

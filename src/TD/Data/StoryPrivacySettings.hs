@@ -15,21 +15,21 @@ data StoryPrivacySettings
   | StoryPrivacySettingsSelectedContacts -- ^ The story can be viewed by certain specified users
     { user_ids :: Maybe [Int] -- ^ Identifiers of the users; always empty for non-owned stories
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryPrivacySettings where
-  show StoryPrivacySettingsEveryone
+instance I.ShortShow StoryPrivacySettings where
+  shortShow StoryPrivacySettingsEveryone
       = "StoryPrivacySettingsEveryone"
-  show StoryPrivacySettingsContacts
+  shortShow StoryPrivacySettingsContacts
     { except_user_ids = except_user_ids_
     }
       = "StoryPrivacySettingsContacts"
         ++ I.cc
         [ "except_user_ids" `I.p` except_user_ids_
         ]
-  show StoryPrivacySettingsCloseFriends
+  shortShow StoryPrivacySettingsCloseFriends
       = "StoryPrivacySettingsCloseFriends"
-  show StoryPrivacySettingsSelectedContacts
+  shortShow StoryPrivacySettingsSelectedContacts
     { user_ids = user_ids_
     }
       = "StoryPrivacySettingsSelectedContacts"

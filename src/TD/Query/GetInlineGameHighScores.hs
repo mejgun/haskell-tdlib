@@ -14,10 +14,10 @@ data GetInlineGameHighScores
     { inline_message_id :: Maybe T.Text -- ^ Inline message identifier
     , user_id           :: Maybe Int    -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInlineGameHighScores where
-  show
+instance I.ShortShow GetInlineGameHighScores where
+  shortShow
     GetInlineGameHighScores
       { inline_message_id = inline_message_id_
       , user_id           = user_id_

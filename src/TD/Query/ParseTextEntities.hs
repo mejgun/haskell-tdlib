@@ -15,10 +15,10 @@ data ParseTextEntities
     { text       :: Maybe T.Text                      -- ^ The text to parse
     , parse_mode :: Maybe TextParseMode.TextParseMode -- ^ Text parse mode
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ParseTextEntities where
-  show
+instance I.ShortShow ParseTextEntities where
+  shortShow
     ParseTextEntities
       { text       = text_
       , parse_mode = parse_mode_

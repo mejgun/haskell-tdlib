@@ -9,10 +9,10 @@ data TestVectorInt
   = TestVectorInt -- ^ A simple object containing a vector of numbers; for testing only
     { value :: Maybe [Int] -- ^ Vector of numbers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestVectorInt where
-  show TestVectorInt
+instance I.ShortShow TestVectorInt where
+  shortShow TestVectorInt
     { value = value_
     }
       = "TestVectorInt"

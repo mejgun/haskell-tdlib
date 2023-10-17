@@ -15,10 +15,10 @@ data GetBackgroundUrl
     { name  :: Maybe T.Text                        -- ^ Background name
     , _type :: Maybe BackgroundType.BackgroundType -- ^ Background type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBackgroundUrl where
-  show
+instance I.ShortShow GetBackgroundUrl where
+  shortShow
     GetBackgroundUrl
       { name  = name_
       , _type = _type_

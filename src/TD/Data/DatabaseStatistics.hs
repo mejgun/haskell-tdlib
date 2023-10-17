@@ -10,10 +10,10 @@ data DatabaseStatistics
   = DatabaseStatistics -- ^ Contains database statistics
     { statistics :: Maybe T.Text -- ^ Database statistics in an unspecified human-readable format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DatabaseStatistics where
-  show DatabaseStatistics
+instance I.ShortShow DatabaseStatistics where
+  shortShow DatabaseStatistics
     { statistics = statistics_
     }
       = "DatabaseStatistics"

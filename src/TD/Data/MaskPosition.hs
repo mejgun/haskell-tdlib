@@ -15,10 +15,10 @@ data MaskPosition
     , y_shift :: Maybe Double              -- ^ Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
     , scale   :: Maybe Double              -- ^ Mask scaling coefficient. (For example, 2.0 means a doubled size)
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MaskPosition where
-  show MaskPosition
+instance I.ShortShow MaskPosition where
+  shortShow MaskPosition
     { point   = point_
     , x_shift = x_shift_
     , y_shift = y_shift_

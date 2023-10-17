@@ -14,10 +14,10 @@ data SendCustomRequest
     { method     :: Maybe T.Text -- ^ The method name
     , parameters :: Maybe T.Text -- ^ JSON-serialized method parameters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendCustomRequest where
-  show
+instance I.ShortShow SendCustomRequest where
+  shortShow
     SendCustomRequest
       { method     = method_
       , parameters = parameters_

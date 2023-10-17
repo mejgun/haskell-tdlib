@@ -11,10 +11,10 @@ data MessageAutoDeleteTime
   = MessageAutoDeleteTime -- ^ Contains default auto-delete timer setting for new chats
     { time :: Maybe Int -- ^ Message auto-delete time, in seconds. If 0, then messages aren't deleted automatically
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageAutoDeleteTime where
-  show MessageAutoDeleteTime
+instance I.ShortShow MessageAutoDeleteTime where
+  shortShow MessageAutoDeleteTime
     { time = time_
     }
       = "MessageAutoDeleteTime"

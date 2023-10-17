@@ -12,10 +12,10 @@ data SearchBackground
   = SearchBackground
     { name :: Maybe T.Text -- ^ The name of the background
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchBackground where
-  show
+instance I.ShortShow SearchBackground where
+  shortShow
     SearchBackground
       { name = name_
       }

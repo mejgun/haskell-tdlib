@@ -13,10 +13,10 @@ data Photo
     , minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ Photo minithumbnail; may be null
     , sizes         :: Maybe [PhotoSize.PhotoSize]       -- ^ Available variants of the photo, in different sizes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Photo where
-  show Photo
+instance I.ShortShow Photo where
+  shortShow Photo
     { has_stickers  = has_stickers_
     , minithumbnail = minithumbnail_
     , sizes         = sizes_

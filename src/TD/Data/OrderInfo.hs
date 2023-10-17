@@ -16,10 +16,10 @@ data OrderInfo
     , email_address    :: Maybe T.Text          -- ^ Email address of the user
     , shipping_address :: Maybe Address.Address -- ^ Shipping address for this order; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OrderInfo where
-  show OrderInfo
+instance I.ShortShow OrderInfo where
+  shortShow OrderInfo
     { name             = name_
     , phone_number     = phone_number_
     , email_address    = email_address_

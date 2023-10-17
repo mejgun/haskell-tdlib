@@ -12,10 +12,10 @@ data GetPushReceiverId
   = GetPushReceiverId
     { payload :: Maybe T.Text -- ^ JSON-encoded push notification payload
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPushReceiverId where
-  show
+instance I.ShortShow GetPushReceiverId where
+  shortShow
     GetPushReceiverId
       { payload = payload_
       }

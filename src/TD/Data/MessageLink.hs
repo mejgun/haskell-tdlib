@@ -11,10 +11,10 @@ data MessageLink
     { link      :: Maybe T.Text -- ^ The link
     , is_public :: Maybe Bool   -- ^ True, if the link will work for non-members of the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageLink where
-  show MessageLink
+instance I.ShortShow MessageLink where
+  shortShow MessageLink
     { link      = link_
     , is_public = is_public_
     }

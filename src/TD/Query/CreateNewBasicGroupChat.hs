@@ -15,10 +15,10 @@ data CreateNewBasicGroupChat
     , title                    :: Maybe T.Text -- ^ Title of the new basic group; 1-128 characters
     , message_auto_delete_time :: Maybe Int    -- ^ Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateNewBasicGroupChat where
-  show
+instance I.ShortShow CreateNewBasicGroupChat where
+  shortShow
     CreateNewBasicGroupChat
       { user_ids                 = user_ids_
       , title                    = title_

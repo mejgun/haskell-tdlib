@@ -13,10 +13,10 @@ data InputPersonalDocument
     { files       :: Maybe [InputFile.InputFile] -- ^ List of files containing the pages of the document
     , translation :: Maybe [InputFile.InputFile] -- ^ List of files containing a certified English translation of the document
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputPersonalDocument where
-  show InputPersonalDocument
+instance I.ShortShow InputPersonalDocument where
+  shortShow InputPersonalDocument
     { files       = files_
     , translation = translation_
     }

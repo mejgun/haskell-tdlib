@@ -4,14 +4,15 @@ module TD.Query.GetRecommendedChatFolders
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns recommended chat folders for the current user
 data GetRecommendedChatFolders
   = GetRecommendedChatFolders
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRecommendedChatFolders where
-  show
+instance I.ShortShow GetRecommendedChatFolders where
+  shortShow
     GetRecommendedChatFolders
         = "GetRecommendedChatFolders"
 

@@ -10,10 +10,10 @@ data Countries
   = Countries -- ^ Contains information about countries
     { countries :: Maybe [CountryInfo.CountryInfo] -- ^ The list of countries
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Countries where
-  show Countries
+instance I.ShortShow Countries where
+  shortShow Countries
     { countries = countries_
     }
       = "Countries"

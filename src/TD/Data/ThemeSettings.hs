@@ -15,10 +15,10 @@ data ThemeSettings
     , animate_outgoing_message_fill :: Maybe Bool                          -- ^ If true, the freeform gradient fill needs to be animated on every sent message
     , outgoing_message_accent_color :: Maybe Int                           -- ^ Accent color of outgoing messages in ARGB format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ThemeSettings where
-  show ThemeSettings
+instance I.ShortShow ThemeSettings where
+  shortShow ThemeSettings
     { accent_color                  = accent_color_
     , background                    = background_
     , outgoing_message_fill         = outgoing_message_fill_

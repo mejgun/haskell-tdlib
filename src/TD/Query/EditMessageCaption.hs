@@ -17,10 +17,10 @@ data EditMessageCaption
     , reply_markup :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none; for bots only
     , caption      :: Maybe FormattedText.FormattedText -- ^ New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditMessageCaption where
-  show
+instance I.ShortShow EditMessageCaption where
+  shortShow
     EditMessageCaption
       { chat_id      = chat_id_
       , message_id   = message_id_

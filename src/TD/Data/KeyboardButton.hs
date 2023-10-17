@@ -14,10 +14,10 @@ data KeyboardButton
     { text  :: Maybe T.Text                                -- ^ Text of the button
     , _type :: Maybe KeyboardButtonType.KeyboardButtonType -- ^ Type of the button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show KeyboardButton where
-  show KeyboardButton
+instance I.ShortShow KeyboardButton where
+  shortShow KeyboardButton
     { text  = text_
     , _type = _type_
     }

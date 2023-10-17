@@ -11,10 +11,10 @@ data BotCommands
     { bot_user_id :: Maybe Int                     -- ^ Bot's user identifier
     , commands    :: Maybe [BotCommand.BotCommand] -- ^ List of bot commands
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BotCommands where
-  show BotCommands
+instance I.ShortShow BotCommands where
+  shortShow BotCommands
     { bot_user_id = bot_user_id_
     , commands    = commands_
     }

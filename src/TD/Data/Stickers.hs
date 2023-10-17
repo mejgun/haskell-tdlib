@@ -10,10 +10,10 @@ data Stickers
   = Stickers -- ^ Represents a list of stickers
     { stickers :: Maybe [Sticker.Sticker] -- ^ List of stickers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Stickers where
-  show Stickers
+instance I.ShortShow Stickers where
+  shortShow Stickers
     { stickers = stickers_
     }
       = "Stickers"

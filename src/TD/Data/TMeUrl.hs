@@ -12,10 +12,10 @@ data TMeUrl
     { url   :: Maybe T.Text                -- ^ URL
     , _type :: Maybe TMeUrlType.TMeUrlType -- ^ Type of the URL
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TMeUrl where
-  show TMeUrl
+instance I.ShortShow TMeUrl where
+  shortShow TMeUrl
     { url   = url_
     , _type = _type_
     }

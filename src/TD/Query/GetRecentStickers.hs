@@ -11,10 +11,10 @@ data GetRecentStickers
   = GetRecentStickers
     { is_attached :: Maybe Bool -- ^ Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRecentStickers where
-  show
+instance I.ShortShow GetRecentStickers where
+  shortShow
     GetRecentStickers
       { is_attached = is_attached_
       }

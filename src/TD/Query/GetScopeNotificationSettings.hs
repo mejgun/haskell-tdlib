@@ -12,10 +12,10 @@ data GetScopeNotificationSettings
   = GetScopeNotificationSettings
     { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which to return the notification settings information
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetScopeNotificationSettings where
-  show
+instance I.ShortShow GetScopeNotificationSettings where
+  shortShow
     GetScopeNotificationSettings
       { scope = scope_
       }

@@ -12,10 +12,10 @@ data GetMessageLinkInfo
   = GetMessageLinkInfo
     { url :: Maybe T.Text -- ^ The message link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageLinkInfo where
-  show
+instance I.ShortShow GetMessageLinkInfo where
+  shortShow
     GetMessageLinkInfo
       { url = url_
       }

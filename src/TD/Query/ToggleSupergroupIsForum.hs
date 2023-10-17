@@ -13,10 +13,10 @@ data ToggleSupergroupIsForum
     { supergroup_id :: Maybe Int  -- ^ Identifier of the supergroup
     , is_forum      :: Maybe Bool -- ^ New value of is_forum
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupIsForum where
-  show
+instance I.ShortShow ToggleSupergroupIsForum where
+  shortShow
     ToggleSupergroupIsForum
       { supergroup_id = supergroup_id_
       , is_forum      = is_forum_

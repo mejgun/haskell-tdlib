@@ -14,10 +14,10 @@ data SetGroupCallTitle
     { group_call_id :: Maybe Int    -- ^ Group call identifier
     , title         :: Maybe T.Text -- ^ New group call title; 1-64 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetGroupCallTitle where
-  show
+instance I.ShortShow SetGroupCallTitle where
+  shortShow
     SetGroupCallTitle
       { group_call_id = group_call_id_
       , title         = title_

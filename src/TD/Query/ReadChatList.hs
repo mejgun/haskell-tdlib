@@ -12,10 +12,10 @@ data ReadChatList
   = ReadChatList
     { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to mark all chats as read
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReadChatList where
-  show
+instance I.ShortShow ReadChatList where
+  shortShow
     ReadChatList
       { chat_list = chat_list_
       }

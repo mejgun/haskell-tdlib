@@ -14,10 +14,10 @@ data RegisterDevice
     { device_token   :: Maybe DeviceToken.DeviceToken -- ^ Device token
     , other_user_ids :: Maybe [Int]                   -- ^ List of user identifiers of other users currently using the application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RegisterDevice where
-  show
+instance I.ShortShow RegisterDevice where
+  shortShow
     RegisterDevice
       { device_token   = device_token_
       , other_user_ids = other_user_ids_

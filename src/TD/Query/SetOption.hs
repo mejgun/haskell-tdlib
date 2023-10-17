@@ -15,10 +15,10 @@ data SetOption
     { name  :: Maybe T.Text                  -- ^ The name of the option
     , value :: Maybe OptionValue.OptionValue -- ^ The new value of the option; pass null to reset option value to a default value
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetOption where
-  show
+instance I.ShortShow SetOption where
+  shortShow
     SetOption
       { name  = name_
       , value = value_

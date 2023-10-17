@@ -4,14 +4,15 @@ module TD.Query.GetDatabaseStatistics
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns database statistics
 data GetDatabaseStatistics
   = GetDatabaseStatistics
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetDatabaseStatistics where
-  show
+instance I.ShortShow GetDatabaseStatistics where
+  shortShow
     GetDatabaseStatistics
         = "GetDatabaseStatistics"
 

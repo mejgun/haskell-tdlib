@@ -14,10 +14,10 @@ data SetChatNotificationSettings
     { chat_id               :: Maybe Int                                               -- ^ Chat identifier
     , notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ New notification settings for the chat. If the chat is muted for more than 366 days, it is considered to be muted forever
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatNotificationSettings where
-  show
+instance I.ShortShow SetChatNotificationSettings where
+  shortShow
     SetChatNotificationSettings
       { chat_id               = chat_id_
       , notification_settings = notification_settings_

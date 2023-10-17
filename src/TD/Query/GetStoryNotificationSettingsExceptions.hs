@@ -4,14 +4,15 @@ module TD.Query.GetStoryNotificationSettingsExceptions
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns list of chats with non-default notification settings for stories
 data GetStoryNotificationSettingsExceptions
   = GetStoryNotificationSettingsExceptions
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStoryNotificationSettingsExceptions where
-  show
+instance I.ShortShow GetStoryNotificationSettingsExceptions where
+  shortShow
     GetStoryNotificationSettingsExceptions
         = "GetStoryNotificationSettingsExceptions"
 

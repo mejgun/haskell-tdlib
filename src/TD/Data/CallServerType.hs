@@ -19,10 +19,10 @@ data CallServerType
     , supports_turn :: Maybe Bool   -- ^ True, if the server supports TURN
     , supports_stun :: Maybe Bool   -- ^ True, if the server supports STUN
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallServerType where
-  show CallServerTypeTelegramReflector
+instance I.ShortShow CallServerType where
+  shortShow CallServerTypeTelegramReflector
     { peer_tag = peer_tag_
     , is_tcp   = is_tcp_
     }
@@ -31,7 +31,7 @@ instance Show CallServerType where
         [ "peer_tag" `I.p` peer_tag_
         , "is_tcp"   `I.p` is_tcp_
         ]
-  show CallServerTypeWebrtc
+  shortShow CallServerTypeWebrtc
     { username      = username_
     , password      = password_
     , supports_turn = supports_turn_

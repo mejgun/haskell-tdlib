@@ -141,10 +141,10 @@ data InputMessageContent
     , in_game_share :: Maybe Bool                                  -- ^ True, if a game message is being shared from a launched game; applies only to game messages
     , copy_options  :: Maybe MessageCopyOptions.MessageCopyOptions -- ^ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputMessageContent where
-  show InputMessageText
+instance I.ShortShow InputMessageContent where
+  shortShow InputMessageText
     { text                     = text_
     , disable_web_page_preview = disable_web_page_preview_
     , clear_draft              = clear_draft_
@@ -155,7 +155,7 @@ instance Show InputMessageContent where
         , "disable_web_page_preview" `I.p` disable_web_page_preview_
         , "clear_draft"              `I.p` clear_draft_
         ]
-  show InputMessageAnimation
+  shortShow InputMessageAnimation
     { animation              = animation_
     , thumbnail              = thumbnail_
     , added_sticker_file_ids = added_sticker_file_ids_
@@ -176,7 +176,7 @@ instance Show InputMessageContent where
         , "caption"                `I.p` caption_
         , "has_spoiler"            `I.p` has_spoiler_
         ]
-  show InputMessageAudio
+  shortShow InputMessageAudio
     { audio                 = audio_
     , album_cover_thumbnail = album_cover_thumbnail_
     , duration              = duration_
@@ -193,7 +193,7 @@ instance Show InputMessageContent where
         , "performer"             `I.p` performer_
         , "caption"               `I.p` caption_
         ]
-  show InputMessageDocument
+  shortShow InputMessageDocument
     { document                       = document_
     , thumbnail                      = thumbnail_
     , disable_content_type_detection = disable_content_type_detection_
@@ -206,7 +206,7 @@ instance Show InputMessageContent where
         , "disable_content_type_detection" `I.p` disable_content_type_detection_
         , "caption"                        `I.p` caption_
         ]
-  show InputMessagePhoto
+  shortShow InputMessagePhoto
     { photo                  = photo_
     , thumbnail              = thumbnail_
     , added_sticker_file_ids = added_sticker_file_ids_
@@ -227,7 +227,7 @@ instance Show InputMessageContent where
         , "self_destruct_time"     `I.p` self_destruct_time_
         , "has_spoiler"            `I.p` has_spoiler_
         ]
-  show InputMessageSticker
+  shortShow InputMessageSticker
     { sticker   = sticker_
     , thumbnail = thumbnail_
     , width     = width_
@@ -242,7 +242,7 @@ instance Show InputMessageContent where
         , "height"    `I.p` height_
         , "emoji"     `I.p` emoji_
         ]
-  show InputMessageVideo
+  shortShow InputMessageVideo
     { video                  = video_
     , thumbnail              = thumbnail_
     , added_sticker_file_ids = added_sticker_file_ids_
@@ -267,7 +267,7 @@ instance Show InputMessageContent where
         , "self_destruct_time"     `I.p` self_destruct_time_
         , "has_spoiler"            `I.p` has_spoiler_
         ]
-  show InputMessageVideoNote
+  shortShow InputMessageVideoNote
     { video_note = video_note_
     , thumbnail  = thumbnail_
     , duration   = duration_
@@ -280,7 +280,7 @@ instance Show InputMessageContent where
         , "duration"   `I.p` duration_
         , "_length"    `I.p` _length_
         ]
-  show InputMessageVoiceNote
+  shortShow InputMessageVoiceNote
     { voice_note = voice_note_
     , duration   = duration_
     , waveform   = waveform_
@@ -293,7 +293,7 @@ instance Show InputMessageContent where
         , "waveform"   `I.p` waveform_
         , "caption"    `I.p` caption_
         ]
-  show InputMessageLocation
+  shortShow InputMessageLocation
     { location               = location_
     , live_period            = live_period_
     , heading                = heading_
@@ -306,21 +306,21 @@ instance Show InputMessageContent where
         , "heading"                `I.p` heading_
         , "proximity_alert_radius" `I.p` proximity_alert_radius_
         ]
-  show InputMessageVenue
+  shortShow InputMessageVenue
     { venue = venue_
     }
       = "InputMessageVenue"
         ++ I.cc
         [ "venue" `I.p` venue_
         ]
-  show InputMessageContact
+  shortShow InputMessageContact
     { contact = contact_
     }
       = "InputMessageContact"
         ++ I.cc
         [ "contact" `I.p` contact_
         ]
-  show InputMessageDice
+  shortShow InputMessageDice
     { emoji       = emoji_
     , clear_draft = clear_draft_
     }
@@ -329,7 +329,7 @@ instance Show InputMessageContent where
         [ "emoji"       `I.p` emoji_
         , "clear_draft" `I.p` clear_draft_
         ]
-  show InputMessageGame
+  shortShow InputMessageGame
     { bot_user_id     = bot_user_id_
     , game_short_name = game_short_name_
     }
@@ -338,7 +338,7 @@ instance Show InputMessageContent where
         [ "bot_user_id"     `I.p` bot_user_id_
         , "game_short_name" `I.p` game_short_name_
         ]
-  show InputMessageInvoice
+  shortShow InputMessageInvoice
     { invoice                = invoice_
     , title                  = title_
     , description            = description_
@@ -367,7 +367,7 @@ instance Show InputMessageContent where
         , "start_parameter"        `I.p` start_parameter_
         , "extended_media_content" `I.p` extended_media_content_
         ]
-  show InputMessagePoll
+  shortShow InputMessagePoll
     { question     = question_
     , options      = options_
     , is_anonymous = is_anonymous_
@@ -386,7 +386,7 @@ instance Show InputMessageContent where
         , "close_date"   `I.p` close_date_
         , "is_closed"    `I.p` is_closed_
         ]
-  show InputMessageStory
+  shortShow InputMessageStory
     { story_sender_chat_id = story_sender_chat_id_
     , story_id             = story_id_
     }
@@ -395,7 +395,7 @@ instance Show InputMessageContent where
         [ "story_sender_chat_id" `I.p` story_sender_chat_id_
         , "story_id"             `I.p` story_id_
         ]
-  show InputMessageForwarded
+  shortShow InputMessageForwarded
     { from_chat_id  = from_chat_id_
     , message_id    = message_id_
     , in_game_share = in_game_share_

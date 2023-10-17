@@ -12,10 +12,10 @@ data CheckCreatedPublicChatsLimit
   = CheckCreatedPublicChatsLimit
     { _type :: Maybe PublicChatType.PublicChatType -- ^ Type of the public chats, for which to check the limit
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckCreatedPublicChatsLimit where
-  show
+instance I.ShortShow CheckCreatedPublicChatsLimit where
+  shortShow
     CheckCreatedPublicChatsLimit
       { _type = _type_
       }

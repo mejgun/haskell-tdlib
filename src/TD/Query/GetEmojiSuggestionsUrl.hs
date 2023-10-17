@@ -12,10 +12,10 @@ data GetEmojiSuggestionsUrl
   = GetEmojiSuggestionsUrl
     { language_code :: Maybe T.Text -- ^ Language code for which the emoji replacements will be suggested
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetEmojiSuggestionsUrl where
-  show
+instance I.ShortShow GetEmojiSuggestionsUrl where
+  shortShow
     GetEmojiSuggestionsUrl
       { language_code = language_code_
       }

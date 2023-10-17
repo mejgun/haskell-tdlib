@@ -11,10 +11,10 @@ data GetPremiumStickers
   = GetPremiumStickers
     { limit :: Maybe Int -- ^ The maximum number of stickers to be returned; 0-100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPremiumStickers where
-  show
+instance I.ShortShow GetPremiumStickers where
+  shortShow
     GetPremiumStickers
       { limit = limit_
       }

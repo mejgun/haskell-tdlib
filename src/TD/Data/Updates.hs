@@ -10,10 +10,10 @@ data Updates
   = Updates -- ^ Contains a list of updates
     { updates :: Maybe [Update.Update] -- ^ List of updates
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Updates where
-  show Updates
+instance I.ShortShow Updates where
+  shortShow Updates
     { updates = updates_
     }
       = "Updates"

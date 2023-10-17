@@ -15,10 +15,10 @@ data RecoverPassword
     , new_password  :: Maybe T.Text -- ^ New 2-step verification password of the user; may be empty to remove the password
     , new_hint      :: Maybe T.Text -- ^ New password hint; may be empty
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RecoverPassword where
-  show
+instance I.ShortShow RecoverPassword where
+  shortShow
     RecoverPassword
       { recovery_code = recovery_code_
       , new_password  = new_password_

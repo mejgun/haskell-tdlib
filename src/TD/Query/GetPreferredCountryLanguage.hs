@@ -12,10 +12,10 @@ data GetPreferredCountryLanguage
   = GetPreferredCountryLanguage
     { country_code :: Maybe T.Text -- ^ A two-letter ISO 3166-1 alpha-2 country code
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPreferredCountryLanguage where
-  show
+instance I.ShortShow GetPreferredCountryLanguage where
+  shortShow
     GetPreferredCountryLanguage
       { country_code = country_code_
       }

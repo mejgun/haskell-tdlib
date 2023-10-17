@@ -13,10 +13,10 @@ data GetMessageLocally
     { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id :: Maybe Int -- ^ Identifier of the message to get
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageLocally where
-  show
+instance I.ShortShow GetMessageLocally where
+  shortShow
     GetMessageLocally
       { chat_id    = chat_id_
       , message_id = message_id_

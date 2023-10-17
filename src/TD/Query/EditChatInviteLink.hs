@@ -18,10 +18,10 @@ data EditChatInviteLink
     , member_limit         :: Maybe Int    -- ^ The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     , creates_join_request :: Maybe Bool   -- ^ Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditChatInviteLink where
-  show
+instance I.ShortShow EditChatInviteLink where
+  shortShow
     EditChatInviteLink
       { chat_id              = chat_id_
       , invite_link          = invite_link_

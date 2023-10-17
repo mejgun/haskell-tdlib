@@ -3,6 +3,7 @@ module TD.Data.MessageSource
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes source of a message
 data MessageSource
@@ -16,28 +17,28 @@ data MessageSource
   | MessageSourceNotification -- ^ The message is from a notification
   | MessageSourceScreenshot -- ^ The message was screenshotted; the source must be used only if the message content was visible during the screenshot
   | MessageSourceOther -- ^ The message is from some other source
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSource where
-  show MessageSourceChatHistory
+instance I.ShortShow MessageSource where
+  shortShow MessageSourceChatHistory
       = "MessageSourceChatHistory"
-  show MessageSourceMessageThreadHistory
+  shortShow MessageSourceMessageThreadHistory
       = "MessageSourceMessageThreadHistory"
-  show MessageSourceForumTopicHistory
+  shortShow MessageSourceForumTopicHistory
       = "MessageSourceForumTopicHistory"
-  show MessageSourceHistoryPreview
+  shortShow MessageSourceHistoryPreview
       = "MessageSourceHistoryPreview"
-  show MessageSourceChatList
+  shortShow MessageSourceChatList
       = "MessageSourceChatList"
-  show MessageSourceSearch
+  shortShow MessageSourceSearch
       = "MessageSourceSearch"
-  show MessageSourceChatEventLog
+  shortShow MessageSourceChatEventLog
       = "MessageSourceChatEventLog"
-  show MessageSourceNotification
+  shortShow MessageSourceNotification
       = "MessageSourceNotification"
-  show MessageSourceScreenshot
+  shortShow MessageSourceScreenshot
       = "MessageSourceScreenshot"
-  show MessageSourceOther
+  shortShow MessageSourceOther
       = "MessageSourceOther"
 
 instance AT.FromJSON MessageSource where

@@ -16,10 +16,10 @@ data WebPageInstantView
     , is_full       :: Maybe Bool                              -- ^ True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
     , feedback_link :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened to leave feedback about the instant view
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show WebPageInstantView where
-  show WebPageInstantView
+instance I.ShortShow WebPageInstantView where
+  shortShow WebPageInstantView
     { page_blocks   = page_blocks_
     , view_count    = view_count_
     , version       = version_

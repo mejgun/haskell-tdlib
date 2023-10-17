@@ -11,10 +11,10 @@ data RequestQrCodeAuthentication
   = RequestQrCodeAuthentication
     { other_user_ids :: Maybe [Int] -- ^ List of user identifiers of other users currently using the application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RequestQrCodeAuthentication where
-  show
+instance I.ShortShow RequestQrCodeAuthentication where
+  shortShow
     RequestQrCodeAuthentication
       { other_user_ids = other_user_ids_
       }

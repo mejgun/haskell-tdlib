@@ -11,10 +11,10 @@ data ChatStatisticsMessageSenderInfo
     , sent_message_count      :: Maybe Int -- ^ Number of sent messages
     , average_character_count :: Maybe Int -- ^ Average number of characters in sent messages; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsMessageSenderInfo where
-  show ChatStatisticsMessageSenderInfo
+instance I.ShortShow ChatStatisticsMessageSenderInfo where
+  shortShow ChatStatisticsMessageSenderInfo
     { user_id                 = user_id_
     , sent_message_count      = sent_message_count_
     , average_character_count = average_character_count_

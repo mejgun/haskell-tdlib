@@ -13,10 +13,10 @@ data UnpinChatMessage
     { chat_id    :: Maybe Int -- ^ Identifier of the chat
     , message_id :: Maybe Int -- ^ Identifier of the removed pinned message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UnpinChatMessage where
-  show
+instance I.ShortShow UnpinChatMessage where
+  shortShow
     UnpinChatMessage
       { chat_id    = chat_id_
       , message_id = message_id_

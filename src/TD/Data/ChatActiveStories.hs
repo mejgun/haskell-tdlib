@@ -15,10 +15,10 @@ data ChatActiveStories
     , max_read_story_id :: Maybe Int                   -- ^ Identifier of the last read active story
     , stories           :: Maybe [StoryInfo.StoryInfo] -- ^ Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatActiveStories where
-  show ChatActiveStories
+instance I.ShortShow ChatActiveStories where
+  shortShow ChatActiveStories
     { chat_id           = chat_id_
     , list              = list_
     , order             = order_

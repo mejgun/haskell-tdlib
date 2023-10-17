@@ -17,10 +17,10 @@ data InputSticker
     , mask_position :: Maybe MaskPosition.MaskPosition -- ^ Position where the mask is placed; pass null if not specified
     , keywords      :: Maybe [T.Text]                  -- ^ List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputSticker where
-  show InputSticker
+instance I.ShortShow InputSticker where
+  shortShow InputSticker
     { sticker       = sticker_
     , emojis        = emojis_
     , mask_position = mask_position_

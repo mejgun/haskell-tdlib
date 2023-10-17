@@ -12,10 +12,10 @@ data GetFileMimeType
   = GetFileMimeType
     { file_name :: Maybe T.Text -- ^ The name of the file or path to the file
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetFileMimeType where
-  show
+instance I.ShortShow GetFileMimeType where
+  shortShow
     GetFileMimeType
       { file_name = file_name_
       }

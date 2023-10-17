@@ -12,10 +12,10 @@ data SearchPublicChat
   = SearchPublicChat
     { username :: Maybe T.Text -- ^ Username to be resolved
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchPublicChat where
-  show
+instance I.ShortShow SearchPublicChat where
+  shortShow
     SearchPublicChat
       { username = username_
       }

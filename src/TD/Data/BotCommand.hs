@@ -13,10 +13,10 @@ data BotCommand
     { command     :: Maybe T.Text -- ^ Text of the bot command
     , description :: Maybe T.Text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BotCommand where
-  show BotCommand
+instance I.ShortShow BotCommand where
+  shortShow BotCommand
     { command     = command_
     , description = description_
     }

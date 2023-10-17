@@ -14,10 +14,10 @@ data SetGroupCallParticipantIsSpeaking
     , audio_source  :: Maybe Int  -- ^ Group call participant's synchronization audio source identifier, or 0 for the current user
     , is_speaking   :: Maybe Bool -- ^ Pass true if the user is speaking
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetGroupCallParticipantIsSpeaking where
-  show
+instance I.ShortShow SetGroupCallParticipantIsSpeaking where
+  shortShow
     SetGroupCallParticipantIsSpeaking
       { group_call_id = group_call_id_
       , audio_source  = audio_source_

@@ -28,17 +28,17 @@ data ReplyMarkup
   | ReplyMarkupInlineKeyboard -- ^ Contains an inline keyboard layout
     { _rows :: Maybe [[InlineKeyboardButton.InlineKeyboardButton]] -- ^ A list of rows of inline keyboard buttons
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReplyMarkup where
-  show ReplyMarkupRemoveKeyboard
+instance I.ShortShow ReplyMarkup where
+  shortShow ReplyMarkupRemoveKeyboard
     { is_personal = is_personal_
     }
       = "ReplyMarkupRemoveKeyboard"
         ++ I.cc
         [ "is_personal" `I.p` is_personal_
         ]
-  show ReplyMarkupForceReply
+  shortShow ReplyMarkupForceReply
     { is_personal             = is_personal_
     , input_field_placeholder = input_field_placeholder_
     }
@@ -47,7 +47,7 @@ instance Show ReplyMarkup where
         [ "is_personal"             `I.p` is_personal_
         , "input_field_placeholder" `I.p` input_field_placeholder_
         ]
-  show ReplyMarkupShowKeyboard
+  shortShow ReplyMarkupShowKeyboard
     { rows                    = rows_
     , is_persistent           = is_persistent_
     , resize_keyboard         = resize_keyboard_
@@ -64,7 +64,7 @@ instance Show ReplyMarkup where
         , "is_personal"             `I.p` is_personal_
         , "input_field_placeholder" `I.p` input_field_placeholder_
         ]
-  show ReplyMarkupInlineKeyboard
+  shortShow ReplyMarkupInlineKeyboard
     { _rows = _rows_
     }
       = "ReplyMarkupInlineKeyboard"

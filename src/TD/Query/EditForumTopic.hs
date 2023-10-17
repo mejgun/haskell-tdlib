@@ -17,10 +17,10 @@ data EditForumTopic
     , edit_icon_custom_emoji :: Maybe Bool   -- ^ Pass true to edit the icon of the topic. Icon of the General topic can't be edited
     , icon_custom_emoji_id   :: Maybe Int    -- ^ Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditForumTopic where
-  show
+instance I.ShortShow EditForumTopic where
+  shortShow
     EditForumTopic
       { chat_id                = chat_id_
       , message_thread_id      = message_thread_id_

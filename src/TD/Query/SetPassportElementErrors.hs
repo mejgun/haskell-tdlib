@@ -14,10 +14,10 @@ data SetPassportElementErrors
     { user_id :: Maybe Int                                                   -- ^ User identifier
     , errors  :: Maybe [InputPassportElementError.InputPassportElementError] -- ^ The errors
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPassportElementErrors where
-  show
+instance I.ShortShow SetPassportElementErrors where
+  shortShow
     SetPassportElementErrors
       { user_id = user_id_
       , errors  = errors_

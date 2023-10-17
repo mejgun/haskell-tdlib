@@ -15,24 +15,24 @@ data MessageFileType
     { title :: Maybe T.Text -- ^ Title of the group chat; may be empty if unrecognized
     }
   | MessageFileTypeUnknown -- ^ The messages was exported from a chat of unknown type
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageFileType where
-  show MessageFileTypePrivate
+instance I.ShortShow MessageFileType where
+  shortShow MessageFileTypePrivate
     { name = name_
     }
       = "MessageFileTypePrivate"
         ++ I.cc
         [ "name" `I.p` name_
         ]
-  show MessageFileTypeGroup
+  shortShow MessageFileTypeGroup
     { title = title_
     }
       = "MessageFileTypeGroup"
         ++ I.cc
         [ "title" `I.p` title_
         ]
-  show MessageFileTypeUnknown
+  shortShow MessageFileTypeUnknown
       = "MessageFileTypeUnknown"
 
 instance AT.FromJSON MessageFileType where

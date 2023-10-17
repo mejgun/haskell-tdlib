@@ -12,10 +12,10 @@ data SetLocation
   = SetLocation
     { location :: Maybe Location.Location -- ^ The new location of the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetLocation where
-  show
+instance I.ShortShow SetLocation where
+  shortShow
     SetLocation
       { location = location_
       }

@@ -14,10 +14,10 @@ data GetGroupsInCommon
     , offset_chat_id :: Maybe Int -- ^ Chat identifier starting from which to return chats; use 0 for the first request
     , limit          :: Maybe Int -- ^ The maximum number of chats to be returned; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGroupsInCommon where
-  show
+instance I.ShortShow GetGroupsInCommon where
+  shortShow
     GetGroupsInCommon
       { user_id        = user_id_
       , offset_chat_id = offset_chat_id_

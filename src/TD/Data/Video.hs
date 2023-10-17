@@ -22,10 +22,10 @@ data Video
     , thumbnail          :: Maybe Thumbnail.Thumbnail         -- ^ Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
     , video              :: Maybe File.File                   -- ^ File containing the video
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Video where
-  show Video
+instance I.ShortShow Video where
+  shortShow Video
     { duration           = duration_
     , width              = width_
     , height             = height_

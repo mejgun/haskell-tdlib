@@ -12,10 +12,10 @@ data TestCallVectorIntObject
   = TestCallVectorIntObject
     { x :: Maybe [TestInt.TestInt] -- ^ Vector of objects to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallVectorIntObject where
-  show
+instance I.ShortShow TestCallVectorIntObject where
+  shortShow
     TestCallVectorIntObject
       { x = x_
       }

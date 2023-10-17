@@ -14,10 +14,10 @@ data SetChatPhoto
     { chat_id :: Maybe Int                           -- ^ Chat identifier
     , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ New chat photo; pass null to delete the chat photo
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatPhoto where
-  show
+instance I.ShortShow SetChatPhoto where
+  shortShow
     SetChatPhoto
       { chat_id = chat_id_
       , photo   = photo_

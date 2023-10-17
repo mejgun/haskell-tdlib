@@ -4,14 +4,15 @@ module TD.Query.GetAutosaveSettings
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns autosave settings for the current user
 data GetAutosaveSettings
   = GetAutosaveSettings
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAutosaveSettings where
-  show
+instance I.ShortShow GetAutosaveSettings where
+  shortShow
     GetAutosaveSettings
         = "GetAutosaveSettings"
 

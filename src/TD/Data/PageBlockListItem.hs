@@ -12,10 +12,10 @@ data PageBlockListItem
     { label       :: Maybe T.Text                -- ^ Item label
     , page_blocks :: Maybe [PageBlock.PageBlock] -- ^ Item blocks
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlockListItem where
-  show PageBlockListItem
+instance I.ShortShow PageBlockListItem where
+  shortShow PageBlockListItem
     { label       = label_
     , page_blocks = page_blocks_
     }

@@ -13,10 +13,10 @@ data ToggleChatDefaultDisableNotification
     { chat_id                      :: Maybe Int  -- ^ Chat identifier
     , default_disable_notification :: Maybe Bool -- ^ New value of default_disable_notification
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleChatDefaultDisableNotification where
-  show
+instance I.ShortShow ToggleChatDefaultDisableNotification where
+  shortShow
     ToggleChatDefaultDisableNotification
       { chat_id                      = chat_id_
       , default_disable_notification = default_disable_notification_

@@ -11,10 +11,10 @@ data PageBlockCaption
     { text   :: Maybe RichText.RichText -- ^ Content of the caption
     , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>)
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlockCaption where
-  show PageBlockCaption
+instance I.ShortShow PageBlockCaption where
+  shortShow PageBlockCaption
     { text   = text_
     , credit = credit_
     }

@@ -16,10 +16,10 @@ data ViewMessages
     , source      :: Maybe MessageSource.MessageSource -- ^ Source of the message view; pass null to guess the source based on chat open state
     , force_read  :: Maybe Bool                        -- ^ Pass true to mark as read the specified messages even the chat is closed
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ViewMessages where
-  show
+instance I.ShortShow ViewMessages where
+  shortShow
     ViewMessages
       { chat_id     = chat_id_
       , message_ids = message_ids_

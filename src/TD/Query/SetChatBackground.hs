@@ -17,10 +17,10 @@ data SetChatBackground
     , _type              :: Maybe BackgroundType.BackgroundType   -- ^ Background type; pass null to remove the current background
     , dark_theme_dimming :: Maybe Int                             -- ^ Dimming of the background in dark themes, as a percentage; 0-100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatBackground where
-  show
+instance I.ShortShow SetChatBackground where
+  shortShow
     SetChatBackground
       { chat_id            = chat_id_
       , background         = background_

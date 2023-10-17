@@ -12,10 +12,10 @@ data ForumTopicIcon
     { color           :: Maybe Int -- ^ Color of the topic icon in RGB format
     , custom_emoji_id :: Maybe Int -- ^ Unique identifier of the custom emoji shown on the topic icon; 0 if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ForumTopicIcon where
-  show ForumTopicIcon
+instance I.ShortShow ForumTopicIcon where
+  shortShow ForumTopicIcon
     { color           = color_
     , custom_emoji_id = custom_emoji_id_
     }

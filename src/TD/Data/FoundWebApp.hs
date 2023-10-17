@@ -12,10 +12,10 @@ data FoundWebApp
     , request_write_access :: Maybe Bool          -- ^ True, if the user must be asked for the permission to the bot to send them messages
     , skip_confirmation    :: Maybe Bool          -- ^ True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FoundWebApp where
-  show FoundWebApp
+instance I.ShortShow FoundWebApp where
+  shortShow FoundWebApp
     { web_app              = web_app_
     , request_write_access = request_write_access_
     , skip_confirmation    = skip_confirmation_

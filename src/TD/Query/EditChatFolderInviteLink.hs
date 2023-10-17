@@ -16,10 +16,10 @@ data EditChatFolderInviteLink
     , name           :: Maybe T.Text -- ^ New name of the link; 0-32 characters
     , chat_ids       :: Maybe [Int]  -- ^ New identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link editing
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditChatFolderInviteLink where
-  show
+instance I.ShortShow EditChatFolderInviteLink where
+  shortShow
     EditChatFolderInviteLink
       { chat_folder_id = chat_folder_id_
       , invite_link    = invite_link_

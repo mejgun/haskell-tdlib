@@ -14,10 +14,10 @@ data GetTopChats
     { category :: Maybe TopChatCategory.TopChatCategory -- ^ Category of chats to be returned
     , limit    :: Maybe Int                             -- ^ The maximum number of chats to be returned; up to 30
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetTopChats where
-  show
+instance I.ShortShow GetTopChats where
+  shortShow
     GetTopChats
       { category = category_
       , limit    = limit_

@@ -12,10 +12,10 @@ data ProcessPushNotification
   = ProcessPushNotification
     { payload :: Maybe T.Text -- ^ JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProcessPushNotification where
-  show
+instance I.ShortShow ProcessPushNotification where
+  shortShow
     ProcessPushNotification
       { payload = payload_
       }

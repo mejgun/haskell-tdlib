@@ -13,10 +13,10 @@ data ToggleSupergroupJoinToSendMessages
     { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup
     , join_to_send_messages :: Maybe Bool -- ^ New value of join_to_send_messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupJoinToSendMessages where
-  show
+instance I.ShortShow ToggleSupergroupJoinToSendMessages where
+  shortShow
     ToggleSupergroupJoinToSendMessages
       { supergroup_id         = supergroup_id_
       , join_to_send_messages = join_to_send_messages_

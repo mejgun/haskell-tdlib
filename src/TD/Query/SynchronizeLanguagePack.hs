@@ -12,10 +12,10 @@ data SynchronizeLanguagePack
   = SynchronizeLanguagePack
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SynchronizeLanguagePack where
-  show
+instance I.ShortShow SynchronizeLanguagePack where
+  shortShow
     SynchronizeLanguagePack
       { language_pack_id = language_pack_id_
       }

@@ -11,10 +11,10 @@ data GetChatFolderChatsToLeave
   = GetChatFolderChatsToLeave
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatFolderChatsToLeave where
-  show
+instance I.ShortShow GetChatFolderChatsToLeave where
+  shortShow
     GetChatFolderChatsToLeave
       { chat_folder_id = chat_folder_id_
       }

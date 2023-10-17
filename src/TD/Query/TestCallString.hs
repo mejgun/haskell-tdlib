@@ -12,10 +12,10 @@ data TestCallString
   = TestCallString
     { x :: Maybe T.Text -- ^ String to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallString where
-  show
+instance I.ShortShow TestCallString where
+  shortShow
     TestCallString
       { x = x_
       }

@@ -12,10 +12,10 @@ data GetJsonString
   = GetJsonString
     { json_value :: Maybe JsonValue.JsonValue -- ^ The JsonValue object
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetJsonString where
-  show
+instance I.ShortShow GetJsonString where
+  shortShow
     GetJsonString
       { json_value = json_value_
       }

@@ -12,10 +12,10 @@ data SetArchiveChatListSettings
   = SetArchiveChatListSettings
     { settings :: Maybe ArchiveChatListSettings.ArchiveChatListSettings -- ^ New settings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetArchiveChatListSettings where
-  show
+instance I.ShortShow SetArchiveChatListSettings where
+  shortShow
     SetArchiveChatListSettings
       { settings = settings_
       }

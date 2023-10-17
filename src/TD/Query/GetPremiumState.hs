@@ -4,14 +4,15 @@ module TD.Query.GetPremiumState
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns state of Telegram Premium subscription and promotion videos for Premium features
 data GetPremiumState
   = GetPremiumState
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPremiumState where
-  show
+instance I.ShortShow GetPremiumState where
+  shortShow
     GetPremiumState
         = "GetPremiumState"
 

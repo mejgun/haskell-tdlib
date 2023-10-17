@@ -20,10 +20,10 @@ data SendPaymentForm
     , credentials        :: Maybe InputCredentials.InputCredentials -- ^ The credentials chosen by user for payment
     , tip_amount         :: Maybe Int                               -- ^ Chosen by the user amount of tip in the smallest units of the currency
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendPaymentForm where
-  show
+instance I.ShortShow SendPaymentForm where
+  shortShow
     SendPaymentForm
       { input_invoice      = input_invoice_
       , payment_form_id    = payment_form_id_

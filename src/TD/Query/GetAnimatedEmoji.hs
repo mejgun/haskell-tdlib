@@ -12,10 +12,10 @@ data GetAnimatedEmoji
   = GetAnimatedEmoji
     { emoji :: Maybe T.Text -- ^ The emoji
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAnimatedEmoji where
-  show
+instance I.ShortShow GetAnimatedEmoji where
+  shortShow
     GetAnimatedEmoji
       { emoji = emoji_
       }

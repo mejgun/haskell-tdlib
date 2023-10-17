@@ -18,12 +18,12 @@ data TargetChat
   | TargetChatInternalLink -- ^ The chat needs to be open with the provided internal link
     { link :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link pointing to the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TargetChat where
-  show TargetChatCurrent
+instance I.ShortShow TargetChat where
+  shortShow TargetChatCurrent
       = "TargetChatCurrent"
-  show TargetChatChosen
+  shortShow TargetChatChosen
     { allow_user_chats    = allow_user_chats_
     , allow_bot_chats     = allow_bot_chats_
     , allow_group_chats   = allow_group_chats_
@@ -36,7 +36,7 @@ instance Show TargetChat where
         , "allow_group_chats"   `I.p` allow_group_chats_
         , "allow_channel_chats" `I.p` allow_channel_chats_
         ]
-  show TargetChatInternalLink
+  shortShow TargetChatInternalLink
     { link = link_
     }
       = "TargetChatInternalLink"

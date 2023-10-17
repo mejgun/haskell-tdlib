@@ -12,10 +12,10 @@ data SendEmailAddressVerificationCode
   = SendEmailAddressVerificationCode
     { email_address :: Maybe T.Text -- ^ Email address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendEmailAddressVerificationCode where
-  show
+instance I.ShortShow SendEmailAddressVerificationCode where
+  shortShow
     SendEmailAddressVerificationCode
       { email_address = email_address_
       }

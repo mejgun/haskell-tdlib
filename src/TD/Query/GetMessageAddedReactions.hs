@@ -18,10 +18,10 @@ data GetMessageAddedReactions
     , offset        :: Maybe T.Text                    -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     , limit         :: Maybe Int                       -- ^ The maximum number of reactions to be returned; must be positive and can't be greater than 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageAddedReactions where
-  show
+instance I.ShortShow GetMessageAddedReactions where
+  shortShow
     GetMessageAddedReactions
       { chat_id       = chat_id_
       , message_id    = message_id_

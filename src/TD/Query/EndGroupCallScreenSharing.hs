@@ -11,10 +11,10 @@ data EndGroupCallScreenSharing
   = EndGroupCallScreenSharing
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EndGroupCallScreenSharing where
-  show
+instance I.ShortShow EndGroupCallScreenSharing where
+  shortShow
     EndGroupCallScreenSharing
       { group_call_id = group_call_id_
       }

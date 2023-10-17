@@ -16,10 +16,10 @@ data StartGroupCallRecording
     , record_video             :: Maybe Bool   -- ^ Pass true to record a video file instead of an audio file
     , use_portrait_orientation :: Maybe Bool   -- ^ Pass true to use portrait orientation for video instead of landscape one
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StartGroupCallRecording where
-  show
+instance I.ShortShow StartGroupCallRecording where
+  shortShow
     StartGroupCallRecording
       { group_call_id            = group_call_id_
       , title                    = title_

@@ -17,10 +17,10 @@ data EditInlineMessageMedia
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none; for bots only
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageMedia where
-  show
+instance I.ShortShow EditInlineMessageMedia where
+  shortShow
     EditInlineMessageMedia
       { inline_message_id     = inline_message_id_
       , reply_markup          = reply_markup_

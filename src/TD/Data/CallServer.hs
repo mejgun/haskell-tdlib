@@ -15,10 +15,10 @@ data CallServer
     , port         :: Maybe Int                           -- ^ Server port number
     , _type        :: Maybe CallServerType.CallServerType -- ^ Server type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallServer where
-  show CallServer
+instance I.ShortShow CallServer where
+  shortShow CallServer
     { _id          = _id_
     , ip_address   = ip_address_
     , ipv6_address = ipv6_address_

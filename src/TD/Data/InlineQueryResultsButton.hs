@@ -14,10 +14,10 @@ data InlineQueryResultsButton
     { text  :: Maybe T.Text                                                    -- ^ The text of the button
     , _type :: Maybe InlineQueryResultsButtonType.InlineQueryResultsButtonType -- ^ Type of the button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineQueryResultsButton where
-  show InlineQueryResultsButton
+instance I.ShortShow InlineQueryResultsButton where
+  shortShow InlineQueryResultsButton
     { text  = text_
     , _type = _type_
     }

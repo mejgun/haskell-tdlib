@@ -20,31 +20,31 @@ data PremiumSource
     { referrer :: Maybe T.Text -- ^ The referrer from the link
     }
   | PremiumSourceSettings -- ^ A user opened the Premium features screen from settings
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumSource where
-  show PremiumSourceLimitExceeded
+instance I.ShortShow PremiumSource where
+  shortShow PremiumSourceLimitExceeded
     { limit_type = limit_type_
     }
       = "PremiumSourceLimitExceeded"
         ++ I.cc
         [ "limit_type" `I.p` limit_type_
         ]
-  show PremiumSourceFeature
+  shortShow PremiumSourceFeature
     { feature = feature_
     }
       = "PremiumSourceFeature"
         ++ I.cc
         [ "feature" `I.p` feature_
         ]
-  show PremiumSourceLink
+  shortShow PremiumSourceLink
     { referrer = referrer_
     }
       = "PremiumSourceLink"
         ++ I.cc
         [ "referrer" `I.p` referrer_
         ]
-  show PremiumSourceSettings
+  shortShow PremiumSourceSettings
       = "PremiumSourceSettings"
 
 instance AT.FromJSON PremiumSource where

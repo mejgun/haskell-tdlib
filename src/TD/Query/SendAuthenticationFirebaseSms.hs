@@ -12,10 +12,10 @@ data SendAuthenticationFirebaseSms
   = SendAuthenticationFirebaseSms
     { token :: Maybe T.Text -- ^ SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendAuthenticationFirebaseSms where
-  show
+instance I.ShortShow SendAuthenticationFirebaseSms where
+  shortShow
     SendAuthenticationFirebaseSms
       { token = token_
       }

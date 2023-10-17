@@ -4,14 +4,15 @@ module TD.Query.GetActiveSessions
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns all active sessions of the current user
 data GetActiveSessions
   = GetActiveSessions
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetActiveSessions where
-  show
+instance I.ShortShow GetActiveSessions where
+  shortShow
     GetActiveSessions
         = "GetActiveSessions"
 

@@ -14,10 +14,10 @@ data AcceptCall
     { call_id  :: Maybe Int                       -- ^ Call identifier
     , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AcceptCall where
-  show
+instance I.ShortShow AcceptCall where
+  shortShow
     AcceptCall
       { call_id  = call_id_
       , protocol = protocol_

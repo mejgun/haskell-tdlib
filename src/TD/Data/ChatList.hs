@@ -12,14 +12,14 @@ data ChatList
   | ChatListFolder -- ^ A list of chats added to a chat folder
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatList where
-  show ChatListMain
+instance I.ShortShow ChatList where
+  shortShow ChatListMain
       = "ChatListMain"
-  show ChatListArchive
+  shortShow ChatListArchive
       = "ChatListArchive"
-  show ChatListFolder
+  shortShow ChatListFolder
     { chat_folder_id = chat_folder_id_
     }
       = "ChatListFolder"

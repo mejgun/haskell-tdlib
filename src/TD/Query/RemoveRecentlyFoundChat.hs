@@ -11,10 +11,10 @@ data RemoveRecentlyFoundChat
   = RemoveRecentlyFoundChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat to be removed
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveRecentlyFoundChat where
-  show
+instance I.ShortShow RemoveRecentlyFoundChat where
+  shortShow
     RemoveRecentlyFoundChat
       { chat_id = chat_id_
       }

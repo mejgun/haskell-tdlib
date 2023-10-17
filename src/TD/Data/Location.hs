@@ -13,10 +13,10 @@ data Location
     , longitude           :: Maybe Double -- ^ Longitude of the location, in degrees; as defined by the sender
     , horizontal_accuracy :: Maybe Double -- ^ The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Location where
-  show Location
+instance I.ShortShow Location where
+  shortShow Location
     { latitude            = latitude_
     , longitude           = longitude_
     , horizontal_accuracy = horizontal_accuracy_

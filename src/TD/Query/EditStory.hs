@@ -16,10 +16,10 @@ data EditStory
     , content  :: Maybe InputStoryContent.InputStoryContent -- ^ New content of the story; pass null to keep the current content
     , caption  :: Maybe FormattedText.FormattedText         -- ^ New story caption; pass null to keep the current caption
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditStory where
-  show
+instance I.ShortShow EditStory where
+  shortShow
     EditStory
       { story_id = story_id_
       , content  = content_

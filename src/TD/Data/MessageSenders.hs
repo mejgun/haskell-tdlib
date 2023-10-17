@@ -11,10 +11,10 @@ data MessageSenders
     { total_count :: Maybe Int                           -- ^ Approximate total number of messages senders found
     , senders     :: Maybe [MessageSender.MessageSender] -- ^ List of message senders
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSenders where
-  show MessageSenders
+instance I.ShortShow MessageSenders where
+  shortShow MessageSenders
     { total_count = total_count_
     , senders     = senders_
     }

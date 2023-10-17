@@ -11,10 +11,10 @@ data AvailableReaction
     { _type         :: Maybe ReactionType.ReactionType -- ^ Type of the reaction
     , needs_premium :: Maybe Bool                      -- ^ True, if Telegram Premium is needed to send the reaction
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AvailableReaction where
-  show AvailableReaction
+instance I.ShortShow AvailableReaction where
+  shortShow AvailableReaction
     { _type         = _type_
     , needs_premium = needs_premium_
     }

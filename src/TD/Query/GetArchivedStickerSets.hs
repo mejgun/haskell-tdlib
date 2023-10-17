@@ -15,10 +15,10 @@ data GetArchivedStickerSets
     , offset_sticker_set_id :: Maybe Int                     -- ^ Identifier of the sticker set from which to return the result
     , limit                 :: Maybe Int                     -- ^ The maximum number of sticker sets to return; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetArchivedStickerSets where
-  show
+instance I.ShortShow GetArchivedStickerSets where
+  shortShow
     GetArchivedStickerSets
       { sticker_type          = sticker_type_
       , offset_sticker_set_id = offset_sticker_set_id_

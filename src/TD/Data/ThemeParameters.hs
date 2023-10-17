@@ -17,10 +17,10 @@ data ThemeParameters
     , button_color               :: Maybe Int -- ^ A color of the buttons in the RGB24 format
     , button_text_color          :: Maybe Int -- ^ A color of text on the buttons in the RGB24 format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ThemeParameters where
-  show ThemeParameters
+instance I.ShortShow ThemeParameters where
+  shortShow ThemeParameters
     { background_color           = background_color_
     , secondary_background_color = secondary_background_color_
     , text_color                 = text_color_

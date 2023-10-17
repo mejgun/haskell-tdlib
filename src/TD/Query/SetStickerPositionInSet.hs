@@ -14,10 +14,10 @@ data SetStickerPositionInSet
     { sticker  :: Maybe InputFile.InputFile -- ^ Sticker
     , position :: Maybe Int                 -- ^ New position of the sticker in the set, 0-based
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerPositionInSet where
-  show
+instance I.ShortShow SetStickerPositionInSet where
+  shortShow
     SetStickerPositionInSet
       { sticker  = sticker_
       , position = position_

@@ -16,10 +16,10 @@ data SaveApplicationLogEvent
     , chat_id :: Maybe Int                 -- ^ Optional chat identifier, associated with the event
     , _data   :: Maybe JsonValue.JsonValue -- ^ The log event data
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SaveApplicationLogEvent where
-  show
+instance I.ShortShow SaveApplicationLogEvent where
+  shortShow
     SaveApplicationLogEvent
       { _type   = _type_
       , chat_id = chat_id_

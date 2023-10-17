@@ -12,10 +12,10 @@ data TestCallVectorString
   = TestCallVectorString
     { x :: Maybe [T.Text] -- ^ Vector of strings to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallVectorString where
-  show
+instance I.ShortShow TestCallVectorString where
+  shortShow
     TestCallVectorString
       { x = x_
       }

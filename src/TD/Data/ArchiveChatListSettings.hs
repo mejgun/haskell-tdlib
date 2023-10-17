@@ -13,10 +13,10 @@ data ArchiveChatListSettings
     , keep_unmuted_chats_archived                   :: Maybe Bool -- ^ True, if unmuted chats will be kept in the Archive chat list when they get a new message
     , keep_chats_from_folders_archived              :: Maybe Bool -- ^ True, if unmuted chats, that are always included or pinned in a folder, will be kept in the Archive chat list when they get a new message. Ignored if keep_unmuted_chats_archived == true
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ArchiveChatListSettings where
-  show ArchiveChatListSettings
+instance I.ShortShow ArchiveChatListSettings where
+  shortShow ArchiveChatListSettings
     { archive_and_mute_new_chats_from_unknown_users = archive_and_mute_new_chats_from_unknown_users_
     , keep_unmuted_chats_archived                   = keep_unmuted_chats_archived_
     , keep_chats_from_folders_archived              = keep_chats_from_folders_archived_

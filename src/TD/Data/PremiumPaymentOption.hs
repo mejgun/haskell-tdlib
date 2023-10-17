@@ -16,10 +16,10 @@ data PremiumPaymentOption
     , store_product_id    :: Maybe T.Text                            -- ^ Identifier of the store product associated with the option
     , payment_link        :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened for buying Telegram Premium to the user if store payment isn't possible; may be null if direct payment isn't available
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumPaymentOption where
-  show PremiumPaymentOption
+instance I.ShortShow PremiumPaymentOption where
+  shortShow PremiumPaymentOption
     { currency            = currency_
     , amount              = amount_
     , discount_percentage = discount_percentage_

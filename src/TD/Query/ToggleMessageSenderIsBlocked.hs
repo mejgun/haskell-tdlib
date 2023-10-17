@@ -14,10 +14,10 @@ data ToggleMessageSenderIsBlocked
     { sender_id  :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender to block/unblock
     , is_blocked :: Maybe Bool                        -- ^ New value of is_blocked
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleMessageSenderIsBlocked where
-  show
+instance I.ShortShow ToggleMessageSenderIsBlocked where
+  shortShow
     ToggleMessageSenderIsBlocked
       { sender_id  = sender_id_
       , is_blocked = is_blocked_

@@ -16,10 +16,10 @@ data PageBlockRelatedArticle
     , author       :: Maybe T.Text      -- ^ Article author; may be empty
     , publish_date :: Maybe Int         -- ^ Point in time (Unix timestamp) when the article was published; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlockRelatedArticle where
-  show PageBlockRelatedArticle
+instance I.ShortShow PageBlockRelatedArticle where
+  shortShow PageBlockRelatedArticle
     { url          = url_
     , title        = title_
     , description  = description_

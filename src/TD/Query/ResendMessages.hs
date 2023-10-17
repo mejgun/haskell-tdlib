@@ -13,10 +13,10 @@ data ResendMessages
     { chat_id     :: Maybe Int   -- ^ Identifier of the chat to send messages
     , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ResendMessages where
-  show
+instance I.ShortShow ResendMessages where
+  shortShow
     ResendMessages
       { chat_id     = chat_id_
       , message_ids = message_ids_

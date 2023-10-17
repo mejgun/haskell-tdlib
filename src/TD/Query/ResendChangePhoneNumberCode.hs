@@ -4,14 +4,15 @@ module TD.Query.ResendChangePhoneNumberCode
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
 data ResendChangePhoneNumberCode
   = ResendChangePhoneNumberCode
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ResendChangePhoneNumberCode where
-  show
+instance I.ShortShow ResendChangePhoneNumberCode where
+  shortShow
     ResendChangePhoneNumberCode
         = "ResendChangePhoneNumberCode"
 

@@ -17,24 +17,24 @@ data InputBackground
   | InputBackgroundPrevious -- ^ A background previously set in the chat; for chat backgrounds only
     { message_id :: Maybe Int -- ^ Identifier of the message with the background
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputBackground where
-  show InputBackgroundLocal
+instance I.ShortShow InputBackground where
+  shortShow InputBackgroundLocal
     { background = background_
     }
       = "InputBackgroundLocal"
         ++ I.cc
         [ "background" `I.p` background_
         ]
-  show InputBackgroundRemote
+  shortShow InputBackgroundRemote
     { background_id = background_id_
     }
       = "InputBackgroundRemote"
         ++ I.cc
         [ "background_id" `I.p` background_id_
         ]
-  show InputBackgroundPrevious
+  shortShow InputBackgroundPrevious
     { message_id = message_id_
     }
       = "InputBackgroundPrevious"

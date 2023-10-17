@@ -16,10 +16,10 @@ data GetChatHistory
     , limit           :: Maybe Int  -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     , only_local      :: Maybe Bool -- ^ Pass true to get only messages that are available without sending network requests
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatHistory where
-  show
+instance I.ShortShow GetChatHistory where
+  shortShow
     GetChatHistory
       { chat_id         = chat_id_
       , from_message_id = from_message_id_

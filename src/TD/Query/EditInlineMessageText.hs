@@ -17,10 +17,10 @@ data EditInlineMessageText
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageText where
-  show
+instance I.ShortShow EditInlineMessageText where
+  shortShow
     EditInlineMessageText
       { inline_message_id     = inline_message_id_
       , reply_markup          = reply_markup_

@@ -16,10 +16,10 @@ data DownloadFile
     , limit       :: Maybe Int  -- ^ Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
     , synchronous :: Maybe Bool -- ^ Pass true to return response only after the file download has succeeded, has failed, has been canceled, or a new downloadFile request with different offset/limit parameters was sent; pass false to return file state immediately, just after the download has been started
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DownloadFile where
-  show
+instance I.ShortShow DownloadFile where
+  shortShow
     DownloadFile
       { file_id     = file_id_
       , priority    = priority_

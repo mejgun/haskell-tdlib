@@ -18,10 +18,10 @@ data StatisticalGraph
   | StatisticalGraphError -- ^ An error message to be shown to the user instead of the graph
     { error_message :: Maybe T.Text -- ^ The error message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StatisticalGraph where
-  show StatisticalGraphData
+instance I.ShortShow StatisticalGraph where
+  shortShow StatisticalGraphData
     { json_data  = json_data_
     , zoom_token = zoom_token_
     }
@@ -30,14 +30,14 @@ instance Show StatisticalGraph where
         [ "json_data"  `I.p` json_data_
         , "zoom_token" `I.p` zoom_token_
         ]
-  show StatisticalGraphAsync
+  shortShow StatisticalGraphAsync
     { token = token_
     }
       = "StatisticalGraphAsync"
         ++ I.cc
         [ "token" `I.p` token_
         ]
-  show StatisticalGraphError
+  shortShow StatisticalGraphError
     { error_message = error_message_
     }
       = "StatisticalGraphError"

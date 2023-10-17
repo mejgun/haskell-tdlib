@@ -11,17 +11,17 @@ data TextParseMode
     { version :: Maybe Int -- ^ Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
     }
   | TextParseModeHTML -- ^ The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TextParseMode where
-  show TextParseModeMarkdown
+instance I.ShortShow TextParseMode where
+  shortShow TextParseModeMarkdown
     { version = version_
     }
       = "TextParseModeMarkdown"
         ++ I.cc
         [ "version" `I.p` version_
         ]
-  show TextParseModeHTML
+  shortShow TextParseModeHTML
       = "TextParseModeHTML"
 
 instance AT.FromJSON TextParseMode where

@@ -12,12 +12,12 @@ data ChatAvailableReactions
   | ChatAvailableReactionsSome -- ^ Only specific reactions are available in the chat
     { reactions :: Maybe [ReactionType.ReactionType] -- ^ The list of reactions
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatAvailableReactions where
-  show ChatAvailableReactionsAll
+instance I.ShortShow ChatAvailableReactions where
+  shortShow ChatAvailableReactionsAll
       = "ChatAvailableReactionsAll"
-  show ChatAvailableReactionsSome
+  shortShow ChatAvailableReactionsSome
     { reactions = reactions_
     }
       = "ChatAvailableReactionsSome"

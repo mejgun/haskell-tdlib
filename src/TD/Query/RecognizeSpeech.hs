@@ -13,10 +13,10 @@ data RecognizeSpeech
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RecognizeSpeech where
-  show
+instance I.ShortShow RecognizeSpeech where
+  shortShow
     RecognizeSpeech
       { chat_id    = chat_id_
       , message_id = message_id_

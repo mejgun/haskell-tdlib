@@ -18,26 +18,26 @@ data OptionValue
   | OptionValueString -- ^ Represents a string option
     { __value :: Maybe T.Text -- ^ The value of the option
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OptionValue where
-  show OptionValueBoolean
+instance I.ShortShow OptionValue where
+  shortShow OptionValueBoolean
     { value = value_
     }
       = "OptionValueBoolean"
         ++ I.cc
         [ "value" `I.p` value_
         ]
-  show OptionValueEmpty
+  shortShow OptionValueEmpty
       = "OptionValueEmpty"
-  show OptionValueInteger
+  shortShow OptionValueInteger
     { _value = _value_
     }
       = "OptionValueInteger"
         ++ I.cc
         [ "_value" `I.p` _value_
         ]
-  show OptionValueString
+  shortShow OptionValueString
     { __value = __value_
     }
       = "OptionValueString"

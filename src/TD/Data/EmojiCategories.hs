@@ -10,10 +10,10 @@ data EmojiCategories
   = EmojiCategories -- ^ Represents a list of emoji categories
     { categories :: Maybe [EmojiCategory.EmojiCategory] -- ^ List of categories
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiCategories where
-  show EmojiCategories
+instance I.ShortShow EmojiCategories where
+  shortShow EmojiCategories
     { categories = categories_
     }
       = "EmojiCategories"

@@ -14,17 +14,17 @@ data InlineQueryResultsButtonType
   | InlineQueryResultsButtonTypeWebApp -- ^ Describes the button that opens a Web App by calling getWebAppUrl
     { url :: Maybe T.Text -- ^ An HTTP URL to pass to getWebAppUrl
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineQueryResultsButtonType where
-  show InlineQueryResultsButtonTypeStartBot
+instance I.ShortShow InlineQueryResultsButtonType where
+  shortShow InlineQueryResultsButtonTypeStartBot
     { parameter = parameter_
     }
       = "InlineQueryResultsButtonTypeStartBot"
         ++ I.cc
         [ "parameter" `I.p` parameter_
         ]
-  show InlineQueryResultsButtonTypeWebApp
+  shortShow InlineQueryResultsButtonTypeWebApp
     { url = url_
     }
       = "InlineQueryResultsButtonTypeWebApp"

@@ -12,10 +12,10 @@ data CheckRecoveryEmailAddressCode
   = CheckRecoveryEmailAddressCode
     { code :: Maybe T.Text -- ^ Verification code to check
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckRecoveryEmailAddressCode where
-  show
+instance I.ShortShow CheckRecoveryEmailAddressCode where
+  shortShow
     CheckRecoveryEmailAddressCode
       { code = code_
       }

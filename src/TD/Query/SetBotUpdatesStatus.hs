@@ -14,10 +14,10 @@ data SetBotUpdatesStatus
     { pending_update_count :: Maybe Int    -- ^ The number of pending updates
     , error_message        :: Maybe T.Text -- ^ The last error message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBotUpdatesStatus where
-  show
+instance I.ShortShow SetBotUpdatesStatus where
+  shortShow
     SetBotUpdatesStatus
       { pending_update_count = pending_update_count_
       , error_message        = error_message_

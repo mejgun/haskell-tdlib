@@ -10,10 +10,10 @@ data ClosedVectorPath
   = ClosedVectorPath -- ^ Represents a closed vector path. The path begins at the end point of the last command
     { commands :: Maybe [VectorPathCommand.VectorPathCommand] -- ^ List of vector path commands
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClosedVectorPath where
-  show ClosedVectorPath
+instance I.ShortShow ClosedVectorPath where
+  shortShow ClosedVectorPath
     { commands = commands_
     }
       = "ClosedVectorPath"

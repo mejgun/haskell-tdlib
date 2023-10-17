@@ -20,10 +20,10 @@ data ForwardMessages
     , remove_caption    :: Maybe Bool                                  -- ^ Pass true to remove media captions of message copies. Ignored if send_copy is false
     , only_preview      :: Maybe Bool                                  -- ^ Pass true to get fake messages instead of actually forwarding them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ForwardMessages where
-  show
+instance I.ShortShow ForwardMessages where
+  shortShow
     ForwardMessages
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

@@ -20,17 +20,17 @@ data PaymentProvider
   | PaymentProviderOther -- ^ Some other payment provider, for which a web payment form must be shown
     { url :: Maybe T.Text -- ^ Payment form URL
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PaymentProvider where
-  show PaymentProviderSmartGlocal
+instance I.ShortShow PaymentProvider where
+  shortShow PaymentProviderSmartGlocal
     { public_token = public_token_
     }
       = "PaymentProviderSmartGlocal"
         ++ I.cc
         [ "public_token" `I.p` public_token_
         ]
-  show PaymentProviderStripe
+  shortShow PaymentProviderStripe
     { publishable_key      = publishable_key_
     , need_country         = need_country_
     , need_postal_code     = need_postal_code_
@@ -43,7 +43,7 @@ instance Show PaymentProvider where
         , "need_postal_code"     `I.p` need_postal_code_
         , "need_cardholder_name" `I.p` need_cardholder_name_
         ]
-  show PaymentProviderOther
+  shortShow PaymentProviderOther
     { url = url_
     }
       = "PaymentProviderOther"

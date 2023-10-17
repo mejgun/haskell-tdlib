@@ -15,10 +15,10 @@ data SetChatDraftMessage
     , message_thread_id :: Maybe Int                       -- ^ If not 0, a message thread identifier in which the draft was changed
     , draft_message     :: Maybe DraftMessage.DraftMessage -- ^ New draft message; pass null to remove the draft
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatDraftMessage where
-  show
+instance I.ShortShow SetChatDraftMessage where
+  shortShow
     SetChatDraftMessage
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

@@ -11,10 +11,10 @@ data GameHighScore
     , user_id  :: Maybe Int -- ^ User identifier
     , score    :: Maybe Int -- ^ User score
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GameHighScore where
-  show GameHighScore
+instance I.ShortShow GameHighScore where
+  shortShow GameHighScore
     { position = position_
     , user_id  = user_id_
     , score    = score_

@@ -14,17 +14,17 @@ data ReactionType
   | ReactionTypeCustomEmoji -- ^ A reaction with a custom emoji
     { custom_emoji_id :: Maybe Int -- ^ Unique identifier of the custom emoji
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReactionType where
-  show ReactionTypeEmoji
+instance I.ShortShow ReactionType where
+  shortShow ReactionTypeEmoji
     { emoji = emoji_
     }
       = "ReactionTypeEmoji"
         ++ I.cc
         [ "emoji" `I.p` emoji_
         ]
-  show ReactionTypeCustomEmoji
+  shortShow ReactionTypeCustomEmoji
     { custom_emoji_id = custom_emoji_id_
     }
       = "ReactionTypeCustomEmoji"

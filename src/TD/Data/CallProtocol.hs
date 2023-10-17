@@ -16,10 +16,10 @@ data CallProtocol
     , max_layer        :: Maybe Int      -- ^ The maximum supported API layer; use 92
     , library_versions :: Maybe [T.Text] -- ^ List of supported tgcalls versions
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallProtocol where
-  show CallProtocol
+instance I.ShortShow CallProtocol where
+  shortShow CallProtocol
     { udp_p2p          = udp_p2p_
     , udp_reflector    = udp_reflector_
     , min_layer        = min_layer_

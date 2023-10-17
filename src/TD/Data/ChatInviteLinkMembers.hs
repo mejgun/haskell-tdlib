@@ -11,10 +11,10 @@ data ChatInviteLinkMembers
     { total_count :: Maybe Int                                         -- ^ Approximate total number of chat members found
     , members     :: Maybe [ChatInviteLinkMember.ChatInviteLinkMember] -- ^ List of chat members, joined a chat via an invite link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkMembers where
-  show ChatInviteLinkMembers
+instance I.ShortShow ChatInviteLinkMembers where
+  shortShow ChatInviteLinkMembers
     { total_count = total_count_
     , members     = members_
     }

@@ -9,10 +9,10 @@ data FileDownloadedPrefixSize
   = FileDownloadedPrefixSize -- ^ Contains size of downloaded prefix of a file
     { size :: Maybe Int -- ^ The prefix size, in bytes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FileDownloadedPrefixSize where
-  show FileDownloadedPrefixSize
+instance I.ShortShow FileDownloadedPrefixSize where
+  shortShow FileDownloadedPrefixSize
     { size = size_
     }
       = "FileDownloadedPrefixSize"

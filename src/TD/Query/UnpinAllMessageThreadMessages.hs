@@ -13,10 +13,10 @@ data UnpinAllMessageThreadMessages
     { chat_id           :: Maybe Int -- ^ Identifier of the chat
     , message_thread_id :: Maybe Int -- ^ Message thread identifier in which messages will be unpinned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UnpinAllMessageThreadMessages where
-  show
+instance I.ShortShow UnpinAllMessageThreadMessages where
+  shortShow
     UnpinAllMessageThreadMessages
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

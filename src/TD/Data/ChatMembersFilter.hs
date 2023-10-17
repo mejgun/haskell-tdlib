@@ -16,27 +16,27 @@ data ChatMembersFilter
   | ChatMembersFilterRestricted -- ^ Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
   | ChatMembersFilterBanned -- ^ Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
   | ChatMembersFilterBots -- ^ Returns bot members of the chat
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMembersFilter where
-  show ChatMembersFilterContacts
+instance I.ShortShow ChatMembersFilter where
+  shortShow ChatMembersFilterContacts
       = "ChatMembersFilterContacts"
-  show ChatMembersFilterAdministrators
+  shortShow ChatMembersFilterAdministrators
       = "ChatMembersFilterAdministrators"
-  show ChatMembersFilterMembers
+  shortShow ChatMembersFilterMembers
       = "ChatMembersFilterMembers"
-  show ChatMembersFilterMention
+  shortShow ChatMembersFilterMention
     { message_thread_id = message_thread_id_
     }
       = "ChatMembersFilterMention"
         ++ I.cc
         [ "message_thread_id" `I.p` message_thread_id_
         ]
-  show ChatMembersFilterRestricted
+  shortShow ChatMembersFilterRestricted
       = "ChatMembersFilterRestricted"
-  show ChatMembersFilterBanned
+  shortShow ChatMembersFilterBanned
       = "ChatMembersFilterBanned"
-  show ChatMembersFilterBots
+  shortShow ChatMembersFilterBots
       = "ChatMembersFilterBots"
 
 instance AT.FromJSON ChatMembersFilter where

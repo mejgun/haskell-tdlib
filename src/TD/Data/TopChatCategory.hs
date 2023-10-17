@@ -3,6 +3,7 @@ module TD.Data.TopChatCategory
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents the categories of chats for which a list of frequently used chats can be retrieved
 data TopChatCategory
@@ -13,22 +14,22 @@ data TopChatCategory
   | TopChatCategoryInlineBots -- ^ A category containing frequently used chats with inline bots sorted by their usage in inline mode
   | TopChatCategoryCalls -- ^ A category containing frequently used chats used for calls
   | TopChatCategoryForwardChats -- ^ A category containing frequently used chats used to forward messages
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TopChatCategory where
-  show TopChatCategoryUsers
+instance I.ShortShow TopChatCategory where
+  shortShow TopChatCategoryUsers
       = "TopChatCategoryUsers"
-  show TopChatCategoryBots
+  shortShow TopChatCategoryBots
       = "TopChatCategoryBots"
-  show TopChatCategoryGroups
+  shortShow TopChatCategoryGroups
       = "TopChatCategoryGroups"
-  show TopChatCategoryChannels
+  shortShow TopChatCategoryChannels
       = "TopChatCategoryChannels"
-  show TopChatCategoryInlineBots
+  shortShow TopChatCategoryInlineBots
       = "TopChatCategoryInlineBots"
-  show TopChatCategoryCalls
+  shortShow TopChatCategoryCalls
       = "TopChatCategoryCalls"
-  show TopChatCategoryForwardChats
+  shortShow TopChatCategoryForwardChats
       = "TopChatCategoryForwardChats"
 
 instance AT.FromJSON TopChatCategory where

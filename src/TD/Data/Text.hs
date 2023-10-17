@@ -10,10 +10,10 @@ data Text
   = Text -- ^ Contains some text
     { text :: Maybe T.Text -- ^ Text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Text where
-  show Text
+instance I.ShortShow Text where
+  shortShow Text
     { text = text_
     }
       = "Text"

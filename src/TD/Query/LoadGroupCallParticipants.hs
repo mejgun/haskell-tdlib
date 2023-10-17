@@ -13,10 +13,10 @@ data LoadGroupCallParticipants
     { group_call_id :: Maybe Int -- ^ Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     , limit         :: Maybe Int -- ^ The maximum number of participants to load; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LoadGroupCallParticipants where
-  show
+instance I.ShortShow LoadGroupCallParticipants where
+  shortShow
     LoadGroupCallParticipants
       { group_call_id = group_call_id_
       , limit         = limit_

@@ -10,10 +10,10 @@ data GroupCallStreams
   = GroupCallStreams -- ^ Represents a list of group call streams
     { streams :: Maybe [GroupCallStream.GroupCallStream] -- ^ A list of group call streams
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallStreams where
-  show GroupCallStreams
+instance I.ShortShow GroupCallStreams where
+  shortShow GroupCallStreams
     { streams = streams_
     }
       = "GroupCallStreams"

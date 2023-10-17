@@ -13,10 +13,10 @@ data ChatTheme
     , light_settings :: Maybe ThemeSettings.ThemeSettings -- ^ Theme settings for a light chat theme
     , dark_settings  :: Maybe ThemeSettings.ThemeSettings -- ^ Theme settings for a dark chat theme
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatTheme where
-  show ChatTheme
+instance I.ShortShow ChatTheme where
+  shortShow ChatTheme
     { name           = name_
     , light_settings = light_settings_
     , dark_settings  = dark_settings_

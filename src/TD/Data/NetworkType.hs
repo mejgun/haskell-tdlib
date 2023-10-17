@@ -3,6 +3,7 @@ module TD.Data.NetworkType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents the type of a network
 data NetworkType
@@ -11,18 +12,18 @@ data NetworkType
   | NetworkTypeMobileRoaming -- ^ A mobile roaming network
   | NetworkTypeWiFi -- ^ A Wi-Fi network
   | NetworkTypeOther -- ^ A different network type (e.g., Ethernet network)
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NetworkType where
-  show NetworkTypeNone
+instance I.ShortShow NetworkType where
+  shortShow NetworkTypeNone
       = "NetworkTypeNone"
-  show NetworkTypeMobile
+  shortShow NetworkTypeMobile
       = "NetworkTypeMobile"
-  show NetworkTypeMobileRoaming
+  shortShow NetworkTypeMobileRoaming
       = "NetworkTypeMobileRoaming"
-  show NetworkTypeWiFi
+  shortShow NetworkTypeWiFi
       = "NetworkTypeWiFi"
-  show NetworkTypeOther
+  shortShow NetworkTypeOther
       = "NetworkTypeOther"
 
 instance AT.FromJSON NetworkType where

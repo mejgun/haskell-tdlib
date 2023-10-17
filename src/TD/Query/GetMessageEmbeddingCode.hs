@@ -14,10 +14,10 @@ data GetMessageEmbeddingCode
     , message_id :: Maybe Int  -- ^ Identifier of the message
     , for_album  :: Maybe Bool -- ^ Pass true to return an HTML code for embedding of the whole media album
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageEmbeddingCode where
-  show
+instance I.ShortShow GetMessageEmbeddingCode where
+  shortShow
     GetMessageEmbeddingCode
       { chat_id    = chat_id_
       , message_id = message_id_

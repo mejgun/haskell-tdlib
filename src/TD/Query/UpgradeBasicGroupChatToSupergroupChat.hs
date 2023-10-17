@@ -11,10 +11,10 @@ data UpgradeBasicGroupChatToSupergroupChat
   = UpgradeBasicGroupChatToSupergroupChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat to upgrade
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UpgradeBasicGroupChatToSupergroupChat where
-  show
+instance I.ShortShow UpgradeBasicGroupChatToSupergroupChat where
+  shortShow
     UpgradeBasicGroupChatToSupergroupChat
       { chat_id = chat_id_
       }

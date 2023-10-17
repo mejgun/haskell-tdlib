@@ -14,10 +14,10 @@ data CreateTemporaryPassword
     { password  :: Maybe T.Text -- ^ The 2-step verification password of the current user
     , valid_for :: Maybe Int    -- ^ Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateTemporaryPassword where
-  show
+instance I.ShortShow CreateTemporaryPassword where
+  shortShow
     CreateTemporaryPassword
       { password  = password_
       , valid_for = valid_for_

@@ -11,10 +11,10 @@ data MessagePositions
     { total_count :: Maybe Int                               -- ^ Total number of messages found
     , positions   :: Maybe [MessagePosition.MessagePosition] -- ^ List of message positions
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessagePositions where
-  show MessagePositions
+instance I.ShortShow MessagePositions where
+  shortShow MessagePositions
     { total_count = total_count_
     , positions   = positions_
     }

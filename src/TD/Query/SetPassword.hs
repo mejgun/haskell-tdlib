@@ -17,10 +17,10 @@ data SetPassword
     , set_recovery_email_address :: Maybe Bool   -- ^ Pass true to change also the recovery email address
     , new_recovery_email_address :: Maybe T.Text -- ^ New recovery email address; may be empty
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPassword where
-  show
+instance I.ShortShow SetPassword where
+  shortShow
     SetPassword
       { old_password               = old_password_
       , new_password               = new_password_

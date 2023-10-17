@@ -10,10 +10,10 @@ data ConnectedWebsites
   = ConnectedWebsites -- ^ Contains a list of websites the current user is logged in with Telegram
     { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] -- ^ List of connected websites
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ConnectedWebsites where
-  show ConnectedWebsites
+instance I.ShortShow ConnectedWebsites where
+  shortShow ConnectedWebsites
     { websites = websites_
     }
       = "ConnectedWebsites"

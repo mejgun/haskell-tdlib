@@ -13,10 +13,10 @@ data DeleteChatReplyMarkup
     { chat_id    :: Maybe Int -- ^ Chat identifier
     , message_id :: Maybe Int -- ^ The message identifier of the used keyboard
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatReplyMarkup where
-  show
+instance I.ShortShow DeleteChatReplyMarkup where
+  shortShow
     DeleteChatReplyMarkup
       { chat_id    = chat_id_
       , message_id = message_id_

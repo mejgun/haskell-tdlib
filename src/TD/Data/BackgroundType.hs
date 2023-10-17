@@ -21,10 +21,10 @@ data BackgroundType
   | BackgroundTypeFill -- ^ A filled background
     { fill :: Maybe BackgroundFill.BackgroundFill -- ^ The background fill
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BackgroundType where
-  show BackgroundTypeWallpaper
+instance I.ShortShow BackgroundType where
+  shortShow BackgroundTypeWallpaper
     { is_blurred = is_blurred_
     , is_moving  = is_moving_
     }
@@ -33,7 +33,7 @@ instance Show BackgroundType where
         [ "is_blurred" `I.p` is_blurred_
         , "is_moving"  `I.p` is_moving_
         ]
-  show BackgroundTypePattern
+  shortShow BackgroundTypePattern
     { fill        = fill_
     , intensity   = intensity_
     , is_inverted = is_inverted_
@@ -46,7 +46,7 @@ instance Show BackgroundType where
         , "is_inverted" `I.p` is_inverted_
         , "is_moving"   `I.p` is_moving_
         ]
-  show BackgroundTypeFill
+  shortShow BackgroundTypeFill
     { fill = fill_
     }
       = "BackgroundTypeFill"

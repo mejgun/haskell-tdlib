@@ -13,10 +13,10 @@ data SetChatMessageAutoDeleteTime
     { chat_id                  :: Maybe Int -- ^ Chat identifier
     , message_auto_delete_time :: Maybe Int -- ^ New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatMessageAutoDeleteTime where
-  show
+instance I.ShortShow SetChatMessageAutoDeleteTime where
+  shortShow
     SetChatMessageAutoDeleteTime
       { chat_id                  = chat_id_
       , message_auto_delete_time = message_auto_delete_time_

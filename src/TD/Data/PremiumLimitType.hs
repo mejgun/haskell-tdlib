@@ -3,6 +3,7 @@ module TD.Data.PremiumLimitType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes type of a limit, increased for Premium users
 data PremiumLimitType
@@ -19,34 +20,34 @@ data PremiumLimitType
   | PremiumLimitTypeChatFolderInviteLinkCount -- ^ The maximum number of invite links for a chat folder
   | PremiumLimitTypeShareableChatFolderCount -- ^ The maximum number of added shareable chat folders
   | PremiumLimitTypeActiveStoryCount -- ^ The maximum number of active stories
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumLimitType where
-  show PremiumLimitTypeSupergroupCount
+instance I.ShortShow PremiumLimitType where
+  shortShow PremiumLimitTypeSupergroupCount
       = "PremiumLimitTypeSupergroupCount"
-  show PremiumLimitTypePinnedChatCount
+  shortShow PremiumLimitTypePinnedChatCount
       = "PremiumLimitTypePinnedChatCount"
-  show PremiumLimitTypeCreatedPublicChatCount
+  shortShow PremiumLimitTypeCreatedPublicChatCount
       = "PremiumLimitTypeCreatedPublicChatCount"
-  show PremiumLimitTypeSavedAnimationCount
+  shortShow PremiumLimitTypeSavedAnimationCount
       = "PremiumLimitTypeSavedAnimationCount"
-  show PremiumLimitTypeFavoriteStickerCount
+  shortShow PremiumLimitTypeFavoriteStickerCount
       = "PremiumLimitTypeFavoriteStickerCount"
-  show PremiumLimitTypeChatFolderCount
+  shortShow PremiumLimitTypeChatFolderCount
       = "PremiumLimitTypeChatFolderCount"
-  show PremiumLimitTypeChatFolderChosenChatCount
+  shortShow PremiumLimitTypeChatFolderChosenChatCount
       = "PremiumLimitTypeChatFolderChosenChatCount"
-  show PremiumLimitTypePinnedArchivedChatCount
+  shortShow PremiumLimitTypePinnedArchivedChatCount
       = "PremiumLimitTypePinnedArchivedChatCount"
-  show PremiumLimitTypeCaptionLength
+  shortShow PremiumLimitTypeCaptionLength
       = "PremiumLimitTypeCaptionLength"
-  show PremiumLimitTypeBioLength
+  shortShow PremiumLimitTypeBioLength
       = "PremiumLimitTypeBioLength"
-  show PremiumLimitTypeChatFolderInviteLinkCount
+  shortShow PremiumLimitTypeChatFolderInviteLinkCount
       = "PremiumLimitTypeChatFolderInviteLinkCount"
-  show PremiumLimitTypeShareableChatFolderCount
+  shortShow PremiumLimitTypeShareableChatFolderCount
       = "PremiumLimitTypeShareableChatFolderCount"
-  show PremiumLimitTypeActiveStoryCount
+  shortShow PremiumLimitTypeActiveStoryCount
       = "PremiumLimitTypeActiveStoryCount"
 
 instance AT.FromJSON PremiumLimitType where

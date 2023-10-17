@@ -12,10 +12,10 @@ data ViewPremiumFeature
   = ViewPremiumFeature
     { feature :: Maybe PremiumFeature.PremiumFeature -- ^ The viewed premium feature
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ViewPremiumFeature where
-  show
+instance I.ShortShow ViewPremiumFeature where
+  shortShow
     ViewPremiumFeature
       { feature = feature_
       }

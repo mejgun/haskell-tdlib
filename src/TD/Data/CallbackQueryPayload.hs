@@ -19,17 +19,17 @@ data CallbackQueryPayload
   | CallbackQueryPayloadGame -- ^ The payload for a game callback button
     { game_short_name :: Maybe T.Text -- ^ A short name of the game that was attached to the callback button
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallbackQueryPayload where
-  show CallbackQueryPayloadData
+instance I.ShortShow CallbackQueryPayload where
+  shortShow CallbackQueryPayloadData
     { _data = _data_
     }
       = "CallbackQueryPayloadData"
         ++ I.cc
         [ "_data" `I.p` _data_
         ]
-  show CallbackQueryPayloadDataWithPassword
+  shortShow CallbackQueryPayloadDataWithPassword
     { password = password_
     , _data    = _data_
     }
@@ -38,7 +38,7 @@ instance Show CallbackQueryPayload where
         [ "password" `I.p` password_
         , "_data"    `I.p` _data_
         ]
-  show CallbackQueryPayloadGame
+  shortShow CallbackQueryPayloadGame
     { game_short_name = game_short_name_
     }
       = "CallbackQueryPayloadGame"

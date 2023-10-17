@@ -14,10 +14,10 @@ data SetChatMessageSender
     { chat_id           :: Maybe Int                         -- ^ Chat identifier
     , message_sender_id :: Maybe MessageSender.MessageSender -- ^ New message sender for the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatMessageSender where
-  show
+instance I.ShortShow SetChatMessageSender where
+  shortShow
     SetChatMessageSender
       { chat_id           = chat_id_
       , message_sender_id = message_sender_id_

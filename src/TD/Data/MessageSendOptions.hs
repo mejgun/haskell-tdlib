@@ -17,10 +17,10 @@ data MessageSendOptions
     , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
     , sending_id                             :: Maybe Int                                           -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSendOptions where
-  show MessageSendOptions
+instance I.ShortShow MessageSendOptions where
+  shortShow MessageSendOptions
     { disable_notification                   = disable_notification_
     , from_background                        = from_background_
     , protect_content                        = protect_content_

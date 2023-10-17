@@ -10,10 +10,10 @@ data ChatInviteLinkCounts
   = ChatInviteLinkCounts -- ^ Contains a list of chat invite link counts
     { invite_link_counts :: Maybe [ChatInviteLinkCount.ChatInviteLinkCount] -- ^ List of invite link counts
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkCounts where
-  show ChatInviteLinkCounts
+instance I.ShortShow ChatInviteLinkCounts where
+  shortShow ChatInviteLinkCounts
     { invite_link_counts = invite_link_counts_
     }
       = "ChatInviteLinkCounts"

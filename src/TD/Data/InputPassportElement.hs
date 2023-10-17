@@ -51,94 +51,94 @@ data InputPassportElement
   | InputPassportElementEmailAddress -- ^ A Telegram Passport element to be saved containing the user's email address
     { email_address :: Maybe T.Text -- ^ The email address to be saved
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputPassportElement where
-  show InputPassportElementPersonalDetails
+instance I.ShortShow InputPassportElement where
+  shortShow InputPassportElementPersonalDetails
     { personal_details = personal_details_
     }
       = "InputPassportElementPersonalDetails"
         ++ I.cc
         [ "personal_details" `I.p` personal_details_
         ]
-  show InputPassportElementPassport
+  shortShow InputPassportElementPassport
     { passport = passport_
     }
       = "InputPassportElementPassport"
         ++ I.cc
         [ "passport" `I.p` passport_
         ]
-  show InputPassportElementDriverLicense
+  shortShow InputPassportElementDriverLicense
     { driver_license = driver_license_
     }
       = "InputPassportElementDriverLicense"
         ++ I.cc
         [ "driver_license" `I.p` driver_license_
         ]
-  show InputPassportElementIdentityCard
+  shortShow InputPassportElementIdentityCard
     { identity_card = identity_card_
     }
       = "InputPassportElementIdentityCard"
         ++ I.cc
         [ "identity_card" `I.p` identity_card_
         ]
-  show InputPassportElementInternalPassport
+  shortShow InputPassportElementInternalPassport
     { internal_passport = internal_passport_
     }
       = "InputPassportElementInternalPassport"
         ++ I.cc
         [ "internal_passport" `I.p` internal_passport_
         ]
-  show InputPassportElementAddress
+  shortShow InputPassportElementAddress
     { address = address_
     }
       = "InputPassportElementAddress"
         ++ I.cc
         [ "address" `I.p` address_
         ]
-  show InputPassportElementUtilityBill
+  shortShow InputPassportElementUtilityBill
     { utility_bill = utility_bill_
     }
       = "InputPassportElementUtilityBill"
         ++ I.cc
         [ "utility_bill" `I.p` utility_bill_
         ]
-  show InputPassportElementBankStatement
+  shortShow InputPassportElementBankStatement
     { bank_statement = bank_statement_
     }
       = "InputPassportElementBankStatement"
         ++ I.cc
         [ "bank_statement" `I.p` bank_statement_
         ]
-  show InputPassportElementRentalAgreement
+  shortShow InputPassportElementRentalAgreement
     { rental_agreement = rental_agreement_
     }
       = "InputPassportElementRentalAgreement"
         ++ I.cc
         [ "rental_agreement" `I.p` rental_agreement_
         ]
-  show InputPassportElementPassportRegistration
+  shortShow InputPassportElementPassportRegistration
     { passport_registration = passport_registration_
     }
       = "InputPassportElementPassportRegistration"
         ++ I.cc
         [ "passport_registration" `I.p` passport_registration_
         ]
-  show InputPassportElementTemporaryRegistration
+  shortShow InputPassportElementTemporaryRegistration
     { temporary_registration = temporary_registration_
     }
       = "InputPassportElementTemporaryRegistration"
         ++ I.cc
         [ "temporary_registration" `I.p` temporary_registration_
         ]
-  show InputPassportElementPhoneNumber
+  shortShow InputPassportElementPhoneNumber
     { phone_number = phone_number_
     }
       = "InputPassportElementPhoneNumber"
         ++ I.cc
         [ "phone_number" `I.p` phone_number_
         ]
-  show InputPassportElementEmailAddress
+  shortShow InputPassportElementEmailAddress
     { email_address = email_address_
     }
       = "InputPassportElementEmailAddress"

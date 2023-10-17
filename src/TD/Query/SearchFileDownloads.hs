@@ -17,10 +17,10 @@ data SearchFileDownloads
     , offset         :: Maybe T.Text -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     , limit          :: Maybe Int    -- ^ The maximum number of files to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchFileDownloads where
-  show
+instance I.ShortShow SearchFileDownloads where
+  shortShow
     SearchFileDownloads
       { query          = query_
       , only_active    = only_active_

@@ -4,14 +4,15 @@ module TD.Query.TestCallEmpty
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Does nothing; for testing only. This is an offline method. Can be called before authorization
 data TestCallEmpty
   = TestCallEmpty
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallEmpty where
-  show
+instance I.ShortShow TestCallEmpty where
+  shortShow
     TestCallEmpty
         = "TestCallEmpty"
 

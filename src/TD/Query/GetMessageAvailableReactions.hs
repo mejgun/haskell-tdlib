@@ -14,10 +14,10 @@ data GetMessageAvailableReactions
     , message_id :: Maybe Int -- ^ Identifier of the message
     , row_size   :: Maybe Int -- ^ Number of reaction per row, 5-25
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageAvailableReactions where
-  show
+instance I.ShortShow GetMessageAvailableReactions where
+  shortShow
     GetMessageAvailableReactions
       { chat_id    = chat_id_
       , message_id = message_id_

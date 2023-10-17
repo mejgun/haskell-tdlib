@@ -3,20 +3,21 @@ module TD.Data.CheckStickerSetNameResult
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents result of checking whether a name can be used for a new sticker set
 data CheckStickerSetNameResult
   = CheckStickerSetNameResultOk -- ^ The name can be set
   | CheckStickerSetNameResultNameInvalid -- ^ The name is invalid
   | CheckStickerSetNameResultNameOccupied -- ^ The name is occupied
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckStickerSetNameResult where
-  show CheckStickerSetNameResultOk
+instance I.ShortShow CheckStickerSetNameResult where
+  shortShow CheckStickerSetNameResultOk
       = "CheckStickerSetNameResultOk"
-  show CheckStickerSetNameResultNameInvalid
+  shortShow CheckStickerSetNameResultNameInvalid
       = "CheckStickerSetNameResultNameInvalid"
-  show CheckStickerSetNameResultNameOccupied
+  shortShow CheckStickerSetNameResultNameOccupied
       = "CheckStickerSetNameResultNameOccupied"
 
 instance AT.FromJSON CheckStickerSetNameResult where

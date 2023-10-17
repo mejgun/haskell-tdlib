@@ -11,10 +11,10 @@ data DeleteChat
   = DeleteChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChat where
-  show
+instance I.ShortShow DeleteChat where
+  shortShow
     DeleteChat
       { chat_id = chat_id_
       }

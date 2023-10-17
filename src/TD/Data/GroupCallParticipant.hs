@@ -29,10 +29,10 @@ data GroupCallParticipant
     , volume_level                    :: Maybe Int                                                         -- ^ Participant's volume level; 1-20000 in hundreds of percents
     , order                           :: Maybe T.Text                                                      -- ^ User's order in the group call participant list. Orders must be compared lexicographically. The bigger is order, the higher is user in the list. If order is empty, the user must be removed from the participant list
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallParticipant where
-  show GroupCallParticipant
+instance I.ShortShow GroupCallParticipant where
+  shortShow GroupCallParticipant
     { participant_id                  = participant_id_
     , audio_source_id                 = audio_source_id_
     , screen_sharing_audio_source_id  = screen_sharing_audio_source_id_

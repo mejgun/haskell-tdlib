@@ -10,10 +10,10 @@ data TestVectorString
   = TestVectorString -- ^ A simple object containing a vector of strings; for testing only
     { value :: Maybe [T.Text] -- ^ Vector of strings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestVectorString where
-  show TestVectorString
+instance I.ShortShow TestVectorString where
+  shortShow TestVectorString
     { value = value_
     }
       = "TestVectorString"

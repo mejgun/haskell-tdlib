@@ -13,10 +13,10 @@ data GetMessageViewers
     { chat_id    :: Maybe Int -- ^ Chat identifier
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageViewers where
-  show
+instance I.ShortShow GetMessageViewers where
+  shortShow
     GetMessageViewers
       { chat_id    = chat_id_
       , message_id = message_id_

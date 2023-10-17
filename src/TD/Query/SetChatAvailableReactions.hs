@@ -14,10 +14,10 @@ data SetChatAvailableReactions
     { chat_id             :: Maybe Int                                           -- ^ Identifier of the chat
     , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All emoji reactions must be active
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatAvailableReactions where
-  show
+instance I.ShortShow SetChatAvailableReactions where
+  shortShow
     SetChatAvailableReactions
       { chat_id             = chat_id_
       , available_reactions = available_reactions_

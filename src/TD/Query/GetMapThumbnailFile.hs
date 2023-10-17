@@ -18,10 +18,10 @@ data GetMapThumbnailFile
     , scale    :: Maybe Int               -- ^ Map scale; 1-3
     , chat_id  :: Maybe Int               -- ^ Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMapThumbnailFile where
-  show
+instance I.ShortShow GetMapThumbnailFile where
+  shortShow
     GetMapThumbnailFile
       { location = location_
       , zoom     = zoom_

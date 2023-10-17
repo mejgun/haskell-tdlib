@@ -13,10 +13,10 @@ data SetChatSlowModeDelay
     { chat_id         :: Maybe Int -- ^ Chat identifier
     , slow_mode_delay :: Maybe Int -- ^ New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatSlowModeDelay where
-  show
+instance I.ShortShow SetChatSlowModeDelay where
+  shortShow
     SetChatSlowModeDelay
       { chat_id         = chat_id_
       , slow_mode_delay = slow_mode_delay_

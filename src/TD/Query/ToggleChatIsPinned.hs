@@ -15,10 +15,10 @@ data ToggleChatIsPinned
     , chat_id   :: Maybe Int               -- ^ Chat identifier
     , is_pinned :: Maybe Bool              -- ^ Pass true to pin the chat; pass false to unpin it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleChatIsPinned where
-  show
+instance I.ShortShow ToggleChatIsPinned where
+  shortShow
     ToggleChatIsPinned
       { chat_list = chat_list_
       , chat_id   = chat_id_

@@ -14,10 +14,10 @@ data EditChatFolder
     { chat_folder_id :: Maybe Int                   -- ^ Chat folder identifier
     , folder         :: Maybe ChatFolder.ChatFolder -- ^ The edited chat folder
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditChatFolder where
-  show
+instance I.ShortShow EditChatFolder where
+  shortShow
     EditChatFolder
       { chat_folder_id = chat_folder_id_
       , folder         = folder_

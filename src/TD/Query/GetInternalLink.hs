@@ -14,10 +14,10 @@ data GetInternalLink
     { _type   :: Maybe InternalLinkType.InternalLinkType -- ^ Expected type of the link
     , is_http :: Maybe Bool                              -- ^ Pass true to create an HTTPS link (only available for some link types); pass false to create a tg: link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInternalLink where
-  show
+instance I.ShortShow GetInternalLink where
+  shortShow
     GetInternalLink
       { _type   = _type_
       , is_http = is_http_

@@ -15,10 +15,10 @@ data GetTrendingStickerSets
     , offset       :: Maybe Int                     -- ^ The offset from which to return the sticker sets; must be non-negative
     , limit        :: Maybe Int                     -- ^ The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetTrendingStickerSets where
-  show
+instance I.ShortShow GetTrendingStickerSets where
+  shortShow
     GetTrendingStickerSets
       { sticker_type = sticker_type_
       , offset       = offset_

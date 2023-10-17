@@ -9,10 +9,10 @@ data CallId
   = CallId -- ^ Contains the call identifier
     { _id :: Maybe Int -- ^ Call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallId where
-  show CallId
+instance I.ShortShow CallId where
+  shortShow CallId
     { _id = _id_
     }
       = "CallId"

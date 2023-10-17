@@ -11,10 +11,10 @@ data ChatMessageSender
     { sender        :: Maybe MessageSender.MessageSender -- ^ Available message senders
     , needs_premium :: Maybe Bool                        -- ^ True, if Telegram Premium is needed to use the message sender
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMessageSender where
-  show ChatMessageSender
+instance I.ShortShow ChatMessageSender where
+  shortShow ChatMessageSender
     { sender        = sender_
     , needs_premium = needs_premium_
     }

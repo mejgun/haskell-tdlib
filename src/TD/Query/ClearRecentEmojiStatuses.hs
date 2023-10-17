@@ -4,14 +4,15 @@ module TD.Query.ClearRecentEmojiStatuses
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Clears the list of recently used emoji statuses
 data ClearRecentEmojiStatuses
   = ClearRecentEmojiStatuses
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClearRecentEmojiStatuses where
-  show
+instance I.ShortShow ClearRecentEmojiStatuses where
+  shortShow
     ClearRecentEmojiStatuses
         = "ClearRecentEmojiStatuses"
 

@@ -12,10 +12,10 @@ data TestString
   = TestString -- ^ A simple object containing a string; for testing only
     { value :: Maybe T.Text -- ^ String
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestString where
-  show TestString
+instance I.ShortShow TestString where
+  shortShow TestString
     { value = value_
     }
       = "TestString"

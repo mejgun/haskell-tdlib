@@ -11,10 +11,10 @@ data GroupCallVideoSourceGroup
     { semantics  :: Maybe T.Text -- ^ The semantics of sources, one of "SIM" or "FID"
     , source_ids :: Maybe [Int]  -- ^ The list of synchronization source identifiers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallVideoSourceGroup where
-  show GroupCallVideoSourceGroup
+instance I.ShortShow GroupCallVideoSourceGroup where
+  shortShow GroupCallVideoSourceGroup
     { semantics  = semantics_
     , source_ids = source_ids_
     }

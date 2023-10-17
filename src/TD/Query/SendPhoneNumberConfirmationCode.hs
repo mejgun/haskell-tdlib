@@ -16,10 +16,10 @@ data SendPhoneNumberConfirmationCode
     , phone_number :: Maybe T.Text                                                              -- ^ Phone number value from the link
     , settings     :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings -- ^ Settings for the authentication of the user's phone number; pass null to use default settings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendPhoneNumberConfirmationCode where
-  show
+instance I.ShortShow SendPhoneNumberConfirmationCode where
+  shortShow
     SendPhoneNumberConfirmationCode
       { hash         = hash_
       , phone_number = phone_number_

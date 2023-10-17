@@ -51,10 +51,10 @@ data DeviceToken
     { token   :: Maybe T.Text -- ^ Device registration token; may be empty to deregister a device
     , encrypt :: Maybe Bool   -- ^ True, if push notifications must be additionally encrypted
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeviceToken where
-  show DeviceTokenFirebaseCloudMessaging
+instance I.ShortShow DeviceToken where
+  shortShow DeviceTokenFirebaseCloudMessaging
     { token   = token_
     , encrypt = encrypt_
     }
@@ -63,7 +63,7 @@ instance Show DeviceToken where
         [ "token"   `I.p` token_
         , "encrypt" `I.p` encrypt_
         ]
-  show DeviceTokenApplePush
+  shortShow DeviceTokenApplePush
     { device_token   = device_token_
     , is_app_sandbox = is_app_sandbox_
     }
@@ -72,7 +72,7 @@ instance Show DeviceToken where
         [ "device_token"   `I.p` device_token_
         , "is_app_sandbox" `I.p` is_app_sandbox_
         ]
-  show DeviceTokenApplePushVoIP
+  shortShow DeviceTokenApplePushVoIP
     { device_token   = device_token_
     , is_app_sandbox = is_app_sandbox_
     , encrypt        = encrypt_
@@ -83,28 +83,28 @@ instance Show DeviceToken where
         , "is_app_sandbox" `I.p` is_app_sandbox_
         , "encrypt"        `I.p` encrypt_
         ]
-  show DeviceTokenWindowsPush
+  shortShow DeviceTokenWindowsPush
     { access_token = access_token_
     }
       = "DeviceTokenWindowsPush"
         ++ I.cc
         [ "access_token" `I.p` access_token_
         ]
-  show DeviceTokenMicrosoftPush
+  shortShow DeviceTokenMicrosoftPush
     { channel_uri = channel_uri_
     }
       = "DeviceTokenMicrosoftPush"
         ++ I.cc
         [ "channel_uri" `I.p` channel_uri_
         ]
-  show DeviceTokenMicrosoftPushVoIP
+  shortShow DeviceTokenMicrosoftPushVoIP
     { channel_uri = channel_uri_
     }
       = "DeviceTokenMicrosoftPushVoIP"
         ++ I.cc
         [ "channel_uri" `I.p` channel_uri_
         ]
-  show DeviceTokenWebPush
+  shortShow DeviceTokenWebPush
     { endpoint         = endpoint_
     , p256dh_base64url = p256dh_base64url_
     , auth_base64url   = auth_base64url_
@@ -115,35 +115,35 @@ instance Show DeviceToken where
         , "p256dh_base64url" `I.p` p256dh_base64url_
         , "auth_base64url"   `I.p` auth_base64url_
         ]
-  show DeviceTokenSimplePush
+  shortShow DeviceTokenSimplePush
     { endpoint = endpoint_
     }
       = "DeviceTokenSimplePush"
         ++ I.cc
         [ "endpoint" `I.p` endpoint_
         ]
-  show DeviceTokenUbuntuPush
+  shortShow DeviceTokenUbuntuPush
     { token = token_
     }
       = "DeviceTokenUbuntuPush"
         ++ I.cc
         [ "token" `I.p` token_
         ]
-  show DeviceTokenBlackBerryPush
+  shortShow DeviceTokenBlackBerryPush
     { token = token_
     }
       = "DeviceTokenBlackBerryPush"
         ++ I.cc
         [ "token" `I.p` token_
         ]
-  show DeviceTokenTizenPush
+  shortShow DeviceTokenTizenPush
     { reg_id = reg_id_
     }
       = "DeviceTokenTizenPush"
         ++ I.cc
         [ "reg_id" `I.p` reg_id_
         ]
-  show DeviceTokenHuaweiPush
+  shortShow DeviceTokenHuaweiPush
     { token   = token_
     , encrypt = encrypt_
     }

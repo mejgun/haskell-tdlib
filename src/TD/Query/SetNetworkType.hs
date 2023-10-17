@@ -12,10 +12,10 @@ data SetNetworkType
   = SetNetworkType
     { _type :: Maybe NetworkType.NetworkType -- ^ The new network type; pass null to set network type to networkTypeOther
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetNetworkType where
-  show
+instance I.ShortShow SetNetworkType where
+  shortShow
     SetNetworkType
       { _type = _type_
       }

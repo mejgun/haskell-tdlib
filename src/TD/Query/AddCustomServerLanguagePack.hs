@@ -12,10 +12,10 @@ data AddCustomServerLanguagePack
   = AddCustomServerLanguagePack
     { language_pack_id :: Maybe T.Text -- ^ Identifier of a language pack to be added
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddCustomServerLanguagePack where
-  show
+instance I.ShortShow AddCustomServerLanguagePack where
+  shortShow
     AddCustomServerLanguagePack
       { language_pack_id = language_pack_id_
       }

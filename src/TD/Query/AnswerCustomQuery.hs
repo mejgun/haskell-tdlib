@@ -14,10 +14,10 @@ data AnswerCustomQuery
     { custom_query_id :: Maybe Int    -- ^ Identifier of a custom query
     , _data           :: Maybe T.Text -- ^ JSON-serialized answer to the query
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerCustomQuery where
-  show
+instance I.ShortShow AnswerCustomQuery where
+  shortShow
     AnswerCustomQuery
       { custom_query_id = custom_query_id_
       , _data           = _data_

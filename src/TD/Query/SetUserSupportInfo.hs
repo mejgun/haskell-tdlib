@@ -14,10 +14,10 @@ data SetUserSupportInfo
     { user_id :: Maybe Int                         -- ^ User identifier
     , message :: Maybe FormattedText.FormattedText -- ^ New information message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetUserSupportInfo where
-  show
+instance I.ShortShow SetUserSupportInfo where
+  shortShow
     SetUserSupportInfo
       { user_id = user_id_
       , message = message_

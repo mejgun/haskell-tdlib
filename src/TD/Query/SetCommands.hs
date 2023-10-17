@@ -17,10 +17,10 @@ data SetCommands
     , language_code :: Maybe T.Text                          -- ^ A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     , commands      :: Maybe [BotCommand.BotCommand]         -- ^ List of the bot's commands
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetCommands where
-  show
+instance I.ShortShow SetCommands where
+  shortShow
     SetCommands
       { scope         = scope_
       , language_code = language_code_

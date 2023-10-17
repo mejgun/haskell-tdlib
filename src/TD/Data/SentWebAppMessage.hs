@@ -10,10 +10,10 @@ data SentWebAppMessage
   = SentWebAppMessage -- ^ Information about the message sent by answerWebAppQuery
     { inline_message_id :: Maybe T.Text -- ^ Identifier of the sent inline message, if known
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SentWebAppMessage where
-  show SentWebAppMessage
+instance I.ShortShow SentWebAppMessage where
+  shortShow SentWebAppMessage
     { inline_message_id = inline_message_id_
     }
       = "SentWebAppMessage"

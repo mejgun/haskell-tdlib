@@ -18,10 +18,10 @@ data EditProxy
     , enable   :: Maybe Bool                -- ^ Pass true to immediately enable the proxy
     , _type    :: Maybe ProxyType.ProxyType -- ^ Proxy type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditProxy where
-  show
+instance I.ShortShow EditProxy where
+  shortShow
     EditProxy
       { proxy_id = proxy_id_
       , server   = server_

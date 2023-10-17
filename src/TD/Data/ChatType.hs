@@ -21,24 +21,24 @@ data ChatType
     { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
     , user_id        :: Maybe Int -- ^ User identifier of the secret chat peer
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatType where
-  show ChatTypePrivate
+instance I.ShortShow ChatType where
+  shortShow ChatTypePrivate
     { user_id = user_id_
     }
       = "ChatTypePrivate"
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
-  show ChatTypeBasicGroup
+  shortShow ChatTypeBasicGroup
     { basic_group_id = basic_group_id_
     }
       = "ChatTypeBasicGroup"
         ++ I.cc
         [ "basic_group_id" `I.p` basic_group_id_
         ]
-  show ChatTypeSupergroup
+  shortShow ChatTypeSupergroup
     { supergroup_id = supergroup_id_
     , is_channel    = is_channel_
     }
@@ -47,7 +47,7 @@ instance Show ChatType where
         [ "supergroup_id" `I.p` supergroup_id_
         , "is_channel"    `I.p` is_channel_
         ]
-  show ChatTypeSecret
+  shortShow ChatTypeSecret
     { secret_chat_id = secret_chat_id_
     , user_id        = user_id_
     }

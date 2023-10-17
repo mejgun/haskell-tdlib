@@ -12,10 +12,10 @@ data SearchUserByToken
   = SearchUserByToken
     { token :: Maybe T.Text -- ^ Token to search for
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchUserByToken where
-  show
+instance I.ShortShow SearchUserByToken where
+  shortShow
     SearchUserByToken
       { token = token_
       }

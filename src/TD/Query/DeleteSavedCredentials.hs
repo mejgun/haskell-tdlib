@@ -4,14 +4,15 @@ module TD.Query.DeleteSavedCredentials
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Deletes saved credentials for all payment provider bots
 data DeleteSavedCredentials
   = DeleteSavedCredentials
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteSavedCredentials where
-  show
+instance I.ShortShow DeleteSavedCredentials where
+  shortShow
     DeleteSavedCredentials
         = "DeleteSavedCredentials"
 

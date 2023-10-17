@@ -14,10 +14,10 @@ data SendCallDebugInformation
     { call_id           :: Maybe Int    -- ^ Call identifier
     , debug_information :: Maybe T.Text -- ^ Debug information in application-specific format
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendCallDebugInformation where
-  show
+instance I.ShortShow SendCallDebugInformation where
+  shortShow
     SendCallDebugInformation
       { call_id           = call_id_
       , debug_information = debug_information_

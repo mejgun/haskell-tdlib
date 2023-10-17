@@ -20,10 +20,10 @@ data GetWebAppLinkUrl
     , application_name   :: Maybe T.Text                          -- ^ Short name of the application; 0-64 English letters, digits, and underscores
     , allow_write_access :: Maybe Bool                            -- ^ Pass true if the current user allowed the bot to send them messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetWebAppLinkUrl where
-  show
+instance I.ShortShow GetWebAppLinkUrl where
+  shortShow
     GetWebAppLinkUrl
       { chat_id            = chat_id_
       , bot_user_id        = bot_user_id_

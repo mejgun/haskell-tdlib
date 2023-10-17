@@ -17,10 +17,10 @@ data GetWebAppUrl
     , theme            :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred Web App theme; pass null to use the default theme
     , application_name :: Maybe T.Text                          -- ^ Short name of the application; 0-64 English letters, digits, and underscores
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetWebAppUrl where
-  show
+instance I.ShortShow GetWebAppUrl where
+  shortShow
     GetWebAppUrl
       { bot_user_id      = bot_user_id_
       , url              = url_

@@ -11,10 +11,10 @@ data GetChatFolder
   = GetChatFolder
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatFolder where
-  show
+instance I.ShortShow GetChatFolder where
+  shortShow
     GetChatFolder
       { chat_folder_id = chat_folder_id_
       }

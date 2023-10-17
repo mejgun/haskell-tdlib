@@ -11,10 +11,10 @@ data TestInt
   = TestInt -- ^ A simple object containing a number; for testing only
     { value :: Maybe Int -- ^ Number
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestInt where
-  show TestInt
+instance I.ShortShow TestInt where
+  shortShow TestInt
     { value = value_
     }
       = "TestInt"

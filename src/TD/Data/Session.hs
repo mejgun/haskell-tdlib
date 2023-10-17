@@ -28,10 +28,10 @@ data Session
     , country                 :: Maybe T.Text                  -- ^ A two-letter country code for the country from which the session was created, based on the IP address
     , region                  :: Maybe T.Text                  -- ^ Region code from which the session was created, based on the IP address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Session where
-  show Session
+instance I.ShortShow Session where
+  shortShow Session
     { _id                     = _id_
     , is_current              = is_current_
     , is_password_pending     = is_password_pending_

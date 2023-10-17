@@ -12,10 +12,10 @@ data GetDeepLinkInfo
   = GetDeepLinkInfo
     { link :: Maybe T.Text -- ^ The link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetDeepLinkInfo where
-  show
+instance I.ShortShow GetDeepLinkInfo where
+  shortShow
     GetDeepLinkInfo
       { link = link_
       }

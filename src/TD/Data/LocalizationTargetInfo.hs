@@ -10,10 +10,10 @@ data LocalizationTargetInfo
   = LocalizationTargetInfo -- ^ Contains information about the current localization target
     { language_packs :: Maybe [LanguagePackInfo.LanguagePackInfo] -- ^ List of available language packs for this application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LocalizationTargetInfo where
-  show LocalizationTargetInfo
+instance I.ShortShow LocalizationTargetInfo where
+  shortShow LocalizationTargetInfo
     { language_packs = language_packs_
     }
       = "LocalizationTargetInfo"

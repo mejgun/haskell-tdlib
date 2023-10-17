@@ -12,10 +12,10 @@ data CallbackQueryAnswer
     , show_alert :: Maybe Bool   -- ^ True, if an alert must be shown to the user instead of a toast notification
     , url        :: Maybe T.Text -- ^ URL to be opened
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallbackQueryAnswer where
-  show CallbackQueryAnswer
+instance I.ShortShow CallbackQueryAnswer where
+  shortShow CallbackQueryAnswer
     { text       = text_
     , show_alert = show_alert_
     , url        = url_

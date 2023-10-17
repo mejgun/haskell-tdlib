@@ -12,10 +12,10 @@ data Usernames
     , disabled_usernames :: Maybe [T.Text] -- ^ List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
     , editable_username  :: Maybe T.Text   -- ^ The active username, which can be changed with setUsername or setSupergroupUsername
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Usernames where
-  show Usernames
+instance I.ShortShow Usernames where
+  shortShow Usernames
     { active_usernames   = active_usernames_
     , disabled_usernames = disabled_usernames_
     , editable_username  = editable_username_

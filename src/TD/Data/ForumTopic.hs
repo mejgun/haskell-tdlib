@@ -22,10 +22,10 @@ data ForumTopic
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     , draft_message               :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the topic; may be null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ForumTopic where
-  show ForumTopic
+instance I.ShortShow ForumTopic where
+  shortShow ForumTopic
     { info                        = info_
     , last_message                = last_message_
     , is_pinned                   = is_pinned_

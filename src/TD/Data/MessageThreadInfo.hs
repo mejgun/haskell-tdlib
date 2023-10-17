@@ -17,10 +17,10 @@ data MessageThreadInfo
     , messages             :: Maybe [Message.Message]                 -- ^ The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
     , draft_message        :: Maybe DraftMessage.DraftMessage         -- ^ A draft of a message in the message thread; may be null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageThreadInfo where
-  show MessageThreadInfo
+instance I.ShortShow MessageThreadInfo where
+  shortShow MessageThreadInfo
     { chat_id              = chat_id_
     , message_thread_id    = message_thread_id_
     , reply_info           = reply_info_

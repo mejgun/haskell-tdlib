@@ -11,10 +11,10 @@ data Messages
     { total_count :: Maybe Int               -- ^ Approximate total number of messages found
     , messages    :: Maybe [Message.Message] -- ^ List of messages; messages may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Messages where
-  show Messages
+instance I.ShortShow Messages where
+  shortShow Messages
     { total_count = total_count_
     , messages    = messages_
     }

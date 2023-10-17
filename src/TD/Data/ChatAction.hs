@@ -35,68 +35,68 @@ data ChatAction
     { emoji :: Maybe T.Text -- ^ The animated emoji
     }
   | ChatActionCancel -- ^ The user has canceled the previous action
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatAction where
-  show ChatActionTyping
+instance I.ShortShow ChatAction where
+  shortShow ChatActionTyping
       = "ChatActionTyping"
-  show ChatActionRecordingVideo
+  shortShow ChatActionRecordingVideo
       = "ChatActionRecordingVideo"
-  show ChatActionUploadingVideo
+  shortShow ChatActionUploadingVideo
     { progress = progress_
     }
       = "ChatActionUploadingVideo"
         ++ I.cc
         [ "progress" `I.p` progress_
         ]
-  show ChatActionRecordingVoiceNote
+  shortShow ChatActionRecordingVoiceNote
       = "ChatActionRecordingVoiceNote"
-  show ChatActionUploadingVoiceNote
+  shortShow ChatActionUploadingVoiceNote
     { progress = progress_
     }
       = "ChatActionUploadingVoiceNote"
         ++ I.cc
         [ "progress" `I.p` progress_
         ]
-  show ChatActionUploadingPhoto
+  shortShow ChatActionUploadingPhoto
     { progress = progress_
     }
       = "ChatActionUploadingPhoto"
         ++ I.cc
         [ "progress" `I.p` progress_
         ]
-  show ChatActionUploadingDocument
+  shortShow ChatActionUploadingDocument
     { progress = progress_
     }
       = "ChatActionUploadingDocument"
         ++ I.cc
         [ "progress" `I.p` progress_
         ]
-  show ChatActionChoosingSticker
+  shortShow ChatActionChoosingSticker
       = "ChatActionChoosingSticker"
-  show ChatActionChoosingLocation
+  shortShow ChatActionChoosingLocation
       = "ChatActionChoosingLocation"
-  show ChatActionChoosingContact
+  shortShow ChatActionChoosingContact
       = "ChatActionChoosingContact"
-  show ChatActionStartPlayingGame
+  shortShow ChatActionStartPlayingGame
       = "ChatActionStartPlayingGame"
-  show ChatActionRecordingVideoNote
+  shortShow ChatActionRecordingVideoNote
       = "ChatActionRecordingVideoNote"
-  show ChatActionUploadingVideoNote
+  shortShow ChatActionUploadingVideoNote
     { progress = progress_
     }
       = "ChatActionUploadingVideoNote"
         ++ I.cc
         [ "progress" `I.p` progress_
         ]
-  show ChatActionWatchingAnimations
+  shortShow ChatActionWatchingAnimations
     { emoji = emoji_
     }
       = "ChatActionWatchingAnimations"
         ++ I.cc
         [ "emoji" `I.p` emoji_
         ]
-  show ChatActionCancel
+  shortShow ChatActionCancel
       = "ChatActionCancel"
 
 instance AT.FromJSON ChatAction where

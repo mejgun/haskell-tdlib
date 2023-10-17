@@ -17,10 +17,10 @@ data VoiceNote
     , speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult -- ^ Result of speech recognition in the voice note; may be null
     , voice                     :: Maybe File.File                                       -- ^ File containing the voice note
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show VoiceNote where
-  show VoiceNote
+instance I.ShortShow VoiceNote where
+  shortShow VoiceNote
     { duration                  = duration_
     , waveform                  = waveform_
     , mime_type                 = mime_type_

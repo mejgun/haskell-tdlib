@@ -41,10 +41,10 @@ data WebPage
     , story_id             :: Maybe Int                         -- ^ The identifier of the previewed story; 0 if none
     , instant_view_version :: Maybe Int                         -- ^ Version of web page instant view (currently, can be 1 or 2); 0 if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show WebPage where
-  show WebPage
+instance I.ShortShow WebPage where
+  shortShow WebPage
     { url                  = url_
     , display_url          = display_url_
     , _type                = _type_

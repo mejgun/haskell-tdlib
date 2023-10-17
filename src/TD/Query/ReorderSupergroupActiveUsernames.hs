@@ -14,10 +14,10 @@ data ReorderSupergroupActiveUsernames
     { supergroup_id :: Maybe Int      -- ^ Identifier of the supergroup or channel
     , usernames     :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReorderSupergroupActiveUsernames where
-  show
+instance I.ShortShow ReorderSupergroupActiveUsernames where
+  shortShow
     ReorderSupergroupActiveUsernames
       { supergroup_id = supergroup_id_
       , usernames     = usernames_

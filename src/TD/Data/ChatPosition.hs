@@ -14,10 +14,10 @@ data ChatPosition
     , is_pinned :: Maybe Bool                  -- ^ True, if the chat is pinned in the chat list
     , source    :: Maybe ChatSource.ChatSource -- ^ Source of the chat in the chat list; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPosition where
-  show ChatPosition
+instance I.ShortShow ChatPosition where
+  shortShow ChatPosition
     { list      = list_
     , order     = order_
     , is_pinned = is_pinned_

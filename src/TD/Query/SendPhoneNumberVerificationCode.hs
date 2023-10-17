@@ -15,10 +15,10 @@ data SendPhoneNumberVerificationCode
     { phone_number :: Maybe T.Text                                                              -- ^ The phone number of the user, in international format
     , settings     :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings -- ^ Settings for the authentication of the user's phone number; pass null to use default settings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendPhoneNumberVerificationCode where
-  show
+instance I.ShortShow SendPhoneNumberVerificationCode where
+  shortShow
     SendPhoneNumberVerificationCode
       { phone_number = phone_number_
       , settings     = settings_

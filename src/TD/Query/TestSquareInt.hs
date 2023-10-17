@@ -11,10 +11,10 @@ data TestSquareInt
   = TestSquareInt
     { x :: Maybe Int -- ^ Number to square
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestSquareInt where
-  show
+instance I.ShortShow TestSquareInt where
+  shortShow
     TestSquareInt
       { x = x_
       }

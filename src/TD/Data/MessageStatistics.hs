@@ -10,10 +10,10 @@ data MessageStatistics
   = MessageStatistics -- ^ A detailed statistics about a message
     { message_interaction_graph :: Maybe StatisticalGraph.StatisticalGraph -- ^ A graph containing number of message views and shares
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageStatistics where
-  show MessageStatistics
+instance I.ShortShow MessageStatistics where
+  shortShow MessageStatistics
     { message_interaction_graph = message_interaction_graph_
     }
       = "MessageStatistics"

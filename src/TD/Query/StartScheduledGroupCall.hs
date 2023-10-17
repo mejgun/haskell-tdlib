@@ -11,10 +11,10 @@ data StartScheduledGroupCall
   = StartScheduledGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StartScheduledGroupCall where
-  show
+instance I.ShortShow StartScheduledGroupCall where
+  shortShow
     StartScheduledGroupCall
       { group_call_id = group_call_id_
       }

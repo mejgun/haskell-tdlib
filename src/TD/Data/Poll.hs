@@ -22,10 +22,10 @@ data Poll
     , close_date        :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the poll will automatically be closed
     , is_closed         :: Maybe Bool                          -- ^ True, if the poll is closed
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Poll where
-  show Poll
+instance I.ShortShow Poll where
+  shortShow Poll
     { _id               = _id_
     , question          = question_
     , options           = options_

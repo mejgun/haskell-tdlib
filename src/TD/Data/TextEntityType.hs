@@ -38,68 +38,68 @@ data TextEntityType
   | TextEntityTypeMediaTimestamp -- ^ A media timestamp
     { media_timestamp :: Maybe Int -- ^ Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TextEntityType where
-  show TextEntityTypeMention
+instance I.ShortShow TextEntityType where
+  shortShow TextEntityTypeMention
       = "TextEntityTypeMention"
-  show TextEntityTypeHashtag
+  shortShow TextEntityTypeHashtag
       = "TextEntityTypeHashtag"
-  show TextEntityTypeCashtag
+  shortShow TextEntityTypeCashtag
       = "TextEntityTypeCashtag"
-  show TextEntityTypeBotCommand
+  shortShow TextEntityTypeBotCommand
       = "TextEntityTypeBotCommand"
-  show TextEntityTypeUrl
+  shortShow TextEntityTypeUrl
       = "TextEntityTypeUrl"
-  show TextEntityTypeEmailAddress
+  shortShow TextEntityTypeEmailAddress
       = "TextEntityTypeEmailAddress"
-  show TextEntityTypePhoneNumber
+  shortShow TextEntityTypePhoneNumber
       = "TextEntityTypePhoneNumber"
-  show TextEntityTypeBankCardNumber
+  shortShow TextEntityTypeBankCardNumber
       = "TextEntityTypeBankCardNumber"
-  show TextEntityTypeBold
+  shortShow TextEntityTypeBold
       = "TextEntityTypeBold"
-  show TextEntityTypeItalic
+  shortShow TextEntityTypeItalic
       = "TextEntityTypeItalic"
-  show TextEntityTypeUnderline
+  shortShow TextEntityTypeUnderline
       = "TextEntityTypeUnderline"
-  show TextEntityTypeStrikethrough
+  shortShow TextEntityTypeStrikethrough
       = "TextEntityTypeStrikethrough"
-  show TextEntityTypeSpoiler
+  shortShow TextEntityTypeSpoiler
       = "TextEntityTypeSpoiler"
-  show TextEntityTypeCode
+  shortShow TextEntityTypeCode
       = "TextEntityTypeCode"
-  show TextEntityTypePre
+  shortShow TextEntityTypePre
       = "TextEntityTypePre"
-  show TextEntityTypePreCode
+  shortShow TextEntityTypePreCode
     { language = language_
     }
       = "TextEntityTypePreCode"
         ++ I.cc
         [ "language" `I.p` language_
         ]
-  show TextEntityTypeTextUrl
+  shortShow TextEntityTypeTextUrl
     { url = url_
     }
       = "TextEntityTypeTextUrl"
         ++ I.cc
         [ "url" `I.p` url_
         ]
-  show TextEntityTypeMentionName
+  shortShow TextEntityTypeMentionName
     { user_id = user_id_
     }
       = "TextEntityTypeMentionName"
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
-  show TextEntityTypeCustomEmoji
+  shortShow TextEntityTypeCustomEmoji
     { custom_emoji_id = custom_emoji_id_
     }
       = "TextEntityTypeCustomEmoji"
         ++ I.cc
         [ "custom_emoji_id" `I.p` custom_emoji_id_
         ]
-  show TextEntityTypeMediaTimestamp
+  shortShow TextEntityTypeMediaTimestamp
     { media_timestamp = media_timestamp_
     }
       = "TextEntityTypeMediaTimestamp"

@@ -12,10 +12,10 @@ data TestReturnError
   = TestReturnError
     { _error :: Maybe Error.Error -- ^ The error to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestReturnError where
-  show
+instance I.ShortShow TestReturnError where
+  shortShow
     TestReturnError
       { _error = _error_
       }

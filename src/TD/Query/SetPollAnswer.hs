@@ -14,10 +14,10 @@ data SetPollAnswer
     , message_id :: Maybe Int   -- ^ Identifier of the message containing the poll
     , option_ids :: Maybe [Int] -- ^ 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPollAnswer where
-  show
+instance I.ShortShow SetPollAnswer where
+  shortShow
     SetPollAnswer
       { chat_id    = chat_id_
       , message_id = message_id_

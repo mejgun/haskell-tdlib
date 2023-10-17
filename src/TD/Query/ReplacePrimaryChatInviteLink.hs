@@ -11,10 +11,10 @@ data ReplacePrimaryChatInviteLink
   = ReplacePrimaryChatInviteLink
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReplacePrimaryChatInviteLink where
-  show
+instance I.ShortShow ReplacePrimaryChatInviteLink where
+  shortShow
     ReplacePrimaryChatInviteLink
       { chat_id = chat_id_
       }

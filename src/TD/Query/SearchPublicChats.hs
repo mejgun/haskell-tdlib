@@ -12,10 +12,10 @@ data SearchPublicChats
   = SearchPublicChats
     { query :: Maybe T.Text -- ^ Query to search for
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchPublicChats where
-  show
+instance I.ShortShow SearchPublicChats where
+  shortShow
     SearchPublicChats
       { query = query_
       }

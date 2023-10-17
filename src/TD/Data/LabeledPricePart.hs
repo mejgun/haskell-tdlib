@@ -13,10 +13,10 @@ data LabeledPricePart
     { label  :: Maybe T.Text -- ^ Label for this portion of the product price
     , amount :: Maybe Int    -- ^ Currency amount in the smallest units of the currency
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LabeledPricePart where
-  show LabeledPricePart
+instance I.ShortShow LabeledPricePart where
+  shortShow LabeledPricePart
     { label  = label_
     , amount = amount_
     }

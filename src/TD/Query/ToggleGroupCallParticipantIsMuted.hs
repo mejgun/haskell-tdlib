@@ -15,10 +15,10 @@ data ToggleGroupCallParticipantIsMuted
     , participant_id :: Maybe MessageSender.MessageSender -- ^ Participant identifier
     , is_muted       :: Maybe Bool                        -- ^ Pass true to mute the user; pass false to unmute them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallParticipantIsMuted where
-  show
+instance I.ShortShow ToggleGroupCallParticipantIsMuted where
+  shortShow
     ToggleGroupCallParticipantIsMuted
       { group_call_id  = group_call_id_
       , participant_id = participant_id_

@@ -17,10 +17,10 @@ data GetGroupCallStreamSegment
     , channel_id    :: Maybe Int                                         -- ^ Identifier of an audio/video channel to get as received from tgcalls
     , video_quality :: Maybe GroupCallVideoQuality.GroupCallVideoQuality -- ^ Video quality as received from tgcalls; pass null to get the worst available quality
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGroupCallStreamSegment where
-  show
+instance I.ShortShow GetGroupCallStreamSegment where
+  shortShow
     GetGroupCallStreamSegment
       { group_call_id = group_call_id_
       , time_offset   = time_offset_

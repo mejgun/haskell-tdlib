@@ -16,10 +16,10 @@ data WebApp
     , photo       :: Maybe Photo.Photo         -- ^ Web App photo
     , animation   :: Maybe Animation.Animation -- ^ Web App animation; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show WebApp where
-  show WebApp
+instance I.ShortShow WebApp where
+  shortShow WebApp
     { short_name  = short_name_
     , title       = title_
     , description = description_

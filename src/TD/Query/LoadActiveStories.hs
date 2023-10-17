@@ -12,10 +12,10 @@ data LoadActiveStories
   = LoadActiveStories
     { story_list :: Maybe StoryList.StoryList -- ^ The story list in which to load active stories
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LoadActiveStories where
-  show
+instance I.ShortShow LoadActiveStories where
+  shortShow
     LoadActiveStories
       { story_list = story_list_
       }

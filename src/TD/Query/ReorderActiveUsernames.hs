@@ -12,10 +12,10 @@ data ReorderActiveUsernames
   = ReorderActiveUsernames
     { usernames :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReorderActiveUsernames where
-  show
+instance I.ShortShow ReorderActiveUsernames where
+  shortShow
     ReorderActiveUsernames
       { usernames = usernames_
       }

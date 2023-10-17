@@ -20,10 +20,10 @@ data ProxyType
   | ProxyTypeMtproto -- ^ An MTProto proxy server
     { secret :: Maybe T.Text -- ^ The proxy's secret in hexadecimal encoding
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProxyType where
-  show ProxyTypeSocks5
+instance I.ShortShow ProxyType where
+  shortShow ProxyTypeSocks5
     { username = username_
     , password = password_
     }
@@ -32,7 +32,7 @@ instance Show ProxyType where
         [ "username" `I.p` username_
         , "password" `I.p` password_
         ]
-  show ProxyTypeHttp
+  shortShow ProxyTypeHttp
     { username  = username_
     , password  = password_
     , http_only = http_only_
@@ -43,7 +43,7 @@ instance Show ProxyType where
         , "password"  `I.p` password_
         , "http_only" `I.p` http_only_
         ]
-  show ProxyTypeMtproto
+  shortShow ProxyTypeMtproto
     { secret = secret_
     }
       = "ProxyTypeMtproto"

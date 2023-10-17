@@ -14,10 +14,10 @@ data SearchContacts
     { query :: Maybe T.Text -- ^ Query to search for; may be empty to return all contacts
     , limit :: Maybe Int    -- ^ The maximum number of users to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchContacts where
-  show
+instance I.ShortShow SearchContacts where
+  shortShow
     SearchContacts
       { query = query_
       , limit = limit_

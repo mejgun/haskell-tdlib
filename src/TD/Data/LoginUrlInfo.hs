@@ -18,10 +18,10 @@ data LoginUrlInfo
     , bot_user_id          :: Maybe Int    -- ^ User identifier of a bot linked with the website
     , request_write_access :: Maybe Bool   -- ^ True, if the user must be asked for the permission to the bot to send them messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LoginUrlInfo where
-  show LoginUrlInfoOpen
+instance I.ShortShow LoginUrlInfo where
+  shortShow LoginUrlInfoOpen
     { url               = url_
     , skip_confirmation = skip_confirmation_
     }
@@ -30,7 +30,7 @@ instance Show LoginUrlInfo where
         [ "url"               `I.p` url_
         , "skip_confirmation" `I.p` skip_confirmation_
         ]
-  show LoginUrlInfoRequestConfirmation
+  shortShow LoginUrlInfoRequestConfirmation
     { url                  = url_
     , domain               = domain_
     , bot_user_id          = bot_user_id_

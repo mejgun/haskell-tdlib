@@ -13,10 +13,10 @@ data ToggleGroupCallScreenSharingIsPaused
     { group_call_id :: Maybe Int  -- ^ Group call identifier
     , is_paused     :: Maybe Bool -- ^ Pass true to pause screen sharing; pass false to unpause it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallScreenSharingIsPaused where
-  show
+instance I.ShortShow ToggleGroupCallScreenSharingIsPaused where
+  shortShow
     ToggleGroupCallScreenSharingIsPaused
       { group_call_id = group_call_id_
       , is_paused     = is_paused_

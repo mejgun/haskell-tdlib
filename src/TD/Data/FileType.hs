@@ -3,6 +3,7 @@ module TD.Data.FileType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents the type of a file
 data FileType
@@ -25,46 +26,46 @@ data FileType
   | FileTypeVideoStory -- ^ The file is a video published as a story
   | FileTypeVoiceNote -- ^ The file is a voice note
   | FileTypeWallpaper -- ^ The file is a wallpaper or a background pattern
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FileType where
-  show FileTypeNone
+instance I.ShortShow FileType where
+  shortShow FileTypeNone
       = "FileTypeNone"
-  show FileTypeAnimation
+  shortShow FileTypeAnimation
       = "FileTypeAnimation"
-  show FileTypeAudio
+  shortShow FileTypeAudio
       = "FileTypeAudio"
-  show FileTypeDocument
+  shortShow FileTypeDocument
       = "FileTypeDocument"
-  show FileTypeNotificationSound
+  shortShow FileTypeNotificationSound
       = "FileTypeNotificationSound"
-  show FileTypePhoto
+  shortShow FileTypePhoto
       = "FileTypePhoto"
-  show FileTypePhotoStory
+  shortShow FileTypePhotoStory
       = "FileTypePhotoStory"
-  show FileTypeProfilePhoto
+  shortShow FileTypeProfilePhoto
       = "FileTypeProfilePhoto"
-  show FileTypeSecret
+  shortShow FileTypeSecret
       = "FileTypeSecret"
-  show FileTypeSecretThumbnail
+  shortShow FileTypeSecretThumbnail
       = "FileTypeSecretThumbnail"
-  show FileTypeSecure
+  shortShow FileTypeSecure
       = "FileTypeSecure"
-  show FileTypeSticker
+  shortShow FileTypeSticker
       = "FileTypeSticker"
-  show FileTypeThumbnail
+  shortShow FileTypeThumbnail
       = "FileTypeThumbnail"
-  show FileTypeUnknown
+  shortShow FileTypeUnknown
       = "FileTypeUnknown"
-  show FileTypeVideo
+  shortShow FileTypeVideo
       = "FileTypeVideo"
-  show FileTypeVideoNote
+  shortShow FileTypeVideoNote
       = "FileTypeVideoNote"
-  show FileTypeVideoStory
+  shortShow FileTypeVideoStory
       = "FileTypeVideoStory"
-  show FileTypeVoiceNote
+  shortShow FileTypeVoiceNote
       = "FileTypeVoiceNote"
-  show FileTypeWallpaper
+  shortShow FileTypeWallpaper
       = "FileTypeWallpaper"
 
 instance AT.FromJSON FileType where

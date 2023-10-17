@@ -10,10 +10,10 @@ data Chats
     { total_count :: Maybe Int   -- ^ Approximate total number of chats found
     , chat_ids    :: Maybe [Int] -- ^ List of chat identifiers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Chats where
-  show Chats
+instance I.ShortShow Chats where
+  shortShow Chats
     { total_count = total_count_
     , chat_ids    = chat_ids_
     }

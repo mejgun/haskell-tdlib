@@ -17,10 +17,10 @@ data SearchChatMembers
     , limit   :: Maybe Int                                 -- ^ The maximum number of users to be returned; up to 200
     , _filter :: Maybe ChatMembersFilter.ChatMembersFilter -- ^ The type of users to search for; pass null to search among all chat members
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchChatMembers where
-  show
+instance I.ShortShow SearchChatMembers where
+  shortShow
     SearchChatMembers
       { chat_id = chat_id_
       , query   = query_

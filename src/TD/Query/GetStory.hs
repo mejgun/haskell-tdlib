@@ -14,10 +14,10 @@ data GetStory
     , story_id             :: Maybe Int  -- ^ Story identifier
     , only_local           :: Maybe Bool -- ^ Pass true to get only locally available information without sending network requests
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStory where
-  show
+instance I.ShortShow GetStory where
+  shortShow
     GetStory
       { story_sender_chat_id = story_sender_chat_id_
       , story_id             = story_id_

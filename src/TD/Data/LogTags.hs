@@ -10,10 +10,10 @@ data LogTags
   = LogTags -- ^ Contains a list of available TDLib internal log tags
     { tags :: Maybe [T.Text] -- ^ List of log tags
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LogTags where
-  show LogTags
+instance I.ShortShow LogTags where
+  shortShow LogTags
     { tags = tags_
     }
       = "LogTags"

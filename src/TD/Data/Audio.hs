@@ -21,10 +21,10 @@ data Audio
     , external_album_covers     :: Maybe [Thumbnail.Thumbnail]       -- ^ Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
     , audio                     :: Maybe File.File                   -- ^ File containing the audio
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Audio where
-  show Audio
+instance I.ShortShow Audio where
+  shortShow Audio
     { duration                  = duration_
     , title                     = title_
     , performer                 = performer_

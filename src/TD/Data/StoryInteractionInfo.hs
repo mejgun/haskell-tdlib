@@ -10,10 +10,10 @@ data StoryInteractionInfo
     { view_count             :: Maybe Int   -- ^ Number of times the story was viewed
     , recent_viewer_user_ids :: Maybe [Int] -- ^ Identifiers of at most 3 recent viewers of the story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryInteractionInfo where
-  show StoryInteractionInfo
+instance I.ShortShow StoryInteractionInfo where
+  shortShow StoryInteractionInfo
     { view_count             = view_count_
     , recent_viewer_user_ids = recent_viewer_user_ids_
     }

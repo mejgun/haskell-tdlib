@@ -16,10 +16,10 @@ data GetChatMessagePosition
     , _filter           :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     , message_thread_id :: Maybe Int                                       -- ^ If not 0, only messages in the specified thread will be considered; supergroups only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatMessagePosition where
-  show
+instance I.ShortShow GetChatMessagePosition where
+  shortShow
     GetChatMessagePosition
       { chat_id           = chat_id_
       , message_id        = message_id_

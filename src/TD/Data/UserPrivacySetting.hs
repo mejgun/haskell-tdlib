@@ -3,6 +3,7 @@ module TD.Data.UserPrivacySetting
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes available user privacy settings
 data UserPrivacySetting
@@ -16,28 +17,28 @@ data UserPrivacySetting
   | UserPrivacySettingAllowPeerToPeerCalls -- ^ A privacy setting for managing whether peer-to-peer connections can be used for calls
   | UserPrivacySettingAllowFindingByPhoneNumber -- ^ A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
   | UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages -- ^ A privacy setting for managing whether the user can receive voice and video messages in private chats
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserPrivacySetting where
-  show UserPrivacySettingShowStatus
+instance I.ShortShow UserPrivacySetting where
+  shortShow UserPrivacySettingShowStatus
       = "UserPrivacySettingShowStatus"
-  show UserPrivacySettingShowProfilePhoto
+  shortShow UserPrivacySettingShowProfilePhoto
       = "UserPrivacySettingShowProfilePhoto"
-  show UserPrivacySettingShowLinkInForwardedMessages
+  shortShow UserPrivacySettingShowLinkInForwardedMessages
       = "UserPrivacySettingShowLinkInForwardedMessages"
-  show UserPrivacySettingShowPhoneNumber
+  shortShow UserPrivacySettingShowPhoneNumber
       = "UserPrivacySettingShowPhoneNumber"
-  show UserPrivacySettingShowBio
+  shortShow UserPrivacySettingShowBio
       = "UserPrivacySettingShowBio"
-  show UserPrivacySettingAllowChatInvites
+  shortShow UserPrivacySettingAllowChatInvites
       = "UserPrivacySettingAllowChatInvites"
-  show UserPrivacySettingAllowCalls
+  shortShow UserPrivacySettingAllowCalls
       = "UserPrivacySettingAllowCalls"
-  show UserPrivacySettingAllowPeerToPeerCalls
+  shortShow UserPrivacySettingAllowPeerToPeerCalls
       = "UserPrivacySettingAllowPeerToPeerCalls"
-  show UserPrivacySettingAllowFindingByPhoneNumber
+  shortShow UserPrivacySettingAllowFindingByPhoneNumber
       = "UserPrivacySettingAllowFindingByPhoneNumber"
-  show UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+  shortShow UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
       = "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
 
 instance AT.FromJSON UserPrivacySetting where

@@ -11,10 +11,10 @@ data DatedFile
     { file :: Maybe File.File -- ^ The file
     , date :: Maybe Int       -- ^ Point in time (Unix timestamp) when the file was uploaded
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DatedFile where
-  show DatedFile
+instance I.ShortShow DatedFile where
+  shortShow DatedFile
     { file = file_
     , date = date_
     }

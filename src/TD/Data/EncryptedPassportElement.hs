@@ -21,10 +21,10 @@ data EncryptedPassportElement
     , value        :: Maybe T.Text                                  -- ^ Unencrypted data, phone number or email address
     , hash         :: Maybe T.Text                                  -- ^ Hash of the entire element
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EncryptedPassportElement where
-  show EncryptedPassportElement
+instance I.ShortShow EncryptedPassportElement where
+  shortShow EncryptedPassportElement
     { _type        = _type_
     , _data        = _data_
     , front_side   = front_side_

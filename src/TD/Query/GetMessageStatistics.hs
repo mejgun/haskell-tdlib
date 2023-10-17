@@ -14,10 +14,10 @@ data GetMessageStatistics
     , message_id :: Maybe Int  -- ^ Message identifier
     , is_dark    :: Maybe Bool -- ^ Pass true if a dark theme is used by the application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageStatistics where
-  show
+instance I.ShortShow GetMessageStatistics where
+  shortShow
     GetMessageStatistics
       { chat_id    = chat_id_
       , message_id = message_id_

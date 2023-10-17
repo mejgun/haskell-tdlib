@@ -14,10 +14,10 @@ data SuggestUserProfilePhoto
     { user_id :: Maybe Int                           -- ^ User identifier
     , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SuggestUserProfilePhoto where
-  show
+instance I.ShortShow SuggestUserProfilePhoto where
+  shortShow
     SuggestUserProfilePhoto
       { user_id = user_id_
       , photo   = photo_

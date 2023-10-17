@@ -3,6 +3,7 @@ module TD.Data.SearchMessagesFilter
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents a filter for message search results
 data SearchMessagesFilter
@@ -23,42 +24,42 @@ data SearchMessagesFilter
   | SearchMessagesFilterUnreadReaction -- ^ Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
   | SearchMessagesFilterFailedToSend -- ^ Returns only failed to send messages. This filter can be used only if the message database is used
   | SearchMessagesFilterPinned -- ^ Returns only pinned messages
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchMessagesFilter where
-  show SearchMessagesFilterEmpty
+instance I.ShortShow SearchMessagesFilter where
+  shortShow SearchMessagesFilterEmpty
       = "SearchMessagesFilterEmpty"
-  show SearchMessagesFilterAnimation
+  shortShow SearchMessagesFilterAnimation
       = "SearchMessagesFilterAnimation"
-  show SearchMessagesFilterAudio
+  shortShow SearchMessagesFilterAudio
       = "SearchMessagesFilterAudio"
-  show SearchMessagesFilterDocument
+  shortShow SearchMessagesFilterDocument
       = "SearchMessagesFilterDocument"
-  show SearchMessagesFilterPhoto
+  shortShow SearchMessagesFilterPhoto
       = "SearchMessagesFilterPhoto"
-  show SearchMessagesFilterVideo
+  shortShow SearchMessagesFilterVideo
       = "SearchMessagesFilterVideo"
-  show SearchMessagesFilterVoiceNote
+  shortShow SearchMessagesFilterVoiceNote
       = "SearchMessagesFilterVoiceNote"
-  show SearchMessagesFilterPhotoAndVideo
+  shortShow SearchMessagesFilterPhotoAndVideo
       = "SearchMessagesFilterPhotoAndVideo"
-  show SearchMessagesFilterUrl
+  shortShow SearchMessagesFilterUrl
       = "SearchMessagesFilterUrl"
-  show SearchMessagesFilterChatPhoto
+  shortShow SearchMessagesFilterChatPhoto
       = "SearchMessagesFilterChatPhoto"
-  show SearchMessagesFilterVideoNote
+  shortShow SearchMessagesFilterVideoNote
       = "SearchMessagesFilterVideoNote"
-  show SearchMessagesFilterVoiceAndVideoNote
+  shortShow SearchMessagesFilterVoiceAndVideoNote
       = "SearchMessagesFilterVoiceAndVideoNote"
-  show SearchMessagesFilterMention
+  shortShow SearchMessagesFilterMention
       = "SearchMessagesFilterMention"
-  show SearchMessagesFilterUnreadMention
+  shortShow SearchMessagesFilterUnreadMention
       = "SearchMessagesFilterUnreadMention"
-  show SearchMessagesFilterUnreadReaction
+  shortShow SearchMessagesFilterUnreadReaction
       = "SearchMessagesFilterUnreadReaction"
-  show SearchMessagesFilterFailedToSend
+  shortShow SearchMessagesFilterFailedToSend
       = "SearchMessagesFilterFailedToSend"
-  show SearchMessagesFilterPinned
+  shortShow SearchMessagesFilterPinned
       = "SearchMessagesFilterPinned"
 
 instance AT.FromJSON SearchMessagesFilter where

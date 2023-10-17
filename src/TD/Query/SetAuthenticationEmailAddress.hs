@@ -12,10 +12,10 @@ data SetAuthenticationEmailAddress
   = SetAuthenticationEmailAddress
     { email_address :: Maybe T.Text -- ^ The email address of the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetAuthenticationEmailAddress where
-  show
+instance I.ShortShow SetAuthenticationEmailAddress where
+  shortShow
     SetAuthenticationEmailAddress
       { email_address = email_address_
       }

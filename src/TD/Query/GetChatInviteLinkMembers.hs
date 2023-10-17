@@ -17,10 +17,10 @@ data GetChatInviteLinkMembers
     , offset_member :: Maybe ChatInviteLinkMember.ChatInviteLinkMember -- ^ A chat member from which to return next chat members; pass null to get results from the beginning
     , limit         :: Maybe Int                                       -- ^ The maximum number of chat members to return; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatInviteLinkMembers where
-  show
+instance I.ShortShow GetChatInviteLinkMembers where
+  shortShow
     GetChatInviteLinkMembers
       { chat_id       = chat_id_
       , invite_link   = invite_link_

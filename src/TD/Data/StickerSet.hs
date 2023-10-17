@@ -28,10 +28,10 @@ data StickerSet
     , stickers          :: Maybe [Sticker.Sticker]                   -- ^ List of stickers in this set
     , emojis            :: Maybe [Emojis.Emojis]                     -- ^ A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerSet where
-  show StickerSet
+instance I.ShortShow StickerSet where
+  shortShow StickerSet
     { _id               = _id_
     , title             = title_
     , name              = name_

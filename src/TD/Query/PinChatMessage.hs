@@ -15,10 +15,10 @@ data PinChatMessage
     , disable_notification :: Maybe Bool -- ^ Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
     , only_for_self        :: Maybe Bool -- ^ Pass true to pin the message only for self; private chats only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PinChatMessage where
-  show
+instance I.ShortShow PinChatMessage where
+  shortShow
     PinChatMessage
       { chat_id              = chat_id_
       , message_id           = message_id_

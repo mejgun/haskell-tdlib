@@ -20,36 +20,36 @@ data SuggestedAction
   | SuggestedActionUpgradePremium -- ^ Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
   | SuggestedActionRestorePremium -- ^ Suggests the user to restore a recently expired Premium subscription
   | SuggestedActionSubscribeToAnnualPremium -- ^ Suggests the user to subscribe to the Premium subscription with annual payments
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SuggestedAction where
-  show SuggestedActionEnableArchiveAndMuteNewChats
+instance I.ShortShow SuggestedAction where
+  shortShow SuggestedActionEnableArchiveAndMuteNewChats
       = "SuggestedActionEnableArchiveAndMuteNewChats"
-  show SuggestedActionCheckPassword
+  shortShow SuggestedActionCheckPassword
       = "SuggestedActionCheckPassword"
-  show SuggestedActionCheckPhoneNumber
+  shortShow SuggestedActionCheckPhoneNumber
       = "SuggestedActionCheckPhoneNumber"
-  show SuggestedActionViewChecksHint
+  shortShow SuggestedActionViewChecksHint
       = "SuggestedActionViewChecksHint"
-  show SuggestedActionConvertToBroadcastGroup
+  shortShow SuggestedActionConvertToBroadcastGroup
     { supergroup_id = supergroup_id_
     }
       = "SuggestedActionConvertToBroadcastGroup"
         ++ I.cc
         [ "supergroup_id" `I.p` supergroup_id_
         ]
-  show SuggestedActionSetPassword
+  shortShow SuggestedActionSetPassword
     { authorization_delay = authorization_delay_
     }
       = "SuggestedActionSetPassword"
         ++ I.cc
         [ "authorization_delay" `I.p` authorization_delay_
         ]
-  show SuggestedActionUpgradePremium
+  shortShow SuggestedActionUpgradePremium
       = "SuggestedActionUpgradePremium"
-  show SuggestedActionRestorePremium
+  shortShow SuggestedActionRestorePremium
       = "SuggestedActionRestorePremium"
-  show SuggestedActionSubscribeToAnnualPremium
+  shortShow SuggestedActionSubscribeToAnnualPremium
       = "SuggestedActionSubscribeToAnnualPremium"
 
 instance AT.FromJSON SuggestedAction where

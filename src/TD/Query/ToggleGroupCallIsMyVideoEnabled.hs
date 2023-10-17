@@ -13,10 +13,10 @@ data ToggleGroupCallIsMyVideoEnabled
     { group_call_id       :: Maybe Int  -- ^ Group call identifier
     , is_my_video_enabled :: Maybe Bool -- ^ Pass true if the current user's video is enabled
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallIsMyVideoEnabled where
-  show
+instance I.ShortShow ToggleGroupCallIsMyVideoEnabled where
+  shortShow
     ToggleGroupCallIsMyVideoEnabled
       { group_call_id       = group_call_id_
       , is_my_video_enabled = is_my_video_enabled_

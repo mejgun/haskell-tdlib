@@ -4,14 +4,15 @@ module TD.Query.GetSavedOrderInfo
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns saved order information. Returns a 404 error if there is no saved order information
 data GetSavedOrderInfo
   = GetSavedOrderInfo
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSavedOrderInfo where
-  show
+instance I.ShortShow GetSavedOrderInfo where
+  shortShow
     GetSavedOrderInfo
         = "GetSavedOrderInfo"
 

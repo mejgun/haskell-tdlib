@@ -13,10 +13,10 @@ data ToggleSupergroupJoinByRequest
     { supergroup_id   :: Maybe Int  -- ^ Identifier of the channel
     , join_by_request :: Maybe Bool -- ^ New value of join_by_request
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupJoinByRequest where
-  show
+instance I.ShortShow ToggleSupergroupJoinByRequest where
+  shortShow
     ToggleSupergroupJoinByRequest
       { supergroup_id   = supergroup_id_
       , join_by_request = join_by_request_

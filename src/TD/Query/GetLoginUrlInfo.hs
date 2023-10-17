@@ -14,10 +14,10 @@ data GetLoginUrlInfo
     , message_id :: Maybe Int -- ^ Message identifier of the message with the button
     , button_id  :: Maybe Int -- ^ Button identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLoginUrlInfo where
-  show
+instance I.ShortShow GetLoginUrlInfo where
+  shortShow
     GetLoginUrlInfo
       { chat_id    = chat_id_
       , message_id = message_id_

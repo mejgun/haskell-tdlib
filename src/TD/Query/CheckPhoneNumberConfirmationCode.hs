@@ -12,10 +12,10 @@ data CheckPhoneNumberConfirmationCode
   = CheckPhoneNumberConfirmationCode
     { code :: Maybe T.Text -- ^ Confirmation code to check
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckPhoneNumberConfirmationCode where
-  show
+instance I.ShortShow CheckPhoneNumberConfirmationCode where
+  shortShow
     CheckPhoneNumberConfirmationCode
       { code = code_
       }

@@ -11,10 +11,10 @@ data PaymentResult
     { success          :: Maybe Bool   -- ^ True, if the payment request was successful; otherwise, the verification_url will be non-empty
     , verification_url :: Maybe T.Text -- ^ URL for additional payment credentials verification
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PaymentResult where
-  show PaymentResult
+instance I.ShortShow PaymentResult where
+  shortShow PaymentResult
     { success          = success_
     , verification_url = verification_url_
     }

@@ -13,12 +13,12 @@ data FirebaseAuthenticationSettings
     { device_token   :: Maybe T.Text -- ^ Device token from Apple Push Notification service
     , is_app_sandbox :: Maybe Bool   -- ^ True, if App Sandbox is enabled
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FirebaseAuthenticationSettings where
-  show FirebaseAuthenticationSettingsAndroid
+instance I.ShortShow FirebaseAuthenticationSettings where
+  shortShow FirebaseAuthenticationSettingsAndroid
       = "FirebaseAuthenticationSettingsAndroid"
-  show FirebaseAuthenticationSettingsIos
+  shortShow FirebaseAuthenticationSettingsIos
     { device_token   = device_token_
     , is_app_sandbox = is_app_sandbox_
     }

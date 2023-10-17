@@ -11,10 +11,10 @@ data ChatBackground
     { background         :: Maybe Background.Background -- ^ The background
     , dark_theme_dimming :: Maybe Int                   -- ^ Dimming of the background in dark themes, as a percentage; 0-100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatBackground where
-  show ChatBackground
+instance I.ShortShow ChatBackground where
+  shortShow ChatBackground
     { background         = background_
     , dark_theme_dimming = dark_theme_dimming_
     }

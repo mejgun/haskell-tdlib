@@ -10,10 +10,10 @@ data Users
     { total_count :: Maybe Int   -- ^ Approximate total number of users found
     , user_ids    :: Maybe [Int] -- ^ A list of user identifiers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Users where
-  show Users
+instance I.ShortShow Users where
+  shortShow Users
     { total_count = total_count_
     , user_ids    = user_ids_
     }

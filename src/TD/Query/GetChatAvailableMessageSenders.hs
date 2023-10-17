@@ -11,10 +11,10 @@ data GetChatAvailableMessageSenders
   = GetChatAvailableMessageSenders
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatAvailableMessageSenders where
-  show
+instance I.ShortShow GetChatAvailableMessageSenders where
+  shortShow
     GetChatAvailableMessageSenders
       { chat_id = chat_id_
       }

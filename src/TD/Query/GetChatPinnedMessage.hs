@@ -11,10 +11,10 @@ data GetChatPinnedMessage
   = GetChatPinnedMessage
     { chat_id :: Maybe Int -- ^ Identifier of the chat the message belongs to
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatPinnedMessage where
-  show
+instance I.ShortShow GetChatPinnedMessage where
+  shortShow
     GetChatPinnedMessage
       { chat_id = chat_id_
       }

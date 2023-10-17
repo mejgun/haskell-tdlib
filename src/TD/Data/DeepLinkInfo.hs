@@ -11,10 +11,10 @@ data DeepLinkInfo
     { text                    :: Maybe FormattedText.FormattedText -- ^ Text to be shown to the user
     , need_update_application :: Maybe Bool                        -- ^ True, if the user must be asked to update the application
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeepLinkInfo where
-  show DeepLinkInfo
+instance I.ShortShow DeepLinkInfo where
+  shortShow DeepLinkInfo
     { text                    = text_
     , need_update_application = need_update_application_
     }

@@ -13,10 +13,10 @@ data CloseStory
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story to close
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CloseStory where
-  show
+instance I.ShortShow CloseStory where
+  shortShow
     CloseStory
       { story_sender_chat_id = story_sender_chat_id_
       , story_id             = story_id_

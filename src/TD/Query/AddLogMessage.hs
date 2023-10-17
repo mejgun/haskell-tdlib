@@ -14,10 +14,10 @@ data AddLogMessage
     { verbosity_level :: Maybe Int    -- ^ The minimum verbosity level needed for the message to be logged; 0-1023
     , text            :: Maybe T.Text -- ^ Text of a message to log
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddLogMessage where
-  show
+instance I.ShortShow AddLogMessage where
+  shortShow
     AddLogMessage
       { verbosity_level = verbosity_level_
       , text            = text_

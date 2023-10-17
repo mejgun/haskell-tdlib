@@ -11,10 +11,10 @@ data AccountTtl
   = AccountTtl -- ^ Contains information about the period of inactivity after which the current user's account will automatically be deleted
     { days :: Maybe Int -- ^ Number of days of inactivity before the account will be flagged for deletion; 30-366 days
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AccountTtl where
-  show AccountTtl
+instance I.ShortShow AccountTtl where
+  shortShow AccountTtl
     { days = days_
     }
       = "AccountTtl"

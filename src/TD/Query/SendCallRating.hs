@@ -17,10 +17,10 @@ data SendCallRating
     , comment  :: Maybe T.Text                    -- ^ An optional user comment if the rating is less than 5
     , problems :: Maybe [CallProblem.CallProblem] -- ^ List of the exact types of problems with the call, specified by the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendCallRating where
-  show
+instance I.ShortShow SendCallRating where
+  shortShow
     SendCallRating
       { call_id  = call_id_
       , rating   = rating_

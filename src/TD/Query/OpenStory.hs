@@ -13,10 +13,10 @@ data OpenStory
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the opened story
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OpenStory where
-  show
+instance I.ShortShow OpenStory where
+  shortShow
     OpenStory
       { story_sender_chat_id = story_sender_chat_id_
       , story_id             = story_id_

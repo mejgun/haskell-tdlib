@@ -11,10 +11,10 @@ data GetChatSponsoredMessages
   = GetChatSponsoredMessages
     { chat_id :: Maybe Int -- ^ Identifier of the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatSponsoredMessages where
-  show
+instance I.ShortShow GetChatSponsoredMessages where
+  shortShow
     GetChatSponsoredMessages
       { chat_id = chat_id_
       }

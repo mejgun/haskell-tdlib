@@ -14,10 +14,10 @@ data DeleteChatMessagesBySender
     { chat_id   :: Maybe Int                         -- ^ Chat identifier
     , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of messages to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatMessagesBySender where
-  show
+instance I.ShortShow DeleteChatMessagesBySender where
+  shortShow
     DeleteChatMessagesBySender
       { chat_id   = chat_id_
       , sender_id = sender_id_

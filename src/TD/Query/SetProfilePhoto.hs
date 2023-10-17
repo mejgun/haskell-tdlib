@@ -14,10 +14,10 @@ data SetProfilePhoto
     { photo     :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set
     , is_public :: Maybe Bool                          -- ^ Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetProfilePhoto where
-  show
+instance I.ShortShow SetProfilePhoto where
+  shortShow
     SetProfilePhoto
       { photo     = photo_
       , is_public = is_public_

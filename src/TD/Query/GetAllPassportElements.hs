@@ -12,10 +12,10 @@ data GetAllPassportElements
   = GetAllPassportElements
     { password :: Maybe T.Text -- ^ The 2-step verification password of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAllPassportElements where
-  show
+instance I.ShortShow GetAllPassportElements where
+  shortShow
     GetAllPassportElements
       { password = password_
       }

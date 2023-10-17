@@ -21,10 +21,10 @@ data SendInlineQueryResultMessage
     , result_id         :: Maybe T.Text                                -- ^ Identifier of the inline result
     , hide_via_bot      :: Maybe Bool                                  -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendInlineQueryResultMessage where
-  show
+instance I.ShortShow SendInlineQueryResultMessage where
+  shortShow
     SendInlineQueryResultMessage
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

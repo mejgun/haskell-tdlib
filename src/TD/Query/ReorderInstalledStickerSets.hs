@@ -14,10 +14,10 @@ data ReorderInstalledStickerSets
     { sticker_type    :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to reorder
     , sticker_set_ids :: Maybe [Int]                   -- ^ Identifiers of installed sticker sets in the new correct order
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReorderInstalledStickerSets where
-  show
+instance I.ShortShow ReorderInstalledStickerSets where
+  shortShow
     ReorderInstalledStickerSets
       { sticker_type    = sticker_type_
       , sticker_set_ids = sticker_set_ids_

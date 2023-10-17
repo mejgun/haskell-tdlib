@@ -14,10 +14,10 @@ data InputThumbnail
     , width     :: Maybe Int                 -- ^ Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
     , height    :: Maybe Int                 -- ^ Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputThumbnail where
-  show InputThumbnail
+instance I.ShortShow InputThumbnail where
+  shortShow InputThumbnail
     { thumbnail = thumbnail_
     , width     = width_
     , height    = height_

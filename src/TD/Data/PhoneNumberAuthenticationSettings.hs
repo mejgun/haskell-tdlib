@@ -18,10 +18,10 @@ data PhoneNumberAuthenticationSettings
     , firebase_authentication_settings :: Maybe FirebaseAuthenticationSettings.FirebaseAuthenticationSettings -- ^ For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
     , authentication_tokens            :: Maybe [T.Text]                                                      -- ^ List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PhoneNumberAuthenticationSettings where
-  show PhoneNumberAuthenticationSettings
+instance I.ShortShow PhoneNumberAuthenticationSettings where
+  shortShow PhoneNumberAuthenticationSettings
     { allow_flash_call                 = allow_flash_call_
     , allow_missed_call                = allow_missed_call_
     , is_current_phone_number          = is_current_phone_number_

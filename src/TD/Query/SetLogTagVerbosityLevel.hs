@@ -14,10 +14,10 @@ data SetLogTagVerbosityLevel
     { tag                 :: Maybe T.Text -- ^ Logging tag to change verbosity level
     , new_verbosity_level :: Maybe Int    -- ^ New verbosity level; 1-1024
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetLogTagVerbosityLevel where
-  show
+instance I.ShortShow SetLogTagVerbosityLevel where
+  shortShow
     SetLogTagVerbosityLevel
       { tag                 = tag_
       , new_verbosity_level = new_verbosity_level_

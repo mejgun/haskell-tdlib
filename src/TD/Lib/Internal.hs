@@ -1,5 +1,6 @@
 module TD.Lib.Internal
   ( Extra (..),
+    ShortShow (..),
     p,
     cc,
     readInt64,
@@ -24,8 +25,29 @@ instance AT.FromJSON Extra where
   parseJSON (AT.Object obj) = Extra <$> obj A..: "@extra"
   parseJSON _ = mempty
 
-p :: (Show a) => String -> Maybe a -> String
-p b (Just a) = b ++ " = " ++ show a
+class ShortShow a where
+  shortShow :: a -> String
+
+instance ShortShow Int where
+  shortShow = show
+
+instance ShortShow Double where
+  shortShow = show
+
+instance ShortShow Bool where
+  shortShow = show
+
+instance ShortShow T.Text where
+  shortShow = T.unpack
+
+instance ShortShow BS.ByteString where
+  shortShow = T.unpack . TE.decodeUtf8
+
+instance (ShortShow a) => ShortShow [a] where
+  shortShow xs = "[" <> (intercalate ", " (map shortShow xs)) <> "]"
+
+p :: (ShortShow a) => String -> Maybe a -> String
+p k (Just v) = k ++ " = " ++ shortShow v
 p _ Nothing = ""
 
 cc :: [String] -> String

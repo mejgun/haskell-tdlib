@@ -21,10 +21,10 @@ data OpenWebApp
     , message_thread_id :: Maybe Int                             -- ^ If not 0, a message thread identifier in which the message will be sent
     , reply_to          :: Maybe MessageReplyTo.MessageReplyTo   -- ^ Identifier of the replied message or story for the message sent by the Web App; pass null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OpenWebApp where
-  show
+instance I.ShortShow OpenWebApp where
+  shortShow
     OpenWebApp
       { chat_id           = chat_id_
       , bot_user_id       = bot_user_id_

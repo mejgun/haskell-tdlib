@@ -12,10 +12,10 @@ data AddSavedNotificationSound
   = AddSavedNotificationSound
     { sound :: Maybe InputFile.InputFile -- ^ Notification sound file to add
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddSavedNotificationSound where
-  show
+instance I.ShortShow AddSavedNotificationSound where
+  shortShow
     AddSavedNotificationSound
       { sound = sound_
       }

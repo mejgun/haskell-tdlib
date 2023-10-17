@@ -27,10 +27,10 @@ data UserFullInfo
     , group_in_common_count                        :: Maybe Int                                         -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
     , bot_info                                     :: Maybe BotInfo.BotInfo                             -- ^ For bots, information about the bot; may be null if the user isn't a bot
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserFullInfo where
-  show UserFullInfo
+instance I.ShortShow UserFullInfo where
+  shortShow UserFullInfo
     { personal_photo                               = personal_photo_
     , photo                                        = photo_
     , public_photo                                 = public_photo_

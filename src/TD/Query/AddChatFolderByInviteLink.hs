@@ -14,10 +14,10 @@ data AddChatFolderByInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link for the chat folder
     , chat_ids    :: Maybe [Int]  -- ^ Identifiers of the chats added to the chat folder. The chats are automatically joined if they aren't joined yet
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddChatFolderByInviteLink where
-  show
+instance I.ShortShow AddChatFolderByInviteLink where
+  shortShow
     AddChatFolderByInviteLink
       { invite_link = invite_link_
       , chat_ids    = chat_ids_

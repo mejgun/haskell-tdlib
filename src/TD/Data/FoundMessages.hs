@@ -13,10 +13,10 @@ data FoundMessages
     , messages    :: Maybe [Message.Message] -- ^ List of messages
     , next_offset :: Maybe T.Text            -- ^ The offset for the next request. If empty, there are no more results
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FoundMessages where
-  show FoundMessages
+instance I.ShortShow FoundMessages where
+  shortShow FoundMessages
     { total_count = total_count_
     , messages    = messages_
     , next_offset = next_offset_

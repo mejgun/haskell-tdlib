@@ -17,30 +17,30 @@ data UserStatus
   | UserStatusRecently -- ^ The user was online recently
   | UserStatusLastWeek -- ^ The user is offline, but was online last week
   | UserStatusLastMonth -- ^ The user is offline, but was online last month
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserStatus where
-  show UserStatusEmpty
+instance I.ShortShow UserStatus where
+  shortShow UserStatusEmpty
       = "UserStatusEmpty"
-  show UserStatusOnline
+  shortShow UserStatusOnline
     { expires = expires_
     }
       = "UserStatusOnline"
         ++ I.cc
         [ "expires" `I.p` expires_
         ]
-  show UserStatusOffline
+  shortShow UserStatusOffline
     { was_online = was_online_
     }
       = "UserStatusOffline"
         ++ I.cc
         [ "was_online" `I.p` was_online_
         ]
-  show UserStatusRecently
+  shortShow UserStatusRecently
       = "UserStatusRecently"
-  show UserStatusLastWeek
+  shortShow UserStatusLastWeek
       = "UserStatusLastWeek"
-  show UserStatusLastMonth
+  shortShow UserStatusLastMonth
       = "UserStatusLastMonth"
 
 instance AT.FromJSON UserStatus where

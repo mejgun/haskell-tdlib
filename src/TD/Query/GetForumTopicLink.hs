@@ -13,10 +13,10 @@ data GetForumTopicLink
     { chat_id           :: Maybe Int -- ^ Identifier of the chat
     , message_thread_id :: Maybe Int -- ^ Message thread identifier of the forum topic
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetForumTopicLink where
-  show
+instance I.ShortShow GetForumTopicLink where
+  shortShow
     GetForumTopicLink
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

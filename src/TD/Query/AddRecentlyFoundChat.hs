@@ -11,10 +11,10 @@ data AddRecentlyFoundChat
   = AddRecentlyFoundChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat to add
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddRecentlyFoundChat where
-  show
+instance I.ShortShow AddRecentlyFoundChat where
+  shortShow
     AddRecentlyFoundChat
       { chat_id = chat_id_
       }

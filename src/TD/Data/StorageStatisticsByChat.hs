@@ -13,10 +13,10 @@ data StorageStatisticsByChat
     , count        :: Maybe Int                                                       -- ^ Total number of files in the chat
     , by_file_type :: Maybe [StorageStatisticsByFileType.StorageStatisticsByFileType] -- ^ Statistics split by file types
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StorageStatisticsByChat where
-  show StorageStatisticsByChat
+instance I.ShortShow StorageStatisticsByChat where
+  shortShow StorageStatisticsByChat
     { chat_id      = chat_id_
     , size         = size_
     , count        = count_

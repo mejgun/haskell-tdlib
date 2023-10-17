@@ -12,10 +12,10 @@ data EmojiStatus
     { custom_emoji_id :: Maybe Int -- ^ Identifier of the custom emoji in stickerFormatTgs format
     , expiration_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the status will expire; 0 if never
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiStatus where
-  show EmojiStatus
+instance I.ShortShow EmojiStatus where
+  shortShow EmojiStatus
     { custom_emoji_id = custom_emoji_id_
     , expiration_date = expiration_date_
     }

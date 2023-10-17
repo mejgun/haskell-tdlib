@@ -4,14 +4,15 @@ module TD.Query.Close
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
 data Close
   = Close
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Close where
-  show
+instance I.ShortShow Close where
+  shortShow
     Close
         = "Close"
 

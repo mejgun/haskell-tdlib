@@ -14,10 +14,10 @@ data SetCustomEmojiStickerSetThumbnail
     { name            :: Maybe T.Text -- ^ Sticker set name
     , custom_emoji_id :: Maybe Int    -- ^ Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetCustomEmojiStickerSetThumbnail where
-  show
+instance I.ShortShow SetCustomEmojiStickerSetThumbnail where
+  shortShow
     SetCustomEmojiStickerSetThumbnail
       { name            = name_
       , custom_emoji_id = custom_emoji_id_

@@ -14,10 +14,10 @@ data LanguagePackString
     { key   :: Maybe T.Text                                          -- ^ String key
     , value :: Maybe LanguagePackStringValue.LanguagePackStringValue -- ^ String value; pass null if the string needs to be taken from the built-in English language pack
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LanguagePackString where
-  show LanguagePackString
+instance I.ShortShow LanguagePackString where
+  shortShow LanguagePackString
     { key   = key_
     , value = value_
     }

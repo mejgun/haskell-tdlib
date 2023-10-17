@@ -4,14 +4,15 @@ module TD.Query.GetThemedEmojiStatuses
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
 data GetThemedEmojiStatuses
   = GetThemedEmojiStatuses
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetThemedEmojiStatuses where
-  show
+instance I.ShortShow GetThemedEmojiStatuses where
+  shortShow
     GetThemedEmojiStatuses
         = "GetThemedEmojiStatuses"
 

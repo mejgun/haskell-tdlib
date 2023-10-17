@@ -12,10 +12,10 @@ data GetEmojiReaction
   = GetEmojiReaction
     { emoji :: Maybe T.Text -- ^ Text representation of the reaction
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetEmojiReaction where
-  show
+instance I.ShortShow GetEmojiReaction where
+  shortShow
     GetEmojiReaction
       { emoji = emoji_
       }

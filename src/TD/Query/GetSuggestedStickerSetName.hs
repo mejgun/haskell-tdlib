@@ -12,10 +12,10 @@ data GetSuggestedStickerSetName
   = GetSuggestedStickerSetName
     { title :: Maybe T.Text -- ^ Sticker set title; 1-64 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSuggestedStickerSetName where
-  show
+instance I.ShortShow GetSuggestedStickerSetName where
+  shortShow
     GetSuggestedStickerSetName
       { title = title_
       }

@@ -13,10 +13,10 @@ data DeleteChatFolder
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier
     , leave_chat_ids :: Maybe [Int] -- ^ Identifiers of the chats to leave. The chats must be pinned or always included in the folder
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatFolder where
-  show
+instance I.ShortShow DeleteChatFolder where
+  shortShow
     DeleteChatFolder
       { chat_folder_id = chat_folder_id_
       , leave_chat_ids = leave_chat_ids_

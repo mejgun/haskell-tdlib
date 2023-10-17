@@ -11,10 +11,10 @@ data GetAttachedStickerSets
   = GetAttachedStickerSets
     { file_id :: Maybe Int -- ^ File identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetAttachedStickerSets where
-  show
+instance I.ShortShow GetAttachedStickerSets where
+  shortShow
     GetAttachedStickerSets
       { file_id = file_id_
       }

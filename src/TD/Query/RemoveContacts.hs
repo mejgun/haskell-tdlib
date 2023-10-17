@@ -11,10 +11,10 @@ data RemoveContacts
   = RemoveContacts
     { user_ids :: Maybe [Int] -- ^ Identifiers of users to be deleted
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveContacts where
-  show
+instance I.ShortShow RemoveContacts where
+  shortShow
     RemoveContacts
       { user_ids = user_ids_
       }

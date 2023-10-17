@@ -14,10 +14,10 @@ data SetChatTheme
     { chat_id    :: Maybe Int    -- ^ Chat identifier
     , theme_name :: Maybe T.Text -- ^ Name of the new chat theme; pass an empty string to return the default theme
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatTheme where
-  show
+instance I.ShortShow SetChatTheme where
+  shortShow
     SetChatTheme
       { chat_id    = chat_id_
       , theme_name = theme_name_

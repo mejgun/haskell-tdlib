@@ -14,10 +14,10 @@ data SetFileGenerationProgress
     , expected_size     :: Maybe Int -- ^ Expected size of the generated file, in bytes; 0 if unknown
     , local_prefix_size :: Maybe Int -- ^ The number of bytes already generated
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetFileGenerationProgress where
-  show
+instance I.ShortShow SetFileGenerationProgress where
+  shortShow
     SetFileGenerationProgress
       { generation_id     = generation_id_
       , expected_size     = expected_size_

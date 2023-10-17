@@ -14,10 +14,10 @@ data MessageSponsor
     , photo :: Maybe ChatPhotoInfo.ChatPhotoInfo           -- ^ Photo of the sponsor; may be null if must not be shown
     , info  :: Maybe T.Text                                -- ^ Additional optional information about the sponsor to be shown along with the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSponsor where
-  show MessageSponsor
+instance I.ShortShow MessageSponsor where
+  shortShow MessageSponsor
     { _type = _type_
     , photo = photo_
     , info  = info_

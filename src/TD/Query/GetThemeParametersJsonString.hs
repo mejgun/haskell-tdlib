@@ -12,10 +12,10 @@ data GetThemeParametersJsonString
   = GetThemeParametersJsonString
     { theme :: Maybe ThemeParameters.ThemeParameters -- ^ Theme parameters to convert to JSON
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetThemeParametersJsonString where
-  show
+instance I.ShortShow GetThemeParametersJsonString where
+  shortShow
     GetThemeParametersJsonString
       { theme = theme_
       }

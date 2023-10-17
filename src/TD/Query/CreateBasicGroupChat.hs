@@ -13,10 +13,10 @@ data CreateBasicGroupChat
     { basic_group_id :: Maybe Int  -- ^ Basic group identifier
     , force          :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateBasicGroupChat where
-  show
+instance I.ShortShow CreateBasicGroupChat where
+  shortShow
     CreateBasicGroupChat
       { basic_group_id = basic_group_id_
       , force          = force_

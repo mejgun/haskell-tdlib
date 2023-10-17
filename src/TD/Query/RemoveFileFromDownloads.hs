@@ -13,10 +13,10 @@ data RemoveFileFromDownloads
     { file_id           :: Maybe Int  -- ^ Identifier of the downloaded file
     , delete_from_cache :: Maybe Bool -- ^ Pass true to delete the file from the TDLib file cache
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveFileFromDownloads where
-  show
+instance I.ShortShow RemoveFileFromDownloads where
+  shortShow
     RemoveFileFromDownloads
       { file_id           = file_id_
       , delete_from_cache = delete_from_cache_

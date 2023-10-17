@@ -17,10 +17,10 @@ data ReportStory
     , reason               :: Maybe ReportReason.ReportReason -- ^ The reason for reporting the story
     , text                 :: Maybe T.Text                    -- ^ Additional report details; 0-1024 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReportStory where
-  show
+instance I.ShortShow ReportStory where
+  shortShow
     ReportStory
       { story_sender_chat_id = story_sender_chat_id_
       , story_id             = story_id_

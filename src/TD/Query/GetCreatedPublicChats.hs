@@ -12,10 +12,10 @@ data GetCreatedPublicChats
   = GetCreatedPublicChats
     { _type :: Maybe PublicChatType.PublicChatType -- ^ Type of the public chats to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCreatedPublicChats where
-  show
+instance I.ShortShow GetCreatedPublicChats where
+  shortShow
     GetCreatedPublicChats
       { _type = _type_
       }

@@ -14,10 +14,10 @@ data AddChatMember
     , user_id       :: Maybe Int -- ^ Identifier of the user
     , forward_limit :: Maybe Int -- ^ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddChatMember where
-  show
+instance I.ShortShow AddChatMember where
+  shortShow
     AddChatMember
       { chat_id       = chat_id_
       , user_id       = user_id_

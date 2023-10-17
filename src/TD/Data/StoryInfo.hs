@@ -11,10 +11,10 @@ data StoryInfo
     , date                 :: Maybe Int  -- ^ Point in time (Unix timestamp) when the story was published
     , is_for_close_friends :: Maybe Bool -- ^ True, if the story is available only to close friends
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryInfo where
-  show StoryInfo
+instance I.ShortShow StoryInfo where
+  shortShow StoryInfo
     { story_id             = story_id_
     , date                 = date_
     , is_for_close_friends = is_for_close_friends_

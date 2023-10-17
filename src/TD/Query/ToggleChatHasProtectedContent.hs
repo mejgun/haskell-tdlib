@@ -13,10 +13,10 @@ data ToggleChatHasProtectedContent
     { chat_id               :: Maybe Int  -- ^ Chat identifier
     , has_protected_content :: Maybe Bool -- ^ New value of has_protected_content
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleChatHasProtectedContent where
-  show
+instance I.ShortShow ToggleChatHasProtectedContent where
+  shortShow
     ToggleChatHasProtectedContent
       { chat_id               = chat_id_
       , has_protected_content = has_protected_content_

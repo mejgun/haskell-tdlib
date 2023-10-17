@@ -14,10 +14,10 @@ data ToggleForumTopicIsPinned
     , message_thread_id :: Maybe Int  -- ^ Message thread identifier of the forum topic
     , is_pinned         :: Maybe Bool -- ^ Pass true to pin the topic; pass false to unpin it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleForumTopicIsPinned where
-  show
+instance I.ShortShow ToggleForumTopicIsPinned where
+  shortShow
     ToggleForumTopicIsPinned
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

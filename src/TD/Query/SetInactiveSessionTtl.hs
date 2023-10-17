@@ -11,10 +11,10 @@ data SetInactiveSessionTtl
   = SetInactiveSessionTtl
     { inactive_session_ttl_days :: Maybe Int -- ^ New number of days of inactivity before sessions will be automatically terminated; 1-366 days
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetInactiveSessionTtl where
-  show
+instance I.ShortShow SetInactiveSessionTtl where
+  shortShow
     SetInactiveSessionTtl
       { inactive_session_ttl_days = inactive_session_ttl_days_
       }

@@ -37,17 +37,17 @@ data InputPassportElementErrorSource
   | InputPassportElementErrorSourceFiles -- ^ The list of attached files contains an error. The error is considered resolved when the file list changes
     { file_hashes :: Maybe [BS.ByteString] -- ^ Current hashes of all attached files
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputPassportElementErrorSource where
-  show InputPassportElementErrorSourceUnspecified
+instance I.ShortShow InputPassportElementErrorSource where
+  shortShow InputPassportElementErrorSourceUnspecified
     { element_hash = element_hash_
     }
       = "InputPassportElementErrorSourceUnspecified"
         ++ I.cc
         [ "element_hash" `I.p` element_hash_
         ]
-  show InputPassportElementErrorSourceDataField
+  shortShow InputPassportElementErrorSourceDataField
     { field_name = field_name_
     , data_hash  = data_hash_
     }
@@ -56,49 +56,49 @@ instance Show InputPassportElementErrorSource where
         [ "field_name" `I.p` field_name_
         , "data_hash"  `I.p` data_hash_
         ]
-  show InputPassportElementErrorSourceFrontSide
+  shortShow InputPassportElementErrorSourceFrontSide
     { file_hash = file_hash_
     }
       = "InputPassportElementErrorSourceFrontSide"
         ++ I.cc
         [ "file_hash" `I.p` file_hash_
         ]
-  show InputPassportElementErrorSourceReverseSide
+  shortShow InputPassportElementErrorSourceReverseSide
     { file_hash = file_hash_
     }
       = "InputPassportElementErrorSourceReverseSide"
         ++ I.cc
         [ "file_hash" `I.p` file_hash_
         ]
-  show InputPassportElementErrorSourceSelfie
+  shortShow InputPassportElementErrorSourceSelfie
     { file_hash = file_hash_
     }
       = "InputPassportElementErrorSourceSelfie"
         ++ I.cc
         [ "file_hash" `I.p` file_hash_
         ]
-  show InputPassportElementErrorSourceTranslationFile
+  shortShow InputPassportElementErrorSourceTranslationFile
     { file_hash = file_hash_
     }
       = "InputPassportElementErrorSourceTranslationFile"
         ++ I.cc
         [ "file_hash" `I.p` file_hash_
         ]
-  show InputPassportElementErrorSourceTranslationFiles
+  shortShow InputPassportElementErrorSourceTranslationFiles
     { file_hashes = file_hashes_
     }
       = "InputPassportElementErrorSourceTranslationFiles"
         ++ I.cc
         [ "file_hashes" `I.p` file_hashes_
         ]
-  show InputPassportElementErrorSourceFile
+  shortShow InputPassportElementErrorSourceFile
     { file_hash = file_hash_
     }
       = "InputPassportElementErrorSourceFile"
         ++ I.cc
         [ "file_hash" `I.p` file_hash_
         ]
-  show InputPassportElementErrorSourceFiles
+  shortShow InputPassportElementErrorSourceFiles
     { file_hashes = file_hashes_
     }
       = "InputPassportElementErrorSourceFiles"

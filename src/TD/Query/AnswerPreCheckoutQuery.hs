@@ -14,10 +14,10 @@ data AnswerPreCheckoutQuery
     { pre_checkout_query_id :: Maybe Int    -- ^ Identifier of the pre-checkout query
     , error_message         :: Maybe T.Text -- ^ An error message, empty on success
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerPreCheckoutQuery where
-  show
+instance I.ShortShow AnswerPreCheckoutQuery where
+  shortShow
     AnswerPreCheckoutQuery
       { pre_checkout_query_id = pre_checkout_query_id_
       , error_message         = error_message_

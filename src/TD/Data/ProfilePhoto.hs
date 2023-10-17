@@ -16,10 +16,10 @@ data ProfilePhoto
     , has_animation :: Maybe Bool                        -- ^ True, if the photo has animated variant
     , is_personal   :: Maybe Bool                        -- ^ True, if the photo is visible only for the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProfilePhoto where
-  show ProfilePhoto
+instance I.ShortShow ProfilePhoto where
+  shortShow ProfilePhoto
     { _id           = _id_
     , small         = small_
     , big           = big_

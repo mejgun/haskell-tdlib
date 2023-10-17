@@ -12,10 +12,10 @@ data CheckAuthenticationBotToken
   = CheckAuthenticationBotToken
     { token :: Maybe T.Text -- ^ The bot token
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckAuthenticationBotToken where
-  show
+instance I.ShortShow CheckAuthenticationBotToken where
+  shortShow
     CheckAuthenticationBotToken
       { token = token_
       }

@@ -3,6 +3,7 @@ module TD.Data.MaskPoint
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Part of the face, relative to which a mask is placed
 data MaskPoint
@@ -10,16 +11,16 @@ data MaskPoint
   | MaskPointEyes -- ^ The mask is placed relatively to the eyes
   | MaskPointMouth -- ^ The mask is placed relatively to the mouth
   | MaskPointChin -- ^ The mask is placed relatively to the chin
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MaskPoint where
-  show MaskPointForehead
+instance I.ShortShow MaskPoint where
+  shortShow MaskPointForehead
       = "MaskPointForehead"
-  show MaskPointEyes
+  shortShow MaskPointEyes
       = "MaskPointEyes"
-  show MaskPointMouth
+  shortShow MaskPointMouth
       = "MaskPointMouth"
-  show MaskPointChin
+  shortShow MaskPointChin
       = "MaskPointChin"
 
 instance AT.FromJSON MaskPoint where

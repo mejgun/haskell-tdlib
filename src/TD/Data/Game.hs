@@ -19,10 +19,10 @@ data Game
     , photo       :: Maybe Photo.Photo                 -- ^ Game photo
     , animation   :: Maybe Animation.Animation         -- ^ Game animation; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Game where
-  show Game
+instance I.ShortShow Game where
+  shortShow Game
     { _id         = _id_
     , short_name  = short_name_
     , title       = title_

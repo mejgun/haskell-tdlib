@@ -15,10 +15,10 @@ data SetCustomLanguagePack
     { info    :: Maybe LanguagePackInfo.LanguagePackInfo       -- ^ Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     , strings :: Maybe [LanguagePackString.LanguagePackString] -- ^ Strings of the new language pack
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetCustomLanguagePack where
-  show
+instance I.ShortShow SetCustomLanguagePack where
+  shortShow
     SetCustomLanguagePack
       { info    = info_
       , strings = strings_

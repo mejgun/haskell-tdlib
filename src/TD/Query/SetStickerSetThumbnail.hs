@@ -16,10 +16,10 @@ data SetStickerSetThumbnail
     , name      :: Maybe T.Text              -- ^ Sticker set name
     , thumbnail :: Maybe InputFile.InputFile -- ^ Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetStickerSetThumbnail where
-  show
+instance I.ShortShow SetStickerSetThumbnail where
+  shortShow
     SetStickerSetThumbnail
       { user_id   = user_id_
       , name      = name_

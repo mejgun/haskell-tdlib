@@ -14,10 +14,10 @@ data ProcessChatJoinRequest
     , user_id :: Maybe Int  -- ^ Identifier of the user that sent the request
     , approve :: Maybe Bool -- ^ Pass true to approve the request; pass false to decline it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProcessChatJoinRequest where
-  show
+instance I.ShortShow ProcessChatJoinRequest where
+  shortShow
     ProcessChatJoinRequest
       { chat_id = chat_id_
       , user_id = user_id_

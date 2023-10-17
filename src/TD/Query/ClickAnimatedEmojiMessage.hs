@@ -13,10 +13,10 @@ data ClickAnimatedEmojiMessage
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
     , message_id :: Maybe Int -- ^ Identifier of the clicked message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClickAnimatedEmojiMessage where
-  show
+instance I.ShortShow ClickAnimatedEmojiMessage where
+  shortShow
     ClickAnimatedEmojiMessage
       { chat_id    = chat_id_
       , message_id = message_id_

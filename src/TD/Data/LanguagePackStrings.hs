@@ -10,10 +10,10 @@ data LanguagePackStrings
   = LanguagePackStrings -- ^ Contains a list of language pack strings
     { strings :: Maybe [LanguagePackString.LanguagePackString] -- ^ A list of language pack strings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LanguagePackStrings where
-  show LanguagePackStrings
+instance I.ShortShow LanguagePackStrings where
+  shortShow LanguagePackStrings
     { strings = strings_
     }
       = "LanguagePackStrings"

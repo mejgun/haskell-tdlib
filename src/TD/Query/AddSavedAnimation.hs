@@ -12,10 +12,10 @@ data AddSavedAnimation
   = AddSavedAnimation
     { animation :: Maybe InputFile.InputFile -- ^ The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddSavedAnimation where
-  show
+instance I.ShortShow AddSavedAnimation where
+  shortShow
     AddSavedAnimation
       { animation = animation_
       }

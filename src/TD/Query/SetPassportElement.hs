@@ -15,10 +15,10 @@ data SetPassportElement
     { element  :: Maybe InputPassportElement.InputPassportElement -- ^ Input Telegram Passport element
     , password :: Maybe T.Text                                    -- ^ The 2-step verification password of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPassportElement where
-  show
+instance I.ShortShow SetPassportElement where
+  shortShow
     SetPassportElement
       { element  = element_
       , password = password_

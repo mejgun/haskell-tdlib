@@ -14,19 +14,19 @@ data ResetPasswordResult
   | ResetPasswordResultDeclined -- ^ The password reset request was declined
     { retry_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the password reset can be retried
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ResetPasswordResult where
-  show ResetPasswordResultOk
+instance I.ShortShow ResetPasswordResult where
+  shortShow ResetPasswordResultOk
       = "ResetPasswordResultOk"
-  show ResetPasswordResultPending
+  shortShow ResetPasswordResultPending
     { pending_reset_date = pending_reset_date_
     }
       = "ResetPasswordResultPending"
         ++ I.cc
         [ "pending_reset_date" `I.p` pending_reset_date_
         ]
-  show ResetPasswordResultDeclined
+  shortShow ResetPasswordResultDeclined
     { retry_date = retry_date_
     }
       = "ResetPasswordResultDeclined"

@@ -13,10 +13,10 @@ data AddedReaction
     , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the chat member, applied the reaction
     , date      :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the reaction was added
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddedReaction where
-  show AddedReaction
+instance I.ShortShow AddedReaction where
+  shortShow AddedReaction
     { _type     = _type_
     , sender_id = sender_id_
     , date      = date_

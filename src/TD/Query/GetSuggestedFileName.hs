@@ -14,10 +14,10 @@ data GetSuggestedFileName
     { file_id   :: Maybe Int    -- ^ Identifier of the file
     , directory :: Maybe T.Text -- ^ Directory in which the file is supposed to be saved
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSuggestedFileName where
-  show
+instance I.ShortShow GetSuggestedFileName where
+  shortShow
     GetSuggestedFileName
       { file_id   = file_id_
       , directory = directory_

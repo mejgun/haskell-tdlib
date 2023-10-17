@@ -29,10 +29,10 @@ data PaymentForm
     , product_description        :: Maybe FormattedText.FormattedText         -- ^ Product description
     , product_photo              :: Maybe Photo.Photo                         -- ^ Product photo; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PaymentForm where
-  show PaymentForm
+instance I.ShortShow PaymentForm where
+  shortShow PaymentForm
     { _id                        = _id_
     , invoice                    = invoice_
     , seller_bot_user_id         = seller_bot_user_id_

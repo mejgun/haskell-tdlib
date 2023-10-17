@@ -13,10 +13,10 @@ data ToggleSupergroupSignMessages
     { supergroup_id :: Maybe Int  -- ^ Identifier of the channel
     , sign_messages :: Maybe Bool -- ^ New value of sign_messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupSignMessages where
-  show
+instance I.ShortShow ToggleSupergroupSignMessages where
+  shortShow
     ToggleSupergroupSignMessages
       { supergroup_id = supergroup_id_
       , sign_messages = sign_messages_

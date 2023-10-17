@@ -15,10 +15,10 @@ data ImportMessages
     , message_file   :: Maybe InputFile.InputFile   -- ^ File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
     , attached_files :: Maybe [InputFile.InputFile] -- ^ Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ImportMessages where
-  show
+instance I.ShortShow ImportMessages where
+  shortShow
     ImportMessages
       { chat_id        = chat_id_
       , message_file   = message_file_

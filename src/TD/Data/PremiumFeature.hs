@@ -3,6 +3,7 @@ module TD.Data.PremiumFeature
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a feature available to Premium users
 data PremiumFeature
@@ -21,38 +22,38 @@ data PremiumFeature
   | PremiumFeatureForumTopicIcon -- ^ The ability to set a custom emoji as a forum topic icon
   | PremiumFeatureAppIcons -- ^ Allowed to set a premium application icons
   | PremiumFeatureRealTimeChatTranslation -- ^ Allowed to translate chat messages real-time
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumFeature where
-  show PremiumFeatureIncreasedLimits
+instance I.ShortShow PremiumFeature where
+  shortShow PremiumFeatureIncreasedLimits
       = "PremiumFeatureIncreasedLimits"
-  show PremiumFeatureIncreasedUploadFileSize
+  shortShow PremiumFeatureIncreasedUploadFileSize
       = "PremiumFeatureIncreasedUploadFileSize"
-  show PremiumFeatureImprovedDownloadSpeed
+  shortShow PremiumFeatureImprovedDownloadSpeed
       = "PremiumFeatureImprovedDownloadSpeed"
-  show PremiumFeatureVoiceRecognition
+  shortShow PremiumFeatureVoiceRecognition
       = "PremiumFeatureVoiceRecognition"
-  show PremiumFeatureDisabledAds
+  shortShow PremiumFeatureDisabledAds
       = "PremiumFeatureDisabledAds"
-  show PremiumFeatureUniqueReactions
+  shortShow PremiumFeatureUniqueReactions
       = "PremiumFeatureUniqueReactions"
-  show PremiumFeatureUniqueStickers
+  shortShow PremiumFeatureUniqueStickers
       = "PremiumFeatureUniqueStickers"
-  show PremiumFeatureCustomEmoji
+  shortShow PremiumFeatureCustomEmoji
       = "PremiumFeatureCustomEmoji"
-  show PremiumFeatureAdvancedChatManagement
+  shortShow PremiumFeatureAdvancedChatManagement
       = "PremiumFeatureAdvancedChatManagement"
-  show PremiumFeatureProfileBadge
+  shortShow PremiumFeatureProfileBadge
       = "PremiumFeatureProfileBadge"
-  show PremiumFeatureEmojiStatus
+  shortShow PremiumFeatureEmojiStatus
       = "PremiumFeatureEmojiStatus"
-  show PremiumFeatureAnimatedProfilePhoto
+  shortShow PremiumFeatureAnimatedProfilePhoto
       = "PremiumFeatureAnimatedProfilePhoto"
-  show PremiumFeatureForumTopicIcon
+  shortShow PremiumFeatureForumTopicIcon
       = "PremiumFeatureForumTopicIcon"
-  show PremiumFeatureAppIcons
+  shortShow PremiumFeatureAppIcons
       = "PremiumFeatureAppIcons"
-  show PremiumFeatureRealTimeChatTranslation
+  shortShow PremiumFeatureRealTimeChatTranslation
       = "PremiumFeatureRealTimeChatTranslation"
 
 instance AT.FromJSON PremiumFeature where

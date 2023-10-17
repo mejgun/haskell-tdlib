@@ -56,10 +56,10 @@ data Message
     , content                       :: Maybe MessageContent.MessageContent                 -- ^ Content of the message
     , reply_markup                  :: Maybe ReplyMarkup.ReplyMarkup                       -- ^ Reply markup for the message; may be null if none
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Message where
-  show Message
+instance I.ShortShow Message where
+  shortShow Message
     { _id                           = _id_
     , sender_id                     = sender_id_
     , chat_id                       = chat_id_

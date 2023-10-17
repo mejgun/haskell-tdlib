@@ -12,10 +12,10 @@ data SearchChatsNearby
   = SearchChatsNearby
     { location :: Maybe Location.Location -- ^ Current user location
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchChatsNearby where
-  show
+instance I.ShortShow SearchChatsNearby where
+  shortShow
     SearchChatsNearby
       { location = location_
       }

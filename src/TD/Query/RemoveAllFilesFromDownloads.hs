@@ -14,10 +14,10 @@ data RemoveAllFilesFromDownloads
     , only_completed    :: Maybe Bool -- ^ Pass true to remove only completed downloads
     , delete_from_cache :: Maybe Bool -- ^ Pass true to delete the file from the TDLib file cache
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveAllFilesFromDownloads where
-  show
+instance I.ShortShow RemoveAllFilesFromDownloads where
+  shortShow
     RemoveAllFilesFromDownloads
       { only_active       = only_active_
       , only_completed    = only_completed_

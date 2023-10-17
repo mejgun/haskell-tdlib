@@ -26,17 +26,17 @@ data MessageForwardOrigin
   | MessageForwardOriginMessageImport -- ^ The message was imported from an exported message history
     { sender_name :: Maybe T.Text -- ^ Name of the sender
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageForwardOrigin where
-  show MessageForwardOriginUser
+instance I.ShortShow MessageForwardOrigin where
+  shortShow MessageForwardOriginUser
     { sender_user_id = sender_user_id_
     }
       = "MessageForwardOriginUser"
         ++ I.cc
         [ "sender_user_id" `I.p` sender_user_id_
         ]
-  show MessageForwardOriginChat
+  shortShow MessageForwardOriginChat
     { sender_chat_id   = sender_chat_id_
     , author_signature = author_signature_
     }
@@ -45,14 +45,14 @@ instance Show MessageForwardOrigin where
         [ "sender_chat_id"   `I.p` sender_chat_id_
         , "author_signature" `I.p` author_signature_
         ]
-  show MessageForwardOriginHiddenUser
+  shortShow MessageForwardOriginHiddenUser
     { sender_name = sender_name_
     }
       = "MessageForwardOriginHiddenUser"
         ++ I.cc
         [ "sender_name" `I.p` sender_name_
         ]
-  show MessageForwardOriginChannel
+  shortShow MessageForwardOriginChannel
     { chat_id          = chat_id_
     , message_id       = message_id_
     , author_signature = author_signature_
@@ -63,7 +63,7 @@ instance Show MessageForwardOrigin where
         , "message_id"       `I.p` message_id_
         , "author_signature" `I.p` author_signature_
         ]
-  show MessageForwardOriginMessageImport
+  shortShow MessageForwardOriginMessageImport
     { sender_name = sender_name_
     }
       = "MessageForwardOriginMessageImport"

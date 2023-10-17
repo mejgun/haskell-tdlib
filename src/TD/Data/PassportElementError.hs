@@ -14,10 +14,10 @@ data PassportElementError
     , message :: Maybe T.Text                                                -- ^ Error message
     , source  :: Maybe PassportElementErrorSource.PassportElementErrorSource -- ^ Error source
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportElementError where
-  show PassportElementError
+instance I.ShortShow PassportElementError where
+  shortShow PassportElementError
     { _type   = _type_
     , message = message_
     , source  = source_

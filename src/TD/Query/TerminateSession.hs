@@ -11,10 +11,10 @@ data TerminateSession
   = TerminateSession
     { session_id :: Maybe Int -- ^ Session identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TerminateSession where
-  show
+instance I.ShortShow TerminateSession where
+  shortShow
     TerminateSession
       { session_id = session_id_
       }

@@ -15,10 +15,10 @@ data ToggleGroupCallParticipantIsHandRaised
     , participant_id :: Maybe MessageSender.MessageSender -- ^ Participant identifier
     , is_hand_raised :: Maybe Bool                        -- ^ Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallParticipantIsHandRaised where
-  show
+instance I.ShortShow ToggleGroupCallParticipantIsHandRaised where
+  shortShow
     ToggleGroupCallParticipantIsHandRaised
       { group_call_id  = group_call_id_
       , participant_id = participant_id_

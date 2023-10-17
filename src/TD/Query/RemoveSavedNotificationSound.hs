@@ -11,10 +11,10 @@ data RemoveSavedNotificationSound
   = RemoveSavedNotificationSound
     { notification_sound_id :: Maybe Int -- ^ Identifier of the notification sound
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveSavedNotificationSound where
-  show
+instance I.ShortShow RemoveSavedNotificationSound where
+  shortShow
     RemoveSavedNotificationSound
       { notification_sound_id = notification_sound_id_
       }

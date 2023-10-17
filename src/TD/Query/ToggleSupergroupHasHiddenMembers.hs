@@ -13,10 +13,10 @@ data ToggleSupergroupHasHiddenMembers
     { supergroup_id      :: Maybe Int  -- ^ Identifier of the supergroup
     , has_hidden_members :: Maybe Bool -- ^ New value of has_hidden_members
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupHasHiddenMembers where
-  show
+instance I.ShortShow ToggleSupergroupHasHiddenMembers where
+  shortShow
     ToggleSupergroupHasHiddenMembers
       { supergroup_id      = supergroup_id_
       , has_hidden_members = has_hidden_members_

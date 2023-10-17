@@ -12,10 +12,10 @@ data ConfirmQrCodeAuthentication
   = ConfirmQrCodeAuthentication
     { link :: Maybe T.Text -- ^ A link from a QR code. The link must be scanned by the in-app camera
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ConfirmQrCodeAuthentication where
-  show
+instance I.ShortShow ConfirmQrCodeAuthentication where
+  shortShow
     ConfirmQrCodeAuthentication
       { link = link_
       }

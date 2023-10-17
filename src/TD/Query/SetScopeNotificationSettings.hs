@@ -15,10 +15,10 @@ data SetScopeNotificationSettings
     { scope                 :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which to change the notification settings
     , notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings -- ^ The new notification settings for the given scope
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetScopeNotificationSettings where
-  show
+instance I.ShortShow SetScopeNotificationSettings where
+  shortShow
     SetScopeNotificationSettings
       { scope                 = scope_
       , notification_settings = notification_settings_

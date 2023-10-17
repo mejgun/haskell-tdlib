@@ -13,10 +13,10 @@ data ClickChatSponsoredMessage
     { chat_id    :: Maybe Int -- ^ Chat identifier of the sponsored message
     , message_id :: Maybe Int -- ^ Identifier of the sponsored message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClickChatSponsoredMessage where
-  show
+instance I.ShortShow ClickChatSponsoredMessage where
+  shortShow
     ClickChatSponsoredMessage
       { chat_id    = chat_id_
       , message_id = message_id_

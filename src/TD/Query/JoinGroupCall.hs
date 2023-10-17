@@ -20,10 +20,10 @@ data JoinGroupCall
     , is_my_video_enabled :: Maybe Bool                        -- ^ Pass true if the user's video is enabled
     , invite_hash         :: Maybe T.Text                      -- ^ If non-empty, invite hash to be used to join the group call without being muted by administrators
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show JoinGroupCall where
-  show
+instance I.ShortShow JoinGroupCall where
+  shortShow
     JoinGroupCall
       { group_call_id       = group_call_id_
       , participant_id      = participant_id_

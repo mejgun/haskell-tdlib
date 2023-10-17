@@ -11,10 +11,10 @@ data RemoveProxy
   = RemoveProxy
     { proxy_id :: Maybe Int -- ^ Proxy identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveProxy where
-  show
+instance I.ShortShow RemoveProxy where
+  shortShow
     RemoveProxy
       { proxy_id = proxy_id_
       }

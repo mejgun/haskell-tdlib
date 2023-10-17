@@ -3,20 +3,21 @@ module TD.Data.EmojiCategoryType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes type of an emoji category
 data EmojiCategoryType
   = EmojiCategoryTypeDefault -- ^ The category must be used by default
   | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection
   | EmojiCategoryTypeChatPhoto -- ^ The category must be used for chat photo emoji selection
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EmojiCategoryType where
-  show EmojiCategoryTypeDefault
+instance I.ShortShow EmojiCategoryType where
+  shortShow EmojiCategoryTypeDefault
       = "EmojiCategoryTypeDefault"
-  show EmojiCategoryTypeEmojiStatus
+  shortShow EmojiCategoryTypeEmojiStatus
       = "EmojiCategoryTypeEmojiStatus"
-  show EmojiCategoryTypeChatPhoto
+  shortShow EmojiCategoryTypeChatPhoto
       = "EmojiCategoryTypeChatPhoto"
 
 instance AT.FromJSON EmojiCategoryType where

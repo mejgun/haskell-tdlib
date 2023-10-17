@@ -15,10 +15,10 @@ data AssignAppStoreTransaction
     { receipt :: Maybe BS.ByteString                           -- ^ App Store receipt
     , purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AssignAppStoreTransaction where
-  show
+instance I.ShortShow AssignAppStoreTransaction where
+  shortShow
     AssignAppStoreTransaction
       { receipt = receipt_
       , purpose = purpose_

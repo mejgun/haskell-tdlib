@@ -11,10 +11,10 @@ data SponsoredMessages
     { messages         :: Maybe [SponsoredMessage.SponsoredMessage] -- ^ List of sponsored messages
     , messages_between :: Maybe Int                                 -- ^ The minimum number of messages between shown sponsored messages, or 0 if only one sponsored message must be shown after all ordinary messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SponsoredMessages where
-  show SponsoredMessages
+instance I.ShortShow SponsoredMessages where
+  shortShow SponsoredMessages
     { messages         = messages_
     , messages_between = messages_between_
     }

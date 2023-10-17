@@ -16,10 +16,10 @@ data GetSupergroupMembers
     , offset        :: Maybe Int                                             -- ^ Number of users to skip
     , limit         :: Maybe Int                                             -- ^ The maximum number of users be returned; up to 200
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSupergroupMembers where
-  show
+instance I.ShortShow GetSupergroupMembers where
+  shortShow
     GetSupergroupMembers
       { supergroup_id = supergroup_id_
       , _filter       = _filter_

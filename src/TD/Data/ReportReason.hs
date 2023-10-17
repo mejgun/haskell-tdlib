@@ -3,6 +3,7 @@ module TD.Data.ReportReason
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the reason why a chat is reported
 data ReportReason
@@ -16,28 +17,28 @@ data ReportReason
   | ReportReasonIllegalDrugs -- ^ The chat has illegal drugs related content
   | ReportReasonPersonalDetails -- ^ The chat contains messages with personal details
   | ReportReasonCustom -- ^ A custom reason provided by the user
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReportReason where
-  show ReportReasonSpam
+instance I.ShortShow ReportReason where
+  shortShow ReportReasonSpam
       = "ReportReasonSpam"
-  show ReportReasonViolence
+  shortShow ReportReasonViolence
       = "ReportReasonViolence"
-  show ReportReasonPornography
+  shortShow ReportReasonPornography
       = "ReportReasonPornography"
-  show ReportReasonChildAbuse
+  shortShow ReportReasonChildAbuse
       = "ReportReasonChildAbuse"
-  show ReportReasonCopyright
+  shortShow ReportReasonCopyright
       = "ReportReasonCopyright"
-  show ReportReasonUnrelatedLocation
+  shortShow ReportReasonUnrelatedLocation
       = "ReportReasonUnrelatedLocation"
-  show ReportReasonFake
+  shortShow ReportReasonFake
       = "ReportReasonFake"
-  show ReportReasonIllegalDrugs
+  shortShow ReportReasonIllegalDrugs
       = "ReportReasonIllegalDrugs"
-  show ReportReasonPersonalDetails
+  shortShow ReportReasonPersonalDetails
       = "ReportReasonPersonalDetails"
-  show ReportReasonCustom
+  shortShow ReportReasonCustom
       = "ReportReasonCustom"
 
 instance AT.FromJSON ReportReason where

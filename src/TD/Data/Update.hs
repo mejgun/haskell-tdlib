@@ -569,24 +569,24 @@ data Update
     , user_chat_id :: Maybe Int                             -- ^ Chat identifier of the private chat with the user
     , invite_link  :: Maybe ChatInviteLink.ChatInviteLink   -- ^ The invite link, which was used to send join request; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Update where
-  show UpdateAuthorizationState
+instance I.ShortShow Update where
+  shortShow UpdateAuthorizationState
     { authorization_state = authorization_state_
     }
       = "UpdateAuthorizationState"
         ++ I.cc
         [ "authorization_state" `I.p` authorization_state_
         ]
-  show UpdateNewMessage
+  shortShow UpdateNewMessage
     { message = message_
     }
       = "UpdateNewMessage"
         ++ I.cc
         [ "message" `I.p` message_
         ]
-  show UpdateMessageSendAcknowledged
+  shortShow UpdateMessageSendAcknowledged
     { chat_id    = chat_id_
     , message_id = message_id_
     }
@@ -595,7 +595,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
-  show UpdateMessageSendSucceeded
+  shortShow UpdateMessageSendSucceeded
     { message        = message_
     , old_message_id = old_message_id_
     }
@@ -604,7 +604,7 @@ instance Show Update where
         [ "message"        `I.p` message_
         , "old_message_id" `I.p` old_message_id_
         ]
-  show UpdateMessageSendFailed
+  shortShow UpdateMessageSendFailed
     { message        = message_
     , old_message_id = old_message_id_
     , error_code     = error_code_
@@ -617,7 +617,7 @@ instance Show Update where
         , "error_code"     `I.p` error_code_
         , "error_message"  `I.p` error_message_
         ]
-  show UpdateMessageContent
+  shortShow UpdateMessageContent
     { chat_id     = chat_id_
     , message_id  = message_id_
     , new_content = new_content_
@@ -628,7 +628,7 @@ instance Show Update where
         , "message_id"  `I.p` message_id_
         , "new_content" `I.p` new_content_
         ]
-  show UpdateMessageEdited
+  shortShow UpdateMessageEdited
     { chat_id      = chat_id_
     , message_id   = message_id_
     , edit_date    = edit_date_
@@ -641,7 +641,7 @@ instance Show Update where
         , "edit_date"    `I.p` edit_date_
         , "reply_markup" `I.p` reply_markup_
         ]
-  show UpdateMessageIsPinned
+  shortShow UpdateMessageIsPinned
     { chat_id    = chat_id_
     , message_id = message_id_
     , is_pinned  = is_pinned_
@@ -652,7 +652,7 @@ instance Show Update where
         , "message_id" `I.p` message_id_
         , "is_pinned"  `I.p` is_pinned_
         ]
-  show UpdateMessageInteractionInfo
+  shortShow UpdateMessageInteractionInfo
     { chat_id          = chat_id_
     , message_id       = message_id_
     , interaction_info = interaction_info_
@@ -663,7 +663,7 @@ instance Show Update where
         , "message_id"       `I.p` message_id_
         , "interaction_info" `I.p` interaction_info_
         ]
-  show UpdateMessageContentOpened
+  shortShow UpdateMessageContentOpened
     { chat_id    = chat_id_
     , message_id = message_id_
     }
@@ -672,7 +672,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
-  show UpdateMessageMentionRead
+  shortShow UpdateMessageMentionRead
     { chat_id              = chat_id_
     , message_id           = message_id_
     , unread_mention_count = unread_mention_count_
@@ -683,7 +683,7 @@ instance Show Update where
         , "message_id"           `I.p` message_id_
         , "unread_mention_count" `I.p` unread_mention_count_
         ]
-  show UpdateMessageUnreadReactions
+  shortShow UpdateMessageUnreadReactions
     { chat_id               = chat_id_
     , message_id            = message_id_
     , unread_reactions      = unread_reactions_
@@ -696,7 +696,7 @@ instance Show Update where
         , "unread_reactions"      `I.p` unread_reactions_
         , "unread_reaction_count" `I.p` unread_reaction_count_
         ]
-  show UpdateMessageLiveLocationViewed
+  shortShow UpdateMessageLiveLocationViewed
     { chat_id    = chat_id_
     , message_id = message_id_
     }
@@ -705,14 +705,14 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
-  show UpdateNewChat
+  shortShow UpdateNewChat
     { chat = chat_
     }
       = "UpdateNewChat"
         ++ I.cc
         [ "chat" `I.p` chat_
         ]
-  show UpdateChatTitle
+  shortShow UpdateChatTitle
     { chat_id = chat_id_
     , title   = title_
     }
@@ -721,7 +721,7 @@ instance Show Update where
         [ "chat_id" `I.p` chat_id_
         , "title"   `I.p` title_
         ]
-  show UpdateChatPhoto
+  shortShow UpdateChatPhoto
     { chat_id = chat_id_
     , photo   = photo_
     }
@@ -730,7 +730,7 @@ instance Show Update where
         [ "chat_id" `I.p` chat_id_
         , "photo"   `I.p` photo_
         ]
-  show UpdateChatPermissions
+  shortShow UpdateChatPermissions
     { chat_id     = chat_id_
     , permissions = permissions_
     }
@@ -739,7 +739,7 @@ instance Show Update where
         [ "chat_id"     `I.p` chat_id_
         , "permissions" `I.p` permissions_
         ]
-  show UpdateChatLastMessage
+  shortShow UpdateChatLastMessage
     { chat_id      = chat_id_
     , last_message = last_message_
     , positions    = positions_
@@ -750,7 +750,7 @@ instance Show Update where
         , "last_message" `I.p` last_message_
         , "positions"    `I.p` positions_
         ]
-  show UpdateChatPosition
+  shortShow UpdateChatPosition
     { chat_id  = chat_id_
     , position = position_
     }
@@ -759,7 +759,7 @@ instance Show Update where
         [ "chat_id"  `I.p` chat_id_
         , "position" `I.p` position_
         ]
-  show UpdateChatReadInbox
+  shortShow UpdateChatReadInbox
     { chat_id                    = chat_id_
     , last_read_inbox_message_id = last_read_inbox_message_id_
     , unread_count               = unread_count_
@@ -770,7 +770,7 @@ instance Show Update where
         , "last_read_inbox_message_id" `I.p` last_read_inbox_message_id_
         , "unread_count"               `I.p` unread_count_
         ]
-  show UpdateChatReadOutbox
+  shortShow UpdateChatReadOutbox
     { chat_id                     = chat_id_
     , last_read_outbox_message_id = last_read_outbox_message_id_
     }
@@ -779,7 +779,7 @@ instance Show Update where
         [ "chat_id"                     `I.p` chat_id_
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
         ]
-  show UpdateChatActionBar
+  shortShow UpdateChatActionBar
     { chat_id    = chat_id_
     , action_bar = action_bar_
     }
@@ -788,7 +788,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "action_bar" `I.p` action_bar_
         ]
-  show UpdateChatAvailableReactions
+  shortShow UpdateChatAvailableReactions
     { chat_id             = chat_id_
     , available_reactions = available_reactions_
     }
@@ -797,7 +797,7 @@ instance Show Update where
         [ "chat_id"             `I.p` chat_id_
         , "available_reactions" `I.p` available_reactions_
         ]
-  show UpdateChatDraftMessage
+  shortShow UpdateChatDraftMessage
     { chat_id       = chat_id_
     , draft_message = draft_message_
     , positions     = positions_
@@ -808,7 +808,7 @@ instance Show Update where
         , "draft_message" `I.p` draft_message_
         , "positions"     `I.p` positions_
         ]
-  show UpdateChatMessageSender
+  shortShow UpdateChatMessageSender
     { chat_id           = chat_id_
     , message_sender_id = message_sender_id_
     }
@@ -817,7 +817,7 @@ instance Show Update where
         [ "chat_id"           `I.p` chat_id_
         , "message_sender_id" `I.p` message_sender_id_
         ]
-  show UpdateChatMessageAutoDeleteTime
+  shortShow UpdateChatMessageAutoDeleteTime
     { chat_id                  = chat_id_
     , message_auto_delete_time = message_auto_delete_time_
     }
@@ -826,7 +826,7 @@ instance Show Update where
         [ "chat_id"                  `I.p` chat_id_
         , "message_auto_delete_time" `I.p` message_auto_delete_time_
         ]
-  show UpdateChatNotificationSettings
+  shortShow UpdateChatNotificationSettings
     { chat_id               = chat_id_
     , notification_settings = notification_settings_
     }
@@ -835,7 +835,7 @@ instance Show Update where
         [ "chat_id"               `I.p` chat_id_
         , "notification_settings" `I.p` notification_settings_
         ]
-  show UpdateChatPendingJoinRequests
+  shortShow UpdateChatPendingJoinRequests
     { chat_id               = chat_id_
     , pending_join_requests = pending_join_requests_
     }
@@ -844,7 +844,7 @@ instance Show Update where
         [ "chat_id"               `I.p` chat_id_
         , "pending_join_requests" `I.p` pending_join_requests_
         ]
-  show UpdateChatReplyMarkup
+  shortShow UpdateChatReplyMarkup
     { chat_id                 = chat_id_
     , reply_markup_message_id = reply_markup_message_id_
     }
@@ -853,7 +853,7 @@ instance Show Update where
         [ "chat_id"                 `I.p` chat_id_
         , "reply_markup_message_id" `I.p` reply_markup_message_id_
         ]
-  show UpdateChatBackground
+  shortShow UpdateChatBackground
     { chat_id    = chat_id_
     , background = background_
     }
@@ -862,7 +862,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "background" `I.p` background_
         ]
-  show UpdateChatTheme
+  shortShow UpdateChatTheme
     { chat_id    = chat_id_
     , theme_name = theme_name_
     }
@@ -871,7 +871,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "theme_name" `I.p` theme_name_
         ]
-  show UpdateChatUnreadMentionCount
+  shortShow UpdateChatUnreadMentionCount
     { chat_id              = chat_id_
     , unread_mention_count = unread_mention_count_
     }
@@ -880,7 +880,7 @@ instance Show Update where
         [ "chat_id"              `I.p` chat_id_
         , "unread_mention_count" `I.p` unread_mention_count_
         ]
-  show UpdateChatUnreadReactionCount
+  shortShow UpdateChatUnreadReactionCount
     { chat_id               = chat_id_
     , unread_reaction_count = unread_reaction_count_
     }
@@ -889,7 +889,7 @@ instance Show Update where
         [ "chat_id"               `I.p` chat_id_
         , "unread_reaction_count" `I.p` unread_reaction_count_
         ]
-  show UpdateChatVideoChat
+  shortShow UpdateChatVideoChat
     { chat_id    = chat_id_
     , video_chat = video_chat_
     }
@@ -898,7 +898,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "video_chat" `I.p` video_chat_
         ]
-  show UpdateChatDefaultDisableNotification
+  shortShow UpdateChatDefaultDisableNotification
     { chat_id                      = chat_id_
     , default_disable_notification = default_disable_notification_
     }
@@ -907,7 +907,7 @@ instance Show Update where
         [ "chat_id"                      `I.p` chat_id_
         , "default_disable_notification" `I.p` default_disable_notification_
         ]
-  show UpdateChatHasProtectedContent
+  shortShow UpdateChatHasProtectedContent
     { chat_id               = chat_id_
     , has_protected_content = has_protected_content_
     }
@@ -916,7 +916,7 @@ instance Show Update where
         [ "chat_id"               `I.p` chat_id_
         , "has_protected_content" `I.p` has_protected_content_
         ]
-  show UpdateChatIsTranslatable
+  shortShow UpdateChatIsTranslatable
     { chat_id         = chat_id_
     , is_translatable = is_translatable_
     }
@@ -925,7 +925,7 @@ instance Show Update where
         [ "chat_id"         `I.p` chat_id_
         , "is_translatable" `I.p` is_translatable_
         ]
-  show UpdateChatIsMarkedAsUnread
+  shortShow UpdateChatIsMarkedAsUnread
     { chat_id             = chat_id_
     , is_marked_as_unread = is_marked_as_unread_
     }
@@ -934,7 +934,7 @@ instance Show Update where
         [ "chat_id"             `I.p` chat_id_
         , "is_marked_as_unread" `I.p` is_marked_as_unread_
         ]
-  show UpdateChatIsBlocked
+  shortShow UpdateChatIsBlocked
     { chat_id    = chat_id_
     , is_blocked = is_blocked_
     }
@@ -943,7 +943,7 @@ instance Show Update where
         [ "chat_id"    `I.p` chat_id_
         , "is_blocked" `I.p` is_blocked_
         ]
-  show UpdateChatHasScheduledMessages
+  shortShow UpdateChatHasScheduledMessages
     { chat_id                = chat_id_
     , has_scheduled_messages = has_scheduled_messages_
     }
@@ -952,7 +952,7 @@ instance Show Update where
         [ "chat_id"                `I.p` chat_id_
         , "has_scheduled_messages" `I.p` has_scheduled_messages_
         ]
-  show UpdateChatFolders
+  shortShow UpdateChatFolders
     { chat_folders            = chat_folders_
     , main_chat_list_position = main_chat_list_position_
     }
@@ -961,7 +961,7 @@ instance Show Update where
         [ "chat_folders"            `I.p` chat_folders_
         , "main_chat_list_position" `I.p` main_chat_list_position_
         ]
-  show UpdateChatOnlineMemberCount
+  shortShow UpdateChatOnlineMemberCount
     { chat_id             = chat_id_
     , online_member_count = online_member_count_
     }
@@ -970,7 +970,7 @@ instance Show Update where
         [ "chat_id"             `I.p` chat_id_
         , "online_member_count" `I.p` online_member_count_
         ]
-  show UpdateForumTopicInfo
+  shortShow UpdateForumTopicInfo
     { chat_id = chat_id_
     , info    = info_
     }
@@ -979,7 +979,7 @@ instance Show Update where
         [ "chat_id" `I.p` chat_id_
         , "info"    `I.p` info_
         ]
-  show UpdateScopeNotificationSettings
+  shortShow UpdateScopeNotificationSettings
     { scope                  = scope_
     , _notification_settings = _notification_settings_
     }
@@ -988,7 +988,7 @@ instance Show Update where
         [ "scope"                  `I.p` scope_
         , "_notification_settings" `I.p` _notification_settings_
         ]
-  show UpdateNotification
+  shortShow UpdateNotification
     { notification_group_id = notification_group_id_
     , notification          = notification_
     }
@@ -997,7 +997,7 @@ instance Show Update where
         [ "notification_group_id" `I.p` notification_group_id_
         , "notification"          `I.p` notification_
         ]
-  show UpdateNotificationGroup
+  shortShow UpdateNotificationGroup
     { notification_group_id         = notification_group_id_
     , _type                         = _type_
     , chat_id                       = chat_id_
@@ -1018,14 +1018,14 @@ instance Show Update where
         , "added_notifications"           `I.p` added_notifications_
         , "removed_notification_ids"      `I.p` removed_notification_ids_
         ]
-  show UpdateActiveNotifications
+  shortShow UpdateActiveNotifications
     { groups = groups_
     }
       = "UpdateActiveNotifications"
         ++ I.cc
         [ "groups" `I.p` groups_
         ]
-  show UpdateHavePendingNotifications
+  shortShow UpdateHavePendingNotifications
     { have_delayed_notifications    = have_delayed_notifications_
     , have_unreceived_notifications = have_unreceived_notifications_
     }
@@ -1034,7 +1034,7 @@ instance Show Update where
         [ "have_delayed_notifications"    `I.p` have_delayed_notifications_
         , "have_unreceived_notifications" `I.p` have_unreceived_notifications_
         ]
-  show UpdateDeleteMessages
+  shortShow UpdateDeleteMessages
     { chat_id      = chat_id_
     , message_ids  = message_ids_
     , is_permanent = is_permanent_
@@ -1047,7 +1047,7 @@ instance Show Update where
         , "is_permanent" `I.p` is_permanent_
         , "from_cache"   `I.p` from_cache_
         ]
-  show UpdateChatAction
+  shortShow UpdateChatAction
     { chat_id           = chat_id_
     , message_thread_id = message_thread_id_
     , sender_id         = sender_id_
@@ -1060,7 +1060,7 @@ instance Show Update where
         , "sender_id"         `I.p` sender_id_
         , "action"            `I.p` action_
         ]
-  show UpdateUserStatus
+  shortShow UpdateUserStatus
     { user_id = user_id_
     , status  = status_
     }
@@ -1069,35 +1069,35 @@ instance Show Update where
         [ "user_id" `I.p` user_id_
         , "status"  `I.p` status_
         ]
-  show UpdateUser
+  shortShow UpdateUser
     { user = user_
     }
       = "UpdateUser"
         ++ I.cc
         [ "user" `I.p` user_
         ]
-  show UpdateBasicGroup
+  shortShow UpdateBasicGroup
     { basic_group = basic_group_
     }
       = "UpdateBasicGroup"
         ++ I.cc
         [ "basic_group" `I.p` basic_group_
         ]
-  show UpdateSupergroup
+  shortShow UpdateSupergroup
     { supergroup = supergroup_
     }
       = "UpdateSupergroup"
         ++ I.cc
         [ "supergroup" `I.p` supergroup_
         ]
-  show UpdateSecretChat
+  shortShow UpdateSecretChat
     { secret_chat = secret_chat_
     }
       = "UpdateSecretChat"
         ++ I.cc
         [ "secret_chat" `I.p` secret_chat_
         ]
-  show UpdateUserFullInfo
+  shortShow UpdateUserFullInfo
     { user_id        = user_id_
     , user_full_info = user_full_info_
     }
@@ -1106,7 +1106,7 @@ instance Show Update where
         [ "user_id"        `I.p` user_id_
         , "user_full_info" `I.p` user_full_info_
         ]
-  show UpdateBasicGroupFullInfo
+  shortShow UpdateBasicGroupFullInfo
     { basic_group_id        = basic_group_id_
     , basic_group_full_info = basic_group_full_info_
     }
@@ -1115,7 +1115,7 @@ instance Show Update where
         [ "basic_group_id"        `I.p` basic_group_id_
         , "basic_group_full_info" `I.p` basic_group_full_info_
         ]
-  show UpdateSupergroupFullInfo
+  shortShow UpdateSupergroupFullInfo
     { supergroup_id        = supergroup_id_
     , supergroup_full_info = supergroup_full_info_
     }
@@ -1124,7 +1124,7 @@ instance Show Update where
         [ "supergroup_id"        `I.p` supergroup_id_
         , "supergroup_full_info" `I.p` supergroup_full_info_
         ]
-  show UpdateServiceNotification
+  shortShow UpdateServiceNotification
     { __type  = __type_
     , content = content_
     }
@@ -1133,14 +1133,14 @@ instance Show Update where
         [ "__type"  `I.p` __type_
         , "content" `I.p` content_
         ]
-  show UpdateFile
+  shortShow UpdateFile
     { file = file_
     }
       = "UpdateFile"
         ++ I.cc
         [ "file" `I.p` file_
         ]
-  show UpdateFileGenerationStart
+  shortShow UpdateFileGenerationStart
     { generation_id    = generation_id_
     , original_path    = original_path_
     , destination_path = destination_path_
@@ -1153,14 +1153,14 @@ instance Show Update where
         , "destination_path" `I.p` destination_path_
         , "conversion"       `I.p` conversion_
         ]
-  show UpdateFileGenerationStop
+  shortShow UpdateFileGenerationStop
     { generation_id = generation_id_
     }
       = "UpdateFileGenerationStop"
         ++ I.cc
         [ "generation_id" `I.p` generation_id_
         ]
-  show UpdateFileDownloads
+  shortShow UpdateFileDownloads
     { total_size      = total_size_
     , total_count     = total_count_
     , downloaded_size = downloaded_size_
@@ -1171,7 +1171,7 @@ instance Show Update where
         , "total_count"     `I.p` total_count_
         , "downloaded_size" `I.p` downloaded_size_
         ]
-  show UpdateFileAddedToDownloads
+  shortShow UpdateFileAddedToDownloads
     { file_download = file_download_
     , counts        = counts_
     }
@@ -1180,7 +1180,7 @@ instance Show Update where
         [ "file_download" `I.p` file_download_
         , "counts"        `I.p` counts_
         ]
-  show UpdateFileDownload
+  shortShow UpdateFileDownload
     { file_id       = file_id_
     , complete_date = complete_date_
     , is_paused     = is_paused_
@@ -1193,7 +1193,7 @@ instance Show Update where
         , "is_paused"     `I.p` is_paused_
         , "counts"        `I.p` counts_
         ]
-  show UpdateFileRemovedFromDownloads
+  shortShow UpdateFileRemovedFromDownloads
     { file_id = file_id_
     , counts  = counts_
     }
@@ -1202,21 +1202,21 @@ instance Show Update where
         [ "file_id" `I.p` file_id_
         , "counts"  `I.p` counts_
         ]
-  show UpdateCall
+  shortShow UpdateCall
     { call = call_
     }
       = "UpdateCall"
         ++ I.cc
         [ "call" `I.p` call_
         ]
-  show UpdateGroupCall
+  shortShow UpdateGroupCall
     { group_call = group_call_
     }
       = "UpdateGroupCall"
         ++ I.cc
         [ "group_call" `I.p` group_call_
         ]
-  show UpdateGroupCallParticipant
+  shortShow UpdateGroupCallParticipant
     { group_call_id = group_call_id_
     , participant   = participant_
     }
@@ -1225,7 +1225,7 @@ instance Show Update where
         [ "group_call_id" `I.p` group_call_id_
         , "participant"   `I.p` participant_
         ]
-  show UpdateNewCallSignalingData
+  shortShow UpdateNewCallSignalingData
     { call_id = call_id_
     , _data   = _data_
     }
@@ -1234,7 +1234,7 @@ instance Show Update where
         [ "call_id" `I.p` call_id_
         , "_data"   `I.p` _data_
         ]
-  show UpdateUserPrivacySettingRules
+  shortShow UpdateUserPrivacySettingRules
     { setting = setting_
     , rules   = rules_
     }
@@ -1243,7 +1243,7 @@ instance Show Update where
         [ "setting" `I.p` setting_
         , "rules"   `I.p` rules_
         ]
-  show UpdateUnreadMessageCount
+  shortShow UpdateUnreadMessageCount
     { chat_list            = chat_list_
     , unread_count         = unread_count_
     , unread_unmuted_count = unread_unmuted_count_
@@ -1254,7 +1254,7 @@ instance Show Update where
         , "unread_count"         `I.p` unread_count_
         , "unread_unmuted_count" `I.p` unread_unmuted_count_
         ]
-  show UpdateUnreadChatCount
+  shortShow UpdateUnreadChatCount
     { chat_list                      = chat_list_
     , total_count                    = total_count_
     , unread_count                   = unread_count_
@@ -1271,14 +1271,14 @@ instance Show Update where
         , "marked_as_unread_count"         `I.p` marked_as_unread_count_
         , "marked_as_unread_unmuted_count" `I.p` marked_as_unread_unmuted_count_
         ]
-  show UpdateStory
+  shortShow UpdateStory
     { story = story_
     }
       = "UpdateStory"
         ++ I.cc
         [ "story" `I.p` story_
         ]
-  show UpdateStoryDeleted
+  shortShow UpdateStoryDeleted
     { story_sender_chat_id = story_sender_chat_id_
     , story_id             = story_id_
     }
@@ -1287,14 +1287,14 @@ instance Show Update where
         [ "story_sender_chat_id" `I.p` story_sender_chat_id_
         , "story_id"             `I.p` story_id_
         ]
-  show UpdateChatActiveStories
+  shortShow UpdateChatActiveStories
     { active_stories = active_stories_
     }
       = "UpdateChatActiveStories"
         ++ I.cc
         [ "active_stories" `I.p` active_stories_
         ]
-  show UpdateStoryListChatCount
+  shortShow UpdateStoryListChatCount
     { story_list = story_list_
     , chat_count = chat_count_
     }
@@ -1303,7 +1303,7 @@ instance Show Update where
         [ "story_list" `I.p` story_list_
         , "chat_count" `I.p` chat_count_
         ]
-  show UpdateOption
+  shortShow UpdateOption
     { name  = name_
     , value = value_
     }
@@ -1312,14 +1312,14 @@ instance Show Update where
         [ "name"  `I.p` name_
         , "value" `I.p` value_
         ]
-  show UpdateStickerSet
+  shortShow UpdateStickerSet
     { sticker_set = sticker_set_
     }
       = "UpdateStickerSet"
         ++ I.cc
         [ "sticker_set" `I.p` sticker_set_
         ]
-  show UpdateInstalledStickerSets
+  shortShow UpdateInstalledStickerSets
     { sticker_type    = sticker_type_
     , sticker_set_ids = sticker_set_ids_
     }
@@ -1328,7 +1328,7 @@ instance Show Update where
         [ "sticker_type"    `I.p` sticker_type_
         , "sticker_set_ids" `I.p` sticker_set_ids_
         ]
-  show UpdateTrendingStickerSets
+  shortShow UpdateTrendingStickerSets
     { sticker_type = sticker_type_
     , sticker_sets = sticker_sets_
     }
@@ -1337,7 +1337,7 @@ instance Show Update where
         [ "sticker_type" `I.p` sticker_type_
         , "sticker_sets" `I.p` sticker_sets_
         ]
-  show UpdateRecentStickers
+  shortShow UpdateRecentStickers
     { is_attached = is_attached_
     , sticker_ids = sticker_ids_
     }
@@ -1346,28 +1346,28 @@ instance Show Update where
         [ "is_attached" `I.p` is_attached_
         , "sticker_ids" `I.p` sticker_ids_
         ]
-  show UpdateFavoriteStickers
+  shortShow UpdateFavoriteStickers
     { sticker_ids = sticker_ids_
     }
       = "UpdateFavoriteStickers"
         ++ I.cc
         [ "sticker_ids" `I.p` sticker_ids_
         ]
-  show UpdateSavedAnimations
+  shortShow UpdateSavedAnimations
     { animation_ids = animation_ids_
     }
       = "UpdateSavedAnimations"
         ++ I.cc
         [ "animation_ids" `I.p` animation_ids_
         ]
-  show UpdateSavedNotificationSounds
+  shortShow UpdateSavedNotificationSounds
     { notification_sound_ids = notification_sound_ids_
     }
       = "UpdateSavedNotificationSounds"
         ++ I.cc
         [ "notification_sound_ids" `I.p` notification_sound_ids_
         ]
-  show UpdateSelectedBackground
+  shortShow UpdateSelectedBackground
     { for_dark_theme = for_dark_theme_
     , _background    = _background_
     }
@@ -1376,14 +1376,14 @@ instance Show Update where
         [ "for_dark_theme" `I.p` for_dark_theme_
         , "_background"    `I.p` _background_
         ]
-  show UpdateChatThemes
+  shortShow UpdateChatThemes
     { chat_themes = chat_themes_
     }
       = "UpdateChatThemes"
         ++ I.cc
         [ "chat_themes" `I.p` chat_themes_
         ]
-  show UpdateLanguagePackStrings
+  shortShow UpdateLanguagePackStrings
     { localization_target = localization_target_
     , language_pack_id    = language_pack_id_
     , strings             = strings_
@@ -1394,14 +1394,14 @@ instance Show Update where
         , "language_pack_id"    `I.p` language_pack_id_
         , "strings"             `I.p` strings_
         ]
-  show UpdateConnectionState
+  shortShow UpdateConnectionState
     { state = state_
     }
       = "UpdateConnectionState"
         ++ I.cc
         [ "state" `I.p` state_
         ]
-  show UpdateTermsOfService
+  shortShow UpdateTermsOfService
     { terms_of_service_id = terms_of_service_id_
     , terms_of_service    = terms_of_service_
     }
@@ -1410,49 +1410,49 @@ instance Show Update where
         [ "terms_of_service_id" `I.p` terms_of_service_id_
         , "terms_of_service"    `I.p` terms_of_service_
         ]
-  show UpdateUsersNearby
+  shortShow UpdateUsersNearby
     { users_nearby = users_nearby_
     }
       = "UpdateUsersNearby"
         ++ I.cc
         [ "users_nearby" `I.p` users_nearby_
         ]
-  show UpdateAttachmentMenuBots
+  shortShow UpdateAttachmentMenuBots
     { bots = bots_
     }
       = "UpdateAttachmentMenuBots"
         ++ I.cc
         [ "bots" `I.p` bots_
         ]
-  show UpdateWebAppMessageSent
+  shortShow UpdateWebAppMessageSent
     { web_app_launch_id = web_app_launch_id_
     }
       = "UpdateWebAppMessageSent"
         ++ I.cc
         [ "web_app_launch_id" `I.p` web_app_launch_id_
         ]
-  show UpdateActiveEmojiReactions
+  shortShow UpdateActiveEmojiReactions
     { emojis = emojis_
     }
       = "UpdateActiveEmojiReactions"
         ++ I.cc
         [ "emojis" `I.p` emojis_
         ]
-  show UpdateDefaultReactionType
+  shortShow UpdateDefaultReactionType
     { reaction_type = reaction_type_
     }
       = "UpdateDefaultReactionType"
         ++ I.cc
         [ "reaction_type" `I.p` reaction_type_
         ]
-  show UpdateDiceEmojis
+  shortShow UpdateDiceEmojis
     { emojis = emojis_
     }
       = "UpdateDiceEmojis"
         ++ I.cc
         [ "emojis" `I.p` emojis_
         ]
-  show UpdateAnimatedEmojiMessageClicked
+  shortShow UpdateAnimatedEmojiMessageClicked
     { chat_id    = chat_id_
     , message_id = message_id_
     , sticker    = sticker_
@@ -1463,7 +1463,7 @@ instance Show Update where
         , "message_id" `I.p` message_id_
         , "sticker"    `I.p` sticker_
         ]
-  show UpdateAnimationSearchParameters
+  shortShow UpdateAnimationSearchParameters
     { provider = provider_
     , emojis   = emojis_
     }
@@ -1472,7 +1472,7 @@ instance Show Update where
         [ "provider" `I.p` provider_
         , "emojis"   `I.p` emojis_
         ]
-  show UpdateSuggestedActions
+  shortShow UpdateSuggestedActions
     { added_actions   = added_actions_
     , removed_actions = removed_actions_
     }
@@ -1481,7 +1481,7 @@ instance Show Update where
         [ "added_actions"   `I.p` added_actions_
         , "removed_actions" `I.p` removed_actions_
         ]
-  show UpdateAddChatMembersPrivacyForbidden
+  shortShow UpdateAddChatMembersPrivacyForbidden
     { chat_id  = chat_id_
     , user_ids = user_ids_
     }
@@ -1490,7 +1490,7 @@ instance Show Update where
         [ "chat_id"  `I.p` chat_id_
         , "user_ids" `I.p` user_ids_
         ]
-  show UpdateAutosaveSettings
+  shortShow UpdateAutosaveSettings
     { _scope   = _scope_
     , settings = settings_
     }
@@ -1499,7 +1499,7 @@ instance Show Update where
         [ "_scope"   `I.p` _scope_
         , "settings" `I.p` settings_
         ]
-  show UpdateNewInlineQuery
+  shortShow UpdateNewInlineQuery
     { _id            = _id_
     , sender_user_id = sender_user_id_
     , user_location  = user_location_
@@ -1516,7 +1516,7 @@ instance Show Update where
         , "query"          `I.p` query_
         , "offset"         `I.p` offset_
         ]
-  show UpdateNewChosenInlineResult
+  shortShow UpdateNewChosenInlineResult
     { sender_user_id    = sender_user_id_
     , user_location     = user_location_
     , query             = query_
@@ -1531,7 +1531,7 @@ instance Show Update where
         , "result_id"         `I.p` result_id_
         , "inline_message_id" `I.p` inline_message_id_
         ]
-  show UpdateNewCallbackQuery
+  shortShow UpdateNewCallbackQuery
     { _id            = _id_
     , sender_user_id = sender_user_id_
     , chat_id        = chat_id_
@@ -1548,7 +1548,7 @@ instance Show Update where
         , "chat_instance"  `I.p` chat_instance_
         , "payload"        `I.p` payload_
         ]
-  show UpdateNewInlineCallbackQuery
+  shortShow UpdateNewInlineCallbackQuery
     { _id               = _id_
     , sender_user_id    = sender_user_id_
     , inline_message_id = inline_message_id_
@@ -1563,7 +1563,7 @@ instance Show Update where
         , "chat_instance"     `I.p` chat_instance_
         , "payload"           `I.p` payload_
         ]
-  show UpdateNewShippingQuery
+  shortShow UpdateNewShippingQuery
     { _id              = _id_
     , sender_user_id   = sender_user_id_
     , invoice_payload  = invoice_payload_
@@ -1576,7 +1576,7 @@ instance Show Update where
         , "invoice_payload"  `I.p` invoice_payload_
         , "shipping_address" `I.p` shipping_address_
         ]
-  show UpdateNewPreCheckoutQuery
+  shortShow UpdateNewPreCheckoutQuery
     { _id                = _id_
     , sender_user_id     = sender_user_id_
     , currency           = currency_
@@ -1595,14 +1595,14 @@ instance Show Update where
         , "shipping_option_id" `I.p` shipping_option_id_
         , "order_info"         `I.p` order_info_
         ]
-  show UpdateNewCustomEvent
+  shortShow UpdateNewCustomEvent
     { event = event_
     }
       = "UpdateNewCustomEvent"
         ++ I.cc
         [ "event" `I.p` event_
         ]
-  show UpdateNewCustomQuery
+  shortShow UpdateNewCustomQuery
     { _id     = _id_
     , __data  = __data_
     , timeout = timeout_
@@ -1613,14 +1613,14 @@ instance Show Update where
         , "__data"  `I.p` __data_
         , "timeout" `I.p` timeout_
         ]
-  show UpdatePoll
+  shortShow UpdatePoll
     { poll = poll_
     }
       = "UpdatePoll"
         ++ I.cc
         [ "poll" `I.p` poll_
         ]
-  show UpdatePollAnswer
+  shortShow UpdatePollAnswer
     { poll_id    = poll_id_
     , voter_id   = voter_id_
     , option_ids = option_ids_
@@ -1631,7 +1631,7 @@ instance Show Update where
         , "voter_id"   `I.p` voter_id_
         , "option_ids" `I.p` option_ids_
         ]
-  show UpdateChatMember
+  shortShow UpdateChatMember
     { chat_id                     = chat_id_
     , actor_user_id               = actor_user_id_
     , date                        = date_
@@ -1650,7 +1650,7 @@ instance Show Update where
         , "old_chat_member"             `I.p` old_chat_member_
         , "new_chat_member"             `I.p` new_chat_member_
         ]
-  show UpdateNewChatJoinRequest
+  shortShow UpdateNewChatJoinRequest
     { chat_id      = chat_id_
     , request      = request_
     , user_chat_id = user_chat_id_

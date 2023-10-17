@@ -16,10 +16,10 @@ data GetMessageLink
     , for_album         :: Maybe Bool -- ^ Pass true to create a link for the whole media album
     , in_message_thread :: Maybe Bool -- ^ Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageLink where
-  show
+instance I.ShortShow GetMessageLink where
+  shortShow
     GetMessageLink
       { chat_id           = chat_id_
       , message_id        = message_id_

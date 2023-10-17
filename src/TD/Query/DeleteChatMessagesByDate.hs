@@ -15,10 +15,10 @@ data DeleteChatMessagesByDate
     , max_date :: Maybe Int  -- ^ The maximum date of the messages to delete
     , revoke   :: Maybe Bool -- ^ Pass true to delete chat messages for all users; private chats only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatMessagesByDate where
-  show
+instance I.ShortShow DeleteChatMessagesByDate where
+  shortShow
     DeleteChatMessagesByDate
       { chat_id  = chat_id_
       , min_date = min_date_

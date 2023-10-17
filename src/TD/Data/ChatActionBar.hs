@@ -24,21 +24,21 @@ data ChatActionBar
     , is_channel   :: Maybe Bool   -- ^ True, if the join request was sent to a channel chat
     , request_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the join request was sent
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatActionBar where
-  show ChatActionBarReportSpam
+instance I.ShortShow ChatActionBar where
+  shortShow ChatActionBarReportSpam
     { can_unarchive = can_unarchive_
     }
       = "ChatActionBarReportSpam"
         ++ I.cc
         [ "can_unarchive" `I.p` can_unarchive_
         ]
-  show ChatActionBarReportUnrelatedLocation
+  shortShow ChatActionBarReportUnrelatedLocation
       = "ChatActionBarReportUnrelatedLocation"
-  show ChatActionBarInviteMembers
+  shortShow ChatActionBarInviteMembers
       = "ChatActionBarInviteMembers"
-  show ChatActionBarReportAddBlock
+  shortShow ChatActionBarReportAddBlock
     { can_unarchive = can_unarchive_
     , distance      = distance_
     }
@@ -47,11 +47,11 @@ instance Show ChatActionBar where
         [ "can_unarchive" `I.p` can_unarchive_
         , "distance"      `I.p` distance_
         ]
-  show ChatActionBarAddContact
+  shortShow ChatActionBarAddContact
       = "ChatActionBarAddContact"
-  show ChatActionBarSharePhoneNumber
+  shortShow ChatActionBarSharePhoneNumber
       = "ChatActionBarSharePhoneNumber"
-  show ChatActionBarJoinRequest
+  shortShow ChatActionBarJoinRequest
     { title        = title_
     , is_channel   = is_channel_
     , request_date = request_date_

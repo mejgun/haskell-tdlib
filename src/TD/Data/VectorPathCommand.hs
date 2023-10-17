@@ -16,17 +16,17 @@ data VectorPathCommand
     , end_control_point   :: Maybe Point.Point -- ^ The end control point of the curve
     , end_point           :: Maybe Point.Point -- ^ The end point of the curve
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show VectorPathCommand where
-  show VectorPathCommandLine
+instance I.ShortShow VectorPathCommand where
+  shortShow VectorPathCommandLine
     { end_point = end_point_
     }
       = "VectorPathCommandLine"
         ++ I.cc
         [ "end_point" `I.p` end_point_
         ]
-  show VectorPathCommandCubicBezierCurve
+  shortShow VectorPathCommandCubicBezierCurve
     { start_control_point = start_control_point_
     , end_control_point   = end_control_point_
     , end_point           = end_point_

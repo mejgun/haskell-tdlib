@@ -21,10 +21,10 @@ data OptimizeStorage
     , return_deleted_file_statistics :: Maybe Bool                -- ^ Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
     , chat_limit                     :: Maybe Int                 -- ^ Same as in getStorageStatistics. Affects only returned statistics
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show OptimizeStorage where
-  show
+instance I.ShortShow OptimizeStorage where
+  shortShow
     OptimizeStorage
       { size                           = size_
       , ttl                            = ttl_

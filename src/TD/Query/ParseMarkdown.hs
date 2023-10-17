@@ -12,10 +12,10 @@ data ParseMarkdown
   = ParseMarkdown
     { text :: Maybe FormattedText.FormattedText -- ^ The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ParseMarkdown where
-  show
+instance I.ShortShow ParseMarkdown where
+  shortShow
     ParseMarkdown
       { text = text_
       }

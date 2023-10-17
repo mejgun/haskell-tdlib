@@ -15,10 +15,10 @@ data SetForumTopicNotificationSettings
     , message_thread_id     :: Maybe Int                                               -- ^ Message thread identifier of the forum topic
     , notification_settings :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ New notification settings for the forum topic. If the topic is muted for more than 366 days, it is considered to be muted forever
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetForumTopicNotificationSettings where
-  show
+instance I.ShortShow SetForumTopicNotificationSettings where
+  shortShow
     SetForumTopicNotificationSettings
       { chat_id               = chat_id_
       , message_thread_id     = message_thread_id_

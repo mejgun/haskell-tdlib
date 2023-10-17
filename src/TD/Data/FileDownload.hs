@@ -14,10 +14,10 @@ data FileDownload
     , complete_date :: Maybe Int             -- ^ Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
     , is_paused     :: Maybe Bool            -- ^ True, if downloading of the file is paused
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FileDownload where
-  show FileDownload
+instance I.ShortShow FileDownload where
+  shortShow FileDownload
     { file_id       = file_id_
     , message       = message_
     , add_date      = add_date_

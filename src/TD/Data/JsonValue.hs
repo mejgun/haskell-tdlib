@@ -25,40 +25,40 @@ data JsonValue
   | JsonValueObject -- ^ Represents a JSON object
     { members :: Maybe [JsonObjectMember.JsonObjectMember] -- ^ The list of object members
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show JsonValue where
-  show JsonValueNull
+instance I.ShortShow JsonValue where
+  shortShow JsonValueNull
       = "JsonValueNull"
-  show JsonValueBoolean
+  shortShow JsonValueBoolean
     { value = value_
     }
       = "JsonValueBoolean"
         ++ I.cc
         [ "value" `I.p` value_
         ]
-  show JsonValueNumber
+  shortShow JsonValueNumber
     { _value = _value_
     }
       = "JsonValueNumber"
         ++ I.cc
         [ "_value" `I.p` _value_
         ]
-  show JsonValueString
+  shortShow JsonValueString
     { __value = __value_
     }
       = "JsonValueString"
         ++ I.cc
         [ "__value" `I.p` __value_
         ]
-  show JsonValueArray
+  shortShow JsonValueArray
     { values = values_
     }
       = "JsonValueArray"
         ++ I.cc
         [ "values" `I.p` values_
         ]
-  show JsonValueObject
+  shortShow JsonValueObject
     { members = members_
     }
       = "JsonValueObject"

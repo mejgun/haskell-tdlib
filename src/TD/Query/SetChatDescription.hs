@@ -14,10 +14,10 @@ data SetChatDescription
     { chat_id     :: Maybe Int    -- ^ Identifier of the chat
     , description :: Maybe T.Text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatDescription where
-  show
+instance I.ShortShow SetChatDescription where
+  shortShow
     SetChatDescription
       { chat_id     = chat_id_
       , description = description_

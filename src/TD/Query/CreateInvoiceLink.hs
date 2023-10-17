@@ -12,10 +12,10 @@ data CreateInvoiceLink
   = CreateInvoiceLink
     { invoice :: Maybe InputMessageContent.InputMessageContent -- ^ Information about the invoice of the type inputMessageInvoice
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateInvoiceLink where
-  show
+instance I.ShortShow CreateInvoiceLink where
+  shortShow
     CreateInvoiceLink
       { invoice = invoice_
       }

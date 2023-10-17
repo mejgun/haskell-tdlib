@@ -14,10 +14,10 @@ data SetRecoveryEmailAddress
     { password                   :: Maybe T.Text -- ^ The 2-step verification password of the current user
     , new_recovery_email_address :: Maybe T.Text -- ^ New recovery email address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetRecoveryEmailAddress where
-  show
+instance I.ShortShow SetRecoveryEmailAddress where
+  shortShow
     SetRecoveryEmailAddress
       { password                   = password_
       , new_recovery_email_address = new_recovery_email_address_

@@ -14,10 +14,10 @@ data MessageInteractionInfo
     , reply_info    :: Maybe MessageReplyInfo.MessageReplyInfo -- ^ Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
     , reactions     :: Maybe [MessageReaction.MessageReaction] -- ^ The list of reactions added to the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageInteractionInfo where
-  show MessageInteractionInfo
+instance I.ShortShow MessageInteractionInfo where
+  shortShow MessageInteractionInfo
     { view_count    = view_count_
     , forward_count = forward_count_
     , reply_info    = reply_info_

@@ -14,10 +14,10 @@ data ChatMember
     , joined_chat_date :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the user joined/was promoted/was banned in the chat
     , status           :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ Status of the member in the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMember where
-  show ChatMember
+instance I.ShortShow ChatMember where
+  shortShow ChatMember
     { member_id        = member_id_
     , inviter_user_id  = inviter_user_id_
     , joined_chat_date = joined_chat_date_

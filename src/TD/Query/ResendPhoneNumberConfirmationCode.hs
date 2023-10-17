@@ -4,14 +4,15 @@ module TD.Query.ResendPhoneNumberConfirmationCode
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Resends phone number confirmation code
 data ResendPhoneNumberConfirmationCode
   = ResendPhoneNumberConfirmationCode
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ResendPhoneNumberConfirmationCode where
-  show
+instance I.ShortShow ResendPhoneNumberConfirmationCode where
+  shortShow
     ResendPhoneNumberConfirmationCode
         = "ResendPhoneNumberConfirmationCode"
 

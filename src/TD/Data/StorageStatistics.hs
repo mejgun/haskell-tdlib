@@ -12,10 +12,10 @@ data StorageStatistics
     , count   :: Maybe Int                                               -- ^ Total number of files
     , by_chat :: Maybe [StorageStatisticsByChat.StorageStatisticsByChat] -- ^ Statistics split by chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StorageStatistics where
-  show StorageStatistics
+instance I.ShortShow StorageStatistics where
+  shortShow StorageStatistics
     { size    = size_
     , count   = count_
     , by_chat = by_chat_

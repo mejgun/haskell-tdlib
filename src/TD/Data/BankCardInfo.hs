@@ -12,10 +12,10 @@ data BankCardInfo
     { title   :: Maybe T.Text                                        -- ^ Title of the bank card description
     , actions :: Maybe [BankCardActionOpenUrl.BankCardActionOpenUrl] -- ^ Actions that can be done with the bank card number
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BankCardInfo where
-  show BankCardInfo
+instance I.ShortShow BankCardInfo where
+  shortShow BankCardInfo
     { title   = title_
     , actions = actions_
     }

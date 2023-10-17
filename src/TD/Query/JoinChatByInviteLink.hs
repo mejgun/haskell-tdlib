@@ -12,10 +12,10 @@ data JoinChatByInviteLink
   = JoinChatByInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link to use
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show JoinChatByInviteLink where
-  show
+instance I.ShortShow JoinChatByInviteLink where
+  shortShow
     JoinChatByInviteLink
       { invite_link = invite_link_
       }

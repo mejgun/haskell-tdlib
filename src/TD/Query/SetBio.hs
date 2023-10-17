@@ -12,10 +12,10 @@ data SetBio
   = SetBio
     { bio :: Maybe T.Text -- ^ The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBio where
-  show
+instance I.ShortShow SetBio where
+  shortShow
     SetBio
       { bio = bio_
       }

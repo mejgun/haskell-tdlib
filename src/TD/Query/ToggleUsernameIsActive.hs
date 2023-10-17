@@ -14,10 +14,10 @@ data ToggleUsernameIsActive
     { username  :: Maybe T.Text -- ^ The username to change
     , is_active :: Maybe Bool   -- ^ Pass true to activate the username; pass false to disable it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleUsernameIsActive where
-  show
+instance I.ShortShow ToggleUsernameIsActive where
+  shortShow
     ToggleUsernameIsActive
       { username  = username_
       , is_active = is_active_

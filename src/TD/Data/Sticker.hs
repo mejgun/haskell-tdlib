@@ -24,10 +24,10 @@ data Sticker
     , thumbnail :: Maybe Thumbnail.Thumbnail                 -- ^ Sticker thumbnail in WEBP or JPEG format; may be null
     , sticker   :: Maybe File.File                           -- ^ File containing the sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Sticker where
-  show Sticker
+instance I.ShortShow Sticker where
+  shortShow Sticker
     { _id       = _id_
     , set_id    = set_id_
     , width     = width_

@@ -13,10 +13,10 @@ data ToggleChatIsMarkedAsUnread
     { chat_id             :: Maybe Int  -- ^ Chat identifier
     , is_marked_as_unread :: Maybe Bool -- ^ New value of is_marked_as_unread
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleChatIsMarkedAsUnread where
-  show
+instance I.ShortShow ToggleChatIsMarkedAsUnread where
+  shortShow
     ToggleChatIsMarkedAsUnread
       { chat_id             = chat_id_
       , is_marked_as_unread = is_marked_as_unread_

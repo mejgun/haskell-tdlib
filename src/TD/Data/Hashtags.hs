@@ -10,10 +10,10 @@ data Hashtags
   = Hashtags -- ^ Contains a list of hashtags
     { hashtags :: Maybe [T.Text] -- ^ A list of hashtags
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Hashtags where
-  show Hashtags
+instance I.ShortShow Hashtags where
+  shortShow Hashtags
     { hashtags = hashtags_
     }
       = "Hashtags"

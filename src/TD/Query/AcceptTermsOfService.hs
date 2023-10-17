@@ -12,10 +12,10 @@ data AcceptTermsOfService
   = AcceptTermsOfService
     { terms_of_service_id :: Maybe T.Text -- ^ Terms of service identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AcceptTermsOfService where
-  show
+instance I.ShortShow AcceptTermsOfService where
+  shortShow
     AcceptTermsOfService
       { terms_of_service_id = terms_of_service_id_
       }

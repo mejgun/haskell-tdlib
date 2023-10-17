@@ -14,10 +14,10 @@ data ChatPhotoStickerType
   | ChatPhotoStickerTypeCustomEmoji -- ^ Information about the custom emoji, which was used to create the chat photo
     { custom_emoji_id :: Maybe Int -- ^ Identifier of the custom emoji
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPhotoStickerType where
-  show ChatPhotoStickerTypeRegularOrMask
+instance I.ShortShow ChatPhotoStickerType where
+  shortShow ChatPhotoStickerTypeRegularOrMask
     { sticker_set_id = sticker_set_id_
     , sticker_id     = sticker_id_
     }
@@ -26,7 +26,7 @@ instance Show ChatPhotoStickerType where
         [ "sticker_set_id" `I.p` sticker_set_id_
         , "sticker_id"     `I.p` sticker_id_
         ]
-  show ChatPhotoStickerTypeCustomEmoji
+  shortShow ChatPhotoStickerTypeCustomEmoji
     { custom_emoji_id = custom_emoji_id_
     }
       = "ChatPhotoStickerTypeCustomEmoji"

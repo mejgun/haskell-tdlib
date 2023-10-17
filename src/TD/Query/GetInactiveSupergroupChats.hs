@@ -4,14 +4,15 @@ module TD.Query.GetInactiveSupergroupChats
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
 data GetInactiveSupergroupChats
   = GetInactiveSupergroupChats
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInactiveSupergroupChats where
-  show
+instance I.ShortShow GetInactiveSupergroupChats where
+  shortShow
     GetInactiveSupergroupChats
         = "GetInactiveSupergroupChats"
 

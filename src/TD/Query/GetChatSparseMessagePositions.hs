@@ -16,10 +16,10 @@ data GetChatSparseMessagePositions
     , from_message_id :: Maybe Int                                       -- ^ The message identifier from which to return information about message positions
     , limit           :: Maybe Int                                       -- ^ The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatSparseMessagePositions where
-  show
+instance I.ShortShow GetChatSparseMessagePositions where
+  shortShow
     GetChatSparseMessagePositions
       { chat_id         = chat_id_
       , _filter         = _filter_

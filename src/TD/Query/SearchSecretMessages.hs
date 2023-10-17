@@ -18,10 +18,10 @@ data SearchSecretMessages
     , limit   :: Maybe Int                                       -- ^ The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     , _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Additional filter for messages to search; pass null to search for all messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchSecretMessages where
-  show
+instance I.ShortShow SearchSecretMessages where
+  shortShow
     SearchSecretMessages
       { chat_id = chat_id_
       , query   = query_

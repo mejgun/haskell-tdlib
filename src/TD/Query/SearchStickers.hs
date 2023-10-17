@@ -16,10 +16,10 @@ data SearchStickers
     , emojis       :: Maybe T.Text                  -- ^ Space-separated list of emoji to search for; must be non-empty
     , limit        :: Maybe Int                     -- ^ The maximum number of stickers to be returned; 0-100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchStickers where
-  show
+instance I.ShortShow SearchStickers where
+  shortShow
     SearchStickers
       { sticker_type = sticker_type_
       , emojis       = emojis_

@@ -4,14 +4,15 @@ module TD.Query.ClearAutosaveSettingsExceptions
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
 data ClearAutosaveSettingsExceptions
   = ClearAutosaveSettingsExceptions
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClearAutosaveSettingsExceptions where
-  show
+instance I.ShortShow ClearAutosaveSettingsExceptions where
+  shortShow
     ClearAutosaveSettingsExceptions
         = "ClearAutosaveSettingsExceptions"
 

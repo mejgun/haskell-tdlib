@@ -12,10 +12,10 @@ data PremiumFeaturePromotionAnimation
     { feature   :: Maybe PremiumFeature.PremiumFeature -- ^ Premium feature
     , animation :: Maybe Animation.Animation           -- ^ Promotion animation for the feature
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumFeaturePromotionAnimation where
-  show PremiumFeaturePromotionAnimation
+instance I.ShortShow PremiumFeaturePromotionAnimation where
+  shortShow PremiumFeaturePromotionAnimation
     { feature   = feature_
     , animation = animation_
     }

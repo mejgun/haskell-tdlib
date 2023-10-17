@@ -13,10 +13,10 @@ data Error
     { code    :: Maybe Int    -- ^ Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
     , message :: Maybe T.Text -- ^ Error message; subject to future changes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Error where
-  show Error
+instance I.ShortShow Error where
+  shortShow Error
     { code    = code_
     , message = message_
     }

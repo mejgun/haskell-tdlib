@@ -15,10 +15,10 @@ data CreateChatFolderInviteLink
     , name           :: Maybe T.Text -- ^ Name of the link; 0-32 characters
     , chat_ids       :: Maybe [Int]  -- ^ Identifiers of chats to be accessible by the invite link. Use getChatsForChatFolderInviteLink to get suitable chats. Basic groups will be automatically converted to supergroups before link creation
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateChatFolderInviteLink where
-  show
+instance I.ShortShow CreateChatFolderInviteLink where
+  shortShow
     CreateChatFolderInviteLink
       { chat_folder_id = chat_folder_id_
       , name           = name_

@@ -10,10 +10,10 @@ data DateRange
     { start_date :: Maybe Int -- ^ Point in time (Unix timestamp) at which the date range begins
     , end_date   :: Maybe Int -- ^ Point in time (Unix timestamp) at which the date range ends
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DateRange where
-  show DateRange
+instance I.ShortShow DateRange where
+  shortShow DateRange
     { start_date = start_date_
     , end_date   = end_date_
     }

@@ -11,10 +11,10 @@ data DeleteProfilePhoto
   = DeleteProfilePhoto
     { profile_photo_id :: Maybe Int -- ^ Identifier of the profile photo to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteProfilePhoto where
-  show
+instance I.ShortShow DeleteProfilePhoto where
+  shortShow
     DeleteProfilePhoto
       { profile_photo_id = profile_photo_id_
       }

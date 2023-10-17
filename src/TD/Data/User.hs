@@ -37,10 +37,10 @@ data User
     , language_code             :: Maybe T.Text                    -- ^ IETF language tag of the user's language; only available to bots
     , added_to_attachment_menu  :: Maybe Bool                      -- ^ True, if the user added the current bot to attachment menu; only available to bots
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show User where
-  show User
+instance I.ShortShow User where
+  shortShow User
     { _id                       = _id_
     , first_name                = first_name_
     , last_name                 = last_name_

@@ -18,10 +18,10 @@ data TestProxy
     , dc_id   :: Maybe Int                 -- ^ Identifier of a datacenter with which to test connection
     , timeout :: Maybe Double              -- ^ The maximum overall timeout for the request
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestProxy where
-  show
+instance I.ShortShow TestProxy where
+  shortShow
     TestProxy
       { server  = server_
       , port    = port_

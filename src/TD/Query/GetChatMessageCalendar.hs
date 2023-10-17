@@ -15,10 +15,10 @@ data GetChatMessageCalendar
     , _filter         :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     , from_message_id :: Maybe Int                                       -- ^ The message identifier from which to return information about messages; use 0 to get results from the last message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatMessageCalendar where
-  show
+instance I.ShortShow GetChatMessageCalendar where
+  shortShow
     GetChatMessageCalendar
       { chat_id         = chat_id_
       , _filter         = _filter_

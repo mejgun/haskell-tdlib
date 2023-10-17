@@ -14,10 +14,10 @@ data DeleteRevokedChatInviteLink
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , invite_link :: Maybe T.Text -- ^ Invite link to revoke
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteRevokedChatInviteLink where
-  show
+instance I.ShortShow DeleteRevokedChatInviteLink where
+  shortShow
     DeleteRevokedChatInviteLink
       { chat_id     = chat_id_
       , invite_link = invite_link_

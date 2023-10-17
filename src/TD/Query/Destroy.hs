@@ -4,14 +4,15 @@ module TD.Query.Destroy
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
 data Destroy
   = Destroy
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Destroy where
-  show
+instance I.ShortShow Destroy where
+  shortShow
     Destroy
         = "Destroy"
 

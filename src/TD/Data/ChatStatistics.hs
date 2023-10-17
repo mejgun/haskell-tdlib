@@ -49,10 +49,10 @@ data ChatStatistics
     , instant_view_interaction_graph   :: Maybe StatisticalGraph.StatisticalGraph                                           -- ^ A graph containing number of views of associated with the chat instant views
     , recent_message_interactions      :: Maybe [ChatStatisticsMessageInteractionInfo.ChatStatisticsMessageInteractionInfo] -- ^ Detailed statistics about number of views and shares of recently sent messages
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatStatistics where
-  show ChatStatisticsSupergroup
+instance I.ShortShow ChatStatistics where
+  shortShow ChatStatisticsSupergroup
     { period                = period_
     , member_count          = member_count_
     , message_count         = message_count_
@@ -89,7 +89,7 @@ instance Show ChatStatistics where
         , "top_administrators"    `I.p` top_administrators_
         , "top_inviters"          `I.p` top_inviters_
         ]
-  show ChatStatisticsChannel
+  shortShow ChatStatisticsChannel
     { period                           = period_
     , member_count                     = member_count_
     , mean_view_count                  = mean_view_count_

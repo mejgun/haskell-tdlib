@@ -11,10 +11,10 @@ data RtmpUrl
     { url        :: Maybe T.Text -- ^ The URL
     , stream_key :: Maybe T.Text -- ^ Stream key
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RtmpUrl where
-  show RtmpUrl
+instance I.ShortShow RtmpUrl where
+  shortShow RtmpUrl
     { url        = url_
     , stream_key = stream_key_
     }

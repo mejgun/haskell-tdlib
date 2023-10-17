@@ -14,10 +14,10 @@ data SendPassportAuthorizationForm
     { authorization_form_id :: Maybe Int                                       -- ^ Authorization form identifier
     , types                 :: Maybe [PassportElementType.PassportElementType] -- ^ Types of Telegram Passport elements chosen by user to complete the authorization form
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendPassportAuthorizationForm where
-  show
+instance I.ShortShow SendPassportAuthorizationForm where
+  shortShow
     SendPassportAuthorizationForm
       { authorization_form_id = authorization_form_id_
       , types                 = types_

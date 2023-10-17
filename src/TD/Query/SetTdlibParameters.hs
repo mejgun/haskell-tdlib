@@ -29,10 +29,10 @@ data SetTdlibParameters
     , enable_storage_optimizer :: Maybe Bool          -- ^ Pass true to automatically delete old files in background
     , ignore_file_names        :: Maybe Bool          -- ^ Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetTdlibParameters where
-  show
+instance I.ShortShow SetTdlibParameters where
+  shortShow
     SetTdlibParameters
       { use_test_dc              = use_test_dc_
       , database_directory       = database_directory_

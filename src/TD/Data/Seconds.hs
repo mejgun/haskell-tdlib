@@ -9,10 +9,10 @@ data Seconds
   = Seconds -- ^ Contains a value representing a number of seconds
     { seconds :: Maybe Double -- ^ Number of seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Seconds where
-  show Seconds
+instance I.ShortShow Seconds where
+  shortShow Seconds
     { seconds = seconds_
     }
       = "Seconds"

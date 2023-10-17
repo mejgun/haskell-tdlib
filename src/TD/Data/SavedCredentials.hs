@@ -11,10 +11,10 @@ data SavedCredentials
     { _id   :: Maybe T.Text -- ^ Unique identifier of the saved credentials
     , title :: Maybe T.Text -- ^ Title of the saved credentials
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SavedCredentials where
-  show SavedCredentials
+instance I.ShortShow SavedCredentials where
+  shortShow SavedCredentials
     { _id   = _id_
     , title = title_
     }

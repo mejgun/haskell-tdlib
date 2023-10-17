@@ -12,10 +12,10 @@ data GetMarkdownText
   = GetMarkdownText
     { text :: Maybe FormattedText.FormattedText -- ^ The text
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMarkdownText where
-  show
+instance I.ShortShow GetMarkdownText where
+  shortShow
     GetMarkdownText
       { text = text_
       }

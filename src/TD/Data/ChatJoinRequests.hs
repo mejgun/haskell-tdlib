@@ -11,10 +11,10 @@ data ChatJoinRequests
     { total_count :: Maybe Int                               -- ^ Approximate total number of requests found
     , requests    :: Maybe [ChatJoinRequest.ChatJoinRequest] -- ^ List of the requests
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatJoinRequests where
-  show ChatJoinRequests
+instance I.ShortShow ChatJoinRequests where
+  shortShow ChatJoinRequests
     { total_count = total_count_
     , requests    = requests_
     }

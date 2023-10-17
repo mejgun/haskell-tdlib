@@ -14,10 +14,10 @@ data GetLanguagePackStrings
     { language_pack_id :: Maybe T.Text   -- ^ Language pack identifier of the strings to be returned
     , keys             :: Maybe [T.Text] -- ^ Language pack keys of the strings to be returned; leave empty to request all available strings
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLanguagePackStrings where
-  show
+instance I.ShortShow GetLanguagePackStrings where
+  shortShow
     GetLanguagePackStrings
       { language_pack_id = language_pack_id_
       , keys             = keys_

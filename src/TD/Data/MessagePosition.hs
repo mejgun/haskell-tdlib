@@ -11,10 +11,10 @@ data MessagePosition
     , message_id :: Maybe Int -- ^ Message identifier
     , date       :: Maybe Int -- ^ Point in time (Unix timestamp) when the message was sent
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessagePosition where
-  show MessagePosition
+instance I.ShortShow MessagePosition where
+  shortShow MessagePosition
     { position   = position_
     , message_id = message_id_
     , date       = date_

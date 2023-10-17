@@ -11,17 +11,17 @@ data MessageSchedulingState
     { send_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
     }
   | MessageSchedulingStateSendWhenOnline -- ^ The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSchedulingState where
-  show MessageSchedulingStateSendAtDate
+instance I.ShortShow MessageSchedulingState where
+  shortShow MessageSchedulingStateSendAtDate
     { send_date = send_date_
     }
       = "MessageSchedulingStateSendAtDate"
         ++ I.cc
         [ "send_date" `I.p` send_date_
         ]
-  show MessageSchedulingStateSendWhenOnline
+  shortShow MessageSchedulingStateSendWhenOnline
       = "MessageSchedulingStateSendWhenOnline"
 
 instance AT.FromJSON MessageSchedulingState where

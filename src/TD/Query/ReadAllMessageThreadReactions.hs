@@ -13,10 +13,10 @@ data ReadAllMessageThreadReactions
     { chat_id           :: Maybe Int -- ^ Chat identifier
     , message_thread_id :: Maybe Int -- ^ Message thread identifier in which reactions are marked as read
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReadAllMessageThreadReactions where
-  show
+instance I.ShortShow ReadAllMessageThreadReactions where
+  shortShow
     ReadAllMessageThreadReactions
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

@@ -18,10 +18,10 @@ data GetChatJoinRequests
     , offset_request :: Maybe ChatJoinRequest.ChatJoinRequest -- ^ A chat join request from which to return next requests; pass null to get results from the beginning
     , limit          :: Maybe Int                             -- ^ The maximum number of requests to join the chat to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatJoinRequests where
-  show
+instance I.ShortShow GetChatJoinRequests where
+  shortShow
     GetChatJoinRequests
       { chat_id        = chat_id_
       , invite_link    = invite_link_

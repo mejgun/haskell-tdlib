@@ -3,6 +3,7 @@ module TD.Data.ThumbnailFormat
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes format of a thumbnail
 data ThumbnailFormat
@@ -13,22 +14,22 @@ data ThumbnailFormat
   | ThumbnailFormatTgs -- ^ The thumbnail is in TGS format. It will be used only for TGS sticker sets
   | ThumbnailFormatWebm -- ^ The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
   | ThumbnailFormatWebp -- ^ The thumbnail is in WEBP format. It will be used only for some stickers
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ThumbnailFormat where
-  show ThumbnailFormatJpeg
+instance I.ShortShow ThumbnailFormat where
+  shortShow ThumbnailFormatJpeg
       = "ThumbnailFormatJpeg"
-  show ThumbnailFormatGif
+  shortShow ThumbnailFormatGif
       = "ThumbnailFormatGif"
-  show ThumbnailFormatMpeg4
+  shortShow ThumbnailFormatMpeg4
       = "ThumbnailFormatMpeg4"
-  show ThumbnailFormatPng
+  shortShow ThumbnailFormatPng
       = "ThumbnailFormatPng"
-  show ThumbnailFormatTgs
+  shortShow ThumbnailFormatTgs
       = "ThumbnailFormatTgs"
-  show ThumbnailFormatWebm
+  shortShow ThumbnailFormatWebm
       = "ThumbnailFormatWebm"
-  show ThumbnailFormatWebp
+  shortShow ThumbnailFormatWebp
       = "ThumbnailFormatWebp"
 
 instance AT.FromJSON ThumbnailFormat where

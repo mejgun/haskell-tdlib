@@ -36,10 +36,10 @@ data CallState
   | CallStateError -- ^ The call has ended with an error
     { _error :: Maybe Error.Error -- ^ Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CallState where
-  show CallStatePending
+instance I.ShortShow CallState where
+  shortShow CallStatePending
     { is_created  = is_created_
     , is_received = is_received_
     }
@@ -48,9 +48,9 @@ instance Show CallState where
         [ "is_created"  `I.p` is_created_
         , "is_received" `I.p` is_received_
         ]
-  show CallStateExchangingKeys
+  shortShow CallStateExchangingKeys
       = "CallStateExchangingKeys"
-  show CallStateReady
+  shortShow CallStateReady
     { protocol       = protocol_
     , servers        = servers_
     , config         = config_
@@ -67,9 +67,9 @@ instance Show CallState where
         , "emojis"         `I.p` emojis_
         , "allow_p2p"      `I.p` allow_p2p_
         ]
-  show CallStateHangingUp
+  shortShow CallStateHangingUp
       = "CallStateHangingUp"
-  show CallStateDiscarded
+  shortShow CallStateDiscarded
     { reason                 = reason_
     , need_rating            = need_rating_
     , need_debug_information = need_debug_information_
@@ -82,7 +82,7 @@ instance Show CallState where
         , "need_debug_information" `I.p` need_debug_information_
         , "need_log"               `I.p` need_log_
         ]
-  show CallStateError
+  shortShow CallStateError
     { _error = _error_
     }
       = "CallStateError"

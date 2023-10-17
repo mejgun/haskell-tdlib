@@ -13,10 +13,10 @@ data RemoveNotificationGroup
     { notification_group_id :: Maybe Int -- ^ Notification group identifier
     , max_notification_id   :: Maybe Int -- ^ The maximum identifier of removed notifications
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveNotificationGroup where
-  show
+instance I.ShortShow RemoveNotificationGroup where
+  shortShow
     RemoveNotificationGroup
       { notification_group_id = notification_group_id_
       , max_notification_id   = max_notification_id_

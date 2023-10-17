@@ -14,10 +14,10 @@ data TextEntity
     , _length :: Maybe Int                           -- ^ Length of the entity, in UTF-16 code units
     , _type   :: Maybe TextEntityType.TextEntityType -- ^ Type of the entity
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TextEntity where
-  show TextEntity
+instance I.ShortShow TextEntity where
+  shortShow TextEntity
     { offset  = offset_
     , _length = _length_
     , _type   = _type_

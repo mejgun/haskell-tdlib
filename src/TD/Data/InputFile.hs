@@ -22,31 +22,31 @@ data InputFile
     , conversion    :: Maybe T.Text -- ^ String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
     , expected_size :: Maybe Int    -- ^ Expected size of the generated file, in bytes; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputFile where
-  show InputFileId
+instance I.ShortShow InputFile where
+  shortShow InputFileId
     { _id = _id_
     }
       = "InputFileId"
         ++ I.cc
         [ "_id" `I.p` _id_
         ]
-  show InputFileRemote
+  shortShow InputFileRemote
     { __id = __id_
     }
       = "InputFileRemote"
         ++ I.cc
         [ "__id" `I.p` __id_
         ]
-  show InputFileLocal
+  shortShow InputFileLocal
     { path = path_
     }
       = "InputFileLocal"
         ++ I.cc
         [ "path" `I.p` path_
         ]
-  show InputFileGenerated
+  shortShow InputFileGenerated
     { original_path = original_path_
     , conversion    = conversion_
     , expected_size = expected_size_

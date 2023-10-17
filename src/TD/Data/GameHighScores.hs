@@ -10,10 +10,10 @@ data GameHighScores
   = GameHighScores -- ^ Contains a list of game high scores
     { scores :: Maybe [GameHighScore.GameHighScore] -- ^ A list of game high scores
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GameHighScores where
-  show GameHighScores
+instance I.ShortShow GameHighScores where
+  shortShow GameHighScores
     { scores = scores_
     }
       = "GameHighScores"

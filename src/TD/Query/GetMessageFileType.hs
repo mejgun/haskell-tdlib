@@ -12,10 +12,10 @@ data GetMessageFileType
   = GetMessageFileType
     { message_file_head :: Maybe T.Text -- ^ Beginning of the message file; up to 100 first lines
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessageFileType where
-  show
+instance I.ShortShow GetMessageFileType where
+  shortShow
     GetMessageFileType
       { message_file_head = message_file_head_
       }

@@ -11,10 +11,10 @@ data GroupCallRecentSpeaker
     { participant_id :: Maybe MessageSender.MessageSender -- ^ Group call participant identifier
     , is_speaking    :: Maybe Bool                        -- ^ True, is the user has spoken recently
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallRecentSpeaker where
-  show GroupCallRecentSpeaker
+instance I.ShortShow GroupCallRecentSpeaker where
+  shortShow GroupCallRecentSpeaker
     { participant_id = participant_id_
     , is_speaking    = is_speaking_
     }

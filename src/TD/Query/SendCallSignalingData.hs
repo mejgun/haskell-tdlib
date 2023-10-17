@@ -14,10 +14,10 @@ data SendCallSignalingData
     { call_id :: Maybe Int           -- ^ Call identifier
     , _data   :: Maybe BS.ByteString -- ^ The data
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendCallSignalingData where
-  show
+instance I.ShortShow SendCallSignalingData where
+  shortShow
     SendCallSignalingData
       { call_id = call_id_
       , _data   = _data_

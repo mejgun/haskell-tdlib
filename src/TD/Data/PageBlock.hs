@@ -144,24 +144,24 @@ data PageBlock
     , height   :: Maybe Int                               -- ^ Map height
     , caption  :: Maybe PageBlockCaption.PageBlockCaption -- ^ Block caption
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlock where
-  show PageBlockTitle
+instance I.ShortShow PageBlock where
+  shortShow PageBlockTitle
     { title = title_
     }
       = "PageBlockTitle"
         ++ I.cc
         [ "title" `I.p` title_
         ]
-  show PageBlockSubtitle
+  shortShow PageBlockSubtitle
     { subtitle = subtitle_
     }
       = "PageBlockSubtitle"
         ++ I.cc
         [ "subtitle" `I.p` subtitle_
         ]
-  show PageBlockAuthorDate
+  shortShow PageBlockAuthorDate
     { author       = author_
     , publish_date = publish_date_
     }
@@ -170,35 +170,35 @@ instance Show PageBlock where
         [ "author"       `I.p` author_
         , "publish_date" `I.p` publish_date_
         ]
-  show PageBlockHeader
+  shortShow PageBlockHeader
     { header = header_
     }
       = "PageBlockHeader"
         ++ I.cc
         [ "header" `I.p` header_
         ]
-  show PageBlockSubheader
+  shortShow PageBlockSubheader
     { subheader = subheader_
     }
       = "PageBlockSubheader"
         ++ I.cc
         [ "subheader" `I.p` subheader_
         ]
-  show PageBlockKicker
+  shortShow PageBlockKicker
     { kicker = kicker_
     }
       = "PageBlockKicker"
         ++ I.cc
         [ "kicker" `I.p` kicker_
         ]
-  show PageBlockParagraph
+  shortShow PageBlockParagraph
     { text = text_
     }
       = "PageBlockParagraph"
         ++ I.cc
         [ "text" `I.p` text_
         ]
-  show PageBlockPreformatted
+  shortShow PageBlockPreformatted
     { text     = text_
     , language = language_
     }
@@ -207,30 +207,30 @@ instance Show PageBlock where
         [ "text"     `I.p` text_
         , "language" `I.p` language_
         ]
-  show PageBlockFooter
+  shortShow PageBlockFooter
     { footer = footer_
     }
       = "PageBlockFooter"
         ++ I.cc
         [ "footer" `I.p` footer_
         ]
-  show PageBlockDivider
+  shortShow PageBlockDivider
       = "PageBlockDivider"
-  show PageBlockAnchor
+  shortShow PageBlockAnchor
     { name = name_
     }
       = "PageBlockAnchor"
         ++ I.cc
         [ "name" `I.p` name_
         ]
-  show PageBlockList
+  shortShow PageBlockList
     { items = items_
     }
       = "PageBlockList"
         ++ I.cc
         [ "items" `I.p` items_
         ]
-  show PageBlockBlockQuote
+  shortShow PageBlockBlockQuote
     { text   = text_
     , credit = credit_
     }
@@ -239,7 +239,7 @@ instance Show PageBlock where
         [ "text"   `I.p` text_
         , "credit" `I.p` credit_
         ]
-  show PageBlockPullQuote
+  shortShow PageBlockPullQuote
     { text   = text_
     , credit = credit_
     }
@@ -248,7 +248,7 @@ instance Show PageBlock where
         [ "text"   `I.p` text_
         , "credit" `I.p` credit_
         ]
-  show PageBlockAnimation
+  shortShow PageBlockAnimation
     { animation     = animation_
     , caption       = caption_
     , need_autoplay = need_autoplay_
@@ -259,7 +259,7 @@ instance Show PageBlock where
         , "caption"       `I.p` caption_
         , "need_autoplay" `I.p` need_autoplay_
         ]
-  show PageBlockAudio
+  shortShow PageBlockAudio
     { audio   = audio_
     , caption = caption_
     }
@@ -268,7 +268,7 @@ instance Show PageBlock where
         [ "audio"   `I.p` audio_
         , "caption" `I.p` caption_
         ]
-  show PageBlockPhoto
+  shortShow PageBlockPhoto
     { photo   = photo_
     , caption = caption_
     , url     = url_
@@ -279,7 +279,7 @@ instance Show PageBlock where
         , "caption" `I.p` caption_
         , "url"     `I.p` url_
         ]
-  show PageBlockVideo
+  shortShow PageBlockVideo
     { video         = video_
     , caption       = caption_
     , need_autoplay = need_autoplay_
@@ -292,7 +292,7 @@ instance Show PageBlock where
         , "need_autoplay" `I.p` need_autoplay_
         , "is_looped"     `I.p` is_looped_
         ]
-  show PageBlockVoiceNote
+  shortShow PageBlockVoiceNote
     { voice_note = voice_note_
     , caption    = caption_
     }
@@ -301,14 +301,14 @@ instance Show PageBlock where
         [ "voice_note" `I.p` voice_note_
         , "caption"    `I.p` caption_
         ]
-  show PageBlockCover
+  shortShow PageBlockCover
     { cover = cover_
     }
       = "PageBlockCover"
         ++ I.cc
         [ "cover" `I.p` cover_
         ]
-  show PageBlockEmbedded
+  shortShow PageBlockEmbedded
     { url             = url_
     , html            = html_
     , poster_photo    = poster_photo_
@@ -329,7 +329,7 @@ instance Show PageBlock where
         , "is_full_width"   `I.p` is_full_width_
         , "allow_scrolling" `I.p` allow_scrolling_
         ]
-  show PageBlockEmbeddedPost
+  shortShow PageBlockEmbeddedPost
     { url          = url_
     , _author      = _author_
     , author_photo = author_photo_
@@ -346,7 +346,7 @@ instance Show PageBlock where
         , "page_blocks"  `I.p` page_blocks_
         , "caption"      `I.p` caption_
         ]
-  show PageBlockCollage
+  shortShow PageBlockCollage
     { page_blocks = page_blocks_
     , caption     = caption_
     }
@@ -355,7 +355,7 @@ instance Show PageBlock where
         [ "page_blocks" `I.p` page_blocks_
         , "caption"     `I.p` caption_
         ]
-  show PageBlockSlideshow
+  shortShow PageBlockSlideshow
     { page_blocks = page_blocks_
     , caption     = caption_
     }
@@ -364,7 +364,7 @@ instance Show PageBlock where
         [ "page_blocks" `I.p` page_blocks_
         , "caption"     `I.p` caption_
         ]
-  show PageBlockChatLink
+  shortShow PageBlockChatLink
     { _title   = _title_
     , _photo   = _photo_
     , username = username_
@@ -375,7 +375,7 @@ instance Show PageBlock where
         , "_photo"   `I.p` _photo_
         , "username" `I.p` username_
         ]
-  show PageBlockTable
+  shortShow PageBlockTable
     { _caption    = _caption_
     , cells       = cells_
     , is_bordered = is_bordered_
@@ -388,7 +388,7 @@ instance Show PageBlock where
         , "is_bordered" `I.p` is_bordered_
         , "is_striped"  `I.p` is_striped_
         ]
-  show PageBlockDetails
+  shortShow PageBlockDetails
     { header      = header_
     , page_blocks = page_blocks_
     , is_open     = is_open_
@@ -399,7 +399,7 @@ instance Show PageBlock where
         , "page_blocks" `I.p` page_blocks_
         , "is_open"     `I.p` is_open_
         ]
-  show PageBlockRelatedArticles
+  shortShow PageBlockRelatedArticles
     { header   = header_
     , articles = articles_
     }
@@ -408,7 +408,7 @@ instance Show PageBlock where
         [ "header"   `I.p` header_
         , "articles" `I.p` articles_
         ]
-  show PageBlockMap
+  shortShow PageBlockMap
     { location = location_
     , zoom     = zoom_
     , width    = width_

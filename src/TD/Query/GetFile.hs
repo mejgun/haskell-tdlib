@@ -11,10 +11,10 @@ data GetFile
   = GetFile
     { file_id :: Maybe Int -- ^ Identifier of the file to get
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetFile where
-  show
+instance I.ShortShow GetFile where
+  shortShow
     GetFile
       { file_id = file_id_
       }

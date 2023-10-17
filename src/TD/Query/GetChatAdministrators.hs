@@ -11,10 +11,10 @@ data GetChatAdministrators
   = GetChatAdministrators
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatAdministrators where
-  show
+instance I.ShortShow GetChatAdministrators where
+  shortShow
     GetChatAdministrators
       { chat_id = chat_id_
       }

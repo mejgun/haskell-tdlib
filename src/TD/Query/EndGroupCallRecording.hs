@@ -11,10 +11,10 @@ data EndGroupCallRecording
   = EndGroupCallRecording
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EndGroupCallRecording where
-  show
+instance I.ShortShow EndGroupCallRecording where
+  shortShow
     EndGroupCallRecording
       { group_call_id = group_call_id_
       }

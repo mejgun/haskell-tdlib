@@ -3,20 +3,21 @@ module TD.Data.StickerType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes type of a sticker
 data StickerType
   = StickerTypeRegular -- ^ The sticker is a regular sticker
   | StickerTypeMask -- ^ The sticker is a mask in WEBP format to be placed on photos or videos
   | StickerTypeCustomEmoji -- ^ The sticker is a custom emoji to be used inside message text and caption
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerType where
-  show StickerTypeRegular
+instance I.ShortShow StickerType where
+  shortShow StickerTypeRegular
       = "StickerTypeRegular"
-  show StickerTypeMask
+  shortShow StickerTypeMask
       = "StickerTypeMask"
-  show StickerTypeCustomEmoji
+  shortShow StickerTypeCustomEmoji
       = "StickerTypeCustomEmoji"
 
 instance AT.FromJSON StickerType where

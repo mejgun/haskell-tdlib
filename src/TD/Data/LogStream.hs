@@ -15,12 +15,12 @@ data LogStream
     , redirect_stderr :: Maybe Bool   -- ^ Pass true to additionally redirect stderr to the log file. Ignored on Windows
     }
   | LogStreamEmpty -- ^ The log is written nowhere
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LogStream where
-  show LogStreamDefault
+instance I.ShortShow LogStream where
+  shortShow LogStreamDefault
       = "LogStreamDefault"
-  show LogStreamFile
+  shortShow LogStreamFile
     { path            = path_
     , max_file_size   = max_file_size_
     , redirect_stderr = redirect_stderr_
@@ -31,7 +31,7 @@ instance Show LogStream where
         , "max_file_size"   `I.p` max_file_size_
         , "redirect_stderr" `I.p` redirect_stderr_
         ]
-  show LogStreamEmpty
+  shortShow LogStreamEmpty
       = "LogStreamEmpty"
 
 instance AT.FromJSON LogStream where

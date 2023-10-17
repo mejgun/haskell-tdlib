@@ -14,10 +14,10 @@ data ChangeStickerSet
     , is_installed :: Maybe Bool -- ^ The new value of is_installed
     , is_archived  :: Maybe Bool -- ^ The new value of is_archived. A sticker set can't be installed and archived simultaneously
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChangeStickerSet where
-  show
+instance I.ShortShow ChangeStickerSet where
+  shortShow
     ChangeStickerSet
       { set_id       = set_id_
       , is_installed = is_installed_

@@ -9,10 +9,10 @@ data LogVerbosityLevel
   = LogVerbosityLevel -- ^ Contains a TDLib internal log verbosity level
     { verbosity_level :: Maybe Int -- ^ Log verbosity level
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LogVerbosityLevel where
-  show LogVerbosityLevel
+instance I.ShortShow LogVerbosityLevel where
+  shortShow LogVerbosityLevel
     { verbosity_level = verbosity_level_
     }
       = "LogVerbosityLevel"

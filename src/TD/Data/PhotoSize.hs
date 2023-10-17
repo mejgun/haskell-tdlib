@@ -15,10 +15,10 @@ data PhotoSize
     , height            :: Maybe Int       -- ^ Image height
     , progressive_sizes :: Maybe [Int]     -- ^ Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PhotoSize where
-  show PhotoSize
+instance I.ShortShow PhotoSize where
+  shortShow PhotoSize
     { _type             = _type_
     , photo             = photo_
     , width             = width_

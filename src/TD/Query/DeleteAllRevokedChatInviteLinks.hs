@@ -13,10 +13,10 @@ data DeleteAllRevokedChatInviteLinks
     { chat_id         :: Maybe Int -- ^ Chat identifier
     , creator_user_id :: Maybe Int -- ^ User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteAllRevokedChatInviteLinks where
-  show
+instance I.ShortShow DeleteAllRevokedChatInviteLinks where
+  shortShow
     DeleteAllRevokedChatInviteLinks
       { chat_id         = chat_id_
       , creator_user_id = creator_user_id_

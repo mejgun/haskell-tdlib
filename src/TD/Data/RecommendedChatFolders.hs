@@ -10,10 +10,10 @@ data RecommendedChatFolders
   = RecommendedChatFolders -- ^ Contains a list of recommended chat folders
     { chat_folders :: Maybe [RecommendedChatFolder.RecommendedChatFolder] -- ^ List of recommended chat folders
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RecommendedChatFolders where
-  show RecommendedChatFolders
+instance I.ShortShow RecommendedChatFolders where
+  shortShow RecommendedChatFolders
     { chat_folders = chat_folders_
     }
       = "RecommendedChatFolders"

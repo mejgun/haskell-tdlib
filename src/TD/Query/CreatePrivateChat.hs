@@ -13,10 +13,10 @@ data CreatePrivateChat
     { user_id :: Maybe Int  -- ^ User identifier
     , force   :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreatePrivateChat where
-  show
+instance I.ShortShow CreatePrivateChat where
+  shortShow
     CreatePrivateChat
       { user_id = user_id_
       , force   = force_

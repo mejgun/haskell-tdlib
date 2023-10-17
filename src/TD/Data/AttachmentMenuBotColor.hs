@@ -10,10 +10,10 @@ data AttachmentMenuBotColor
     { light_color :: Maybe Int -- ^ Color in the RGB24 format for light themes
     , dark_color  :: Maybe Int -- ^ Color in the RGB24 format for dark themes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AttachmentMenuBotColor where
-  show AttachmentMenuBotColor
+instance I.ShortShow AttachmentMenuBotColor where
+  shortShow AttachmentMenuBotColor
     { light_color = light_color_
     , dark_color  = dark_color_
     }

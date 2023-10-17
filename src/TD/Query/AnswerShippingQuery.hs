@@ -16,10 +16,10 @@ data AnswerShippingQuery
     , shipping_options  :: Maybe [ShippingOption.ShippingOption] -- ^ Available shipping options
     , error_message     :: Maybe T.Text                          -- ^ An error message, empty on success
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerShippingQuery where
-  show
+instance I.ShortShow AnswerShippingQuery where
+  shortShow
     AnswerShippingQuery
       { shipping_query_id = shipping_query_id_
       , shipping_options  = shipping_options_

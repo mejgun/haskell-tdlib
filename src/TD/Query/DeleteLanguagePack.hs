@@ -12,10 +12,10 @@ data DeleteLanguagePack
   = DeleteLanguagePack
     { language_pack_id :: Maybe T.Text -- ^ Identifier of the language pack to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteLanguagePack where
-  show
+instance I.ShortShow DeleteLanguagePack where
+  shortShow
     DeleteLanguagePack
       { language_pack_id = language_pack_id_
       }

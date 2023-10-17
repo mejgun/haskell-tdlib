@@ -15,10 +15,10 @@ data MessageForwardInfo
     , from_chat_id                     :: Maybe Int                                       -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown
     , from_message_id                  :: Maybe Int                                       -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageForwardInfo where
-  show MessageForwardInfo
+instance I.ShortShow MessageForwardInfo where
+  shortShow MessageForwardInfo
     { origin                           = origin_
     , date                             = date_
     , public_service_announcement_type = public_service_announcement_type_

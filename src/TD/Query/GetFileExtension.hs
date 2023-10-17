@@ -12,10 +12,10 @@ data GetFileExtension
   = GetFileExtension
     { mime_type :: Maybe T.Text -- ^ The MIME type of the file
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetFileExtension where
-  show
+instance I.ShortShow GetFileExtension where
+  shortShow
     GetFileExtension
       { mime_type = mime_type_
       }

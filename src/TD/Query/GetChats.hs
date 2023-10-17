@@ -14,10 +14,10 @@ data GetChats
     { chat_list :: Maybe ChatList.ChatList -- ^ The chat list in which to return chats; pass null to get chats from the main chat list
     , limit     :: Maybe Int               -- ^ The maximum number of chats to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChats where
-  show
+instance I.ShortShow GetChats where
+  shortShow
     GetChats
       { chat_list = chat_list_
       , limit     = limit_

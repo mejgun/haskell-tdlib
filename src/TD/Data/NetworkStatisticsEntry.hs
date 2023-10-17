@@ -21,10 +21,10 @@ data NetworkStatisticsEntry
     , received_bytes :: Maybe Int                     -- ^ Total number of bytes received
     , duration       :: Maybe Double                  -- ^ Total call duration, in seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NetworkStatisticsEntry where
-  show NetworkStatisticsEntryFile
+instance I.ShortShow NetworkStatisticsEntry where
+  shortShow NetworkStatisticsEntryFile
     { file_type      = file_type_
     , network_type   = network_type_
     , sent_bytes     = sent_bytes_
@@ -37,7 +37,7 @@ instance Show NetworkStatisticsEntry where
         , "sent_bytes"     `I.p` sent_bytes_
         , "received_bytes" `I.p` received_bytes_
         ]
-  show NetworkStatisticsEntryCall
+  shortShow NetworkStatisticsEntryCall
     { network_type   = network_type_
     , sent_bytes     = sent_bytes_
     , received_bytes = received_bytes_

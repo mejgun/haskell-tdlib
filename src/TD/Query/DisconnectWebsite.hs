@@ -11,10 +11,10 @@ data DisconnectWebsite
   = DisconnectWebsite
     { website_id :: Maybe Int -- ^ Website identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DisconnectWebsite where
-  show
+instance I.ShortShow DisconnectWebsite where
+  shortShow
     DisconnectWebsite
       { website_id = website_id_
       }

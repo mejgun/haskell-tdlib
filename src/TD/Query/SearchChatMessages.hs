@@ -22,10 +22,10 @@ data SearchChatMessages
     , _filter           :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Additional filter for messages to search; pass null to search for all messages
     , message_thread_id :: Maybe Int                                       -- ^ If not 0, only messages in the specified thread will be returned; supergroups only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchChatMessages where
-  show
+instance I.ShortShow SearchChatMessages where
+  shortShow
     SearchChatMessages
       { chat_id           = chat_id_
       , query             = query_

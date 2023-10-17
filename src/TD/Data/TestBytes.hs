@@ -10,10 +10,10 @@ data TestBytes
   = TestBytes -- ^ A simple object containing a sequence of bytes; for testing only
     { value :: Maybe BS.ByteString -- ^ Bytes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestBytes where
-  show TestBytes
+instance I.ShortShow TestBytes where
+  shortShow TestBytes
     { value = value_
     }
       = "TestBytes"

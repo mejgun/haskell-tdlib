@@ -12,10 +12,10 @@ data GetRecentlyVisitedTMeUrls
   = GetRecentlyVisitedTMeUrls
     { referrer :: Maybe T.Text -- ^ Google Play referrer to identify the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRecentlyVisitedTMeUrls where
-  show
+instance I.ShortShow GetRecentlyVisitedTMeUrls where
+  shortShow
     GetRecentlyVisitedTMeUrls
       { referrer = referrer_
       }

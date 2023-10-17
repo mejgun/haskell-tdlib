@@ -134,10 +134,10 @@ data InputInlineQueryResult
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputInlineQueryResult where
-  show InputInlineQueryResultAnimation
+instance I.ShortShow InputInlineQueryResult where
+  shortShow InputInlineQueryResultAnimation
     { _id                   = _id_
     , title                 = title_
     , thumbnail_url         = thumbnail_url_
@@ -164,7 +164,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultArticle
+  shortShow InputInlineQueryResultArticle
     { _id                   = _id_
     , url                   = url_
     , hide_url              = hide_url_
@@ -189,7 +189,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultAudio
+  shortShow InputInlineQueryResultAudio
     { _id                   = _id_
     , title                 = title_
     , performer             = performer_
@@ -208,7 +208,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultContact
+  shortShow InputInlineQueryResultContact
     { _id                   = _id_
     , contact               = contact_
     , thumbnail_url         = thumbnail_url_
@@ -227,7 +227,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultDocument
+  shortShow InputInlineQueryResultDocument
     { _id                   = _id_
     , title                 = title_
     , description           = description_
@@ -252,7 +252,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultGame
+  shortShow InputInlineQueryResultGame
     { _id             = _id_
     , game_short_name = game_short_name_
     , reply_markup    = reply_markup_
@@ -263,7 +263,7 @@ instance Show InputInlineQueryResult where
         , "game_short_name" `I.p` game_short_name_
         , "reply_markup"    `I.p` reply_markup_
         ]
-  show InputInlineQueryResultLocation
+  shortShow InputInlineQueryResultLocation
     { _id                   = _id_
     , location              = location_
     , live_period           = live_period_
@@ -286,7 +286,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultPhoto
+  shortShow InputInlineQueryResultPhoto
     { _id                   = _id_
     , title                 = title_
     , description           = description_
@@ -309,7 +309,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultSticker
+  shortShow InputInlineQueryResultSticker
     { _id                   = _id_
     , thumbnail_url         = thumbnail_url_
     , sticker_url           = sticker_url_
@@ -328,7 +328,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultVenue
+  shortShow InputInlineQueryResultVenue
     { _id                   = _id_
     , venue                 = venue_
     , thumbnail_url         = thumbnail_url_
@@ -347,7 +347,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultVideo
+  shortShow InputInlineQueryResultVideo
     { _id                   = _id_
     , title                 = title_
     , description           = description_
@@ -374,7 +374,7 @@ instance Show InputInlineQueryResult where
         , "reply_markup"          `I.p` reply_markup_
         , "input_message_content" `I.p` input_message_content_
         ]
-  show InputInlineQueryResultVoiceNote
+  shortShow InputInlineQueryResultVoiceNote
     { _id                   = _id_
     , title                 = title_
     , voice_note_url        = voice_note_url_

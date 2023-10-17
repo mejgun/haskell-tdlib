@@ -15,10 +15,10 @@ data SendBotStartMessage
     , chat_id     :: Maybe Int    -- ^ Identifier of the target chat
     , parameter   :: Maybe T.Text -- ^ A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendBotStartMessage where
-  show
+instance I.ShortShow SendBotStartMessage where
+  shortShow
     SendBotStartMessage
       { bot_user_id = bot_user_id_
       , chat_id     = chat_id_

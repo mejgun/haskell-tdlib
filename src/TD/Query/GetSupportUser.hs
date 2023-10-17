@@ -4,14 +4,15 @@ module TD.Query.GetSupportUser
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns a user that can be contacted to get support
 data GetSupportUser
   = GetSupportUser
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSupportUser where
-  show
+instance I.ShortShow GetSupportUser where
+  shortShow
     GetSupportUser
         = "GetSupportUser"
 

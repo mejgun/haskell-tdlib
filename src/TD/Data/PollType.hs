@@ -15,17 +15,17 @@ data PollType
     { correct_option_id :: Maybe Int                         -- ^ 0-based identifier of the correct answer option; -1 for a yet unanswered poll
     , explanation       :: Maybe FormattedText.FormattedText -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PollType where
-  show PollTypeRegular
+instance I.ShortShow PollType where
+  shortShow PollTypeRegular
     { allow_multiple_answers = allow_multiple_answers_
     }
       = "PollTypeRegular"
         ++ I.cc
         [ "allow_multiple_answers" `I.p` allow_multiple_answers_
         ]
-  show PollTypeQuiz
+  shortShow PollTypeQuiz
     { correct_option_id = correct_option_id_
     , explanation       = explanation_
     }

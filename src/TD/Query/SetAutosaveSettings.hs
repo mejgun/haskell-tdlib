@@ -15,10 +15,10 @@ data SetAutosaveSettings
     { scope    :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Autosave settings scope
     , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ New autosave settings for the scope; pass null to set autosave settings to default
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetAutosaveSettings where
-  show
+instance I.ShortShow SetAutosaveSettings where
+  shortShow
     SetAutosaveSettings
       { scope    = scope_
       , settings = settings_

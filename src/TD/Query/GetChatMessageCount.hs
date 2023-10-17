@@ -15,10 +15,10 @@ data GetChatMessageCount
     , _filter      :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     , return_local :: Maybe Bool                                      -- ^ Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatMessageCount where
-  show
+instance I.ShortShow GetChatMessageCount where
+  shortShow
     GetChatMessageCount
       { chat_id      = chat_id_
       , _filter      = _filter_

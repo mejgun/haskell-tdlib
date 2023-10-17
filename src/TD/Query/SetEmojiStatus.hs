@@ -12,10 +12,10 @@ data SetEmojiStatus
   = SetEmojiStatus
     { emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ New emoji status; pass null to switch to the default badge
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetEmojiStatus where
-  show
+instance I.ShortShow SetEmojiStatus where
+  shortShow
     SetEmojiStatus
       { emoji_status = emoji_status_
       }

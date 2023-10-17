@@ -17,10 +17,10 @@ data EditMessageText
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none; for bots only
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditMessageText where
-  show
+instance I.ShortShow EditMessageText where
+  shortShow
     EditMessageText
       { chat_id               = chat_id_
       , message_id            = message_id_

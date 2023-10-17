@@ -12,10 +12,10 @@ data CanPurchasePremium
   = CanPurchasePremium
     { purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CanPurchasePremium where
-  show
+instance I.ShortShow CanPurchasePremium where
+  shortShow
     CanPurchasePremium
       { purpose = purpose_
       }

@@ -12,10 +12,10 @@ data ChatFolderInviteLink
     , name        :: Maybe T.Text -- ^ Name of the link
     , chat_ids    :: Maybe [Int]  -- ^ Identifiers of chats, included in the link
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolderInviteLink where
-  show ChatFolderInviteLink
+instance I.ShortShow ChatFolderInviteLink where
+  shortShow ChatFolderInviteLink
     { invite_link = invite_link_
     , name        = name_
     , chat_ids    = chat_ids_

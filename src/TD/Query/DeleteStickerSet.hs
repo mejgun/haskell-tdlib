@@ -12,10 +12,10 @@ data DeleteStickerSet
   = DeleteStickerSet
     { name :: Maybe T.Text -- ^ Sticker set name
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteStickerSet where
-  show
+instance I.ShortShow DeleteStickerSet where
+  shortShow
     DeleteStickerSet
       { name = name_
       }

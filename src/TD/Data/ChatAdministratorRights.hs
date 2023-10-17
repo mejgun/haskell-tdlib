@@ -22,10 +22,10 @@ data ChatAdministratorRights
     , can_manage_video_chats :: Maybe Bool -- ^ True, if the administrator can manage video chats
     , is_anonymous           :: Maybe Bool -- ^ True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatAdministratorRights where
-  show ChatAdministratorRights
+instance I.ShortShow ChatAdministratorRights where
+  shortShow ChatAdministratorRights
     { can_manage_chat        = can_manage_chat_
     , can_change_info        = can_change_info_
     , can_post_messages      = can_post_messages_

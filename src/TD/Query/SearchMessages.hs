@@ -21,10 +21,10 @@ data SearchMessages
     , min_date  :: Maybe Int                                       -- ^ If not 0, the minimum date of the messages to return
     , max_date  :: Maybe Int                                       -- ^ If not 0, the maximum date of the messages to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchMessages where
-  show
+instance I.ShortShow SearchMessages where
+  shortShow
     SearchMessages
       { chat_list = chat_list_
       , query     = query_

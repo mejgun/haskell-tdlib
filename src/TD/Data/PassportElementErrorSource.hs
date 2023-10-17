@@ -23,41 +23,41 @@ data PassportElementErrorSource
     { file_index :: Maybe Int -- ^ Index of a file with the error
     }
   | PassportElementErrorSourceFiles -- ^ The list of attached files contains an error. The error will be considered resolved when the list of files changes
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportElementErrorSource where
-  show PassportElementErrorSourceUnspecified
+instance I.ShortShow PassportElementErrorSource where
+  shortShow PassportElementErrorSourceUnspecified
       = "PassportElementErrorSourceUnspecified"
-  show PassportElementErrorSourceDataField
+  shortShow PassportElementErrorSourceDataField
     { field_name = field_name_
     }
       = "PassportElementErrorSourceDataField"
         ++ I.cc
         [ "field_name" `I.p` field_name_
         ]
-  show PassportElementErrorSourceFrontSide
+  shortShow PassportElementErrorSourceFrontSide
       = "PassportElementErrorSourceFrontSide"
-  show PassportElementErrorSourceReverseSide
+  shortShow PassportElementErrorSourceReverseSide
       = "PassportElementErrorSourceReverseSide"
-  show PassportElementErrorSourceSelfie
+  shortShow PassportElementErrorSourceSelfie
       = "PassportElementErrorSourceSelfie"
-  show PassportElementErrorSourceTranslationFile
+  shortShow PassportElementErrorSourceTranslationFile
     { file_index = file_index_
     }
       = "PassportElementErrorSourceTranslationFile"
         ++ I.cc
         [ "file_index" `I.p` file_index_
         ]
-  show PassportElementErrorSourceTranslationFiles
+  shortShow PassportElementErrorSourceTranslationFiles
       = "PassportElementErrorSourceTranslationFiles"
-  show PassportElementErrorSourceFile
+  shortShow PassportElementErrorSourceFile
     { file_index = file_index_
     }
       = "PassportElementErrorSourceFile"
         ++ I.cc
         [ "file_index" `I.p` file_index_
         ]
-  show PassportElementErrorSourceFiles
+  shortShow PassportElementErrorSourceFiles
       = "PassportElementErrorSourceFiles"
 
 instance AT.FromJSON PassportElementErrorSource where

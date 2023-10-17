@@ -12,10 +12,10 @@ data SetLoginEmailAddress
   = SetLoginEmailAddress
     { new_login_email_address :: Maybe T.Text -- ^ New login email address
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetLoginEmailAddress where
-  show
+instance I.ShortShow SetLoginEmailAddress where
+  shortShow
     SetLoginEmailAddress
       { new_login_email_address = new_login_email_address_
       }

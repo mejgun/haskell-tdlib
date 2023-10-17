@@ -11,10 +11,10 @@ data AutosaveSettingsException
     { chat_id  :: Maybe Int                                         -- ^ Chat identifier
     , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ Autosave settings for the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AutosaveSettingsException where
-  show AutosaveSettingsException
+instance I.ShortShow AutosaveSettingsException where
+  shortShow AutosaveSettingsException
     { chat_id  = chat_id_
     , settings = settings_
     }

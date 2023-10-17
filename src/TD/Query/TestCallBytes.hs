@@ -12,10 +12,10 @@ data TestCallBytes
   = TestCallBytes
     { x :: Maybe BS.ByteString -- ^ Bytes to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallBytes where
-  show
+instance I.ShortShow TestCallBytes where
+  shortShow
     TestCallBytes
       { x = x_
       }

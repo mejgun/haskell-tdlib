@@ -11,10 +11,10 @@ data GroupCallStream
     , scale       :: Maybe Int -- ^ Scale of segment durations in the stream. The duration is 1000/(2**scale) milliseconds
     , time_offset :: Maybe Int -- ^ Point in time when the stream currently ends; Unix timestamp in milliseconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallStream where
-  show GroupCallStream
+instance I.ShortShow GroupCallStream where
+  shortShow GroupCallStream
     { channel_id  = channel_id_
     , scale       = scale_
     , time_offset = time_offset_

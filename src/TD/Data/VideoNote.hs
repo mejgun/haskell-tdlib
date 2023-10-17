@@ -20,10 +20,10 @@ data VideoNote
     , speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult -- ^ Result of speech recognition in the video note; may be null
     , video                     :: Maybe File.File                                       -- ^ File containing the video
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show VideoNote where
-  show VideoNote
+instance I.ShortShow VideoNote where
+  shortShow VideoNote
     { duration                  = duration_
     , waveform                  = waveform_
     , _length                   = _length_

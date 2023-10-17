@@ -14,10 +14,10 @@ data DeleteMessages
     , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to be deleted
     , revoke      :: Maybe Bool  -- ^ Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteMessages where
-  show
+instance I.ShortShow DeleteMessages where
+  shortShow
     DeleteMessages
       { chat_id     = chat_id_
       , message_ids = message_ids_

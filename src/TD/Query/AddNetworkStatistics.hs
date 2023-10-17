@@ -12,10 +12,10 @@ data AddNetworkStatistics
   = AddNetworkStatistics
     { entry :: Maybe NetworkStatisticsEntry.NetworkStatisticsEntry -- ^ The network statistics entry with the data to be added to statistics
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddNetworkStatistics where
-  show
+instance I.ShortShow AddNetworkStatistics where
+  shortShow
     AddNetworkStatistics
       { entry = entry_
       }

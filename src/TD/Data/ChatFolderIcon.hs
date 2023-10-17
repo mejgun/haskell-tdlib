@@ -12,10 +12,10 @@ data ChatFolderIcon
   = ChatFolderIcon -- ^ Represents an icon for a chat folder
     { name :: Maybe T.Text -- ^ The chosen icon name for short folder representation; one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work", "Airplane", "Book", "Light", "Like", "Money", "Note", "Palette"
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolderIcon where
-  show ChatFolderIcon
+instance I.ShortShow ChatFolderIcon where
+  shortShow ChatFolderIcon
     { name = name_
     }
       = "ChatFolderIcon"

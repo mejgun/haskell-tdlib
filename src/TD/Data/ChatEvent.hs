@@ -14,10 +14,10 @@ data ChatEvent
     , member_id :: Maybe MessageSender.MessageSender     -- ^ Identifier of the user or chat who performed the action
     , action    :: Maybe ChatEventAction.ChatEventAction -- ^ The action
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatEvent where
-  show ChatEvent
+instance I.ShortShow ChatEvent where
+  shortShow ChatEvent
     { _id       = _id_
     , date      = date_
     , member_id = member_id_

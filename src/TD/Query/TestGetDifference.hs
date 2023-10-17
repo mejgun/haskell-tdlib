@@ -4,14 +4,15 @@ module TD.Query.TestGetDifference
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Forces an updates.getDifference call to the Telegram servers; for testing only
 data TestGetDifference
   = TestGetDifference
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestGetDifference where
-  show
+instance I.ShortShow TestGetDifference where
+  shortShow
     TestGetDifference
         = "TestGetDifference"
 

@@ -17,10 +17,10 @@ data EditInlineMessageCaption
     , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none
     , caption           :: Maybe FormattedText.FormattedText -- ^ New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageCaption where
-  show
+instance I.ShortShow EditInlineMessageCaption where
+  shortShow
     EditInlineMessageCaption
       { inline_message_id = inline_message_id_
       , reply_markup      = reply_markup_

@@ -11,10 +11,10 @@ data GetSupergroup
   = GetSupergroup
     { supergroup_id :: Maybe Int -- ^ Supergroup or channel identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetSupergroup where
-  show
+instance I.ShortShow GetSupergroup where
+  shortShow
     GetSupergroup
       { supergroup_id = supergroup_id_
       }

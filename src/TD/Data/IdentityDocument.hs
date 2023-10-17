@@ -17,10 +17,10 @@ data IdentityDocument
     , selfie          :: Maybe DatedFile.DatedFile   -- ^ Selfie with the document; may be null
     , translation     :: Maybe [DatedFile.DatedFile] -- ^ List of files containing a certified English translation of the document
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show IdentityDocument where
-  show IdentityDocument
+instance I.ShortShow IdentityDocument where
+  shortShow IdentityDocument
     { number          = number_
     , expiration_date = expiration_date_
     , front_side      = front_side_

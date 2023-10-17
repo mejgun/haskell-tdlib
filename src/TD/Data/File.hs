@@ -15,10 +15,10 @@ data File
     , local         :: Maybe LocalFile.LocalFile   -- ^ Information about the local copy of the file
     , remote        :: Maybe RemoteFile.RemoteFile -- ^ Information about the remote copy of the file
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show File where
-  show File
+instance I.ShortShow File where
+  shortShow File
     { _id           = _id_
     , size          = size_
     , expected_size = expected_size_

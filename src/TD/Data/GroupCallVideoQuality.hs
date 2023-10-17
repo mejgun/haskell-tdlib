@@ -3,20 +3,21 @@ module TD.Data.GroupCallVideoQuality
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the quality of a group call video
 data GroupCallVideoQuality
   = GroupCallVideoQualityThumbnail -- ^ The worst available video quality
   | GroupCallVideoQualityMedium -- ^ The medium video quality
   | GroupCallVideoQualityFull -- ^ The best available video quality
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallVideoQuality where
-  show GroupCallVideoQualityThumbnail
+instance I.ShortShow GroupCallVideoQuality where
+  shortShow GroupCallVideoQualityThumbnail
       = "GroupCallVideoQualityThumbnail"
-  show GroupCallVideoQualityMedium
+  shortShow GroupCallVideoQualityMedium
       = "GroupCallVideoQualityMedium"
-  show GroupCallVideoQualityFull
+  shortShow GroupCallVideoQualityFull
       = "GroupCallVideoQualityFull"
 
 instance AT.FromJSON GroupCallVideoQuality where

@@ -12,10 +12,10 @@ data RemoveSavedAnimation
   = RemoveSavedAnimation
     { animation :: Maybe InputFile.InputFile -- ^ Animation file to be removed
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveSavedAnimation where
-  show
+instance I.ShortShow RemoveSavedAnimation where
+  shortShow
     RemoveSavedAnimation
       { animation = animation_
       }

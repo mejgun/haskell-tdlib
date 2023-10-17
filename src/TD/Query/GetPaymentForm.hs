@@ -15,10 +15,10 @@ data GetPaymentForm
     { input_invoice :: Maybe InputInvoice.InputInvoice       -- ^ The invoice
     , theme         :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred payment form theme; pass null to use the default theme
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPaymentForm where
-  show
+instance I.ShortShow GetPaymentForm where
+  shortShow
     GetPaymentForm
       { input_invoice = input_invoice_
       , theme         = theme_

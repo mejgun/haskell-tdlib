@@ -14,10 +14,10 @@ data FinishFileGeneration
     { generation_id :: Maybe Int         -- ^ The identifier of the generation process
     , _error        :: Maybe Error.Error -- ^ If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FinishFileGeneration where
-  show
+instance I.ShortShow FinishFileGeneration where
+  shortShow
     FinishFileGeneration
       { generation_id = generation_id_
       , _error        = _error_

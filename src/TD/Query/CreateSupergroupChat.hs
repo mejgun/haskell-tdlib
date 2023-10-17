@@ -13,10 +13,10 @@ data CreateSupergroupChat
     { supergroup_id :: Maybe Int  -- ^ Supergroup or channel identifier
     , force         :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateSupergroupChat where
-  show
+instance I.ShortShow CreateSupergroupChat where
+  shortShow
     CreateSupergroupChat
       { supergroup_id = supergroup_id_
       , force         = force_

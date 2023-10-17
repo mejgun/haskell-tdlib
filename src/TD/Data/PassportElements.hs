@@ -10,10 +10,10 @@ data PassportElements
   = PassportElements -- ^ Contains information about saved Telegram Passport elements
     { elements :: Maybe [PassportElement.PassportElement] -- ^ Telegram Passport elements
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportElements where
-  show PassportElements
+instance I.ShortShow PassportElements where
+  shortShow PassportElements
     { elements = elements_
     }
       = "PassportElements"

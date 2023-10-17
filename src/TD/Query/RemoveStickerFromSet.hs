@@ -12,10 +12,10 @@ data RemoveStickerFromSet
   = RemoveStickerFromSet
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveStickerFromSet where
-  show
+instance I.ShortShow RemoveStickerFromSet where
+  shortShow
     RemoveStickerFromSet
       { sticker = sticker_
       }

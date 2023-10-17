@@ -17,10 +17,10 @@ data PageBlockTableCell
     , align     :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment -- ^ Horizontal cell content alignment
     , valign    :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment     -- ^ Vertical cell content alignment
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PageBlockTableCell where
-  show PageBlockTableCell
+instance I.ShortShow PageBlockTableCell where
+  shortShow PageBlockTableCell
     { text      = text_
     , is_header = is_header_
     , colspan   = colspan_

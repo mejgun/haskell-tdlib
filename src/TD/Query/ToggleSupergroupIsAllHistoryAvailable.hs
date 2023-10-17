@@ -13,10 +13,10 @@ data ToggleSupergroupIsAllHistoryAvailable
     { supergroup_id            :: Maybe Int  -- ^ The identifier of the supergroup
     , is_all_history_available :: Maybe Bool -- ^ The new value of is_all_history_available
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupIsAllHistoryAvailable where
-  show
+instance I.ShortShow ToggleSupergroupIsAllHistoryAvailable where
+  shortShow
     ToggleSupergroupIsAllHistoryAvailable
       { supergroup_id            = supergroup_id_
       , is_all_history_available = is_all_history_available_

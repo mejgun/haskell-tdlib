@@ -16,10 +16,10 @@ data SponsoredMessage
     , sponsor         :: Maybe MessageSponsor.MessageSponsor -- ^ Information about the sponsor of the message
     , additional_info :: Maybe T.Text                        -- ^ If non-empty, additional information about the sponsored message to be shown along with the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SponsoredMessage where
-  show SponsoredMessage
+instance I.ShortShow SponsoredMessage where
+  shortShow SponsoredMessage
     { message_id      = message_id_
     , is_recommended  = is_recommended_
     , content         = content_

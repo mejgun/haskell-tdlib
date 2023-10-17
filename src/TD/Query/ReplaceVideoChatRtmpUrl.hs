@@ -11,10 +11,10 @@ data ReplaceVideoChatRtmpUrl
   = ReplaceVideoChatRtmpUrl
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReplaceVideoChatRtmpUrl where
-  show
+instance I.ShortShow ReplaceVideoChatRtmpUrl where
+  shortShow
     ReplaceVideoChatRtmpUrl
       { chat_id = chat_id_
       }

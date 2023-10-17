@@ -14,10 +14,10 @@ data MessageReplyInfo
     , last_read_outbox_message_id :: Maybe Int                           -- ^ Identifier of the last read outgoing reply to the message
     , last_message_id             :: Maybe Int                           -- ^ Identifier of the last reply to the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageReplyInfo where
-  show MessageReplyInfo
+instance I.ShortShow MessageReplyInfo where
+  shortShow MessageReplyInfo
     { reply_count                 = reply_count_
     , recent_replier_ids          = recent_replier_ids_
     , last_read_inbox_message_id  = last_read_inbox_message_id_

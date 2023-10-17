@@ -11,10 +11,10 @@ data ClearAllDraftMessages
   = ClearAllDraftMessages
     { exclude_secret_chats :: Maybe Bool -- ^ Pass true to keep local message drafts in secret chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ClearAllDraftMessages where
-  show
+instance I.ShortShow ClearAllDraftMessages where
+  shortShow
     ClearAllDraftMessages
       { exclude_secret_chats = exclude_secret_chats_
       }

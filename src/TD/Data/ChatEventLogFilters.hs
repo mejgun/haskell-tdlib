@@ -23,10 +23,10 @@ data ChatEventLogFilters
     , video_chat_changes  :: Maybe Bool -- ^ True, if video chat actions need to be returned
     , forum_changes       :: Maybe Bool -- ^ True, if forum-related actions need to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatEventLogFilters where
-  show ChatEventLogFilters
+instance I.ShortShow ChatEventLogFilters where
+  shortShow ChatEventLogFilters
     { message_edits       = message_edits_
     , message_deletions   = message_deletions_
     , message_pins        = message_pins_

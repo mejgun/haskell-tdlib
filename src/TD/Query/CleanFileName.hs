@@ -12,10 +12,10 @@ data CleanFileName
   = CleanFileName
     { file_name :: Maybe T.Text -- ^ File name or path to the file
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CleanFileName where
-  show
+instance I.ShortShow CleanFileName where
+  shortShow
     CleanFileName
       { file_name = file_name_
       }

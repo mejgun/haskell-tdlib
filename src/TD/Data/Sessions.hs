@@ -11,10 +11,10 @@ data Sessions
     { sessions                  :: Maybe [Session.Session] -- ^ List of sessions
     , inactive_session_ttl_days :: Maybe Int               -- ^ Number of days of inactivity before sessions will automatically be terminated; 1-366 days
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Sessions where
-  show Sessions
+instance I.ShortShow Sessions where
+  shortShow Sessions
     { sessions                  = sessions_
     , inactive_session_ttl_days = inactive_session_ttl_days_
     }

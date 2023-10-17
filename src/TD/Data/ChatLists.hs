@@ -10,10 +10,10 @@ data ChatLists
   = ChatLists -- ^ Contains a list of chat lists
     { chat_lists :: Maybe [ChatList.ChatList] -- ^ List of chat lists
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatLists where
-  show ChatLists
+instance I.ShortShow ChatLists where
+  shortShow ChatLists
     { chat_lists = chat_lists_
     }
       = "ChatLists"

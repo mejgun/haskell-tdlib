@@ -12,10 +12,10 @@ data HideSuggestedAction
   = HideSuggestedAction
     { action :: Maybe SuggestedAction.SuggestedAction -- ^ Suggested action to hide
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show HideSuggestedAction where
-  show
+instance I.ShortShow HideSuggestedAction where
+  shortShow
     HideSuggestedAction
       { action = action_
       }

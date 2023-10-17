@@ -13,10 +13,10 @@ data UserSupportInfo
     , author  :: Maybe T.Text                      -- ^ Information author
     , date    :: Maybe Int                         -- ^ Information change date
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserSupportInfo where
-  show UserSupportInfo
+instance I.ShortShow UserSupportInfo where
+  shortShow UserSupportInfo
     { message = message_
     , author  = author_
     , date    = date_

@@ -15,10 +15,10 @@ data SetAutoDownloadSettings
     { settings :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ New user auto-download settings
     , _type    :: Maybe NetworkType.NetworkType                   -- ^ Type of the network for which the new settings are relevant
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetAutoDownloadSettings where
-  show
+instance I.ShortShow SetAutoDownloadSettings where
+  shortShow
     SetAutoDownloadSettings
       { settings = settings_
       , _type    = _type_

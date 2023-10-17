@@ -14,10 +14,10 @@ data SetPinnedChats
     { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to change the order of pinned chats
     , chat_ids  :: Maybe [Int]             -- ^ The new list of pinned chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetPinnedChats where
-  show
+instance I.ShortShow SetPinnedChats where
+  shortShow
     SetPinnedChats
       { chat_list = chat_list_
       , chat_ids  = chat_ids_

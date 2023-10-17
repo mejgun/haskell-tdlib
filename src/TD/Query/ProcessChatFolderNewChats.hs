@@ -13,10 +13,10 @@ data ProcessChatFolderNewChats
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier
     , added_chat_ids :: Maybe [Int] -- ^ Identifiers of the new chats, which are added to the chat folder. The chats are automatically joined if they aren't joined yet
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ProcessChatFolderNewChats where
-  show
+instance I.ShortShow ProcessChatFolderNewChats where
+  shortShow
     ProcessChatFolderNewChats
       { chat_folder_id = chat_folder_id_
       , added_chat_ids = added_chat_ids_

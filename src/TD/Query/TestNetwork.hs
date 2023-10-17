@@ -4,14 +4,15 @@ module TD.Query.TestNetwork
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
 data TestNetwork
   = TestNetwork
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestNetwork where
-  show
+instance I.ShortShow TestNetwork where
+  shortShow
     TestNetwork
         = "TestNetwork"
 

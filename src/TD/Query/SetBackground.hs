@@ -16,10 +16,10 @@ data SetBackground
     , _type          :: Maybe BackgroundType.BackgroundType   -- ^ Background type; pass null to use the default type of the remote background or to remove the current background
     , for_dark_theme :: Maybe Bool                            -- ^ Pass true if the background is changed for a dark theme
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBackground where
-  show
+instance I.ShortShow SetBackground where
+  shortShow
     SetBackground
       { background     = background_
       , _type          = _type_

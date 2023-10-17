@@ -12,10 +12,10 @@ data GetJsonValue
   = GetJsonValue
     { json :: Maybe T.Text -- ^ The JSON-serialized string
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetJsonValue where
-  show
+instance I.ShortShow GetJsonValue where
+  shortShow
     GetJsonValue
       { json = json_
       }

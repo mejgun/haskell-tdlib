@@ -15,10 +15,10 @@ data AddFileToDownloads
     , message_id :: Maybe Int -- ^ Message identifier
     , priority   :: Maybe Int -- ^ Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile/addFileToDownloads was called will be downloaded first
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddFileToDownloads where
-  show
+instance I.ShortShow AddFileToDownloads where
+  shortShow
     AddFileToDownloads
       { file_id    = file_id_
       , chat_id    = chat_id_

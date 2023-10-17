@@ -12,10 +12,10 @@ data GetInstalledStickerSets
   = GetInstalledStickerSets
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetInstalledStickerSets where
-  show
+instance I.ShortShow GetInstalledStickerSets where
+  shortShow
     GetInstalledStickerSets
       { sticker_type = sticker_type_
       }

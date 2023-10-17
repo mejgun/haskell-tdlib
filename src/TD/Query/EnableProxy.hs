@@ -11,10 +11,10 @@ data EnableProxy
   = EnableProxy
     { proxy_id :: Maybe Int -- ^ Proxy identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show EnableProxy where
-  show
+instance I.ShortShow EnableProxy where
+  shortShow
     EnableProxy
       { proxy_id = proxy_id_
       }

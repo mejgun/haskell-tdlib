@@ -12,10 +12,10 @@ data ChatStatisticsAdministratorActionsInfo
     , banned_user_count     :: Maybe Int -- ^ Number of users banned by the administrator
     , restricted_user_count :: Maybe Int -- ^ Number of users restricted by the administrator
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsAdministratorActionsInfo where
-  show ChatStatisticsAdministratorActionsInfo
+instance I.ShortShow ChatStatisticsAdministratorActionsInfo where
+  shortShow ChatStatisticsAdministratorActionsInfo
     { user_id               = user_id_
     , deleted_message_count = deleted_message_count_
     , banned_user_count     = banned_user_count_

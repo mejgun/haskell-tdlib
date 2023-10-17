@@ -15,10 +15,10 @@ data CreateCall
     , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
     , is_video :: Maybe Bool                      -- ^ Pass true to create a video call
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateCall where
-  show
+instance I.ShortShow CreateCall where
+  shortShow
     CreateCall
       { user_id  = user_id_
       , protocol = protocol_

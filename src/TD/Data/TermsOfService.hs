@@ -12,10 +12,10 @@ data TermsOfService
     , min_user_age :: Maybe Int                         -- ^ The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
     , show_popup   :: Maybe Bool                        -- ^ True, if a blocking popup with terms of service must be shown to the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TermsOfService where
-  show TermsOfService
+instance I.ShortShow TermsOfService where
+  shortShow TermsOfService
     { text         = text_
     , min_user_age = min_user_age_
     , show_popup   = show_popup_

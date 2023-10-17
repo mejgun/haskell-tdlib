@@ -15,10 +15,10 @@ data SetGroupCallParticipantVolumeLevel
     , participant_id :: Maybe MessageSender.MessageSender -- ^ Participant identifier
     , volume_level   :: Maybe Int                         -- ^ New participant's volume level; 1-20000 in hundreds of percents
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetGroupCallParticipantVolumeLevel where
-  show
+instance I.ShortShow SetGroupCallParticipantVolumeLevel where
+  shortShow
     SetGroupCallParticipantVolumeLevel
       { group_call_id  = group_call_id_
       , participant_id = participant_id_

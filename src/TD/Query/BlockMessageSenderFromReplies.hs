@@ -15,10 +15,10 @@ data BlockMessageSenderFromReplies
     , delete_all_messages :: Maybe Bool -- ^ Pass true to delete all messages from the same sender
     , report_spam         :: Maybe Bool -- ^ Pass true to report the sender to the Telegram moderators
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BlockMessageSenderFromReplies where
-  show
+instance I.ShortShow BlockMessageSenderFromReplies where
+  shortShow
     BlockMessageSenderFromReplies
       { message_id          = message_id_
       , delete_message      = delete_message_

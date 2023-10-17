@@ -20,10 +20,10 @@ data AnswerInlineQuery
     , cache_time      :: Maybe Int                                               -- ^ Allowed time to cache the results of the query, in seconds
     , next_offset     :: Maybe T.Text                                            -- ^ Offset for the next inline query; pass an empty string if there are no more results
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerInlineQuery where
-  show
+instance I.ShortShow AnswerInlineQuery where
+  shortShow
     AnswerInlineQuery
       { inline_query_id = inline_query_id_
       , is_personal     = is_personal_

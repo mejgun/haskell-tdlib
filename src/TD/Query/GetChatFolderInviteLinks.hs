@@ -11,10 +11,10 @@ data GetChatFolderInviteLinks
   = GetChatFolderInviteLinks
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatFolderInviteLinks where
-  show
+instance I.ShortShow GetChatFolderInviteLinks where
+  shortShow
     GetChatFolderInviteLinks
       { chat_folder_id = chat_folder_id_
       }

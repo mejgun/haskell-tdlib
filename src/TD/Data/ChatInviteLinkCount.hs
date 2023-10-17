@@ -11,10 +11,10 @@ data ChatInviteLinkCount
     , invite_link_count         :: Maybe Int -- ^ Number of active invite links
     , revoked_invite_link_count :: Maybe Int -- ^ Number of revoked invite links
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkCount where
-  show ChatInviteLinkCount
+instance I.ShortShow ChatInviteLinkCount where
+  shortShow ChatInviteLinkCount
     { user_id                   = user_id_
     , invite_link_count         = invite_link_count_
     , revoked_invite_link_count = revoked_invite_link_count_

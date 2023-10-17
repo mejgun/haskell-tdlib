@@ -14,10 +14,10 @@ data ReadFilePart
     , offset  :: Maybe Int -- ^ The offset from which to read the file
     , count   :: Maybe Int -- ^ Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReadFilePart where
-  show
+instance I.ShortShow ReadFilePart where
+  shortShow
     ReadFilePart
       { file_id = file_id_
       , offset  = offset_

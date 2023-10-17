@@ -20,17 +20,17 @@ data LanguagePackStringValue
     , other_value :: Maybe T.Text -- ^ Default value
     }
   | LanguagePackStringValueDeleted -- ^ A deleted language pack string, the value must be taken from the built-in English language pack
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LanguagePackStringValue where
-  show LanguagePackStringValueOrdinary
+instance I.ShortShow LanguagePackStringValue where
+  shortShow LanguagePackStringValueOrdinary
     { value = value_
     }
       = "LanguagePackStringValueOrdinary"
         ++ I.cc
         [ "value" `I.p` value_
         ]
-  show LanguagePackStringValuePluralized
+  shortShow LanguagePackStringValuePluralized
     { zero_value  = zero_value_
     , one_value   = one_value_
     , two_value   = two_value_
@@ -47,7 +47,7 @@ instance Show LanguagePackStringValue where
         , "many_value"  `I.p` many_value_
         , "other_value" `I.p` other_value_
         ]
-  show LanguagePackStringValueDeleted
+  shortShow LanguagePackStringValueDeleted
       = "LanguagePackStringValueDeleted"
 
 instance AT.FromJSON LanguagePackStringValue where

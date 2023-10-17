@@ -12,10 +12,10 @@ data TestCallVectorStringObject
   = TestCallVectorStringObject
     { x :: Maybe [TestString.TestString] -- ^ Vector of objects to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallVectorStringObject where
-  show
+instance I.ShortShow TestCallVectorStringObject where
+  shortShow
     TestCallVectorStringObject
       { x = x_
       }

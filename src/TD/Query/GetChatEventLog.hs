@@ -19,10 +19,10 @@ data GetChatEventLog
     , filters       :: Maybe ChatEventLogFilters.ChatEventLogFilters -- ^ The types of events to return; pass null to get chat events of all types
     , user_ids      :: Maybe [Int]                                   -- ^ User identifiers by which to filter events. By default, events relating to all users will be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatEventLog where
-  show
+instance I.ShortShow GetChatEventLog where
+  shortShow
     GetChatEventLog
       { chat_id       = chat_id_
       , query         = query_

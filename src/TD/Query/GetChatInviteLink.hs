@@ -14,10 +14,10 @@ data GetChatInviteLink
     { chat_id     :: Maybe Int    -- ^ Chat identifier
     , invite_link :: Maybe T.Text -- ^ Invite link to get
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatInviteLink where
-  show
+instance I.ShortShow GetChatInviteLink where
+  shortShow
     GetChatInviteLink
       { chat_id     = chat_id_
       , invite_link = invite_link_

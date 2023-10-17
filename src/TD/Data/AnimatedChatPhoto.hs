@@ -12,10 +12,10 @@ data AnimatedChatPhoto
     , file                 :: Maybe File.File -- ^ Information about the animation file
     , main_frame_timestamp :: Maybe Double    -- ^ Timestamp of the frame, used as a static chat photo
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnimatedChatPhoto where
-  show AnimatedChatPhoto
+instance I.ShortShow AnimatedChatPhoto where
+  shortShow AnimatedChatPhoto
     { _length              = _length_
     , file                 = file_
     , main_frame_timestamp = main_frame_timestamp_

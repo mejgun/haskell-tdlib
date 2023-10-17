@@ -10,10 +10,10 @@ data TextEntities
   = TextEntities -- ^ Contains a list of text entities
     { entities :: Maybe [TextEntity.TextEntity] -- ^ List of text entities
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TextEntities where
-  show TextEntities
+instance I.ShortShow TextEntities where
+  shortShow TextEntities
     { entities = entities_
     }
       = "TextEntities"

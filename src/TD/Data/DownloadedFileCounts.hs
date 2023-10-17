@@ -11,10 +11,10 @@ data DownloadedFileCounts
     , paused_count    :: Maybe Int -- ^ Number of paused file downloads found
     , completed_count :: Maybe Int -- ^ Number of completed file downloads found
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DownloadedFileCounts where
-  show DownloadedFileCounts
+instance I.ShortShow DownloadedFileCounts where
+  shortShow DownloadedFileCounts
     { active_count    = active_count_
     , paused_count    = paused_count_
     , completed_count = completed_count_

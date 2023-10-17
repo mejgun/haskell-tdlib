@@ -27,10 +27,10 @@ data StickerSetInfo
     , size              :: Maybe Int                                 -- ^ Total number of stickers in the set
     , covers            :: Maybe [Sticker.Sticker]                   -- ^ Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StickerSetInfo where
-  show StickerSetInfo
+instance I.ShortShow StickerSetInfo where
+  shortShow StickerSetInfo
     { _id               = _id_
     , title             = title_
     , name              = name_

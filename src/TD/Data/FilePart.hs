@@ -10,10 +10,10 @@ data FilePart
   = FilePart -- ^ Contains a part of a file
     { _data :: Maybe BS.ByteString -- ^ File bytes
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show FilePart where
-  show FilePart
+instance I.ShortShow FilePart where
+  shortShow FilePart
     { _data = _data_
     }
       = "FilePart"

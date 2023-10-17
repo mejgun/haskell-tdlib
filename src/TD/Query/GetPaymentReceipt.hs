@@ -13,10 +13,10 @@ data GetPaymentReceipt
     { chat_id    :: Maybe Int -- ^ Chat identifier of the messagePaymentSuccessful message
     , message_id :: Maybe Int -- ^ Message identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPaymentReceipt where
-  show
+instance I.ShortShow GetPaymentReceipt where
+  shortShow
     GetPaymentReceipt
       { chat_id    = chat_id_
       , message_id = message_id_

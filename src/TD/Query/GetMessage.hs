@@ -13,10 +13,10 @@ data GetMessage
     { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id :: Maybe Int -- ^ Identifier of the message to get
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetMessage where
-  show
+instance I.ShortShow GetMessage where
+  shortShow
     GetMessage
       { chat_id    = chat_id_
       , message_id = message_id_

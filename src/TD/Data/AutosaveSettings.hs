@@ -14,10 +14,10 @@ data AutosaveSettings
     , channel_settings      :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings           -- ^ Default autosave settings for channel chats
     , exceptions            :: Maybe [AutosaveSettingsException.AutosaveSettingsException] -- ^ Autosave settings for specific chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AutosaveSettings where
-  show AutosaveSettings
+instance I.ShortShow AutosaveSettings where
+  shortShow AutosaveSettings
     { private_chat_settings = private_chat_settings_
     , group_settings        = group_settings_
     , channel_settings      = channel_settings_

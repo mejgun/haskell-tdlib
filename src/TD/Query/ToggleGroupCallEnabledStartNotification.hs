@@ -13,10 +13,10 @@ data ToggleGroupCallEnabledStartNotification
     { group_call_id              :: Maybe Int  -- ^ Group call identifier
     , enabled_start_notification :: Maybe Bool -- ^ New value of the enabled_start_notification setting
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallEnabledStartNotification where
-  show
+instance I.ShortShow ToggleGroupCallEnabledStartNotification where
+  shortShow
     ToggleGroupCallEnabledStartNotification
       { group_call_id              = group_call_id_
       , enabled_start_notification = enabled_start_notification_

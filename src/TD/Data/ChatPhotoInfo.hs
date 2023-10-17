@@ -15,10 +15,10 @@ data ChatPhotoInfo
     , has_animation :: Maybe Bool                        -- ^ True, if the photo has animated variant
     , is_personal   :: Maybe Bool                        -- ^ True, if the photo is visible only for the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPhotoInfo where
-  show ChatPhotoInfo
+instance I.ShortShow ChatPhotoInfo where
+  shortShow ChatPhotoInfo
     { small         = small_
     , big           = big_
     , minithumbnail = minithumbnail_

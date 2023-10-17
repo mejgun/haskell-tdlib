@@ -17,10 +17,10 @@ data AddProxy
     , enable :: Maybe Bool                -- ^ Pass true to immediately enable the proxy
     , _type  :: Maybe ProxyType.ProxyType -- ^ Proxy type
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddProxy where
-  show
+instance I.ShortShow AddProxy where
+  shortShow
     AddProxy
       { server = server_
       , port   = port_

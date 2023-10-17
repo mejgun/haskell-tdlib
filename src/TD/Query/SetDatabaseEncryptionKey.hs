@@ -12,10 +12,10 @@ data SetDatabaseEncryptionKey
   = SetDatabaseEncryptionKey
     { new_encryption_key :: Maybe BS.ByteString -- ^ New encryption key
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetDatabaseEncryptionKey where
-  show
+instance I.ShortShow SetDatabaseEncryptionKey where
+  shortShow
     SetDatabaseEncryptionKey
       { new_encryption_key = new_encryption_key_
       }

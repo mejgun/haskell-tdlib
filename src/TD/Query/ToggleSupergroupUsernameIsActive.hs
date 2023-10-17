@@ -15,10 +15,10 @@ data ToggleSupergroupUsernameIsActive
     , username      :: Maybe T.Text -- ^ The username to change
     , is_active     :: Maybe Bool   -- ^ Pass true to activate the username; pass false to disable it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupUsernameIsActive where
-  show
+instance I.ShortShow ToggleSupergroupUsernameIsActive where
+  shortShow
     ToggleSupergroupUsernameIsActive
       { supergroup_id = supergroup_id_
       , username      = username_

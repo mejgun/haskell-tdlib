@@ -16,10 +16,10 @@ data GetLanguagePackString
     , language_pack_id            :: Maybe T.Text -- ^ Language pack identifier
     , key                         :: Maybe T.Text -- ^ Language pack key of the string to be returned
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetLanguagePackString where
-  show
+instance I.ShortShow GetLanguagePackString where
+  shortShow
     GetLanguagePackString
       { language_pack_database_path = language_pack_database_path_
       , localization_target         = localization_target_

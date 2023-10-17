@@ -31,10 +31,10 @@ data GroupCall
     , is_video_recorded                :: Maybe Bool                                            -- ^ True, if a video file is being recorded for the call
     , duration                         :: Maybe Int                                             -- ^ Call duration, in seconds; for ended calls only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCall where
-  show GroupCall
+instance I.ShortShow GroupCall where
+  shortShow GroupCall
     { _id                              = _id_
     , title                            = title_
     , scheduled_start_date             = scheduled_start_date_

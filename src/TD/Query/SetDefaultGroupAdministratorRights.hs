@@ -12,10 +12,10 @@ data SetDefaultGroupAdministratorRights
   = SetDefaultGroupAdministratorRights
     { default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetDefaultGroupAdministratorRights where
-  show
+instance I.ShortShow SetDefaultGroupAdministratorRights where
+  shortShow
     SetDefaultGroupAdministratorRights
       { default_group_administrator_rights = default_group_administrator_rights_
       }

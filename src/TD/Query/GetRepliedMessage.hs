@@ -13,10 +13,10 @@ data GetRepliedMessage
     { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id :: Maybe Int -- ^ Identifier of the reply message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRepliedMessage where
-  show
+instance I.ShortShow GetRepliedMessage where
+  shortShow
     GetRepliedMessage
       { chat_id    = chat_id_
       , message_id = message_id_

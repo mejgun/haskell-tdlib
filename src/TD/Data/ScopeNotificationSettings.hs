@@ -19,10 +19,10 @@ data ScopeNotificationSettings
     , disable_pinned_message_notifications :: Maybe Bool -- ^ True, if notifications for incoming pinned messages will be created as for an ordinary unread message
     , disable_mention_notifications        :: Maybe Bool -- ^ True, if notifications for messages with mentions will be created as for an ordinary unread message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ScopeNotificationSettings where
-  show ScopeNotificationSettings
+instance I.ShortShow ScopeNotificationSettings where
+  shortShow ScopeNotificationSettings
     { mute_for                             = mute_for_
     , sound_id                             = sound_id_
     , show_preview                         = show_preview_

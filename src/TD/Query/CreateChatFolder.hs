@@ -12,10 +12,10 @@ data CreateChatFolder
   = CreateChatFolder
     { folder :: Maybe ChatFolder.ChatFolder -- ^ The new chat folder
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CreateChatFolder where
-  show
+instance I.ShortShow CreateChatFolder where
+  shortShow
     CreateChatFolder
       { folder = folder_
       }

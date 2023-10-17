@@ -14,10 +14,10 @@ data SetChatPermissions
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
     , permissions :: Maybe ChatPermissions.ChatPermissions -- ^ New non-administrator members permissions in the chat
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatPermissions where
-  show
+instance I.ShortShow SetChatPermissions where
+  shortShow
     SetChatPermissions
       { chat_id     = chat_id_
       , permissions = permissions_

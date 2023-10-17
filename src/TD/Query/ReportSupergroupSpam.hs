@@ -13,10 +13,10 @@ data ReportSupergroupSpam
     { supergroup_id :: Maybe Int   -- ^ Supergroup identifier
     , message_ids   :: Maybe [Int] -- ^ Identifiers of messages to report
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReportSupergroupSpam where
-  show
+instance I.ShortShow ReportSupergroupSpam where
+  shortShow
     ReportSupergroupSpam
       { supergroup_id = supergroup_id_
       , message_ids   = message_ids_

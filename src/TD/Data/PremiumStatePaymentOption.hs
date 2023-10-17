@@ -14,10 +14,10 @@ data PremiumStatePaymentOption
     , is_upgrade          :: Maybe Bool                                      -- ^ True, if the payment option can be used to upgrade the existing Telegram Premium subscription
     , last_transaction_id :: Maybe T.Text                                    -- ^ Identifier of the last in-store transaction for the currently used option
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PremiumStatePaymentOption where
-  show PremiumStatePaymentOption
+instance I.ShortShow PremiumStatePaymentOption where
+  shortShow PremiumStatePaymentOption
     { payment_option      = payment_option_
     , is_current          = is_current_
     , is_upgrade          = is_upgrade_

@@ -16,10 +16,10 @@ data NotificationSound
     , _data    :: Maybe T.Text    -- ^ Arbitrary data, defined while the sound was uploaded
     , sound    :: Maybe File.File -- ^ File containing the sound
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show NotificationSound where
-  show NotificationSound
+instance I.ShortShow NotificationSound where
+  shortShow NotificationSound
     { _id      = _id_
     , duration = duration_
     , date     = date_

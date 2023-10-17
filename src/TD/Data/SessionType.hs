@@ -3,6 +3,7 @@ module TD.Data.SessionType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents the type of a session
 data SessionType
@@ -23,42 +24,42 @@ data SessionType
   | SessionTypeVivaldi -- ^ The session is running on the Vivaldi browser
   | SessionTypeWindows -- ^ The session is running on a Windows device
   | SessionTypeXbox -- ^ The session is running on an Xbox console
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SessionType where
-  show SessionTypeAndroid
+instance I.ShortShow SessionType where
+  shortShow SessionTypeAndroid
       = "SessionTypeAndroid"
-  show SessionTypeApple
+  shortShow SessionTypeApple
       = "SessionTypeApple"
-  show SessionTypeBrave
+  shortShow SessionTypeBrave
       = "SessionTypeBrave"
-  show SessionTypeChrome
+  shortShow SessionTypeChrome
       = "SessionTypeChrome"
-  show SessionTypeEdge
+  shortShow SessionTypeEdge
       = "SessionTypeEdge"
-  show SessionTypeFirefox
+  shortShow SessionTypeFirefox
       = "SessionTypeFirefox"
-  show SessionTypeIpad
+  shortShow SessionTypeIpad
       = "SessionTypeIpad"
-  show SessionTypeIphone
+  shortShow SessionTypeIphone
       = "SessionTypeIphone"
-  show SessionTypeLinux
+  shortShow SessionTypeLinux
       = "SessionTypeLinux"
-  show SessionTypeMac
+  shortShow SessionTypeMac
       = "SessionTypeMac"
-  show SessionTypeOpera
+  shortShow SessionTypeOpera
       = "SessionTypeOpera"
-  show SessionTypeSafari
+  shortShow SessionTypeSafari
       = "SessionTypeSafari"
-  show SessionTypeUbuntu
+  shortShow SessionTypeUbuntu
       = "SessionTypeUbuntu"
-  show SessionTypeUnknown
+  shortShow SessionTypeUnknown
       = "SessionTypeUnknown"
-  show SessionTypeVivaldi
+  shortShow SessionTypeVivaldi
       = "SessionTypeVivaldi"
-  show SessionTypeWindows
+  shortShow SessionTypeWindows
       = "SessionTypeWindows"
-  show SessionTypeXbox
+  shortShow SessionTypeXbox
       = "SessionTypeXbox"
 
 instance AT.FromJSON SessionType where

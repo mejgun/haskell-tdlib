@@ -17,10 +17,10 @@ data StorePaymentPurpose
     , currency :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount   :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StorePaymentPurpose where
-  show StorePaymentPurposePremiumSubscription
+instance I.ShortShow StorePaymentPurpose where
+  shortShow StorePaymentPurposePremiumSubscription
     { is_restore = is_restore_
     , is_upgrade = is_upgrade_
     }
@@ -29,7 +29,7 @@ instance Show StorePaymentPurpose where
         [ "is_restore" `I.p` is_restore_
         , "is_upgrade" `I.p` is_upgrade_
         ]
-  show StorePaymentPurposeGiftedPremium
+  shortShow StorePaymentPurposeGiftedPremium
     { user_id  = user_id_
     , currency = currency_
     , amount   = amount_

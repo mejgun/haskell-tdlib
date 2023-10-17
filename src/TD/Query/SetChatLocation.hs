@@ -14,10 +14,10 @@ data SetChatLocation
     { chat_id  :: Maybe Int                       -- ^ Chat identifier
     , location :: Maybe ChatLocation.ChatLocation -- ^ New location for the chat; must be valid and not null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetChatLocation where
-  show
+instance I.ShortShow SetChatLocation where
+  shortShow
     SetChatLocation
       { chat_id  = chat_id_
       , location = location_

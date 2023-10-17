@@ -13,10 +13,10 @@ data GroupCallParticipantVideoInfo
     , endpoint_id   :: Maybe T.Text                                                -- ^ Video channel endpoint identifier
     , is_paused     :: Maybe Bool                                                  -- ^ True, if the video is paused. This flag needs to be ignored, if new video frames are received
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GroupCallParticipantVideoInfo where
-  show GroupCallParticipantVideoInfo
+instance I.ShortShow GroupCallParticipantVideoInfo where
+  shortShow GroupCallParticipantVideoInfo
     { source_groups = source_groups_
     , endpoint_id   = endpoint_id_
     , is_paused     = is_paused_

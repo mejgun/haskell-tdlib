@@ -17,10 +17,10 @@ data Background
     , document   :: Maybe Document.Document             -- ^ Document with the background; may be null. Null only for filled backgrounds
     , _type      :: Maybe BackgroundType.BackgroundType -- ^ Type of the background
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Background where
-  show Background
+instance I.ShortShow Background where
+  shortShow Background
     { _id        = _id_
     , is_default = is_default_
     , is_dark    = is_dark_

@@ -13,10 +13,10 @@ data AddedReactions
     , reactions   :: Maybe [AddedReaction.AddedReaction] -- ^ The list of added reactions
     , next_offset :: Maybe T.Text                        -- ^ The offset for the next request. If empty, there are no more results
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddedReactions where
-  show AddedReactions
+instance I.ShortShow AddedReactions where
+  shortShow AddedReactions
     { total_count = total_count_
     , reactions   = reactions_
     , next_offset = next_offset_

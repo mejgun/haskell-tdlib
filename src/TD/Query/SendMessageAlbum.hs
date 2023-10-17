@@ -20,10 +20,10 @@ data SendMessageAlbum
     , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album
     , only_preview           :: Maybe Bool                                      -- ^ Pass true to get fake messages instead of actually sending them
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendMessageAlbum where
-  show
+instance I.ShortShow SendMessageAlbum where
+  shortShow
     SendMessageAlbum
       { chat_id                = chat_id_
       , message_thread_id      = message_thread_id_

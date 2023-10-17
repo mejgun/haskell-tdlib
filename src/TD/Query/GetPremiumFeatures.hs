@@ -12,10 +12,10 @@ data GetPremiumFeatures
   = GetPremiumFeatures
     { source :: Maybe PremiumSource.PremiumSource -- ^ Source of the request; pass null if the method is called from some non-standard source
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPremiumFeatures where
-  show
+instance I.ShortShow GetPremiumFeatures where
+  shortShow
     GetPremiumFeatures
       { source = source_
       }

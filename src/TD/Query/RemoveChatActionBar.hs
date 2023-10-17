@@ -11,10 +11,10 @@ data RemoveChatActionBar
   = RemoveChatActionBar
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveChatActionBar where
-  show
+instance I.ShortShow RemoveChatActionBar where
+  shortShow
     RemoveChatActionBar
       { chat_id = chat_id_
       }

@@ -13,10 +13,10 @@ data ToggleGroupCallIsMyVideoPaused
     { group_call_id      :: Maybe Int  -- ^ Group call identifier
     , is_my_video_paused :: Maybe Bool -- ^ Pass true if the current user's video is paused
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallIsMyVideoPaused where
-  show
+instance I.ShortShow ToggleGroupCallIsMyVideoPaused where
+  shortShow
     ToggleGroupCallIsMyVideoPaused
       { group_call_id      = group_call_id_
       , is_my_video_paused = is_my_video_paused_

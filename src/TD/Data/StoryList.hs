@@ -3,17 +3,18 @@ module TD.Data.StoryList
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a list of stories
 data StoryList
   = StoryListMain -- ^ The list of stories, shown in the main chat list and folder chat lists
   | StoryListArchive -- ^ The list of stories, shown in the Arvhive chat list
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StoryList where
-  show StoryListMain
+instance I.ShortShow StoryList where
+  shortShow StoryListMain
       = "StoryListMain"
-  show StoryListArchive
+  shortShow StoryListArchive
       = "StoryListArchive"
 
 instance AT.FromJSON StoryList where

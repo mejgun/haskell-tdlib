@@ -12,10 +12,10 @@ data GetRecoveryEmailAddress
   = GetRecoveryEmailAddress
     { password :: Maybe T.Text -- ^ The 2-step verification password for the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetRecoveryEmailAddress where
-  show
+instance I.ShortShow GetRecoveryEmailAddress where
+  shortShow
     GetRecoveryEmailAddress
       { password = password_
       }

@@ -11,10 +11,10 @@ data ReadAllChatReactions
   = ReadAllChatReactions
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ReadAllChatReactions where
-  show
+instance I.ShortShow ReadAllChatReactions where
+  shortShow
     ReadAllChatReactions
       { chat_id = chat_id_
       }

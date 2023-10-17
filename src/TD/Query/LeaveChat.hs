@@ -11,10 +11,10 @@ data LeaveChat
   = LeaveChat
     { chat_id :: Maybe Int -- ^ Chat identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show LeaveChat where
-  show
+instance I.ShortShow LeaveChat where
+  shortShow
     LeaveChat
       { chat_id = chat_id_
       }

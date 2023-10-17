@@ -17,10 +17,10 @@ data GetStickers
     , limit        :: Maybe Int                     -- ^ The maximum number of stickers to be returned
     , chat_id      :: Maybe Int                     -- ^ Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetStickers where
-  show
+instance I.ShortShow GetStickers where
+  shortShow
     GetStickers
       { sticker_type = sticker_type_
       , query        = query_

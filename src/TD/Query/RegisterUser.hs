@@ -14,10 +14,10 @@ data RegisterUser
     { first_name :: Maybe T.Text -- ^ The first name of the user; 1-64 characters
     , last_name  :: Maybe T.Text -- ^ The last name of the user; 0-64 characters
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RegisterUser where
-  show
+instance I.ShortShow RegisterUser where
+  shortShow
     RegisterUser
       { first_name = first_name_
       , last_name  = last_name_

@@ -13,10 +13,10 @@ data Date
     , month :: Maybe Int -- ^ Month; 1-12
     , year  :: Maybe Int -- ^ Year; 1-9999
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Date where
-  show Date
+instance I.ShortShow Date where
+  shortShow Date
     { day   = day_
     , month = month_
     , year  = year_

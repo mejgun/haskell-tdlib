@@ -13,10 +13,10 @@ data GetArchivedStories
     { from_story_id :: Maybe Int -- ^ Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
     , limit         :: Maybe Int -- ^ The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetArchivedStories where
-  show
+instance I.ShortShow GetArchivedStories where
+  shortShow
     GetArchivedStories
       { from_story_id = from_story_id_
       , limit         = limit_

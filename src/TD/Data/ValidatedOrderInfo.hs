@@ -12,10 +12,10 @@ data ValidatedOrderInfo
     { order_info_id    :: Maybe T.Text                          -- ^ Temporary identifier of the order information
     , shipping_options :: Maybe [ShippingOption.ShippingOption] -- ^ Available shipping options
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ValidatedOrderInfo where
-  show ValidatedOrderInfo
+instance I.ShortShow ValidatedOrderInfo where
+  shortShow ValidatedOrderInfo
     { order_info_id    = order_info_id_
     , shipping_options = shipping_options_
     }

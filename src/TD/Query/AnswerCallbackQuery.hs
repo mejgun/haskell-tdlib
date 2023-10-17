@@ -17,10 +17,10 @@ data AnswerCallbackQuery
     , url               :: Maybe T.Text -- ^ URL to be opened
     , cache_time        :: Maybe Int    -- ^ Time during which the result of the query can be cached, in seconds
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AnswerCallbackQuery where
-  show
+instance I.ShortShow AnswerCallbackQuery where
+  shortShow
     AnswerCallbackQuery
       { callback_query_id = callback_query_id_
       , text              = text_

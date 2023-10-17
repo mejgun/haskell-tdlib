@@ -10,10 +10,10 @@ data HttpUrl
   = HttpUrl -- ^ Contains an HTTP URL
     { url :: Maybe T.Text -- ^ The URL
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show HttpUrl where
-  show HttpUrl
+instance I.ShortShow HttpUrl where
+  shortShow HttpUrl
     { url = url_
     }
       = "HttpUrl"

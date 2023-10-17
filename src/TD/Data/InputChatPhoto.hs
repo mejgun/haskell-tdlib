@@ -22,24 +22,24 @@ data InputChatPhoto
   | InputChatPhotoSticker -- ^ A sticker on a custom background
     { sticker :: Maybe ChatPhotoSticker.ChatPhotoSticker -- ^ Information about the sticker
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InputChatPhoto where
-  show InputChatPhotoPrevious
+instance I.ShortShow InputChatPhoto where
+  shortShow InputChatPhotoPrevious
     { chat_photo_id = chat_photo_id_
     }
       = "InputChatPhotoPrevious"
         ++ I.cc
         [ "chat_photo_id" `I.p` chat_photo_id_
         ]
-  show InputChatPhotoStatic
+  shortShow InputChatPhotoStatic
     { photo = photo_
     }
       = "InputChatPhotoStatic"
         ++ I.cc
         [ "photo" `I.p` photo_
         ]
-  show InputChatPhotoAnimation
+  shortShow InputChatPhotoAnimation
     { animation            = animation_
     , main_frame_timestamp = main_frame_timestamp_
     }
@@ -48,7 +48,7 @@ instance Show InputChatPhoto where
         [ "animation"            `I.p` animation_
         , "main_frame_timestamp" `I.p` main_frame_timestamp_
         ]
-  show InputChatPhotoSticker
+  shortShow InputChatPhotoSticker
     { sticker = sticker_
     }
       = "InputChatPhotoSticker"

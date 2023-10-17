@@ -14,10 +14,10 @@ data GetUserProfilePhotos
     , offset  :: Maybe Int -- ^ The number of photos to skip; must be non-negative
     , limit   :: Maybe Int -- ^ The maximum number of photos to be returned; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetUserProfilePhotos where
-  show
+instance I.ShortShow GetUserProfilePhotos where
+  shortShow
     GetUserProfilePhotos
       { user_id = user_id_
       , offset  = offset_

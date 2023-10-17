@@ -13,10 +13,10 @@ data AddChatMembers
     { chat_id  :: Maybe Int   -- ^ Chat identifier
     , user_ids :: Maybe [Int] -- ^ Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddChatMembers where
-  show
+instance I.ShortShow AddChatMembers where
+  shortShow
     AddChatMembers
       { chat_id  = chat_id_
       , user_ids = user_ids_

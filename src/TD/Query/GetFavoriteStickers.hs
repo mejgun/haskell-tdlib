@@ -4,14 +4,15 @@ module TD.Query.GetFavoriteStickers
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns favorite stickers
 data GetFavoriteStickers
   = GetFavoriteStickers
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetFavoriteStickers where
-  show
+instance I.ShortShow GetFavoriteStickers where
+  shortShow
     GetFavoriteStickers
         = "GetFavoriteStickers"
 

@@ -14,10 +14,10 @@ data GetChatMember
     { chat_id   :: Maybe Int                         -- ^ Chat identifier
     , member_id :: Maybe MessageSender.MessageSender -- ^ Member identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetChatMember where
-  show
+instance I.ShortShow GetChatMember where
+  shortShow
     GetChatMember
       { chat_id   = chat_id_
       , member_id = member_id_

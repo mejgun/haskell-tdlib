@@ -12,10 +12,10 @@ data RemoveFavoriteSticker
   = RemoveFavoriteSticker
     { sticker :: Maybe InputFile.InputFile -- ^ Sticker file to delete from the list
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveFavoriteSticker where
-  show
+instance I.ShortShow RemoveFavoriteSticker where
+  shortShow
     RemoveFavoriteSticker
       { sticker = sticker_
       }

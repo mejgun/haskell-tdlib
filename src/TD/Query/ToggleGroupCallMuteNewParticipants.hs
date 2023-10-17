@@ -13,10 +13,10 @@ data ToggleGroupCallMuteNewParticipants
     { group_call_id         :: Maybe Int  -- ^ Group call identifier
     , mute_new_participants :: Maybe Bool -- ^ New value of the mute_new_participants setting
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallMuteNewParticipants where
-  show
+instance I.ShortShow ToggleGroupCallMuteNewParticipants where
+  shortShow
     ToggleGroupCallMuteNewParticipants
       { group_call_id         = group_call_id_
       , mute_new_participants = mute_new_participants_

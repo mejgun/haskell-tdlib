@@ -10,10 +10,10 @@ data ChatStatisticsInviterInfo
     { user_id            :: Maybe Int -- ^ User identifier
     , added_member_count :: Maybe Int -- ^ Number of new members invited by the user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsInviterInfo where
-  show ChatStatisticsInviterInfo
+instance I.ShortShow ChatStatisticsInviterInfo where
+  shortShow ChatStatisticsInviterInfo
     { user_id            = user_id_
     , added_member_count = added_member_count_
     }

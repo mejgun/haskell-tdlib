@@ -12,10 +12,10 @@ data GetPremiumLimit
   = GetPremiumLimit
     { limit_type :: Maybe PremiumLimitType.PremiumLimitType -- ^ Type of the limit
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPremiumLimit where
-  show
+instance I.ShortShow GetPremiumLimit where
+  shortShow
     GetPremiumLimit
       { limit_type = limit_type_
       }

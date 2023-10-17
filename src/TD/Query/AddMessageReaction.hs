@@ -17,10 +17,10 @@ data AddMessageReaction
     , is_big                  :: Maybe Bool                      -- ^ Pass true if the reaction is added with a big animation
     , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddMessageReaction where
-  show
+instance I.ShortShow AddMessageReaction where
+  shortShow
     AddMessageReaction
       { chat_id                 = chat_id_
       , message_id              = message_id_

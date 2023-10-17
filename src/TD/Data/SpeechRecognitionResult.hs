@@ -18,24 +18,24 @@ data SpeechRecognitionResult
   | SpeechRecognitionResultError -- ^ The speech recognition failed
     { _error :: Maybe Error.Error -- ^ Recognition error
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SpeechRecognitionResult where
-  show SpeechRecognitionResultPending
+instance I.ShortShow SpeechRecognitionResult where
+  shortShow SpeechRecognitionResultPending
     { partial_text = partial_text_
     }
       = "SpeechRecognitionResultPending"
         ++ I.cc
         [ "partial_text" `I.p` partial_text_
         ]
-  show SpeechRecognitionResultText
+  shortShow SpeechRecognitionResultText
     { text = text_
     }
       = "SpeechRecognitionResultText"
         ++ I.cc
         [ "text" `I.p` text_
         ]
-  show SpeechRecognitionResultError
+  shortShow SpeechRecognitionResultError
     { _error = _error_
     }
       = "SpeechRecognitionResultError"

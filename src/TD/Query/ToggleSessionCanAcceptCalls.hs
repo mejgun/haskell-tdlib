@@ -13,10 +13,10 @@ data ToggleSessionCanAcceptCalls
     { session_id       :: Maybe Int  -- ^ Session identifier
     , can_accept_calls :: Maybe Bool -- ^ Pass true to allow accepting incoming calls by the session; pass false otherwise
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSessionCanAcceptCalls where
-  show
+instance I.ShortShow ToggleSessionCanAcceptCalls where
+  shortShow
     ToggleSessionCanAcceptCalls
       { session_id       = session_id_
       , can_accept_calls = can_accept_calls_

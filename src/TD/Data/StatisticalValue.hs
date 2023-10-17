@@ -11,10 +11,10 @@ data StatisticalValue
     , previous_value         :: Maybe Double -- ^ The value for the previous day
     , growth_rate_percentage :: Maybe Double -- ^ The growth rate of the value, as a percentage
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StatisticalValue where
-  show StatisticalValue
+instance I.ShortShow StatisticalValue where
+  shortShow StatisticalValue
     { value                  = value_
     , previous_value         = previous_value_
     , growth_rate_percentage = growth_rate_percentage_

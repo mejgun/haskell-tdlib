@@ -12,10 +12,10 @@ data SetAccountTtl
   = SetAccountTtl
     { ttl :: Maybe AccountTtl.AccountTtl -- ^ New account TTL
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetAccountTtl where
-  show
+instance I.ShortShow SetAccountTtl where
+  shortShow
     SetAccountTtl
       { ttl = ttl_
       }

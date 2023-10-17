@@ -171,10 +171,10 @@ data ChatEventAction
     { old_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ Information about the old pinned topic; may be null
     , new_topic_info :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ Information about the new pinned topic; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatEventAction where
-  show ChatEventMessageEdited
+instance I.ShortShow ChatEventAction where
+  shortShow ChatEventMessageEdited
     { old_message = old_message_
     , new_message = new_message_
     }
@@ -183,7 +183,7 @@ instance Show ChatEventAction where
         [ "old_message" `I.p` old_message_
         , "new_message" `I.p` new_message_
         ]
-  show ChatEventMessageDeleted
+  shortShow ChatEventMessageDeleted
     { message                             = message_
     , can_report_anti_spam_false_positive = can_report_anti_spam_false_positive_
     }
@@ -192,30 +192,30 @@ instance Show ChatEventAction where
         [ "message"                             `I.p` message_
         , "can_report_anti_spam_false_positive" `I.p` can_report_anti_spam_false_positive_
         ]
-  show ChatEventMessagePinned
+  shortShow ChatEventMessagePinned
     { message = message_
     }
       = "ChatEventMessagePinned"
         ++ I.cc
         [ "message" `I.p` message_
         ]
-  show ChatEventMessageUnpinned
+  shortShow ChatEventMessageUnpinned
     { message = message_
     }
       = "ChatEventMessageUnpinned"
         ++ I.cc
         [ "message" `I.p` message_
         ]
-  show ChatEventPollStopped
+  shortShow ChatEventPollStopped
     { message = message_
     }
       = "ChatEventPollStopped"
         ++ I.cc
         [ "message" `I.p` message_
         ]
-  show ChatEventMemberJoined
+  shortShow ChatEventMemberJoined
       = "ChatEventMemberJoined"
-  show ChatEventMemberJoinedByInviteLink
+  shortShow ChatEventMemberJoinedByInviteLink
     { invite_link                 = invite_link_
     , via_chat_folder_invite_link = via_chat_folder_invite_link_
     }
@@ -224,7 +224,7 @@ instance Show ChatEventAction where
         [ "invite_link"                 `I.p` invite_link_
         , "via_chat_folder_invite_link" `I.p` via_chat_folder_invite_link_
         ]
-  show ChatEventMemberJoinedByRequest
+  shortShow ChatEventMemberJoinedByRequest
     { approver_user_id = approver_user_id_
     , invite_link      = invite_link_
     }
@@ -233,7 +233,7 @@ instance Show ChatEventAction where
         [ "approver_user_id" `I.p` approver_user_id_
         , "invite_link"      `I.p` invite_link_
         ]
-  show ChatEventMemberInvited
+  shortShow ChatEventMemberInvited
     { user_id = user_id_
     , status  = status_
     }
@@ -242,9 +242,9 @@ instance Show ChatEventAction where
         [ "user_id" `I.p` user_id_
         , "status"  `I.p` status_
         ]
-  show ChatEventMemberLeft
+  shortShow ChatEventMemberLeft
       = "ChatEventMemberLeft"
-  show ChatEventMemberPromoted
+  shortShow ChatEventMemberPromoted
     { user_id    = user_id_
     , old_status = old_status_
     , new_status = new_status_
@@ -255,7 +255,7 @@ instance Show ChatEventAction where
         , "old_status" `I.p` old_status_
         , "new_status" `I.p` new_status_
         ]
-  show ChatEventMemberRestricted
+  shortShow ChatEventMemberRestricted
     { member_id  = member_id_
     , old_status = old_status_
     , new_status = new_status_
@@ -266,7 +266,7 @@ instance Show ChatEventAction where
         , "old_status" `I.p` old_status_
         , "new_status" `I.p` new_status_
         ]
-  show ChatEventAvailableReactionsChanged
+  shortShow ChatEventAvailableReactionsChanged
     { old_available_reactions = old_available_reactions_
     , new_available_reactions = new_available_reactions_
     }
@@ -275,7 +275,7 @@ instance Show ChatEventAction where
         [ "old_available_reactions" `I.p` old_available_reactions_
         , "new_available_reactions" `I.p` new_available_reactions_
         ]
-  show ChatEventDescriptionChanged
+  shortShow ChatEventDescriptionChanged
     { old_description = old_description_
     , new_description = new_description_
     }
@@ -284,7 +284,7 @@ instance Show ChatEventAction where
         [ "old_description" `I.p` old_description_
         , "new_description" `I.p` new_description_
         ]
-  show ChatEventLinkedChatChanged
+  shortShow ChatEventLinkedChatChanged
     { old_linked_chat_id = old_linked_chat_id_
     , new_linked_chat_id = new_linked_chat_id_
     }
@@ -293,7 +293,7 @@ instance Show ChatEventAction where
         [ "old_linked_chat_id" `I.p` old_linked_chat_id_
         , "new_linked_chat_id" `I.p` new_linked_chat_id_
         ]
-  show ChatEventLocationChanged
+  shortShow ChatEventLocationChanged
     { old_location = old_location_
     , new_location = new_location_
     }
@@ -302,7 +302,7 @@ instance Show ChatEventAction where
         [ "old_location" `I.p` old_location_
         , "new_location" `I.p` new_location_
         ]
-  show ChatEventMessageAutoDeleteTimeChanged
+  shortShow ChatEventMessageAutoDeleteTimeChanged
     { old_message_auto_delete_time = old_message_auto_delete_time_
     , new_message_auto_delete_time = new_message_auto_delete_time_
     }
@@ -311,7 +311,7 @@ instance Show ChatEventAction where
         [ "old_message_auto_delete_time" `I.p` old_message_auto_delete_time_
         , "new_message_auto_delete_time" `I.p` new_message_auto_delete_time_
         ]
-  show ChatEventPermissionsChanged
+  shortShow ChatEventPermissionsChanged
     { old_permissions = old_permissions_
     , new_permissions = new_permissions_
     }
@@ -320,7 +320,7 @@ instance Show ChatEventAction where
         [ "old_permissions" `I.p` old_permissions_
         , "new_permissions" `I.p` new_permissions_
         ]
-  show ChatEventPhotoChanged
+  shortShow ChatEventPhotoChanged
     { old_photo = old_photo_
     , new_photo = new_photo_
     }
@@ -329,7 +329,7 @@ instance Show ChatEventAction where
         [ "old_photo" `I.p` old_photo_
         , "new_photo" `I.p` new_photo_
         ]
-  show ChatEventSlowModeDelayChanged
+  shortShow ChatEventSlowModeDelayChanged
     { old_slow_mode_delay = old_slow_mode_delay_
     , new_slow_mode_delay = new_slow_mode_delay_
     }
@@ -338,7 +338,7 @@ instance Show ChatEventAction where
         [ "old_slow_mode_delay" `I.p` old_slow_mode_delay_
         , "new_slow_mode_delay" `I.p` new_slow_mode_delay_
         ]
-  show ChatEventStickerSetChanged
+  shortShow ChatEventStickerSetChanged
     { old_sticker_set_id = old_sticker_set_id_
     , new_sticker_set_id = new_sticker_set_id_
     }
@@ -347,7 +347,7 @@ instance Show ChatEventAction where
         [ "old_sticker_set_id" `I.p` old_sticker_set_id_
         , "new_sticker_set_id" `I.p` new_sticker_set_id_
         ]
-  show ChatEventTitleChanged
+  shortShow ChatEventTitleChanged
     { old_title = old_title_
     , new_title = new_title_
     }
@@ -356,7 +356,7 @@ instance Show ChatEventAction where
         [ "old_title" `I.p` old_title_
         , "new_title" `I.p` new_title_
         ]
-  show ChatEventUsernameChanged
+  shortShow ChatEventUsernameChanged
     { old_username = old_username_
     , new_username = new_username_
     }
@@ -365,7 +365,7 @@ instance Show ChatEventAction where
         [ "old_username" `I.p` old_username_
         , "new_username" `I.p` new_username_
         ]
-  show ChatEventActiveUsernamesChanged
+  shortShow ChatEventActiveUsernamesChanged
     { old_usernames = old_usernames_
     , new_usernames = new_usernames_
     }
@@ -374,42 +374,42 @@ instance Show ChatEventAction where
         [ "old_usernames" `I.p` old_usernames_
         , "new_usernames" `I.p` new_usernames_
         ]
-  show ChatEventHasProtectedContentToggled
+  shortShow ChatEventHasProtectedContentToggled
     { has_protected_content = has_protected_content_
     }
       = "ChatEventHasProtectedContentToggled"
         ++ I.cc
         [ "has_protected_content" `I.p` has_protected_content_
         ]
-  show ChatEventInvitesToggled
+  shortShow ChatEventInvitesToggled
     { can_invite_users = can_invite_users_
     }
       = "ChatEventInvitesToggled"
         ++ I.cc
         [ "can_invite_users" `I.p` can_invite_users_
         ]
-  show ChatEventIsAllHistoryAvailableToggled
+  shortShow ChatEventIsAllHistoryAvailableToggled
     { is_all_history_available = is_all_history_available_
     }
       = "ChatEventIsAllHistoryAvailableToggled"
         ++ I.cc
         [ "is_all_history_available" `I.p` is_all_history_available_
         ]
-  show ChatEventHasAggressiveAntiSpamEnabledToggled
+  shortShow ChatEventHasAggressiveAntiSpamEnabledToggled
     { has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
     }
       = "ChatEventHasAggressiveAntiSpamEnabledToggled"
         ++ I.cc
         [ "has_aggressive_anti_spam_enabled" `I.p` has_aggressive_anti_spam_enabled_
         ]
-  show ChatEventSignMessagesToggled
+  shortShow ChatEventSignMessagesToggled
     { sign_messages = sign_messages_
     }
       = "ChatEventSignMessagesToggled"
         ++ I.cc
         [ "sign_messages" `I.p` sign_messages_
         ]
-  show ChatEventInviteLinkEdited
+  shortShow ChatEventInviteLinkEdited
     { old_invite_link = old_invite_link_
     , new_invite_link = new_invite_link_
     }
@@ -418,42 +418,42 @@ instance Show ChatEventAction where
         [ "old_invite_link" `I.p` old_invite_link_
         , "new_invite_link" `I.p` new_invite_link_
         ]
-  show ChatEventInviteLinkRevoked
+  shortShow ChatEventInviteLinkRevoked
     { invite_link = invite_link_
     }
       = "ChatEventInviteLinkRevoked"
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  show ChatEventInviteLinkDeleted
+  shortShow ChatEventInviteLinkDeleted
     { invite_link = invite_link_
     }
       = "ChatEventInviteLinkDeleted"
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  show ChatEventVideoChatCreated
+  shortShow ChatEventVideoChatCreated
     { group_call_id = group_call_id_
     }
       = "ChatEventVideoChatCreated"
         ++ I.cc
         [ "group_call_id" `I.p` group_call_id_
         ]
-  show ChatEventVideoChatEnded
+  shortShow ChatEventVideoChatEnded
     { group_call_id = group_call_id_
     }
       = "ChatEventVideoChatEnded"
         ++ I.cc
         [ "group_call_id" `I.p` group_call_id_
         ]
-  show ChatEventVideoChatMuteNewParticipantsToggled
+  shortShow ChatEventVideoChatMuteNewParticipantsToggled
     { mute_new_participants = mute_new_participants_
     }
       = "ChatEventVideoChatMuteNewParticipantsToggled"
         ++ I.cc
         [ "mute_new_participants" `I.p` mute_new_participants_
         ]
-  show ChatEventVideoChatParticipantIsMutedToggled
+  shortShow ChatEventVideoChatParticipantIsMutedToggled
     { participant_id = participant_id_
     , is_muted       = is_muted_
     }
@@ -462,7 +462,7 @@ instance Show ChatEventAction where
         [ "participant_id" `I.p` participant_id_
         , "is_muted"       `I.p` is_muted_
         ]
-  show ChatEventVideoChatParticipantVolumeLevelChanged
+  shortShow ChatEventVideoChatParticipantVolumeLevelChanged
     { participant_id = participant_id_
     , volume_level   = volume_level_
     }
@@ -471,21 +471,21 @@ instance Show ChatEventAction where
         [ "participant_id" `I.p` participant_id_
         , "volume_level"   `I.p` volume_level_
         ]
-  show ChatEventIsForumToggled
+  shortShow ChatEventIsForumToggled
     { is_forum = is_forum_
     }
       = "ChatEventIsForumToggled"
         ++ I.cc
         [ "is_forum" `I.p` is_forum_
         ]
-  show ChatEventForumTopicCreated
+  shortShow ChatEventForumTopicCreated
     { topic_info = topic_info_
     }
       = "ChatEventForumTopicCreated"
         ++ I.cc
         [ "topic_info" `I.p` topic_info_
         ]
-  show ChatEventForumTopicEdited
+  shortShow ChatEventForumTopicEdited
     { old_topic_info = old_topic_info_
     , new_topic_info = new_topic_info_
     }
@@ -494,28 +494,28 @@ instance Show ChatEventAction where
         [ "old_topic_info" `I.p` old_topic_info_
         , "new_topic_info" `I.p` new_topic_info_
         ]
-  show ChatEventForumTopicToggleIsClosed
+  shortShow ChatEventForumTopicToggleIsClosed
     { topic_info = topic_info_
     }
       = "ChatEventForumTopicToggleIsClosed"
         ++ I.cc
         [ "topic_info" `I.p` topic_info_
         ]
-  show ChatEventForumTopicToggleIsHidden
+  shortShow ChatEventForumTopicToggleIsHidden
     { topic_info = topic_info_
     }
       = "ChatEventForumTopicToggleIsHidden"
         ++ I.cc
         [ "topic_info" `I.p` topic_info_
         ]
-  show ChatEventForumTopicDeleted
+  shortShow ChatEventForumTopicDeleted
     { topic_info = topic_info_
     }
       = "ChatEventForumTopicDeleted"
         ++ I.cc
         [ "topic_info" `I.p` topic_info_
         ]
-  show ChatEventForumTopicPinned
+  shortShow ChatEventForumTopicPinned
     { old_topic_info = old_topic_info_
     , new_topic_info = new_topic_info_
     }

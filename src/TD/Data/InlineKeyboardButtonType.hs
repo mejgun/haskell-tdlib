@@ -36,17 +36,17 @@ data InlineKeyboardButtonType
   | InlineKeyboardButtonTypeUser -- ^ A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
     { user_id :: Maybe Int -- ^ User identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show InlineKeyboardButtonType where
-  show InlineKeyboardButtonTypeUrl
+instance I.ShortShow InlineKeyboardButtonType where
+  shortShow InlineKeyboardButtonTypeUrl
     { url = url_
     }
       = "InlineKeyboardButtonTypeUrl"
         ++ I.cc
         [ "url" `I.p` url_
         ]
-  show InlineKeyboardButtonTypeLoginUrl
+  shortShow InlineKeyboardButtonTypeLoginUrl
     { url          = url_
     , _id          = _id_
     , forward_text = forward_text_
@@ -57,30 +57,30 @@ instance Show InlineKeyboardButtonType where
         , "_id"          `I.p` _id_
         , "forward_text" `I.p` forward_text_
         ]
-  show InlineKeyboardButtonTypeWebApp
+  shortShow InlineKeyboardButtonTypeWebApp
     { url = url_
     }
       = "InlineKeyboardButtonTypeWebApp"
         ++ I.cc
         [ "url" `I.p` url_
         ]
-  show InlineKeyboardButtonTypeCallback
+  shortShow InlineKeyboardButtonTypeCallback
     { _data = _data_
     }
       = "InlineKeyboardButtonTypeCallback"
         ++ I.cc
         [ "_data" `I.p` _data_
         ]
-  show InlineKeyboardButtonTypeCallbackWithPassword
+  shortShow InlineKeyboardButtonTypeCallbackWithPassword
     { _data = _data_
     }
       = "InlineKeyboardButtonTypeCallbackWithPassword"
         ++ I.cc
         [ "_data" `I.p` _data_
         ]
-  show InlineKeyboardButtonTypeCallbackGame
+  shortShow InlineKeyboardButtonTypeCallbackGame
       = "InlineKeyboardButtonTypeCallbackGame"
-  show InlineKeyboardButtonTypeSwitchInline
+  shortShow InlineKeyboardButtonTypeSwitchInline
     { query       = query_
     , target_chat = target_chat_
     }
@@ -89,9 +89,9 @@ instance Show InlineKeyboardButtonType where
         [ "query"       `I.p` query_
         , "target_chat" `I.p` target_chat_
         ]
-  show InlineKeyboardButtonTypeBuy
+  shortShow InlineKeyboardButtonTypeBuy
       = "InlineKeyboardButtonTypeBuy"
-  show InlineKeyboardButtonTypeUser
+  shortShow InlineKeyboardButtonTypeUser
     { user_id = user_id_
     }
       = "InlineKeyboardButtonTypeUser"

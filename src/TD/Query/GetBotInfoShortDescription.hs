@@ -14,10 +14,10 @@ data GetBotInfoShortDescription
     { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot
     , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code or an empty string
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBotInfoShortDescription where
-  show
+instance I.ShortShow GetBotInfoShortDescription where
+  shortShow
     GetBotInfoShortDescription
       { bot_user_id   = bot_user_id_
       , language_code = language_code_

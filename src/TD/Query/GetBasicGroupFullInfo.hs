@@ -11,10 +11,10 @@ data GetBasicGroupFullInfo
   = GetBasicGroupFullInfo
     { basic_group_id :: Maybe Int -- ^ Basic group identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetBasicGroupFullInfo where
-  show
+instance I.ShortShow GetBasicGroupFullInfo where
+  shortShow
     GetBasicGroupFullInfo
       { basic_group_id = basic_group_id_
       }

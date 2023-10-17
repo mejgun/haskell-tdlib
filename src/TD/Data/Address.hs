@@ -17,10 +17,10 @@ data Address
     , street_line2 :: Maybe T.Text -- ^ Second line of the address
     , postal_code  :: Maybe T.Text -- ^ Address postal code
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show Address where
-  show Address
+instance I.ShortShow Address where
+  shortShow Address
     { country_code = country_code_
     , state        = state_
     , city         = city_

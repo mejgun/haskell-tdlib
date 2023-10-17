@@ -4,14 +4,15 @@ module TD.Query.GetDefaultEmojiStatuses
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns default emoji statuses
 data GetDefaultEmojiStatuses
   = GetDefaultEmojiStatuses
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetDefaultEmojiStatuses where
-  show
+instance I.ShortShow GetDefaultEmojiStatuses where
+  shortShow
     GetDefaultEmojiStatuses
         = "GetDefaultEmojiStatuses"
 

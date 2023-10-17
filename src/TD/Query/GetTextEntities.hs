@@ -12,10 +12,10 @@ data GetTextEntities
   = GetTextEntities
     { text :: Maybe T.Text -- ^ The text in which to look for entities
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetTextEntities where
-  show
+instance I.ShortShow GetTextEntities where
+  shortShow
     GetTextEntities
       { text = text_
       }

@@ -19,10 +19,10 @@ data AutoDownloadSettings
     , preload_stories          :: Maybe Bool -- ^ True, if stories needs to be preloaded
     , use_less_data_for_calls  :: Maybe Bool -- ^ True, if "use less data for calls" option needs to be enabled
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AutoDownloadSettings where
-  show AutoDownloadSettings
+instance I.ShortShow AutoDownloadSettings where
+  shortShow AutoDownloadSettings
     { is_auto_download_enabled = is_auto_download_enabled_
     , max_photo_file_size      = max_photo_file_size_
     , max_video_file_size      = max_video_file_size_

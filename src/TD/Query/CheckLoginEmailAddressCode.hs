@@ -12,10 +12,10 @@ data CheckLoginEmailAddressCode
   = CheckLoginEmailAddressCode
     { code :: Maybe EmailAddressAuthentication.EmailAddressAuthentication -- ^ Email address authentication to check
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show CheckLoginEmailAddressCode where
-  show
+instance I.ShortShow CheckLoginEmailAddressCode where
+  shortShow
     CheckLoginEmailAddressCode
       { code = code_
       }

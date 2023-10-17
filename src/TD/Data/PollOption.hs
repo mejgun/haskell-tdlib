@@ -14,10 +14,10 @@ data PollOption
     , is_chosen       :: Maybe Bool   -- ^ True, if the option was chosen by the user
     , is_being_chosen :: Maybe Bool   -- ^ True, if the option is being chosen by a pending setPollAnswer request
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PollOption where
-  show PollOption
+instance I.ShortShow PollOption where
+  shortShow PollOption
     { text            = text_
     , voter_count     = voter_count_
     , vote_percentage = vote_percentage_

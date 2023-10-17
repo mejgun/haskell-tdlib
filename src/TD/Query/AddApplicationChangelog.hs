@@ -12,10 +12,10 @@ data AddApplicationChangelog
   = AddApplicationChangelog
     { previous_application_version :: Maybe T.Text -- ^ The previous application version
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddApplicationChangelog where
-  show
+instance I.ShortShow AddApplicationChangelog where
+  shortShow
     AddApplicationChangelog
       { previous_application_version = previous_application_version_
       }

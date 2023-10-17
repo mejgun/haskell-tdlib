@@ -12,10 +12,10 @@ data PassportElementsWithErrors
     { elements :: Maybe [PassportElement.PassportElement]           -- ^ Telegram Passport elements
     , errors   :: Maybe [PassportElementError.PassportElementError] -- ^ Errors in the elements that are already available
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PassportElementsWithErrors where
-  show PassportElementsWithErrors
+instance I.ShortShow PassportElementsWithErrors where
+  shortShow PassportElementsWithErrors
     { elements = elements_
     , errors   = errors_
     }

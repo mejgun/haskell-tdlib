@@ -14,10 +14,10 @@ data DeleteChatFolderInviteLink
     { chat_folder_id :: Maybe Int    -- ^ Chat folder identifier
     , invite_link    :: Maybe T.Text -- ^ Invite link to be deleted
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteChatFolderInviteLink where
-  show
+instance I.ShortShow DeleteChatFolderInviteLink where
+  shortShow
     DeleteChatFolderInviteLink
       { chat_folder_id = chat_folder_id_
       , invite_link    = invite_link_

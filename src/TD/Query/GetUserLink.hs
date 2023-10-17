@@ -4,14 +4,15 @@ module TD.Query.GetUserLink
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns an HTTPS link, which can be used to get information about the current user
 data GetUserLink
   = GetUserLink
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetUserLink where
-  show
+instance I.ShortShow GetUserLink where
+  shortShow
     GetUserLink
         = "GetUserLink"
 

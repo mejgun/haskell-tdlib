@@ -13,10 +13,10 @@ data ToggleSessionCanAcceptSecretChats
     { session_id              :: Maybe Int  -- ^ Session identifier
     , can_accept_secret_chats :: Maybe Bool -- ^ Pass true to allow accepting secret chats by the session; pass false otherwise
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleSessionCanAcceptSecretChats where
-  show
+instance I.ShortShow ToggleSessionCanAcceptSecretChats where
+  shortShow
     ToggleSessionCanAcceptSecretChats
       { session_id              = session_id_
       , can_accept_secret_chats = can_accept_secret_chats_

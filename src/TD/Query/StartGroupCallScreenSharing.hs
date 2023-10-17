@@ -15,10 +15,10 @@ data StartGroupCallScreenSharing
     , audio_source_id :: Maybe Int    -- ^ Screen sharing audio channel synchronization source identifier; received from tgcalls
     , payload         :: Maybe T.Text -- ^ Group call join payload; received from tgcalls
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show StartGroupCallScreenSharing where
-  show
+instance I.ShortShow StartGroupCallScreenSharing where
+  shortShow
     StartGroupCallScreenSharing
       { group_call_id   = group_call_id_
       , audio_source_id = audio_source_id_

@@ -14,10 +14,10 @@ data ChatInviteLinkMember
     , via_chat_folder_invite_link :: Maybe Bool -- ^ True, if the user has joined the chat using an invite link for a chat folder
     , approver_user_id            :: Maybe Int  -- ^ User identifier of the chat administrator, approved user join request
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkMember where
-  show ChatInviteLinkMember
+instance I.ShortShow ChatInviteLinkMember where
+  shortShow ChatInviteLinkMember
     { user_id                     = user_id_
     , joined_chat_date            = joined_chat_date_
     , via_chat_folder_invite_link = via_chat_folder_invite_link_

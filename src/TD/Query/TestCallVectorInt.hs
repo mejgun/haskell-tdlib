@@ -11,10 +11,10 @@ data TestCallVectorInt
   = TestCallVectorInt
     { x :: Maybe [Int] -- ^ Vector of numbers to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TestCallVectorInt where
-  show
+instance I.ShortShow TestCallVectorInt where
+  shortShow
     TestCallVectorInt
       { x = x_
       }

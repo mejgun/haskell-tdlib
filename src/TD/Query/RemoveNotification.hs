@@ -13,10 +13,10 @@ data RemoveNotification
     { notification_group_id :: Maybe Int -- ^ Identifier of notification group to which the notification belongs
     , notification_id       :: Maybe Int -- ^ Identifier of removed notification
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show RemoveNotification where
-  show
+instance I.ShortShow RemoveNotification where
+  shortShow
     RemoveNotification
       { notification_group_id = notification_group_id_
       , notification_id       = notification_id_

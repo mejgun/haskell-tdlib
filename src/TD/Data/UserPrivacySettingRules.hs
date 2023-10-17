@@ -12,10 +12,10 @@ data UserPrivacySettingRules
   = UserPrivacySettingRules -- ^ A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
     { rules :: Maybe [UserPrivacySettingRule.UserPrivacySettingRule] -- ^ A list of rules
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show UserPrivacySettingRules where
-  show UserPrivacySettingRules
+instance I.ShortShow UserPrivacySettingRules where
+  shortShow UserPrivacySettingRules
     { rules = rules_
     }
       = "UserPrivacySettingRules"

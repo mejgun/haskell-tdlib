@@ -13,17 +13,17 @@ data MessageSender
   | MessageSenderChat -- ^ The message was sent on behalf of a chat
     { chat_id :: Maybe Int -- ^ Identifier of the chat that sent the message
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageSender where
-  show MessageSenderUser
+instance I.ShortShow MessageSender where
+  shortShow MessageSenderUser
     { user_id = user_id_
     }
       = "MessageSenderUser"
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
-  show MessageSenderChat
+  shortShow MessageSenderChat
     { chat_id = chat_id_
     }
       = "MessageSenderChat"

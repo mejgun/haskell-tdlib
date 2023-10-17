@@ -11,10 +11,10 @@ data GetGroupCallStreams
   = GetGroupCallStreams
     { group_call_id :: Maybe Int -- ^ Group call identifier
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetGroupCallStreams where
-  show
+instance I.ShortShow GetGroupCallStreams where
+  shortShow
     GetGroupCallStreams
       { group_call_id = group_call_id_
       }

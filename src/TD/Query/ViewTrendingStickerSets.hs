@@ -11,10 +11,10 @@ data ViewTrendingStickerSets
   = ViewTrendingStickerSets
     { sticker_set_ids :: Maybe [Int] -- ^ Identifiers of viewed trending sticker sets
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ViewTrendingStickerSets where
-  show
+instance I.ShortShow ViewTrendingStickerSets where
+  shortShow
     ViewTrendingStickerSets
       { sticker_set_ids = sticker_set_ids_
       }

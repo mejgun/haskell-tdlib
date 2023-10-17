@@ -14,10 +14,10 @@ data SetBotProfilePhoto
     { bot_user_id :: Maybe Int                           -- ^ Identifier of the target bot
     , photo       :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set; pass null to delete the chat photo
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetBotProfilePhoto where
-  show
+instance I.ShortShow SetBotProfilePhoto where
+  shortShow
     SetBotProfilePhoto
       { bot_user_id = bot_user_id_
       , photo       = photo_

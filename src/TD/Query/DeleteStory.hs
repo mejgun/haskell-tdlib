@@ -11,10 +11,10 @@ data DeleteStory
   = DeleteStory
     { story_id :: Maybe Int -- ^ Identifier of the story to delete
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show DeleteStory where
-  show
+instance I.ShortShow DeleteStory where
+  shortShow
     DeleteStory
       { story_id = story_id_
       }

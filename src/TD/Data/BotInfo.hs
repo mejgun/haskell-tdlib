@@ -27,10 +27,10 @@ data BotInfo
     , edit_description_media_link          :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
     , edit_settings_link                   :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot settings; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show BotInfo where
-  show BotInfo
+instance I.ShortShow BotInfo where
+  shortShow BotInfo
     { short_description                    = short_description_
     , description                          = description_
     , photo                                = photo_

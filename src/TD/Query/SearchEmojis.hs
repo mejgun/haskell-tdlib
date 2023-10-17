@@ -15,10 +15,10 @@ data SearchEmojis
     , exact_match          :: Maybe Bool     -- ^ Pass true if only emojis, which exactly match the text, needs to be returned
     , input_language_codes :: Maybe [T.Text] -- ^ List of possible IETF language tags of the user's input language; may be empty if unknown
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchEmojis where
-  show
+instance I.ShortShow SearchEmojis where
+  shortShow
     SearchEmojis
       { text                 = text_
       , exact_match          = exact_match_

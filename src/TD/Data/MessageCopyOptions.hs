@@ -14,10 +14,10 @@ data MessageCopyOptions
     , replace_caption :: Maybe Bool                        -- ^ True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false
     , new_caption     :: Maybe FormattedText.FormattedText -- ^ New message caption; pass null to copy message without caption. Ignored if replace_caption is false
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show MessageCopyOptions where
-  show MessageCopyOptions
+instance I.ShortShow MessageCopyOptions where
+  shortShow MessageCopyOptions
     { send_copy       = send_copy_
     , replace_caption = replace_caption_
     , new_caption     = new_caption_

@@ -19,10 +19,10 @@ data ChatPhoto
     , small_animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto -- ^ A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available
     , sticker         :: Maybe ChatPhotoSticker.ChatPhotoSticker   -- ^ Sticker-based version of the chat photo; may be null
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatPhoto where
-  show ChatPhoto
+instance I.ShortShow ChatPhoto where
+  shortShow ChatPhoto
     { _id             = _id_
     , added_date      = added_date_
     , minithumbnail   = minithumbnail_

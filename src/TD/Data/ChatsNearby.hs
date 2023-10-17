@@ -11,10 +11,10 @@ data ChatsNearby
     { users_nearby       :: Maybe [ChatNearby.ChatNearby] -- ^ List of users nearby
     , supergroups_nearby :: Maybe [ChatNearby.ChatNearby] -- ^ List of location-based supergroups nearby
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatsNearby where
-  show ChatsNearby
+instance I.ShortShow ChatsNearby where
+  shortShow ChatsNearby
     { users_nearby       = users_nearby_
     , supergroups_nearby = supergroups_nearby_
     }

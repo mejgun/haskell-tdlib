@@ -129,17 +129,17 @@ data PushMessageContent
     , has_audios    :: Maybe Bool -- ^ True, if the album has at least one audio file
     , has_documents :: Maybe Bool -- ^ True, if the album has at least one document
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PushMessageContent where
-  show PushMessageContentHidden
+instance I.ShortShow PushMessageContent where
+  shortShow PushMessageContentHidden
     { is_pinned = is_pinned_
     }
       = "PushMessageContentHidden"
         ++ I.cc
         [ "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentAnimation
+  shortShow PushMessageContentAnimation
     { animation = animation_
     , caption   = caption_
     , is_pinned = is_pinned_
@@ -150,7 +150,7 @@ instance Show PushMessageContent where
         , "caption"   `I.p` caption_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentAudio
+  shortShow PushMessageContentAudio
     { audio     = audio_
     , is_pinned = is_pinned_
     }
@@ -159,7 +159,7 @@ instance Show PushMessageContent where
         [ "audio"     `I.p` audio_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentContact
+  shortShow PushMessageContentContact
     { name      = name_
     , is_pinned = is_pinned_
     }
@@ -168,9 +168,9 @@ instance Show PushMessageContent where
         [ "name"      `I.p` name_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentContactRegistered
+  shortShow PushMessageContentContactRegistered
       = "PushMessageContentContactRegistered"
-  show PushMessageContentDocument
+  shortShow PushMessageContentDocument
     { document  = document_
     , is_pinned = is_pinned_
     }
@@ -179,7 +179,7 @@ instance Show PushMessageContent where
         [ "document"  `I.p` document_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentGame
+  shortShow PushMessageContentGame
     { title     = title_
     , is_pinned = is_pinned_
     }
@@ -188,7 +188,7 @@ instance Show PushMessageContent where
         [ "title"     `I.p` title_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentGameScore
+  shortShow PushMessageContentGameScore
     { title     = title_
     , score     = score_
     , is_pinned = is_pinned_
@@ -199,7 +199,7 @@ instance Show PushMessageContent where
         , "score"     `I.p` score_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentInvoice
+  shortShow PushMessageContentInvoice
     { price     = price_
     , is_pinned = is_pinned_
     }
@@ -208,7 +208,7 @@ instance Show PushMessageContent where
         [ "price"     `I.p` price_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentLocation
+  shortShow PushMessageContentLocation
     { is_live   = is_live_
     , is_pinned = is_pinned_
     }
@@ -217,7 +217,7 @@ instance Show PushMessageContent where
         [ "is_live"   `I.p` is_live_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentPhoto
+  shortShow PushMessageContentPhoto
     { photo     = photo_
     , caption   = caption_
     , is_secret = is_secret_
@@ -230,7 +230,7 @@ instance Show PushMessageContent where
         , "is_secret" `I.p` is_secret_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentPoll
+  shortShow PushMessageContentPoll
     { question   = question_
     , is_regular = is_regular_
     , is_pinned  = is_pinned_
@@ -241,9 +241,9 @@ instance Show PushMessageContent where
         , "is_regular" `I.p` is_regular_
         , "is_pinned"  `I.p` is_pinned_
         ]
-  show PushMessageContentScreenshotTaken
+  shortShow PushMessageContentScreenshotTaken
       = "PushMessageContentScreenshotTaken"
-  show PushMessageContentSticker
+  shortShow PushMessageContentSticker
     { sticker   = sticker_
     , emoji     = emoji_
     , is_pinned = is_pinned_
@@ -254,14 +254,14 @@ instance Show PushMessageContent where
         , "emoji"     `I.p` emoji_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentStory
+  shortShow PushMessageContentStory
     { is_pinned = is_pinned_
     }
       = "PushMessageContentStory"
         ++ I.cc
         [ "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentText
+  shortShow PushMessageContentText
     { text      = text_
     , is_pinned = is_pinned_
     }
@@ -270,7 +270,7 @@ instance Show PushMessageContent where
         [ "text"      `I.p` text_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentVideo
+  shortShow PushMessageContentVideo
     { video     = video_
     , caption   = caption_
     , is_secret = is_secret_
@@ -283,7 +283,7 @@ instance Show PushMessageContent where
         , "is_secret" `I.p` is_secret_
         , "is_pinned" `I.p` is_pinned_
         ]
-  show PushMessageContentVideoNote
+  shortShow PushMessageContentVideoNote
     { video_note = video_note_
     , is_pinned  = is_pinned_
     }
@@ -292,7 +292,7 @@ instance Show PushMessageContent where
         [ "video_note" `I.p` video_note_
         , "is_pinned"  `I.p` is_pinned_
         ]
-  show PushMessageContentVoiceNote
+  shortShow PushMessageContentVoiceNote
     { voice_note = voice_note_
     , is_pinned  = is_pinned_
     }
@@ -301,9 +301,9 @@ instance Show PushMessageContent where
         [ "voice_note" `I.p` voice_note_
         , "is_pinned"  `I.p` is_pinned_
         ]
-  show PushMessageContentBasicGroupChatCreate
+  shortShow PushMessageContentBasicGroupChatCreate
       = "PushMessageContentBasicGroupChatCreate"
-  show PushMessageContentChatAddMembers
+  shortShow PushMessageContentChatAddMembers
     { member_name     = member_name_
     , is_current_user = is_current_user_
     , is_returned     = is_returned_
@@ -314,30 +314,30 @@ instance Show PushMessageContent where
         , "is_current_user" `I.p` is_current_user_
         , "is_returned"     `I.p` is_returned_
         ]
-  show PushMessageContentChatChangePhoto
+  shortShow PushMessageContentChatChangePhoto
       = "PushMessageContentChatChangePhoto"
-  show PushMessageContentChatChangeTitle
+  shortShow PushMessageContentChatChangeTitle
     { title = title_
     }
       = "PushMessageContentChatChangeTitle"
         ++ I.cc
         [ "title" `I.p` title_
         ]
-  show PushMessageContentChatSetBackground
+  shortShow PushMessageContentChatSetBackground
     { is_same = is_same_
     }
       = "PushMessageContentChatSetBackground"
         ++ I.cc
         [ "is_same" `I.p` is_same_
         ]
-  show PushMessageContentChatSetTheme
+  shortShow PushMessageContentChatSetTheme
     { theme_name = theme_name_
     }
       = "PushMessageContentChatSetTheme"
         ++ I.cc
         [ "theme_name" `I.p` theme_name_
         ]
-  show PushMessageContentChatDeleteMember
+  shortShow PushMessageContentChatDeleteMember
     { member_name     = member_name_
     , is_current_user = is_current_user_
     , is_left         = is_left_
@@ -348,27 +348,27 @@ instance Show PushMessageContent where
         , "is_current_user" `I.p` is_current_user_
         , "is_left"         `I.p` is_left_
         ]
-  show PushMessageContentChatJoinByLink
+  shortShow PushMessageContentChatJoinByLink
       = "PushMessageContentChatJoinByLink"
-  show PushMessageContentChatJoinByRequest
+  shortShow PushMessageContentChatJoinByRequest
       = "PushMessageContentChatJoinByRequest"
-  show PushMessageContentRecurringPayment
+  shortShow PushMessageContentRecurringPayment
     { amount = amount_
     }
       = "PushMessageContentRecurringPayment"
         ++ I.cc
         [ "amount" `I.p` amount_
         ]
-  show PushMessageContentSuggestProfilePhoto
+  shortShow PushMessageContentSuggestProfilePhoto
       = "PushMessageContentSuggestProfilePhoto"
-  show PushMessageContentMessageForwards
+  shortShow PushMessageContentMessageForwards
     { total_count = total_count_
     }
       = "PushMessageContentMessageForwards"
         ++ I.cc
         [ "total_count" `I.p` total_count_
         ]
-  show PushMessageContentMediaAlbum
+  shortShow PushMessageContentMediaAlbum
     { total_count   = total_count_
     , has_photos    = has_photos_
     , has_videos    = has_videos_

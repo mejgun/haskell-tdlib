@@ -16,10 +16,10 @@ data ValidateOrderInfo
     , order_info    :: Maybe OrderInfo.OrderInfo       -- ^ The order information, provided by the user; pass null if empty
     , allow_save    :: Maybe Bool                      -- ^ Pass true to save the order information
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ValidateOrderInfo where
-  show
+instance I.ShortShow ValidateOrderInfo where
+  shortShow
     ValidateOrderInfo
       { input_invoice = input_invoice_
       , order_info    = order_info_

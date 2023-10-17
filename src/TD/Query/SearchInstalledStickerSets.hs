@@ -16,10 +16,10 @@ data SearchInstalledStickerSets
     , query        :: Maybe T.Text                  -- ^ Query to search for
     , limit        :: Maybe Int                     -- ^ The maximum number of sticker sets to return
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchInstalledStickerSets where
-  show
+instance I.ShortShow SearchInstalledStickerSets where
+  shortShow
     SearchInstalledStickerSets
       { sticker_type = sticker_type_
       , query        = query_

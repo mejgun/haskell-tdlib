@@ -14,10 +14,10 @@ data SearchOutgoingDocumentMessages
     { query :: Maybe T.Text -- ^ Query to search for in document file name and message caption
     , limit :: Maybe Int    -- ^ The maximum number of messages to be returned; up to 100
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SearchOutgoingDocumentMessages where
-  show
+instance I.ShortShow SearchOutgoingDocumentMessages where
+  shortShow
     SearchOutgoingDocumentMessages
       { query = query_
       , limit = limit_

@@ -10,10 +10,10 @@ data ChatMessageSenders
   = ChatMessageSenders -- ^ Represents a list of message senders, which can be used to send messages in a chat
     { senders :: Maybe [ChatMessageSender.ChatMessageSender] -- ^ List of available message senders
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMessageSenders where
-  show ChatMessageSenders
+instance I.ShortShow ChatMessageSenders where
+  shortShow ChatMessageSenders
     { senders = senders_
     }
       = "ChatMessageSenders"

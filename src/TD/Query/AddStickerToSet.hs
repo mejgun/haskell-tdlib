@@ -16,10 +16,10 @@ data AddStickerToSet
     , name    :: Maybe T.Text                    -- ^ Sticker set name
     , sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to add to the set
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show AddStickerToSet where
-  show
+instance I.ShortShow AddStickerToSet where
+  shortShow
     AddStickerToSet
       { user_id = user_id_
       , name    = name_

@@ -15,10 +15,10 @@ data GetPassportElement
     { _type    :: Maybe PassportElementType.PassportElementType -- ^ Telegram Passport element type
     , password :: Maybe T.Text                                  -- ^ The 2-step verification password of the current user
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetPassportElement where
-  show
+instance I.ShortShow GetPassportElement where
+  shortShow
     GetPassportElement
       { _type    = _type_
       , password = password_

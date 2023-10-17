@@ -10,10 +10,10 @@ data ChatFolderInviteLinks
   = ChatFolderInviteLinks -- ^ Represents a list of chat folder invite links
     { invite_links :: Maybe [ChatFolderInviteLink.ChatFolderInviteLink] -- ^ List of the invite links
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatFolderInviteLinks where
-  show ChatFolderInviteLinks
+instance I.ShortShow ChatFolderInviteLinks where
+  shortShow ChatFolderInviteLinks
     { invite_links = invite_links_
     }
       = "ChatFolderInviteLinks"

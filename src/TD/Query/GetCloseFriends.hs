@@ -4,14 +4,15 @@ module TD.Query.GetCloseFriends
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Returns all close friends of the current user
 data GetCloseFriends
   = GetCloseFriends
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCloseFriends where
-  show
+instance I.ShortShow GetCloseFriends where
+  shortShow
     GetCloseFriends
         = "GetCloseFriends"
 

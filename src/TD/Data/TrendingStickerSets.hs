@@ -12,10 +12,10 @@ data TrendingStickerSets
     , sets        :: Maybe [StickerSetInfo.StickerSetInfo] -- ^ List of trending sticker sets
     , is_premium  :: Maybe Bool                            -- ^ True, if the list contains sticker sets with premium stickers
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show TrendingStickerSets where
-  show TrendingStickerSets
+instance I.ShortShow TrendingStickerSets where
+  shortShow TrendingStickerSets
     { total_count = total_count_
     , sets        = sets_
     , is_premium  = is_premium_

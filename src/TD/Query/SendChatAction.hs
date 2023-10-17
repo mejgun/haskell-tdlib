@@ -15,10 +15,10 @@ data SendChatAction
     , message_thread_id :: Maybe Int                   -- ^ If not 0, a message thread identifier in which the action was performed
     , action            :: Maybe ChatAction.ChatAction -- ^ The action description; pass null to cancel the currently active action
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendChatAction where
-  show
+instance I.ShortShow SendChatAction where
+  shortShow
     SendChatAction
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

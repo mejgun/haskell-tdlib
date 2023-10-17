@@ -3,17 +3,18 @@ module TD.Data.PublicChatType
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a type of public chats
 data PublicChatType
   = PublicChatTypeHasUsername -- ^ The chat is public, because it has an active username
   | PublicChatTypeIsLocationBased -- ^ The chat is public, because it is a location-based supergroup
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show PublicChatType where
-  show PublicChatTypeHasUsername
+instance I.ShortShow PublicChatType where
+  shortShow PublicChatTypeHasUsername
       = "PublicChatTypeHasUsername"
-  show PublicChatTypeIsLocationBased
+  shortShow PublicChatTypeIsLocationBased
       = "PublicChatTypeIsLocationBased"
 
 instance AT.FromJSON PublicChatType where

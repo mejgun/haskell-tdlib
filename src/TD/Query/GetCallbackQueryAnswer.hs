@@ -15,10 +15,10 @@ data GetCallbackQueryAnswer
     , message_id :: Maybe Int                                       -- ^ Identifier of the message from which the query originated
     , payload    :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show GetCallbackQueryAnswer where
-  show
+instance I.ShortShow GetCallbackQueryAnswer where
+  shortShow
     GetCallbackQueryAnswer
       { chat_id    = chat_id_
       , message_id = message_id_

@@ -20,10 +20,10 @@ data ForumTopicInfo
     , is_closed         :: Maybe Bool                          -- ^ True, if the topic is closed
     , is_hidden         :: Maybe Bool                          -- ^ True, if the topic is hidden above the topic list and closed; for General topic only
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ForumTopicInfo where
-  show ForumTopicInfo
+instance I.ShortShow ForumTopicInfo where
+  shortShow ForumTopicInfo
     { message_thread_id = message_thread_id_
     , name              = name_
     , icon              = icon_

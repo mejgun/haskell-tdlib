@@ -11,10 +11,10 @@ data ChatMembers
     { total_count :: Maybe Int                     -- ^ Approximate total number of chat members found
     , members     :: Maybe [ChatMember.ChatMember] -- ^ A list of chat members
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatMembers where
-  show ChatMembers
+instance I.ShortShow ChatMembers where
+  shortShow ChatMembers
     { total_count = total_count_
     , members     = members_
     }

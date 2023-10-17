@@ -15,10 +15,10 @@ data SendWebAppData
     , button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
     , _data       :: Maybe T.Text -- ^ The data
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SendWebAppData where
-  show
+instance I.ShortShow SendWebAppData where
+  shortShow
     SendWebAppData
       { bot_user_id = bot_user_id_
       , button_text = button_text_

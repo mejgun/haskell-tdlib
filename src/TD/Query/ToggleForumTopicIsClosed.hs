@@ -14,10 +14,10 @@ data ToggleForumTopicIsClosed
     , message_thread_id :: Maybe Int  -- ^ Message thread identifier of the forum topic
     , is_closed         :: Maybe Bool -- ^ Pass true to close the topic; pass false to reopen it
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ToggleForumTopicIsClosed where
-  show
+instance I.ShortShow ToggleForumTopicIsClosed where
+  shortShow
     ToggleForumTopicIsClosed
       { chat_id           = chat_id_
       , message_thread_id = message_thread_id_

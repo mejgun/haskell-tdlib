@@ -17,10 +17,10 @@ data SetGameScore
     , score        :: Maybe Int  -- ^ The new score
     , force        :: Maybe Bool -- ^ Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetGameScore where
-  show
+instance I.ShortShow SetGameScore where
+  shortShow
     SetGameScore
       { chat_id      = chat_id_
       , message_id   = message_id_

@@ -21,10 +21,10 @@ data ChatInviteLinkInfo
     , creates_join_request :: Maybe Bool                        -- ^ True, if the link only creates join request
     , is_public            :: Maybe Bool                        -- ^ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkInfo where
-  show ChatInviteLinkInfo
+instance I.ShortShow ChatInviteLinkInfo where
+  shortShow ChatInviteLinkInfo
     { chat_id              = chat_id_
     , accessible_for       = accessible_for_
     , _type                = _type_

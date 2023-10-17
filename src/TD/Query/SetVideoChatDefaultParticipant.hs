@@ -14,10 +14,10 @@ data SetVideoChatDefaultParticipant
     { chat_id                :: Maybe Int                         -- ^ Chat identifier
     , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chats
     }
-  deriving (Eq)
+  deriving (Eq, Show)
 
-instance Show SetVideoChatDefaultParticipant where
-  show
+instance I.ShortShow SetVideoChatDefaultParticipant where
+  shortShow
     SetVideoChatDefaultParticipant
       { chat_id                = chat_id_
       , default_participant_id = default_participant_id_
