@@ -3,6 +3,7 @@ module TD.GeneralResult (GeneralResult(..)) where
 import Control.Applicative (Alternative ((<|>)))
 import Data.Aeson (FromJSON (parseJSON))
 import qualified Data.Aeson.Types as T
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.AccountTtl as AccountTtl
 import qualified TD.Data.AddedReactions as AddedReactions
 import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
@@ -340,6 +341,342 @@ data GeneralResult
     | WebPage                            WebPage.WebPage
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
  deriving (Eq, Show)
+
+instance I.ShortShow GeneralResult where
+  shortShow (AccountTtl v)
+    = "AccountTtl" <> "(" <> I.shortShow v <> ")"
+  shortShow (AddedReactions v)
+    = "AddedReactions" <> "(" <> I.shortShow v <> ")"
+  shortShow (AnimatedEmoji v)
+    = "AnimatedEmoji" <> "(" <> I.shortShow v <> ")"
+  shortShow (Animations v)
+    = "Animations" <> "(" <> I.shortShow v <> ")"
+  shortShow (ArchiveChatListSettings v)
+    = "ArchiveChatListSettings" <> "(" <> I.shortShow v <> ")"
+  shortShow (AttachmentMenuBot v)
+    = "AttachmentMenuBot" <> "(" <> I.shortShow v <> ")"
+  shortShow (AuthenticationCodeInfo v)
+    = "AuthenticationCodeInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (AuthorizationState v)
+    = "AuthorizationState" <> "(" <> I.shortShow v <> ")"
+  shortShow (AutoDownloadSettingsPresets v)
+    = "AutoDownloadSettingsPresets" <> "(" <> I.shortShow v <> ")"
+  shortShow (AutosaveSettings v)
+    = "AutosaveSettings" <> "(" <> I.shortShow v <> ")"
+  shortShow (AvailableReactions v)
+    = "AvailableReactions" <> "(" <> I.shortShow v <> ")"
+  shortShow (Background v)
+    = "Background" <> "(" <> I.shortShow v <> ")"
+  shortShow (Backgrounds v)
+    = "Backgrounds" <> "(" <> I.shortShow v <> ")"
+  shortShow (BankCardInfo v)
+    = "BankCardInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (BasicGroup v)
+    = "BasicGroup" <> "(" <> I.shortShow v <> ")"
+  shortShow (BasicGroupFullInfo v)
+    = "BasicGroupFullInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (BotCommands v)
+    = "BotCommands" <> "(" <> I.shortShow v <> ")"
+  shortShow (BotMenuButton v)
+    = "BotMenuButton" <> "(" <> I.shortShow v <> ")"
+  shortShow (CallId v)
+    = "CallId" <> "(" <> I.shortShow v <> ")"
+  shortShow (CallbackQueryAnswer v)
+    = "CallbackQueryAnswer" <> "(" <> I.shortShow v <> ")"
+  shortShow (CanTransferOwnershipResult v)
+    = "CanTransferOwnershipResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (Chat v)
+    = "Chat" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatActiveStories v)
+    = "ChatActiveStories" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatAdministrators v)
+    = "ChatAdministrators" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatEvents v)
+    = "ChatEvents" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolder v)
+    = "ChatFolder" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolderIcon v)
+    = "ChatFolderIcon" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolderInfo v)
+    = "ChatFolderInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolderInviteLink v)
+    = "ChatFolderInviteLink" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolderInviteLinkInfo v)
+    = "ChatFolderInviteLinkInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatFolderInviteLinks v)
+    = "ChatFolderInviteLinks" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatInviteLink v)
+    = "ChatInviteLink" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatInviteLinkCounts v)
+    = "ChatInviteLinkCounts" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatInviteLinkInfo v)
+    = "ChatInviteLinkInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatInviteLinkMembers v)
+    = "ChatInviteLinkMembers" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatInviteLinks v)
+    = "ChatInviteLinks" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatJoinRequests v)
+    = "ChatJoinRequests" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatLists v)
+    = "ChatLists" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatMember v)
+    = "ChatMember" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatMembers v)
+    = "ChatMembers" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatMessageSenders v)
+    = "ChatMessageSenders" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatPhotos v)
+    = "ChatPhotos" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatStatistics v)
+    = "ChatStatistics" <> "(" <> I.shortShow v <> ")"
+  shortShow (Chats v)
+    = "Chats" <> "(" <> I.shortShow v <> ")"
+  shortShow (ChatsNearby v)
+    = "ChatsNearby" <> "(" <> I.shortShow v <> ")"
+  shortShow (CheckChatUsernameResult v)
+    = "CheckChatUsernameResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (CheckStickerSetNameResult v)
+    = "CheckStickerSetNameResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (ConnectedWebsites v)
+    = "ConnectedWebsites" <> "(" <> I.shortShow v <> ")"
+  shortShow (Count v)
+    = "Count" <> "(" <> I.shortShow v <> ")"
+  shortShow (Countries v)
+    = "Countries" <> "(" <> I.shortShow v <> ")"
+  shortShow (CustomRequestResult v)
+    = "CustomRequestResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (DatabaseStatistics v)
+    = "DatabaseStatistics" <> "(" <> I.shortShow v <> ")"
+  shortShow (DeepLinkInfo v)
+    = "DeepLinkInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (EmailAddressAuthenticationCodeInfo v)
+    = "EmailAddressAuthenticationCodeInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (EmojiCategories v)
+    = "EmojiCategories" <> "(" <> I.shortShow v <> ")"
+  shortShow (EmojiReaction v)
+    = "EmojiReaction" <> "(" <> I.shortShow v <> ")"
+  shortShow (EmojiStatuses v)
+    = "EmojiStatuses" <> "(" <> I.shortShow v <> ")"
+  shortShow (Emojis v)
+    = "Emojis" <> "(" <> I.shortShow v <> ")"
+  shortShow (Error v)
+    = "Error" <> "(" <> I.shortShow v <> ")"
+  shortShow (File v)
+    = "File" <> "(" <> I.shortShow v <> ")"
+  shortShow (FileDownloadedPrefixSize v)
+    = "FileDownloadedPrefixSize" <> "(" <> I.shortShow v <> ")"
+  shortShow (FilePart v)
+    = "FilePart" <> "(" <> I.shortShow v <> ")"
+  shortShow (FormattedText v)
+    = "FormattedText" <> "(" <> I.shortShow v <> ")"
+  shortShow (ForumTopic v)
+    = "ForumTopic" <> "(" <> I.shortShow v <> ")"
+  shortShow (ForumTopicInfo v)
+    = "ForumTopicInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (ForumTopics v)
+    = "ForumTopics" <> "(" <> I.shortShow v <> ")"
+  shortShow (FoundChatMessages v)
+    = "FoundChatMessages" <> "(" <> I.shortShow v <> ")"
+  shortShow (FoundFileDownloads v)
+    = "FoundFileDownloads" <> "(" <> I.shortShow v <> ")"
+  shortShow (FoundMessages v)
+    = "FoundMessages" <> "(" <> I.shortShow v <> ")"
+  shortShow (FoundWebApp v)
+    = "FoundWebApp" <> "(" <> I.shortShow v <> ")"
+  shortShow (GameHighScores v)
+    = "GameHighScores" <> "(" <> I.shortShow v <> ")"
+  shortShow (GroupCall v)
+    = "GroupCall" <> "(" <> I.shortShow v <> ")"
+  shortShow (GroupCallId v)
+    = "GroupCallId" <> "(" <> I.shortShow v <> ")"
+  shortShow (GroupCallStreams v)
+    = "GroupCallStreams" <> "(" <> I.shortShow v <> ")"
+  shortShow (Hashtags v)
+    = "Hashtags" <> "(" <> I.shortShow v <> ")"
+  shortShow (HttpUrl v)
+    = "HttpUrl" <> "(" <> I.shortShow v <> ")"
+  shortShow (ImportedContacts v)
+    = "ImportedContacts" <> "(" <> I.shortShow v <> ")"
+  shortShow (InlineQueryResults v)
+    = "InlineQueryResults" <> "(" <> I.shortShow v <> ")"
+  shortShow (InternalLinkType v)
+    = "InternalLinkType" <> "(" <> I.shortShow v <> ")"
+  shortShow (JsonValue v)
+    = "JsonValue" <> "(" <> I.shortShow v <> ")"
+  shortShow (LanguagePackInfo v)
+    = "LanguagePackInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (LanguagePackStringValue v)
+    = "LanguagePackStringValue" <> "(" <> I.shortShow v <> ")"
+  shortShow (LanguagePackStrings v)
+    = "LanguagePackStrings" <> "(" <> I.shortShow v <> ")"
+  shortShow (LocalizationTargetInfo v)
+    = "LocalizationTargetInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (LogStream v)
+    = "LogStream" <> "(" <> I.shortShow v <> ")"
+  shortShow (LogTags v)
+    = "LogTags" <> "(" <> I.shortShow v <> ")"
+  shortShow (LogVerbosityLevel v)
+    = "LogVerbosityLevel" <> "(" <> I.shortShow v <> ")"
+  shortShow (LoginUrlInfo v)
+    = "LoginUrlInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (Message v)
+    = "Message" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageAutoDeleteTime v)
+    = "MessageAutoDeleteTime" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageCalendar v)
+    = "MessageCalendar" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageFileType v)
+    = "MessageFileType" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageLink v)
+    = "MessageLink" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageLinkInfo v)
+    = "MessageLinkInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessagePositions v)
+    = "MessagePositions" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageSenders v)
+    = "MessageSenders" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageStatistics v)
+    = "MessageStatistics" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageThreadInfo v)
+    = "MessageThreadInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (MessageViewers v)
+    = "MessageViewers" <> "(" <> I.shortShow v <> ")"
+  shortShow (Messages v)
+    = "Messages" <> "(" <> I.shortShow v <> ")"
+  shortShow (NetworkStatistics v)
+    = "NetworkStatistics" <> "(" <> I.shortShow v <> ")"
+  shortShow (NotificationSound v)
+    = "NotificationSound" <> "(" <> I.shortShow v <> ")"
+  shortShow (NotificationSounds v)
+    = "NotificationSounds" <> "(" <> I.shortShow v <> ")"
+  shortShow (Ok v)
+    = "Ok" <> "(" <> I.shortShow v <> ")"
+  shortShow (OptionValue v)
+    = "OptionValue" <> "(" <> I.shortShow v <> ")"
+  shortShow (OrderInfo v)
+    = "OrderInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (PassportAuthorizationForm v)
+    = "PassportAuthorizationForm" <> "(" <> I.shortShow v <> ")"
+  shortShow (PassportElement v)
+    = "PassportElement" <> "(" <> I.shortShow v <> ")"
+  shortShow (PassportElements v)
+    = "PassportElements" <> "(" <> I.shortShow v <> ")"
+  shortShow (PassportElementsWithErrors v)
+    = "PassportElementsWithErrors" <> "(" <> I.shortShow v <> ")"
+  shortShow (PasswordState v)
+    = "PasswordState" <> "(" <> I.shortShow v <> ")"
+  shortShow (PaymentForm v)
+    = "PaymentForm" <> "(" <> I.shortShow v <> ")"
+  shortShow (PaymentReceipt v)
+    = "PaymentReceipt" <> "(" <> I.shortShow v <> ")"
+  shortShow (PaymentResult v)
+    = "PaymentResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (PhoneNumberInfo v)
+    = "PhoneNumberInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (PremiumFeatures v)
+    = "PremiumFeatures" <> "(" <> I.shortShow v <> ")"
+  shortShow (PremiumLimit v)
+    = "PremiumLimit" <> "(" <> I.shortShow v <> ")"
+  shortShow (PremiumState v)
+    = "PremiumState" <> "(" <> I.shortShow v <> ")"
+  shortShow (Proxies v)
+    = "Proxies" <> "(" <> I.shortShow v <> ")"
+  shortShow (Proxy v)
+    = "Proxy" <> "(" <> I.shortShow v <> ")"
+  shortShow (PushReceiverId v)
+    = "PushReceiverId" <> "(" <> I.shortShow v <> ")"
+  shortShow (RecommendedChatFolders v)
+    = "RecommendedChatFolders" <> "(" <> I.shortShow v <> ")"
+  shortShow (RecoveryEmailAddress v)
+    = "RecoveryEmailAddress" <> "(" <> I.shortShow v <> ")"
+  shortShow (ResetPasswordResult v)
+    = "ResetPasswordResult" <> "(" <> I.shortShow v <> ")"
+  shortShow (RtmpUrl v)
+    = "RtmpUrl" <> "(" <> I.shortShow v <> ")"
+  shortShow (ScopeNotificationSettings v)
+    = "ScopeNotificationSettings" <> "(" <> I.shortShow v <> ")"
+  shortShow (Seconds v)
+    = "Seconds" <> "(" <> I.shortShow v <> ")"
+  shortShow (SecretChat v)
+    = "SecretChat" <> "(" <> I.shortShow v <> ")"
+  shortShow (SentWebAppMessage v)
+    = "SentWebAppMessage" <> "(" <> I.shortShow v <> ")"
+  shortShow (Session v)
+    = "Session" <> "(" <> I.shortShow v <> ")"
+  shortShow (Sessions v)
+    = "Sessions" <> "(" <> I.shortShow v <> ")"
+  shortShow (SponsoredMessages v)
+    = "SponsoredMessages" <> "(" <> I.shortShow v <> ")"
+  shortShow (StatisticalGraph v)
+    = "StatisticalGraph" <> "(" <> I.shortShow v <> ")"
+  shortShow (Sticker v)
+    = "Sticker" <> "(" <> I.shortShow v <> ")"
+  shortShow (StickerSet v)
+    = "StickerSet" <> "(" <> I.shortShow v <> ")"
+  shortShow (StickerSets v)
+    = "StickerSets" <> "(" <> I.shortShow v <> ")"
+  shortShow (Stickers v)
+    = "Stickers" <> "(" <> I.shortShow v <> ")"
+  shortShow (StorageStatistics v)
+    = "StorageStatistics" <> "(" <> I.shortShow v <> ")"
+  shortShow (StorageStatisticsFast v)
+    = "StorageStatisticsFast" <> "(" <> I.shortShow v <> ")"
+  shortShow (Stories v)
+    = "Stories" <> "(" <> I.shortShow v <> ")"
+  shortShow (Story v)
+    = "Story" <> "(" <> I.shortShow v <> ")"
+  shortShow (Supergroup v)
+    = "Supergroup" <> "(" <> I.shortShow v <> ")"
+  shortShow (SupergroupFullInfo v)
+    = "SupergroupFullInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (TMeUrls v)
+    = "TMeUrls" <> "(" <> I.shortShow v <> ")"
+  shortShow (TemporaryPasswordState v)
+    = "TemporaryPasswordState" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestBytes v)
+    = "TestBytes" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestInt v)
+    = "TestInt" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestString v)
+    = "TestString" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestVectorInt v)
+    = "TestVectorInt" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestVectorIntObject v)
+    = "TestVectorIntObject" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestVectorString v)
+    = "TestVectorString" <> "(" <> I.shortShow v <> ")"
+  shortShow (TestVectorStringObject v)
+    = "TestVectorStringObject" <> "(" <> I.shortShow v <> ")"
+  shortShow (Text v)
+    = "Text" <> "(" <> I.shortShow v <> ")"
+  shortShow (TextEntities v)
+    = "TextEntities" <> "(" <> I.shortShow v <> ")"
+  shortShow (TrendingStickerSets v)
+    = "TrendingStickerSets" <> "(" <> I.shortShow v <> ")"
+  shortShow (Update v)
+    = "Update" <> "(" <> I.shortShow v <> ")"
+  shortShow (Updates v)
+    = "Updates" <> "(" <> I.shortShow v <> ")"
+  shortShow (User v)
+    = "User" <> "(" <> I.shortShow v <> ")"
+  shortShow (UserFullInfo v)
+    = "UserFullInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (UserLink v)
+    = "UserLink" <> "(" <> I.shortShow v <> ")"
+  shortShow (UserPrivacySettingRules v)
+    = "UserPrivacySettingRules" <> "(" <> I.shortShow v <> ")"
+  shortShow (UserSupportInfo v)
+    = "UserSupportInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (Users v)
+    = "Users" <> "(" <> I.shortShow v <> ")"
+  shortShow (ValidatedOrderInfo v)
+    = "ValidatedOrderInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (WebAppInfo v)
+    = "WebAppInfo" <> "(" <> I.shortShow v <> ")"
+  shortShow (WebPage v)
+    = "WebPage" <> "(" <> I.shortShow v <> ")"
+  shortShow (WebPageInstantView v)
+    = "WebPageInstantView" <> "(" <> I.shortShow v <> ")"
 
 instance T.FromJSON GeneralResult where
  parseJSON v =
