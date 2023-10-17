@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleSupergroupHasHiddenMembers where
+module TD.Query.ToggleSupergroupHasHiddenMembers
+  (ToggleSupergroupHasHiddenMembers(..)
+  , defaultToggleSupergroupHasHiddenMembers
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
-data ToggleSupergroupHasHiddenMembers = ToggleSupergroupHasHiddenMembers
-  { -- | New value of has_hidden_members
-    has_hidden_members :: Maybe Bool,
-    -- | Identifier of the supergroup
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
+data ToggleSupergroupHasHiddenMembers
+  = ToggleSupergroupHasHiddenMembers
+    { supergroup_id      :: Maybe Int  -- ^ Identifier of the supergroup
+    , has_hidden_members :: Maybe Bool -- ^ New value of has_hidden_members
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupHasHiddenMembers where
-  show
+instance I.ShortShow ToggleSupergroupHasHiddenMembers where
+  shortShow
     ToggleSupergroupHasHiddenMembers
-      { has_hidden_members = has_hidden_members_,
-        supergroup_id = supergroup_id_
-      } =
-      "ToggleSupergroupHasHiddenMembers"
-        ++ U.cc
-          [ U.p "has_hidden_members" has_hidden_members_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id      = supergroup_id_
+      , has_hidden_members = has_hidden_members_
+      }
+        = "ToggleSupergroupHasHiddenMembers"
+          ++ I.cc
+          [ "supergroup_id"      `I.p` supergroup_id_
+          , "has_hidden_members" `I.p` has_hidden_members_
           ]
 
-instance T.ToJSON ToggleSupergroupHasHiddenMembers where
+instance AT.ToJSON ToggleSupergroupHasHiddenMembers where
   toJSON
     ToggleSupergroupHasHiddenMembers
-      { has_hidden_members = has_hidden_members_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleSupergroupHasHiddenMembers",
-          "has_hidden_members" A..= has_hidden_members_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id      = supergroup_id_
+      , has_hidden_members = has_hidden_members_
+      }
+        = A.object
+          [ "@type"              A..= AT.String "toggleSupergroupHasHiddenMembers"
+          , "supergroup_id"      A..= supergroup_id_
+          , "has_hidden_members" A..= has_hidden_members_
+          ]
+
+defaultToggleSupergroupHasHiddenMembers :: ToggleSupergroupHasHiddenMembers
+defaultToggleSupergroupHasHiddenMembers =
+  ToggleSupergroupHasHiddenMembers
+    { supergroup_id      = Nothing
+    , has_hidden_members = Nothing
+    }
+

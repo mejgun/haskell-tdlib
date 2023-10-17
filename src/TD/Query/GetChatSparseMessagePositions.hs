@@ -1,56 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatSparseMessagePositions where
+module TD.Query.GetChatSparseMessagePositions
+  (GetChatSparseMessagePositions(..)
+  , defaultGetChatSparseMessagePositions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
-import qualified Utils as U
 
--- |
--- Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id).
--- Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
-data GetChatSparseMessagePositions = GetChatSparseMessagePositions
-  { -- | The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
-    limit :: Maybe Int,
-    -- | The message identifier from which to return information about message positions
-    from_message_id :: Maybe Int,
-    -- | Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
-    _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
-    -- | Identifier of the chat in which to return information about message positions
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
+data GetChatSparseMessagePositions
+  = GetChatSparseMessagePositions
+    { chat_id         :: Maybe Int                                       -- ^ Identifier of the chat in which to return information about message positions
+    , _filter         :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    , from_message_id :: Maybe Int                                       -- ^ The message identifier from which to return information about message positions
+    , limit           :: Maybe Int                                       -- ^ The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatSparseMessagePositions where
-  show
+instance I.ShortShow GetChatSparseMessagePositions where
+  shortShow
     GetChatSparseMessagePositions
-      { limit = limit_,
-        from_message_id = from_message_id_,
-        _filter = _filter_,
-        chat_id = chat_id_
-      } =
-      "GetChatSparseMessagePositions"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "from_message_id" from_message_id_,
-            U.p "_filter" _filter_,
-            U.p "chat_id" chat_id_
+      { chat_id         = chat_id_
+      , _filter         = _filter_
+      , from_message_id = from_message_id_
+      , limit           = limit_
+      }
+        = "GetChatSparseMessagePositions"
+          ++ I.cc
+          [ "chat_id"         `I.p` chat_id_
+          , "_filter"         `I.p` _filter_
+          , "from_message_id" `I.p` from_message_id_
+          , "limit"           `I.p` limit_
           ]
 
-instance T.ToJSON GetChatSparseMessagePositions where
+instance AT.ToJSON GetChatSparseMessagePositions where
   toJSON
     GetChatSparseMessagePositions
-      { limit = limit_,
-        from_message_id = from_message_id_,
-        _filter = _filter_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatSparseMessagePositions",
-          "limit" A..= limit_,
-          "from_message_id" A..= from_message_id_,
-          "filter" A..= _filter_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id         = chat_id_
+      , _filter         = _filter_
+      , from_message_id = from_message_id_
+      , limit           = limit_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "getChatSparseMessagePositions"
+          , "chat_id"         A..= chat_id_
+          , "filter"          A..= _filter_
+          , "from_message_id" A..= from_message_id_
+          , "limit"           A..= limit_
+          ]
+
+defaultGetChatSparseMessagePositions :: GetChatSparseMessagePositions
+defaultGetChatSparseMessagePositions =
+  GetChatSparseMessagePositions
+    { chat_id         = Nothing
+    , _filter         = Nothing
+    , from_message_id = Nothing
+    , limit           = Nothing
+    }
+

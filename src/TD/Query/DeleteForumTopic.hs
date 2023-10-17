@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteForumTopic where
+module TD.Query.DeleteForumTopic
+  (DeleteForumTopic(..)
+  , defaultDeleteForumTopic
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
-data DeleteForumTopic = DeleteForumTopic
-  { -- | Message thread identifier of the forum topic
-    message_thread_id :: Maybe Int,
-    -- | Identifier of the chat
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
+data DeleteForumTopic
+  = DeleteForumTopic
+    { chat_id           :: Maybe Int -- ^ Identifier of the chat
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier of the forum topic
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteForumTopic where
-  show
+instance I.ShortShow DeleteForumTopic where
+  shortShow
     DeleteForumTopic
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "DeleteForumTopic"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "DeleteForumTopic"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON DeleteForumTopic where
+instance AT.ToJSON DeleteForumTopic where
   toJSON
     DeleteForumTopic
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteForumTopic",
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "deleteForumTopic"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultDeleteForumTopic :: DeleteForumTopic
+defaultDeleteForumTopic =
+  DeleteForumTopic
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

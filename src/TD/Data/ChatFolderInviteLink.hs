@@ -1,64 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatFolderInviteLink where
+module TD.Data.ChatFolderInviteLink
+  (ChatFolderInviteLink(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data ChatFolderInviteLink = -- | Contains a chat folder invite link
-  ChatFolderInviteLink
-  { -- | Identifiers of chats, included in the link
-    chat_ids :: Maybe [Int],
-    -- | Name of the link
-    name :: Maybe String,
-    -- | The chat folder invite link
-    invite_link :: Maybe String
-  }
-  deriving (Eq)
+data ChatFolderInviteLink
+  = ChatFolderInviteLink -- ^ Contains a chat folder invite link
+    { invite_link :: Maybe T.Text -- ^ The chat folder invite link
+    , name        :: Maybe T.Text -- ^ Name of the link
+    , chat_ids    :: Maybe [Int]  -- ^ Identifiers of chats, included in the link
+    }
+  deriving (Eq, Show)
 
-instance Show ChatFolderInviteLink where
-  show
-    ChatFolderInviteLink
-      { chat_ids = chat_ids_,
-        name = name_,
-        invite_link = invite_link_
-      } =
-      "ChatFolderInviteLink"
-        ++ U.cc
-          [ U.p "chat_ids" chat_ids_,
-            U.p "name" name_,
-            U.p "invite_link" invite_link_
-          ]
+instance I.ShortShow ChatFolderInviteLink where
+  shortShow ChatFolderInviteLink
+    { invite_link = invite_link_
+    , name        = name_
+    , chat_ids    = chat_ids_
+    }
+      = "ChatFolderInviteLink"
+        ++ I.cc
+        [ "invite_link" `I.p` invite_link_
+        , "name"        `I.p` name_
+        , "chat_ids"    `I.p` chat_ids_
+        ]
 
-instance T.FromJSON ChatFolderInviteLink where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatFolderInviteLink where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatFolderInviteLink" -> parseChatFolderInviteLink v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseChatFolderInviteLink :: A.Value -> T.Parser ChatFolderInviteLink
+      parseChatFolderInviteLink :: A.Value -> AT.Parser ChatFolderInviteLink
       parseChatFolderInviteLink = A.withObject "ChatFolderInviteLink" $ \o -> do
-        chat_ids_ <- o A..:? "chat_ids"
-        name_ <- o A..:? "name"
-        invite_link_ <- o A..:? "invite_link"
-        return $ ChatFolderInviteLink {chat_ids = chat_ids_, name = name_, invite_link = invite_link_}
+        invite_link_ <- o A..:?  "invite_link"
+        name_        <- o A..:?  "name"
+        chat_ids_    <- o A..:?  "chat_ids"
+        pure $ ChatFolderInviteLink
+          { invite_link = invite_link_
+          , name        = name_
+          , chat_ids    = chat_ids_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatFolderInviteLink where
-  toJSON
-    ChatFolderInviteLink
-      { chat_ids = chat_ids_,
-        name = name_,
-        invite_link = invite_link_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatFolderInviteLink",
-          "chat_ids" A..= chat_ids_,
-          "name" A..= name_,
-          "invite_link" A..= invite_link_
-        ]

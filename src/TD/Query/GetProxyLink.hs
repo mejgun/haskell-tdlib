@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetProxyLink where
+module TD.Query.GetProxyLink
+  (GetProxyLink(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization @proxy_id Proxy identifier
-data GetProxyLink = GetProxyLink
-  { -- |
-    proxy_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
+data GetProxyLink
+  = GetProxyLink
+    { proxy_id :: Maybe Int -- ^ Proxy identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetProxyLink where
-  show
+instance I.ShortShow GetProxyLink where
+  shortShow
     GetProxyLink
       { proxy_id = proxy_id_
-      } =
-      "GetProxyLink"
-        ++ U.cc
-          [ U.p "proxy_id" proxy_id_
+      }
+        = "GetProxyLink"
+          ++ I.cc
+          [ "proxy_id" `I.p` proxy_id_
           ]
 
-instance T.ToJSON GetProxyLink where
+instance AT.ToJSON GetProxyLink where
   toJSON
     GetProxyLink
       { proxy_id = proxy_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getProxyLink",
-          "proxy_id" A..= proxy_id_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "getProxyLink"
+          , "proxy_id" A..= proxy_id_
+          ]
+

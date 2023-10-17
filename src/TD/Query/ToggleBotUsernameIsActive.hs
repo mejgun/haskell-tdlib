@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleBotUsernameIsActive where
+module TD.Query.ToggleBotUsernameIsActive
+  (ToggleBotUsernameIsActive(..)
+  , defaultToggleBotUsernameIsActive
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
-data ToggleBotUsernameIsActive = ToggleBotUsernameIsActive
-  { -- | Pass true to activate the username; pass false to disable it
-    is_active :: Maybe Bool,
-    -- | The username to change
-    username :: Maybe String,
-    -- | Identifier of the target bot
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
+data ToggleBotUsernameIsActive
+  = ToggleBotUsernameIsActive
+    { bot_user_id :: Maybe Int    -- ^ Identifier of the target bot
+    , username    :: Maybe T.Text -- ^ The username to change
+    , is_active   :: Maybe Bool   -- ^ Pass true to activate the username; pass false to disable it
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleBotUsernameIsActive where
-  show
+instance I.ShortShow ToggleBotUsernameIsActive where
+  shortShow
     ToggleBotUsernameIsActive
-      { is_active = is_active_,
-        username = username_,
-        bot_user_id = bot_user_id_
-      } =
-      "ToggleBotUsernameIsActive"
-        ++ U.cc
-          [ U.p "is_active" is_active_,
-            U.p "username" username_,
-            U.p "bot_user_id" bot_user_id_
+      { bot_user_id = bot_user_id_
+      , username    = username_
+      , is_active   = is_active_
+      }
+        = "ToggleBotUsernameIsActive"
+          ++ I.cc
+          [ "bot_user_id" `I.p` bot_user_id_
+          , "username"    `I.p` username_
+          , "is_active"   `I.p` is_active_
           ]
 
-instance T.ToJSON ToggleBotUsernameIsActive where
+instance AT.ToJSON ToggleBotUsernameIsActive where
   toJSON
     ToggleBotUsernameIsActive
-      { is_active = is_active_,
-        username = username_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleBotUsernameIsActive",
-          "is_active" A..= is_active_,
-          "username" A..= username_,
-          "bot_user_id" A..= bot_user_id_
-        ]
+      { bot_user_id = bot_user_id_
+      , username    = username_
+      , is_active   = is_active_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "toggleBotUsernameIsActive"
+          , "bot_user_id" A..= bot_user_id_
+          , "username"    A..= username_
+          , "is_active"   A..= is_active_
+          ]
+
+defaultToggleBotUsernameIsActive :: ToggleBotUsernameIsActive
+defaultToggleBotUsernameIsActive =
+  ToggleBotUsernameIsActive
+    { bot_user_id = Nothing
+    , username    = Nothing
+    , is_active   = Nothing
+    }
+

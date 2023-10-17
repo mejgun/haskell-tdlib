@@ -1,70 +1,76 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendMessage where
+module TD.Query.SendMessage
+  (SendMessage(..)
+  , defaultSendMessage
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
-import qualified Utils as U
+import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- |
--- Sends a message. Returns the sent message
-data SendMessage = SendMessage
-  { -- | The content of the message to be sent
-    input_message_content :: Maybe InputMessageContent.InputMessageContent,
-    -- | Markup for replying to the message; pass null if none; for bots only
-    reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-    -- | Options to be used to send the message; pass null to use default options
-    options :: Maybe MessageSendOptions.MessageSendOptions,
-    -- | Identifier of the replied message or story; pass null if none
-    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
-    -- | If not 0, a message thread identifier in which the message will be sent
-    message_thread_id :: Maybe Int,
-    -- | Target chat
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a message. Returns the sent message
+data SendMessage
+  = SendMessage
+    { chat_id               :: Maybe Int                                     -- ^ Target chat
+    , message_thread_id     :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , reply_to              :: Maybe MessageReplyTo.MessageReplyTo           -- ^ Identifier of the replied message or story; pass null if none
+    , options               :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
+    , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent
+    }
+  deriving (Eq, Show)
 
-instance Show SendMessage where
-  show
+instance I.ShortShow SendMessage where
+  shortShow
     SendMessage
-      { input_message_content = input_message_content_,
-        reply_markup = reply_markup_,
-        options = options_,
-        reply_to = reply_to_,
-        message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "SendMessage"
-        ++ U.cc
-          [ U.p "input_message_content" input_message_content_,
-            U.p "reply_markup" reply_markup_,
-            U.p "options" options_,
-            U.p "reply_to" reply_to_,
-            U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id               = chat_id_
+      , message_thread_id     = message_thread_id_
+      , reply_to              = reply_to_
+      , options               = options_
+      , reply_markup          = reply_markup_
+      , input_message_content = input_message_content_
+      }
+        = "SendMessage"
+          ++ I.cc
+          [ "chat_id"               `I.p` chat_id_
+          , "message_thread_id"     `I.p` message_thread_id_
+          , "reply_to"              `I.p` reply_to_
+          , "options"               `I.p` options_
+          , "reply_markup"          `I.p` reply_markup_
+          , "input_message_content" `I.p` input_message_content_
           ]
 
-instance T.ToJSON SendMessage where
+instance AT.ToJSON SendMessage where
   toJSON
     SendMessage
-      { input_message_content = input_message_content_,
-        reply_markup = reply_markup_,
-        options = options_,
-        reply_to = reply_to_,
-        message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendMessage",
-          "input_message_content" A..= input_message_content_,
-          "reply_markup" A..= reply_markup_,
-          "options" A..= options_,
-          "reply_to" A..= reply_to_,
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id               = chat_id_
+      , message_thread_id     = message_thread_id_
+      , reply_to              = reply_to_
+      , options               = options_
+      , reply_markup          = reply_markup_
+      , input_message_content = input_message_content_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "sendMessage"
+          , "chat_id"               A..= chat_id_
+          , "message_thread_id"     A..= message_thread_id_
+          , "reply_to"              A..= reply_to_
+          , "options"               A..= options_
+          , "reply_markup"          A..= reply_markup_
+          , "input_message_content" A..= input_message_content_
+          ]
+
+defaultSendMessage :: SendMessage
+defaultSendMessage =
+  SendMessage
+    { chat_id               = Nothing
+    , message_thread_id     = Nothing
+    , reply_to              = Nothing
+    , options               = Nothing
+    , reply_markup          = Nothing
+    , input_message_content = Nothing
+    }
+

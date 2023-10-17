@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleChatIsTranslatable where
+module TD.Query.ToggleChatIsTranslatable
+  (ToggleChatIsTranslatable(..)
+  , defaultToggleChatIsTranslatable
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the translatable state of a chat; for Telegram Premium users only @chat_id Chat identifier @is_translatable New value of is_translatable
-data ToggleChatIsTranslatable = ToggleChatIsTranslatable
-  { -- |
-    is_translatable :: Maybe Bool,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the translatable state of a chat; for Telegram Premium users only
+data ToggleChatIsTranslatable
+  = ToggleChatIsTranslatable
+    { chat_id         :: Maybe Int  -- ^ Chat identifier
+    , is_translatable :: Maybe Bool -- ^ New value of is_translatable
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleChatIsTranslatable where
-  show
+instance I.ShortShow ToggleChatIsTranslatable where
+  shortShow
     ToggleChatIsTranslatable
-      { is_translatable = is_translatable_,
-        chat_id = chat_id_
-      } =
-      "ToggleChatIsTranslatable"
-        ++ U.cc
-          [ U.p "is_translatable" is_translatable_,
-            U.p "chat_id" chat_id_
+      { chat_id         = chat_id_
+      , is_translatable = is_translatable_
+      }
+        = "ToggleChatIsTranslatable"
+          ++ I.cc
+          [ "chat_id"         `I.p` chat_id_
+          , "is_translatable" `I.p` is_translatable_
           ]
 
-instance T.ToJSON ToggleChatIsTranslatable where
+instance AT.ToJSON ToggleChatIsTranslatable where
   toJSON
     ToggleChatIsTranslatable
-      { is_translatable = is_translatable_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleChatIsTranslatable",
-          "is_translatable" A..= is_translatable_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id         = chat_id_
+      , is_translatable = is_translatable_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "toggleChatIsTranslatable"
+          , "chat_id"         A..= chat_id_
+          , "is_translatable" A..= is_translatable_
+          ]
+
+defaultToggleChatIsTranslatable :: ToggleChatIsTranslatable
+defaultToggleChatIsTranslatable =
+  ToggleChatIsTranslatable
+    { chat_id         = Nothing
+    , is_translatable = Nothing
+    }
+

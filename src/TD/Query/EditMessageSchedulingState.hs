@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditMessageSchedulingState where
+module TD.Query.EditMessageSchedulingState
+  (EditMessageSchedulingState(..)
+  , defaultEditMessageSchedulingState
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
-import qualified Utils as U
 
--- |
--- Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
-data EditMessageSchedulingState = EditMessageSchedulingState
-  { -- | The new message scheduling state; pass null to send the message immediately
-    scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | The chat the message belongs to
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
+data EditMessageSchedulingState
+  = EditMessageSchedulingState
+    { chat_id          :: Maybe Int                                           -- ^ The chat the message belongs to
+    , message_id       :: Maybe Int                                           -- ^ Identifier of the message
+    , scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ The new message scheduling state; pass null to send the message immediately
+    }
+  deriving (Eq, Show)
 
-instance Show EditMessageSchedulingState where
-  show
+instance I.ShortShow EditMessageSchedulingState where
+  shortShow
     EditMessageSchedulingState
-      { scheduling_state = scheduling_state_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "EditMessageSchedulingState"
-        ++ U.cc
-          [ U.p "scheduling_state" scheduling_state_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id          = chat_id_
+      , message_id       = message_id_
+      , scheduling_state = scheduling_state_
+      }
+        = "EditMessageSchedulingState"
+          ++ I.cc
+          [ "chat_id"          `I.p` chat_id_
+          , "message_id"       `I.p` message_id_
+          , "scheduling_state" `I.p` scheduling_state_
           ]
 
-instance T.ToJSON EditMessageSchedulingState where
+instance AT.ToJSON EditMessageSchedulingState where
   toJSON
     EditMessageSchedulingState
-      { scheduling_state = scheduling_state_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editMessageSchedulingState",
-          "scheduling_state" A..= scheduling_state_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id          = chat_id_
+      , message_id       = message_id_
+      , scheduling_state = scheduling_state_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "editMessageSchedulingState"
+          , "chat_id"          A..= chat_id_
+          , "message_id"       A..= message_id_
+          , "scheduling_state" A..= scheduling_state_
+          ]
+
+defaultEditMessageSchedulingState :: EditMessageSchedulingState
+defaultEditMessageSchedulingState =
+  EditMessageSchedulingState
+    { chat_id          = Nothing
+    , message_id       = Nothing
+    , scheduling_state = Nothing
+    }
+

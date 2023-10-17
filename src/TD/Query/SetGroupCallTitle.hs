@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetGroupCallTitle where
+module TD.Query.SetGroupCallTitle
+  (SetGroupCallTitle(..)
+  , defaultSetGroupCallTitle
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sets group call title. Requires groupCall.can_be_managed group call flag @group_call_id Group call identifier @title New group call title; 1-64 characters
-data SetGroupCallTitle = SetGroupCallTitle
-  { -- |
-    title :: Maybe String,
-    -- |
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets group call title. Requires groupCall.can_be_managed group call flag
+data SetGroupCallTitle
+  = SetGroupCallTitle
+    { group_call_id :: Maybe Int    -- ^ Group call identifier
+    , title         :: Maybe T.Text -- ^ New group call title; 1-64 characters
+    }
+  deriving (Eq, Show)
 
-instance Show SetGroupCallTitle where
-  show
+instance I.ShortShow SetGroupCallTitle where
+  shortShow
     SetGroupCallTitle
-      { title = title_,
-        group_call_id = group_call_id_
-      } =
-      "SetGroupCallTitle"
-        ++ U.cc
-          [ U.p "title" title_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id = group_call_id_
+      , title         = title_
+      }
+        = "SetGroupCallTitle"
+          ++ I.cc
+          [ "group_call_id" `I.p` group_call_id_
+          , "title"         `I.p` title_
           ]
 
-instance T.ToJSON SetGroupCallTitle where
+instance AT.ToJSON SetGroupCallTitle where
   toJSON
     SetGroupCallTitle
-      { title = title_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setGroupCallTitle",
-          "title" A..= title_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id = group_call_id_
+      , title         = title_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "setGroupCallTitle"
+          , "group_call_id" A..= group_call_id_
+          , "title"         A..= title_
+          ]
+
+defaultSetGroupCallTitle :: SetGroupCallTitle
+defaultSetGroupCallTitle =
+  SetGroupCallTitle
+    { group_call_id = Nothing
+    , title         = Nothing
+    }
+

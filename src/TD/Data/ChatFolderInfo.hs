@@ -1,79 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatFolderInfo where
+module TD.Data.ChatFolderInfo
+  (ChatFolderInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
-import qualified Utils as U
 
--- |
-data ChatFolderInfo = -- | Contains basic information about a chat folder
-  ChatFolderInfo
-  { -- | True, if the chat folder has invite links created by the current user
-    has_my_invite_links :: Maybe Bool,
-    -- | True, if at least one link has been created for the folder
-    is_shareable :: Maybe Bool,
-    -- | The chosen or default icon for the chat folder
-    icon :: Maybe ChatFolderIcon.ChatFolderIcon,
-    -- | The title of the folder; 1-12 characters without line feeds
-    title :: Maybe String,
-    -- | Unique chat folder identifier
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatFolderInfo
+  = ChatFolderInfo -- ^ Contains basic information about a chat folder
+    { _id                 :: Maybe Int                           -- ^ Unique chat folder identifier
+    , title               :: Maybe T.Text                        -- ^ The title of the folder; 1-12 characters without line feeds
+    , icon                :: Maybe ChatFolderIcon.ChatFolderIcon -- ^ The chosen or default icon for the chat folder
+    , is_shareable        :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
+    , has_my_invite_links :: Maybe Bool                          -- ^ True, if the chat folder has invite links created by the current user
+    }
+  deriving (Eq, Show)
 
-instance Show ChatFolderInfo where
-  show
-    ChatFolderInfo
-      { has_my_invite_links = has_my_invite_links_,
-        is_shareable = is_shareable_,
-        icon = icon_,
-        title = title_,
-        _id = _id_
-      } =
-      "ChatFolderInfo"
-        ++ U.cc
-          [ U.p "has_my_invite_links" has_my_invite_links_,
-            U.p "is_shareable" is_shareable_,
-            U.p "icon" icon_,
-            U.p "title" title_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow ChatFolderInfo where
+  shortShow ChatFolderInfo
+    { _id                 = _id_
+    , title               = title_
+    , icon                = icon_
+    , is_shareable        = is_shareable_
+    , has_my_invite_links = has_my_invite_links_
+    }
+      = "ChatFolderInfo"
+        ++ I.cc
+        [ "_id"                 `I.p` _id_
+        , "title"               `I.p` title_
+        , "icon"                `I.p` icon_
+        , "is_shareable"        `I.p` is_shareable_
+        , "has_my_invite_links" `I.p` has_my_invite_links_
+        ]
 
-instance T.FromJSON ChatFolderInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatFolderInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatFolderInfo" -> parseChatFolderInfo v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseChatFolderInfo :: A.Value -> T.Parser ChatFolderInfo
+      parseChatFolderInfo :: A.Value -> AT.Parser ChatFolderInfo
       parseChatFolderInfo = A.withObject "ChatFolderInfo" $ \o -> do
-        has_my_invite_links_ <- o A..:? "has_my_invite_links"
-        is_shareable_ <- o A..:? "is_shareable"
-        icon_ <- o A..:? "icon"
-        title_ <- o A..:? "title"
-        _id_ <- o A..:? "id"
-        return $ ChatFolderInfo {has_my_invite_links = has_my_invite_links_, is_shareable = is_shareable_, icon = icon_, title = title_, _id = _id_}
+        _id_                 <- o A..:?  "id"
+        title_               <- o A..:?  "title"
+        icon_                <- o A..:?  "icon"
+        is_shareable_        <- o A..:?  "is_shareable"
+        has_my_invite_links_ <- o A..:?  "has_my_invite_links"
+        pure $ ChatFolderInfo
+          { _id                 = _id_
+          , title               = title_
+          , icon                = icon_
+          , is_shareable        = is_shareable_
+          , has_my_invite_links = has_my_invite_links_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatFolderInfo where
-  toJSON
-    ChatFolderInfo
-      { has_my_invite_links = has_my_invite_links_,
-        is_shareable = is_shareable_,
-        icon = icon_,
-        title = title_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatFolderInfo",
-          "has_my_invite_links" A..= has_my_invite_links_,
-          "is_shareable" A..= is_shareable_,
-          "icon" A..= icon_,
-          "title" A..= title_,
-          "id" A..= _id_
-        ]

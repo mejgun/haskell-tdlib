@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetEmojiStatus where
+module TD.Query.SetEmojiStatus
+  (SetEmojiStatus(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiStatus as EmojiStatus
-import qualified Utils as U
 
--- |
--- Changes the emoji status of the current user; for Telegram Premium users only @emoji_status New emoji status; pass null to switch to the default badge
-data SetEmojiStatus = SetEmojiStatus
-  { -- |
-    emoji_status :: Maybe EmojiStatus.EmojiStatus
-  }
-  deriving (Eq)
+-- | Changes the emoji status of the current user; for Telegram Premium users only
+data SetEmojiStatus
+  = SetEmojiStatus
+    { emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ New emoji status; pass null to switch to the default badge
+    }
+  deriving (Eq, Show)
 
-instance Show SetEmojiStatus where
-  show
+instance I.ShortShow SetEmojiStatus where
+  shortShow
     SetEmojiStatus
       { emoji_status = emoji_status_
-      } =
-      "SetEmojiStatus"
-        ++ U.cc
-          [ U.p "emoji_status" emoji_status_
+      }
+        = "SetEmojiStatus"
+          ++ I.cc
+          [ "emoji_status" `I.p` emoji_status_
           ]
 
-instance T.ToJSON SetEmojiStatus where
+instance AT.ToJSON SetEmojiStatus where
   toJSON
     SetEmojiStatus
       { emoji_status = emoji_status_
-      } =
-      A.object
-        [ "@type" A..= T.String "setEmojiStatus",
-          "emoji_status" A..= emoji_status_
-        ]
+      }
+        = A.object
+          [ "@type"        A..= AT.String "setEmojiStatus"
+          , "emoji_status" A..= emoji_status_
+          ]
+

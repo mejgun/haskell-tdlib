@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditInlineMessageReplyMarkup where
+module TD.Query.EditInlineMessageReplyMarkup
+  (EditInlineMessageReplyMarkup(..)
+  , defaultEditInlineMessageReplyMarkup
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
-import qualified Utils as U
 
--- |
--- Edits the reply markup of an inline message sent via a bot; for bots only
-data EditInlineMessageReplyMarkup = EditInlineMessageReplyMarkup
-  { -- | The new message reply markup; pass null if none
-    reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-    -- | Inline message identifier
-    inline_message_id :: Maybe String
-  }
-  deriving (Eq)
+-- | Edits the reply markup of an inline message sent via a bot; for bots only
+data EditInlineMessageReplyMarkup
+  = EditInlineMessageReplyMarkup
+    { inline_message_id :: Maybe T.Text                  -- ^ Inline message identifier
+    , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none
+    }
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageReplyMarkup where
-  show
+instance I.ShortShow EditInlineMessageReplyMarkup where
+  shortShow
     EditInlineMessageReplyMarkup
-      { reply_markup = reply_markup_,
-        inline_message_id = inline_message_id_
-      } =
-      "EditInlineMessageReplyMarkup"
-        ++ U.cc
-          [ U.p "reply_markup" reply_markup_,
-            U.p "inline_message_id" inline_message_id_
+      { inline_message_id = inline_message_id_
+      , reply_markup      = reply_markup_
+      }
+        = "EditInlineMessageReplyMarkup"
+          ++ I.cc
+          [ "inline_message_id" `I.p` inline_message_id_
+          , "reply_markup"      `I.p` reply_markup_
           ]
 
-instance T.ToJSON EditInlineMessageReplyMarkup where
+instance AT.ToJSON EditInlineMessageReplyMarkup where
   toJSON
     EditInlineMessageReplyMarkup
-      { reply_markup = reply_markup_,
-        inline_message_id = inline_message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editInlineMessageReplyMarkup",
-          "reply_markup" A..= reply_markup_,
-          "inline_message_id" A..= inline_message_id_
-        ]
+      { inline_message_id = inline_message_id_
+      , reply_markup      = reply_markup_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "editInlineMessageReplyMarkup"
+          , "inline_message_id" A..= inline_message_id_
+          , "reply_markup"      A..= reply_markup_
+          ]
+
+defaultEditInlineMessageReplyMarkup :: EditInlineMessageReplyMarkup
+defaultEditInlineMessageReplyMarkup =
+  EditInlineMessageReplyMarkup
+    { inline_message_id = Nothing
+    , reply_markup      = Nothing
+    }
+

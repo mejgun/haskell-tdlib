@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendWebAppData where
+module TD.Query.SendWebAppData
+  (SendWebAppData(..)
+  , defaultSendWebAppData
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sends data received from a keyboardButtonTypeWebApp Web App to a bot
-data SendWebAppData = SendWebAppData
-  { -- | The data
-    _data :: Maybe String,
-    -- | Text of the keyboardButtonTypeWebApp button, which opened the Web App
-    button_text :: Maybe String,
-    -- | Identifier of the target bot
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends data received from a keyboardButtonTypeWebApp Web App to a bot
+data SendWebAppData
+  = SendWebAppData
+    { bot_user_id :: Maybe Int    -- ^ Identifier of the target bot
+    , button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
+    , _data       :: Maybe T.Text -- ^ The data
+    }
+  deriving (Eq, Show)
 
-instance Show SendWebAppData where
-  show
+instance I.ShortShow SendWebAppData where
+  shortShow
     SendWebAppData
-      { _data = _data_,
-        button_text = button_text_,
-        bot_user_id = bot_user_id_
-      } =
-      "SendWebAppData"
-        ++ U.cc
-          [ U.p "_data" _data_,
-            U.p "button_text" button_text_,
-            U.p "bot_user_id" bot_user_id_
+      { bot_user_id = bot_user_id_
+      , button_text = button_text_
+      , _data       = _data_
+      }
+        = "SendWebAppData"
+          ++ I.cc
+          [ "bot_user_id" `I.p` bot_user_id_
+          , "button_text" `I.p` button_text_
+          , "_data"       `I.p` _data_
           ]
 
-instance T.ToJSON SendWebAppData where
+instance AT.ToJSON SendWebAppData where
   toJSON
     SendWebAppData
-      { _data = _data_,
-        button_text = button_text_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendWebAppData",
-          "data" A..= _data_,
-          "button_text" A..= button_text_,
-          "bot_user_id" A..= bot_user_id_
-        ]
+      { bot_user_id = bot_user_id_
+      , button_text = button_text_
+      , _data       = _data_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "sendWebAppData"
+          , "bot_user_id" A..= bot_user_id_
+          , "button_text" A..= button_text_
+          , "data"        A..= _data_
+          ]
+
+defaultSendWebAppData :: SendWebAppData
+defaultSendWebAppData =
+  SendWebAppData
+    { bot_user_id = Nothing
+    , button_text = Nothing
+    , _data       = Nothing
+    }
+

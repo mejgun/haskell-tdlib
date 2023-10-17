@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TransferChatOwnership where
+module TD.Query.TransferChatOwnership
+  (TransferChatOwnership(..)
+  , defaultTransferChatOwnership
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
-data TransferChatOwnership = TransferChatOwnership
-  { -- | The 2-step verification password of the current user
-    password :: Maybe String,
-    -- | Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
-    user_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+data TransferChatOwnership
+  = TransferChatOwnership
+    { chat_id  :: Maybe Int    -- ^ Chat identifier
+    , user_id  :: Maybe Int    -- ^ Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+    , password :: Maybe T.Text -- ^ The 2-step verification password of the current user
+    }
+  deriving (Eq, Show)
 
-instance Show TransferChatOwnership where
-  show
+instance I.ShortShow TransferChatOwnership where
+  shortShow
     TransferChatOwnership
-      { password = password_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      "TransferChatOwnership"
-        ++ U.cc
-          [ U.p "password" password_,
-            U.p "user_id" user_id_,
-            U.p "chat_id" chat_id_
+      { chat_id  = chat_id_
+      , user_id  = user_id_
+      , password = password_
+      }
+        = "TransferChatOwnership"
+          ++ I.cc
+          [ "chat_id"  `I.p` chat_id_
+          , "user_id"  `I.p` user_id_
+          , "password" `I.p` password_
           ]
 
-instance T.ToJSON TransferChatOwnership where
+instance AT.ToJSON TransferChatOwnership where
   toJSON
     TransferChatOwnership
-      { password = password_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "transferChatOwnership",
-          "password" A..= password_,
-          "user_id" A..= user_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id  = chat_id_
+      , user_id  = user_id_
+      , password = password_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "transferChatOwnership"
+          , "chat_id"  A..= chat_id_
+          , "user_id"  A..= user_id_
+          , "password" A..= password_
+          ]
+
+defaultTransferChatOwnership :: TransferChatOwnership
+defaultTransferChatOwnership =
+  TransferChatOwnership
+    { chat_id  = Nothing
+    , user_id  = Nothing
+    , password = Nothing
+    }
+

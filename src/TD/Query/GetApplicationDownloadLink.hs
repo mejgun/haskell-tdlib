@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetApplicationDownloadLink where
+module TD.Query.GetApplicationDownloadLink
+  (GetApplicationDownloadLink(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-data GetApplicationDownloadLink = GetApplicationDownloadLink
-  {
-  }
-  deriving (Eq)
+-- | Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+data GetApplicationDownloadLink
+  = GetApplicationDownloadLink
+  deriving (Eq, Show)
 
-instance Show GetApplicationDownloadLink where
-  show GetApplicationDownloadLink =
-    "GetApplicationDownloadLink"
-      ++ U.cc
-        []
+instance I.ShortShow GetApplicationDownloadLink where
+  shortShow
+    GetApplicationDownloadLink
+        = "GetApplicationDownloadLink"
 
-instance T.ToJSON GetApplicationDownloadLink where
-  toJSON GetApplicationDownloadLink =
-    A.object
-      [ "@type" A..= T.String "getApplicationDownloadLink"
-      ]
+instance AT.ToJSON GetApplicationDownloadLink where
+  toJSON
+    GetApplicationDownloadLink
+        = A.object
+          [ "@type" A..= AT.String "getApplicationDownloadLink"
+          ]
+

@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatEvents where
+module TD.Data.ChatEvents
+  (ChatEvents(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatEvent as ChatEvent
-import qualified Utils as U
 
--- |
-data ChatEvents = -- | Contains a list of chat events @events List of events
-  ChatEvents
-  { -- |
-    events :: Maybe [ChatEvent.ChatEvent]
-  }
-  deriving (Eq)
+data ChatEvents
+  = ChatEvents -- ^ Contains a list of chat events
+    { events :: Maybe [ChatEvent.ChatEvent] -- ^ List of events
+    }
+  deriving (Eq, Show)
 
-instance Show ChatEvents where
-  show
-    ChatEvents
-      { events = events_
-      } =
-      "ChatEvents"
-        ++ U.cc
-          [ U.p "events" events_
-          ]
+instance I.ShortShow ChatEvents where
+  shortShow ChatEvents
+    { events = events_
+    }
+      = "ChatEvents"
+        ++ I.cc
+        [ "events" `I.p` events_
+        ]
 
-instance T.FromJSON ChatEvents where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatEvents where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatEvents" -> parseChatEvents v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseChatEvents :: A.Value -> T.Parser ChatEvents
+      parseChatEvents :: A.Value -> AT.Parser ChatEvents
       parseChatEvents = A.withObject "ChatEvents" $ \o -> do
-        events_ <- o A..:? "events"
-        return $ ChatEvents {events = events_}
+        events_ <- o A..:?  "events"
+        pure $ ChatEvents
+          { events = events_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatEvents where
-  toJSON
-    ChatEvents
-      { events = events_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatEvents",
-          "events" A..= events_
-        ]

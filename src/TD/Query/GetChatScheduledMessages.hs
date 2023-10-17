@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatScheduledMessages where
+module TD.Query.GetChatScheduledMessages
+  (GetChatScheduledMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id) @chat_id Chat identifier
-data GetChatScheduledMessages = GetChatScheduledMessages
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+data GetChatScheduledMessages
+  = GetChatScheduledMessages
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatScheduledMessages where
-  show
+instance I.ShortShow GetChatScheduledMessages where
+  shortShow
     GetChatScheduledMessages
       { chat_id = chat_id_
-      } =
-      "GetChatScheduledMessages"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChatScheduledMessages"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChatScheduledMessages where
+instance AT.ToJSON GetChatScheduledMessages where
   toJSON
     GetChatScheduledMessages
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatScheduledMessages",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatScheduledMessages"
+          , "chat_id" A..= chat_id_
+          ]
+

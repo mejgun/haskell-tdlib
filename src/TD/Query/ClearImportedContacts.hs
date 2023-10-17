@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClearImportedContacts where
+module TD.Query.ClearImportedContacts
+  (ClearImportedContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Clears all imported contacts, contact list remains unchanged
-data ClearImportedContacts = ClearImportedContacts
-  {
-  }
-  deriving (Eq)
+-- | Clears all imported contacts, contact list remains unchanged
+data ClearImportedContacts
+  = ClearImportedContacts
+  deriving (Eq, Show)
 
-instance Show ClearImportedContacts where
-  show ClearImportedContacts =
-    "ClearImportedContacts"
-      ++ U.cc
-        []
+instance I.ShortShow ClearImportedContacts where
+  shortShow
+    ClearImportedContacts
+        = "ClearImportedContacts"
 
-instance T.ToJSON ClearImportedContacts where
-  toJSON ClearImportedContacts =
-    A.object
-      [ "@type" A..= T.String "clearImportedContacts"
-      ]
+instance AT.ToJSON ClearImportedContacts where
+  toJSON
+    ClearImportedContacts
+        = A.object
+          [ "@type" A..= AT.String "clearImportedContacts"
+          ]
+

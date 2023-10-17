@@ -1,80 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.NotificationGroup where
+module TD.Data.NotificationGroup
+  (NotificationGroup(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.Notification as Notification
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
-import qualified Utils as U
+import qualified TD.Data.Notification as Notification
 
--- |
-data NotificationGroup = -- | Describes a group of notifications
-  NotificationGroup
-  { -- | The list of active notifications
-    notifications :: Maybe [Notification.Notification],
-    -- | Total number of active notifications in the group
-    total_count :: Maybe Int,
-    -- | Identifier of a chat to which all notifications in the group belong
-    chat_id :: Maybe Int,
-    -- | Type of the group
-    _type :: Maybe NotificationGroupType.NotificationGroupType,
-    -- | Unique persistent auto-incremented from 1 identifier of the notification group
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data NotificationGroup
+  = NotificationGroup -- ^ Describes a group of notifications
+    { _id           :: Maybe Int                                         -- ^ Unique persistent auto-incremented from 1 identifier of the notification group
+    , _type         :: Maybe NotificationGroupType.NotificationGroupType -- ^ Type of the group
+    , chat_id       :: Maybe Int                                         -- ^ Identifier of a chat to which all notifications in the group belong
+    , total_count   :: Maybe Int                                         -- ^ Total number of active notifications in the group
+    , notifications :: Maybe [Notification.Notification]                 -- ^ The list of active notifications
+    }
+  deriving (Eq, Show)
 
-instance Show NotificationGroup where
-  show
-    NotificationGroup
-      { notifications = notifications_,
-        total_count = total_count_,
-        chat_id = chat_id_,
-        _type = _type_,
-        _id = _id_
-      } =
-      "NotificationGroup"
-        ++ U.cc
-          [ U.p "notifications" notifications_,
-            U.p "total_count" total_count_,
-            U.p "chat_id" chat_id_,
-            U.p "_type" _type_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow NotificationGroup where
+  shortShow NotificationGroup
+    { _id           = _id_
+    , _type         = _type_
+    , chat_id       = chat_id_
+    , total_count   = total_count_
+    , notifications = notifications_
+    }
+      = "NotificationGroup"
+        ++ I.cc
+        [ "_id"           `I.p` _id_
+        , "_type"         `I.p` _type_
+        , "chat_id"       `I.p` chat_id_
+        , "total_count"   `I.p` total_count_
+        , "notifications" `I.p` notifications_
+        ]
 
-instance T.FromJSON NotificationGroup where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON NotificationGroup where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "notificationGroup" -> parseNotificationGroup v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseNotificationGroup :: A.Value -> T.Parser NotificationGroup
+      parseNotificationGroup :: A.Value -> AT.Parser NotificationGroup
       parseNotificationGroup = A.withObject "NotificationGroup" $ \o -> do
-        notifications_ <- o A..:? "notifications"
-        total_count_ <- o A..:? "total_count"
-        chat_id_ <- o A..:? "chat_id"
-        _type_ <- o A..:? "type"
-        _id_ <- o A..:? "id"
-        return $ NotificationGroup {notifications = notifications_, total_count = total_count_, chat_id = chat_id_, _type = _type_, _id = _id_}
+        _id_           <- o A..:?  "id"
+        _type_         <- o A..:?  "type"
+        chat_id_       <- o A..:?  "chat_id"
+        total_count_   <- o A..:?  "total_count"
+        notifications_ <- o A..:?  "notifications"
+        pure $ NotificationGroup
+          { _id           = _id_
+          , _type         = _type_
+          , chat_id       = chat_id_
+          , total_count   = total_count_
+          , notifications = notifications_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON NotificationGroup where
-  toJSON
-    NotificationGroup
-      { notifications = notifications_,
-        total_count = total_count_,
-        chat_id = chat_id_,
-        _type = _type_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "notificationGroup",
-          "notifications" A..= notifications_,
-          "total_count" A..= total_count_,
-          "chat_id" A..= chat_id_,
-          "type" A..= _type_,
-          "id" A..= _id_
-        ]

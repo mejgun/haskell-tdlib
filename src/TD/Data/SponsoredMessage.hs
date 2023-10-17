@@ -1,80 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.SponsoredMessage where
+module TD.Data.SponsoredMessage
+  (SponsoredMessage(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.MessageSponsor as MessageSponsor
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data SponsoredMessage = -- | Describes a sponsored message
-  SponsoredMessage
-  { -- | If non-empty, additional information about the sponsored message to be shown along with the message
-    additional_info :: Maybe String,
-    -- | Information about the sponsor of the message
-    sponsor :: Maybe MessageSponsor.MessageSponsor,
-    -- | Content of the message. Currently, can be only of the type messageText
-    content :: Maybe MessageContent.MessageContent,
-    -- | True, if the message needs to be labeled as "recommended" instead of "sponsored"
-    is_recommended :: Maybe Bool,
-    -- | Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
-    message_id :: Maybe Int
-  }
-  deriving (Eq)
+data SponsoredMessage
+  = SponsoredMessage -- ^ Describes a sponsored message
+    { message_id      :: Maybe Int                           -- ^ Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
+    , is_recommended  :: Maybe Bool                          -- ^ True, if the message needs to be labeled as "recommended" instead of "sponsored"
+    , content         :: Maybe MessageContent.MessageContent -- ^ Content of the message. Currently, can be only of the type messageText
+    , sponsor         :: Maybe MessageSponsor.MessageSponsor -- ^ Information about the sponsor of the message
+    , additional_info :: Maybe T.Text                        -- ^ If non-empty, additional information about the sponsored message to be shown along with the message
+    }
+  deriving (Eq, Show)
 
-instance Show SponsoredMessage where
-  show
-    SponsoredMessage
-      { additional_info = additional_info_,
-        sponsor = sponsor_,
-        content = content_,
-        is_recommended = is_recommended_,
-        message_id = message_id_
-      } =
-      "SponsoredMessage"
-        ++ U.cc
-          [ U.p "additional_info" additional_info_,
-            U.p "sponsor" sponsor_,
-            U.p "content" content_,
-            U.p "is_recommended" is_recommended_,
-            U.p "message_id" message_id_
-          ]
+instance I.ShortShow SponsoredMessage where
+  shortShow SponsoredMessage
+    { message_id      = message_id_
+    , is_recommended  = is_recommended_
+    , content         = content_
+    , sponsor         = sponsor_
+    , additional_info = additional_info_
+    }
+      = "SponsoredMessage"
+        ++ I.cc
+        [ "message_id"      `I.p` message_id_
+        , "is_recommended"  `I.p` is_recommended_
+        , "content"         `I.p` content_
+        , "sponsor"         `I.p` sponsor_
+        , "additional_info" `I.p` additional_info_
+        ]
 
-instance T.FromJSON SponsoredMessage where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON SponsoredMessage where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "sponsoredMessage" -> parseSponsoredMessage v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseSponsoredMessage :: A.Value -> T.Parser SponsoredMessage
+      parseSponsoredMessage :: A.Value -> AT.Parser SponsoredMessage
       parseSponsoredMessage = A.withObject "SponsoredMessage" $ \o -> do
-        additional_info_ <- o A..:? "additional_info"
-        sponsor_ <- o A..:? "sponsor"
-        content_ <- o A..:? "content"
-        is_recommended_ <- o A..:? "is_recommended"
-        message_id_ <- o A..:? "message_id"
-        return $ SponsoredMessage {additional_info = additional_info_, sponsor = sponsor_, content = content_, is_recommended = is_recommended_, message_id = message_id_}
+        message_id_      <- o A..:?  "message_id"
+        is_recommended_  <- o A..:?  "is_recommended"
+        content_         <- o A..:?  "content"
+        sponsor_         <- o A..:?  "sponsor"
+        additional_info_ <- o A..:?  "additional_info"
+        pure $ SponsoredMessage
+          { message_id      = message_id_
+          , is_recommended  = is_recommended_
+          , content         = content_
+          , sponsor         = sponsor_
+          , additional_info = additional_info_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON SponsoredMessage where
-  toJSON
-    SponsoredMessage
-      { additional_info = additional_info_,
-        sponsor = sponsor_,
-        content = content_,
-        is_recommended = is_recommended_,
-        message_id = message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sponsoredMessage",
-          "additional_info" A..= additional_info_,
-          "sponsor" A..= sponsor_,
-          "content" A..= content_,
-          "is_recommended" A..= is_recommended_,
-          "message_id" A..= message_id_
-        ]

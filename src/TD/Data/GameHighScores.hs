@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.GameHighScores where
+module TD.Data.GameHighScores
+  (GameHighScores(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.GameHighScore as GameHighScore
-import qualified Utils as U
 
--- |
-data GameHighScores = -- | Contains a list of game high scores @scores A list of game high scores
-  GameHighScores
-  { -- |
-    scores :: Maybe [GameHighScore.GameHighScore]
-  }
-  deriving (Eq)
+data GameHighScores
+  = GameHighScores -- ^ Contains a list of game high scores
+    { scores :: Maybe [GameHighScore.GameHighScore] -- ^ A list of game high scores
+    }
+  deriving (Eq, Show)
 
-instance Show GameHighScores where
-  show
-    GameHighScores
-      { scores = scores_
-      } =
-      "GameHighScores"
-        ++ U.cc
-          [ U.p "scores" scores_
-          ]
+instance I.ShortShow GameHighScores where
+  shortShow GameHighScores
+    { scores = scores_
+    }
+      = "GameHighScores"
+        ++ I.cc
+        [ "scores" `I.p` scores_
+        ]
 
-instance T.FromJSON GameHighScores where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON GameHighScores where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "gameHighScores" -> parseGameHighScores v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseGameHighScores :: A.Value -> T.Parser GameHighScores
+      parseGameHighScores :: A.Value -> AT.Parser GameHighScores
       parseGameHighScores = A.withObject "GameHighScores" $ \o -> do
-        scores_ <- o A..:? "scores"
-        return $ GameHighScores {scores = scores_}
+        scores_ <- o A..:?  "scores"
+        pure $ GameHighScores
+          { scores = scores_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON GameHighScores where
-  toJSON
-    GameHighScores
-      { scores = scores_
-      } =
-      A.object
-        [ "@type" A..= T.String "gameHighScores",
-          "scores" A..= scores_
-        ]

@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReportSupergroupSpam where
+module TD.Query.ReportSupergroupSpam
+  (ReportSupergroupSpam(..)
+  , defaultReportSupergroupSpam
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Reports messages in a supergroup as spam; requires administrator rights in the supergroup @supergroup_id Supergroup identifier @message_ids Identifiers of messages to report
-data ReportSupergroupSpam = ReportSupergroupSpam
-  { -- |
-    message_ids :: Maybe [Int],
-    -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Reports messages in a supergroup as spam; requires administrator rights in the supergroup
+data ReportSupergroupSpam
+  = ReportSupergroupSpam
+    { supergroup_id :: Maybe Int   -- ^ Supergroup identifier
+    , message_ids   :: Maybe [Int] -- ^ Identifiers of messages to report
+    }
+  deriving (Eq, Show)
 
-instance Show ReportSupergroupSpam where
-  show
+instance I.ShortShow ReportSupergroupSpam where
+  shortShow
     ReportSupergroupSpam
-      { message_ids = message_ids_,
-        supergroup_id = supergroup_id_
-      } =
-      "ReportSupergroupSpam"
-        ++ U.cc
-          [ U.p "message_ids" message_ids_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id = supergroup_id_
+      , message_ids   = message_ids_
+      }
+        = "ReportSupergroupSpam"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
+          , "message_ids"   `I.p` message_ids_
           ]
 
-instance T.ToJSON ReportSupergroupSpam where
+instance AT.ToJSON ReportSupergroupSpam where
   toJSON
     ReportSupergroupSpam
-      { message_ids = message_ids_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "reportSupergroupSpam",
-          "message_ids" A..= message_ids_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id = supergroup_id_
+      , message_ids   = message_ids_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "reportSupergroupSpam"
+          , "supergroup_id" A..= supergroup_id_
+          , "message_ids"   A..= message_ids_
+          ]
+
+defaultReportSupergroupSpam :: ReportSupergroupSpam
+defaultReportSupergroupSpam =
+  ReportSupergroupSpam
+    { supergroup_id = Nothing
+    , message_ids   = Nothing
+    }
+

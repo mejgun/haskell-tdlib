@@ -1,61 +1,68 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageAddedReactions where
+module TD.Query.GetMessageAddedReactions
+  (GetMessageAddedReactions(..)
+  , defaultGetMessageAddedReactions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Returns reactions added for a message, along with their sender
-data GetMessageAddedReactions = GetMessageAddedReactions
-  { -- | The maximum number of reactions to be returned; must be positive and can't be greater than 100
-    limit :: Maybe Int,
-    -- | Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    offset :: Maybe String,
-    -- | Type of the reactions to return; pass null to return all added reactions
-    reaction_type :: Maybe ReactionType.ReactionType,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the message belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns reactions added for a message, along with their sender
+data GetMessageAddedReactions
+  = GetMessageAddedReactions
+    { chat_id       :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
+    , message_id    :: Maybe Int                       -- ^ Identifier of the message
+    , reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reactions to return; pass null to return all added reactions
+    , offset        :: Maybe T.Text                    -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    , limit         :: Maybe Int                       -- ^ The maximum number of reactions to be returned; must be positive and can't be greater than 100
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageAddedReactions where
-  show
+instance I.ShortShow GetMessageAddedReactions where
+  shortShow
     GetMessageAddedReactions
-      { limit = limit_,
-        offset = offset_,
-        reaction_type = reaction_type_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageAddedReactions"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "reaction_type" reaction_type_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id       = chat_id_
+      , message_id    = message_id_
+      , reaction_type = reaction_type_
+      , offset        = offset_
+      , limit         = limit_
+      }
+        = "GetMessageAddedReactions"
+          ++ I.cc
+          [ "chat_id"       `I.p` chat_id_
+          , "message_id"    `I.p` message_id_
+          , "reaction_type" `I.p` reaction_type_
+          , "offset"        `I.p` offset_
+          , "limit"         `I.p` limit_
           ]
 
-instance T.ToJSON GetMessageAddedReactions where
+instance AT.ToJSON GetMessageAddedReactions where
   toJSON
     GetMessageAddedReactions
-      { limit = limit_,
-        offset = offset_,
-        reaction_type = reaction_type_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageAddedReactions",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "reaction_type" A..= reaction_type_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id       = chat_id_
+      , message_id    = message_id_
+      , reaction_type = reaction_type_
+      , offset        = offset_
+      , limit         = limit_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getMessageAddedReactions"
+          , "chat_id"       A..= chat_id_
+          , "message_id"    A..= message_id_
+          , "reaction_type" A..= reaction_type_
+          , "offset"        A..= offset_
+          , "limit"         A..= limit_
+          ]
+
+defaultGetMessageAddedReactions :: GetMessageAddedReactions
+defaultGetMessageAddedReactions =
+  GetMessageAddedReactions
+    { chat_id       = Nothing
+    , message_id    = Nothing
+    , reaction_type = Nothing
+    , offset        = Nothing
+    , limit         = Nothing
+    }
+

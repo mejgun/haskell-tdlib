@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.FileDownloadedPrefixSize where
+module TD.Data.FileDownloadedPrefixSize
+  (FileDownloadedPrefixSize(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data FileDownloadedPrefixSize = -- | Contains size of downloaded prefix of a file @size The prefix size, in bytes
-  FileDownloadedPrefixSize
-  { -- |
-    size :: Maybe Int
-  }
-  deriving (Eq)
+data FileDownloadedPrefixSize
+  = FileDownloadedPrefixSize -- ^ Contains size of downloaded prefix of a file
+    { size :: Maybe Int -- ^ The prefix size, in bytes
+    }
+  deriving (Eq, Show)
 
-instance Show FileDownloadedPrefixSize where
-  show
-    FileDownloadedPrefixSize
-      { size = size_
-      } =
-      "FileDownloadedPrefixSize"
-        ++ U.cc
-          [ U.p "size" size_
-          ]
+instance I.ShortShow FileDownloadedPrefixSize where
+  shortShow FileDownloadedPrefixSize
+    { size = size_
+    }
+      = "FileDownloadedPrefixSize"
+        ++ I.cc
+        [ "size" `I.p` size_
+        ]
 
-instance T.FromJSON FileDownloadedPrefixSize where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON FileDownloadedPrefixSize where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "fileDownloadedPrefixSize" -> parseFileDownloadedPrefixSize v
-      _ -> mempty
+      _                          -> mempty
+    
     where
-      parseFileDownloadedPrefixSize :: A.Value -> T.Parser FileDownloadedPrefixSize
+      parseFileDownloadedPrefixSize :: A.Value -> AT.Parser FileDownloadedPrefixSize
       parseFileDownloadedPrefixSize = A.withObject "FileDownloadedPrefixSize" $ \o -> do
-        size_ <- o A..:? "size"
-        return $ FileDownloadedPrefixSize {size = size_}
+        size_ <- o A..:?  "size"
+        pure $ FileDownloadedPrefixSize
+          { size = size_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON FileDownloadedPrefixSize where
-  toJSON
-    FileDownloadedPrefixSize
-      { size = size_
-      } =
-      A.object
-        [ "@type" A..= T.String "fileDownloadedPrefixSize",
-          "size" A..= size_
-        ]

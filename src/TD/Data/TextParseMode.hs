@@ -1,65 +1,57 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TextParseMode where
+module TD.Data.TextParseMode
+  (TextParseMode(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the way the text needs to be parsed for text entities
 data TextParseMode
-  = -- | The text uses Markdown-style formatting
-    TextParseModeMarkdown
-      { -- | Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
-        version :: Maybe Int
-      }
-  | -- | The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
-    TextParseModeHTML
-  deriving (Eq)
+  = TextParseModeMarkdown -- ^ The text uses Markdown-style formatting
+    { version :: Maybe Int -- ^ Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
+    }
+  | TextParseModeHTML -- ^ The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
+  deriving (Eq, Show)
 
-instance Show TextParseMode where
-  show
-    TextParseModeMarkdown
-      { version = version_
-      } =
-      "TextParseModeMarkdown"
-        ++ U.cc
-          [ U.p "version" version_
-          ]
-  show TextParseModeHTML =
-    "TextParseModeHTML"
-      ++ U.cc
-        []
+instance I.ShortShow TextParseMode where
+  shortShow TextParseModeMarkdown
+    { version = version_
+    }
+      = "TextParseModeMarkdown"
+        ++ I.cc
+        [ "version" `I.p` version_
+        ]
+  shortShow TextParseModeHTML
+      = "TextParseModeHTML"
 
-instance T.FromJSON TextParseMode where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TextParseMode where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "textParseModeMarkdown" -> parseTextParseModeMarkdown v
-      "textParseModeHTML" -> parseTextParseModeHTML v
-      _ -> mempty
+      "textParseModeHTML"     -> pure TextParseModeHTML
+      _                       -> mempty
+    
     where
-      parseTextParseModeMarkdown :: A.Value -> T.Parser TextParseMode
+      parseTextParseModeMarkdown :: A.Value -> AT.Parser TextParseMode
       parseTextParseModeMarkdown = A.withObject "TextParseModeMarkdown" $ \o -> do
-        version_ <- o A..:? "version"
-        return $ TextParseModeMarkdown {version = version_}
-
-      parseTextParseModeHTML :: A.Value -> T.Parser TextParseMode
-      parseTextParseModeHTML = A.withObject "TextParseModeHTML" $ \_ -> return TextParseModeHTML
+        version_ <- o A..:?  "version"
+        pure $ TextParseModeMarkdown
+          { version = version_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TextParseMode where
-  toJSON
-    TextParseModeMarkdown
-      { version = version_
-      } =
-      A.object
-        [ "@type" A..= T.String "textParseModeMarkdown",
-          "version" A..= version_
+instance AT.ToJSON TextParseMode where
+  toJSON TextParseModeMarkdown
+    { version = version_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "textParseModeMarkdown"
+        , "version" A..= version_
         ]
-  toJSON TextParseModeHTML =
-    A.object
-      [ "@type" A..= T.String "textParseModeHTML"
-      ]
+  toJSON TextParseModeHTML
+      = A.object
+        [ "@type" A..= AT.String "textParseModeHTML"
+        ]
+

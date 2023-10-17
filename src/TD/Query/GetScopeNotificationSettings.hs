@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetScopeNotificationSettings where
+module TD.Query.GetScopeNotificationSettings
+  (GetScopeNotificationSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
-import qualified Utils as U
 
--- |
--- Returns the notification settings for chats of a given type @scope Types of chats for which to return the notification settings information
-data GetScopeNotificationSettings = GetScopeNotificationSettings
-  { -- |
-    scope :: Maybe NotificationSettingsScope.NotificationSettingsScope
-  }
-  deriving (Eq)
+-- | Returns the notification settings for chats of a given type
+data GetScopeNotificationSettings
+  = GetScopeNotificationSettings
+    { scope :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which to return the notification settings information
+    }
+  deriving (Eq, Show)
 
-instance Show GetScopeNotificationSettings where
-  show
+instance I.ShortShow GetScopeNotificationSettings where
+  shortShow
     GetScopeNotificationSettings
       { scope = scope_
-      } =
-      "GetScopeNotificationSettings"
-        ++ U.cc
-          [ U.p "scope" scope_
+      }
+        = "GetScopeNotificationSettings"
+          ++ I.cc
+          [ "scope" `I.p` scope_
           ]
 
-instance T.ToJSON GetScopeNotificationSettings where
+instance AT.ToJSON GetScopeNotificationSettings where
   toJSON
     GetScopeNotificationSettings
       { scope = scope_
-      } =
-      A.object
-        [ "@type" A..= T.String "getScopeNotificationSettings",
-          "scope" A..= scope_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getScopeNotificationSettings"
+          , "scope" A..= scope_
+          ]
+

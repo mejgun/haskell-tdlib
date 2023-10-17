@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetThemeParametersJsonString where
+module TD.Query.GetThemeParametersJsonString
+  (GetThemeParametersJsonString(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ThemeParameters as ThemeParameters
-import qualified Utils as U
 
--- |
--- Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously @theme Theme parameters to convert to JSON
-data GetThemeParametersJsonString = GetThemeParametersJsonString
-  { -- |
-    theme :: Maybe ThemeParameters.ThemeParameters
-  }
-  deriving (Eq)
+-- | Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
+data GetThemeParametersJsonString
+  = GetThemeParametersJsonString
+    { theme :: Maybe ThemeParameters.ThemeParameters -- ^ Theme parameters to convert to JSON
+    }
+  deriving (Eq, Show)
 
-instance Show GetThemeParametersJsonString where
-  show
+instance I.ShortShow GetThemeParametersJsonString where
+  shortShow
     GetThemeParametersJsonString
       { theme = theme_
-      } =
-      "GetThemeParametersJsonString"
-        ++ U.cc
-          [ U.p "theme" theme_
+      }
+        = "GetThemeParametersJsonString"
+          ++ I.cc
+          [ "theme" `I.p` theme_
           ]
 
-instance T.ToJSON GetThemeParametersJsonString where
+instance AT.ToJSON GetThemeParametersJsonString where
   toJSON
     GetThemeParametersJsonString
       { theme = theme_
-      } =
-      A.object
-        [ "@type" A..= T.String "getThemeParametersJsonString",
-          "theme" A..= theme_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getThemeParametersJsonString"
+          , "theme" A..= theme_
+          ]
+

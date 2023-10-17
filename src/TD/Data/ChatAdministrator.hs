@@ -1,64 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatAdministrator where
+module TD.Data.ChatAdministrator
+  (ChatAdministrator(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data ChatAdministrator = -- | Contains information about a chat administrator @user_id User identifier of the administrator @custom_title Custom title of the administrator @is_owner True, if the user is the owner of the chat
-  ChatAdministrator
-  { -- |
-    is_owner :: Maybe Bool,
-    -- |
-    custom_title :: Maybe String,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatAdministrator
+  = ChatAdministrator -- ^ Contains information about a chat administrator
+    { user_id      :: Maybe Int    -- ^ User identifier of the administrator
+    , custom_title :: Maybe T.Text -- ^ Custom title of the administrator
+    , is_owner     :: Maybe Bool   -- ^ True, if the user is the owner of the chat
+    }
+  deriving (Eq, Show)
 
-instance Show ChatAdministrator where
-  show
-    ChatAdministrator
-      { is_owner = is_owner_,
-        custom_title = custom_title_,
-        user_id = user_id_
-      } =
-      "ChatAdministrator"
-        ++ U.cc
-          [ U.p "is_owner" is_owner_,
-            U.p "custom_title" custom_title_,
-            U.p "user_id" user_id_
-          ]
+instance I.ShortShow ChatAdministrator where
+  shortShow ChatAdministrator
+    { user_id      = user_id_
+    , custom_title = custom_title_
+    , is_owner     = is_owner_
+    }
+      = "ChatAdministrator"
+        ++ I.cc
+        [ "user_id"      `I.p` user_id_
+        , "custom_title" `I.p` custom_title_
+        , "is_owner"     `I.p` is_owner_
+        ]
 
-instance T.FromJSON ChatAdministrator where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatAdministrator where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatAdministrator" -> parseChatAdministrator v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseChatAdministrator :: A.Value -> T.Parser ChatAdministrator
+      parseChatAdministrator :: A.Value -> AT.Parser ChatAdministrator
       parseChatAdministrator = A.withObject "ChatAdministrator" $ \o -> do
-        is_owner_ <- o A..:? "is_owner"
-        custom_title_ <- o A..:? "custom_title"
-        user_id_ <- o A..:? "user_id"
-        return $ ChatAdministrator {is_owner = is_owner_, custom_title = custom_title_, user_id = user_id_}
+        user_id_      <- o A..:?  "user_id"
+        custom_title_ <- o A..:?  "custom_title"
+        is_owner_     <- o A..:?  "is_owner"
+        pure $ ChatAdministrator
+          { user_id      = user_id_
+          , custom_title = custom_title_
+          , is_owner     = is_owner_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatAdministrator where
-  toJSON
-    ChatAdministrator
-      { is_owner = is_owner_,
-        custom_title = custom_title_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatAdministrator",
-          "is_owner" A..= is_owner_,
-          "custom_title" A..= custom_title_,
-          "user_id" A..= user_id_
-        ]

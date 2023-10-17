@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CreateBasicGroupChat where
+module TD.Query.CreateBasicGroupChat
+  (CreateBasicGroupChat(..)
+  , defaultCreateBasicGroupChat
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns an existing chat corresponding to a known basic group @basic_group_id Basic group identifier @force Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-data CreateBasicGroupChat = CreateBasicGroupChat
-  { -- |
-    force :: Maybe Bool,
-    -- |
-    basic_group_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns an existing chat corresponding to a known basic group
+data CreateBasicGroupChat
+  = CreateBasicGroupChat
+    { basic_group_id :: Maybe Int  -- ^ Basic group identifier
+    , force          :: Maybe Bool -- ^ Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
+    }
+  deriving (Eq, Show)
 
-instance Show CreateBasicGroupChat where
-  show
+instance I.ShortShow CreateBasicGroupChat where
+  shortShow
     CreateBasicGroupChat
-      { force = force_,
-        basic_group_id = basic_group_id_
-      } =
-      "CreateBasicGroupChat"
-        ++ U.cc
-          [ U.p "force" force_,
-            U.p "basic_group_id" basic_group_id_
+      { basic_group_id = basic_group_id_
+      , force          = force_
+      }
+        = "CreateBasicGroupChat"
+          ++ I.cc
+          [ "basic_group_id" `I.p` basic_group_id_
+          , "force"          `I.p` force_
           ]
 
-instance T.ToJSON CreateBasicGroupChat where
+instance AT.ToJSON CreateBasicGroupChat where
   toJSON
     CreateBasicGroupChat
-      { force = force_,
-        basic_group_id = basic_group_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "createBasicGroupChat",
-          "force" A..= force_,
-          "basic_group_id" A..= basic_group_id_
-        ]
+      { basic_group_id = basic_group_id_
+      , force          = force_
+      }
+        = A.object
+          [ "@type"          A..= AT.String "createBasicGroupChat"
+          , "basic_group_id" A..= basic_group_id_
+          , "force"          A..= force_
+          ]
+
+defaultCreateBasicGroupChat :: CreateBasicGroupChat
+defaultCreateBasicGroupChat =
+  CreateBasicGroupChat
+    { basic_group_id = Nothing
+    , force          = Nothing
+    }
+

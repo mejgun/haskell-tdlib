@@ -1,55 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AssignGooglePlayTransaction where
+module TD.Query.AssignGooglePlayTransaction
+  (AssignGooglePlayTransaction(..)
+  , defaultAssignGooglePlayTransaction
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
-import qualified Utils as U
 
--- |
--- Informs server about a purchase through Google Play. For official applications only
-data AssignGooglePlayTransaction = AssignGooglePlayTransaction
-  { -- | Transaction purpose
-    purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose,
-    -- | Google Play purchase token
-    purchase_token :: Maybe String,
-    -- | Identifier of the purchased store product
-    store_product_id :: Maybe String,
-    -- | Application package name
-    package_name :: Maybe String
-  }
-  deriving (Eq)
+-- | Informs server about a purchase through Google Play. For official applications only
+data AssignGooglePlayTransaction
+  = AssignGooglePlayTransaction
+    { package_name     :: Maybe T.Text                                  -- ^ Application package name
+    , store_product_id :: Maybe T.Text                                  -- ^ Identifier of the purchased store product
+    , purchase_token   :: Maybe T.Text                                  -- ^ Google Play purchase token
+    , purpose          :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
+    }
+  deriving (Eq, Show)
 
-instance Show AssignGooglePlayTransaction where
-  show
+instance I.ShortShow AssignGooglePlayTransaction where
+  shortShow
     AssignGooglePlayTransaction
-      { purpose = purpose_,
-        purchase_token = purchase_token_,
-        store_product_id = store_product_id_,
-        package_name = package_name_
-      } =
-      "AssignGooglePlayTransaction"
-        ++ U.cc
-          [ U.p "purpose" purpose_,
-            U.p "purchase_token" purchase_token_,
-            U.p "store_product_id" store_product_id_,
-            U.p "package_name" package_name_
+      { package_name     = package_name_
+      , store_product_id = store_product_id_
+      , purchase_token   = purchase_token_
+      , purpose          = purpose_
+      }
+        = "AssignGooglePlayTransaction"
+          ++ I.cc
+          [ "package_name"     `I.p` package_name_
+          , "store_product_id" `I.p` store_product_id_
+          , "purchase_token"   `I.p` purchase_token_
+          , "purpose"          `I.p` purpose_
           ]
 
-instance T.ToJSON AssignGooglePlayTransaction where
+instance AT.ToJSON AssignGooglePlayTransaction where
   toJSON
     AssignGooglePlayTransaction
-      { purpose = purpose_,
-        purchase_token = purchase_token_,
-        store_product_id = store_product_id_,
-        package_name = package_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "assignGooglePlayTransaction",
-          "purpose" A..= purpose_,
-          "purchase_token" A..= purchase_token_,
-          "store_product_id" A..= store_product_id_,
-          "package_name" A..= package_name_
-        ]
+      { package_name     = package_name_
+      , store_product_id = store_product_id_
+      , purchase_token   = purchase_token_
+      , purpose          = purpose_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "assignGooglePlayTransaction"
+          , "package_name"     A..= package_name_
+          , "store_product_id" A..= store_product_id_
+          , "purchase_token"   A..= purchase_token_
+          , "purpose"          A..= purpose_
+          ]
+
+defaultAssignGooglePlayTransaction :: AssignGooglePlayTransaction
+defaultAssignGooglePlayTransaction =
+  AssignGooglePlayTransaction
+    { package_name     = Nothing
+    , store_product_id = Nothing
+    , purchase_token   = Nothing
+    , purpose          = Nothing
+    }
+

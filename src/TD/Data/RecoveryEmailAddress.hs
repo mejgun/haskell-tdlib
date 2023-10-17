@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.RecoveryEmailAddress where
+module TD.Data.RecoveryEmailAddress
+  (RecoveryEmailAddress(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data RecoveryEmailAddress = -- | Contains information about the current recovery email address @recovery_email_address Recovery email address
-  RecoveryEmailAddress
-  { -- |
-    recovery_email_address :: Maybe String
-  }
-  deriving (Eq)
+data RecoveryEmailAddress
+  = RecoveryEmailAddress -- ^ Contains information about the current recovery email address
+    { recovery_email_address :: Maybe T.Text -- ^ Recovery email address
+    }
+  deriving (Eq, Show)
 
-instance Show RecoveryEmailAddress where
-  show
-    RecoveryEmailAddress
-      { recovery_email_address = recovery_email_address_
-      } =
-      "RecoveryEmailAddress"
-        ++ U.cc
-          [ U.p "recovery_email_address" recovery_email_address_
-          ]
+instance I.ShortShow RecoveryEmailAddress where
+  shortShow RecoveryEmailAddress
+    { recovery_email_address = recovery_email_address_
+    }
+      = "RecoveryEmailAddress"
+        ++ I.cc
+        [ "recovery_email_address" `I.p` recovery_email_address_
+        ]
 
-instance T.FromJSON RecoveryEmailAddress where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON RecoveryEmailAddress where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "recoveryEmailAddress" -> parseRecoveryEmailAddress v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseRecoveryEmailAddress :: A.Value -> T.Parser RecoveryEmailAddress
+      parseRecoveryEmailAddress :: A.Value -> AT.Parser RecoveryEmailAddress
       parseRecoveryEmailAddress = A.withObject "RecoveryEmailAddress" $ \o -> do
-        recovery_email_address_ <- o A..:? "recovery_email_address"
-        return $ RecoveryEmailAddress {recovery_email_address = recovery_email_address_}
+        recovery_email_address_ <- o A..:?  "recovery_email_address"
+        pure $ RecoveryEmailAddress
+          { recovery_email_address = recovery_email_address_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON RecoveryEmailAddress where
-  toJSON
-    RecoveryEmailAddress
-      { recovery_email_address = recovery_email_address_
-      } =
-      A.object
-        [ "@type" A..= T.String "recoveryEmailAddress",
-          "recovery_email_address" A..= recovery_email_address_
-        ]

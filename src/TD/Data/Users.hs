@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Users where
+module TD.Data.Users
+  (Users(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data Users = -- | Represents a list of users @total_count Approximate total number of users found @user_ids A list of user identifiers
-  Users
-  { -- |
-    user_ids :: Maybe [Int],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data Users
+  = Users -- ^ Represents a list of users
+    { total_count :: Maybe Int   -- ^ Approximate total number of users found
+    , user_ids    :: Maybe [Int] -- ^ A list of user identifiers
+    }
+  deriving (Eq, Show)
 
-instance Show Users where
-  show
-    Users
-      { user_ids = user_ids_,
-        total_count = total_count_
-      } =
-      "Users"
-        ++ U.cc
-          [ U.p "user_ids" user_ids_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow Users where
+  shortShow Users
+    { total_count = total_count_
+    , user_ids    = user_ids_
+    }
+      = "Users"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "user_ids"    `I.p` user_ids_
+        ]
 
-instance T.FromJSON Users where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Users where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "users" -> parseUsers v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parseUsers :: A.Value -> T.Parser Users
+      parseUsers :: A.Value -> AT.Parser Users
       parseUsers = A.withObject "Users" $ \o -> do
-        user_ids_ <- o A..:? "user_ids"
-        total_count_ <- o A..:? "total_count"
-        return $ Users {user_ids = user_ids_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        user_ids_    <- o A..:?  "user_ids"
+        pure $ Users
+          { total_count = total_count_
+          , user_ids    = user_ids_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Users where
-  toJSON
-    Users
-      { user_ids = user_ids_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "users",
-          "user_ids" A..= user_ids_,
-          "total_count" A..= total_count_
-        ]

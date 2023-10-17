@@ -1,28 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResendAuthenticationCode where
+module TD.Query.ResendAuthenticationCode
+  (ResendAuthenticationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed,
--- or when the current authorization state is authorizationStateWaitEmailCode
-data ResendAuthenticationCode = ResendAuthenticationCode
-  {
-  }
-  deriving (Eq)
+-- | Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
+data ResendAuthenticationCode
+  = ResendAuthenticationCode
+  deriving (Eq, Show)
 
-instance Show ResendAuthenticationCode where
-  show ResendAuthenticationCode =
-    "ResendAuthenticationCode"
-      ++ U.cc
-        []
+instance I.ShortShow ResendAuthenticationCode where
+  shortShow
+    ResendAuthenticationCode
+        = "ResendAuthenticationCode"
 
-instance T.ToJSON ResendAuthenticationCode where
-  toJSON ResendAuthenticationCode =
-    A.object
-      [ "@type" A..= T.String "resendAuthenticationCode"
-      ]
+instance AT.ToJSON ResendAuthenticationCode where
+  toJSON
+    ResendAuthenticationCode
+        = A.object
+          [ "@type" A..= AT.String "resendAuthenticationCode"
+          ]
+

@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetProfilePhoto where
+module TD.Query.SetProfilePhoto
+  (SetProfilePhoto(..)
+  , defaultSetProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
-import qualified Utils as U
 
--- |
--- Changes a profile photo for the current user
-data SetProfilePhoto = SetProfilePhoto
-  { -- | Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
-    is_public :: Maybe Bool,
-    -- | Profile photo to set
-    photo :: Maybe InputChatPhoto.InputChatPhoto
-  }
-  deriving (Eq)
+-- | Changes a profile photo for the current user
+data SetProfilePhoto
+  = SetProfilePhoto
+    { photo     :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set
+    , is_public :: Maybe Bool                          -- ^ Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+    }
+  deriving (Eq, Show)
 
-instance Show SetProfilePhoto where
-  show
+instance I.ShortShow SetProfilePhoto where
+  shortShow
     SetProfilePhoto
-      { is_public = is_public_,
-        photo = photo_
-      } =
-      "SetProfilePhoto"
-        ++ U.cc
-          [ U.p "is_public" is_public_,
-            U.p "photo" photo_
+      { photo     = photo_
+      , is_public = is_public_
+      }
+        = "SetProfilePhoto"
+          ++ I.cc
+          [ "photo"     `I.p` photo_
+          , "is_public" `I.p` is_public_
           ]
 
-instance T.ToJSON SetProfilePhoto where
+instance AT.ToJSON SetProfilePhoto where
   toJSON
     SetProfilePhoto
-      { is_public = is_public_,
-        photo = photo_
-      } =
-      A.object
-        [ "@type" A..= T.String "setProfilePhoto",
-          "is_public" A..= is_public_,
-          "photo" A..= photo_
-        ]
+      { photo     = photo_
+      , is_public = is_public_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "setProfilePhoto"
+          , "photo"     A..= photo_
+          , "is_public" A..= is_public_
+          ]
+
+defaultSetProfilePhoto :: SetProfilePhoto
+defaultSetProfilePhoto =
+  SetProfilePhoto
+    { photo     = Nothing
+    , is_public = Nothing
+    }
+

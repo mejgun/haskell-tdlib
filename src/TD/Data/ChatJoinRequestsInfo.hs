@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatJoinRequestsInfo where
+module TD.Data.ChatJoinRequestsInfo
+  (ChatJoinRequestsInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data ChatJoinRequestsInfo = -- | Contains information about pending join requests for a chat @total_count Total number of pending join requests @user_ids Identifiers of at most 3 users sent the newest pending join requests
-  ChatJoinRequestsInfo
-  { -- |
-    user_ids :: Maybe [Int],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data ChatJoinRequestsInfo
+  = ChatJoinRequestsInfo -- ^ Contains information about pending join requests for a chat
+    { total_count :: Maybe Int   -- ^ Total number of pending join requests
+    , user_ids    :: Maybe [Int] -- ^ Identifiers of at most 3 users sent the newest pending join requests
+    }
+  deriving (Eq, Show)
 
-instance Show ChatJoinRequestsInfo where
-  show
-    ChatJoinRequestsInfo
-      { user_ids = user_ids_,
-        total_count = total_count_
-      } =
-      "ChatJoinRequestsInfo"
-        ++ U.cc
-          [ U.p "user_ids" user_ids_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow ChatJoinRequestsInfo where
+  shortShow ChatJoinRequestsInfo
+    { total_count = total_count_
+    , user_ids    = user_ids_
+    }
+      = "ChatJoinRequestsInfo"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "user_ids"    `I.p` user_ids_
+        ]
 
-instance T.FromJSON ChatJoinRequestsInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatJoinRequestsInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatJoinRequestsInfo" -> parseChatJoinRequestsInfo v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseChatJoinRequestsInfo :: A.Value -> T.Parser ChatJoinRequestsInfo
+      parseChatJoinRequestsInfo :: A.Value -> AT.Parser ChatJoinRequestsInfo
       parseChatJoinRequestsInfo = A.withObject "ChatJoinRequestsInfo" $ \o -> do
-        user_ids_ <- o A..:? "user_ids"
-        total_count_ <- o A..:? "total_count"
-        return $ ChatJoinRequestsInfo {user_ids = user_ids_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        user_ids_    <- o A..:?  "user_ids"
+        pure $ ChatJoinRequestsInfo
+          { total_count = total_count_
+          , user_ids    = user_ids_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatJoinRequestsInfo where
-  toJSON
-    ChatJoinRequestsInfo
-      { user_ids = user_ids_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatJoinRequestsInfo",
-          "user_ids" A..= user_ids_,
-          "total_count" A..= total_count_
-        ]

@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetUsername where
+module TD.Query.SetUsername
+  (SetUsername(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes the editable username of the current user
-data SetUsername = SetUsername
-  { -- | The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
-    username :: Maybe String
-  }
-  deriving (Eq)
+-- | Changes the editable username of the current user
+data SetUsername
+  = SetUsername
+    { username :: Maybe T.Text -- ^ The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+    }
+  deriving (Eq, Show)
 
-instance Show SetUsername where
-  show
+instance I.ShortShow SetUsername where
+  shortShow
     SetUsername
       { username = username_
-      } =
-      "SetUsername"
-        ++ U.cc
-          [ U.p "username" username_
+      }
+        = "SetUsername"
+          ++ I.cc
+          [ "username" `I.p` username_
           ]
 
-instance T.ToJSON SetUsername where
+instance AT.ToJSON SetUsername where
   toJSON
     SetUsername
       { username = username_
-      } =
-      A.object
-        [ "@type" A..= T.String "setUsername",
-          "username" A..= username_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setUsername"
+          , "username" A..= username_
+          ]
+

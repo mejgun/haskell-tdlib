@@ -1,38 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Ok where
+module TD.Data.Ok
+  (Ok(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
 data Ok
-  = -- | An object of this type is returned on a successful function call for certain functions
-    Ok
-  deriving (Eq)
+  = Ok -- ^ An object of this type is returned on a successful function call for certain functions
+  deriving (Eq, Show)
 
-instance Show Ok where
-  show Ok =
-    "Ok"
-      ++ U.cc
-        []
+instance I.ShortShow Ok where
+  shortShow Ok
+      = "Ok"
 
-instance T.FromJSON Ok where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Ok where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "ok" -> parseOk v
-      _ -> mempty
-    where
-      parseOk :: A.Value -> T.Parser Ok
-      parseOk = A.withObject "Ok" $ \_ -> return Ok
+      "ok" -> pure Ok
+      _    -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON Ok where
-  toJSON Ok =
-    A.object
-      [ "@type" A..= T.String "ok"
-      ]

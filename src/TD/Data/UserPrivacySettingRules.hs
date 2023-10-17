@@ -1,51 +1,57 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.UserPrivacySettingRules where
+module TD.Data.UserPrivacySettingRules
+  ( UserPrivacySettingRules(..)    
+  , defaultUserPrivacySettingRules 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.UserPrivacySettingRule as UserPrivacySettingRule
-import qualified Utils as U
 
--- |
-data UserPrivacySettingRules = -- | A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed @rules A list of rules
-  UserPrivacySettingRules
-  { -- |
-    rules :: Maybe [UserPrivacySettingRule.UserPrivacySettingRule]
-  }
-  deriving (Eq)
+data UserPrivacySettingRules
+  = UserPrivacySettingRules -- ^ A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
+    { rules :: Maybe [UserPrivacySettingRule.UserPrivacySettingRule] -- ^ A list of rules
+    }
+  deriving (Eq, Show)
 
-instance Show UserPrivacySettingRules where
-  show
-    UserPrivacySettingRules
-      { rules = rules_
-      } =
-      "UserPrivacySettingRules"
-        ++ U.cc
-          [ U.p "rules" rules_
-          ]
+instance I.ShortShow UserPrivacySettingRules where
+  shortShow UserPrivacySettingRules
+    { rules = rules_
+    }
+      = "UserPrivacySettingRules"
+        ++ I.cc
+        [ "rules" `I.p` rules_
+        ]
 
-instance T.FromJSON UserPrivacySettingRules where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON UserPrivacySettingRules where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "userPrivacySettingRules" -> parseUserPrivacySettingRules v
-      _ -> mempty
+      _                         -> mempty
+    
     where
-      parseUserPrivacySettingRules :: A.Value -> T.Parser UserPrivacySettingRules
+      parseUserPrivacySettingRules :: A.Value -> AT.Parser UserPrivacySettingRules
       parseUserPrivacySettingRules = A.withObject "UserPrivacySettingRules" $ \o -> do
-        rules_ <- o A..:? "rules"
-        return $ UserPrivacySettingRules {rules = rules_}
+        rules_ <- o A..:?  "rules"
+        pure $ UserPrivacySettingRules
+          { rules = rules_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON UserPrivacySettingRules where
-  toJSON
-    UserPrivacySettingRules
-      { rules = rules_
-      } =
-      A.object
-        [ "@type" A..= T.String "userPrivacySettingRules",
-          "rules" A..= rules_
+instance AT.ToJSON UserPrivacySettingRules where
+  toJSON UserPrivacySettingRules
+    { rules = rules_
+    }
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingRules"
+        , "rules" A..= rules_
         ]
+
+defaultUserPrivacySettingRules :: UserPrivacySettingRules
+defaultUserPrivacySettingRules =
+  UserPrivacySettingRules
+    { rules = Nothing
+    }
+

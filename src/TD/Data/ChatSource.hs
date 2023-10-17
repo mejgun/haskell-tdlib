@@ -1,72 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatSource where
+module TD.Data.ChatSource
+  (ChatSource(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Describes a reason why an external chat is shown in a chat list
 data ChatSource
-  = -- | The chat is sponsored by the user's MTProxy server
-    ChatSourceMtprotoProxy
-  | -- | The chat contains a public service announcement @type The type of the announcement @text The text of the announcement
-    ChatSourcePublicServiceAnnouncement
-      { -- |
-        text :: Maybe String,
-        -- |
-        _type :: Maybe String
-      }
-  deriving (Eq)
+  = ChatSourceMtprotoProxy -- ^ The chat is sponsored by the user's MTProxy server
+  | ChatSourcePublicServiceAnnouncement -- ^ The chat contains a public service announcement
+    { _type :: Maybe T.Text -- ^ The type of the announcement
+    , text  :: Maybe T.Text -- ^ The text of the announcement
+    }
+  deriving (Eq, Show)
 
-instance Show ChatSource where
-  show ChatSourceMtprotoProxy =
-    "ChatSourceMtprotoProxy"
-      ++ U.cc
-        []
-  show
-    ChatSourcePublicServiceAnnouncement
-      { text = text_,
-        _type = _type_
-      } =
-      "ChatSourcePublicServiceAnnouncement"
-        ++ U.cc
-          [ U.p "text" text_,
-            U.p "_type" _type_
-          ]
+instance I.ShortShow ChatSource where
+  shortShow ChatSourceMtprotoProxy
+      = "ChatSourceMtprotoProxy"
+  shortShow ChatSourcePublicServiceAnnouncement
+    { _type = _type_
+    , text  = text_
+    }
+      = "ChatSourcePublicServiceAnnouncement"
+        ++ I.cc
+        [ "_type" `I.p` _type_
+        , "text"  `I.p` text_
+        ]
 
-instance T.FromJSON ChatSource where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatSource where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "chatSourceMtprotoProxy" -> parseChatSourceMtprotoProxy v
+      "chatSourceMtprotoProxy"              -> pure ChatSourceMtprotoProxy
       "chatSourcePublicServiceAnnouncement" -> parseChatSourcePublicServiceAnnouncement v
-      _ -> mempty
+      _                                     -> mempty
+    
     where
-      parseChatSourceMtprotoProxy :: A.Value -> T.Parser ChatSource
-      parseChatSourceMtprotoProxy = A.withObject "ChatSourceMtprotoProxy" $ \_ -> return ChatSourceMtprotoProxy
-
-      parseChatSourcePublicServiceAnnouncement :: A.Value -> T.Parser ChatSource
+      parseChatSourcePublicServiceAnnouncement :: A.Value -> AT.Parser ChatSource
       parseChatSourcePublicServiceAnnouncement = A.withObject "ChatSourcePublicServiceAnnouncement" $ \o -> do
-        text_ <- o A..:? "text"
-        _type_ <- o A..:? "type"
-        return $ ChatSourcePublicServiceAnnouncement {text = text_, _type = _type_}
+        _type_ <- o A..:?  "type"
+        text_  <- o A..:?  "text"
+        pure $ ChatSourcePublicServiceAnnouncement
+          { _type = _type_
+          , text  = text_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatSource where
-  toJSON ChatSourceMtprotoProxy =
-    A.object
-      [ "@type" A..= T.String "chatSourceMtprotoProxy"
-      ]
-  toJSON
-    ChatSourcePublicServiceAnnouncement
-      { text = text_,
-        _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatSourcePublicServiceAnnouncement",
-          "text" A..= text_,
-          "type" A..= _type_
-        ]

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestUseUpdate where
+module TD.Query.TestUseUpdate
+  (TestUseUpdate(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
-data TestUseUpdate = TestUseUpdate
-  {
-  }
-  deriving (Eq)
+-- | Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
+data TestUseUpdate
+  = TestUseUpdate
+  deriving (Eq, Show)
 
-instance Show TestUseUpdate where
-  show TestUseUpdate =
-    "TestUseUpdate"
-      ++ U.cc
-        []
+instance I.ShortShow TestUseUpdate where
+  shortShow
+    TestUseUpdate
+        = "TestUseUpdate"
 
-instance T.ToJSON TestUseUpdate where
-  toJSON TestUseUpdate =
-    A.object
-      [ "@type" A..= T.String "testUseUpdate"
-      ]
+instance AT.ToJSON TestUseUpdate where
+  toJSON
+    TestUseUpdate
+        = A.object
+          [ "@type" A..= AT.String "testUseUpdate"
+          ]
+

@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ChangePhoneNumber where
+module TD.Query.ChangePhoneNumber
+  (ChangePhoneNumber(..)
+  , defaultChangePhoneNumber
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
-import qualified Utils as U
 
--- |
--- Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
-data ChangePhoneNumber = ChangePhoneNumber
-  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
-    settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- | The new phone number of the user in international format
-    phone_number :: Maybe String
-  }
-  deriving (Eq)
+-- | Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
+data ChangePhoneNumber
+  = ChangePhoneNumber
+    { phone_number :: Maybe T.Text                                                              -- ^ The new phone number of the user in international format
+    , settings     :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings -- ^ Settings for the authentication of the user's phone number; pass null to use default settings
+    }
+  deriving (Eq, Show)
 
-instance Show ChangePhoneNumber where
-  show
+instance I.ShortShow ChangePhoneNumber where
+  shortShow
     ChangePhoneNumber
-      { settings = settings_,
-        phone_number = phone_number_
-      } =
-      "ChangePhoneNumber"
-        ++ U.cc
-          [ U.p "settings" settings_,
-            U.p "phone_number" phone_number_
+      { phone_number = phone_number_
+      , settings     = settings_
+      }
+        = "ChangePhoneNumber"
+          ++ I.cc
+          [ "phone_number" `I.p` phone_number_
+          , "settings"     `I.p` settings_
           ]
 
-instance T.ToJSON ChangePhoneNumber where
+instance AT.ToJSON ChangePhoneNumber where
   toJSON
     ChangePhoneNumber
-      { settings = settings_,
-        phone_number = phone_number_
-      } =
-      A.object
-        [ "@type" A..= T.String "changePhoneNumber",
-          "settings" A..= settings_,
-          "phone_number" A..= phone_number_
-        ]
+      { phone_number = phone_number_
+      , settings     = settings_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "changePhoneNumber"
+          , "phone_number" A..= phone_number_
+          , "settings"     A..= settings_
+          ]
+
+defaultChangePhoneNumber :: ChangePhoneNumber
+defaultChangePhoneNumber =
+  ChangePhoneNumber
+    { phone_number = Nothing
+    , settings     = Nothing
+    }
+

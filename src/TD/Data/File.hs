@@ -1,80 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.File where
+module TD.Data.File
+  (File(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.LocalFile as LocalFile
 import qualified TD.Data.RemoteFile as RemoteFile
-import qualified Utils as U
 
--- |
-data File = -- | Represents a file
-  File
-  { -- | Information about the remote copy of the file
-    remote :: Maybe RemoteFile.RemoteFile,
-    -- | Information about the local copy of the file
-    local :: Maybe LocalFile.LocalFile,
-    -- | Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
-    expected_size :: Maybe Int,
-    -- | File size, in bytes; 0 if unknown
-    size :: Maybe Int,
-    -- | Unique file identifier
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data File
+  = File -- ^ Represents a file
+    { _id           :: Maybe Int                   -- ^ Unique file identifier
+    , size          :: Maybe Int                   -- ^ File size, in bytes; 0 if unknown
+    , expected_size :: Maybe Int                   -- ^ Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
+    , local         :: Maybe LocalFile.LocalFile   -- ^ Information about the local copy of the file
+    , remote        :: Maybe RemoteFile.RemoteFile -- ^ Information about the remote copy of the file
+    }
+  deriving (Eq, Show)
 
-instance Show File where
-  show
-    File
-      { remote = remote_,
-        local = local_,
-        expected_size = expected_size_,
-        size = size_,
-        _id = _id_
-      } =
-      "File"
-        ++ U.cc
-          [ U.p "remote" remote_,
-            U.p "local" local_,
-            U.p "expected_size" expected_size_,
-            U.p "size" size_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow File where
+  shortShow File
+    { _id           = _id_
+    , size          = size_
+    , expected_size = expected_size_
+    , local         = local_
+    , remote        = remote_
+    }
+      = "File"
+        ++ I.cc
+        [ "_id"           `I.p` _id_
+        , "size"          `I.p` size_
+        , "expected_size" `I.p` expected_size_
+        , "local"         `I.p` local_
+        , "remote"        `I.p` remote_
+        ]
 
-instance T.FromJSON File where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON File where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "file" -> parseFile v
-      _ -> mempty
+      _      -> mempty
+    
     where
-      parseFile :: A.Value -> T.Parser File
+      parseFile :: A.Value -> AT.Parser File
       parseFile = A.withObject "File" $ \o -> do
-        remote_ <- o A..:? "remote"
-        local_ <- o A..:? "local"
-        expected_size_ <- o A..:? "expected_size"
-        size_ <- o A..:? "size"
-        _id_ <- o A..:? "id"
-        return $ File {remote = remote_, local = local_, expected_size = expected_size_, size = size_, _id = _id_}
+        _id_           <- o A..:?  "id"
+        size_          <- o A..:?  "size"
+        expected_size_ <- o A..:?  "expected_size"
+        local_         <- o A..:?  "local"
+        remote_        <- o A..:?  "remote"
+        pure $ File
+          { _id           = _id_
+          , size          = size_
+          , expected_size = expected_size_
+          , local         = local_
+          , remote        = remote_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON File where
-  toJSON
-    File
-      { remote = remote_,
-        local = local_,
-        expected_size = expected_size_,
-        size = size_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "file",
-          "remote" A..= remote_,
-          "local" A..= local_,
-          "expected_size" A..= expected_size_,
-          "size" A..= size_,
-          "id" A..= _id_
-        ]

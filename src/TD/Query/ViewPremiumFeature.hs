@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ViewPremiumFeature where
+module TD.Query.ViewPremiumFeature
+  (ViewPremiumFeature(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumFeature as PremiumFeature
-import qualified Utils as U
 
--- |
--- Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen @feature The viewed premium feature
-data ViewPremiumFeature = ViewPremiumFeature
-  { -- |
-    feature :: Maybe PremiumFeature.PremiumFeature
-  }
-  deriving (Eq)
+-- | Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+data ViewPremiumFeature
+  = ViewPremiumFeature
+    { feature :: Maybe PremiumFeature.PremiumFeature -- ^ The viewed premium feature
+    }
+  deriving (Eq, Show)
 
-instance Show ViewPremiumFeature where
-  show
+instance I.ShortShow ViewPremiumFeature where
+  shortShow
     ViewPremiumFeature
       { feature = feature_
-      } =
-      "ViewPremiumFeature"
-        ++ U.cc
-          [ U.p "feature" feature_
+      }
+        = "ViewPremiumFeature"
+          ++ I.cc
+          [ "feature" `I.p` feature_
           ]
 
-instance T.ToJSON ViewPremiumFeature where
+instance AT.ToJSON ViewPremiumFeature where
   toJSON
     ViewPremiumFeature
       { feature = feature_
-      } =
-      A.object
-        [ "@type" A..= T.String "viewPremiumFeature",
-          "feature" A..= feature_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "viewPremiumFeature"
+          , "feature" A..= feature_
+          ]
+

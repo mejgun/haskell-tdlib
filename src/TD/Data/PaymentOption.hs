@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PaymentOption where
+module TD.Data.PaymentOption
+  (PaymentOption(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data PaymentOption = -- | Describes an additional payment option @title Title for the payment option @url Payment form URL to be opened in a web view
-  PaymentOption
-  { -- |
-    url :: Maybe String,
-    -- |
-    title :: Maybe String
-  }
-  deriving (Eq)
+data PaymentOption
+  = PaymentOption -- ^ Describes an additional payment option
+    { title :: Maybe T.Text -- ^ Title for the payment option
+    , url   :: Maybe T.Text -- ^ Payment form URL to be opened in a web view
+    }
+  deriving (Eq, Show)
 
-instance Show PaymentOption where
-  show
-    PaymentOption
-      { url = url_,
-        title = title_
-      } =
-      "PaymentOption"
-        ++ U.cc
-          [ U.p "url" url_,
-            U.p "title" title_
-          ]
+instance I.ShortShow PaymentOption where
+  shortShow PaymentOption
+    { title = title_
+    , url   = url_
+    }
+      = "PaymentOption"
+        ++ I.cc
+        [ "title" `I.p` title_
+        , "url"   `I.p` url_
+        ]
 
-instance T.FromJSON PaymentOption where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PaymentOption where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "paymentOption" -> parsePaymentOption v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parsePaymentOption :: A.Value -> T.Parser PaymentOption
+      parsePaymentOption :: A.Value -> AT.Parser PaymentOption
       parsePaymentOption = A.withObject "PaymentOption" $ \o -> do
-        url_ <- o A..:? "url"
-        title_ <- o A..:? "title"
-        return $ PaymentOption {url = url_, title = title_}
+        title_ <- o A..:?  "title"
+        url_   <- o A..:?  "url"
+        pure $ PaymentOption
+          { title = title_
+          , url   = url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PaymentOption where
-  toJSON
-    PaymentOption
-      { url = url_,
-        title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "paymentOption",
-          "url" A..= url_,
-          "title" A..= title_
-        ]

@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageAvailableReactions where
+module TD.Query.GetMessageAvailableReactions
+  (GetMessageAvailableReactions(..)
+  , defaultGetMessageAvailableReactions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
-data GetMessageAvailableReactions = GetMessageAvailableReactions
-  { -- | Number of reaction per row, 5-25
-    row_size :: Maybe Int,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the message belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+data GetMessageAvailableReactions
+  = GetMessageAvailableReactions
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    , row_size   :: Maybe Int -- ^ Number of reaction per row, 5-25
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageAvailableReactions where
-  show
+instance I.ShortShow GetMessageAvailableReactions where
+  shortShow
     GetMessageAvailableReactions
-      { row_size = row_size_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageAvailableReactions"
-        ++ U.cc
-          [ U.p "row_size" row_size_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , row_size   = row_size_
+      }
+        = "GetMessageAvailableReactions"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "row_size"   `I.p` row_size_
           ]
 
-instance T.ToJSON GetMessageAvailableReactions where
+instance AT.ToJSON GetMessageAvailableReactions where
   toJSON
     GetMessageAvailableReactions
-      { row_size = row_size_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageAvailableReactions",
-          "row_size" A..= row_size_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , row_size   = row_size_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageAvailableReactions"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "row_size"   A..= row_size_
+          ]
+
+defaultGetMessageAvailableReactions :: GetMessageAvailableReactions
+defaultGetMessageAvailableReactions =
+  GetMessageAvailableReactions
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , row_size   = Nothing
+    }
+

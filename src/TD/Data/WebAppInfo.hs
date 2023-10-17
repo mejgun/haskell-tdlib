@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.WebAppInfo where
+module TD.Data.WebAppInfo
+  (WebAppInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data WebAppInfo = -- | Contains information about a Web App @launch_id Unique identifier for the Web App launch @url A Web App URL to open in a web view
-  WebAppInfo
-  { -- |
-    url :: Maybe String,
-    -- |
-    launch_id :: Maybe Int
-  }
-  deriving (Eq)
+data WebAppInfo
+  = WebAppInfo -- ^ Contains information about a Web App
+    { launch_id :: Maybe Int    -- ^ Unique identifier for the Web App launch
+    , url       :: Maybe T.Text -- ^ A Web App URL to open in a web view
+    }
+  deriving (Eq, Show)
 
-instance Show WebAppInfo where
-  show
-    WebAppInfo
-      { url = url_,
-        launch_id = launch_id_
-      } =
-      "WebAppInfo"
-        ++ U.cc
-          [ U.p "url" url_,
-            U.p "launch_id" launch_id_
-          ]
+instance I.ShortShow WebAppInfo where
+  shortShow WebAppInfo
+    { launch_id = launch_id_
+    , url       = url_
+    }
+      = "WebAppInfo"
+        ++ I.cc
+        [ "launch_id" `I.p` launch_id_
+        , "url"       `I.p` url_
+        ]
 
-instance T.FromJSON WebAppInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON WebAppInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "webAppInfo" -> parseWebAppInfo v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseWebAppInfo :: A.Value -> T.Parser WebAppInfo
+      parseWebAppInfo :: A.Value -> AT.Parser WebAppInfo
       parseWebAppInfo = A.withObject "WebAppInfo" $ \o -> do
-        url_ <- o A..:? "url"
-        launch_id_ <- U.rm <$> (o A..:? "launch_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ WebAppInfo {url = url_, launch_id = launch_id_}
+        launch_id_ <- fmap I.readInt64 <$> o A..:?  "launch_id"
+        url_       <- o A..:?                       "url"
+        pure $ WebAppInfo
+          { launch_id = launch_id_
+          , url       = url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON WebAppInfo where
-  toJSON
-    WebAppInfo
-      { url = url_,
-        launch_id = launch_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "webAppInfo",
-          "url" A..= url_,
-          "launch_id" A..= U.toS launch_id_
-        ]

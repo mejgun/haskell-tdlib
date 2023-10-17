@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveAllFilesFromDownloads where
+module TD.Query.RemoveAllFilesFromDownloads
+  (RemoveAllFilesFromDownloads(..)
+  , defaultRemoveAllFilesFromDownloads
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes all files from the file download list
-data RemoveAllFilesFromDownloads = RemoveAllFilesFromDownloads
-  { -- | Pass true to delete the file from the TDLib file cache
-    delete_from_cache :: Maybe Bool,
-    -- | Pass true to remove only completed downloads
-    only_completed :: Maybe Bool,
-    -- | Pass true to remove only active downloads, including paused
-    only_active :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Removes all files from the file download list
+data RemoveAllFilesFromDownloads
+  = RemoveAllFilesFromDownloads
+    { only_active       :: Maybe Bool -- ^ Pass true to remove only active downloads, including paused
+    , only_completed    :: Maybe Bool -- ^ Pass true to remove only completed downloads
+    , delete_from_cache :: Maybe Bool -- ^ Pass true to delete the file from the TDLib file cache
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveAllFilesFromDownloads where
-  show
+instance I.ShortShow RemoveAllFilesFromDownloads where
+  shortShow
     RemoveAllFilesFromDownloads
-      { delete_from_cache = delete_from_cache_,
-        only_completed = only_completed_,
-        only_active = only_active_
-      } =
-      "RemoveAllFilesFromDownloads"
-        ++ U.cc
-          [ U.p "delete_from_cache" delete_from_cache_,
-            U.p "only_completed" only_completed_,
-            U.p "only_active" only_active_
+      { only_active       = only_active_
+      , only_completed    = only_completed_
+      , delete_from_cache = delete_from_cache_
+      }
+        = "RemoveAllFilesFromDownloads"
+          ++ I.cc
+          [ "only_active"       `I.p` only_active_
+          , "only_completed"    `I.p` only_completed_
+          , "delete_from_cache" `I.p` delete_from_cache_
           ]
 
-instance T.ToJSON RemoveAllFilesFromDownloads where
+instance AT.ToJSON RemoveAllFilesFromDownloads where
   toJSON
     RemoveAllFilesFromDownloads
-      { delete_from_cache = delete_from_cache_,
-        only_completed = only_completed_,
-        only_active = only_active_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeAllFilesFromDownloads",
-          "delete_from_cache" A..= delete_from_cache_,
-          "only_completed" A..= only_completed_,
-          "only_active" A..= only_active_
-        ]
+      { only_active       = only_active_
+      , only_completed    = only_completed_
+      , delete_from_cache = delete_from_cache_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "removeAllFilesFromDownloads"
+          , "only_active"       A..= only_active_
+          , "only_completed"    A..= only_completed_
+          , "delete_from_cache" A..= delete_from_cache_
+          ]
+
+defaultRemoveAllFilesFromDownloads :: RemoveAllFilesFromDownloads
+defaultRemoveAllFilesFromDownloads =
+  RemoveAllFilesFromDownloads
+    { only_active       = Nothing
+    , only_completed    = Nothing
+    , delete_from_cache = Nothing
+    }
+

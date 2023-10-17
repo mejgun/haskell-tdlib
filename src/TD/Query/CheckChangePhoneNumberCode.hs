@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckChangePhoneNumberCode where
+module TD.Query.CheckChangePhoneNumberCode
+  (CheckChangePhoneNumberCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks the authentication code sent to confirm a new phone number of the user @code Authentication code to check
-data CheckChangePhoneNumberCode = CheckChangePhoneNumberCode
-  { -- |
-    code :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks the authentication code sent to confirm a new phone number of the user
+data CheckChangePhoneNumberCode
+  = CheckChangePhoneNumberCode
+    { code :: Maybe T.Text -- ^ Authentication code to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckChangePhoneNumberCode where
-  show
+instance I.ShortShow CheckChangePhoneNumberCode where
+  shortShow
     CheckChangePhoneNumberCode
       { code = code_
-      } =
-      "CheckChangePhoneNumberCode"
-        ++ U.cc
-          [ U.p "code" code_
+      }
+        = "CheckChangePhoneNumberCode"
+          ++ I.cc
+          [ "code" `I.p` code_
           ]
 
-instance T.ToJSON CheckChangePhoneNumberCode where
+instance AT.ToJSON CheckChangePhoneNumberCode where
   toJSON
     CheckChangePhoneNumberCode
       { code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkChangePhoneNumberCode",
-          "code" A..= code_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkChangePhoneNumberCode"
+          , "code"  A..= code_
+          ]
+

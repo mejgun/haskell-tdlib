@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReplacePrimaryChatInviteLink where
+module TD.Query.ReplacePrimaryChatInviteLink
+  (ReplacePrimaryChatInviteLink(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right @chat_id Chat identifier
-data ReplacePrimaryChatInviteLink = ReplacePrimaryChatInviteLink
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
+data ReplacePrimaryChatInviteLink
+  = ReplacePrimaryChatInviteLink
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show ReplacePrimaryChatInviteLink where
-  show
+instance I.ShortShow ReplacePrimaryChatInviteLink where
+  shortShow
     ReplacePrimaryChatInviteLink
       { chat_id = chat_id_
-      } =
-      "ReplacePrimaryChatInviteLink"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "ReplacePrimaryChatInviteLink"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON ReplacePrimaryChatInviteLink where
+instance AT.ToJSON ReplacePrimaryChatInviteLink where
   toJSON
     ReplacePrimaryChatInviteLink
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "replacePrimaryChatInviteLink",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "replacePrimaryChatInviteLink"
+          , "chat_id" A..= chat_id_
+          ]
+

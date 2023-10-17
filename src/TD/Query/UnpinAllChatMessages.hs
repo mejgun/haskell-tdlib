@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.UnpinAllChatMessages where
+module TD.Query.UnpinAllChatMessages
+  (UnpinAllChatMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel @chat_id Identifier of the chat
-data UnpinAllChatMessages = UnpinAllChatMessages
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+data UnpinAllChatMessages
+  = UnpinAllChatMessages
+    { chat_id :: Maybe Int -- ^ Identifier of the chat
+    }
+  deriving (Eq, Show)
 
-instance Show UnpinAllChatMessages where
-  show
+instance I.ShortShow UnpinAllChatMessages where
+  shortShow
     UnpinAllChatMessages
       { chat_id = chat_id_
-      } =
-      "UnpinAllChatMessages"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "UnpinAllChatMessages"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON UnpinAllChatMessages where
+instance AT.ToJSON UnpinAllChatMessages where
   toJSON
     UnpinAllChatMessages
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "unpinAllChatMessages",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "unpinAllChatMessages"
+          , "chat_id" A..= chat_id_
+          ]
+

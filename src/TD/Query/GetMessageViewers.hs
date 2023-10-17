@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageViewers where
+module TD.Query.GetMessageViewers
+  (GetMessageViewers(..)
+  , defaultGetMessageViewers
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
-data GetMessageViewers = GetMessageViewers
-  { -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+data GetMessageViewers
+  = GetMessageViewers
+    { chat_id    :: Maybe Int -- ^ Chat identifier
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageViewers where
-  show
+instance I.ShortShow GetMessageViewers where
+  shortShow
     GetMessageViewers
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageViewers"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessageViewers"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetMessageViewers where
+instance AT.ToJSON GetMessageViewers where
   toJSON
     GetMessageViewers
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageViewers",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageViewers"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetMessageViewers :: GetMessageViewers
+defaultGetMessageViewers =
+  GetMessageViewers
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

@@ -9,7 +9,7 @@
 # to be used for project dependencies. For example:
 #
 # resolver: lts-3.5
-# resolver: nightly-2015-09-21
+# resolver: nightly-2023-08-16
 # resolver: ghc-7.10.2
 #
 # The location of a snapshot can be provided as a file or url. Stack assumes
@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-18.28
+resolver: lts-21.16
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -61,6 +61,8 @@ packages:
 # Extra directories used by stack for building
 # extra-include-dirs: [/path/to/dir]
 extra-lib-dirs: [lib]
+# extra-libraries: tdjson
+# extra-libraries-static: tdjson'
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor

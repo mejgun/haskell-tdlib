@@ -1,66 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStoryViewers where
+module TD.Query.GetStoryViewers
+  (GetStoryViewers(..)
+  , defaultGetStoryViewers
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageViewer as MessageViewer
 
--- |
--- Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
-data GetStoryViewers = GetStoryViewers
-  { -- | The maximum number of story viewers to return
-    limit :: Maybe Int,
-    -- | Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    offset :: Maybe String,
-    -- | Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
-    prefer_with_reaction :: Maybe Bool,
-    -- | Pass true to get only contacts; pass false to get all relevant viewers
-    only_contacts :: Maybe Bool,
-    -- | Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
-    query :: Maybe String,
-    -- | Story identifier
-    story_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns viewers of a recent outgoing story. The method can be called if story.can_get_viewers == true. The views are returned in a reverse chronological order (i.e., in order of decreasing view_date) For optimal performance, the number of returned stories is chosen by TDLib
+data GetStoryViewers
+  = GetStoryViewers
+    { story_id      :: Maybe Int                         -- ^ Story identifier
+    , offset_viewer :: Maybe MessageViewer.MessageViewer -- ^ A viewer from which to return next viewers; pass null to get results from the beginning
+    , limit         :: Maybe Int                         -- ^ The maximum number of story viewers to return For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    }
+  deriving (Eq, Show)
 
-instance Show GetStoryViewers where
-  show
+instance I.ShortShow GetStoryViewers where
+  shortShow
     GetStoryViewers
-      { limit = limit_,
-        offset = offset_,
-        prefer_with_reaction = prefer_with_reaction_,
-        only_contacts = only_contacts_,
-        query = query_,
-        story_id = story_id_
-      } =
-      "GetStoryViewers"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "prefer_with_reaction" prefer_with_reaction_,
-            U.p "only_contacts" only_contacts_,
-            U.p "query" query_,
-            U.p "story_id" story_id_
+      { story_id      = story_id_
+      , offset_viewer = offset_viewer_
+      , limit         = limit_
+      }
+        = "GetStoryViewers"
+          ++ I.cc
+          [ "story_id"      `I.p` story_id_
+          , "offset_viewer" `I.p` offset_viewer_
+          , "limit"         `I.p` limit_
           ]
 
-instance T.ToJSON GetStoryViewers where
+instance AT.ToJSON GetStoryViewers where
   toJSON
     GetStoryViewers
-      { limit = limit_,
-        offset = offset_,
-        prefer_with_reaction = prefer_with_reaction_,
-        only_contacts = only_contacts_,
-        query = query_,
-        story_id = story_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getStoryViewers",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "prefer_with_reaction" A..= prefer_with_reaction_,
-          "only_contacts" A..= only_contacts_,
-          "query" A..= query_,
-          "story_id" A..= story_id_
-        ]
+      { story_id      = story_id_
+      , offset_viewer = offset_viewer_
+      , limit         = limit_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getStoryViewers"
+          , "story_id"      A..= story_id_
+          , "offset_viewer" A..= offset_viewer_
+          , "limit"         A..= limit_
+          ]
+
+defaultGetStoryViewers :: GetStoryViewers
+defaultGetStoryViewers =
+  GetStoryViewers
+    { story_id      = Nothing
+    , offset_viewer = Nothing
+    , limit         = Nothing
+    }
+

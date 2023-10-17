@@ -1,66 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StickerType where
+module TD.Data.StickerType
+  (StickerType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes type of a sticker
 data StickerType
-  = -- | The sticker is a regular sticker
-    StickerTypeRegular
-  | -- | The sticker is a mask in WEBP format to be placed on photos or videos
-    StickerTypeMask
-  | -- | The sticker is a custom emoji to be used inside message text and caption
-    StickerTypeCustomEmoji
-  deriving (Eq)
+  = StickerTypeRegular -- ^ The sticker is a regular sticker
+  | StickerTypeMask -- ^ The sticker is a mask in WEBP format to be placed on photos or videos
+  | StickerTypeCustomEmoji -- ^ The sticker is a custom emoji to be used inside message text and caption
+  deriving (Eq, Show)
 
-instance Show StickerType where
-  show StickerTypeRegular =
-    "StickerTypeRegular"
-      ++ U.cc
-        []
-  show StickerTypeMask =
-    "StickerTypeMask"
-      ++ U.cc
-        []
-  show StickerTypeCustomEmoji =
-    "StickerTypeCustomEmoji"
-      ++ U.cc
-        []
+instance I.ShortShow StickerType where
+  shortShow StickerTypeRegular
+      = "StickerTypeRegular"
+  shortShow StickerTypeMask
+      = "StickerTypeMask"
+  shortShow StickerTypeCustomEmoji
+      = "StickerTypeCustomEmoji"
 
-instance T.FromJSON StickerType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StickerType where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "stickerTypeRegular" -> parseStickerTypeRegular v
-      "stickerTypeMask" -> parseStickerTypeMask v
-      "stickerTypeCustomEmoji" -> parseStickerTypeCustomEmoji v
-      _ -> mempty
-    where
-      parseStickerTypeRegular :: A.Value -> T.Parser StickerType
-      parseStickerTypeRegular = A.withObject "StickerTypeRegular" $ \_ -> return StickerTypeRegular
-
-      parseStickerTypeMask :: A.Value -> T.Parser StickerType
-      parseStickerTypeMask = A.withObject "StickerTypeMask" $ \_ -> return StickerTypeMask
-
-      parseStickerTypeCustomEmoji :: A.Value -> T.Parser StickerType
-      parseStickerTypeCustomEmoji = A.withObject "StickerTypeCustomEmoji" $ \_ -> return StickerTypeCustomEmoji
+      "stickerTypeRegular"     -> pure StickerTypeRegular
+      "stickerTypeMask"        -> pure StickerTypeMask
+      "stickerTypeCustomEmoji" -> pure StickerTypeCustomEmoji
+      _                        -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON StickerType where
-  toJSON StickerTypeRegular =
-    A.object
-      [ "@type" A..= T.String "stickerTypeRegular"
-      ]
-  toJSON StickerTypeMask =
-    A.object
-      [ "@type" A..= T.String "stickerTypeMask"
-      ]
-  toJSON StickerTypeCustomEmoji =
-    A.object
-      [ "@type" A..= T.String "stickerTypeCustomEmoji"
-      ]
+instance AT.ToJSON StickerType where
+  toJSON StickerTypeRegular
+      = A.object
+        [ "@type" A..= AT.String "stickerTypeRegular"
+        ]
+  toJSON StickerTypeMask
+      = A.object
+        [ "@type" A..= AT.String "stickerTypeMask"
+        ]
+  toJSON StickerTypeCustomEmoji
+      = A.object
+        [ "@type" A..= AT.String "stickerTypeCustomEmoji"
+        ]
+

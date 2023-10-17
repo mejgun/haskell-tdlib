@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatFolderChatsToLeave where
+module TD.Query.GetChatFolderChatsToLeave
+  (GetChatFolderChatsToLeave(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted @chat_folder_id Chat folder identifier
-data GetChatFolderChatsToLeave = GetChatFolderChatsToLeave
-  { -- |
-    chat_folder_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
+data GetChatFolderChatsToLeave
+  = GetChatFolderChatsToLeave
+    { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatFolderChatsToLeave where
-  show
+instance I.ShortShow GetChatFolderChatsToLeave where
+  shortShow
     GetChatFolderChatsToLeave
       { chat_folder_id = chat_folder_id_
-      } =
-      "GetChatFolderChatsToLeave"
-        ++ U.cc
-          [ U.p "chat_folder_id" chat_folder_id_
+      }
+        = "GetChatFolderChatsToLeave"
+          ++ I.cc
+          [ "chat_folder_id" `I.p` chat_folder_id_
           ]
 
-instance T.ToJSON GetChatFolderChatsToLeave where
+instance AT.ToJSON GetChatFolderChatsToLeave where
   toJSON
     GetChatFolderChatsToLeave
       { chat_folder_id = chat_folder_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatFolderChatsToLeave",
-          "chat_folder_id" A..= chat_folder_id_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getChatFolderChatsToLeave"
+          , "chat_folder_id" A..= chat_folder_id_
+          ]
+

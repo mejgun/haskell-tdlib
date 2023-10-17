@@ -1,73 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Thumbnail where
+module TD.Data.Thumbnail
+  (Thumbnail(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.File as File
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ThumbnailFormat as ThumbnailFormat
-import qualified Utils as U
+import qualified TD.Data.File as File
 
--- |
-data Thumbnail = -- | Represents a thumbnail
-  Thumbnail
-  { -- | The thumbnail
-    file :: Maybe File.File,
-    -- | Thumbnail height
-    height :: Maybe Int,
-    -- | Thumbnail width
-    width :: Maybe Int,
-    -- | Thumbnail format
-    format :: Maybe ThumbnailFormat.ThumbnailFormat
-  }
-  deriving (Eq)
+data Thumbnail
+  = Thumbnail -- ^ Represents a thumbnail
+    { format :: Maybe ThumbnailFormat.ThumbnailFormat -- ^ Thumbnail format
+    , width  :: Maybe Int                             -- ^ Thumbnail width
+    , height :: Maybe Int                             -- ^ Thumbnail height
+    , file   :: Maybe File.File                       -- ^ The thumbnail
+    }
+  deriving (Eq, Show)
 
-instance Show Thumbnail where
-  show
-    Thumbnail
-      { file = file_,
-        height = height_,
-        width = width_,
-        format = format_
-      } =
-      "Thumbnail"
-        ++ U.cc
-          [ U.p "file" file_,
-            U.p "height" height_,
-            U.p "width" width_,
-            U.p "format" format_
-          ]
+instance I.ShortShow Thumbnail where
+  shortShow Thumbnail
+    { format = format_
+    , width  = width_
+    , height = height_
+    , file   = file_
+    }
+      = "Thumbnail"
+        ++ I.cc
+        [ "format" `I.p` format_
+        , "width"  `I.p` width_
+        , "height" `I.p` height_
+        , "file"   `I.p` file_
+        ]
 
-instance T.FromJSON Thumbnail where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Thumbnail where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "thumbnail" -> parseThumbnail v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseThumbnail :: A.Value -> T.Parser Thumbnail
+      parseThumbnail :: A.Value -> AT.Parser Thumbnail
       parseThumbnail = A.withObject "Thumbnail" $ \o -> do
-        file_ <- o A..:? "file"
-        height_ <- o A..:? "height"
-        width_ <- o A..:? "width"
-        format_ <- o A..:? "format"
-        return $ Thumbnail {file = file_, height = height_, width = width_, format = format_}
+        format_ <- o A..:?  "format"
+        width_  <- o A..:?  "width"
+        height_ <- o A..:?  "height"
+        file_   <- o A..:?  "file"
+        pure $ Thumbnail
+          { format = format_
+          , width  = width_
+          , height = height_
+          , file   = file_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Thumbnail where
-  toJSON
-    Thumbnail
-      { file = file_,
-        height = height_,
-        width = width_,
-        format = format_
-      } =
-      A.object
-        [ "@type" A..= T.String "thumbnail",
-          "file" A..= file_,
-          "height" A..= height_,
-          "width" A..= width_,
-          "format" A..= format_
-        ]

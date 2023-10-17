@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPremiumStickerExamples where
+module TD.Query.GetPremiumStickerExamples
+  (GetPremiumStickerExamples(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns examples of premium stickers for demonstration purposes
-data GetPremiumStickerExamples = GetPremiumStickerExamples
-  {
-  }
-  deriving (Eq)
+-- | Returns examples of premium stickers for demonstration purposes
+data GetPremiumStickerExamples
+  = GetPremiumStickerExamples
+  deriving (Eq, Show)
 
-instance Show GetPremiumStickerExamples where
-  show GetPremiumStickerExamples =
-    "GetPremiumStickerExamples"
-      ++ U.cc
-        []
+instance I.ShortShow GetPremiumStickerExamples where
+  shortShow
+    GetPremiumStickerExamples
+        = "GetPremiumStickerExamples"
 
-instance T.ToJSON GetPremiumStickerExamples where
-  toJSON GetPremiumStickerExamples =
-    A.object
-      [ "@type" A..= T.String "getPremiumStickerExamples"
-      ]
+instance AT.ToJSON GetPremiumStickerExamples where
+  toJSON
+    GetPremiumStickerExamples
+        = A.object
+          [ "@type" A..= AT.String "getPremiumStickerExamples"
+          ]
+

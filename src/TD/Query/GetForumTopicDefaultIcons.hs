@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetForumTopicDefaultIcons where
+module TD.Query.GetForumTopicDefaultIcons
+  (GetForumTopicDefaultIcons(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns list of custom emojis, which can be used as forum topic icon by all users
-data GetForumTopicDefaultIcons = GetForumTopicDefaultIcons
-  {
-  }
-  deriving (Eq)
+-- | Returns list of custom emojis, which can be used as forum topic icon by all users
+data GetForumTopicDefaultIcons
+  = GetForumTopicDefaultIcons
+  deriving (Eq, Show)
 
-instance Show GetForumTopicDefaultIcons where
-  show GetForumTopicDefaultIcons =
-    "GetForumTopicDefaultIcons"
-      ++ U.cc
-        []
+instance I.ShortShow GetForumTopicDefaultIcons where
+  shortShow
+    GetForumTopicDefaultIcons
+        = "GetForumTopicDefaultIcons"
 
-instance T.ToJSON GetForumTopicDefaultIcons where
-  toJSON GetForumTopicDefaultIcons =
-    A.object
-      [ "@type" A..= T.String "getForumTopicDefaultIcons"
-      ]
+instance AT.ToJSON GetForumTopicDefaultIcons where
+  toJSON
+    GetForumTopicDefaultIcons
+        = A.object
+          [ "@type" A..= AT.String "getForumTopicDefaultIcons"
+          ]
+

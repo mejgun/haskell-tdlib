@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetStickerMaskPosition where
+module TD.Query.SetStickerMaskPosition
+  (SetStickerMaskPosition(..)
+  , defaultSetStickerMaskPosition
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.MaskPosition as MaskPosition
-import qualified Utils as U
 
--- |
--- Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
-data SetStickerMaskPosition = SetStickerMaskPosition
-  { -- | Position where the mask is placed; pass null to remove mask position
-    mask_position :: Maybe MaskPosition.MaskPosition,
-    -- | Sticker
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+data SetStickerMaskPosition
+  = SetStickerMaskPosition
+    { sticker       :: Maybe InputFile.InputFile       -- ^ Sticker
+    , mask_position :: Maybe MaskPosition.MaskPosition -- ^ Position where the mask is placed; pass null to remove mask position
+    }
+  deriving (Eq, Show)
 
-instance Show SetStickerMaskPosition where
-  show
+instance I.ShortShow SetStickerMaskPosition where
+  shortShow
     SetStickerMaskPosition
-      { mask_position = mask_position_,
-        sticker = sticker_
-      } =
-      "SetStickerMaskPosition"
-        ++ U.cc
-          [ U.p "mask_position" mask_position_,
-            U.p "sticker" sticker_
+      { sticker       = sticker_
+      , mask_position = mask_position_
+      }
+        = "SetStickerMaskPosition"
+          ++ I.cc
+          [ "sticker"       `I.p` sticker_
+          , "mask_position" `I.p` mask_position_
           ]
 
-instance T.ToJSON SetStickerMaskPosition where
+instance AT.ToJSON SetStickerMaskPosition where
   toJSON
     SetStickerMaskPosition
-      { mask_position = mask_position_,
-        sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "setStickerMaskPosition",
-          "mask_position" A..= mask_position_,
-          "sticker" A..= sticker_
-        ]
+      { sticker       = sticker_
+      , mask_position = mask_position_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "setStickerMaskPosition"
+          , "sticker"       A..= sticker_
+          , "mask_position" A..= mask_position_
+          ]
+
+defaultSetStickerMaskPosition :: SetStickerMaskPosition
+defaultSetStickerMaskPosition =
+  SetStickerMaskPosition
+    { sticker       = Nothing
+    , mask_position = Nothing
+    }
+

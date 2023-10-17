@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPaymentForm where
+module TD.Query.GetPaymentForm
+  (GetPaymentForm(..)
+  , defaultGetPaymentForm
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputInvoice as InputInvoice
 import qualified TD.Data.ThemeParameters as ThemeParameters
-import qualified Utils as U
 
--- |
--- Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
-data GetPaymentForm = GetPaymentForm
-  { -- | Preferred payment form theme; pass null to use the default theme
-    theme :: Maybe ThemeParameters.ThemeParameters,
-    -- | The invoice
-    input_invoice :: Maybe InputInvoice.InputInvoice
-  }
-  deriving (Eq)
+-- | Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+data GetPaymentForm
+  = GetPaymentForm
+    { input_invoice :: Maybe InputInvoice.InputInvoice       -- ^ The invoice
+    , theme         :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred payment form theme; pass null to use the default theme
+    }
+  deriving (Eq, Show)
 
-instance Show GetPaymentForm where
-  show
+instance I.ShortShow GetPaymentForm where
+  shortShow
     GetPaymentForm
-      { theme = theme_,
-        input_invoice = input_invoice_
-      } =
-      "GetPaymentForm"
-        ++ U.cc
-          [ U.p "theme" theme_,
-            U.p "input_invoice" input_invoice_
+      { input_invoice = input_invoice_
+      , theme         = theme_
+      }
+        = "GetPaymentForm"
+          ++ I.cc
+          [ "input_invoice" `I.p` input_invoice_
+          , "theme"         `I.p` theme_
           ]
 
-instance T.ToJSON GetPaymentForm where
+instance AT.ToJSON GetPaymentForm where
   toJSON
     GetPaymentForm
-      { theme = theme_,
-        input_invoice = input_invoice_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPaymentForm",
-          "theme" A..= theme_,
-          "input_invoice" A..= input_invoice_
-        ]
+      { input_invoice = input_invoice_
+      , theme         = theme_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getPaymentForm"
+          , "input_invoice" A..= input_invoice_
+          , "theme"         A..= theme_
+          ]
+
+defaultGetPaymentForm :: GetPaymentForm
+defaultGetPaymentForm =
+  GetPaymentForm
+    { input_invoice = Nothing
+    , theme         = Nothing
+    }
+

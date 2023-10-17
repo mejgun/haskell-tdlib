@@ -1,64 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StoryInfo where
+module TD.Data.StoryInfo
+  (StoryInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data StoryInfo = -- | Contains basic information about a story
-  StoryInfo
-  { -- | True, if the story is available only to close friends
-    is_for_close_friends :: Maybe Bool,
-    -- | Point in time (Unix timestamp) when the story was published
-    date :: Maybe Int,
-    -- | Unique story identifier among stories of the given sender
-    story_id :: Maybe Int
-  }
-  deriving (Eq)
+data StoryInfo
+  = StoryInfo -- ^ Contains basic information about a story
+    { story_id             :: Maybe Int  -- ^ Unique story identifier among stories of the given sender
+    , date                 :: Maybe Int  -- ^ Point in time (Unix timestamp) when the story was published
+    , is_for_close_friends :: Maybe Bool -- ^ True, if the story is available only to close friends
+    }
+  deriving (Eq, Show)
 
-instance Show StoryInfo where
-  show
-    StoryInfo
-      { is_for_close_friends = is_for_close_friends_,
-        date = date_,
-        story_id = story_id_
-      } =
-      "StoryInfo"
-        ++ U.cc
-          [ U.p "is_for_close_friends" is_for_close_friends_,
-            U.p "date" date_,
-            U.p "story_id" story_id_
-          ]
+instance I.ShortShow StoryInfo where
+  shortShow StoryInfo
+    { story_id             = story_id_
+    , date                 = date_
+    , is_for_close_friends = is_for_close_friends_
+    }
+      = "StoryInfo"
+        ++ I.cc
+        [ "story_id"             `I.p` story_id_
+        , "date"                 `I.p` date_
+        , "is_for_close_friends" `I.p` is_for_close_friends_
+        ]
 
-instance T.FromJSON StoryInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StoryInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "storyInfo" -> parseStoryInfo v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseStoryInfo :: A.Value -> T.Parser StoryInfo
+      parseStoryInfo :: A.Value -> AT.Parser StoryInfo
       parseStoryInfo = A.withObject "StoryInfo" $ \o -> do
-        is_for_close_friends_ <- o A..:? "is_for_close_friends"
-        date_ <- o A..:? "date"
-        story_id_ <- o A..:? "story_id"
-        return $ StoryInfo {is_for_close_friends = is_for_close_friends_, date = date_, story_id = story_id_}
+        story_id_             <- o A..:?  "story_id"
+        date_                 <- o A..:?  "date"
+        is_for_close_friends_ <- o A..:?  "is_for_close_friends"
+        pure $ StoryInfo
+          { story_id             = story_id_
+          , date                 = date_
+          , is_for_close_friends = is_for_close_friends_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON StoryInfo where
-  toJSON
-    StoryInfo
-      { is_for_close_friends = is_for_close_friends_,
-        date = date_,
-        story_id = story_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "storyInfo",
-          "is_for_close_friends" A..= is_for_close_friends_,
-          "date" A..= date_,
-          "story_id" A..= story_id_
-        ]

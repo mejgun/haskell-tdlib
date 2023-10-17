@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeletePassportElement where
+module TD.Query.DeletePassportElement
+  (DeletePassportElement(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
-import qualified Utils as U
 
--- |
--- Deletes a Telegram Passport element @type Element type
-data DeletePassportElement = DeletePassportElement
-  { -- |
-    _type :: Maybe PassportElementType.PassportElementType
-  }
-  deriving (Eq)
+-- | Deletes a Telegram Passport element
+data DeletePassportElement
+  = DeletePassportElement
+    { _type :: Maybe PassportElementType.PassportElementType -- ^ Element type
+    }
+  deriving (Eq, Show)
 
-instance Show DeletePassportElement where
-  show
+instance I.ShortShow DeletePassportElement where
+  shortShow
     DeletePassportElement
       { _type = _type_
-      } =
-      "DeletePassportElement"
-        ++ U.cc
-          [ U.p "_type" _type_
+      }
+        = "DeletePassportElement"
+          ++ I.cc
+          [ "_type" `I.p` _type_
           ]
 
-instance T.ToJSON DeletePassportElement where
+instance AT.ToJSON DeletePassportElement where
   toJSON
     DeletePassportElement
       { _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "deletePassportElement",
-          "type" A..= _type_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "deletePassportElement"
+          , "type"  A..= _type_
+          ]
+

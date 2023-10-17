@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleGroupCallEnabledStartNotification where
+module TD.Query.ToggleGroupCallEnabledStartNotification
+  (ToggleGroupCallEnabledStartNotification(..)
+  , defaultToggleGroupCallEnabledStartNotification
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
-data ToggleGroupCallEnabledStartNotification = ToggleGroupCallEnabledStartNotification
-  { -- | New value of the enabled_start_notification setting
-    enabled_start_notification :: Maybe Bool,
-    -- | Group call identifier
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+data ToggleGroupCallEnabledStartNotification
+  = ToggleGroupCallEnabledStartNotification
+    { group_call_id              :: Maybe Int  -- ^ Group call identifier
+    , enabled_start_notification :: Maybe Bool -- ^ New value of the enabled_start_notification setting
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallEnabledStartNotification where
-  show
+instance I.ShortShow ToggleGroupCallEnabledStartNotification where
+  shortShow
     ToggleGroupCallEnabledStartNotification
-      { enabled_start_notification = enabled_start_notification_,
-        group_call_id = group_call_id_
-      } =
-      "ToggleGroupCallEnabledStartNotification"
-        ++ U.cc
-          [ U.p "enabled_start_notification" enabled_start_notification_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id              = group_call_id_
+      , enabled_start_notification = enabled_start_notification_
+      }
+        = "ToggleGroupCallEnabledStartNotification"
+          ++ I.cc
+          [ "group_call_id"              `I.p` group_call_id_
+          , "enabled_start_notification" `I.p` enabled_start_notification_
           ]
 
-instance T.ToJSON ToggleGroupCallEnabledStartNotification where
+instance AT.ToJSON ToggleGroupCallEnabledStartNotification where
   toJSON
     ToggleGroupCallEnabledStartNotification
-      { enabled_start_notification = enabled_start_notification_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleGroupCallEnabledStartNotification",
-          "enabled_start_notification" A..= enabled_start_notification_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id              = group_call_id_
+      , enabled_start_notification = enabled_start_notification_
+      }
+        = A.object
+          [ "@type"                      A..= AT.String "toggleGroupCallEnabledStartNotification"
+          , "group_call_id"              A..= group_call_id_
+          , "enabled_start_notification" A..= enabled_start_notification_
+          ]
+
+defaultToggleGroupCallEnabledStartNotification :: ToggleGroupCallEnabledStartNotification
+defaultToggleGroupCallEnabledStartNotification =
+  ToggleGroupCallEnabledStartNotification
+    { group_call_id              = Nothing
+    , enabled_start_notification = Nothing
+    }
+

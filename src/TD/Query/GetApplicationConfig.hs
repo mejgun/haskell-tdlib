@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetApplicationConfig where
+module TD.Query.GetApplicationConfig
+  (GetApplicationConfig(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns application config, provided by the server. Can be called before authorization
-data GetApplicationConfig = GetApplicationConfig
-  {
-  }
-  deriving (Eq)
+-- | Returns application config, provided by the server. Can be called before authorization
+data GetApplicationConfig
+  = GetApplicationConfig
+  deriving (Eq, Show)
 
-instance Show GetApplicationConfig where
-  show GetApplicationConfig =
-    "GetApplicationConfig"
-      ++ U.cc
-        []
+instance I.ShortShow GetApplicationConfig where
+  shortShow
+    GetApplicationConfig
+        = "GetApplicationConfig"
 
-instance T.ToJSON GetApplicationConfig where
-  toJSON GetApplicationConfig =
-    A.object
-      [ "@type" A..= T.String "getApplicationConfig"
-      ]
+instance AT.ToJSON GetApplicationConfig where
+  toJSON
+    GetApplicationConfig
+        = A.object
+          [ "@type" A..= AT.String "getApplicationConfig"
+          ]
+

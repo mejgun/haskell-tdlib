@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetLocation where
+module TD.Query.SetLocation
+  (SetLocation(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
-import qualified Utils as U
 
--- |
--- Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer @location The new location of the user
-data SetLocation = SetLocation
-  { -- |
-    location :: Maybe Location.Location
-  }
-  deriving (Eq)
+-- | Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+data SetLocation
+  = SetLocation
+    { location :: Maybe Location.Location -- ^ The new location of the user
+    }
+  deriving (Eq, Show)
 
-instance Show SetLocation where
-  show
+instance I.ShortShow SetLocation where
+  shortShow
     SetLocation
       { location = location_
-      } =
-      "SetLocation"
-        ++ U.cc
-          [ U.p "location" location_
+      }
+        = "SetLocation"
+          ++ I.cc
+          [ "location" `I.p` location_
           ]
 
-instance T.ToJSON SetLocation where
+instance AT.ToJSON SetLocation where
   toJSON
     SetLocation
       { location = location_
-      } =
-      A.object
-        [ "@type" A..= T.String "setLocation",
-          "location" A..= location_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setLocation"
+          , "location" A..= location_
+          ]
+

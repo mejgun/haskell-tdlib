@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RegisterDevice where
+module TD.Query.RegisterDevice
+  (RegisterDevice(..)
+  , defaultRegisterDevice
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.DeviceToken as DeviceToken
-import qualified Utils as U
 
--- |
--- Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription @device_token Device token @other_user_ids List of user identifiers of other users currently using the application
-data RegisterDevice = RegisterDevice
-  { -- |
-    other_user_ids :: Maybe [Int],
-    -- |
-    device_token :: Maybe DeviceToken.DeviceToken
-  }
-  deriving (Eq)
+-- | Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
+data RegisterDevice
+  = RegisterDevice
+    { device_token   :: Maybe DeviceToken.DeviceToken -- ^ Device token
+    , other_user_ids :: Maybe [Int]                   -- ^ List of user identifiers of other users currently using the application
+    }
+  deriving (Eq, Show)
 
-instance Show RegisterDevice where
-  show
+instance I.ShortShow RegisterDevice where
+  shortShow
     RegisterDevice
-      { other_user_ids = other_user_ids_,
-        device_token = device_token_
-      } =
-      "RegisterDevice"
-        ++ U.cc
-          [ U.p "other_user_ids" other_user_ids_,
-            U.p "device_token" device_token_
+      { device_token   = device_token_
+      , other_user_ids = other_user_ids_
+      }
+        = "RegisterDevice"
+          ++ I.cc
+          [ "device_token"   `I.p` device_token_
+          , "other_user_ids" `I.p` other_user_ids_
           ]
 
-instance T.ToJSON RegisterDevice where
+instance AT.ToJSON RegisterDevice where
   toJSON
     RegisterDevice
-      { other_user_ids = other_user_ids_,
-        device_token = device_token_
-      } =
-      A.object
-        [ "@type" A..= T.String "registerDevice",
-          "other_user_ids" A..= other_user_ids_,
-          "device_token" A..= device_token_
-        ]
+      { device_token   = device_token_
+      , other_user_ids = other_user_ids_
+      }
+        = A.object
+          [ "@type"          A..= AT.String "registerDevice"
+          , "device_token"   A..= device_token_
+          , "other_user_ids" A..= other_user_ids_
+          ]
+
+defaultRegisterDevice :: RegisterDevice
+defaultRegisterDevice =
+  RegisterDevice
+    { device_token   = Nothing
+    , other_user_ids = Nothing
+    }
+

@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CreateCall where
+module TD.Query.CreateCall
+  (CreateCall(..)
+  , defaultCreateCall
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallProtocol as CallProtocol
-import qualified Utils as U
 
--- |
--- Creates a new call @user_id Identifier of the user to be called @protocol The call protocols supported by the application @is_video Pass true to create a video call
-data CreateCall = CreateCall
-  { -- |
-    is_video :: Maybe Bool,
-    -- |
-    protocol :: Maybe CallProtocol.CallProtocol,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Creates a new call
+data CreateCall
+  = CreateCall
+    { user_id  :: Maybe Int                       -- ^ Identifier of the user to be called
+    , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
+    , is_video :: Maybe Bool                      -- ^ Pass true to create a video call
+    }
+  deriving (Eq, Show)
 
-instance Show CreateCall where
-  show
+instance I.ShortShow CreateCall where
+  shortShow
     CreateCall
-      { is_video = is_video_,
-        protocol = protocol_,
-        user_id = user_id_
-      } =
-      "CreateCall"
-        ++ U.cc
-          [ U.p "is_video" is_video_,
-            U.p "protocol" protocol_,
-            U.p "user_id" user_id_
+      { user_id  = user_id_
+      , protocol = protocol_
+      , is_video = is_video_
+      }
+        = "CreateCall"
+          ++ I.cc
+          [ "user_id"  `I.p` user_id_
+          , "protocol" `I.p` protocol_
+          , "is_video" `I.p` is_video_
           ]
 
-instance T.ToJSON CreateCall where
+instance AT.ToJSON CreateCall where
   toJSON
     CreateCall
-      { is_video = is_video_,
-        protocol = protocol_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "createCall",
-          "is_video" A..= is_video_,
-          "protocol" A..= protocol_,
-          "user_id" A..= user_id_
-        ]
+      { user_id  = user_id_
+      , protocol = protocol_
+      , is_video = is_video_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "createCall"
+          , "user_id"  A..= user_id_
+          , "protocol" A..= protocol_
+          , "is_video" A..= is_video_
+          ]
+
+defaultCreateCall :: CreateCall
+defaultCreateCall =
+  CreateCall
+    { user_id  = Nothing
+    , protocol = Nothing
+    , is_video = Nothing
+    }
+

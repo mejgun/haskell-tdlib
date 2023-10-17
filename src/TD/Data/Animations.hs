@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Animations where
+module TD.Data.Animations
+  (Animations(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Animation as Animation
-import qualified Utils as U
 
--- |
-data Animations = -- | Represents a list of animations @animations List of animations
-  Animations
-  { -- |
-    animations :: Maybe [Animation.Animation]
-  }
-  deriving (Eq)
+data Animations
+  = Animations -- ^ Represents a list of animations
+    { animations :: Maybe [Animation.Animation] -- ^ List of animations
+    }
+  deriving (Eq, Show)
 
-instance Show Animations where
-  show
-    Animations
-      { animations = animations_
-      } =
-      "Animations"
-        ++ U.cc
-          [ U.p "animations" animations_
-          ]
+instance I.ShortShow Animations where
+  shortShow Animations
+    { animations = animations_
+    }
+      = "Animations"
+        ++ I.cc
+        [ "animations" `I.p` animations_
+        ]
 
-instance T.FromJSON Animations where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Animations where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "animations" -> parseAnimations v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseAnimations :: A.Value -> T.Parser Animations
+      parseAnimations :: A.Value -> AT.Parser Animations
       parseAnimations = A.withObject "Animations" $ \o -> do
-        animations_ <- o A..:? "animations"
-        return $ Animations {animations = animations_}
+        animations_ <- o A..:?  "animations"
+        pure $ Animations
+          { animations = animations_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Animations where
-  toJSON
-    Animations
-      { animations = animations_
-      } =
-      A.object
-        [ "@type" A..= T.String "animations",
-          "animations" A..= animations_
-        ]

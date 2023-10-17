@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.OpenChat where
+module TD.Query.OpenChat
+  (OpenChat(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats) @chat_id Chat identifier
-data OpenChat = OpenChat
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
+data OpenChat
+  = OpenChat
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show OpenChat where
-  show
+instance I.ShortShow OpenChat where
+  shortShow
     OpenChat
       { chat_id = chat_id_
-      } =
-      "OpenChat"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "OpenChat"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON OpenChat where
+instance AT.ToJSON OpenChat where
   toJSON
     OpenChat
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "openChat",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "openChat"
+          , "chat_id" A..= chat_id_
+          ]
+

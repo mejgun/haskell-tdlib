@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetAutoDownloadSettings where
+module TD.Query.SetAutoDownloadSettings
+  (SetAutoDownloadSettings(..)
+  , defaultSetAutoDownloadSettings
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 import qualified TD.Data.NetworkType as NetworkType
-import qualified Utils as U
 
--- |
--- Sets auto-download settings @settings New user auto-download settings @type Type of the network for which the new settings are relevant
-data SetAutoDownloadSettings = SetAutoDownloadSettings
-  { -- |
-    _type :: Maybe NetworkType.NetworkType,
-    -- |
-    settings :: Maybe AutoDownloadSettings.AutoDownloadSettings
-  }
-  deriving (Eq)
+-- | Sets auto-download settings
+data SetAutoDownloadSettings
+  = SetAutoDownloadSettings
+    { settings :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ New user auto-download settings
+    , _type    :: Maybe NetworkType.NetworkType                   -- ^ Type of the network for which the new settings are relevant
+    }
+  deriving (Eq, Show)
 
-instance Show SetAutoDownloadSettings where
-  show
+instance I.ShortShow SetAutoDownloadSettings where
+  shortShow
     SetAutoDownloadSettings
-      { _type = _type_,
-        settings = settings_
-      } =
-      "SetAutoDownloadSettings"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "settings" settings_
+      { settings = settings_
+      , _type    = _type_
+      }
+        = "SetAutoDownloadSettings"
+          ++ I.cc
+          [ "settings" `I.p` settings_
+          , "_type"    `I.p` _type_
           ]
 
-instance T.ToJSON SetAutoDownloadSettings where
+instance AT.ToJSON SetAutoDownloadSettings where
   toJSON
     SetAutoDownloadSettings
-      { _type = _type_,
-        settings = settings_
-      } =
-      A.object
-        [ "@type" A..= T.String "setAutoDownloadSettings",
-          "type" A..= _type_,
-          "settings" A..= settings_
-        ]
+      { settings = settings_
+      , _type    = _type_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setAutoDownloadSettings"
+          , "settings" A..= settings_
+          , "type"     A..= _type_
+          ]
+
+defaultSetAutoDownloadSettings :: SetAutoDownloadSettings
+defaultSetAutoDownloadSettings =
+  SetAutoDownloadSettings
+    { settings = Nothing
+    , _type    = Nothing
+    }
+

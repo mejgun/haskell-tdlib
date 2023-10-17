@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetPinnedChats where
+module TD.Query.SetPinnedChats
+  (SetPinnedChats(..)
+  , defaultSetPinnedChats
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
-import qualified Utils as U
 
--- |
--- Changes the order of pinned chats @chat_list Chat list in which to change the order of pinned chats @chat_ids The new list of pinned chats
-data SetPinnedChats = SetPinnedChats
-  { -- |
-    chat_ids :: Maybe [Int],
-    -- |
-    chat_list :: Maybe ChatList.ChatList
-  }
-  deriving (Eq)
+-- | Changes the order of pinned chats
+data SetPinnedChats
+  = SetPinnedChats
+    { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to change the order of pinned chats
+    , chat_ids  :: Maybe [Int]             -- ^ The new list of pinned chats
+    }
+  deriving (Eq, Show)
 
-instance Show SetPinnedChats where
-  show
+instance I.ShortShow SetPinnedChats where
+  shortShow
     SetPinnedChats
-      { chat_ids = chat_ids_,
-        chat_list = chat_list_
-      } =
-      "SetPinnedChats"
-        ++ U.cc
-          [ U.p "chat_ids" chat_ids_,
-            U.p "chat_list" chat_list_
+      { chat_list = chat_list_
+      , chat_ids  = chat_ids_
+      }
+        = "SetPinnedChats"
+          ++ I.cc
+          [ "chat_list" `I.p` chat_list_
+          , "chat_ids"  `I.p` chat_ids_
           ]
 
-instance T.ToJSON SetPinnedChats where
+instance AT.ToJSON SetPinnedChats where
   toJSON
     SetPinnedChats
-      { chat_ids = chat_ids_,
-        chat_list = chat_list_
-      } =
-      A.object
-        [ "@type" A..= T.String "setPinnedChats",
-          "chat_ids" A..= chat_ids_,
-          "chat_list" A..= chat_list_
-        ]
+      { chat_list = chat_list_
+      , chat_ids  = chat_ids_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "setPinnedChats"
+          , "chat_list" A..= chat_list_
+          , "chat_ids"  A..= chat_ids_
+          ]
+
+defaultSetPinnedChats :: SetPinnedChats
+defaultSetPinnedChats =
+  SetPinnedChats
+    { chat_list = Nothing
+    , chat_ids  = Nothing
+    }
+

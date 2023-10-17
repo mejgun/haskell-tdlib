@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ImportMessages where
+module TD.Query.ImportMessages
+  (ImportMessages(..)
+  , defaultImportMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Imports messages exported from another app
-data ImportMessages = ImportMessages
-  { -- | Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
-    attached_files :: Maybe [InputFile.InputFile],
-    -- | File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
-    message_file :: Maybe InputFile.InputFile,
-    -- | Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Imports messages exported from another app
+data ImportMessages
+  = ImportMessages
+    { chat_id        :: Maybe Int                   -- ^ Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    , message_file   :: Maybe InputFile.InputFile   -- ^ File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
+    , attached_files :: Maybe [InputFile.InputFile] -- ^ Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
+    }
+  deriving (Eq, Show)
 
-instance Show ImportMessages where
-  show
+instance I.ShortShow ImportMessages where
+  shortShow
     ImportMessages
-      { attached_files = attached_files_,
-        message_file = message_file_,
-        chat_id = chat_id_
-      } =
-      "ImportMessages"
-        ++ U.cc
-          [ U.p "attached_files" attached_files_,
-            U.p "message_file" message_file_,
-            U.p "chat_id" chat_id_
+      { chat_id        = chat_id_
+      , message_file   = message_file_
+      , attached_files = attached_files_
+      }
+        = "ImportMessages"
+          ++ I.cc
+          [ "chat_id"        `I.p` chat_id_
+          , "message_file"   `I.p` message_file_
+          , "attached_files" `I.p` attached_files_
           ]
 
-instance T.ToJSON ImportMessages where
+instance AT.ToJSON ImportMessages where
   toJSON
     ImportMessages
-      { attached_files = attached_files_,
-        message_file = message_file_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "importMessages",
-          "attached_files" A..= attached_files_,
-          "message_file" A..= message_file_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id        = chat_id_
+      , message_file   = message_file_
+      , attached_files = attached_files_
+      }
+        = A.object
+          [ "@type"          A..= AT.String "importMessages"
+          , "chat_id"        A..= chat_id_
+          , "message_file"   A..= message_file_
+          , "attached_files" A..= attached_files_
+          ]
+
+defaultImportMessages :: ImportMessages
+defaultImportMessages =
+  ImportMessages
+    { chat_id        = Nothing
+    , message_file   = Nothing
+    , attached_files = Nothing
+    }
+

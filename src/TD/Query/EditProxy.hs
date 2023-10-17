@@ -1,61 +1,68 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditProxy where
+module TD.Query.EditProxy
+  (EditProxy(..)
+  , defaultEditProxy
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
-import qualified Utils as U
 
--- |
--- Edits an existing proxy server for network requests. Can be called before authorization
-data EditProxy = EditProxy
-  { -- | Proxy type
-    _type :: Maybe ProxyType.ProxyType,
-    -- | Pass true to immediately enable the proxy
-    enable :: Maybe Bool,
-    -- | Proxy server port
-    port :: Maybe Int,
-    -- | Proxy server domain or IP address
-    server :: Maybe String,
-    -- | Proxy identifier
-    proxy_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Edits an existing proxy server for network requests. Can be called before authorization
+data EditProxy
+  = EditProxy
+    { proxy_id :: Maybe Int                 -- ^ Proxy identifier
+    , server   :: Maybe T.Text              -- ^ Proxy server IP address
+    , port     :: Maybe Int                 -- ^ Proxy server port
+    , enable   :: Maybe Bool                -- ^ Pass true to immediately enable the proxy
+    , _type    :: Maybe ProxyType.ProxyType -- ^ Proxy type
+    }
+  deriving (Eq, Show)
 
-instance Show EditProxy where
-  show
+instance I.ShortShow EditProxy where
+  shortShow
     EditProxy
-      { _type = _type_,
-        enable = enable_,
-        port = port_,
-        server = server_,
-        proxy_id = proxy_id_
-      } =
-      "EditProxy"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "enable" enable_,
-            U.p "port" port_,
-            U.p "server" server_,
-            U.p "proxy_id" proxy_id_
+      { proxy_id = proxy_id_
+      , server   = server_
+      , port     = port_
+      , enable   = enable_
+      , _type    = _type_
+      }
+        = "EditProxy"
+          ++ I.cc
+          [ "proxy_id" `I.p` proxy_id_
+          , "server"   `I.p` server_
+          , "port"     `I.p` port_
+          , "enable"   `I.p` enable_
+          , "_type"    `I.p` _type_
           ]
 
-instance T.ToJSON EditProxy where
+instance AT.ToJSON EditProxy where
   toJSON
     EditProxy
-      { _type = _type_,
-        enable = enable_,
-        port = port_,
-        server = server_,
-        proxy_id = proxy_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editProxy",
-          "type" A..= _type_,
-          "enable" A..= enable_,
-          "port" A..= port_,
-          "server" A..= server_,
-          "proxy_id" A..= proxy_id_
-        ]
+      { proxy_id = proxy_id_
+      , server   = server_
+      , port     = port_
+      , enable   = enable_
+      , _type    = _type_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "editProxy"
+          , "proxy_id" A..= proxy_id_
+          , "server"   A..= server_
+          , "port"     A..= port_
+          , "enable"   A..= enable_
+          , "type"     A..= _type_
+          ]
+
+defaultEditProxy :: EditProxy
+defaultEditProxy =
+  EditProxy
+    { proxy_id = Nothing
+    , server   = Nothing
+    , port     = Nothing
+    , enable   = Nothing
+    , _type    = Nothing
+    }
+

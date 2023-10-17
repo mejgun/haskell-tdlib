@@ -1,86 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Proxy where
+module TD.Data.Proxy
+  (Proxy(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
-import qualified Utils as U
 
--- |
-data Proxy = -- | Contains information about a proxy server
-  Proxy
-  { -- | Type of the proxy
-    _type :: Maybe ProxyType.ProxyType,
-    -- | True, if the proxy is enabled now
-    is_enabled :: Maybe Bool,
-    -- | Point in time (Unix timestamp) when the proxy was last used; 0 if never
-    last_used_date :: Maybe Int,
-    -- | Proxy server port
-    port :: Maybe Int,
-    -- | Proxy server domain or IP address
-    server :: Maybe String,
-    -- | Unique identifier of the proxy
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data Proxy
+  = Proxy -- ^ Contains information about a proxy server
+    { _id            :: Maybe Int                 -- ^ Unique identifier of the proxy
+    , server         :: Maybe T.Text              -- ^ Proxy server IP address
+    , port           :: Maybe Int                 -- ^ Proxy server port
+    , last_used_date :: Maybe Int                 -- ^ Point in time (Unix timestamp) when the proxy was last used; 0 if never
+    , is_enabled     :: Maybe Bool                -- ^ True, if the proxy is enabled now
+    , _type          :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
+    }
+  deriving (Eq, Show)
 
-instance Show Proxy where
-  show
-    Proxy
-      { _type = _type_,
-        is_enabled = is_enabled_,
-        last_used_date = last_used_date_,
-        port = port_,
-        server = server_,
-        _id = _id_
-      } =
-      "Proxy"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "is_enabled" is_enabled_,
-            U.p "last_used_date" last_used_date_,
-            U.p "port" port_,
-            U.p "server" server_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow Proxy where
+  shortShow Proxy
+    { _id            = _id_
+    , server         = server_
+    , port           = port_
+    , last_used_date = last_used_date_
+    , is_enabled     = is_enabled_
+    , _type          = _type_
+    }
+      = "Proxy"
+        ++ I.cc
+        [ "_id"            `I.p` _id_
+        , "server"         `I.p` server_
+        , "port"           `I.p` port_
+        , "last_used_date" `I.p` last_used_date_
+        , "is_enabled"     `I.p` is_enabled_
+        , "_type"          `I.p` _type_
+        ]
 
-instance T.FromJSON Proxy where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Proxy where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "proxy" -> parseProxy v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parseProxy :: A.Value -> T.Parser Proxy
+      parseProxy :: A.Value -> AT.Parser Proxy
       parseProxy = A.withObject "Proxy" $ \o -> do
-        _type_ <- o A..:? "type"
-        is_enabled_ <- o A..:? "is_enabled"
-        last_used_date_ <- o A..:? "last_used_date"
-        port_ <- o A..:? "port"
-        server_ <- o A..:? "server"
-        _id_ <- o A..:? "id"
-        return $ Proxy {_type = _type_, is_enabled = is_enabled_, last_used_date = last_used_date_, port = port_, server = server_, _id = _id_}
+        _id_            <- o A..:?  "id"
+        server_         <- o A..:?  "server"
+        port_           <- o A..:?  "port"
+        last_used_date_ <- o A..:?  "last_used_date"
+        is_enabled_     <- o A..:?  "is_enabled"
+        _type_          <- o A..:?  "type"
+        pure $ Proxy
+          { _id            = _id_
+          , server         = server_
+          , port           = port_
+          , last_used_date = last_used_date_
+          , is_enabled     = is_enabled_
+          , _type          = _type_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Proxy where
-  toJSON
-    Proxy
-      { _type = _type_,
-        is_enabled = is_enabled_,
-        last_used_date = last_used_date_,
-        port = port_,
-        server = server_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "proxy",
-          "type" A..= _type_,
-          "is_enabled" A..= is_enabled_,
-          "last_used_date" A..= last_used_date_,
-          "port" A..= port_,
-          "server" A..= server_,
-          "id" A..= _id_
-        ]

@@ -1,43 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetRepliedMessage where
+module TD.Query.GetRepliedMessage
+  (GetRepliedMessage(..)
+  , defaultGetRepliedMessage
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages
--- of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
-data GetRepliedMessage = GetRepliedMessage
-  { -- | Identifier of the reply message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat the message belongs to
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
+data GetRepliedMessage
+  = GetRepliedMessage
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
+    , message_id :: Maybe Int -- ^ Identifier of the reply message
+    }
+  deriving (Eq, Show)
 
-instance Show GetRepliedMessage where
-  show
+instance I.ShortShow GetRepliedMessage where
+  shortShow
     GetRepliedMessage
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetRepliedMessage"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetRepliedMessage"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetRepliedMessage where
+instance AT.ToJSON GetRepliedMessage where
   toJSON
     GetRepliedMessage
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getRepliedMessage",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getRepliedMessage"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetRepliedMessage :: GetRepliedMessage
+defaultGetRepliedMessage =
+  GetRepliedMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.GroupCallVideoSourceGroup where
+module TD.Data.GroupCallVideoSourceGroup
+  (GroupCallVideoSourceGroup(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data GroupCallVideoSourceGroup = -- | Describes a group of video synchronization source identifiers @semantics The semantics of sources, one of "SIM" or "FID" @source_ids The list of synchronization source identifiers
-  GroupCallVideoSourceGroup
-  { -- |
-    source_ids :: Maybe [Int],
-    -- |
-    semantics :: Maybe String
-  }
-  deriving (Eq)
+data GroupCallVideoSourceGroup
+  = GroupCallVideoSourceGroup -- ^ Describes a group of video synchronization source identifiers
+    { semantics  :: Maybe T.Text -- ^ The semantics of sources, one of "SIM" or "FID"
+    , source_ids :: Maybe [Int]  -- ^ The list of synchronization source identifiers
+    }
+  deriving (Eq, Show)
 
-instance Show GroupCallVideoSourceGroup where
-  show
-    GroupCallVideoSourceGroup
-      { source_ids = source_ids_,
-        semantics = semantics_
-      } =
-      "GroupCallVideoSourceGroup"
-        ++ U.cc
-          [ U.p "source_ids" source_ids_,
-            U.p "semantics" semantics_
-          ]
+instance I.ShortShow GroupCallVideoSourceGroup where
+  shortShow GroupCallVideoSourceGroup
+    { semantics  = semantics_
+    , source_ids = source_ids_
+    }
+      = "GroupCallVideoSourceGroup"
+        ++ I.cc
+        [ "semantics"  `I.p` semantics_
+        , "source_ids" `I.p` source_ids_
+        ]
 
-instance T.FromJSON GroupCallVideoSourceGroup where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON GroupCallVideoSourceGroup where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "groupCallVideoSourceGroup" -> parseGroupCallVideoSourceGroup v
-      _ -> mempty
+      _                           -> mempty
+    
     where
-      parseGroupCallVideoSourceGroup :: A.Value -> T.Parser GroupCallVideoSourceGroup
+      parseGroupCallVideoSourceGroup :: A.Value -> AT.Parser GroupCallVideoSourceGroup
       parseGroupCallVideoSourceGroup = A.withObject "GroupCallVideoSourceGroup" $ \o -> do
-        source_ids_ <- o A..:? "source_ids"
-        semantics_ <- o A..:? "semantics"
-        return $ GroupCallVideoSourceGroup {source_ids = source_ids_, semantics = semantics_}
+        semantics_  <- o A..:?  "semantics"
+        source_ids_ <- o A..:?  "source_ids"
+        pure $ GroupCallVideoSourceGroup
+          { semantics  = semantics_
+          , source_ids = source_ids_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON GroupCallVideoSourceGroup where
-  toJSON
-    GroupCallVideoSourceGroup
-      { source_ids = source_ids_,
-        semantics = semantics_
-      } =
-      A.object
-        [ "@type" A..= T.String "groupCallVideoSourceGroup",
-          "source_ids" A..= source_ids_,
-          "semantics" A..= semantics_
-        ]

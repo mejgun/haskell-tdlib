@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleSupergroupIsAllHistoryAvailable where
+module TD.Query.ToggleSupergroupIsAllHistoryAvailable
+  (ToggleSupergroupIsAllHistoryAvailable(..)
+  , defaultToggleSupergroupIsAllHistoryAvailable
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right @supergroup_id The identifier of the supergroup @is_all_history_available The new value of is_all_history_available
-data ToggleSupergroupIsAllHistoryAvailable = ToggleSupergroupIsAllHistoryAvailable
-  { -- |
-    is_all_history_available :: Maybe Bool,
-    -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+data ToggleSupergroupIsAllHistoryAvailable
+  = ToggleSupergroupIsAllHistoryAvailable
+    { supergroup_id            :: Maybe Int  -- ^ The identifier of the supergroup
+    , is_all_history_available :: Maybe Bool -- ^ The new value of is_all_history_available
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupIsAllHistoryAvailable where
-  show
+instance I.ShortShow ToggleSupergroupIsAllHistoryAvailable where
+  shortShow
     ToggleSupergroupIsAllHistoryAvailable
-      { is_all_history_available = is_all_history_available_,
-        supergroup_id = supergroup_id_
-      } =
-      "ToggleSupergroupIsAllHistoryAvailable"
-        ++ U.cc
-          [ U.p "is_all_history_available" is_all_history_available_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id            = supergroup_id_
+      , is_all_history_available = is_all_history_available_
+      }
+        = "ToggleSupergroupIsAllHistoryAvailable"
+          ++ I.cc
+          [ "supergroup_id"            `I.p` supergroup_id_
+          , "is_all_history_available" `I.p` is_all_history_available_
           ]
 
-instance T.ToJSON ToggleSupergroupIsAllHistoryAvailable where
+instance AT.ToJSON ToggleSupergroupIsAllHistoryAvailable where
   toJSON
     ToggleSupergroupIsAllHistoryAvailable
-      { is_all_history_available = is_all_history_available_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleSupergroupIsAllHistoryAvailable",
-          "is_all_history_available" A..= is_all_history_available_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id            = supergroup_id_
+      , is_all_history_available = is_all_history_available_
+      }
+        = A.object
+          [ "@type"                    A..= AT.String "toggleSupergroupIsAllHistoryAvailable"
+          , "supergroup_id"            A..= supergroup_id_
+          , "is_all_history_available" A..= is_all_history_available_
+          ]
+
+defaultToggleSupergroupIsAllHistoryAvailable :: ToggleSupergroupIsAllHistoryAvailable
+defaultToggleSupergroupIsAllHistoryAvailable =
+  ToggleSupergroupIsAllHistoryAvailable
+    { supergroup_id            = Nothing
+    , is_all_history_available = Nothing
+    }
+

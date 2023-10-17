@@ -1,161 +1,113 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageSponsorType where
+module TD.Data.MessageSponsorType
+  (MessageSponsorType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InternalLinkType as InternalLinkType
-import qualified Utils as U
+import qualified Data.Text as T
 
 -- | Describes type of a message sponsor
 data MessageSponsorType
-  = -- | The sponsor is a bot @bot_user_id User identifier of the bot @link An internal link to be opened when the sponsored message is clicked
-    MessageSponsorTypeBot
-      { -- |
-        link :: Maybe InternalLinkType.InternalLinkType,
-        -- |
-        bot_user_id :: Maybe Int
-      }
-  | -- | The sponsor is a public channel chat @chat_id Sponsor chat identifier @link An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
-    MessageSponsorTypePublicChannel
-      { -- |
-        link :: Maybe InternalLinkType.InternalLinkType,
-        -- |
-        chat_id :: Maybe Int
-      }
-  | -- | The sponsor is a private channel chat @title Title of the chat @invite_link Invite link for the channel
-    MessageSponsorTypePrivateChannel
-      { -- |
-        invite_link :: Maybe String,
-        -- |
-        title :: Maybe String
-      }
-  | -- | The sponsor is a website @url URL of the website @name Name of the website
-    MessageSponsorTypeWebsite
-      { -- |
-        name :: Maybe String,
-        -- |
-        url :: Maybe String
-      }
-  deriving (Eq)
+  = MessageSponsorTypeBot -- ^ The sponsor is a bot
+    { bot_user_id :: Maybe Int                               -- ^ User identifier of the bot
+    , link        :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked
+    }
+  | MessageSponsorTypePublicChannel -- ^ The sponsor is a public channel chat
+    { chat_id :: Maybe Int                               -- ^ Sponsor chat identifier
+    , link    :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
+    }
+  | MessageSponsorTypePrivateChannel -- ^ The sponsor is a private channel chat
+    { title       :: Maybe T.Text -- ^ Title of the chat
+    , invite_link :: Maybe T.Text -- ^ Invite link for the channel
+    }
+  | MessageSponsorTypeWebsite -- ^ The sponsor is a website
+    { url  :: Maybe T.Text -- ^ URL of the website
+    , name :: Maybe T.Text -- ^ Name of the website
+    }
+  deriving (Eq, Show)
 
-instance Show MessageSponsorType where
-  show
-    MessageSponsorTypeBot
-      { link = link_,
-        bot_user_id = bot_user_id_
-      } =
-      "MessageSponsorTypeBot"
-        ++ U.cc
-          [ U.p "link" link_,
-            U.p "bot_user_id" bot_user_id_
-          ]
-  show
-    MessageSponsorTypePublicChannel
-      { link = link_,
-        chat_id = chat_id_
-      } =
-      "MessageSponsorTypePublicChannel"
-        ++ U.cc
-          [ U.p "link" link_,
-            U.p "chat_id" chat_id_
-          ]
-  show
-    MessageSponsorTypePrivateChannel
-      { invite_link = invite_link_,
-        title = title_
-      } =
-      "MessageSponsorTypePrivateChannel"
-        ++ U.cc
-          [ U.p "invite_link" invite_link_,
-            U.p "title" title_
-          ]
-  show
-    MessageSponsorTypeWebsite
-      { name = name_,
-        url = url_
-      } =
-      "MessageSponsorTypeWebsite"
-        ++ U.cc
-          [ U.p "name" name_,
-            U.p "url" url_
-          ]
+instance I.ShortShow MessageSponsorType where
+  shortShow MessageSponsorTypeBot
+    { bot_user_id = bot_user_id_
+    , link        = link_
+    }
+      = "MessageSponsorTypeBot"
+        ++ I.cc
+        [ "bot_user_id" `I.p` bot_user_id_
+        , "link"        `I.p` link_
+        ]
+  shortShow MessageSponsorTypePublicChannel
+    { chat_id = chat_id_
+    , link    = link_
+    }
+      = "MessageSponsorTypePublicChannel"
+        ++ I.cc
+        [ "chat_id" `I.p` chat_id_
+        , "link"    `I.p` link_
+        ]
+  shortShow MessageSponsorTypePrivateChannel
+    { title       = title_
+    , invite_link = invite_link_
+    }
+      = "MessageSponsorTypePrivateChannel"
+        ++ I.cc
+        [ "title"       `I.p` title_
+        , "invite_link" `I.p` invite_link_
+        ]
+  shortShow MessageSponsorTypeWebsite
+    { url  = url_
+    , name = name_
+    }
+      = "MessageSponsorTypeWebsite"
+        ++ I.cc
+        [ "url"  `I.p` url_
+        , "name" `I.p` name_
+        ]
 
-instance T.FromJSON MessageSponsorType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageSponsorType where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "messageSponsorTypeBot" -> parseMessageSponsorTypeBot v
-      "messageSponsorTypePublicChannel" -> parseMessageSponsorTypePublicChannel v
+      "messageSponsorTypeBot"            -> parseMessageSponsorTypeBot v
+      "messageSponsorTypePublicChannel"  -> parseMessageSponsorTypePublicChannel v
       "messageSponsorTypePrivateChannel" -> parseMessageSponsorTypePrivateChannel v
-      "messageSponsorTypeWebsite" -> parseMessageSponsorTypeWebsite v
-      _ -> mempty
+      "messageSponsorTypeWebsite"        -> parseMessageSponsorTypeWebsite v
+      _                                  -> mempty
+    
     where
-      parseMessageSponsorTypeBot :: A.Value -> T.Parser MessageSponsorType
+      parseMessageSponsorTypeBot :: A.Value -> AT.Parser MessageSponsorType
       parseMessageSponsorTypeBot = A.withObject "MessageSponsorTypeBot" $ \o -> do
-        link_ <- o A..:? "link"
-        bot_user_id_ <- o A..:? "bot_user_id"
-        return $ MessageSponsorTypeBot {link = link_, bot_user_id = bot_user_id_}
-
-      parseMessageSponsorTypePublicChannel :: A.Value -> T.Parser MessageSponsorType
+        bot_user_id_ <- o A..:?  "bot_user_id"
+        link_        <- o A..:?  "link"
+        pure $ MessageSponsorTypeBot
+          { bot_user_id = bot_user_id_
+          , link        = link_
+          }
+      parseMessageSponsorTypePublicChannel :: A.Value -> AT.Parser MessageSponsorType
       parseMessageSponsorTypePublicChannel = A.withObject "MessageSponsorTypePublicChannel" $ \o -> do
-        link_ <- o A..:? "link"
-        chat_id_ <- o A..:? "chat_id"
-        return $ MessageSponsorTypePublicChannel {link = link_, chat_id = chat_id_}
-
-      parseMessageSponsorTypePrivateChannel :: A.Value -> T.Parser MessageSponsorType
+        chat_id_ <- o A..:?  "chat_id"
+        link_    <- o A..:?  "link"
+        pure $ MessageSponsorTypePublicChannel
+          { chat_id = chat_id_
+          , link    = link_
+          }
+      parseMessageSponsorTypePrivateChannel :: A.Value -> AT.Parser MessageSponsorType
       parseMessageSponsorTypePrivateChannel = A.withObject "MessageSponsorTypePrivateChannel" $ \o -> do
-        invite_link_ <- o A..:? "invite_link"
-        title_ <- o A..:? "title"
-        return $ MessageSponsorTypePrivateChannel {invite_link = invite_link_, title = title_}
-
-      parseMessageSponsorTypeWebsite :: A.Value -> T.Parser MessageSponsorType
+        title_       <- o A..:?  "title"
+        invite_link_ <- o A..:?  "invite_link"
+        pure $ MessageSponsorTypePrivateChannel
+          { title       = title_
+          , invite_link = invite_link_
+          }
+      parseMessageSponsorTypeWebsite :: A.Value -> AT.Parser MessageSponsorType
       parseMessageSponsorTypeWebsite = A.withObject "MessageSponsorTypeWebsite" $ \o -> do
-        name_ <- o A..:? "name"
-        url_ <- o A..:? "url"
-        return $ MessageSponsorTypeWebsite {name = name_, url = url_}
+        url_  <- o A..:?  "url"
+        name_ <- o A..:?  "name"
+        pure $ MessageSponsorTypeWebsite
+          { url  = url_
+          , name = name_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageSponsorType where
-  toJSON
-    MessageSponsorTypeBot
-      { link = link_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSponsorTypeBot",
-          "link" A..= link_,
-          "bot_user_id" A..= bot_user_id_
-        ]
-  toJSON
-    MessageSponsorTypePublicChannel
-      { link = link_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSponsorTypePublicChannel",
-          "link" A..= link_,
-          "chat_id" A..= chat_id_
-        ]
-  toJSON
-    MessageSponsorTypePrivateChannel
-      { invite_link = invite_link_,
-        title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSponsorTypePrivateChannel",
-          "invite_link" A..= invite_link_,
-          "title" A..= title_
-        ]
-  toJSON
-    MessageSponsorTypeWebsite
-      { name = name_,
-        url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSponsorTypeWebsite",
-          "name" A..= name_,
-          "url" A..= url_
-        ]

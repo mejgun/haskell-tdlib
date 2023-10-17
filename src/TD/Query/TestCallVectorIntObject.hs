@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestCallVectorIntObject where
+module TD.Query.TestCallVectorIntObject
+  (TestCallVectorIntObject(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TestInt as TestInt
-import qualified Utils as U
 
--- |
--- Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
-data TestCallVectorIntObject = TestCallVectorIntObject
-  { -- |
-    x :: Maybe [TestInt.TestInt]
-  }
-  deriving (Eq)
+-- | Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
+data TestCallVectorIntObject
+  = TestCallVectorIntObject
+    { x :: Maybe [TestInt.TestInt] -- ^ Vector of objects to return
+    }
+  deriving (Eq, Show)
 
-instance Show TestCallVectorIntObject where
-  show
+instance I.ShortShow TestCallVectorIntObject where
+  shortShow
     TestCallVectorIntObject
       { x = x_
-      } =
-      "TestCallVectorIntObject"
-        ++ U.cc
-          [ U.p "x" x_
+      }
+        = "TestCallVectorIntObject"
+          ++ I.cc
+          [ "x" `I.p` x_
           ]
 
-instance T.ToJSON TestCallVectorIntObject where
+instance AT.ToJSON TestCallVectorIntObject where
   toJSON
     TestCallVectorIntObject
       { x = x_
-      } =
-      A.object
-        [ "@type" A..= T.String "testCallVectorIntObject",
-          "x" A..= x_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "testCallVectorIntObject"
+          , "x"     A..= x_
+          ]
+

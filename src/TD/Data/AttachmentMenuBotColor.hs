@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.AttachmentMenuBotColor where
+module TD.Data.AttachmentMenuBotColor
+  (AttachmentMenuBotColor(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data AttachmentMenuBotColor = -- | Describes a color to highlight a bot added to attachment menu @light_color Color in the RGB24 format for light themes @dark_color Color in the RGB24 format for dark themes
-  AttachmentMenuBotColor
-  { -- |
-    dark_color :: Maybe Int,
-    -- |
-    light_color :: Maybe Int
-  }
-  deriving (Eq)
+data AttachmentMenuBotColor
+  = AttachmentMenuBotColor -- ^ Describes a color to highlight a bot added to attachment menu
+    { light_color :: Maybe Int -- ^ Color in the RGB24 format for light themes
+    , dark_color  :: Maybe Int -- ^ Color in the RGB24 format for dark themes
+    }
+  deriving (Eq, Show)
 
-instance Show AttachmentMenuBotColor where
-  show
-    AttachmentMenuBotColor
-      { dark_color = dark_color_,
-        light_color = light_color_
-      } =
-      "AttachmentMenuBotColor"
-        ++ U.cc
-          [ U.p "dark_color" dark_color_,
-            U.p "light_color" light_color_
-          ]
+instance I.ShortShow AttachmentMenuBotColor where
+  shortShow AttachmentMenuBotColor
+    { light_color = light_color_
+    , dark_color  = dark_color_
+    }
+      = "AttachmentMenuBotColor"
+        ++ I.cc
+        [ "light_color" `I.p` light_color_
+        , "dark_color"  `I.p` dark_color_
+        ]
 
-instance T.FromJSON AttachmentMenuBotColor where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON AttachmentMenuBotColor where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "attachmentMenuBotColor" -> parseAttachmentMenuBotColor v
-      _ -> mempty
+      _                        -> mempty
+    
     where
-      parseAttachmentMenuBotColor :: A.Value -> T.Parser AttachmentMenuBotColor
+      parseAttachmentMenuBotColor :: A.Value -> AT.Parser AttachmentMenuBotColor
       parseAttachmentMenuBotColor = A.withObject "AttachmentMenuBotColor" $ \o -> do
-        dark_color_ <- o A..:? "dark_color"
-        light_color_ <- o A..:? "light_color"
-        return $ AttachmentMenuBotColor {dark_color = dark_color_, light_color = light_color_}
+        light_color_ <- o A..:?  "light_color"
+        dark_color_  <- o A..:?  "dark_color"
+        pure $ AttachmentMenuBotColor
+          { light_color = light_color_
+          , dark_color  = dark_color_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON AttachmentMenuBotColor where
-  toJSON
-    AttachmentMenuBotColor
-      { dark_color = dark_color_,
-        light_color = light_color_
-      } =
-      A.object
-        [ "@type" A..= T.String "attachmentMenuBotColor",
-          "dark_color" A..= dark_color_,
-          "light_color" A..= light_color_
-        ]

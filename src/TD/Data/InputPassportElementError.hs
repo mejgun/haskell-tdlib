@@ -1,66 +1,75 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.InputPassportElementError where
+module TD.Data.InputPassportElementError
+  ( InputPassportElementError(..)    
+  , defaultInputPassportElementError 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.InputPassportElementErrorSource as InputPassportElementErrorSource
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
-import qualified Utils as U
+import qualified Data.Text as T
+import qualified TD.Data.InputPassportElementErrorSource as InputPassportElementErrorSource
 
--- |
-data InputPassportElementError = -- | Contains the description of an error in a Telegram Passport element; for bots only @type Type of Telegram Passport element that has the error @message Error message @source Error source
-  InputPassportElementError
-  { -- |
-    source :: Maybe InputPassportElementErrorSource.InputPassportElementErrorSource,
-    -- |
-    message :: Maybe String,
-    -- |
-    _type :: Maybe PassportElementType.PassportElementType
-  }
-  deriving (Eq)
+data InputPassportElementError
+  = InputPassportElementError -- ^ Contains the description of an error in a Telegram Passport element; for bots only
+    { _type   :: Maybe PassportElementType.PassportElementType                         -- ^ Type of Telegram Passport element that has the error
+    , message :: Maybe T.Text                                                          -- ^ Error message
+    , source  :: Maybe InputPassportElementErrorSource.InputPassportElementErrorSource -- ^ Error source
+    }
+  deriving (Eq, Show)
 
-instance Show InputPassportElementError where
-  show
-    InputPassportElementError
-      { source = source_,
-        message = message_,
-        _type = _type_
-      } =
-      "InputPassportElementError"
-        ++ U.cc
-          [ U.p "source" source_,
-            U.p "message" message_,
-            U.p "_type" _type_
-          ]
+instance I.ShortShow InputPassportElementError where
+  shortShow InputPassportElementError
+    { _type   = _type_
+    , message = message_
+    , source  = source_
+    }
+      = "InputPassportElementError"
+        ++ I.cc
+        [ "_type"   `I.p` _type_
+        , "message" `I.p` message_
+        , "source"  `I.p` source_
+        ]
 
-instance T.FromJSON InputPassportElementError where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON InputPassportElementError where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "inputPassportElementError" -> parseInputPassportElementError v
-      _ -> mempty
+      _                           -> mempty
+    
     where
-      parseInputPassportElementError :: A.Value -> T.Parser InputPassportElementError
+      parseInputPassportElementError :: A.Value -> AT.Parser InputPassportElementError
       parseInputPassportElementError = A.withObject "InputPassportElementError" $ \o -> do
-        source_ <- o A..:? "source"
-        message_ <- o A..:? "message"
-        _type_ <- o A..:? "type"
-        return $ InputPassportElementError {source = source_, message = message_, _type = _type_}
+        _type_   <- o A..:?  "type"
+        message_ <- o A..:?  "message"
+        source_  <- o A..:?  "source"
+        pure $ InputPassportElementError
+          { _type   = _type_
+          , message = message_
+          , source  = source_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON InputPassportElementError where
-  toJSON
-    InputPassportElementError
-      { source = source_,
-        message = message_,
-        _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "inputPassportElementError",
-          "source" A..= source_,
-          "message" A..= message_,
-          "type" A..= _type_
+instance AT.ToJSON InputPassportElementError where
+  toJSON InputPassportElementError
+    { _type   = _type_
+    , message = message_
+    , source  = source_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "inputPassportElementError"
+        , "type"    A..= _type_
+        , "message" A..= message_
+        , "source"  A..= source_
         ]
+
+defaultInputPassportElementError :: InputPassportElementError
+defaultInputPassportElementError =
+  InputPassportElementError
+    { _type   = Nothing
+    , message = Nothing
+    , source  = Nothing
+    }
+

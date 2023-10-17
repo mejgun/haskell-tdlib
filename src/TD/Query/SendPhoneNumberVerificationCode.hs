@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendPhoneNumberVerificationCode where
+module TD.Query.SendPhoneNumberVerificationCode
+  (SendPhoneNumberVerificationCode(..)
+  , defaultSendPhoneNumberVerificationCode
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
-import qualified Utils as U
 
--- |
--- Sends a code to verify a phone number to be added to a user's Telegram Passport
-data SendPhoneNumberVerificationCode = SendPhoneNumberVerificationCode
-  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
-    settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- | The phone number of the user, in international format
-    phone_number :: Maybe String
-  }
-  deriving (Eq)
+-- | Sends a code to verify a phone number to be added to a user's Telegram Passport
+data SendPhoneNumberVerificationCode
+  = SendPhoneNumberVerificationCode
+    { phone_number :: Maybe T.Text                                                              -- ^ The phone number of the user, in international format
+    , settings     :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings -- ^ Settings for the authentication of the user's phone number; pass null to use default settings
+    }
+  deriving (Eq, Show)
 
-instance Show SendPhoneNumberVerificationCode where
-  show
+instance I.ShortShow SendPhoneNumberVerificationCode where
+  shortShow
     SendPhoneNumberVerificationCode
-      { settings = settings_,
-        phone_number = phone_number_
-      } =
-      "SendPhoneNumberVerificationCode"
-        ++ U.cc
-          [ U.p "settings" settings_,
-            U.p "phone_number" phone_number_
+      { phone_number = phone_number_
+      , settings     = settings_
+      }
+        = "SendPhoneNumberVerificationCode"
+          ++ I.cc
+          [ "phone_number" `I.p` phone_number_
+          , "settings"     `I.p` settings_
           ]
 
-instance T.ToJSON SendPhoneNumberVerificationCode where
+instance AT.ToJSON SendPhoneNumberVerificationCode where
   toJSON
     SendPhoneNumberVerificationCode
-      { settings = settings_,
-        phone_number = phone_number_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendPhoneNumberVerificationCode",
-          "settings" A..= settings_,
-          "phone_number" A..= phone_number_
-        ]
+      { phone_number = phone_number_
+      , settings     = settings_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "sendPhoneNumberVerificationCode"
+          , "phone_number" A..= phone_number_
+          , "settings"     A..= settings_
+          ]
+
+defaultSendPhoneNumberVerificationCode :: SendPhoneNumberVerificationCode
+defaultSendPhoneNumberVerificationCode =
+  SendPhoneNumberVerificationCode
+    { phone_number = Nothing
+    , settings     = Nothing
+    }
+

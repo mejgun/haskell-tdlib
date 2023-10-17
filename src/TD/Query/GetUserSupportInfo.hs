@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetUserSupportInfo where
+module TD.Query.GetUserSupportInfo
+  (GetUserSupportInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns support information for the given user; for Telegram support only @user_id User identifier
-data GetUserSupportInfo = GetUserSupportInfo
-  { -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns support information for the given user; for Telegram support only
+data GetUserSupportInfo
+  = GetUserSupportInfo
+    { user_id :: Maybe Int -- ^ User identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetUserSupportInfo where
-  show
+instance I.ShortShow GetUserSupportInfo where
+  shortShow
     GetUserSupportInfo
       { user_id = user_id_
-      } =
-      "GetUserSupportInfo"
-        ++ U.cc
-          [ U.p "user_id" user_id_
+      }
+        = "GetUserSupportInfo"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
           ]
 
-instance T.ToJSON GetUserSupportInfo where
+instance AT.ToJSON GetUserSupportInfo where
   toJSON
     GetUserSupportInfo
       { user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getUserSupportInfo",
-          "user_id" A..= user_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getUserSupportInfo"
+          , "user_id" A..= user_id_
+          ]
+

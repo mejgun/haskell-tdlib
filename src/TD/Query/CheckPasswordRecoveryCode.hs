@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckPasswordRecoveryCode where
+module TD.Query.CheckPasswordRecoveryCode
+  (CheckPasswordRecoveryCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks whether a 2-step verification password recovery code sent to an email address is valid @recovery_code Recovery code to check
-data CheckPasswordRecoveryCode = CheckPasswordRecoveryCode
-  { -- |
-    recovery_code :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks whether a 2-step verification password recovery code sent to an email address is valid
+data CheckPasswordRecoveryCode
+  = CheckPasswordRecoveryCode
+    { recovery_code :: Maybe T.Text -- ^ Recovery code to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckPasswordRecoveryCode where
-  show
+instance I.ShortShow CheckPasswordRecoveryCode where
+  shortShow
     CheckPasswordRecoveryCode
       { recovery_code = recovery_code_
-      } =
-      "CheckPasswordRecoveryCode"
-        ++ U.cc
-          [ U.p "recovery_code" recovery_code_
+      }
+        = "CheckPasswordRecoveryCode"
+          ++ I.cc
+          [ "recovery_code" `I.p` recovery_code_
           ]
 
-instance T.ToJSON CheckPasswordRecoveryCode where
+instance AT.ToJSON CheckPasswordRecoveryCode where
   toJSON
     CheckPasswordRecoveryCode
       { recovery_code = recovery_code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkPasswordRecoveryCode",
-          "recovery_code" A..= recovery_code_
-        ]
+      }
+        = A.object
+          [ "@type"         A..= AT.String "checkPasswordRecoveryCode"
+          , "recovery_code" A..= recovery_code_
+          ]
+

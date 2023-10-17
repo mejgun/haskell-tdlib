@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ProcessChatJoinRequest where
+module TD.Query.ProcessChatJoinRequest
+  (ProcessChatJoinRequest(..)
+  , defaultProcessChatJoinRequest
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Handles a pending join request in a chat @chat_id Chat identifier @user_id Identifier of the user that sent the request @approve Pass true to approve the request; pass false to decline it
-data ProcessChatJoinRequest = ProcessChatJoinRequest
-  { -- |
-    approve :: Maybe Bool,
-    -- |
-    user_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Handles a pending join request in a chat
+data ProcessChatJoinRequest
+  = ProcessChatJoinRequest
+    { chat_id :: Maybe Int  -- ^ Chat identifier
+    , user_id :: Maybe Int  -- ^ Identifier of the user that sent the request
+    , approve :: Maybe Bool -- ^ Pass true to approve the request; pass false to decline it
+    }
+  deriving (Eq, Show)
 
-instance Show ProcessChatJoinRequest where
-  show
+instance I.ShortShow ProcessChatJoinRequest where
+  shortShow
     ProcessChatJoinRequest
-      { approve = approve_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      "ProcessChatJoinRequest"
-        ++ U.cc
-          [ U.p "approve" approve_,
-            U.p "user_id" user_id_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , user_id = user_id_
+      , approve = approve_
+      }
+        = "ProcessChatJoinRequest"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "user_id" `I.p` user_id_
+          , "approve" `I.p` approve_
           ]
 
-instance T.ToJSON ProcessChatJoinRequest where
+instance AT.ToJSON ProcessChatJoinRequest where
   toJSON
     ProcessChatJoinRequest
-      { approve = approve_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "processChatJoinRequest",
-          "approve" A..= approve_,
-          "user_id" A..= user_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , user_id = user_id_
+      , approve = approve_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "processChatJoinRequest"
+          , "chat_id" A..= chat_id_
+          , "user_id" A..= user_id_
+          , "approve" A..= approve_
+          ]
+
+defaultProcessChatJoinRequest :: ProcessChatJoinRequest
+defaultProcessChatJoinRequest =
+  ProcessChatJoinRequest
+    { chat_id = Nothing
+    , user_id = Nothing
+    , approve = Nothing
+    }
+

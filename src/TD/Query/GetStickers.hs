@@ -1,55 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStickers where
+module TD.Query.GetStickers
+  (GetStickers(..)
+  , defaultGetStickers
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
-data GetStickers = GetStickers
-  { -- | Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
-    chat_id :: Maybe Int,
-    -- | The maximum number of stickers to be returned
-    limit :: Maybe Int,
-    -- | Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
-    query :: Maybe String,
-    -- | Type of the stickers to return
-    sticker_type :: Maybe StickerType.StickerType
-  }
-  deriving (Eq)
+-- | Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+data GetStickers
+  = GetStickers
+    { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the stickers to return
+    , query        :: Maybe T.Text                  -- ^ Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    , limit        :: Maybe Int                     -- ^ The maximum number of stickers to be returned
+    , chat_id      :: Maybe Int                     -- ^ Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
+    }
+  deriving (Eq, Show)
 
-instance Show GetStickers where
-  show
+instance I.ShortShow GetStickers where
+  shortShow
     GetStickers
-      { chat_id = chat_id_,
-        limit = limit_,
-        query = query_,
-        sticker_type = sticker_type_
-      } =
-      "GetStickers"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_,
-            U.p "limit" limit_,
-            U.p "query" query_,
-            U.p "sticker_type" sticker_type_
+      { sticker_type = sticker_type_
+      , query        = query_
+      , limit        = limit_
+      , chat_id      = chat_id_
+      }
+        = "GetStickers"
+          ++ I.cc
+          [ "sticker_type" `I.p` sticker_type_
+          , "query"        `I.p` query_
+          , "limit"        `I.p` limit_
+          , "chat_id"      `I.p` chat_id_
           ]
 
-instance T.ToJSON GetStickers where
+instance AT.ToJSON GetStickers where
   toJSON
     GetStickers
-      { chat_id = chat_id_,
-        limit = limit_,
-        query = query_,
-        sticker_type = sticker_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getStickers",
-          "chat_id" A..= chat_id_,
-          "limit" A..= limit_,
-          "query" A..= query_,
-          "sticker_type" A..= sticker_type_
-        ]
+      { sticker_type = sticker_type_
+      , query        = query_
+      , limit        = limit_
+      , chat_id      = chat_id_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "getStickers"
+          , "sticker_type" A..= sticker_type_
+          , "query"        A..= query_
+          , "limit"        A..= limit_
+          , "chat_id"      A..= chat_id_
+          ]
+
+defaultGetStickers :: GetStickers
+defaultGetStickers =
+  GetStickers
+    { sticker_type = Nothing
+    , query        = Nothing
+    , limit        = Nothing
+    , chat_id      = Nothing
+    }
+

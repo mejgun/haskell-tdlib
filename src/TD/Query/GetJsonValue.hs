@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetJsonValue where
+module TD.Query.GetJsonValue
+  (GetJsonValue(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously @json The JSON-serialized string
-data GetJsonValue = GetJsonValue
-  { -- |
-    json :: Maybe String
-  }
-  deriving (Eq)
+-- | Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
+data GetJsonValue
+  = GetJsonValue
+    { json :: Maybe T.Text -- ^ The JSON-serialized string
+    }
+  deriving (Eq, Show)
 
-instance Show GetJsonValue where
-  show
+instance I.ShortShow GetJsonValue where
+  shortShow
     GetJsonValue
       { json = json_
-      } =
-      "GetJsonValue"
-        ++ U.cc
-          [ U.p "json" json_
+      }
+        = "GetJsonValue"
+          ++ I.cc
+          [ "json" `I.p` json_
           ]
 
-instance T.ToJSON GetJsonValue where
+instance AT.ToJSON GetJsonValue where
   toJSON
     GetJsonValue
       { json = json_
-      } =
-      A.object
-        [ "@type" A..= T.String "getJsonValue",
-          "json" A..= json_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getJsonValue"
+          , "json"  A..= json_
+          ]
+

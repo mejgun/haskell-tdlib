@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestGetDifference where
+module TD.Query.TestGetDifference
+  (TestGetDifference(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Forces an updates.getDifference call to the Telegram servers; for testing only
-data TestGetDifference = TestGetDifference
-  {
-  }
-  deriving (Eq)
+-- | Forces an updates.getDifference call to the Telegram servers; for testing only
+data TestGetDifference
+  = TestGetDifference
+  deriving (Eq, Show)
 
-instance Show TestGetDifference where
-  show TestGetDifference =
-    "TestGetDifference"
-      ++ U.cc
-        []
+instance I.ShortShow TestGetDifference where
+  shortShow
+    TestGetDifference
+        = "TestGetDifference"
 
-instance T.ToJSON TestGetDifference where
-  toJSON TestGetDifference =
-    A.object
-      [ "@type" A..= T.String "testGetDifference"
-      ]
+instance AT.ToJSON TestGetDifference where
+  toJSON
+    TestGetDifference
+        = A.object
+          [ "@type" A..= AT.String "testGetDifference"
+          ]
+

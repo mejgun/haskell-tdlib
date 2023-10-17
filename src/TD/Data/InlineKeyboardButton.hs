@@ -1,58 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.InlineKeyboardButton where
+module TD.Data.InlineKeyboardButton
+  ( InlineKeyboardButton(..)    
+  , defaultInlineKeyboardButton 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.InlineKeyboardButtonType as InlineKeyboardButtonType
-import qualified Utils as U
 
--- |
-data InlineKeyboardButton = -- | Represents a single button in an inline keyboard @text Text of the button @type Type of the button
-  InlineKeyboardButton
-  { -- |
-    _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType,
-    -- |
-    text :: Maybe String
-  }
-  deriving (Eq)
+data InlineKeyboardButton
+  = InlineKeyboardButton -- ^ Represents a single button in an inline keyboard
+    { text  :: Maybe T.Text                                            -- ^ Text of the button
+    , _type :: Maybe InlineKeyboardButtonType.InlineKeyboardButtonType -- ^ Type of the button
+    }
+  deriving (Eq, Show)
 
-instance Show InlineKeyboardButton where
-  show
-    InlineKeyboardButton
-      { _type = _type_,
-        text = text_
-      } =
-      "InlineKeyboardButton"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "text" text_
-          ]
+instance I.ShortShow InlineKeyboardButton where
+  shortShow InlineKeyboardButton
+    { text  = text_
+    , _type = _type_
+    }
+      = "InlineKeyboardButton"
+        ++ I.cc
+        [ "text"  `I.p` text_
+        , "_type" `I.p` _type_
+        ]
 
-instance T.FromJSON InlineKeyboardButton where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON InlineKeyboardButton where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "inlineKeyboardButton" -> parseInlineKeyboardButton v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseInlineKeyboardButton :: A.Value -> T.Parser InlineKeyboardButton
+      parseInlineKeyboardButton :: A.Value -> AT.Parser InlineKeyboardButton
       parseInlineKeyboardButton = A.withObject "InlineKeyboardButton" $ \o -> do
-        _type_ <- o A..:? "type"
-        text_ <- o A..:? "text"
-        return $ InlineKeyboardButton {_type = _type_, text = text_}
+        text_  <- o A..:?  "text"
+        _type_ <- o A..:?  "type"
+        pure $ InlineKeyboardButton
+          { text  = text_
+          , _type = _type_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON InlineKeyboardButton where
-  toJSON
-    InlineKeyboardButton
-      { _type = _type_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "inlineKeyboardButton",
-          "type" A..= _type_,
-          "text" A..= text_
+instance AT.ToJSON InlineKeyboardButton where
+  toJSON InlineKeyboardButton
+    { text  = text_
+    , _type = _type_
+    }
+      = A.object
+        [ "@type" A..= AT.String "inlineKeyboardButton"
+        , "text"  A..= text_
+        , "type"  A..= _type_
         ]
+
+defaultInlineKeyboardButton :: InlineKeyboardButton
+defaultInlineKeyboardButton =
+  InlineKeyboardButton
+    { text  = Nothing
+    , _type = Nothing
+    }
+

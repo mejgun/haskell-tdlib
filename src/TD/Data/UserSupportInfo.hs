@@ -1,65 +1,51 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.UserSupportInfo where
+module TD.Data.UserSupportInfo
+  (UserSupportInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data UserSupportInfo = -- | Contains custom information about the user @message Information message @author Information author @date Information change date
-  UserSupportInfo
-  { -- |
-    date :: Maybe Int,
-    -- |
-    author :: Maybe String,
-    -- |
-    message :: Maybe FormattedText.FormattedText
-  }
-  deriving (Eq)
+data UserSupportInfo
+  = UserSupportInfo -- ^ Contains custom information about the user
+    { message :: Maybe FormattedText.FormattedText -- ^ Information message
+    , author  :: Maybe T.Text                      -- ^ Information author
+    , date    :: Maybe Int                         -- ^ Information change date
+    }
+  deriving (Eq, Show)
 
-instance Show UserSupportInfo where
-  show
-    UserSupportInfo
-      { date = date_,
-        author = author_,
-        message = message_
-      } =
-      "UserSupportInfo"
-        ++ U.cc
-          [ U.p "date" date_,
-            U.p "author" author_,
-            U.p "message" message_
-          ]
+instance I.ShortShow UserSupportInfo where
+  shortShow UserSupportInfo
+    { message = message_
+    , author  = author_
+    , date    = date_
+    }
+      = "UserSupportInfo"
+        ++ I.cc
+        [ "message" `I.p` message_
+        , "author"  `I.p` author_
+        , "date"    `I.p` date_
+        ]
 
-instance T.FromJSON UserSupportInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON UserSupportInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "userSupportInfo" -> parseUserSupportInfo v
-      _ -> mempty
+      _                 -> mempty
+    
     where
-      parseUserSupportInfo :: A.Value -> T.Parser UserSupportInfo
+      parseUserSupportInfo :: A.Value -> AT.Parser UserSupportInfo
       parseUserSupportInfo = A.withObject "UserSupportInfo" $ \o -> do
-        date_ <- o A..:? "date"
-        author_ <- o A..:? "author"
-        message_ <- o A..:? "message"
-        return $ UserSupportInfo {date = date_, author = author_, message = message_}
+        message_ <- o A..:?  "message"
+        author_  <- o A..:?  "author"
+        date_    <- o A..:?  "date"
+        pure $ UserSupportInfo
+          { message = message_
+          , author  = author_
+          , date    = date_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON UserSupportInfo where
-  toJSON
-    UserSupportInfo
-      { date = date_,
-        author = author_,
-        message = message_
-      } =
-      A.object
-        [ "@type" A..= T.String "userSupportInfo",
-          "date" A..= date_,
-          "author" A..= author_,
-          "message" A..= message_
-        ]

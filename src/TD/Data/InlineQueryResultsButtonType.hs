@@ -1,78 +1,74 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.InlineQueryResultsButtonType where
+module TD.Data.InlineQueryResultsButtonType
+  (InlineQueryResultsButtonType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Represents a type of a button in results of inline query
 data InlineQueryResultsButtonType
-  = -- | Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter @parameter The parameter for the bot start message
-    InlineQueryResultsButtonTypeStartBot
-      { -- |
-        parameter :: Maybe String
-      }
-  | -- | Describes the button that opens a Web App by calling getWebAppUrl @url An HTTP URL to pass to getWebAppUrl
-    InlineQueryResultsButtonTypeWebApp
-      { -- |
-        url :: Maybe String
-      }
-  deriving (Eq)
+  = InlineQueryResultsButtonTypeStartBot -- ^ Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
+    { parameter :: Maybe T.Text -- ^ The parameter for the bot start message
+    }
+  | InlineQueryResultsButtonTypeWebApp -- ^ Describes the button that opens a Web App by calling getWebAppUrl
+    { url :: Maybe T.Text -- ^ An HTTP URL to pass to getWebAppUrl
+    }
+  deriving (Eq, Show)
 
-instance Show InlineQueryResultsButtonType where
-  show
-    InlineQueryResultsButtonTypeStartBot
-      { parameter = parameter_
-      } =
-      "InlineQueryResultsButtonTypeStartBot"
-        ++ U.cc
-          [ U.p "parameter" parameter_
-          ]
-  show
-    InlineQueryResultsButtonTypeWebApp
-      { url = url_
-      } =
-      "InlineQueryResultsButtonTypeWebApp"
-        ++ U.cc
-          [ U.p "url" url_
-          ]
+instance I.ShortShow InlineQueryResultsButtonType where
+  shortShow InlineQueryResultsButtonTypeStartBot
+    { parameter = parameter_
+    }
+      = "InlineQueryResultsButtonTypeStartBot"
+        ++ I.cc
+        [ "parameter" `I.p` parameter_
+        ]
+  shortShow InlineQueryResultsButtonTypeWebApp
+    { url = url_
+    }
+      = "InlineQueryResultsButtonTypeWebApp"
+        ++ I.cc
+        [ "url" `I.p` url_
+        ]
 
-instance T.FromJSON InlineQueryResultsButtonType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON InlineQueryResultsButtonType where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "inlineQueryResultsButtonTypeStartBot" -> parseInlineQueryResultsButtonTypeStartBot v
-      "inlineQueryResultsButtonTypeWebApp" -> parseInlineQueryResultsButtonTypeWebApp v
-      _ -> mempty
+      "inlineQueryResultsButtonTypeWebApp"   -> parseInlineQueryResultsButtonTypeWebApp v
+      _                                      -> mempty
+    
     where
-      parseInlineQueryResultsButtonTypeStartBot :: A.Value -> T.Parser InlineQueryResultsButtonType
+      parseInlineQueryResultsButtonTypeStartBot :: A.Value -> AT.Parser InlineQueryResultsButtonType
       parseInlineQueryResultsButtonTypeStartBot = A.withObject "InlineQueryResultsButtonTypeStartBot" $ \o -> do
-        parameter_ <- o A..:? "parameter"
-        return $ InlineQueryResultsButtonTypeStartBot {parameter = parameter_}
-
-      parseInlineQueryResultsButtonTypeWebApp :: A.Value -> T.Parser InlineQueryResultsButtonType
+        parameter_ <- o A..:?  "parameter"
+        pure $ InlineQueryResultsButtonTypeStartBot
+          { parameter = parameter_
+          }
+      parseInlineQueryResultsButtonTypeWebApp :: A.Value -> AT.Parser InlineQueryResultsButtonType
       parseInlineQueryResultsButtonTypeWebApp = A.withObject "InlineQueryResultsButtonTypeWebApp" $ \o -> do
-        url_ <- o A..:? "url"
-        return $ InlineQueryResultsButtonTypeWebApp {url = url_}
+        url_ <- o A..:?  "url"
+        pure $ InlineQueryResultsButtonTypeWebApp
+          { url = url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON InlineQueryResultsButtonType where
-  toJSON
-    InlineQueryResultsButtonTypeStartBot
-      { parameter = parameter_
-      } =
-      A.object
-        [ "@type" A..= T.String "inlineQueryResultsButtonTypeStartBot",
-          "parameter" A..= parameter_
+instance AT.ToJSON InlineQueryResultsButtonType where
+  toJSON InlineQueryResultsButtonTypeStartBot
+    { parameter = parameter_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "inlineQueryResultsButtonTypeStartBot"
+        , "parameter" A..= parameter_
         ]
-  toJSON
-    InlineQueryResultsButtonTypeWebApp
-      { url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "inlineQueryResultsButtonTypeWebApp",
-          "url" A..= url_
+  toJSON InlineQueryResultsButtonTypeWebApp
+    { url = url_
+    }
+      = A.object
+        [ "@type" A..= AT.String "inlineQueryResultsButtonTypeWebApp"
+        , "url"   A..= url_
         ]
+

@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReadAllMessageThreadReactions where
+module TD.Query.ReadAllMessageThreadReactions
+  (ReadAllMessageThreadReactions(..)
+  , defaultReadAllMessageThreadReactions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Marks all reactions in a forum topic as read @chat_id Chat identifier @message_thread_id Message thread identifier in which reactions are marked as read
-data ReadAllMessageThreadReactions = ReadAllMessageThreadReactions
-  { -- |
-    message_thread_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Marks all reactions in a forum topic as read
+data ReadAllMessageThreadReactions
+  = ReadAllMessageThreadReactions
+    { chat_id           :: Maybe Int -- ^ Chat identifier
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier in which reactions are marked as read
+    }
+  deriving (Eq, Show)
 
-instance Show ReadAllMessageThreadReactions where
-  show
+instance I.ShortShow ReadAllMessageThreadReactions where
+  shortShow
     ReadAllMessageThreadReactions
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "ReadAllMessageThreadReactions"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "ReadAllMessageThreadReactions"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON ReadAllMessageThreadReactions where
+instance AT.ToJSON ReadAllMessageThreadReactions where
   toJSON
     ReadAllMessageThreadReactions
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "readAllMessageThreadReactions",
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "readAllMessageThreadReactions"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultReadAllMessageThreadReactions :: ReadAllMessageThreadReactions
+defaultReadAllMessageThreadReactions =
+  ReadAllMessageThreadReactions
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReportMessageReactions where
+module TD.Query.ReportMessageReactions
+  (ReportMessageReactions(..)
+  , defaultReportMessageReactions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
--- Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
-data ReportMessageReactions = ReportMessageReactions
-  { -- | Identifier of the sender, which added the reaction
-    sender_id :: Maybe MessageSender.MessageSender,
-    -- | Message identifier
-    message_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+data ReportMessageReactions
+  = ReportMessageReactions
+    { chat_id    :: Maybe Int                         -- ^ Chat identifier
+    , message_id :: Maybe Int                         -- ^ Message identifier
+    , sender_id  :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender, which added the reaction
+    }
+  deriving (Eq, Show)
 
-instance Show ReportMessageReactions where
-  show
+instance I.ShortShow ReportMessageReactions where
+  shortShow
     ReportMessageReactions
-      { sender_id = sender_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "ReportMessageReactions"
-        ++ U.cc
-          [ U.p "sender_id" sender_id_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , sender_id  = sender_id_
+      }
+        = "ReportMessageReactions"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "sender_id"  `I.p` sender_id_
           ]
 
-instance T.ToJSON ReportMessageReactions where
+instance AT.ToJSON ReportMessageReactions where
   toJSON
     ReportMessageReactions
-      { sender_id = sender_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "reportMessageReactions",
-          "sender_id" A..= sender_id_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , sender_id  = sender_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "reportMessageReactions"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "sender_id"  A..= sender_id_
+          ]
+
+defaultReportMessageReactions :: ReportMessageReactions
+defaultReportMessageReactions =
+  ReportMessageReactions
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , sender_id  = Nothing
+    }
+

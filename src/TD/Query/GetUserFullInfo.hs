@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetUserFullInfo where
+module TD.Query.GetUserFullInfo
+  (GetUserFullInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns full information about a user by their identifier @user_id User identifier
-data GetUserFullInfo = GetUserFullInfo
-  { -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns full information about a user by their identifier
+data GetUserFullInfo
+  = GetUserFullInfo
+    { user_id :: Maybe Int -- ^ User identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetUserFullInfo where
-  show
+instance I.ShortShow GetUserFullInfo where
+  shortShow
     GetUserFullInfo
       { user_id = user_id_
-      } =
-      "GetUserFullInfo"
-        ++ U.cc
-          [ U.p "user_id" user_id_
+      }
+        = "GetUserFullInfo"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
           ]
 
-instance T.ToJSON GetUserFullInfo where
+instance AT.ToJSON GetUserFullInfo where
   toJSON
     GetUserFullInfo
       { user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getUserFullInfo",
-          "user_id" A..= user_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getUserFullInfo"
+          , "user_id" A..= user_id_
+          ]
+

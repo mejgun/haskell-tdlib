@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatDescription where
+module TD.Query.SetChatDescription
+  (SetChatDescription(..)
+  , defaultSetChatDescription
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right @chat_id Identifier of the chat @param_description New chat description; 0-255 characters
-data SetChatDescription = SetChatDescription
-  { -- |
-    description :: Maybe String,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+data SetChatDescription
+  = SetChatDescription
+    { chat_id     :: Maybe Int    -- ^ Identifier of the chat
+    , description :: Maybe T.Text
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatDescription where
-  show
+instance I.ShortShow SetChatDescription where
+  shortShow
     SetChatDescription
-      { description = description_,
-        chat_id = chat_id_
-      } =
-      "SetChatDescription"
-        ++ U.cc
-          [ U.p "description" description_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , description = description_
+      }
+        = "SetChatDescription"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "description" `I.p` description_
           ]
 
-instance T.ToJSON SetChatDescription where
+instance AT.ToJSON SetChatDescription where
   toJSON
     SetChatDescription
-      { description = description_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatDescription",
-          "description" A..= description_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , description = description_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "setChatDescription"
+          , "chat_id"     A..= chat_id_
+          , "description" A..= description_
+          ]
+
+defaultSetChatDescription :: SetChatDescription
+defaultSetChatDescription =
+  SetChatDescription
+    { chat_id     = Nothing
+    , description = Nothing
+    }
+

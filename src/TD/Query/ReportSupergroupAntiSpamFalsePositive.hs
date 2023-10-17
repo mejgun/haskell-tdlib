@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReportSupergroupAntiSpamFalsePositive where
+module TD.Query.ReportSupergroupAntiSpamFalsePositive
+  (ReportSupergroupAntiSpamFalsePositive(..)
+  , defaultReportSupergroupAntiSpamFalsePositive
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
-data ReportSupergroupAntiSpamFalsePositive = ReportSupergroupAntiSpamFalsePositive
-  { -- | Identifier of the erroneously deleted message
-    message_id :: Maybe Int,
-    -- | Supergroup identifier
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+data ReportSupergroupAntiSpamFalsePositive
+  = ReportSupergroupAntiSpamFalsePositive
+    { supergroup_id :: Maybe Int -- ^ Supergroup identifier
+    , message_id    :: Maybe Int -- ^ Identifier of the erroneously deleted message
+    }
+  deriving (Eq, Show)
 
-instance Show ReportSupergroupAntiSpamFalsePositive where
-  show
+instance I.ShortShow ReportSupergroupAntiSpamFalsePositive where
+  shortShow
     ReportSupergroupAntiSpamFalsePositive
-      { message_id = message_id_,
-        supergroup_id = supergroup_id_
-      } =
-      "ReportSupergroupAntiSpamFalsePositive"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id = supergroup_id_
+      , message_id    = message_id_
+      }
+        = "ReportSupergroupAntiSpamFalsePositive"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
+          , "message_id"    `I.p` message_id_
           ]
 
-instance T.ToJSON ReportSupergroupAntiSpamFalsePositive where
+instance AT.ToJSON ReportSupergroupAntiSpamFalsePositive where
   toJSON
     ReportSupergroupAntiSpamFalsePositive
-      { message_id = message_id_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "reportSupergroupAntiSpamFalsePositive",
-          "message_id" A..= message_id_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id = supergroup_id_
+      , message_id    = message_id_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "reportSupergroupAntiSpamFalsePositive"
+          , "supergroup_id" A..= supergroup_id_
+          , "message_id"    A..= message_id_
+          ]
+
+defaultReportSupergroupAntiSpamFalsePositive :: ReportSupergroupAntiSpamFalsePositive
+defaultReportSupergroupAntiSpamFalsePositive =
+  ReportSupergroupAntiSpamFalsePositive
+    { supergroup_id = Nothing
+    , message_id    = Nothing
+    }
+

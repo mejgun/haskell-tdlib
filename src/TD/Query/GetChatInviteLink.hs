@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatInviteLink where
+module TD.Query.GetChatInviteLink
+  (GetChatInviteLink(..)
+  , defaultGetChatInviteLink
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
-data GetChatInviteLink = GetChatInviteLink
-  { -- | Invite link to get
-    invite_link :: Maybe String,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
+data GetChatInviteLink
+  = GetChatInviteLink
+    { chat_id     :: Maybe Int    -- ^ Chat identifier
+    , invite_link :: Maybe T.Text -- ^ Invite link to get
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatInviteLink where
-  show
+instance I.ShortShow GetChatInviteLink where
+  shortShow
     GetChatInviteLink
-      { invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      "GetChatInviteLink"
-        ++ U.cc
-          [ U.p "invite_link" invite_link_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , invite_link = invite_link_
+      }
+        = "GetChatInviteLink"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "invite_link" `I.p` invite_link_
           ]
 
-instance T.ToJSON GetChatInviteLink where
+instance AT.ToJSON GetChatInviteLink where
   toJSON
     GetChatInviteLink
-      { invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatInviteLink",
-          "invite_link" A..= invite_link_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , invite_link = invite_link_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "getChatInviteLink"
+          , "chat_id"     A..= chat_id_
+          , "invite_link" A..= invite_link_
+          ]
+
+defaultGetChatInviteLink :: GetChatInviteLink
+defaultGetChatInviteLink =
+  GetChatInviteLink
+    { chat_id     = Nothing
+    , invite_link = Nothing
+    }
+

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetFavoriteStickers where
+module TD.Query.GetFavoriteStickers
+  (GetFavoriteStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns favorite stickers
-data GetFavoriteStickers = GetFavoriteStickers
-  {
-  }
-  deriving (Eq)
+-- | Returns favorite stickers
+data GetFavoriteStickers
+  = GetFavoriteStickers
+  deriving (Eq, Show)
 
-instance Show GetFavoriteStickers where
-  show GetFavoriteStickers =
-    "GetFavoriteStickers"
-      ++ U.cc
-        []
+instance I.ShortShow GetFavoriteStickers where
+  shortShow
+    GetFavoriteStickers
+        = "GetFavoriteStickers"
 
-instance T.ToJSON GetFavoriteStickers where
-  toJSON GetFavoriteStickers =
-    A.object
-      [ "@type" A..= T.String "getFavoriteStickers"
-      ]
+instance AT.ToJSON GetFavoriteStickers where
+  toJSON
+    GetFavoriteStickers
+        = A.object
+          [ "@type" A..= AT.String "getFavoriteStickers"
+          ]
+

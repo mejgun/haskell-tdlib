@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveChatActionBar where
+module TD.Query.RemoveChatActionBar
+  (RemoveChatActionBar(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes a chat action bar without any other action @chat_id Chat identifier
-data RemoveChatActionBar = RemoveChatActionBar
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes a chat action bar without any other action
+data RemoveChatActionBar
+  = RemoveChatActionBar
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveChatActionBar where
-  show
+instance I.ShortShow RemoveChatActionBar where
+  shortShow
     RemoveChatActionBar
       { chat_id = chat_id_
-      } =
-      "RemoveChatActionBar"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "RemoveChatActionBar"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON RemoveChatActionBar where
+instance AT.ToJSON RemoveChatActionBar where
   toJSON
     RemoveChatActionBar
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeChatActionBar",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "removeChatActionBar"
+          , "chat_id" A..= chat_id_
+          ]
+

@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendAuthenticationFirebaseSms where
+module TD.Query.SendAuthenticationFirebaseSms
+  (SendAuthenticationFirebaseSms(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
-data SendAuthenticationFirebaseSms = SendAuthenticationFirebaseSms
-  { -- | SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
-    token :: Maybe String
-  }
-  deriving (Eq)
+-- | Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+data SendAuthenticationFirebaseSms
+  = SendAuthenticationFirebaseSms
+    { token :: Maybe T.Text -- ^ SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    }
+  deriving (Eq, Show)
 
-instance Show SendAuthenticationFirebaseSms where
-  show
+instance I.ShortShow SendAuthenticationFirebaseSms where
+  shortShow
     SendAuthenticationFirebaseSms
       { token = token_
-      } =
-      "SendAuthenticationFirebaseSms"
-        ++ U.cc
-          [ U.p "token" token_
+      }
+        = "SendAuthenticationFirebaseSms"
+          ++ I.cc
+          [ "token" `I.p` token_
           ]
 
-instance T.ToJSON SendAuthenticationFirebaseSms where
+instance AT.ToJSON SendAuthenticationFirebaseSms where
   toJSON
     SendAuthenticationFirebaseSms
       { token = token_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendAuthenticationFirebaseSms",
-          "token" A..= token_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "sendAuthenticationFirebaseSms"
+          , "token" A..= token_
+          ]
+

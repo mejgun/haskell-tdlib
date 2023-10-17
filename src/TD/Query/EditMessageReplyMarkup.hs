@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditMessageReplyMarkup where
+module TD.Query.EditMessageReplyMarkup
+  (EditMessageReplyMarkup(..)
+  , defaultEditMessageReplyMarkup
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
-import qualified Utils as U
 
--- |
--- Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
-data EditMessageReplyMarkup = EditMessageReplyMarkup
-  { -- | The new message reply markup; pass null if none
-    reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | The chat the message belongs to
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+data EditMessageReplyMarkup
+  = EditMessageReplyMarkup
+    { chat_id      :: Maybe Int                     -- ^ The chat the message belongs to
+    , message_id   :: Maybe Int                     -- ^ Identifier of the message
+    , reply_markup :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none
+    }
+  deriving (Eq, Show)
 
-instance Show EditMessageReplyMarkup where
-  show
+instance I.ShortShow EditMessageReplyMarkup where
+  shortShow
     EditMessageReplyMarkup
-      { reply_markup = reply_markup_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "EditMessageReplyMarkup"
-        ++ U.cc
-          [ U.p "reply_markup" reply_markup_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id      = chat_id_
+      , message_id   = message_id_
+      , reply_markup = reply_markup_
+      }
+        = "EditMessageReplyMarkup"
+          ++ I.cc
+          [ "chat_id"      `I.p` chat_id_
+          , "message_id"   `I.p` message_id_
+          , "reply_markup" `I.p` reply_markup_
           ]
 
-instance T.ToJSON EditMessageReplyMarkup where
+instance AT.ToJSON EditMessageReplyMarkup where
   toJSON
     EditMessageReplyMarkup
-      { reply_markup = reply_markup_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editMessageReplyMarkup",
-          "reply_markup" A..= reply_markup_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id      = chat_id_
+      , message_id   = message_id_
+      , reply_markup = reply_markup_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "editMessageReplyMarkup"
+          , "chat_id"      A..= chat_id_
+          , "message_id"   A..= message_id_
+          , "reply_markup" A..= reply_markup_
+          ]
+
+defaultEditMessageReplyMarkup :: EditMessageReplyMarkup
+defaultEditMessageReplyMarkup =
+  EditMessageReplyMarkup
+    { chat_id      = Nothing
+    , message_id   = Nothing
+    , reply_markup = Nothing
+    }
+

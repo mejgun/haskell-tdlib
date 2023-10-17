@@ -1,49 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AnswerShippingQuery where
+module TD.Query.AnswerShippingQuery
+  (AnswerShippingQuery(..)
+  , defaultAnswerShippingQuery
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ShippingOption as ShippingOption
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Sets the result of a shipping query; for bots only @shipping_query_id Identifier of the shipping query @shipping_options Available shipping options @error_message An error message, empty on success
-data AnswerShippingQuery = AnswerShippingQuery
-  { -- |
-    error_message :: Maybe String,
-    -- |
-    shipping_options :: Maybe [ShippingOption.ShippingOption],
-    -- |
-    shipping_query_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets the result of a shipping query; for bots only
+data AnswerShippingQuery
+  = AnswerShippingQuery
+    { shipping_query_id :: Maybe Int                             -- ^ Identifier of the shipping query
+    , shipping_options  :: Maybe [ShippingOption.ShippingOption] -- ^ Available shipping options
+    , error_message     :: Maybe T.Text                          -- ^ An error message, empty on success
+    }
+  deriving (Eq, Show)
 
-instance Show AnswerShippingQuery where
-  show
+instance I.ShortShow AnswerShippingQuery where
+  shortShow
     AnswerShippingQuery
-      { error_message = error_message_,
-        shipping_options = shipping_options_,
-        shipping_query_id = shipping_query_id_
-      } =
-      "AnswerShippingQuery"
-        ++ U.cc
-          [ U.p "error_message" error_message_,
-            U.p "shipping_options" shipping_options_,
-            U.p "shipping_query_id" shipping_query_id_
+      { shipping_query_id = shipping_query_id_
+      , shipping_options  = shipping_options_
+      , error_message     = error_message_
+      }
+        = "AnswerShippingQuery"
+          ++ I.cc
+          [ "shipping_query_id" `I.p` shipping_query_id_
+          , "shipping_options"  `I.p` shipping_options_
+          , "error_message"     `I.p` error_message_
           ]
 
-instance T.ToJSON AnswerShippingQuery where
+instance AT.ToJSON AnswerShippingQuery where
   toJSON
     AnswerShippingQuery
-      { error_message = error_message_,
-        shipping_options = shipping_options_,
-        shipping_query_id = shipping_query_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "answerShippingQuery",
-          "error_message" A..= error_message_,
-          "shipping_options" A..= shipping_options_,
-          "shipping_query_id" A..= U.toS shipping_query_id_
-        ]
+      { shipping_query_id = shipping_query_id_
+      , shipping_options  = shipping_options_
+      , error_message     = error_message_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "answerShippingQuery"
+          , "shipping_query_id" A..= fmap I.writeInt64  shipping_query_id_
+          , "shipping_options"  A..= shipping_options_
+          , "error_message"     A..= error_message_
+          ]
+
+defaultAnswerShippingQuery :: AnswerShippingQuery
+defaultAnswerShippingQuery =
+  AnswerShippingQuery
+    { shipping_query_id = Nothing
+    , shipping_options  = Nothing
+    , error_message     = Nothing
+    }
+

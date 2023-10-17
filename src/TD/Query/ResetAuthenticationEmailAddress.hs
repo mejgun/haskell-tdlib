@@ -1,28 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResetAuthenticationEmailAddress where
+module TD.Query.ResetAuthenticationEmailAddress
+  (ResetAuthenticationEmailAddress(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending.
--- Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
-data ResetAuthenticationEmailAddress = ResetAuthenticationEmailAddress
-  {
-  }
-  deriving (Eq)
+-- | Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
+data ResetAuthenticationEmailAddress
+  = ResetAuthenticationEmailAddress
+  deriving (Eq, Show)
 
-instance Show ResetAuthenticationEmailAddress where
-  show ResetAuthenticationEmailAddress =
-    "ResetAuthenticationEmailAddress"
-      ++ U.cc
-        []
+instance I.ShortShow ResetAuthenticationEmailAddress where
+  shortShow
+    ResetAuthenticationEmailAddress
+        = "ResetAuthenticationEmailAddress"
 
-instance T.ToJSON ResetAuthenticationEmailAddress where
-  toJSON ResetAuthenticationEmailAddress =
-    A.object
-      [ "@type" A..= T.String "resetAuthenticationEmailAddress"
-      ]
+instance AT.ToJSON ResetAuthenticationEmailAddress where
+  toJSON
+    ResetAuthenticationEmailAddress
+        = A.object
+          [ "@type" A..= AT.String "resetAuthenticationEmailAddress"
+          ]
+

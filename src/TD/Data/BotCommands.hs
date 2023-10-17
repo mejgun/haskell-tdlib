@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.BotCommands where
+module TD.Data.BotCommands
+  (BotCommands(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommand as BotCommand
-import qualified Utils as U
 
--- |
-data BotCommands = -- | Contains a list of bot commands @bot_user_id Bot's user identifier @commands List of bot commands
-  BotCommands
-  { -- |
-    commands :: Maybe [BotCommand.BotCommand],
-    -- |
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+data BotCommands
+  = BotCommands -- ^ Contains a list of bot commands
+    { bot_user_id :: Maybe Int                     -- ^ Bot's user identifier
+    , commands    :: Maybe [BotCommand.BotCommand] -- ^ List of bot commands
+    }
+  deriving (Eq, Show)
 
-instance Show BotCommands where
-  show
-    BotCommands
-      { commands = commands_,
-        bot_user_id = bot_user_id_
-      } =
-      "BotCommands"
-        ++ U.cc
-          [ U.p "commands" commands_,
-            U.p "bot_user_id" bot_user_id_
-          ]
+instance I.ShortShow BotCommands where
+  shortShow BotCommands
+    { bot_user_id = bot_user_id_
+    , commands    = commands_
+    }
+      = "BotCommands"
+        ++ I.cc
+        [ "bot_user_id" `I.p` bot_user_id_
+        , "commands"    `I.p` commands_
+        ]
 
-instance T.FromJSON BotCommands where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON BotCommands where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "botCommands" -> parseBotCommands v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseBotCommands :: A.Value -> T.Parser BotCommands
+      parseBotCommands :: A.Value -> AT.Parser BotCommands
       parseBotCommands = A.withObject "BotCommands" $ \o -> do
-        commands_ <- o A..:? "commands"
-        bot_user_id_ <- o A..:? "bot_user_id"
-        return $ BotCommands {commands = commands_, bot_user_id = bot_user_id_}
+        bot_user_id_ <- o A..:?  "bot_user_id"
+        commands_    <- o A..:?  "commands"
+        pure $ BotCommands
+          { bot_user_id = bot_user_id_
+          , commands    = commands_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON BotCommands where
-  toJSON
-    BotCommands
-      { commands = commands_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "botCommands",
-          "commands" A..= commands_,
-          "bot_user_id" A..= bot_user_id_
-        ]

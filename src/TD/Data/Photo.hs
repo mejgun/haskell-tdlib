@@ -1,66 +1,51 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Photo where
+module TD.Data.Photo
+  (Photo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.PhotoSize as PhotoSize
-import qualified Utils as U
 
--- |
-data Photo = -- | Describes a photo
-  Photo
-  { -- | Available variants of the photo, in different sizes
-    sizes :: Maybe [PhotoSize.PhotoSize],
-    -- | Photo minithumbnail; may be null
-    minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- | True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
-    has_stickers :: Maybe Bool
-  }
-  deriving (Eq)
+data Photo
+  = Photo -- ^ Describes a photo
+    { has_stickers  :: Maybe Bool                        -- ^ True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
+    , minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ Photo minithumbnail; may be null
+    , sizes         :: Maybe [PhotoSize.PhotoSize]       -- ^ Available variants of the photo, in different sizes
+    }
+  deriving (Eq, Show)
 
-instance Show Photo where
-  show
-    Photo
-      { sizes = sizes_,
-        minithumbnail = minithumbnail_,
-        has_stickers = has_stickers_
-      } =
-      "Photo"
-        ++ U.cc
-          [ U.p "sizes" sizes_,
-            U.p "minithumbnail" minithumbnail_,
-            U.p "has_stickers" has_stickers_
-          ]
+instance I.ShortShow Photo where
+  shortShow Photo
+    { has_stickers  = has_stickers_
+    , minithumbnail = minithumbnail_
+    , sizes         = sizes_
+    }
+      = "Photo"
+        ++ I.cc
+        [ "has_stickers"  `I.p` has_stickers_
+        , "minithumbnail" `I.p` minithumbnail_
+        , "sizes"         `I.p` sizes_
+        ]
 
-instance T.FromJSON Photo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Photo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "photo" -> parsePhoto v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parsePhoto :: A.Value -> T.Parser Photo
+      parsePhoto :: A.Value -> AT.Parser Photo
       parsePhoto = A.withObject "Photo" $ \o -> do
-        sizes_ <- o A..:? "sizes"
-        minithumbnail_ <- o A..:? "minithumbnail"
-        has_stickers_ <- o A..:? "has_stickers"
-        return $ Photo {sizes = sizes_, minithumbnail = minithumbnail_, has_stickers = has_stickers_}
+        has_stickers_  <- o A..:?  "has_stickers"
+        minithumbnail_ <- o A..:?  "minithumbnail"
+        sizes_         <- o A..:?  "sizes"
+        pure $ Photo
+          { has_stickers  = has_stickers_
+          , minithumbnail = minithumbnail_
+          , sizes         = sizes_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Photo where
-  toJSON
-    Photo
-      { sizes = sizes_,
-        minithumbnail = minithumbnail_,
-        has_stickers = has_stickers_
-      } =
-      A.object
-        [ "@type" A..= T.String "photo",
-          "sizes" A..= sizes_,
-          "minithumbnail" A..= minithumbnail_,
-          "has_stickers" A..= has_stickers_
-        ]

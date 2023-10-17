@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ImportedContacts where
+module TD.Data.ImportedContacts
+  (ImportedContacts(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data ImportedContacts = -- | Represents the result of an importContacts request
-  ImportedContacts
-  { -- | The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
-    importer_count :: Maybe [Int],
-    -- | User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
-    user_ids :: Maybe [Int]
-  }
-  deriving (Eq)
+data ImportedContacts
+  = ImportedContacts -- ^ Represents the result of an importContacts request
+    { user_ids       :: Maybe [Int] -- ^ User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
+    , importer_count :: Maybe [Int] -- ^ The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
+    }
+  deriving (Eq, Show)
 
-instance Show ImportedContacts where
-  show
-    ImportedContacts
-      { importer_count = importer_count_,
-        user_ids = user_ids_
-      } =
-      "ImportedContacts"
-        ++ U.cc
-          [ U.p "importer_count" importer_count_,
-            U.p "user_ids" user_ids_
-          ]
+instance I.ShortShow ImportedContacts where
+  shortShow ImportedContacts
+    { user_ids       = user_ids_
+    , importer_count = importer_count_
+    }
+      = "ImportedContacts"
+        ++ I.cc
+        [ "user_ids"       `I.p` user_ids_
+        , "importer_count" `I.p` importer_count_
+        ]
 
-instance T.FromJSON ImportedContacts where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ImportedContacts where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "importedContacts" -> parseImportedContacts v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseImportedContacts :: A.Value -> T.Parser ImportedContacts
+      parseImportedContacts :: A.Value -> AT.Parser ImportedContacts
       parseImportedContacts = A.withObject "ImportedContacts" $ \o -> do
-        importer_count_ <- o A..:? "importer_count"
-        user_ids_ <- o A..:? "user_ids"
-        return $ ImportedContacts {importer_count = importer_count_, user_ids = user_ids_}
+        user_ids_       <- o A..:?  "user_ids"
+        importer_count_ <- o A..:?  "importer_count"
+        pure $ ImportedContacts
+          { user_ids       = user_ids_
+          , importer_count = importer_count_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ImportedContacts where
-  toJSON
-    ImportedContacts
-      { importer_count = importer_count_,
-        user_ids = user_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "importedContacts",
-          "importer_count" A..= importer_count_,
-          "user_ids" A..= user_ids_
-        ]

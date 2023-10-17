@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetDefaultChatPhotoCustomEmojiStickers where
+module TD.Query.GetDefaultChatPhotoCustomEmojiStickers
+  (GetDefaultChatPhotoCustomEmojiStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns default list of custom emoji stickers for placing on a chat photo
-data GetDefaultChatPhotoCustomEmojiStickers = GetDefaultChatPhotoCustomEmojiStickers
-  {
-  }
-  deriving (Eq)
+-- | Returns default list of custom emoji stickers for placing on a chat photo
+data GetDefaultChatPhotoCustomEmojiStickers
+  = GetDefaultChatPhotoCustomEmojiStickers
+  deriving (Eq, Show)
 
-instance Show GetDefaultChatPhotoCustomEmojiStickers where
-  show GetDefaultChatPhotoCustomEmojiStickers =
-    "GetDefaultChatPhotoCustomEmojiStickers"
-      ++ U.cc
-        []
+instance I.ShortShow GetDefaultChatPhotoCustomEmojiStickers where
+  shortShow
+    GetDefaultChatPhotoCustomEmojiStickers
+        = "GetDefaultChatPhotoCustomEmojiStickers"
 
-instance T.ToJSON GetDefaultChatPhotoCustomEmojiStickers where
-  toJSON GetDefaultChatPhotoCustomEmojiStickers =
-    A.object
-      [ "@type" A..= T.String "getDefaultChatPhotoCustomEmojiStickers"
-      ]
+instance AT.ToJSON GetDefaultChatPhotoCustomEmojiStickers where
+  toJSON
+    GetDefaultChatPhotoCustomEmojiStickers
+        = A.object
+          [ "@type" A..= AT.String "getDefaultChatPhotoCustomEmojiStickers"
+          ]
+

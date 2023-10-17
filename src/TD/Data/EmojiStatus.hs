@@ -1,57 +1,64 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EmojiStatus where
+module TD.Data.EmojiStatus
+  ( EmojiStatus(..)    
+  , defaultEmojiStatus 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data EmojiStatus = -- | Describes a custom emoji to be shown instead of the Telegram Premium badge
-  EmojiStatus
-  { -- | Point in time (Unix timestamp) when the status will expire; 0 if never
-    expiration_date :: Maybe Int,
-    -- | Identifier of the custom emoji in stickerFormatTgs format
-    custom_emoji_id :: Maybe Int
-  }
-  deriving (Eq)
+data EmojiStatus
+  = EmojiStatus -- ^ Describes a custom emoji to be shown instead of the Telegram Premium badge
+    { custom_emoji_id :: Maybe Int -- ^ Identifier of the custom emoji in stickerFormatTgs format
+    , expiration_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the status will expire; 0 if never
+    }
+  deriving (Eq, Show)
 
-instance Show EmojiStatus where
-  show
-    EmojiStatus
-      { expiration_date = expiration_date_,
-        custom_emoji_id = custom_emoji_id_
-      } =
-      "EmojiStatus"
-        ++ U.cc
-          [ U.p "expiration_date" expiration_date_,
-            U.p "custom_emoji_id" custom_emoji_id_
-          ]
+instance I.ShortShow EmojiStatus where
+  shortShow EmojiStatus
+    { custom_emoji_id = custom_emoji_id_
+    , expiration_date = expiration_date_
+    }
+      = "EmojiStatus"
+        ++ I.cc
+        [ "custom_emoji_id" `I.p` custom_emoji_id_
+        , "expiration_date" `I.p` expiration_date_
+        ]
 
-instance T.FromJSON EmojiStatus where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EmojiStatus where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "emojiStatus" -> parseEmojiStatus v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseEmojiStatus :: A.Value -> T.Parser EmojiStatus
+      parseEmojiStatus :: A.Value -> AT.Parser EmojiStatus
       parseEmojiStatus = A.withObject "EmojiStatus" $ \o -> do
-        expiration_date_ <- o A..:? "expiration_date"
-        custom_emoji_id_ <- U.rm <$> (o A..:? "custom_emoji_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ EmojiStatus {expiration_date = expiration_date_, custom_emoji_id = custom_emoji_id_}
+        custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "custom_emoji_id"
+        expiration_date_ <- o A..:?                       "expiration_date"
+        pure $ EmojiStatus
+          { custom_emoji_id = custom_emoji_id_
+          , expiration_date = expiration_date_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON EmojiStatus where
-  toJSON
-    EmojiStatus
-      { expiration_date = expiration_date_,
-        custom_emoji_id = custom_emoji_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "emojiStatus",
-          "expiration_date" A..= expiration_date_,
-          "custom_emoji_id" A..= U.toS custom_emoji_id_
+instance AT.ToJSON EmojiStatus where
+  toJSON EmojiStatus
+    { custom_emoji_id = custom_emoji_id_
+    , expiration_date = expiration_date_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "emojiStatus"
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
+        , "expiration_date" A..= expiration_date_
         ]
+
+defaultEmojiStatus :: EmojiStatus
+defaultEmojiStatus =
+  EmojiStatus
+    { custom_emoji_id = Nothing
+    , expiration_date = Nothing
+    }
+

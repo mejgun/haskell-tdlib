@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetSuggestedStickerSetName where
+module TD.Query.GetSuggestedStickerSetName
+  (GetSuggestedStickerSetName(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns a suggested name for a new sticker set with a given title @title Sticker set title; 1-64 characters
-data GetSuggestedStickerSetName = GetSuggestedStickerSetName
-  { -- |
-    title :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns a suggested name for a new sticker set with a given title
+data GetSuggestedStickerSetName
+  = GetSuggestedStickerSetName
+    { title :: Maybe T.Text -- ^ Sticker set title; 1-64 characters
+    }
+  deriving (Eq, Show)
 
-instance Show GetSuggestedStickerSetName where
-  show
+instance I.ShortShow GetSuggestedStickerSetName where
+  shortShow
     GetSuggestedStickerSetName
       { title = title_
-      } =
-      "GetSuggestedStickerSetName"
-        ++ U.cc
-          [ U.p "title" title_
+      }
+        = "GetSuggestedStickerSetName"
+          ++ I.cc
+          [ "title" `I.p` title_
           ]
 
-instance T.ToJSON GetSuggestedStickerSetName where
+instance AT.ToJSON GetSuggestedStickerSetName where
   toJSON
     GetSuggestedStickerSetName
       { title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "getSuggestedStickerSetName",
-          "title" A..= title_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getSuggestedStickerSetName"
+          , "title" A..= title_
+          ]
+

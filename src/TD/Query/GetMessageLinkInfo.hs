@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageLinkInfo where
+module TD.Query.GetMessageLinkInfo
+  (GetMessageLinkInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage @url The message link
-data GetMessageLinkInfo = GetMessageLinkInfo
-  { -- |
-    url :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
+data GetMessageLinkInfo
+  = GetMessageLinkInfo
+    { url :: Maybe T.Text -- ^ The message link
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageLinkInfo where
-  show
+instance I.ShortShow GetMessageLinkInfo where
+  shortShow
     GetMessageLinkInfo
       { url = url_
-      } =
-      "GetMessageLinkInfo"
-        ++ U.cc
-          [ U.p "url" url_
+      }
+        = "GetMessageLinkInfo"
+          ++ I.cc
+          [ "url" `I.p` url_
           ]
 
-instance T.ToJSON GetMessageLinkInfo where
+instance AT.ToJSON GetMessageLinkInfo where
   toJSON
     GetMessageLinkInfo
       { url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageLinkInfo",
-          "url" A..= url_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getMessageLinkInfo"
+          , "url"   A..= url_
+          ]
+

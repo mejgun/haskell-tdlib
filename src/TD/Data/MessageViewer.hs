@@ -1,57 +1,64 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageViewer where
+module TD.Data.MessageViewer
+  ( MessageViewer(..)    
+  , defaultMessageViewer 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data MessageViewer = -- | Represents a viewer of a message @user_id User identifier of the viewer @view_date Approximate point in time (Unix timestamp) when the message was viewed
-  MessageViewer
-  { -- |
-    view_date :: Maybe Int,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+data MessageViewer
+  = MessageViewer -- ^ Represents a viewer of a message
+    { user_id   :: Maybe Int -- ^ User identifier of the viewer
+    , view_date :: Maybe Int -- ^ Approximate point in time (Unix timestamp) when the message was viewed
+    }
+  deriving (Eq, Show)
 
-instance Show MessageViewer where
-  show
-    MessageViewer
-      { view_date = view_date_,
-        user_id = user_id_
-      } =
-      "MessageViewer"
-        ++ U.cc
-          [ U.p "view_date" view_date_,
-            U.p "user_id" user_id_
-          ]
+instance I.ShortShow MessageViewer where
+  shortShow MessageViewer
+    { user_id   = user_id_
+    , view_date = view_date_
+    }
+      = "MessageViewer"
+        ++ I.cc
+        [ "user_id"   `I.p` user_id_
+        , "view_date" `I.p` view_date_
+        ]
 
-instance T.FromJSON MessageViewer where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageViewer where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageViewer" -> parseMessageViewer v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parseMessageViewer :: A.Value -> T.Parser MessageViewer
+      parseMessageViewer :: A.Value -> AT.Parser MessageViewer
       parseMessageViewer = A.withObject "MessageViewer" $ \o -> do
-        view_date_ <- o A..:? "view_date"
-        user_id_ <- o A..:? "user_id"
-        return $ MessageViewer {view_date = view_date_, user_id = user_id_}
+        user_id_   <- o A..:?  "user_id"
+        view_date_ <- o A..:?  "view_date"
+        pure $ MessageViewer
+          { user_id   = user_id_
+          , view_date = view_date_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageViewer where
-  toJSON
-    MessageViewer
-      { view_date = view_date_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageViewer",
-          "view_date" A..= view_date_,
-          "user_id" A..= user_id_
+instance AT.ToJSON MessageViewer where
+  toJSON MessageViewer
+    { user_id   = user_id_
+    , view_date = view_date_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "messageViewer"
+        , "user_id"   A..= user_id_
+        , "view_date" A..= view_date_
         ]
+
+defaultMessageViewer :: MessageViewer
+defaultMessageViewer =
+  MessageViewer
+    { user_id   = Nothing
+    , view_date = Nothing
+    }
+

@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddApplicationChangelog where
+module TD.Query.AddApplicationChangelog
+  (AddApplicationChangelog(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed @previous_application_version The previous application version
-data AddApplicationChangelog = AddApplicationChangelog
-  { -- |
-    previous_application_version :: Maybe String
-  }
-  deriving (Eq)
+-- | Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
+data AddApplicationChangelog
+  = AddApplicationChangelog
+    { previous_application_version :: Maybe T.Text -- ^ The previous application version
+    }
+  deriving (Eq, Show)
 
-instance Show AddApplicationChangelog where
-  show
+instance I.ShortShow AddApplicationChangelog where
+  shortShow
     AddApplicationChangelog
       { previous_application_version = previous_application_version_
-      } =
-      "AddApplicationChangelog"
-        ++ U.cc
-          [ U.p "previous_application_version" previous_application_version_
+      }
+        = "AddApplicationChangelog"
+          ++ I.cc
+          [ "previous_application_version" `I.p` previous_application_version_
           ]
 
-instance T.ToJSON AddApplicationChangelog where
+instance AT.ToJSON AddApplicationChangelog where
   toJSON
     AddApplicationChangelog
       { previous_application_version = previous_application_version_
-      } =
-      A.object
-        [ "@type" A..= T.String "addApplicationChangelog",
-          "previous_application_version" A..= previous_application_version_
-        ]
+      }
+        = A.object
+          [ "@type"                        A..= AT.String "addApplicationChangelog"
+          , "previous_application_version" A..= previous_application_version_
+          ]
+

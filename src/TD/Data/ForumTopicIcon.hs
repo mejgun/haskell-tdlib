@@ -1,57 +1,64 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ForumTopicIcon where
+module TD.Data.ForumTopicIcon
+  ( ForumTopicIcon(..)    
+  , defaultForumTopicIcon 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data ForumTopicIcon = -- | Describes a forum topic icon @color Color of the topic icon in RGB format @custom_emoji_id Unique identifier of the custom emoji shown on the topic icon; 0 if none
-  ForumTopicIcon
-  { -- |
-    custom_emoji_id :: Maybe Int,
-    -- |
-    color :: Maybe Int
-  }
-  deriving (Eq)
+data ForumTopicIcon
+  = ForumTopicIcon -- ^ Describes a forum topic icon
+    { color           :: Maybe Int -- ^ Color of the topic icon in RGB format
+    , custom_emoji_id :: Maybe Int -- ^ Unique identifier of the custom emoji shown on the topic icon; 0 if none
+    }
+  deriving (Eq, Show)
 
-instance Show ForumTopicIcon where
-  show
-    ForumTopicIcon
-      { custom_emoji_id = custom_emoji_id_,
-        color = color_
-      } =
-      "ForumTopicIcon"
-        ++ U.cc
-          [ U.p "custom_emoji_id" custom_emoji_id_,
-            U.p "color" color_
-          ]
+instance I.ShortShow ForumTopicIcon where
+  shortShow ForumTopicIcon
+    { color           = color_
+    , custom_emoji_id = custom_emoji_id_
+    }
+      = "ForumTopicIcon"
+        ++ I.cc
+        [ "color"           `I.p` color_
+        , "custom_emoji_id" `I.p` custom_emoji_id_
+        ]
 
-instance T.FromJSON ForumTopicIcon where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ForumTopicIcon where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "forumTopicIcon" -> parseForumTopicIcon v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseForumTopicIcon :: A.Value -> T.Parser ForumTopicIcon
+      parseForumTopicIcon :: A.Value -> AT.Parser ForumTopicIcon
       parseForumTopicIcon = A.withObject "ForumTopicIcon" $ \o -> do
-        custom_emoji_id_ <- U.rm <$> (o A..:? "custom_emoji_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        color_ <- o A..:? "color"
-        return $ ForumTopicIcon {custom_emoji_id = custom_emoji_id_, color = color_}
+        color_           <- o A..:?                       "color"
+        custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "custom_emoji_id"
+        pure $ ForumTopicIcon
+          { color           = color_
+          , custom_emoji_id = custom_emoji_id_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ForumTopicIcon where
-  toJSON
-    ForumTopicIcon
-      { custom_emoji_id = custom_emoji_id_,
-        color = color_
-      } =
-      A.object
-        [ "@type" A..= T.String "forumTopicIcon",
-          "custom_emoji_id" A..= U.toS custom_emoji_id_,
-          "color" A..= color_
+instance AT.ToJSON ForumTopicIcon where
+  toJSON ForumTopicIcon
+    { color           = color_
+    , custom_emoji_id = custom_emoji_id_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "forumTopicIcon"
+        , "color"           A..= color_
+        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
         ]
+
+defaultForumTopicIcon :: ForumTopicIcon
+defaultForumTopicIcon =
+  ForumTopicIcon
+    { color           = Nothing
+    , custom_emoji_id = Nothing
+    }
+

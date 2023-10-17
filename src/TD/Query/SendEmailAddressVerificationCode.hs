@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendEmailAddressVerificationCode where
+module TD.Query.SendEmailAddressVerificationCode
+  (SendEmailAddressVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sends a code to verify an email address to be added to a user's Telegram Passport @email_address Email address
-data SendEmailAddressVerificationCode = SendEmailAddressVerificationCode
-  { -- |
-    email_address :: Maybe String
-  }
-  deriving (Eq)
+-- | Sends a code to verify an email address to be added to a user's Telegram Passport
+data SendEmailAddressVerificationCode
+  = SendEmailAddressVerificationCode
+    { email_address :: Maybe T.Text -- ^ Email address
+    }
+  deriving (Eq, Show)
 
-instance Show SendEmailAddressVerificationCode where
-  show
+instance I.ShortShow SendEmailAddressVerificationCode where
+  shortShow
     SendEmailAddressVerificationCode
       { email_address = email_address_
-      } =
-      "SendEmailAddressVerificationCode"
-        ++ U.cc
-          [ U.p "email_address" email_address_
+      }
+        = "SendEmailAddressVerificationCode"
+          ++ I.cc
+          [ "email_address" `I.p` email_address_
           ]
 
-instance T.ToJSON SendEmailAddressVerificationCode where
+instance AT.ToJSON SendEmailAddressVerificationCode where
   toJSON
     SendEmailAddressVerificationCode
       { email_address = email_address_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendEmailAddressVerificationCode",
-          "email_address" A..= email_address_
-        ]
+      }
+        = A.object
+          [ "@type"         A..= AT.String "sendEmailAddressVerificationCode"
+          , "email_address" A..= email_address_
+          ]
+

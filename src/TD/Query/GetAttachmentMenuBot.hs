@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAttachmentMenuBot where
+module TD.Query.GetAttachmentMenuBot
+  (GetAttachmentMenuBot(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a bot that can be added to attachment or side menu @bot_user_id Bot's user identifier
-data GetAttachmentMenuBot = GetAttachmentMenuBot
-  { -- |
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a bot that can be added to attachment menu
+data GetAttachmentMenuBot
+  = GetAttachmentMenuBot
+    { bot_user_id :: Maybe Int -- ^ Bot's user identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetAttachmentMenuBot where
-  show
+instance I.ShortShow GetAttachmentMenuBot where
+  shortShow
     GetAttachmentMenuBot
       { bot_user_id = bot_user_id_
-      } =
-      "GetAttachmentMenuBot"
-        ++ U.cc
-          [ U.p "bot_user_id" bot_user_id_
+      }
+        = "GetAttachmentMenuBot"
+          ++ I.cc
+          [ "bot_user_id" `I.p` bot_user_id_
           ]
 
-instance T.ToJSON GetAttachmentMenuBot where
+instance AT.ToJSON GetAttachmentMenuBot where
   toJSON
     GetAttachmentMenuBot
       { bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getAttachmentMenuBot",
-          "bot_user_id" A..= bot_user_id_
-        ]
+      }
+        = A.object
+          [ "@type"       A..= AT.String "getAttachmentMenuBot"
+          , "bot_user_id" A..= bot_user_id_
+          ]
+

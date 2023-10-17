@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClearRecentlyFoundChats where
+module TD.Query.ClearRecentlyFoundChats
+  (ClearRecentlyFoundChats(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Clears the list of recently found chats
-data ClearRecentlyFoundChats = ClearRecentlyFoundChats
-  {
-  }
-  deriving (Eq)
+-- | Clears the list of recently found chats
+data ClearRecentlyFoundChats
+  = ClearRecentlyFoundChats
+  deriving (Eq, Show)
 
-instance Show ClearRecentlyFoundChats where
-  show ClearRecentlyFoundChats =
-    "ClearRecentlyFoundChats"
-      ++ U.cc
-        []
+instance I.ShortShow ClearRecentlyFoundChats where
+  shortShow
+    ClearRecentlyFoundChats
+        = "ClearRecentlyFoundChats"
 
-instance T.ToJSON ClearRecentlyFoundChats where
-  toJSON ClearRecentlyFoundChats =
-    A.object
-      [ "@type" A..= T.String "clearRecentlyFoundChats"
-      ]
+instance AT.ToJSON ClearRecentlyFoundChats where
+  toJSON
+    ClearRecentlyFoundChats
+        = A.object
+          [ "@type" A..= AT.String "clearRecentlyFoundChats"
+          ]
+

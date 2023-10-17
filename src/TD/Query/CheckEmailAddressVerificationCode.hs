@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckEmailAddressVerificationCode where
+module TD.Query.CheckEmailAddressVerificationCode
+  (CheckEmailAddressVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks the email address verification code for Telegram Passport @code Verification code to check
-data CheckEmailAddressVerificationCode = CheckEmailAddressVerificationCode
-  { -- |
-    code :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks the email address verification code for Telegram Passport
+data CheckEmailAddressVerificationCode
+  = CheckEmailAddressVerificationCode
+    { code :: Maybe T.Text -- ^ Verification code to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckEmailAddressVerificationCode where
-  show
+instance I.ShortShow CheckEmailAddressVerificationCode where
+  shortShow
     CheckEmailAddressVerificationCode
       { code = code_
-      } =
-      "CheckEmailAddressVerificationCode"
-        ++ U.cc
-          [ U.p "code" code_
+      }
+        = "CheckEmailAddressVerificationCode"
+          ++ I.cc
+          [ "code" `I.p` code_
           ]
 
-instance T.ToJSON CheckEmailAddressVerificationCode where
+instance AT.ToJSON CheckEmailAddressVerificationCode where
   toJSON
     CheckEmailAddressVerificationCode
       { code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkEmailAddressVerificationCode",
-          "code" A..= code_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkEmailAddressVerificationCode"
+          , "code"  A..= code_
+          ]
+

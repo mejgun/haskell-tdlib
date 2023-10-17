@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AssignAppStoreTransaction where
+module TD.Query.AssignAppStoreTransaction
+  (AssignAppStoreTransaction(..)
+  , defaultAssignAppStoreTransaction
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
-import qualified Utils as U
 
--- |
--- Informs server about a purchase through App Store. For official applications only @receipt App Store receipt @purpose Transaction purpose
-data AssignAppStoreTransaction = AssignAppStoreTransaction
-  { -- |
-    purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose,
-    -- |
-    receipt :: Maybe String
-  }
-  deriving (Eq)
+-- | Informs server about a purchase through App Store. For official applications only
+data AssignAppStoreTransaction
+  = AssignAppStoreTransaction
+    { receipt :: Maybe BS.ByteString                           -- ^ App Store receipt
+    , purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose
+    }
+  deriving (Eq, Show)
 
-instance Show AssignAppStoreTransaction where
-  show
+instance I.ShortShow AssignAppStoreTransaction where
+  shortShow
     AssignAppStoreTransaction
-      { purpose = purpose_,
-        receipt = receipt_
-      } =
-      "AssignAppStoreTransaction"
-        ++ U.cc
-          [ U.p "purpose" purpose_,
-            U.p "receipt" receipt_
+      { receipt = receipt_
+      , purpose = purpose_
+      }
+        = "AssignAppStoreTransaction"
+          ++ I.cc
+          [ "receipt" `I.p` receipt_
+          , "purpose" `I.p` purpose_
           ]
 
-instance T.ToJSON AssignAppStoreTransaction where
+instance AT.ToJSON AssignAppStoreTransaction where
   toJSON
     AssignAppStoreTransaction
-      { purpose = purpose_,
-        receipt = receipt_
-      } =
-      A.object
-        [ "@type" A..= T.String "assignAppStoreTransaction",
-          "purpose" A..= purpose_,
-          "receipt" A..= receipt_
-        ]
+      { receipt = receipt_
+      , purpose = purpose_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "assignAppStoreTransaction"
+          , "receipt" A..= fmap I.writeBytes  receipt_
+          , "purpose" A..= purpose_
+          ]
+
+defaultAssignAppStoreTransaction :: AssignAppStoreTransaction
+defaultAssignAppStoreTransaction =
+  AssignAppStoreTransaction
+    { receipt = Nothing
+    , purpose = Nothing
+    }
+

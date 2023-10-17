@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveFavoriteSticker where
+module TD.Query.RemoveFavoriteSticker
+  (RemoveFavoriteSticker(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Removes a sticker from the list of favorite stickers @sticker Sticker file to delete from the list
-data RemoveFavoriteSticker = RemoveFavoriteSticker
-  { -- |
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Removes a sticker from the list of favorite stickers
+data RemoveFavoriteSticker
+  = RemoveFavoriteSticker
+    { sticker :: Maybe InputFile.InputFile -- ^ Sticker file to delete from the list
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveFavoriteSticker where
-  show
+instance I.ShortShow RemoveFavoriteSticker where
+  shortShow
     RemoveFavoriteSticker
       { sticker = sticker_
-      } =
-      "RemoveFavoriteSticker"
-        ++ U.cc
-          [ U.p "sticker" sticker_
+      }
+        = "RemoveFavoriteSticker"
+          ++ I.cc
+          [ "sticker" `I.p` sticker_
           ]
 
-instance T.ToJSON RemoveFavoriteSticker where
+instance AT.ToJSON RemoveFavoriteSticker where
   toJSON
     RemoveFavoriteSticker
       { sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeFavoriteSticker",
-          "sticker" A..= sticker_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "removeFavoriteSticker"
+          , "sticker" A..= sticker_
+          ]
+

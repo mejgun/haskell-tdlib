@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetPassportElement where
+module TD.Query.SetPassportElement
+  (SetPassportElement(..)
+  , defaultSetPassportElement
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputPassportElement as InputPassportElement
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
-data SetPassportElement = SetPassportElement
-  { -- | The 2-step verification password of the current user
-    password :: Maybe String,
-    -- | Input Telegram Passport element
-    element :: Maybe InputPassportElement.InputPassportElement
-  }
-  deriving (Eq)
+-- | Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
+data SetPassportElement
+  = SetPassportElement
+    { element  :: Maybe InputPassportElement.InputPassportElement -- ^ Input Telegram Passport element
+    , password :: Maybe T.Text                                    -- ^ The 2-step verification password of the current user
+    }
+  deriving (Eq, Show)
 
-instance Show SetPassportElement where
-  show
+instance I.ShortShow SetPassportElement where
+  shortShow
     SetPassportElement
-      { password = password_,
-        element = element_
-      } =
-      "SetPassportElement"
-        ++ U.cc
-          [ U.p "password" password_,
-            U.p "element" element_
+      { element  = element_
+      , password = password_
+      }
+        = "SetPassportElement"
+          ++ I.cc
+          [ "element"  `I.p` element_
+          , "password" `I.p` password_
           ]
 
-instance T.ToJSON SetPassportElement where
+instance AT.ToJSON SetPassportElement where
   toJSON
     SetPassportElement
-      { password = password_,
-        element = element_
-      } =
-      A.object
-        [ "@type" A..= T.String "setPassportElement",
-          "password" A..= password_,
-          "element" A..= element_
-        ]
+      { element  = element_
+      , password = password_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setPassportElement"
+          , "element"  A..= element_
+          , "password" A..= password_
+          ]
+
+defaultSetPassportElement :: SetPassportElement
+defaultSetPassportElement =
+  SetPassportElement
+    { element  = Nothing
+    , password = Nothing
+    }
+

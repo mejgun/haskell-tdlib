@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Hashtags where
+module TD.Data.Hashtags
+  (Hashtags(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data Hashtags = -- | Contains a list of hashtags @hashtags A list of hashtags
-  Hashtags
-  { -- |
-    hashtags :: Maybe [String]
-  }
-  deriving (Eq)
+data Hashtags
+  = Hashtags -- ^ Contains a list of hashtags
+    { hashtags :: Maybe [T.Text] -- ^ A list of hashtags
+    }
+  deriving (Eq, Show)
 
-instance Show Hashtags where
-  show
-    Hashtags
-      { hashtags = hashtags_
-      } =
-      "Hashtags"
-        ++ U.cc
-          [ U.p "hashtags" hashtags_
-          ]
+instance I.ShortShow Hashtags where
+  shortShow Hashtags
+    { hashtags = hashtags_
+    }
+      = "Hashtags"
+        ++ I.cc
+        [ "hashtags" `I.p` hashtags_
+        ]
 
-instance T.FromJSON Hashtags where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Hashtags where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "hashtags" -> parseHashtags v
-      _ -> mempty
+      _          -> mempty
+    
     where
-      parseHashtags :: A.Value -> T.Parser Hashtags
+      parseHashtags :: A.Value -> AT.Parser Hashtags
       parseHashtags = A.withObject "Hashtags" $ \o -> do
-        hashtags_ <- o A..:? "hashtags"
-        return $ Hashtags {hashtags = hashtags_}
+        hashtags_ <- o A..:?  "hashtags"
+        pure $ Hashtags
+          { hashtags = hashtags_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Hashtags where
-  toJSON
-    Hashtags
-      { hashtags = hashtags_
-      } =
-      A.object
-        [ "@type" A..= T.String "hashtags",
-          "hashtags" A..= hashtags_
-        ]

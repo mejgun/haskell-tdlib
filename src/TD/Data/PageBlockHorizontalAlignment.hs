@@ -1,66 +1,34 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PageBlockHorizontalAlignment where
+module TD.Data.PageBlockHorizontalAlignment
+  (PageBlockHorizontalAlignment(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a horizontal alignment of a table cell content
 data PageBlockHorizontalAlignment
-  = -- | The content must be left-aligned
-    PageBlockHorizontalAlignmentLeft
-  | -- | The content must be center-aligned
-    PageBlockHorizontalAlignmentCenter
-  | -- | The content must be right-aligned
-    PageBlockHorizontalAlignmentRight
-  deriving (Eq)
+  = PageBlockHorizontalAlignmentLeft -- ^ The content must be left-aligned
+  | PageBlockHorizontalAlignmentCenter -- ^ The content must be center-aligned
+  | PageBlockHorizontalAlignmentRight -- ^ The content must be right-aligned
+  deriving (Eq, Show)
 
-instance Show PageBlockHorizontalAlignment where
-  show PageBlockHorizontalAlignmentLeft =
-    "PageBlockHorizontalAlignmentLeft"
-      ++ U.cc
-        []
-  show PageBlockHorizontalAlignmentCenter =
-    "PageBlockHorizontalAlignmentCenter"
-      ++ U.cc
-        []
-  show PageBlockHorizontalAlignmentRight =
-    "PageBlockHorizontalAlignmentRight"
-      ++ U.cc
-        []
+instance I.ShortShow PageBlockHorizontalAlignment where
+  shortShow PageBlockHorizontalAlignmentLeft
+      = "PageBlockHorizontalAlignmentLeft"
+  shortShow PageBlockHorizontalAlignmentCenter
+      = "PageBlockHorizontalAlignmentCenter"
+  shortShow PageBlockHorizontalAlignmentRight
+      = "PageBlockHorizontalAlignmentRight"
 
-instance T.FromJSON PageBlockHorizontalAlignment where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PageBlockHorizontalAlignment where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "pageBlockHorizontalAlignmentLeft" -> parsePageBlockHorizontalAlignmentLeft v
-      "pageBlockHorizontalAlignmentCenter" -> parsePageBlockHorizontalAlignmentCenter v
-      "pageBlockHorizontalAlignmentRight" -> parsePageBlockHorizontalAlignmentRight v
-      _ -> mempty
-    where
-      parsePageBlockHorizontalAlignmentLeft :: A.Value -> T.Parser PageBlockHorizontalAlignment
-      parsePageBlockHorizontalAlignmentLeft = A.withObject "PageBlockHorizontalAlignmentLeft" $ \_ -> return PageBlockHorizontalAlignmentLeft
-
-      parsePageBlockHorizontalAlignmentCenter :: A.Value -> T.Parser PageBlockHorizontalAlignment
-      parsePageBlockHorizontalAlignmentCenter = A.withObject "PageBlockHorizontalAlignmentCenter" $ \_ -> return PageBlockHorizontalAlignmentCenter
-
-      parsePageBlockHorizontalAlignmentRight :: A.Value -> T.Parser PageBlockHorizontalAlignment
-      parsePageBlockHorizontalAlignmentRight = A.withObject "PageBlockHorizontalAlignmentRight" $ \_ -> return PageBlockHorizontalAlignmentRight
+      "pageBlockHorizontalAlignmentLeft"   -> pure PageBlockHorizontalAlignmentLeft
+      "pageBlockHorizontalAlignmentCenter" -> pure PageBlockHorizontalAlignmentCenter
+      "pageBlockHorizontalAlignmentRight"  -> pure PageBlockHorizontalAlignmentRight
+      _                                    -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON PageBlockHorizontalAlignment where
-  toJSON PageBlockHorizontalAlignmentLeft =
-    A.object
-      [ "@type" A..= T.String "pageBlockHorizontalAlignmentLeft"
-      ]
-  toJSON PageBlockHorizontalAlignmentCenter =
-    A.object
-      [ "@type" A..= T.String "pageBlockHorizontalAlignmentCenter"
-      ]
-  toJSON PageBlockHorizontalAlignmentRight =
-    A.object
-      [ "@type" A..= T.String "pageBlockHorizontalAlignmentRight"
-      ]

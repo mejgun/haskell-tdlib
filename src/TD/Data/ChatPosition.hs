@@ -1,73 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatPosition where
+module TD.Data.ChatPosition
+  (ChatPosition(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.ChatSource as ChatSource
-import qualified Utils as U
 
--- |
-data ChatPosition = -- | Describes a position of a chat in a chat list
-  ChatPosition
-  { -- | Source of the chat in the chat list; may be null
-    source :: Maybe ChatSource.ChatSource,
-    -- | True, if the chat is pinned in the chat list
-    is_pinned :: Maybe Bool,
-    -- | A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
-    order :: Maybe Int,
-    -- | The chat list
-    list :: Maybe ChatList.ChatList
-  }
-  deriving (Eq)
+data ChatPosition
+  = ChatPosition -- ^ Describes a position of a chat in a chat list
+    { list      :: Maybe ChatList.ChatList     -- ^ The chat list
+    , order     :: Maybe Int                   -- ^ A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
+    , is_pinned :: Maybe Bool                  -- ^ True, if the chat is pinned in the chat list
+    , source    :: Maybe ChatSource.ChatSource -- ^ Source of the chat in the chat list; may be null
+    }
+  deriving (Eq, Show)
 
-instance Show ChatPosition where
-  show
-    ChatPosition
-      { source = source_,
-        is_pinned = is_pinned_,
-        order = order_,
-        list = list_
-      } =
-      "ChatPosition"
-        ++ U.cc
-          [ U.p "source" source_,
-            U.p "is_pinned" is_pinned_,
-            U.p "order" order_,
-            U.p "list" list_
-          ]
+instance I.ShortShow ChatPosition where
+  shortShow ChatPosition
+    { list      = list_
+    , order     = order_
+    , is_pinned = is_pinned_
+    , source    = source_
+    }
+      = "ChatPosition"
+        ++ I.cc
+        [ "list"      `I.p` list_
+        , "order"     `I.p` order_
+        , "is_pinned" `I.p` is_pinned_
+        , "source"    `I.p` source_
+        ]
 
-instance T.FromJSON ChatPosition where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatPosition where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatPosition" -> parseChatPosition v
-      _ -> mempty
+      _              -> mempty
+    
     where
-      parseChatPosition :: A.Value -> T.Parser ChatPosition
+      parseChatPosition :: A.Value -> AT.Parser ChatPosition
       parseChatPosition = A.withObject "ChatPosition" $ \o -> do
-        source_ <- o A..:? "source"
-        is_pinned_ <- o A..:? "is_pinned"
-        order_ <- U.rm <$> (o A..:? "order" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        list_ <- o A..:? "list"
-        return $ ChatPosition {source = source_, is_pinned = is_pinned_, order = order_, list = list_}
+        list_      <- o A..:?                       "list"
+        order_     <- fmap I.readInt64 <$> o A..:?  "order"
+        is_pinned_ <- o A..:?                       "is_pinned"
+        source_    <- o A..:?                       "source"
+        pure $ ChatPosition
+          { list      = list_
+          , order     = order_
+          , is_pinned = is_pinned_
+          , source    = source_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatPosition where
-  toJSON
-    ChatPosition
-      { source = source_,
-        is_pinned = is_pinned_,
-        order = order_,
-        list = list_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatPosition",
-          "source" A..= source_,
-          "is_pinned" A..= is_pinned_,
-          "order" A..= U.toS order_,
-          "list" A..= list_
-        ]

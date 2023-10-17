@@ -1,67 +1,52 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PremiumState where
+module TD.Data.PremiumState
+  (PremiumState(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
 import qualified TD.Data.PremiumStatePaymentOption as PremiumStatePaymentOption
-import qualified Utils as U
+import qualified TD.Data.PremiumFeaturePromotionAnimation as PremiumFeaturePromotionAnimation
 
--- |
-data PremiumState = -- | Contains state of Telegram Premium subscription and promotion videos for Premium features
-  PremiumState
-  { -- | The list of available promotion animations for Premium features
-    animations :: Maybe [PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation],
-    -- | The list of available options for buying Telegram Premium
-    payment_options :: Maybe [PremiumStatePaymentOption.PremiumStatePaymentOption],
-    -- | Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
-    state :: Maybe FormattedText.FormattedText
-  }
-  deriving (Eq)
+data PremiumState
+  = PremiumState -- ^ Contains state of Telegram Premium subscription and promotion videos for Premium features
+    { state           :: Maybe FormattedText.FormattedText                                         -- ^ Text description of the state of the current Premium subscription; may be empty if the current user has no Telegram Premium subscription
+    , payment_options :: Maybe [PremiumStatePaymentOption.PremiumStatePaymentOption]               -- ^ The list of available options for buying Telegram Premium
+    , animations      :: Maybe [PremiumFeaturePromotionAnimation.PremiumFeaturePromotionAnimation] -- ^ The list of available promotion animations for Premium features
+    }
+  deriving (Eq, Show)
 
-instance Show PremiumState where
-  show
-    PremiumState
-      { animations = animations_,
-        payment_options = payment_options_,
-        state = state_
-      } =
-      "PremiumState"
-        ++ U.cc
-          [ U.p "animations" animations_,
-            U.p "payment_options" payment_options_,
-            U.p "state" state_
-          ]
+instance I.ShortShow PremiumState where
+  shortShow PremiumState
+    { state           = state_
+    , payment_options = payment_options_
+    , animations      = animations_
+    }
+      = "PremiumState"
+        ++ I.cc
+        [ "state"           `I.p` state_
+        , "payment_options" `I.p` payment_options_
+        , "animations"      `I.p` animations_
+        ]
 
-instance T.FromJSON PremiumState where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PremiumState where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "premiumState" -> parsePremiumState v
-      _ -> mempty
+      _              -> mempty
+    
     where
-      parsePremiumState :: A.Value -> T.Parser PremiumState
+      parsePremiumState :: A.Value -> AT.Parser PremiumState
       parsePremiumState = A.withObject "PremiumState" $ \o -> do
-        animations_ <- o A..:? "animations"
-        payment_options_ <- o A..:? "payment_options"
-        state_ <- o A..:? "state"
-        return $ PremiumState {animations = animations_, payment_options = payment_options_, state = state_}
+        state_           <- o A..:?  "state"
+        payment_options_ <- o A..:?  "payment_options"
+        animations_      <- o A..:?  "animations"
+        pure $ PremiumState
+          { state           = state_
+          , payment_options = payment_options_
+          , animations      = animations_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PremiumState where
-  toJSON
-    PremiumState
-      { animations = animations_,
-        payment_options = payment_options_,
-        state = state_
-      } =
-      A.object
-        [ "@type" A..= T.String "premiumState",
-          "animations" A..= animations_,
-          "payment_options" A..= payment_options_,
-          "state" A..= state_
-        ]

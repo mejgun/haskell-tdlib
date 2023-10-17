@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatMessageByDate where
+module TD.Query.GetChatMessageByDate
+  (GetChatMessageByDate(..)
+  , defaultGetChatMessageByDate
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the last message sent in a chat no later than the specified date @chat_id Chat identifier @date Point in time (Unix timestamp) relative to which to search for messages
-data GetChatMessageByDate = GetChatMessageByDate
-  { -- |
-    date :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the last message sent in a chat no later than the specified date
+data GetChatMessageByDate
+  = GetChatMessageByDate
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    , date    :: Maybe Int -- ^ Point in time (Unix timestamp) relative to which to search for messages
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatMessageByDate where
-  show
+instance I.ShortShow GetChatMessageByDate where
+  shortShow
     GetChatMessageByDate
-      { date = date_,
-        chat_id = chat_id_
-      } =
-      "GetChatMessageByDate"
-        ++ U.cc
-          [ U.p "date" date_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , date    = date_
+      }
+        = "GetChatMessageByDate"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "date"    `I.p` date_
           ]
 
-instance T.ToJSON GetChatMessageByDate where
+instance AT.ToJSON GetChatMessageByDate where
   toJSON
     GetChatMessageByDate
-      { date = date_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatMessageByDate",
-          "date" A..= date_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , date    = date_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatMessageByDate"
+          , "chat_id" A..= chat_id_
+          , "date"    A..= date_
+          ]
+
+defaultGetChatMessageByDate :: GetChatMessageByDate
+defaultGetChatMessageByDate =
+  GetChatMessageByDate
+    { chat_id = Nothing
+    , date    = Nothing
+    }
+

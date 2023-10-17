@@ -1,55 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendCallRating where
+module TD.Query.SendCallRating
+  (SendCallRating(..)
+  , defaultSendCallRating
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.CallProblem as CallProblem
-import qualified Utils as U
 
--- |
--- Sends a call rating
-data SendCallRating = SendCallRating
-  { -- | List of the exact types of problems with the call, specified by the user
-    problems :: Maybe [CallProblem.CallProblem],
-    -- | An optional user comment if the rating is less than 5
-    comment :: Maybe String,
-    -- | Call rating; 1-5
-    rating :: Maybe Int,
-    -- | Call identifier
-    call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a call rating
+data SendCallRating
+  = SendCallRating
+    { call_id  :: Maybe Int                       -- ^ Call identifier
+    , rating   :: Maybe Int                       -- ^ Call rating; 1-5
+    , comment  :: Maybe T.Text                    -- ^ An optional user comment if the rating is less than 5
+    , problems :: Maybe [CallProblem.CallProblem] -- ^ List of the exact types of problems with the call, specified by the user
+    }
+  deriving (Eq, Show)
 
-instance Show SendCallRating where
-  show
+instance I.ShortShow SendCallRating where
+  shortShow
     SendCallRating
-      { problems = problems_,
-        comment = comment_,
-        rating = rating_,
-        call_id = call_id_
-      } =
-      "SendCallRating"
-        ++ U.cc
-          [ U.p "problems" problems_,
-            U.p "comment" comment_,
-            U.p "rating" rating_,
-            U.p "call_id" call_id_
+      { call_id  = call_id_
+      , rating   = rating_
+      , comment  = comment_
+      , problems = problems_
+      }
+        = "SendCallRating"
+          ++ I.cc
+          [ "call_id"  `I.p` call_id_
+          , "rating"   `I.p` rating_
+          , "comment"  `I.p` comment_
+          , "problems" `I.p` problems_
           ]
 
-instance T.ToJSON SendCallRating where
+instance AT.ToJSON SendCallRating where
   toJSON
     SendCallRating
-      { problems = problems_,
-        comment = comment_,
-        rating = rating_,
-        call_id = call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendCallRating",
-          "problems" A..= problems_,
-          "comment" A..= comment_,
-          "rating" A..= rating_,
-          "call_id" A..= call_id_
-        ]
+      { call_id  = call_id_
+      , rating   = rating_
+      , comment  = comment_
+      , problems = problems_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "sendCallRating"
+          , "call_id"  A..= call_id_
+          , "rating"   A..= rating_
+          , "comment"  A..= comment_
+          , "problems" A..= problems_
+          ]
+
+defaultSendCallRating :: SendCallRating
+defaultSendCallRating =
+  SendCallRating
+    { call_id  = Nothing
+    , rating   = Nothing
+    , comment  = Nothing
+    , problems = Nothing
+    }
+

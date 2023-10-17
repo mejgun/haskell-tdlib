@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatMessageSender where
+module TD.Data.ChatMessageSender
+  (ChatMessageSender(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
-data ChatMessageSender = -- | Represents a message sender, which can be used to send messages in a chat @sender Available message senders @needs_premium True, if Telegram Premium is needed to use the message sender
-  ChatMessageSender
-  { -- |
-    needs_premium :: Maybe Bool,
-    -- |
-    sender :: Maybe MessageSender.MessageSender
-  }
-  deriving (Eq)
+data ChatMessageSender
+  = ChatMessageSender -- ^ Represents a message sender, which can be used to send messages in a chat
+    { sender        :: Maybe MessageSender.MessageSender -- ^ Available message senders
+    , needs_premium :: Maybe Bool                        -- ^ True, if Telegram Premium is needed to use the message sender
+    }
+  deriving (Eq, Show)
 
-instance Show ChatMessageSender where
-  show
-    ChatMessageSender
-      { needs_premium = needs_premium_,
-        sender = sender_
-      } =
-      "ChatMessageSender"
-        ++ U.cc
-          [ U.p "needs_premium" needs_premium_,
-            U.p "sender" sender_
-          ]
+instance I.ShortShow ChatMessageSender where
+  shortShow ChatMessageSender
+    { sender        = sender_
+    , needs_premium = needs_premium_
+    }
+      = "ChatMessageSender"
+        ++ I.cc
+        [ "sender"        `I.p` sender_
+        , "needs_premium" `I.p` needs_premium_
+        ]
 
-instance T.FromJSON ChatMessageSender where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatMessageSender where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatMessageSender" -> parseChatMessageSender v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseChatMessageSender :: A.Value -> T.Parser ChatMessageSender
+      parseChatMessageSender :: A.Value -> AT.Parser ChatMessageSender
       parseChatMessageSender = A.withObject "ChatMessageSender" $ \o -> do
-        needs_premium_ <- o A..:? "needs_premium"
-        sender_ <- o A..:? "sender"
-        return $ ChatMessageSender {needs_premium = needs_premium_, sender = sender_}
+        sender_        <- o A..:?  "sender"
+        needs_premium_ <- o A..:?  "needs_premium"
+        pure $ ChatMessageSender
+          { sender        = sender_
+          , needs_premium = needs_premium_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatMessageSender where
-  toJSON
-    ChatMessageSender
-      { needs_premium = needs_premium_,
-        sender = sender_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatMessageSender",
-          "needs_premium" A..= needs_premium_,
-          "sender" A..= sender_
-        ]

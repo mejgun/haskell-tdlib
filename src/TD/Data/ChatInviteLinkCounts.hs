@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatInviteLinkCounts where
+module TD.Data.ChatInviteLinkCounts
+  (ChatInviteLinkCounts(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatInviteLinkCount as ChatInviteLinkCount
-import qualified Utils as U
 
--- |
-data ChatInviteLinkCounts = -- | Contains a list of chat invite link counts @invite_link_counts List of invite link counts
-  ChatInviteLinkCounts
-  { -- |
-    invite_link_counts :: Maybe [ChatInviteLinkCount.ChatInviteLinkCount]
-  }
-  deriving (Eq)
+data ChatInviteLinkCounts
+  = ChatInviteLinkCounts -- ^ Contains a list of chat invite link counts
+    { invite_link_counts :: Maybe [ChatInviteLinkCount.ChatInviteLinkCount] -- ^ List of invite link counts
+    }
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkCounts where
-  show
-    ChatInviteLinkCounts
-      { invite_link_counts = invite_link_counts_
-      } =
-      "ChatInviteLinkCounts"
-        ++ U.cc
-          [ U.p "invite_link_counts" invite_link_counts_
-          ]
+instance I.ShortShow ChatInviteLinkCounts where
+  shortShow ChatInviteLinkCounts
+    { invite_link_counts = invite_link_counts_
+    }
+      = "ChatInviteLinkCounts"
+        ++ I.cc
+        [ "invite_link_counts" `I.p` invite_link_counts_
+        ]
 
-instance T.FromJSON ChatInviteLinkCounts where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatInviteLinkCounts where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatInviteLinkCounts" -> parseChatInviteLinkCounts v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseChatInviteLinkCounts :: A.Value -> T.Parser ChatInviteLinkCounts
+      parseChatInviteLinkCounts :: A.Value -> AT.Parser ChatInviteLinkCounts
       parseChatInviteLinkCounts = A.withObject "ChatInviteLinkCounts" $ \o -> do
-        invite_link_counts_ <- o A..:? "invite_link_counts"
-        return $ ChatInviteLinkCounts {invite_link_counts = invite_link_counts_}
+        invite_link_counts_ <- o A..:?  "invite_link_counts"
+        pure $ ChatInviteLinkCounts
+          { invite_link_counts = invite_link_counts_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatInviteLinkCounts where
-  toJSON
-    ChatInviteLinkCounts
-      { invite_link_counts = invite_link_counts_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatInviteLinkCounts",
-          "invite_link_counts" A..= invite_link_counts_
-        ]

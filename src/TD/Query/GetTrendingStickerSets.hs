@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetTrendingStickerSets where
+module TD.Query.GetTrendingStickerSets
+  (GetTrendingStickerSets(..)
+  , defaultGetTrendingStickerSets
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
-import qualified Utils as U
 
--- |
--- Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
-data GetTrendingStickerSets = GetTrendingStickerSets
-  { -- | The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
-    limit :: Maybe Int,
-    -- | The offset from which to return the sticker sets; must be non-negative
-    offset :: Maybe Int,
-    -- | Type of the sticker sets to return
-    sticker_type :: Maybe StickerType.StickerType
-  }
-  deriving (Eq)
+-- | Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
+data GetTrendingStickerSets
+  = GetTrendingStickerSets
+    { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
+    , offset       :: Maybe Int                     -- ^ The offset from which to return the sticker sets; must be non-negative
+    , limit        :: Maybe Int                     -- ^ The maximum number of sticker sets to be returned; up to 100. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+    }
+  deriving (Eq, Show)
 
-instance Show GetTrendingStickerSets where
-  show
+instance I.ShortShow GetTrendingStickerSets where
+  shortShow
     GetTrendingStickerSets
-      { limit = limit_,
-        offset = offset_,
-        sticker_type = sticker_type_
-      } =
-      "GetTrendingStickerSets"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "sticker_type" sticker_type_
+      { sticker_type = sticker_type_
+      , offset       = offset_
+      , limit        = limit_
+      }
+        = "GetTrendingStickerSets"
+          ++ I.cc
+          [ "sticker_type" `I.p` sticker_type_
+          , "offset"       `I.p` offset_
+          , "limit"        `I.p` limit_
           ]
 
-instance T.ToJSON GetTrendingStickerSets where
+instance AT.ToJSON GetTrendingStickerSets where
   toJSON
     GetTrendingStickerSets
-      { limit = limit_,
-        offset = offset_,
-        sticker_type = sticker_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getTrendingStickerSets",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "sticker_type" A..= sticker_type_
-        ]
+      { sticker_type = sticker_type_
+      , offset       = offset_
+      , limit        = limit_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "getTrendingStickerSets"
+          , "sticker_type" A..= sticker_type_
+          , "offset"       A..= offset_
+          , "limit"        A..= limit_
+          ]
+
+defaultGetTrendingStickerSets :: GetTrendingStickerSets
+defaultGetTrendingStickerSets =
+  GetTrendingStickerSets
+    { sticker_type = Nothing
+    , offset       = Nothing
+    , limit        = Nothing
+    }
+

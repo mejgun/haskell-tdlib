@@ -1,57 +1,65 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Error where
+module TD.Data.Error
+  ( Error(..)    
+  , defaultError 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data Error = -- | An object of this type can be returned on every function call, in case of an error
-  Error
-  { -- | Error message; subject to future changes
-    message :: Maybe String,
-    -- | Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
-    code :: Maybe Int
-  }
-  deriving (Eq)
+data Error
+  = Error -- ^ An object of this type can be returned on every function call, in case of an error
+    { code    :: Maybe Int    -- ^ Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
+    , message :: Maybe T.Text -- ^ Error message; subject to future changes
+    }
+  deriving (Eq, Show)
 
-instance Show Error where
-  show
-    Error
-      { message = message_,
-        code = code_
-      } =
-      "Error"
-        ++ U.cc
-          [ U.p "message" message_,
-            U.p "code" code_
-          ]
+instance I.ShortShow Error where
+  shortShow Error
+    { code    = code_
+    , message = message_
+    }
+      = "Error"
+        ++ I.cc
+        [ "code"    `I.p` code_
+        , "message" `I.p` message_
+        ]
 
-instance T.FromJSON Error where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Error where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "error" -> parseError v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parseError :: A.Value -> T.Parser Error
+      parseError :: A.Value -> AT.Parser Error
       parseError = A.withObject "Error" $ \o -> do
-        message_ <- o A..:? "message"
-        code_ <- o A..:? "code"
-        return $ Error {message = message_, code = code_}
+        code_    <- o A..:?  "code"
+        message_ <- o A..:?  "message"
+        pure $ Error
+          { code    = code_
+          , message = message_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Error where
-  toJSON
-    Error
-      { message = message_,
-        code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "error",
-          "message" A..= message_,
-          "code" A..= code_
+instance AT.ToJSON Error where
+  toJSON Error
+    { code    = code_
+    , message = message_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "error"
+        , "code"    A..= code_
+        , "message" A..= message_
         ]
+
+defaultError :: Error
+defaultError =
+  Error
+    { code    = Nothing
+    , message = Nothing
+    }
+

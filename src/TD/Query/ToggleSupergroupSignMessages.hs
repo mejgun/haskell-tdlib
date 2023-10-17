@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleSupergroupSignMessages where
+module TD.Query.ToggleSupergroupSignMessages
+  (ToggleSupergroupSignMessages(..)
+  , defaultToggleSupergroupSignMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right @supergroup_id Identifier of the channel @sign_messages New value of sign_messages
-data ToggleSupergroupSignMessages = ToggleSupergroupSignMessages
-  { -- |
-    sign_messages :: Maybe Bool,
-    -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+data ToggleSupergroupSignMessages
+  = ToggleSupergroupSignMessages
+    { supergroup_id :: Maybe Int  -- ^ Identifier of the channel
+    , sign_messages :: Maybe Bool -- ^ New value of sign_messages
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupSignMessages where
-  show
+instance I.ShortShow ToggleSupergroupSignMessages where
+  shortShow
     ToggleSupergroupSignMessages
-      { sign_messages = sign_messages_,
-        supergroup_id = supergroup_id_
-      } =
-      "ToggleSupergroupSignMessages"
-        ++ U.cc
-          [ U.p "sign_messages" sign_messages_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id = supergroup_id_
+      , sign_messages = sign_messages_
+      }
+        = "ToggleSupergroupSignMessages"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
+          , "sign_messages" `I.p` sign_messages_
           ]
 
-instance T.ToJSON ToggleSupergroupSignMessages where
+instance AT.ToJSON ToggleSupergroupSignMessages where
   toJSON
     ToggleSupergroupSignMessages
-      { sign_messages = sign_messages_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleSupergroupSignMessages",
-          "sign_messages" A..= sign_messages_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id = supergroup_id_
+      , sign_messages = sign_messages_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "toggleSupergroupSignMessages"
+          , "supergroup_id" A..= supergroup_id_
+          , "sign_messages" A..= sign_messages_
+          ]
+
+defaultToggleSupergroupSignMessages :: ToggleSupergroupSignMessages
+defaultToggleSupergroupSignMessages =
+  ToggleSupergroupSignMessages
+    { supergroup_id = Nothing
+    , sign_messages = Nothing
+    }
+

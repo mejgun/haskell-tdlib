@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageSenders where
+module TD.Data.MessageSenders
+  (MessageSenders(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
-data MessageSenders = -- | Represents a list of message senders @total_count Approximate total number of messages senders found @senders List of message senders
-  MessageSenders
-  { -- |
-    senders :: Maybe [MessageSender.MessageSender],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data MessageSenders
+  = MessageSenders -- ^ Represents a list of message senders
+    { total_count :: Maybe Int                           -- ^ Approximate total number of messages senders found
+    , senders     :: Maybe [MessageSender.MessageSender] -- ^ List of message senders
+    }
+  deriving (Eq, Show)
 
-instance Show MessageSenders where
-  show
-    MessageSenders
-      { senders = senders_,
-        total_count = total_count_
-      } =
-      "MessageSenders"
-        ++ U.cc
-          [ U.p "senders" senders_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow MessageSenders where
+  shortShow MessageSenders
+    { total_count = total_count_
+    , senders     = senders_
+    }
+      = "MessageSenders"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "senders"     `I.p` senders_
+        ]
 
-instance T.FromJSON MessageSenders where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageSenders where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageSenders" -> parseMessageSenders v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseMessageSenders :: A.Value -> T.Parser MessageSenders
+      parseMessageSenders :: A.Value -> AT.Parser MessageSenders
       parseMessageSenders = A.withObject "MessageSenders" $ \o -> do
-        senders_ <- o A..:? "senders"
-        total_count_ <- o A..:? "total_count"
-        return $ MessageSenders {senders = senders_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        senders_     <- o A..:?  "senders"
+        pure $ MessageSenders
+          { total_count = total_count_
+          , senders     = senders_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageSenders where
-  toJSON
-    MessageSenders
-      { senders = senders_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSenders",
-          "senders" A..= senders_,
-          "total_count" A..= total_count_
-        ]

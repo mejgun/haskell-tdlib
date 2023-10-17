@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.FilePart where
+module TD.Data.FilePart
+  (FilePart(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
-data FilePart = -- | Contains a part of a file @data File bytes
-  FilePart
-  { -- |
-    _data :: Maybe String
-  }
-  deriving (Eq)
+data FilePart
+  = FilePart -- ^ Contains a part of a file
+    { _data :: Maybe BS.ByteString -- ^ File bytes
+    }
+  deriving (Eq, Show)
 
-instance Show FilePart where
-  show
-    FilePart
-      { _data = _data_
-      } =
-      "FilePart"
-        ++ U.cc
-          [ U.p "_data" _data_
-          ]
+instance I.ShortShow FilePart where
+  shortShow FilePart
+    { _data = _data_
+    }
+      = "FilePart"
+        ++ I.cc
+        [ "_data" `I.p` _data_
+        ]
 
-instance T.FromJSON FilePart where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON FilePart where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "filePart" -> parseFilePart v
-      _ -> mempty
+      _          -> mempty
+    
     where
-      parseFilePart :: A.Value -> T.Parser FilePart
+      parseFilePart :: A.Value -> AT.Parser FilePart
       parseFilePart = A.withObject "FilePart" $ \o -> do
-        _data_ <- o A..:? "data"
-        return $ FilePart {_data = _data_}
+        _data_ <- fmap I.readBytes <$> o A..:?  "data"
+        pure $ FilePart
+          { _data = _data_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON FilePart where
-  toJSON
-    FilePart
-      { _data = _data_
-      } =
-      A.object
-        [ "@type" A..= T.String "filePart",
-          "data" A..= _data_
-        ]

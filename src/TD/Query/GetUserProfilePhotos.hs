@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetUserProfilePhotos where
+module TD.Query.GetUserProfilePhotos
+  (GetUserProfilePhotos(..)
+  , defaultGetUserProfilePhotos
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the profile photos of a user. Personal and public photo aren't returned @user_id User identifier @offset The number of photos to skip; must be non-negative @limit The maximum number of photos to be returned; up to 100
-data GetUserProfilePhotos = GetUserProfilePhotos
-  { -- |
-    limit :: Maybe Int,
-    -- |
-    offset :: Maybe Int,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the profile photos of a user. Personal and public photo aren't returned
+data GetUserProfilePhotos
+  = GetUserProfilePhotos
+    { user_id :: Maybe Int -- ^ User identifier
+    , offset  :: Maybe Int -- ^ The number of photos to skip; must be non-negative
+    , limit   :: Maybe Int -- ^ The maximum number of photos to be returned; up to 100
+    }
+  deriving (Eq, Show)
 
-instance Show GetUserProfilePhotos where
-  show
+instance I.ShortShow GetUserProfilePhotos where
+  shortShow
     GetUserProfilePhotos
-      { limit = limit_,
-        offset = offset_,
-        user_id = user_id_
-      } =
-      "GetUserProfilePhotos"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "user_id" user_id_
+      { user_id = user_id_
+      , offset  = offset_
+      , limit   = limit_
+      }
+        = "GetUserProfilePhotos"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "offset"  `I.p` offset_
+          , "limit"   `I.p` limit_
           ]
 
-instance T.ToJSON GetUserProfilePhotos where
+instance AT.ToJSON GetUserProfilePhotos where
   toJSON
     GetUserProfilePhotos
-      { limit = limit_,
-        offset = offset_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getUserProfilePhotos",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "user_id" A..= user_id_
-        ]
+      { user_id = user_id_
+      , offset  = offset_
+      , limit   = limit_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getUserProfilePhotos"
+          , "user_id" A..= user_id_
+          , "offset"  A..= offset_
+          , "limit"   A..= limit_
+          ]
+
+defaultGetUserProfilePhotos :: GetUserProfilePhotos
+defaultGetUserProfilePhotos =
+  GetUserProfilePhotos
+    { user_id = Nothing
+    , offset  = Nothing
+    , limit   = Nothing
+    }
+

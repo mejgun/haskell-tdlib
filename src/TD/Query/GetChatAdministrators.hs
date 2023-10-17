@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatAdministrators where
+module TD.Query.GetChatAdministrators
+  (GetChatAdministrators(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns a list of administrators of the chat with their custom titles @chat_id Chat identifier
-data GetChatAdministrators = GetChatAdministrators
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns a list of administrators of the chat with their custom titles
+data GetChatAdministrators
+  = GetChatAdministrators
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatAdministrators where
-  show
+instance I.ShortShow GetChatAdministrators where
+  shortShow
     GetChatAdministrators
       { chat_id = chat_id_
-      } =
-      "GetChatAdministrators"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChatAdministrators"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChatAdministrators where
+instance AT.ToJSON GetChatAdministrators where
   toJSON
     GetChatAdministrators
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatAdministrators",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatAdministrators"
+          , "chat_id" A..= chat_id_
+          ]
+

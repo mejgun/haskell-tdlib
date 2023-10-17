@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TestVectorIntObject where
+module TD.Data.TestVectorIntObject
+  (TestVectorIntObject(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TestInt as TestInt
-import qualified Utils as U
 
--- |
-data TestVectorIntObject = -- | A simple object containing a vector of objects that hold a number; for testing only @value Vector of objects
-  TestVectorIntObject
-  { -- |
-    value :: Maybe [TestInt.TestInt]
-  }
-  deriving (Eq)
+data TestVectorIntObject
+  = TestVectorIntObject -- ^ A simple object containing a vector of objects that hold a number; for testing only
+    { value :: Maybe [TestInt.TestInt] -- ^ Vector of objects
+    }
+  deriving (Eq, Show)
 
-instance Show TestVectorIntObject where
-  show
-    TestVectorIntObject
-      { value = value_
-      } =
-      "TestVectorIntObject"
-        ++ U.cc
-          [ U.p "value" value_
-          ]
+instance I.ShortShow TestVectorIntObject where
+  shortShow TestVectorIntObject
+    { value = value_
+    }
+      = "TestVectorIntObject"
+        ++ I.cc
+        [ "value" `I.p` value_
+        ]
 
-instance T.FromJSON TestVectorIntObject where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TestVectorIntObject where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "testVectorIntObject" -> parseTestVectorIntObject v
-      _ -> mempty
+      _                     -> mempty
+    
     where
-      parseTestVectorIntObject :: A.Value -> T.Parser TestVectorIntObject
+      parseTestVectorIntObject :: A.Value -> AT.Parser TestVectorIntObject
       parseTestVectorIntObject = A.withObject "TestVectorIntObject" $ \o -> do
-        value_ <- o A..:? "value"
-        return $ TestVectorIntObject {value = value_}
+        value_ <- o A..:?  "value"
+        pure $ TestVectorIntObject
+          { value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TestVectorIntObject where
-  toJSON
-    TestVectorIntObject
-      { value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "testVectorIntObject",
-          "value" A..= value_
-        ]

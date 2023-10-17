@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.BankCardActionOpenUrl where
+module TD.Data.BankCardActionOpenUrl
+  (BankCardActionOpenUrl(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data BankCardActionOpenUrl = -- | Describes an action associated with a bank card number @text Action text @url The URL to be opened
-  BankCardActionOpenUrl
-  { -- |
-    url :: Maybe String,
-    -- |
-    text :: Maybe String
-  }
-  deriving (Eq)
+data BankCardActionOpenUrl
+  = BankCardActionOpenUrl -- ^ Describes an action associated with a bank card number
+    { text :: Maybe T.Text -- ^ Action text
+    , url  :: Maybe T.Text -- ^ The URL to be opened
+    }
+  deriving (Eq, Show)
 
-instance Show BankCardActionOpenUrl where
-  show
-    BankCardActionOpenUrl
-      { url = url_,
-        text = text_
-      } =
-      "BankCardActionOpenUrl"
-        ++ U.cc
-          [ U.p "url" url_,
-            U.p "text" text_
-          ]
+instance I.ShortShow BankCardActionOpenUrl where
+  shortShow BankCardActionOpenUrl
+    { text = text_
+    , url  = url_
+    }
+      = "BankCardActionOpenUrl"
+        ++ I.cc
+        [ "text" `I.p` text_
+        , "url"  `I.p` url_
+        ]
 
-instance T.FromJSON BankCardActionOpenUrl where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON BankCardActionOpenUrl where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "bankCardActionOpenUrl" -> parseBankCardActionOpenUrl v
-      _ -> mempty
+      _                       -> mempty
+    
     where
-      parseBankCardActionOpenUrl :: A.Value -> T.Parser BankCardActionOpenUrl
+      parseBankCardActionOpenUrl :: A.Value -> AT.Parser BankCardActionOpenUrl
       parseBankCardActionOpenUrl = A.withObject "BankCardActionOpenUrl" $ \o -> do
-        url_ <- o A..:? "url"
-        text_ <- o A..:? "text"
-        return $ BankCardActionOpenUrl {url = url_, text = text_}
+        text_ <- o A..:?  "text"
+        url_  <- o A..:?  "url"
+        pure $ BankCardActionOpenUrl
+          { text = text_
+          , url  = url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON BankCardActionOpenUrl where
-  toJSON
-    BankCardActionOpenUrl
-      { url = url_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "bankCardActionOpenUrl",
-          "url" A..= url_,
-          "text" A..= text_
-        ]

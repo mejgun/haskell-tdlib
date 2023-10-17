@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleSupergroupJoinToSendMessages where
+module TD.Query.ToggleSupergroupJoinToSendMessages
+  (ToggleSupergroupJoinToSendMessages(..)
+  , defaultToggleSupergroupJoinToSendMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right @supergroup_id Identifier of the supergroup @join_to_send_messages New value of join_to_send_messages
-data ToggleSupergroupJoinToSendMessages = ToggleSupergroupJoinToSendMessages
-  { -- |
-    join_to_send_messages :: Maybe Bool,
-    -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+data ToggleSupergroupJoinToSendMessages
+  = ToggleSupergroupJoinToSendMessages
+    { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup
+    , join_to_send_messages :: Maybe Bool -- ^ New value of join_to_send_messages
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleSupergroupJoinToSendMessages where
-  show
+instance I.ShortShow ToggleSupergroupJoinToSendMessages where
+  shortShow
     ToggleSupergroupJoinToSendMessages
-      { join_to_send_messages = join_to_send_messages_,
-        supergroup_id = supergroup_id_
-      } =
-      "ToggleSupergroupJoinToSendMessages"
-        ++ U.cc
-          [ U.p "join_to_send_messages" join_to_send_messages_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id         = supergroup_id_
+      , join_to_send_messages = join_to_send_messages_
+      }
+        = "ToggleSupergroupJoinToSendMessages"
+          ++ I.cc
+          [ "supergroup_id"         `I.p` supergroup_id_
+          , "join_to_send_messages" `I.p` join_to_send_messages_
           ]
 
-instance T.ToJSON ToggleSupergroupJoinToSendMessages where
+instance AT.ToJSON ToggleSupergroupJoinToSendMessages where
   toJSON
     ToggleSupergroupJoinToSendMessages
-      { join_to_send_messages = join_to_send_messages_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleSupergroupJoinToSendMessages",
-          "join_to_send_messages" A..= join_to_send_messages_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id         = supergroup_id_
+      , join_to_send_messages = join_to_send_messages_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "toggleSupergroupJoinToSendMessages"
+          , "supergroup_id"         A..= supergroup_id_
+          , "join_to_send_messages" A..= join_to_send_messages_
+          ]
+
+defaultToggleSupergroupJoinToSendMessages :: ToggleSupergroupJoinToSendMessages
+defaultToggleSupergroupJoinToSendMessages =
+  ToggleSupergroupJoinToSendMessages
+    { supergroup_id         = Nothing
+    , join_to_send_messages = Nothing
+    }
+

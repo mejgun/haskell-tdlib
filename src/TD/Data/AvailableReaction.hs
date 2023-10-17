@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.AvailableReaction where
+module TD.Data.AvailableReaction
+  (AvailableReaction(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
 
--- |
-data AvailableReaction = -- | Represents an available reaction @type Type of the reaction @needs_premium True, if Telegram Premium is needed to send the reaction
-  AvailableReaction
-  { -- |
-    needs_premium :: Maybe Bool,
-    -- |
-    _type :: Maybe ReactionType.ReactionType
-  }
-  deriving (Eq)
+data AvailableReaction
+  = AvailableReaction -- ^ Represents an available reaction
+    { _type         :: Maybe ReactionType.ReactionType -- ^ Type of the reaction
+    , needs_premium :: Maybe Bool                      -- ^ True, if Telegram Premium is needed to send the reaction
+    }
+  deriving (Eq, Show)
 
-instance Show AvailableReaction where
-  show
-    AvailableReaction
-      { needs_premium = needs_premium_,
-        _type = _type_
-      } =
-      "AvailableReaction"
-        ++ U.cc
-          [ U.p "needs_premium" needs_premium_,
-            U.p "_type" _type_
-          ]
+instance I.ShortShow AvailableReaction where
+  shortShow AvailableReaction
+    { _type         = _type_
+    , needs_premium = needs_premium_
+    }
+      = "AvailableReaction"
+        ++ I.cc
+        [ "_type"         `I.p` _type_
+        , "needs_premium" `I.p` needs_premium_
+        ]
 
-instance T.FromJSON AvailableReaction where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON AvailableReaction where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "availableReaction" -> parseAvailableReaction v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseAvailableReaction :: A.Value -> T.Parser AvailableReaction
+      parseAvailableReaction :: A.Value -> AT.Parser AvailableReaction
       parseAvailableReaction = A.withObject "AvailableReaction" $ \o -> do
-        needs_premium_ <- o A..:? "needs_premium"
-        _type_ <- o A..:? "type"
-        return $ AvailableReaction {needs_premium = needs_premium_, _type = _type_}
+        _type_         <- o A..:?  "type"
+        needs_premium_ <- o A..:?  "needs_premium"
+        pure $ AvailableReaction
+          { _type         = _type_
+          , needs_premium = needs_premium_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON AvailableReaction where
-  toJSON
-    AvailableReaction
-      { needs_premium = needs_premium_,
-        _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "availableReaction",
-          "needs_premium" A..= needs_premium_,
-          "type" A..= _type_
-        ]

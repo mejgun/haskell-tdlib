@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendCallSignalingData where
+module TD.Query.SendCallSignalingData
+  (SendCallSignalingData(..)
+  , defaultSendCallSignalingData
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
--- Sends call signaling data @call_id Call identifier @data The data
-data SendCallSignalingData = SendCallSignalingData
-  { -- |
-    _data :: Maybe String,
-    -- |
-    call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends call signaling data
+data SendCallSignalingData
+  = SendCallSignalingData
+    { call_id :: Maybe Int           -- ^ Call identifier
+    , _data   :: Maybe BS.ByteString -- ^ The data
+    }
+  deriving (Eq, Show)
 
-instance Show SendCallSignalingData where
-  show
+instance I.ShortShow SendCallSignalingData where
+  shortShow
     SendCallSignalingData
-      { _data = _data_,
-        call_id = call_id_
-      } =
-      "SendCallSignalingData"
-        ++ U.cc
-          [ U.p "_data" _data_,
-            U.p "call_id" call_id_
+      { call_id = call_id_
+      , _data   = _data_
+      }
+        = "SendCallSignalingData"
+          ++ I.cc
+          [ "call_id" `I.p` call_id_
+          , "_data"   `I.p` _data_
           ]
 
-instance T.ToJSON SendCallSignalingData where
+instance AT.ToJSON SendCallSignalingData where
   toJSON
     SendCallSignalingData
-      { _data = _data_,
-        call_id = call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendCallSignalingData",
-          "data" A..= _data_,
-          "call_id" A..= call_id_
-        ]
+      { call_id = call_id_
+      , _data   = _data_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "sendCallSignalingData"
+          , "call_id" A..= call_id_
+          , "data"    A..= fmap I.writeBytes  _data_
+          ]
+
+defaultSendCallSignalingData :: SendCallSignalingData
+defaultSendCallSignalingData =
+  SendCallSignalingData
+    { call_id = Nothing
+    , _data   = Nothing
+    }
+

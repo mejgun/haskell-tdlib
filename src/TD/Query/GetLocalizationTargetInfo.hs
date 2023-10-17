@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetLocalizationTargetInfo where
+module TD.Query.GetLocalizationTargetInfo
+  (GetLocalizationTargetInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization @only_local Pass true to get only locally available information without sending network requests
-data GetLocalizationTargetInfo = GetLocalizationTargetInfo
-  { -- |
-    only_local :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+data GetLocalizationTargetInfo
+  = GetLocalizationTargetInfo
+    { only_local :: Maybe Bool -- ^ Pass true to get only locally available information without sending network requests
+    }
+  deriving (Eq, Show)
 
-instance Show GetLocalizationTargetInfo where
-  show
+instance I.ShortShow GetLocalizationTargetInfo where
+  shortShow
     GetLocalizationTargetInfo
       { only_local = only_local_
-      } =
-      "GetLocalizationTargetInfo"
-        ++ U.cc
-          [ U.p "only_local" only_local_
+      }
+        = "GetLocalizationTargetInfo"
+          ++ I.cc
+          [ "only_local" `I.p` only_local_
           ]
 
-instance T.ToJSON GetLocalizationTargetInfo where
+instance AT.ToJSON GetLocalizationTargetInfo where
   toJSON
     GetLocalizationTargetInfo
       { only_local = only_local_
-      } =
-      A.object
-        [ "@type" A..= T.String "getLocalizationTargetInfo",
-          "only_local" A..= only_local_
-        ]
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getLocalizationTargetInfo"
+          , "only_local" A..= only_local_
+          ]
+

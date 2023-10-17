@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMenuButton where
+module TD.Query.GetMenuButton
+  (GetMenuButton(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns menu button set by the bot for the given user; for bots only @user_id Identifier of the user or 0 to get the default menu button
-data GetMenuButton = GetMenuButton
-  { -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns menu button set by the bot for the given user; for bots only
+data GetMenuButton
+  = GetMenuButton
+    { user_id :: Maybe Int -- ^ Identifier of the user or 0 to get the default menu button
+    }
+  deriving (Eq, Show)
 
-instance Show GetMenuButton where
-  show
+instance I.ShortShow GetMenuButton where
+  shortShow
     GetMenuButton
       { user_id = user_id_
-      } =
-      "GetMenuButton"
-        ++ U.cc
-          [ U.p "user_id" user_id_
+      }
+        = "GetMenuButton"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
           ]
 
-instance T.ToJSON GetMenuButton where
+instance AT.ToJSON GetMenuButton where
   toJSON
     GetMenuButton
       { user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMenuButton",
-          "user_id" A..= user_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getMenuButton"
+          , "user_id" A..= user_id_
+          ]
+

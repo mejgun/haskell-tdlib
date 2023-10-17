@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ImportContacts where
+module TD.Query.ImportContacts
+  (ImportContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Contact as Contact
-import qualified Utils as U
 
--- |
--- Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored @contacts The list of contacts to import or edit; contacts' vCard are ignored and are not imported
-data ImportContacts = ImportContacts
-  { -- |
-    contacts :: Maybe [Contact.Contact]
-  }
-  deriving (Eq)
+-- | Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
+data ImportContacts
+  = ImportContacts
+    { contacts :: Maybe [Contact.Contact] -- ^ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
+    }
+  deriving (Eq, Show)
 
-instance Show ImportContacts where
-  show
+instance I.ShortShow ImportContacts where
+  shortShow
     ImportContacts
       { contacts = contacts_
-      } =
-      "ImportContacts"
-        ++ U.cc
-          [ U.p "contacts" contacts_
+      }
+        = "ImportContacts"
+          ++ I.cc
+          [ "contacts" `I.p` contacts_
           ]
 
-instance T.ToJSON ImportContacts where
+instance AT.ToJSON ImportContacts where
   toJSON
     ImportContacts
       { contacts = contacts_
-      } =
-      A.object
-        [ "@type" A..= T.String "importContacts",
-          "contacts" A..= contacts_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "importContacts"
+          , "contacts" A..= contacts_
+          ]
+

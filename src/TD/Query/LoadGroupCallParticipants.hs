@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.LoadGroupCallParticipants where
+module TD.Query.LoadGroupCallParticipants
+  (LoadGroupCallParticipants(..)
+  , defaultLoadGroupCallParticipants
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
-data LoadGroupCallParticipants = LoadGroupCallParticipants
-  { -- | The maximum number of participants to load; up to 100
-    limit :: Maybe Int,
-    -- | Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
+data LoadGroupCallParticipants
+  = LoadGroupCallParticipants
+    { group_call_id :: Maybe Int -- ^ Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
+    , limit         :: Maybe Int -- ^ The maximum number of participants to load; up to 100
+    }
+  deriving (Eq, Show)
 
-instance Show LoadGroupCallParticipants where
-  show
+instance I.ShortShow LoadGroupCallParticipants where
+  shortShow
     LoadGroupCallParticipants
-      { limit = limit_,
-        group_call_id = group_call_id_
-      } =
-      "LoadGroupCallParticipants"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id = group_call_id_
+      , limit         = limit_
+      }
+        = "LoadGroupCallParticipants"
+          ++ I.cc
+          [ "group_call_id" `I.p` group_call_id_
+          , "limit"         `I.p` limit_
           ]
 
-instance T.ToJSON LoadGroupCallParticipants where
+instance AT.ToJSON LoadGroupCallParticipants where
   toJSON
     LoadGroupCallParticipants
-      { limit = limit_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "loadGroupCallParticipants",
-          "limit" A..= limit_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id = group_call_id_
+      , limit         = limit_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "loadGroupCallParticipants"
+          , "group_call_id" A..= group_call_id_
+          , "limit"         A..= limit_
+          ]
+
+defaultLoadGroupCallParticipants :: LoadGroupCallParticipants
+defaultLoadGroupCallParticipants =
+  LoadGroupCallParticipants
+    { group_call_id = Nothing
+    , limit         = Nothing
+    }
+

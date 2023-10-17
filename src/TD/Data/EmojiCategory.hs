@@ -1,65 +1,51 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EmojiCategory where
+module TD.Data.EmojiCategory
+  (EmojiCategory(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Sticker as Sticker
-import qualified Utils as U
 
--- |
-data EmojiCategory = -- | Contains a list of similar emoji to search for in getStickers and searchStickers
-  EmojiCategory
-  { -- | List of emojis in the category
-    emojis :: Maybe [String],
-    -- | Custom emoji sticker, which represents icon of the category
-    icon :: Maybe Sticker.Sticker,
-    -- | Name of the category
-    name :: Maybe String
-  }
-  deriving (Eq)
+data EmojiCategory
+  = EmojiCategory -- ^ Contains a list of similar emoji to search for in getStickers and searchStickers
+    { name   :: Maybe T.Text          -- ^ Name of the category
+    , icon   :: Maybe Sticker.Sticker -- ^ Custom emoji sticker, which represents icon of the category
+    , emojis :: Maybe [T.Text]        -- ^ List of emojis in the category
+    }
+  deriving (Eq, Show)
 
-instance Show EmojiCategory where
-  show
-    EmojiCategory
-      { emojis = emojis_,
-        icon = icon_,
-        name = name_
-      } =
-      "EmojiCategory"
-        ++ U.cc
-          [ U.p "emojis" emojis_,
-            U.p "icon" icon_,
-            U.p "name" name_
-          ]
+instance I.ShortShow EmojiCategory where
+  shortShow EmojiCategory
+    { name   = name_
+    , icon   = icon_
+    , emojis = emojis_
+    }
+      = "EmojiCategory"
+        ++ I.cc
+        [ "name"   `I.p` name_
+        , "icon"   `I.p` icon_
+        , "emojis" `I.p` emojis_
+        ]
 
-instance T.FromJSON EmojiCategory where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EmojiCategory where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "emojiCategory" -> parseEmojiCategory v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parseEmojiCategory :: A.Value -> T.Parser EmojiCategory
+      parseEmojiCategory :: A.Value -> AT.Parser EmojiCategory
       parseEmojiCategory = A.withObject "EmojiCategory" $ \o -> do
-        emojis_ <- o A..:? "emojis"
-        icon_ <- o A..:? "icon"
-        name_ <- o A..:? "name"
-        return $ EmojiCategory {emojis = emojis_, icon = icon_, name = name_}
+        name_   <- o A..:?  "name"
+        icon_   <- o A..:?  "icon"
+        emojis_ <- o A..:?  "emojis"
+        pure $ EmojiCategory
+          { name   = name_
+          , icon   = icon_
+          , emojis = emojis_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON EmojiCategory where
-  toJSON
-    EmojiCategory
-      { emojis = emojis_,
-        icon = icon_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "emojiCategory",
-          "emojis" A..= emojis_,
-          "icon" A..= icon_,
-          "name" A..= name_
-        ]

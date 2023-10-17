@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SearchContacts where
+module TD.Query.SearchContacts
+  (SearchContacts(..)
+  , defaultSearchContacts
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Searches for the specified query in the first names, last names and usernames of the known user contacts
-data SearchContacts = SearchContacts
-  { -- | The maximum number of users to be returned
-    limit :: Maybe Int,
-    -- | Query to search for; may be empty to return all contacts
-    query :: Maybe String
-  }
-  deriving (Eq)
+-- | Searches for the specified query in the first names, last names and usernames of the known user contacts
+data SearchContacts
+  = SearchContacts
+    { query :: Maybe T.Text -- ^ Query to search for; may be empty to return all contacts
+    , limit :: Maybe Int    -- ^ The maximum number of users to be returned
+    }
+  deriving (Eq, Show)
 
-instance Show SearchContacts where
-  show
+instance I.ShortShow SearchContacts where
+  shortShow
     SearchContacts
-      { limit = limit_,
-        query = query_
-      } =
-      "SearchContacts"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "query" query_
+      { query = query_
+      , limit = limit_
+      }
+        = "SearchContacts"
+          ++ I.cc
+          [ "query" `I.p` query_
+          , "limit" `I.p` limit_
           ]
 
-instance T.ToJSON SearchContacts where
+instance AT.ToJSON SearchContacts where
   toJSON
     SearchContacts
-      { limit = limit_,
-        query = query_
-      } =
-      A.object
-        [ "@type" A..= T.String "searchContacts",
-          "limit" A..= limit_,
-          "query" A..= query_
-        ]
+      { query = query_
+      , limit = limit_
+      }
+        = A.object
+          [ "@type" A..= AT.String "searchContacts"
+          , "query" A..= query_
+          , "limit" A..= limit_
+          ]
+
+defaultSearchContacts :: SearchContacts
+defaultSearchContacts =
+  SearchContacts
+    { query = Nothing
+    , limit = Nothing
+    }
+

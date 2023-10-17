@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetUserPrivacySettingRules where
+module TD.Query.GetUserPrivacySettingRules
+  (GetUserPrivacySettingRules(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
-import qualified Utils as U
 
--- |
--- Returns the current privacy settings @setting The privacy setting
-data GetUserPrivacySettingRules = GetUserPrivacySettingRules
-  { -- |
-    setting :: Maybe UserPrivacySetting.UserPrivacySetting
-  }
-  deriving (Eq)
+-- | Returns the current privacy settings
+data GetUserPrivacySettingRules
+  = GetUserPrivacySettingRules
+    { setting :: Maybe UserPrivacySetting.UserPrivacySetting -- ^ The privacy setting
+    }
+  deriving (Eq, Show)
 
-instance Show GetUserPrivacySettingRules where
-  show
+instance I.ShortShow GetUserPrivacySettingRules where
+  shortShow
     GetUserPrivacySettingRules
       { setting = setting_
-      } =
-      "GetUserPrivacySettingRules"
-        ++ U.cc
-          [ U.p "setting" setting_
+      }
+        = "GetUserPrivacySettingRules"
+          ++ I.cc
+          [ "setting" `I.p` setting_
           ]
 
-instance T.ToJSON GetUserPrivacySettingRules where
+instance AT.ToJSON GetUserPrivacySettingRules where
   toJSON
     GetUserPrivacySettingRules
       { setting = setting_
-      } =
-      A.object
-        [ "@type" A..= T.String "getUserPrivacySettingRules",
-          "setting" A..= setting_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getUserPrivacySettingRules"
+          , "setting" A..= setting_
+          ]
+

@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.DatabaseStatistics where
+module TD.Data.DatabaseStatistics
+  (DatabaseStatistics(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data DatabaseStatistics = -- | Contains database statistics
-  DatabaseStatistics
-  { -- | Database statistics in an unspecified human-readable format
-    statistics :: Maybe String
-  }
-  deriving (Eq)
+data DatabaseStatistics
+  = DatabaseStatistics -- ^ Contains database statistics
+    { statistics :: Maybe T.Text -- ^ Database statistics in an unspecified human-readable format
+    }
+  deriving (Eq, Show)
 
-instance Show DatabaseStatistics where
-  show
-    DatabaseStatistics
-      { statistics = statistics_
-      } =
-      "DatabaseStatistics"
-        ++ U.cc
-          [ U.p "statistics" statistics_
-          ]
+instance I.ShortShow DatabaseStatistics where
+  shortShow DatabaseStatistics
+    { statistics = statistics_
+    }
+      = "DatabaseStatistics"
+        ++ I.cc
+        [ "statistics" `I.p` statistics_
+        ]
 
-instance T.FromJSON DatabaseStatistics where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON DatabaseStatistics where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "databaseStatistics" -> parseDatabaseStatistics v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parseDatabaseStatistics :: A.Value -> T.Parser DatabaseStatistics
+      parseDatabaseStatistics :: A.Value -> AT.Parser DatabaseStatistics
       parseDatabaseStatistics = A.withObject "DatabaseStatistics" $ \o -> do
-        statistics_ <- o A..:? "statistics"
-        return $ DatabaseStatistics {statistics = statistics_}
+        statistics_ <- o A..:?  "statistics"
+        pure $ DatabaseStatistics
+          { statistics = statistics_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON DatabaseStatistics where
-  toJSON
-    DatabaseStatistics
-      { statistics = statistics_
-      } =
-      A.object
-        [ "@type" A..= T.String "databaseStatistics",
-          "statistics" A..= statistics_
-        ]

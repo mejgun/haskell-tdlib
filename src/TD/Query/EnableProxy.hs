@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EnableProxy where
+module TD.Query.EnableProxy
+  (EnableProxy(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization @proxy_id Proxy identifier
-data EnableProxy = EnableProxy
-  { -- |
-    proxy_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
+data EnableProxy
+  = EnableProxy
+    { proxy_id :: Maybe Int -- ^ Proxy identifier
+    }
+  deriving (Eq, Show)
 
-instance Show EnableProxy where
-  show
+instance I.ShortShow EnableProxy where
+  shortShow
     EnableProxy
       { proxy_id = proxy_id_
-      } =
-      "EnableProxy"
-        ++ U.cc
-          [ U.p "proxy_id" proxy_id_
+      }
+        = "EnableProxy"
+          ++ I.cc
+          [ "proxy_id" `I.p` proxy_id_
           ]
 
-instance T.ToJSON EnableProxy where
+instance AT.ToJSON EnableProxy where
   toJSON
     EnableProxy
       { proxy_id = proxy_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "enableProxy",
-          "proxy_id" A..= proxy_id_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "enableProxy"
+          , "proxy_id" A..= proxy_id_
+          ]
+

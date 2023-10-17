@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatsForChatFolderInviteLink where
+module TD.Query.GetChatsForChatFolderInviteLink
+  (GetChatsForChatFolderInviteLink(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link @chat_folder_id Chat folder identifier
-data GetChatsForChatFolderInviteLink = GetChatsForChatFolderInviteLink
-  { -- |
-    chat_folder_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+data GetChatsForChatFolderInviteLink
+  = GetChatsForChatFolderInviteLink
+    { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatsForChatFolderInviteLink where
-  show
+instance I.ShortShow GetChatsForChatFolderInviteLink where
+  shortShow
     GetChatsForChatFolderInviteLink
       { chat_folder_id = chat_folder_id_
-      } =
-      "GetChatsForChatFolderInviteLink"
-        ++ U.cc
-          [ U.p "chat_folder_id" chat_folder_id_
+      }
+        = "GetChatsForChatFolderInviteLink"
+          ++ I.cc
+          [ "chat_folder_id" `I.p` chat_folder_id_
           ]
 
-instance T.ToJSON GetChatsForChatFolderInviteLink where
+instance AT.ToJSON GetChatsForChatFolderInviteLink where
   toJSON
     GetChatsForChatFolderInviteLink
       { chat_folder_id = chat_folder_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatsForChatFolderInviteLink",
-          "chat_folder_id" A..= chat_folder_id_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getChatsForChatFolderInviteLink"
+          , "chat_folder_id" A..= chat_folder_id_
+          ]
+

@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddChatToList where
+module TD.Query.AddChatToList
+  (AddChatToList(..)
+  , defaultAddChatToList
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
-import qualified Utils as U
 
--- |
--- Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
-data AddChatToList = AddChatToList
-  { -- | The chat list. Use getChatListsToAddChat to get suitable chat lists
-    chat_list :: Maybe ChatList.ChatList,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
+data AddChatToList
+  = AddChatToList
+    { chat_id   :: Maybe Int               -- ^ Chat identifier
+    , chat_list :: Maybe ChatList.ChatList -- ^ The chat list. Use getChatListsToAddChat to get suitable chat lists
+    }
+  deriving (Eq, Show)
 
-instance Show AddChatToList where
-  show
+instance I.ShortShow AddChatToList where
+  shortShow
     AddChatToList
-      { chat_list = chat_list_,
-        chat_id = chat_id_
-      } =
-      "AddChatToList"
-        ++ U.cc
-          [ U.p "chat_list" chat_list_,
-            U.p "chat_id" chat_id_
+      { chat_id   = chat_id_
+      , chat_list = chat_list_
+      }
+        = "AddChatToList"
+          ++ I.cc
+          [ "chat_id"   `I.p` chat_id_
+          , "chat_list" `I.p` chat_list_
           ]
 
-instance T.ToJSON AddChatToList where
+instance AT.ToJSON AddChatToList where
   toJSON
     AddChatToList
-      { chat_list = chat_list_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addChatToList",
-          "chat_list" A..= chat_list_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id   = chat_id_
+      , chat_list = chat_list_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "addChatToList"
+          , "chat_id"   A..= chat_id_
+          , "chat_list" A..= chat_list_
+          ]
+
+defaultAddChatToList :: AddChatToList
+defaultAddChatToList =
+  AddChatToList
+    { chat_id   = Nothing
+    , chat_list = Nothing
+    }
+

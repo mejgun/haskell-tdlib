@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestSquareInt where
+module TD.Query.TestSquareInt
+  (TestSquareInt(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the squared received number; for testing only. This is an offline method. Can be called before authorization @x Number to square
-data TestSquareInt = TestSquareInt
-  { -- |
-    x :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
+data TestSquareInt
+  = TestSquareInt
+    { x :: Maybe Int -- ^ Number to square
+    }
+  deriving (Eq, Show)
 
-instance Show TestSquareInt where
-  show
+instance I.ShortShow TestSquareInt where
+  shortShow
     TestSquareInt
       { x = x_
-      } =
-      "TestSquareInt"
-        ++ U.cc
-          [ U.p "x" x_
+      }
+        = "TestSquareInt"
+          ++ I.cc
+          [ "x" `I.p` x_
           ]
 
-instance T.ToJSON TestSquareInt where
+instance AT.ToJSON TestSquareInt where
   toJSON
     TestSquareInt
       { x = x_
-      } =
-      A.object
-        [ "@type" A..= T.String "testSquareInt",
-          "x" A..= x_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "testSquareInt"
+          , "x"     A..= x_
+          ]
+

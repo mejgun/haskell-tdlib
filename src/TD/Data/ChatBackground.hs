@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatBackground where
+module TD.Data.ChatBackground
+  (ChatBackground(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Background as Background
-import qualified Utils as U
 
--- |
-data ChatBackground = -- | Describes a background set for a specific chat @background The background @dark_theme_dimming Dimming of the background in dark themes, as a percentage; 0-100
-  ChatBackground
-  { -- |
-    dark_theme_dimming :: Maybe Int,
-    -- |
-    background :: Maybe Background.Background
-  }
-  deriving (Eq)
+data ChatBackground
+  = ChatBackground -- ^ Describes a background set for a specific chat
+    { background         :: Maybe Background.Background -- ^ The background
+    , dark_theme_dimming :: Maybe Int                   -- ^ Dimming of the background in dark themes, as a percentage; 0-100
+    }
+  deriving (Eq, Show)
 
-instance Show ChatBackground where
-  show
-    ChatBackground
-      { dark_theme_dimming = dark_theme_dimming_,
-        background = background_
-      } =
-      "ChatBackground"
-        ++ U.cc
-          [ U.p "dark_theme_dimming" dark_theme_dimming_,
-            U.p "background" background_
-          ]
+instance I.ShortShow ChatBackground where
+  shortShow ChatBackground
+    { background         = background_
+    , dark_theme_dimming = dark_theme_dimming_
+    }
+      = "ChatBackground"
+        ++ I.cc
+        [ "background"         `I.p` background_
+        , "dark_theme_dimming" `I.p` dark_theme_dimming_
+        ]
 
-instance T.FromJSON ChatBackground where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatBackground where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatBackground" -> parseChatBackground v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseChatBackground :: A.Value -> T.Parser ChatBackground
+      parseChatBackground :: A.Value -> AT.Parser ChatBackground
       parseChatBackground = A.withObject "ChatBackground" $ \o -> do
-        dark_theme_dimming_ <- o A..:? "dark_theme_dimming"
-        background_ <- o A..:? "background"
-        return $ ChatBackground {dark_theme_dimming = dark_theme_dimming_, background = background_}
+        background_         <- o A..:?  "background"
+        dark_theme_dimming_ <- o A..:?  "dark_theme_dimming"
+        pure $ ChatBackground
+          { background         = background_
+          , dark_theme_dimming = dark_theme_dimming_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatBackground where
-  toJSON
-    ChatBackground
-      { dark_theme_dimming = dark_theme_dimming_,
-        background = background_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatBackground",
-          "dark_theme_dimming" A..= dark_theme_dimming_,
-          "background" A..= background_
-        ]

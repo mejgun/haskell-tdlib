@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveFileFromDownloads where
+module TD.Query.RemoveFileFromDownloads
+  (RemoveFileFromDownloads(..)
+  , defaultRemoveFileFromDownloads
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes a file from the file download list @file_id Identifier of the downloaded file @delete_from_cache Pass true to delete the file from the TDLib file cache
-data RemoveFileFromDownloads = RemoveFileFromDownloads
-  { -- |
-    delete_from_cache :: Maybe Bool,
-    -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes a file from the file download list
+data RemoveFileFromDownloads
+  = RemoveFileFromDownloads
+    { file_id           :: Maybe Int  -- ^ Identifier of the downloaded file
+    , delete_from_cache :: Maybe Bool -- ^ Pass true to delete the file from the TDLib file cache
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveFileFromDownloads where
-  show
+instance I.ShortShow RemoveFileFromDownloads where
+  shortShow
     RemoveFileFromDownloads
-      { delete_from_cache = delete_from_cache_,
-        file_id = file_id_
-      } =
-      "RemoveFileFromDownloads"
-        ++ U.cc
-          [ U.p "delete_from_cache" delete_from_cache_,
-            U.p "file_id" file_id_
+      { file_id           = file_id_
+      , delete_from_cache = delete_from_cache_
+      }
+        = "RemoveFileFromDownloads"
+          ++ I.cc
+          [ "file_id"           `I.p` file_id_
+          , "delete_from_cache" `I.p` delete_from_cache_
           ]
 
-instance T.ToJSON RemoveFileFromDownloads where
+instance AT.ToJSON RemoveFileFromDownloads where
   toJSON
     RemoveFileFromDownloads
-      { delete_from_cache = delete_from_cache_,
-        file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeFileFromDownloads",
-          "delete_from_cache" A..= delete_from_cache_,
-          "file_id" A..= file_id_
-        ]
+      { file_id           = file_id_
+      , delete_from_cache = delete_from_cache_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "removeFileFromDownloads"
+          , "file_id"           A..= file_id_
+          , "delete_from_cache" A..= delete_from_cache_
+          ]
+
+defaultRemoveFileFromDownloads :: RemoveFileFromDownloads
+defaultRemoveFileFromDownloads =
+  RemoveFileFromDownloads
+    { file_id           = Nothing
+    , delete_from_cache = Nothing
+    }
+

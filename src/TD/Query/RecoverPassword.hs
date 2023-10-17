@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RecoverPassword where
+module TD.Query.RecoverPassword
+  (RecoverPassword(..)
+  , defaultRecoverPassword
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
-data RecoverPassword = RecoverPassword
-  { -- | New password hint; may be empty
-    new_hint :: Maybe String,
-    -- | New 2-step verification password of the user; may be empty to remove the password
-    new_password :: Maybe String,
-    -- | Recovery code to check
-    recovery_code :: Maybe String
-  }
-  deriving (Eq)
+-- | Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
+data RecoverPassword
+  = RecoverPassword
+    { recovery_code :: Maybe T.Text -- ^ Recovery code to check
+    , new_password  :: Maybe T.Text -- ^ New 2-step verification password of the user; may be empty to remove the password
+    , new_hint      :: Maybe T.Text -- ^ New password hint; may be empty
+    }
+  deriving (Eq, Show)
 
-instance Show RecoverPassword where
-  show
+instance I.ShortShow RecoverPassword where
+  shortShow
     RecoverPassword
-      { new_hint = new_hint_,
-        new_password = new_password_,
-        recovery_code = recovery_code_
-      } =
-      "RecoverPassword"
-        ++ U.cc
-          [ U.p "new_hint" new_hint_,
-            U.p "new_password" new_password_,
-            U.p "recovery_code" recovery_code_
+      { recovery_code = recovery_code_
+      , new_password  = new_password_
+      , new_hint      = new_hint_
+      }
+        = "RecoverPassword"
+          ++ I.cc
+          [ "recovery_code" `I.p` recovery_code_
+          , "new_password"  `I.p` new_password_
+          , "new_hint"      `I.p` new_hint_
           ]
 
-instance T.ToJSON RecoverPassword where
+instance AT.ToJSON RecoverPassword where
   toJSON
     RecoverPassword
-      { new_hint = new_hint_,
-        new_password = new_password_,
-        recovery_code = recovery_code_
-      } =
-      A.object
-        [ "@type" A..= T.String "recoverPassword",
-          "new_hint" A..= new_hint_,
-          "new_password" A..= new_password_,
-          "recovery_code" A..= recovery_code_
-        ]
+      { recovery_code = recovery_code_
+      , new_password  = new_password_
+      , new_hint      = new_hint_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "recoverPassword"
+          , "recovery_code" A..= recovery_code_
+          , "new_password"  A..= new_password_
+          , "new_hint"      A..= new_hint_
+          ]
+
+defaultRecoverPassword :: RecoverPassword
+defaultRecoverPassword =
+  RecoverPassword
+    { recovery_code = Nothing
+    , new_password  = Nothing
+    , new_hint      = Nothing
+    }
+

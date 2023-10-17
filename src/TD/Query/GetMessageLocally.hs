@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageLocally where
+module TD.Query.GetMessageLocally
+  (GetMessageLocally(..)
+  , defaultGetMessageLocally
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a message, if it is available without sending network request. This is an offline request @chat_id Identifier of the chat the message belongs to @message_id Identifier of the message to get
-data GetMessageLocally = GetMessageLocally
-  { -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a message, if it is available without sending network request. This is an offline request
+data GetMessageLocally
+  = GetMessageLocally
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
+    , message_id :: Maybe Int -- ^ Identifier of the message to get
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageLocally where
-  show
+instance I.ShortShow GetMessageLocally where
+  shortShow
     GetMessageLocally
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageLocally"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessageLocally"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetMessageLocally where
+instance AT.ToJSON GetMessageLocally where
   toJSON
     GetMessageLocally
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageLocally",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageLocally"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetMessageLocally :: GetMessageLocally
+defaultGetMessageLocally =
+  GetMessageLocally
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

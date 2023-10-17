@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPasswordState where
+module TD.Query.GetPasswordState
+  (GetPasswordState(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the current state of 2-step verification
-data GetPasswordState = GetPasswordState
-  {
-  }
-  deriving (Eq)
+-- | Returns the current state of 2-step verification
+data GetPasswordState
+  = GetPasswordState
+  deriving (Eq, Show)
 
-instance Show GetPasswordState where
-  show GetPasswordState =
-    "GetPasswordState"
-      ++ U.cc
-        []
+instance I.ShortShow GetPasswordState where
+  shortShow
+    GetPasswordState
+        = "GetPasswordState"
 
-instance T.ToJSON GetPasswordState where
-  toJSON GetPasswordState =
-    A.object
-      [ "@type" A..= T.String "getPasswordState"
-      ]
+instance AT.ToJSON GetPasswordState where
+  toJSON
+    GetPasswordState
+        = A.object
+          [ "@type" A..= AT.String "getPasswordState"
+          ]
+

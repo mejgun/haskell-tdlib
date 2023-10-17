@@ -1,50 +1,57 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditInlineMessageCaption where
+module TD.Query.EditInlineMessageCaption
+  (EditInlineMessageCaption(..)
+  , defaultEditInlineMessageCaption
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.FormattedText as FormattedText
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
-import qualified Utils as U
+import qualified TD.Data.FormattedText as FormattedText
 
--- |
--- Edits the caption of an inline message sent via a bot; for bots only
-data EditInlineMessageCaption = EditInlineMessageCaption
-  { -- | New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-    caption :: Maybe FormattedText.FormattedText,
-    -- | The new message reply markup; pass null if none
-    reply_markup :: Maybe ReplyMarkup.ReplyMarkup,
-    -- | Inline message identifier
-    inline_message_id :: Maybe String
-  }
-  deriving (Eq)
+-- | Edits the caption of an inline message sent via a bot; for bots only
+data EditInlineMessageCaption
+  = EditInlineMessageCaption
+    { inline_message_id :: Maybe T.Text                      -- ^ Inline message identifier
+    , reply_markup      :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none
+    , caption           :: Maybe FormattedText.FormattedText -- ^ New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
+    }
+  deriving (Eq, Show)
 
-instance Show EditInlineMessageCaption where
-  show
+instance I.ShortShow EditInlineMessageCaption where
+  shortShow
     EditInlineMessageCaption
-      { caption = caption_,
-        reply_markup = reply_markup_,
-        inline_message_id = inline_message_id_
-      } =
-      "EditInlineMessageCaption"
-        ++ U.cc
-          [ U.p "caption" caption_,
-            U.p "reply_markup" reply_markup_,
-            U.p "inline_message_id" inline_message_id_
+      { inline_message_id = inline_message_id_
+      , reply_markup      = reply_markup_
+      , caption           = caption_
+      }
+        = "EditInlineMessageCaption"
+          ++ I.cc
+          [ "inline_message_id" `I.p` inline_message_id_
+          , "reply_markup"      `I.p` reply_markup_
+          , "caption"           `I.p` caption_
           ]
 
-instance T.ToJSON EditInlineMessageCaption where
+instance AT.ToJSON EditInlineMessageCaption where
   toJSON
     EditInlineMessageCaption
-      { caption = caption_,
-        reply_markup = reply_markup_,
-        inline_message_id = inline_message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editInlineMessageCaption",
-          "caption" A..= caption_,
-          "reply_markup" A..= reply_markup_,
-          "inline_message_id" A..= inline_message_id_
-        ]
+      { inline_message_id = inline_message_id_
+      , reply_markup      = reply_markup_
+      , caption           = caption_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "editInlineMessageCaption"
+          , "inline_message_id" A..= inline_message_id_
+          , "reply_markup"      A..= reply_markup_
+          , "caption"           A..= caption_
+          ]
+
+defaultEditInlineMessageCaption :: EditInlineMessageCaption
+defaultEditInlineMessageCaption =
+  EditInlineMessageCaption
+    { inline_message_id = Nothing
+    , reply_markup      = Nothing
+    , caption           = Nothing
+    }
+

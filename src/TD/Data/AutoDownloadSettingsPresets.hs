@@ -1,65 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.AutoDownloadSettingsPresets where
+module TD.Data.AutoDownloadSettingsPresets
+  (AutoDownloadSettingsPresets(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
-import qualified Utils as U
 
--- |
-data AutoDownloadSettingsPresets = -- | Contains auto-download settings presets for the current user
-  AutoDownloadSettingsPresets
-  { -- | Preset with highest settings; supposed to be used by default when connected on Wi-Fi
-    high :: Maybe AutoDownloadSettings.AutoDownloadSettings,
-    -- | Preset with medium settings; supposed to be used by default when using mobile data
-    medium :: Maybe AutoDownloadSettings.AutoDownloadSettings,
-    -- | Preset with lowest settings; supposed to be used by default when roaming
-    low :: Maybe AutoDownloadSettings.AutoDownloadSettings
-  }
-  deriving (Eq)
+data AutoDownloadSettingsPresets
+  = AutoDownloadSettingsPresets -- ^ Contains auto-download settings presets for the current user
+    { low    :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with lowest settings; supposed to be used by default when roaming
+    , medium :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with medium settings; supposed to be used by default when using mobile data
+    , high   :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
+    }
+  deriving (Eq, Show)
 
-instance Show AutoDownloadSettingsPresets where
-  show
-    AutoDownloadSettingsPresets
-      { high = high_,
-        medium = medium_,
-        low = low_
-      } =
-      "AutoDownloadSettingsPresets"
-        ++ U.cc
-          [ U.p "high" high_,
-            U.p "medium" medium_,
-            U.p "low" low_
-          ]
+instance I.ShortShow AutoDownloadSettingsPresets where
+  shortShow AutoDownloadSettingsPresets
+    { low    = low_
+    , medium = medium_
+    , high   = high_
+    }
+      = "AutoDownloadSettingsPresets"
+        ++ I.cc
+        [ "low"    `I.p` low_
+        , "medium" `I.p` medium_
+        , "high"   `I.p` high_
+        ]
 
-instance T.FromJSON AutoDownloadSettingsPresets where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON AutoDownloadSettingsPresets where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "autoDownloadSettingsPresets" -> parseAutoDownloadSettingsPresets v
-      _ -> mempty
+      _                             -> mempty
+    
     where
-      parseAutoDownloadSettingsPresets :: A.Value -> T.Parser AutoDownloadSettingsPresets
+      parseAutoDownloadSettingsPresets :: A.Value -> AT.Parser AutoDownloadSettingsPresets
       parseAutoDownloadSettingsPresets = A.withObject "AutoDownloadSettingsPresets" $ \o -> do
-        high_ <- o A..:? "high"
-        medium_ <- o A..:? "medium"
-        low_ <- o A..:? "low"
-        return $ AutoDownloadSettingsPresets {high = high_, medium = medium_, low = low_}
+        low_    <- o A..:?  "low"
+        medium_ <- o A..:?  "medium"
+        high_   <- o A..:?  "high"
+        pure $ AutoDownloadSettingsPresets
+          { low    = low_
+          , medium = medium_
+          , high   = high_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON AutoDownloadSettingsPresets where
-  toJSON
-    AutoDownloadSettingsPresets
-      { high = high_,
-        medium = medium_,
-        low = low_
-      } =
-      A.object
-        [ "@type" A..= T.String "autoDownloadSettingsPresets",
-          "high" A..= high_,
-          "medium" A..= medium_,
-          "low" A..= low_
-        ]

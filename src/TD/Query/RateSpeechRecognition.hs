@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RateSpeechRecognition where
+module TD.Query.RateSpeechRecognition
+  (RateSpeechRecognition(..)
+  , defaultRateSpeechRecognition
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Rates recognized speech in a video note or a voice note message @chat_id Identifier of the chat to which the message belongs @message_id Identifier of the message @is_good Pass true if the speech recognition is good
-data RateSpeechRecognition = RateSpeechRecognition
-  { -- |
-    is_good :: Maybe Bool,
-    -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Rates recognized speech in a video note or a voice note message
+data RateSpeechRecognition
+  = RateSpeechRecognition
+    { chat_id    :: Maybe Int  -- ^ Identifier of the chat to which the message belongs
+    , message_id :: Maybe Int  -- ^ Identifier of the message
+    , is_good    :: Maybe Bool -- ^ Pass true if the speech recognition is good
+    }
+  deriving (Eq, Show)
 
-instance Show RateSpeechRecognition where
-  show
+instance I.ShortShow RateSpeechRecognition where
+  shortShow
     RateSpeechRecognition
-      { is_good = is_good_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "RateSpeechRecognition"
-        ++ U.cc
-          [ U.p "is_good" is_good_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , is_good    = is_good_
+      }
+        = "RateSpeechRecognition"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "is_good"    `I.p` is_good_
           ]
 
-instance T.ToJSON RateSpeechRecognition where
+instance AT.ToJSON RateSpeechRecognition where
   toJSON
     RateSpeechRecognition
-      { is_good = is_good_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "rateSpeechRecognition",
-          "is_good" A..= is_good_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , is_good    = is_good_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "rateSpeechRecognition"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "is_good"    A..= is_good_
+          ]
+
+defaultRateSpeechRecognition :: RateSpeechRecognition
+defaultRateSpeechRecognition =
+  RateSpeechRecognition
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , is_good    = Nothing
+    }
+

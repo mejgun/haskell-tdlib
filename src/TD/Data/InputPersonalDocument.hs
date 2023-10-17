@@ -1,58 +1,65 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.InputPersonalDocument where
+module TD.Data.InputPersonalDocument
+  ( InputPersonalDocument(..)    
+  , defaultInputPersonalDocument 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
-data InputPersonalDocument = -- | A personal document to be saved to Telegram Passport @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
-  InputPersonalDocument
-  { -- |
-    translation :: Maybe [InputFile.InputFile],
-    -- |
-    files :: Maybe [InputFile.InputFile]
-  }
-  deriving (Eq)
+data InputPersonalDocument
+  = InputPersonalDocument -- ^ A personal document to be saved to Telegram Passport
+    { files       :: Maybe [InputFile.InputFile] -- ^ List of files containing the pages of the document
+    , translation :: Maybe [InputFile.InputFile] -- ^ List of files containing a certified English translation of the document
+    }
+  deriving (Eq, Show)
 
-instance Show InputPersonalDocument where
-  show
-    InputPersonalDocument
-      { translation = translation_,
-        files = files_
-      } =
-      "InputPersonalDocument"
-        ++ U.cc
-          [ U.p "translation" translation_,
-            U.p "files" files_
-          ]
+instance I.ShortShow InputPersonalDocument where
+  shortShow InputPersonalDocument
+    { files       = files_
+    , translation = translation_
+    }
+      = "InputPersonalDocument"
+        ++ I.cc
+        [ "files"       `I.p` files_
+        , "translation" `I.p` translation_
+        ]
 
-instance T.FromJSON InputPersonalDocument where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON InputPersonalDocument where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "inputPersonalDocument" -> parseInputPersonalDocument v
-      _ -> mempty
+      _                       -> mempty
+    
     where
-      parseInputPersonalDocument :: A.Value -> T.Parser InputPersonalDocument
+      parseInputPersonalDocument :: A.Value -> AT.Parser InputPersonalDocument
       parseInputPersonalDocument = A.withObject "InputPersonalDocument" $ \o -> do
-        translation_ <- o A..:? "translation"
-        files_ <- o A..:? "files"
-        return $ InputPersonalDocument {translation = translation_, files = files_}
+        files_       <- o A..:?  "files"
+        translation_ <- o A..:?  "translation"
+        pure $ InputPersonalDocument
+          { files       = files_
+          , translation = translation_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON InputPersonalDocument where
-  toJSON
-    InputPersonalDocument
-      { translation = translation_,
-        files = files_
-      } =
-      A.object
-        [ "@type" A..= T.String "inputPersonalDocument",
-          "translation" A..= translation_,
-          "files" A..= files_
+instance AT.ToJSON InputPersonalDocument where
+  toJSON InputPersonalDocument
+    { files       = files_
+    , translation = translation_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "inputPersonalDocument"
+        , "files"       A..= files_
+        , "translation" A..= translation_
         ]
+
+defaultInputPersonalDocument :: InputPersonalDocument
+defaultInputPersonalDocument =
+  InputPersonalDocument
+    { files       = Nothing
+    , translation = Nothing
+    }
+

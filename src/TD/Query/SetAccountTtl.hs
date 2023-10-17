@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetAccountTtl where
+module TD.Query.SetAccountTtl
+  (SetAccountTtl(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.AccountTtl as AccountTtl
-import qualified Utils as U
 
--- |
--- Changes the period of inactivity after which the account of the current user will automatically be deleted @ttl New account TTL
-data SetAccountTtl = SetAccountTtl
-  { -- |
-    ttl :: Maybe AccountTtl.AccountTtl
-  }
-  deriving (Eq)
+-- | Changes the period of inactivity after which the account of the current user will automatically be deleted
+data SetAccountTtl
+  = SetAccountTtl
+    { ttl :: Maybe AccountTtl.AccountTtl -- ^ New account TTL
+    }
+  deriving (Eq, Show)
 
-instance Show SetAccountTtl where
-  show
+instance I.ShortShow SetAccountTtl where
+  shortShow
     SetAccountTtl
       { ttl = ttl_
-      } =
-      "SetAccountTtl"
-        ++ U.cc
-          [ U.p "ttl" ttl_
+      }
+        = "SetAccountTtl"
+          ++ I.cc
+          [ "ttl" `I.p` ttl_
           ]
 
-instance T.ToJSON SetAccountTtl where
+instance AT.ToJSON SetAccountTtl where
   toJSON
     SetAccountTtl
       { ttl = ttl_
-      } =
-      A.object
-        [ "@type" A..= T.String "setAccountTtl",
-          "ttl" A..= ttl_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "setAccountTtl"
+          , "ttl"   A..= ttl_
+          ]
+

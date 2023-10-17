@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReplaceVideoChatRtmpUrl where
+module TD.Query.ReplaceVideoChatRtmpUrl
+  (ReplaceVideoChatRtmpUrl(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Replaces the current RTMP URL for streaming to the chat; requires creator privileges @chat_id Chat identifier
-data ReplaceVideoChatRtmpUrl = ReplaceVideoChatRtmpUrl
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+data ReplaceVideoChatRtmpUrl
+  = ReplaceVideoChatRtmpUrl
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show ReplaceVideoChatRtmpUrl where
-  show
+instance I.ShortShow ReplaceVideoChatRtmpUrl where
+  shortShow
     ReplaceVideoChatRtmpUrl
       { chat_id = chat_id_
-      } =
-      "ReplaceVideoChatRtmpUrl"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "ReplaceVideoChatRtmpUrl"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON ReplaceVideoChatRtmpUrl where
+instance AT.ToJSON ReplaceVideoChatRtmpUrl where
   toJSON
     ReplaceVideoChatRtmpUrl
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "replaceVideoChatRtmpUrl",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "replaceVideoChatRtmpUrl"
+          , "chat_id" A..= chat_id_
+          ]
+

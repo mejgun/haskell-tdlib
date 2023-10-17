@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteFile where
+module TD.Query.DeleteFile
+  (DeleteFile(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes a file from the TDLib file cache @file_id Identifier of the file to delete
-data DeleteFile = DeleteFile
-  { -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes a file from the TDLib file cache
+data DeleteFile
+  = DeleteFile
+    { file_id :: Maybe Int -- ^ Identifier of the file to delete
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteFile where
-  show
+instance I.ShortShow DeleteFile where
+  shortShow
     DeleteFile
       { file_id = file_id_
-      } =
-      "DeleteFile"
-        ++ U.cc
-          [ U.p "file_id" file_id_
+      }
+        = "DeleteFile"
+          ++ I.cc
+          [ "file_id" `I.p` file_id_
           ]
 
-instance T.ToJSON DeleteFile where
+instance AT.ToJSON DeleteFile where
   toJSON
     DeleteFile
       { file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteFile",
-          "file_id" A..= file_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "deleteFile"
+          , "file_id" A..= file_id_
+          ]
+

@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetArchivedStickerSets where
+module TD.Query.GetArchivedStickerSets
+  (GetArchivedStickerSets(..)
+  , defaultGetArchivedStickerSets
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
-import qualified Utils as U
 
--- |
--- Returns a list of archived sticker sets @sticker_type Type of the sticker sets to return @offset_sticker_set_id Identifier of the sticker set from which to return the result @limit The maximum number of sticker sets to return; up to 100
-data GetArchivedStickerSets = GetArchivedStickerSets
-  { -- |
-    limit :: Maybe Int,
-    -- |
-    offset_sticker_set_id :: Maybe Int,
-    -- |
-    sticker_type :: Maybe StickerType.StickerType
-  }
-  deriving (Eq)
+-- | Returns a list of archived sticker sets
+data GetArchivedStickerSets
+  = GetArchivedStickerSets
+    { sticker_type          :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
+    , offset_sticker_set_id :: Maybe Int                     -- ^ Identifier of the sticker set from which to return the result
+    , limit                 :: Maybe Int                     -- ^ The maximum number of sticker sets to return; up to 100
+    }
+  deriving (Eq, Show)
 
-instance Show GetArchivedStickerSets where
-  show
+instance I.ShortShow GetArchivedStickerSets where
+  shortShow
     GetArchivedStickerSets
-      { limit = limit_,
-        offset_sticker_set_id = offset_sticker_set_id_,
-        sticker_type = sticker_type_
-      } =
-      "GetArchivedStickerSets"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset_sticker_set_id" offset_sticker_set_id_,
-            U.p "sticker_type" sticker_type_
+      { sticker_type          = sticker_type_
+      , offset_sticker_set_id = offset_sticker_set_id_
+      , limit                 = limit_
+      }
+        = "GetArchivedStickerSets"
+          ++ I.cc
+          [ "sticker_type"          `I.p` sticker_type_
+          , "offset_sticker_set_id" `I.p` offset_sticker_set_id_
+          , "limit"                 `I.p` limit_
           ]
 
-instance T.ToJSON GetArchivedStickerSets where
+instance AT.ToJSON GetArchivedStickerSets where
   toJSON
     GetArchivedStickerSets
-      { limit = limit_,
-        offset_sticker_set_id = offset_sticker_set_id_,
-        sticker_type = sticker_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getArchivedStickerSets",
-          "limit" A..= limit_,
-          "offset_sticker_set_id" A..= U.toS offset_sticker_set_id_,
-          "sticker_type" A..= sticker_type_
-        ]
+      { sticker_type          = sticker_type_
+      , offset_sticker_set_id = offset_sticker_set_id_
+      , limit                 = limit_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "getArchivedStickerSets"
+          , "sticker_type"          A..= sticker_type_
+          , "offset_sticker_set_id" A..= fmap I.writeInt64  offset_sticker_set_id_
+          , "limit"                 A..= limit_
+          ]
+
+defaultGetArchivedStickerSets :: GetArchivedStickerSets
+defaultGetArchivedStickerSets =
+  GetArchivedStickerSets
+    { sticker_type          = Nothing
+    , offset_sticker_set_id = Nothing
+    , limit                 = Nothing
+    }
+

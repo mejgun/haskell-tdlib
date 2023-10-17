@@ -1,85 +1,97 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Address where
+module TD.Data.Address
+  ( Address(..)    
+  , defaultAddress 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data Address = -- | Describes an address
-  Address
-  { -- | Address postal code
-    postal_code :: Maybe String,
-    -- | Second line of the address
-    street_line2 :: Maybe String,
-    -- | First line of the address
-    street_line1 :: Maybe String,
-    -- | City
-    city :: Maybe String,
-    -- | State, if applicable
-    state :: Maybe String,
-    -- | A two-letter ISO 3166-1 alpha-2 country code
-    country_code :: Maybe String
-  }
-  deriving (Eq)
+data Address
+  = Address -- ^ Describes an address
+    { country_code :: Maybe T.Text -- ^ A two-letter ISO 3166-1 alpha-2 country code
+    , state        :: Maybe T.Text -- ^ State, if applicable
+    , city         :: Maybe T.Text -- ^ City
+    , street_line1 :: Maybe T.Text -- ^ First line of the address
+    , street_line2 :: Maybe T.Text -- ^ Second line of the address
+    , postal_code  :: Maybe T.Text -- ^ Address postal code
+    }
+  deriving (Eq, Show)
 
-instance Show Address where
-  show
-    Address
-      { postal_code = postal_code_,
-        street_line2 = street_line2_,
-        street_line1 = street_line1_,
-        city = city_,
-        state = state_,
-        country_code = country_code_
-      } =
-      "Address"
-        ++ U.cc
-          [ U.p "postal_code" postal_code_,
-            U.p "street_line2" street_line2_,
-            U.p "street_line1" street_line1_,
-            U.p "city" city_,
-            U.p "state" state_,
-            U.p "country_code" country_code_
-          ]
+instance I.ShortShow Address where
+  shortShow Address
+    { country_code = country_code_
+    , state        = state_
+    , city         = city_
+    , street_line1 = street_line1_
+    , street_line2 = street_line2_
+    , postal_code  = postal_code_
+    }
+      = "Address"
+        ++ I.cc
+        [ "country_code" `I.p` country_code_
+        , "state"        `I.p` state_
+        , "city"         `I.p` city_
+        , "street_line1" `I.p` street_line1_
+        , "street_line2" `I.p` street_line2_
+        , "postal_code"  `I.p` postal_code_
+        ]
 
-instance T.FromJSON Address where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Address where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "address" -> parseAddress v
-      _ -> mempty
+      _         -> mempty
+    
     where
-      parseAddress :: A.Value -> T.Parser Address
+      parseAddress :: A.Value -> AT.Parser Address
       parseAddress = A.withObject "Address" $ \o -> do
-        postal_code_ <- o A..:? "postal_code"
-        street_line2_ <- o A..:? "street_line2"
-        street_line1_ <- o A..:? "street_line1"
-        city_ <- o A..:? "city"
-        state_ <- o A..:? "state"
-        country_code_ <- o A..:? "country_code"
-        return $ Address {postal_code = postal_code_, street_line2 = street_line2_, street_line1 = street_line1_, city = city_, state = state_, country_code = country_code_}
+        country_code_ <- o A..:?  "country_code"
+        state_        <- o A..:?  "state"
+        city_         <- o A..:?  "city"
+        street_line1_ <- o A..:?  "street_line1"
+        street_line2_ <- o A..:?  "street_line2"
+        postal_code_  <- o A..:?  "postal_code"
+        pure $ Address
+          { country_code = country_code_
+          , state        = state_
+          , city         = city_
+          , street_line1 = street_line1_
+          , street_line2 = street_line2_
+          , postal_code  = postal_code_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Address where
-  toJSON
-    Address
-      { postal_code = postal_code_,
-        street_line2 = street_line2_,
-        street_line1 = street_line1_,
-        city = city_,
-        state = state_,
-        country_code = country_code_
-      } =
-      A.object
-        [ "@type" A..= T.String "address",
-          "postal_code" A..= postal_code_,
-          "street_line2" A..= street_line2_,
-          "street_line1" A..= street_line1_,
-          "city" A..= city_,
-          "state" A..= state_,
-          "country_code" A..= country_code_
+instance AT.ToJSON Address where
+  toJSON Address
+    { country_code = country_code_
+    , state        = state_
+    , city         = city_
+    , street_line1 = street_line1_
+    , street_line2 = street_line2_
+    , postal_code  = postal_code_
+    }
+      = A.object
+        [ "@type"        A..= AT.String "address"
+        , "country_code" A..= country_code_
+        , "state"        A..= state_
+        , "city"         A..= city_
+        , "street_line1" A..= street_line1_
+        , "street_line2" A..= street_line2_
+        , "postal_code"  A..= postal_code_
         ]
+
+defaultAddress :: Address
+defaultAddress =
+  Address
+    { country_code = Nothing
+    , state        = Nothing
+    , city         = Nothing
+    , street_line1 = Nothing
+    , street_line2 = Nothing
+    , postal_code  = Nothing
+    }
+

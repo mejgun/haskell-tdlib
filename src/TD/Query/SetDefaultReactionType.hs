@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetDefaultReactionType where
+module TD.Query.SetDefaultReactionType
+  (SetDefaultReactionType(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
 
--- |
--- Changes type of default reaction for the current user @reaction_type New type of the default reaction
-data SetDefaultReactionType = SetDefaultReactionType
-  { -- |
-    reaction_type :: Maybe ReactionType.ReactionType
-  }
-  deriving (Eq)
+-- | Changes type of default reaction for the current user
+data SetDefaultReactionType
+  = SetDefaultReactionType
+    { reaction_type :: Maybe ReactionType.ReactionType -- ^ New type of the default reaction
+    }
+  deriving (Eq, Show)
 
-instance Show SetDefaultReactionType where
-  show
+instance I.ShortShow SetDefaultReactionType where
+  shortShow
     SetDefaultReactionType
       { reaction_type = reaction_type_
-      } =
-      "SetDefaultReactionType"
-        ++ U.cc
-          [ U.p "reaction_type" reaction_type_
+      }
+        = "SetDefaultReactionType"
+          ++ I.cc
+          [ "reaction_type" `I.p` reaction_type_
           ]
 
-instance T.ToJSON SetDefaultReactionType where
+instance AT.ToJSON SetDefaultReactionType where
   toJSON
     SetDefaultReactionType
       { reaction_type = reaction_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "setDefaultReactionType",
-          "reaction_type" A..= reaction_type_
-        ]
+      }
+        = A.object
+          [ "@type"         A..= AT.String "setDefaultReactionType"
+          , "reaction_type" A..= reaction_type_
+          ]
+

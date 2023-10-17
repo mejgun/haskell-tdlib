@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPremiumFeatures where
+module TD.Query.GetPremiumFeatures
+  (GetPremiumFeatures(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumSource as PremiumSource
-import qualified Utils as U
 
--- |
--- Returns information about features, available to Premium users @source Source of the request; pass null if the method is called from some non-standard source
-data GetPremiumFeatures = GetPremiumFeatures
-  { -- |
-    source :: Maybe PremiumSource.PremiumSource
-  }
-  deriving (Eq)
+-- | Returns information about features, available to Premium users
+data GetPremiumFeatures
+  = GetPremiumFeatures
+    { source :: Maybe PremiumSource.PremiumSource -- ^ Source of the request; pass null if the method is called from some non-standard source
+    }
+  deriving (Eq, Show)
 
-instance Show GetPremiumFeatures where
-  show
+instance I.ShortShow GetPremiumFeatures where
+  shortShow
     GetPremiumFeatures
       { source = source_
-      } =
-      "GetPremiumFeatures"
-        ++ U.cc
-          [ U.p "source" source_
+      }
+        = "GetPremiumFeatures"
+          ++ I.cc
+          [ "source" `I.p` source_
           ]
 
-instance T.ToJSON GetPremiumFeatures where
+instance AT.ToJSON GetPremiumFeatures where
   toJSON
     GetPremiumFeatures
       { source = source_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPremiumFeatures",
-          "source" A..= source_
-        ]
+      }
+        = A.object
+          [ "@type"  A..= AT.String "getPremiumFeatures"
+          , "source" A..= source_
+          ]
+

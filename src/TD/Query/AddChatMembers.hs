@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddChatMembers where
+module TD.Query.AddChatMembers
+  (AddChatMembers(..)
+  , defaultAddChatMembers
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
-data AddChatMembers = AddChatMembers
-  { -- | Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
-    user_ids :: Maybe [Int],
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+data AddChatMembers
+  = AddChatMembers
+    { chat_id  :: Maybe Int   -- ^ Chat identifier
+    , user_ids :: Maybe [Int] -- ^ Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+    }
+  deriving (Eq, Show)
 
-instance Show AddChatMembers where
-  show
+instance I.ShortShow AddChatMembers where
+  shortShow
     AddChatMembers
-      { user_ids = user_ids_,
-        chat_id = chat_id_
-      } =
-      "AddChatMembers"
-        ++ U.cc
-          [ U.p "user_ids" user_ids_,
-            U.p "chat_id" chat_id_
+      { chat_id  = chat_id_
+      , user_ids = user_ids_
+      }
+        = "AddChatMembers"
+          ++ I.cc
+          [ "chat_id"  `I.p` chat_id_
+          , "user_ids" `I.p` user_ids_
           ]
 
-instance T.ToJSON AddChatMembers where
+instance AT.ToJSON AddChatMembers where
   toJSON
     AddChatMembers
-      { user_ids = user_ids_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addChatMembers",
-          "user_ids" A..= user_ids_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id  = chat_id_
+      , user_ids = user_ids_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "addChatMembers"
+          , "chat_id"  A..= chat_id_
+          , "user_ids" A..= user_ids_
+          ]
+
+defaultAddChatMembers :: AddChatMembers
+defaultAddChatMembers =
+  AddChatMembers
+    { chat_id  = Nothing
+    , user_ids = Nothing
+    }
+

@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.HttpUrl where
+module TD.Data.HttpUrl
+  (HttpUrl(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data HttpUrl = -- | Contains an HTTP URL @url The URL
-  HttpUrl
-  { -- |
-    url :: Maybe String
-  }
-  deriving (Eq)
+data HttpUrl
+  = HttpUrl -- ^ Contains an HTTP URL
+    { url :: Maybe T.Text -- ^ The URL
+    }
+  deriving (Eq, Show)
 
-instance Show HttpUrl where
-  show
-    HttpUrl
-      { url = url_
-      } =
-      "HttpUrl"
-        ++ U.cc
-          [ U.p "url" url_
-          ]
+instance I.ShortShow HttpUrl where
+  shortShow HttpUrl
+    { url = url_
+    }
+      = "HttpUrl"
+        ++ I.cc
+        [ "url" `I.p` url_
+        ]
 
-instance T.FromJSON HttpUrl where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON HttpUrl where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "httpUrl" -> parseHttpUrl v
-      _ -> mempty
+      _         -> mempty
+    
     where
-      parseHttpUrl :: A.Value -> T.Parser HttpUrl
+      parseHttpUrl :: A.Value -> AT.Parser HttpUrl
       parseHttpUrl = A.withObject "HttpUrl" $ \o -> do
-        url_ <- o A..:? "url"
-        return $ HttpUrl {url = url_}
+        url_ <- o A..:?  "url"
+        pure $ HttpUrl
+          { url = url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON HttpUrl where
-  toJSON
-    HttpUrl
-      { url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "httpUrl",
-          "url" A..= url_
-        ]

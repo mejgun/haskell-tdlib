@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteMessages where
+module TD.Query.DeleteMessages
+  (DeleteMessages(..)
+  , defaultDeleteMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes messages @chat_id Chat identifier @message_ids Identifiers of the messages to be deleted @revoke Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
-data DeleteMessages = DeleteMessages
-  { -- |
-    revoke :: Maybe Bool,
-    -- |
-    message_ids :: Maybe [Int],
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes messages
+data DeleteMessages
+  = DeleteMessages
+    { chat_id     :: Maybe Int   -- ^ Chat identifier
+    , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to be deleted
+    , revoke      :: Maybe Bool  -- ^ Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteMessages where
-  show
+instance I.ShortShow DeleteMessages where
+  shortShow
     DeleteMessages
-      { revoke = revoke_,
-        message_ids = message_ids_,
-        chat_id = chat_id_
-      } =
-      "DeleteMessages"
-        ++ U.cc
-          [ U.p "revoke" revoke_,
-            U.p "message_ids" message_ids_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , message_ids = message_ids_
+      , revoke      = revoke_
+      }
+        = "DeleteMessages"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "message_ids" `I.p` message_ids_
+          , "revoke"      `I.p` revoke_
           ]
 
-instance T.ToJSON DeleteMessages where
+instance AT.ToJSON DeleteMessages where
   toJSON
     DeleteMessages
-      { revoke = revoke_,
-        message_ids = message_ids_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteMessages",
-          "revoke" A..= revoke_,
-          "message_ids" A..= message_ids_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , message_ids = message_ids_
+      , revoke      = revoke_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "deleteMessages"
+          , "chat_id"     A..= chat_id_
+          , "message_ids" A..= message_ids_
+          , "revoke"      A..= revoke_
+          ]
+
+defaultDeleteMessages :: DeleteMessages
+defaultDeleteMessages =
+  DeleteMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    , revoke      = Nothing
+    }
+

@@ -1,64 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StatisticalValue where
+module TD.Data.StatisticalValue
+  (StatisticalValue(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data StatisticalValue = -- | A value with information about its recent changes @value The current value @previous_value The value for the previous day @growth_rate_percentage The growth rate of the value, as a percentage
-  StatisticalValue
-  { -- |
-    growth_rate_percentage :: Maybe Float,
-    -- |
-    previous_value :: Maybe Float,
-    -- |
-    value :: Maybe Float
-  }
-  deriving (Eq)
+data StatisticalValue
+  = StatisticalValue -- ^ A value with information about its recent changes
+    { value                  :: Maybe Double -- ^ The current value
+    , previous_value         :: Maybe Double -- ^ The value for the previous day
+    , growth_rate_percentage :: Maybe Double -- ^ The growth rate of the value, as a percentage
+    }
+  deriving (Eq, Show)
 
-instance Show StatisticalValue where
-  show
-    StatisticalValue
-      { growth_rate_percentage = growth_rate_percentage_,
-        previous_value = previous_value_,
-        value = value_
-      } =
-      "StatisticalValue"
-        ++ U.cc
-          [ U.p "growth_rate_percentage" growth_rate_percentage_,
-            U.p "previous_value" previous_value_,
-            U.p "value" value_
-          ]
+instance I.ShortShow StatisticalValue where
+  shortShow StatisticalValue
+    { value                  = value_
+    , previous_value         = previous_value_
+    , growth_rate_percentage = growth_rate_percentage_
+    }
+      = "StatisticalValue"
+        ++ I.cc
+        [ "value"                  `I.p` value_
+        , "previous_value"         `I.p` previous_value_
+        , "growth_rate_percentage" `I.p` growth_rate_percentage_
+        ]
 
-instance T.FromJSON StatisticalValue where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StatisticalValue where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "statisticalValue" -> parseStatisticalValue v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseStatisticalValue :: A.Value -> T.Parser StatisticalValue
+      parseStatisticalValue :: A.Value -> AT.Parser StatisticalValue
       parseStatisticalValue = A.withObject "StatisticalValue" $ \o -> do
-        growth_rate_percentage_ <- o A..:? "growth_rate_percentage"
-        previous_value_ <- o A..:? "previous_value"
-        value_ <- o A..:? "value"
-        return $ StatisticalValue {growth_rate_percentage = growth_rate_percentage_, previous_value = previous_value_, value = value_}
+        value_                  <- o A..:?  "value"
+        previous_value_         <- o A..:?  "previous_value"
+        growth_rate_percentage_ <- o A..:?  "growth_rate_percentage"
+        pure $ StatisticalValue
+          { value                  = value_
+          , previous_value         = previous_value_
+          , growth_rate_percentage = growth_rate_percentage_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON StatisticalValue where
-  toJSON
-    StatisticalValue
-      { growth_rate_percentage = growth_rate_percentage_,
-        previous_value = previous_value_,
-        value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "statisticalValue",
-          "growth_rate_percentage" A..= growth_rate_percentage_,
-          "previous_value" A..= previous_value_,
-          "value" A..= value_
-        ]

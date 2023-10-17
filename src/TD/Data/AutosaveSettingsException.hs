@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.AutosaveSettingsException where
+module TD.Data.AutosaveSettingsException
+  (AutosaveSettingsException(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
-import qualified Utils as U
 
--- |
-data AutosaveSettingsException = -- | Contains autosave settings for a chat, which overrides default settings for the corresponding scope
-  AutosaveSettingsException
-  { -- | Autosave settings for the chat
-    settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+data AutosaveSettingsException
+  = AutosaveSettingsException -- ^ Contains autosave settings for a chat, which overrides default settings for the corresponding scope
+    { chat_id  :: Maybe Int                                         -- ^ Chat identifier
+    , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ Autosave settings for the chat
+    }
+  deriving (Eq, Show)
 
-instance Show AutosaveSettingsException where
-  show
-    AutosaveSettingsException
-      { settings = settings_,
-        chat_id = chat_id_
-      } =
-      "AutosaveSettingsException"
-        ++ U.cc
-          [ U.p "settings" settings_,
-            U.p "chat_id" chat_id_
-          ]
+instance I.ShortShow AutosaveSettingsException where
+  shortShow AutosaveSettingsException
+    { chat_id  = chat_id_
+    , settings = settings_
+    }
+      = "AutosaveSettingsException"
+        ++ I.cc
+        [ "chat_id"  `I.p` chat_id_
+        , "settings" `I.p` settings_
+        ]
 
-instance T.FromJSON AutosaveSettingsException where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON AutosaveSettingsException where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "autosaveSettingsException" -> parseAutosaveSettingsException v
-      _ -> mempty
+      _                           -> mempty
+    
     where
-      parseAutosaveSettingsException :: A.Value -> T.Parser AutosaveSettingsException
+      parseAutosaveSettingsException :: A.Value -> AT.Parser AutosaveSettingsException
       parseAutosaveSettingsException = A.withObject "AutosaveSettingsException" $ \o -> do
-        settings_ <- o A..:? "settings"
-        chat_id_ <- o A..:? "chat_id"
-        return $ AutosaveSettingsException {settings = settings_, chat_id = chat_id_}
+        chat_id_  <- o A..:?  "chat_id"
+        settings_ <- o A..:?  "settings"
+        pure $ AutosaveSettingsException
+          { chat_id  = chat_id_
+          , settings = settings_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON AutosaveSettingsException where
-  toJSON
-    AutosaveSettingsException
-      { settings = settings_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "autosaveSettingsException",
-          "settings" A..= settings_,
-          "chat_id" A..= chat_id_
-        ]

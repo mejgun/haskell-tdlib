@@ -1,78 +1,60 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PollOption where
+module TD.Data.PollOption
+  (PollOption(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data PollOption = -- | Describes one answer option of a poll
-  PollOption
-  { -- | True, if the option is being chosen by a pending setPollAnswer request
-    is_being_chosen :: Maybe Bool,
-    -- | True, if the option was chosen by the user
-    is_chosen :: Maybe Bool,
-    -- | The percentage of votes for this option; 0-100
-    vote_percentage :: Maybe Int,
-    -- | Number of voters for this option, available only for closed or voted polls
-    voter_count :: Maybe Int,
-    -- | Option text; 1-100 characters
-    text :: Maybe String
-  }
-  deriving (Eq)
+data PollOption
+  = PollOption -- ^ Describes one answer option of a poll
+    { text            :: Maybe T.Text -- ^ Option text; 1-100 characters
+    , voter_count     :: Maybe Int    -- ^ Number of voters for this option, available only for closed or voted polls
+    , vote_percentage :: Maybe Int    -- ^ The percentage of votes for this option; 0-100
+    , is_chosen       :: Maybe Bool   -- ^ True, if the option was chosen by the user
+    , is_being_chosen :: Maybe Bool   -- ^ True, if the option is being chosen by a pending setPollAnswer request
+    }
+  deriving (Eq, Show)
 
-instance Show PollOption where
-  show
-    PollOption
-      { is_being_chosen = is_being_chosen_,
-        is_chosen = is_chosen_,
-        vote_percentage = vote_percentage_,
-        voter_count = voter_count_,
-        text = text_
-      } =
-      "PollOption"
-        ++ U.cc
-          [ U.p "is_being_chosen" is_being_chosen_,
-            U.p "is_chosen" is_chosen_,
-            U.p "vote_percentage" vote_percentage_,
-            U.p "voter_count" voter_count_,
-            U.p "text" text_
-          ]
+instance I.ShortShow PollOption where
+  shortShow PollOption
+    { text            = text_
+    , voter_count     = voter_count_
+    , vote_percentage = vote_percentage_
+    , is_chosen       = is_chosen_
+    , is_being_chosen = is_being_chosen_
+    }
+      = "PollOption"
+        ++ I.cc
+        [ "text"            `I.p` text_
+        , "voter_count"     `I.p` voter_count_
+        , "vote_percentage" `I.p` vote_percentage_
+        , "is_chosen"       `I.p` is_chosen_
+        , "is_being_chosen" `I.p` is_being_chosen_
+        ]
 
-instance T.FromJSON PollOption where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PollOption where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "pollOption" -> parsePollOption v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parsePollOption :: A.Value -> T.Parser PollOption
+      parsePollOption :: A.Value -> AT.Parser PollOption
       parsePollOption = A.withObject "PollOption" $ \o -> do
-        is_being_chosen_ <- o A..:? "is_being_chosen"
-        is_chosen_ <- o A..:? "is_chosen"
-        vote_percentage_ <- o A..:? "vote_percentage"
-        voter_count_ <- o A..:? "voter_count"
-        text_ <- o A..:? "text"
-        return $ PollOption {is_being_chosen = is_being_chosen_, is_chosen = is_chosen_, vote_percentage = vote_percentage_, voter_count = voter_count_, text = text_}
+        text_            <- o A..:?  "text"
+        voter_count_     <- o A..:?  "voter_count"
+        vote_percentage_ <- o A..:?  "vote_percentage"
+        is_chosen_       <- o A..:?  "is_chosen"
+        is_being_chosen_ <- o A..:?  "is_being_chosen"
+        pure $ PollOption
+          { text            = text_
+          , voter_count     = voter_count_
+          , vote_percentage = vote_percentage_
+          , is_chosen       = is_chosen_
+          , is_being_chosen = is_being_chosen_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PollOption where
-  toJSON
-    PollOption
-      { is_being_chosen = is_being_chosen_,
-        is_chosen = is_chosen_,
-        vote_percentage = vote_percentage_,
-        voter_count = voter_count_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "pollOption",
-          "is_being_chosen" A..= is_being_chosen_,
-          "is_chosen" A..= is_chosen_,
-          "vote_percentage" A..= vote_percentage_,
-          "voter_count" A..= voter_count_,
-          "text" A..= text_
-        ]

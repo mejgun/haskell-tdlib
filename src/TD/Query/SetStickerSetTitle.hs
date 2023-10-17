@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetStickerSetTitle where
+module TD.Query.SetStickerSetTitle
+  (SetStickerSetTitle(..)
+  , defaultSetStickerSetTitle
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sets a sticker set title; for bots only @name Sticker set name @title New sticker set title
-data SetStickerSetTitle = SetStickerSetTitle
-  { -- |
-    title :: Maybe String,
-    -- |
-    name :: Maybe String
-  }
-  deriving (Eq)
+-- | Sets a sticker set title; for bots only
+data SetStickerSetTitle
+  = SetStickerSetTitle
+    { name  :: Maybe T.Text -- ^ Sticker set name
+    , title :: Maybe T.Text -- ^ New sticker set title
+    }
+  deriving (Eq, Show)
 
-instance Show SetStickerSetTitle where
-  show
+instance I.ShortShow SetStickerSetTitle where
+  shortShow
     SetStickerSetTitle
-      { title = title_,
-        name = name_
-      } =
-      "SetStickerSetTitle"
-        ++ U.cc
-          [ U.p "title" title_,
-            U.p "name" name_
+      { name  = name_
+      , title = title_
+      }
+        = "SetStickerSetTitle"
+          ++ I.cc
+          [ "name"  `I.p` name_
+          , "title" `I.p` title_
           ]
 
-instance T.ToJSON SetStickerSetTitle where
+instance AT.ToJSON SetStickerSetTitle where
   toJSON
     SetStickerSetTitle
-      { title = title_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "setStickerSetTitle",
-          "title" A..= title_,
-          "name" A..= name_
-        ]
+      { name  = name_
+      , title = title_
+      }
+        = A.object
+          [ "@type" A..= AT.String "setStickerSetTitle"
+          , "name"  A..= name_
+          , "title" A..= title_
+          ]
+
+defaultSetStickerSetTitle :: SetStickerSetTitle
+defaultSetStickerSetTitle =
+  SetStickerSetTitle
+    { name  = Nothing
+    , title = Nothing
+    }
+

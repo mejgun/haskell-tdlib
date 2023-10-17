@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetLogStream where
+module TD.Query.GetLogStream
+  (GetLogStream(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
-data GetLogStream = GetLogStream
-  {
-  }
-  deriving (Eq)
+-- | Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
+data GetLogStream
+  = GetLogStream
+  deriving (Eq, Show)
 
-instance Show GetLogStream where
-  show GetLogStream =
-    "GetLogStream"
-      ++ U.cc
-        []
+instance I.ShortShow GetLogStream where
+  shortShow
+    GetLogStream
+        = "GetLogStream"
 
-instance T.ToJSON GetLogStream where
-  toJSON GetLogStream =
-    A.object
-      [ "@type" A..= T.String "getLogStream"
-      ]
+instance AT.ToJSON GetLogStream where
+  toJSON
+    GetLogStream
+        = A.object
+          [ "@type" A..= AT.String "getLogStream"
+          ]
+

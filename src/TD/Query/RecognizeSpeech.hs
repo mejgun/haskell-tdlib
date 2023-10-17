@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RecognizeSpeech where
+module TD.Query.RecognizeSpeech
+  (RecognizeSpeech(..)
+  , defaultRecognizeSpeech
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
-data RecognizeSpeech = RecognizeSpeech
-  { -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the message belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+data RecognizeSpeech
+  = RecognizeSpeech
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
+  deriving (Eq, Show)
 
-instance Show RecognizeSpeech where
-  show
+instance I.ShortShow RecognizeSpeech where
+  shortShow
     RecognizeSpeech
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "RecognizeSpeech"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "RecognizeSpeech"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON RecognizeSpeech where
+instance AT.ToJSON RecognizeSpeech where
   toJSON
     RecognizeSpeech
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "recognizeSpeech",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "recognizeSpeech"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultRecognizeSpeech :: RecognizeSpeech
+defaultRecognizeSpeech =
+  RecognizeSpeech
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

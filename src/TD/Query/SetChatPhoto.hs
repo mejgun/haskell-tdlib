@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatPhoto where
+module TD.Query.SetChatPhoto
+  (SetChatPhoto(..)
+  , defaultSetChatPhoto
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
-import qualified Utils as U
 
--- |
--- Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
-data SetChatPhoto = SetChatPhoto
-  { -- | New chat photo; pass null to delete the chat photo
-    photo :: Maybe InputChatPhoto.InputChatPhoto,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+data SetChatPhoto
+  = SetChatPhoto
+    { chat_id :: Maybe Int                           -- ^ Chat identifier
+    , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ New chat photo; pass null to delete the chat photo
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatPhoto where
-  show
+instance I.ShortShow SetChatPhoto where
+  shortShow
     SetChatPhoto
-      { photo = photo_,
-        chat_id = chat_id_
-      } =
-      "SetChatPhoto"
-        ++ U.cc
-          [ U.p "photo" photo_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , photo   = photo_
+      }
+        = "SetChatPhoto"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "photo"   `I.p` photo_
           ]
 
-instance T.ToJSON SetChatPhoto where
+instance AT.ToJSON SetChatPhoto where
   toJSON
     SetChatPhoto
-      { photo = photo_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatPhoto",
-          "photo" A..= photo_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , photo   = photo_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setChatPhoto"
+          , "chat_id" A..= chat_id_
+          , "photo"   A..= photo_
+          ]
+
+defaultSetChatPhoto :: SetChatPhoto
+defaultSetChatPhoto =
+  SetChatPhoto
+    { chat_id = Nothing
+    , photo   = Nothing
+    }
+

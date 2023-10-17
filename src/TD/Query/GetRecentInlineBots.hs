@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetRecentInlineBots where
+module TD.Query.GetRecentInlineBots
+  (GetRecentInlineBots(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns up to 20 recently used inline bots in the order of their last usage
-data GetRecentInlineBots = GetRecentInlineBots
-  {
-  }
-  deriving (Eq)
+-- | Returns up to 20 recently used inline bots in the order of their last usage
+data GetRecentInlineBots
+  = GetRecentInlineBots
+  deriving (Eq, Show)
 
-instance Show GetRecentInlineBots where
-  show GetRecentInlineBots =
-    "GetRecentInlineBots"
-      ++ U.cc
-        []
+instance I.ShortShow GetRecentInlineBots where
+  shortShow
+    GetRecentInlineBots
+        = "GetRecentInlineBots"
 
-instance T.ToJSON GetRecentInlineBots where
-  toJSON GetRecentInlineBots =
-    A.object
-      [ "@type" A..= T.String "getRecentInlineBots"
-      ]
+instance AT.ToJSON GetRecentInlineBots where
+  toJSON
+    GetRecentInlineBots
+        = A.object
+          [ "@type" A..= AT.String "getRecentInlineBots"
+          ]
+

@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteCommands where
+module TD.Query.DeleteCommands
+  (DeleteCommands(..)
+  , defaultDeleteCommands
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommandScope as BotCommandScope
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Deletes commands supported by the bot for the given user scope and language; for bots only
-data DeleteCommands = DeleteCommands
-  { -- | A two-letter ISO 639-1 language code or an empty string
-    language_code :: Maybe String,
-    -- | The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
-    scope :: Maybe BotCommandScope.BotCommandScope
-  }
-  deriving (Eq)
+-- | Deletes commands supported by the bot for the given user scope and language; for bots only
+data DeleteCommands
+  = DeleteCommands
+    { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
+    , language_code :: Maybe T.Text                          -- ^ A two-letter ISO 639-1 language code or an empty string
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteCommands where
-  show
+instance I.ShortShow DeleteCommands where
+  shortShow
     DeleteCommands
-      { language_code = language_code_,
-        scope = scope_
-      } =
-      "DeleteCommands"
-        ++ U.cc
-          [ U.p "language_code" language_code_,
-            U.p "scope" scope_
+      { scope         = scope_
+      , language_code = language_code_
+      }
+        = "DeleteCommands"
+          ++ I.cc
+          [ "scope"         `I.p` scope_
+          , "language_code" `I.p` language_code_
           ]
 
-instance T.ToJSON DeleteCommands where
+instance AT.ToJSON DeleteCommands where
   toJSON
     DeleteCommands
-      { language_code = language_code_,
-        scope = scope_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteCommands",
-          "language_code" A..= language_code_,
-          "scope" A..= scope_
-        ]
+      { scope         = scope_
+      , language_code = language_code_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "deleteCommands"
+          , "scope"         A..= scope_
+          , "language_code" A..= language_code_
+          ]
+
+defaultDeleteCommands :: DeleteCommands
+defaultDeleteCommands =
+  DeleteCommands
+    { scope         = Nothing
+    , language_code = Nothing
+    }
+

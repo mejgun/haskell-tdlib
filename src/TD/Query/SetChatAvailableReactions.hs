@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatAvailableReactions where
+module TD.Query.SetChatAvailableReactions
+  (SetChatAvailableReactions(..)
+  , defaultSetChatAvailableReactions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
-import qualified Utils as U
 
--- |
--- Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right @chat_id Identifier of the chat @available_reactions Reactions available in the chat. All emoji reactions must be active
-data SetChatAvailableReactions = SetChatAvailableReactions
-  { -- |
-    available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+data SetChatAvailableReactions
+  = SetChatAvailableReactions
+    { chat_id             :: Maybe Int                                           -- ^ Identifier of the chat
+    , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All emoji reactions must be active
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatAvailableReactions where
-  show
+instance I.ShortShow SetChatAvailableReactions where
+  shortShow
     SetChatAvailableReactions
-      { available_reactions = available_reactions_,
-        chat_id = chat_id_
-      } =
-      "SetChatAvailableReactions"
-        ++ U.cc
-          [ U.p "available_reactions" available_reactions_,
-            U.p "chat_id" chat_id_
+      { chat_id             = chat_id_
+      , available_reactions = available_reactions_
+      }
+        = "SetChatAvailableReactions"
+          ++ I.cc
+          [ "chat_id"             `I.p` chat_id_
+          , "available_reactions" `I.p` available_reactions_
           ]
 
-instance T.ToJSON SetChatAvailableReactions where
+instance AT.ToJSON SetChatAvailableReactions where
   toJSON
     SetChatAvailableReactions
-      { available_reactions = available_reactions_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatAvailableReactions",
-          "available_reactions" A..= available_reactions_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id             = chat_id_
+      , available_reactions = available_reactions_
+      }
+        = A.object
+          [ "@type"               A..= AT.String "setChatAvailableReactions"
+          , "chat_id"             A..= chat_id_
+          , "available_reactions" A..= available_reactions_
+          ]
+
+defaultSetChatAvailableReactions :: SetChatAvailableReactions
+defaultSetChatAvailableReactions =
+  SetChatAvailableReactions
+    { chat_id             = Nothing
+    , available_reactions = Nothing
+    }
+

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TerminateAllOtherSessions where
+module TD.Query.TerminateAllOtherSessions
+  (TerminateAllOtherSessions(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Terminates all other sessions of the current user
-data TerminateAllOtherSessions = TerminateAllOtherSessions
-  {
-  }
-  deriving (Eq)
+-- | Terminates all other sessions of the current user
+data TerminateAllOtherSessions
+  = TerminateAllOtherSessions
+  deriving (Eq, Show)
 
-instance Show TerminateAllOtherSessions where
-  show TerminateAllOtherSessions =
-    "TerminateAllOtherSessions"
-      ++ U.cc
-        []
+instance I.ShortShow TerminateAllOtherSessions where
+  shortShow
+    TerminateAllOtherSessions
+        = "TerminateAllOtherSessions"
 
-instance T.ToJSON TerminateAllOtherSessions where
-  toJSON TerminateAllOtherSessions =
-    A.object
-      [ "@type" A..= T.String "terminateAllOtherSessions"
-      ]
+instance AT.ToJSON TerminateAllOtherSessions where
+  toJSON
+    TerminateAllOtherSessions
+        = A.object
+          [ "@type" A..= AT.String "terminateAllOtherSessions"
+          ]
+

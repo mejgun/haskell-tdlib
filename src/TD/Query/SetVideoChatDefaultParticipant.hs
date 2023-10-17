@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetVideoChatDefaultParticipant where
+module TD.Query.SetVideoChatDefaultParticipant
+  (SetVideoChatDefaultParticipant(..)
+  , defaultSetVideoChatDefaultParticipant
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
--- Changes default participant identifier, on whose behalf a video chat in the chat will be joined @chat_id Chat identifier @default_participant_id Default group call participant identifier to join the video chats
-data SetVideoChatDefaultParticipant = SetVideoChatDefaultParticipant
-  { -- |
-    default_participant_id :: Maybe MessageSender.MessageSender,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes default participant identifier, on whose behalf a video chat in the chat will be joined
+data SetVideoChatDefaultParticipant
+  = SetVideoChatDefaultParticipant
+    { chat_id                :: Maybe Int                         -- ^ Chat identifier
+    , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chats
+    }
+  deriving (Eq, Show)
 
-instance Show SetVideoChatDefaultParticipant where
-  show
+instance I.ShortShow SetVideoChatDefaultParticipant where
+  shortShow
     SetVideoChatDefaultParticipant
-      { default_participant_id = default_participant_id_,
-        chat_id = chat_id_
-      } =
-      "SetVideoChatDefaultParticipant"
-        ++ U.cc
-          [ U.p "default_participant_id" default_participant_id_,
-            U.p "chat_id" chat_id_
+      { chat_id                = chat_id_
+      , default_participant_id = default_participant_id_
+      }
+        = "SetVideoChatDefaultParticipant"
+          ++ I.cc
+          [ "chat_id"                `I.p` chat_id_
+          , "default_participant_id" `I.p` default_participant_id_
           ]
 
-instance T.ToJSON SetVideoChatDefaultParticipant where
+instance AT.ToJSON SetVideoChatDefaultParticipant where
   toJSON
     SetVideoChatDefaultParticipant
-      { default_participant_id = default_participant_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setVideoChatDefaultParticipant",
-          "default_participant_id" A..= default_participant_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id                = chat_id_
+      , default_participant_id = default_participant_id_
+      }
+        = A.object
+          [ "@type"                  A..= AT.String "setVideoChatDefaultParticipant"
+          , "chat_id"                A..= chat_id_
+          , "default_participant_id" A..= default_participant_id_
+          ]
+
+defaultSetVideoChatDefaultParticipant :: SetVideoChatDefaultParticipant
+defaultSetVideoChatDefaultParticipant =
+  SetVideoChatDefaultParticipant
+    { chat_id                = Nothing
+    , default_participant_id = Nothing
+    }
+

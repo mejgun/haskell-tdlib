@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.SavedCredentials where
+module TD.Data.SavedCredentials
+  (SavedCredentials(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data SavedCredentials = -- | Contains information about saved payment credentials @id Unique identifier of the saved credentials @title Title of the saved credentials
-  SavedCredentials
-  { -- |
-    title :: Maybe String,
-    -- |
-    _id :: Maybe String
-  }
-  deriving (Eq)
+data SavedCredentials
+  = SavedCredentials -- ^ Contains information about saved payment credentials
+    { _id   :: Maybe T.Text -- ^ Unique identifier of the saved credentials
+    , title :: Maybe T.Text -- ^ Title of the saved credentials
+    }
+  deriving (Eq, Show)
 
-instance Show SavedCredentials where
-  show
-    SavedCredentials
-      { title = title_,
-        _id = _id_
-      } =
-      "SavedCredentials"
-        ++ U.cc
-          [ U.p "title" title_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow SavedCredentials where
+  shortShow SavedCredentials
+    { _id   = _id_
+    , title = title_
+    }
+      = "SavedCredentials"
+        ++ I.cc
+        [ "_id"   `I.p` _id_
+        , "title" `I.p` title_
+        ]
 
-instance T.FromJSON SavedCredentials where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON SavedCredentials where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "savedCredentials" -> parseSavedCredentials v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseSavedCredentials :: A.Value -> T.Parser SavedCredentials
+      parseSavedCredentials :: A.Value -> AT.Parser SavedCredentials
       parseSavedCredentials = A.withObject "SavedCredentials" $ \o -> do
-        title_ <- o A..:? "title"
-        _id_ <- o A..:? "id"
-        return $ SavedCredentials {title = title_, _id = _id_}
+        _id_   <- o A..:?  "id"
+        title_ <- o A..:?  "title"
+        pure $ SavedCredentials
+          { _id   = _id_
+          , title = title_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON SavedCredentials where
-  toJSON
-    SavedCredentials
-      { title = title_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "savedCredentials",
-          "title" A..= title_,
-          "id" A..= _id_
-        ]

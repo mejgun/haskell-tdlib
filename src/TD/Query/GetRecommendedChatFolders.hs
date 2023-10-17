@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetRecommendedChatFolders where
+module TD.Query.GetRecommendedChatFolders
+  (GetRecommendedChatFolders(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns recommended chat folders for the current user
-data GetRecommendedChatFolders = GetRecommendedChatFolders
-  {
-  }
-  deriving (Eq)
+-- | Returns recommended chat folders for the current user
+data GetRecommendedChatFolders
+  = GetRecommendedChatFolders
+  deriving (Eq, Show)
 
-instance Show GetRecommendedChatFolders where
-  show GetRecommendedChatFolders =
-    "GetRecommendedChatFolders"
-      ++ U.cc
-        []
+instance I.ShortShow GetRecommendedChatFolders where
+  shortShow
+    GetRecommendedChatFolders
+        = "GetRecommendedChatFolders"
 
-instance T.ToJSON GetRecommendedChatFolders where
-  toJSON GetRecommendedChatFolders =
-    A.object
-      [ "@type" A..= T.String "getRecommendedChatFolders"
-      ]
+instance AT.ToJSON GetRecommendedChatFolders where
+  toJSON
+    GetRecommendedChatFolders
+        = A.object
+          [ "@type" A..= AT.String "getRecommendedChatFolders"
+          ]
+

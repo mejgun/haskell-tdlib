@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteSavedCredentials where
+module TD.Query.DeleteSavedCredentials
+  (DeleteSavedCredentials(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes saved credentials for all payment provider bots
-data DeleteSavedCredentials = DeleteSavedCredentials
-  {
-  }
-  deriving (Eq)
+-- | Deletes saved credentials for all payment provider bots
+data DeleteSavedCredentials
+  = DeleteSavedCredentials
+  deriving (Eq, Show)
 
-instance Show DeleteSavedCredentials where
-  show DeleteSavedCredentials =
-    "DeleteSavedCredentials"
-      ++ U.cc
-        []
+instance I.ShortShow DeleteSavedCredentials where
+  shortShow
+    DeleteSavedCredentials
+        = "DeleteSavedCredentials"
 
-instance T.ToJSON DeleteSavedCredentials where
-  toJSON DeleteSavedCredentials =
-    A.object
-      [ "@type" A..= T.String "deleteSavedCredentials"
-      ]
+instance AT.ToJSON DeleteSavedCredentials where
+  toJSON
+    DeleteSavedCredentials
+        = A.object
+          [ "@type" A..= AT.String "deleteSavedCredentials"
+          ]
+

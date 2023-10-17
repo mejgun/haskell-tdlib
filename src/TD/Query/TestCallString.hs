@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestCallString where
+module TD.Query.TestCallString
+  (TestCallString(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns the received string; for testing only. This is an offline method. Can be called before authorization @x String to return
-data TestCallString = TestCallString
-  { -- |
-    x :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns the received string; for testing only. This is an offline method. Can be called before authorization
+data TestCallString
+  = TestCallString
+    { x :: Maybe T.Text -- ^ String to return
+    }
+  deriving (Eq, Show)
 
-instance Show TestCallString where
-  show
+instance I.ShortShow TestCallString where
+  shortShow
     TestCallString
       { x = x_
-      } =
-      "TestCallString"
-        ++ U.cc
-          [ U.p "x" x_
+      }
+        = "TestCallString"
+          ++ I.cc
+          [ "x" `I.p` x_
           ]
 
-instance T.ToJSON TestCallString where
+instance AT.ToJSON TestCallString where
   toJSON
     TestCallString
       { x = x_
-      } =
-      A.object
-        [ "@type" A..= T.String "testCallString",
-          "x" A..= x_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "testCallString"
+          , "x"     A..= x_
+          ]
+

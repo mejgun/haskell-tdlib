@@ -1,87 +1,67 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Background where
+module TD.Data.Background
+  (Background(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.BackgroundType as BackgroundType
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Document as Document
-import qualified Utils as U
+import qualified TD.Data.BackgroundType as BackgroundType
 
--- |
-data Background = -- | Describes a chat background
-  Background
-  { -- | Type of the background
-    _type :: Maybe BackgroundType.BackgroundType,
-    -- | Document with the background; may be null. Null only for filled backgrounds
-    document :: Maybe Document.Document,
-    -- | Unique background name
-    name :: Maybe String,
-    -- | True, if the background is dark and is recommended to be used with dark theme
-    is_dark :: Maybe Bool,
-    -- | True, if this is one of default backgrounds
-    is_default :: Maybe Bool,
-    -- | Unique background identifier
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data Background
+  = Background -- ^ Describes a chat background
+    { _id        :: Maybe Int                           -- ^ Unique background identifier
+    , is_default :: Maybe Bool                          -- ^ True, if this is one of default backgrounds
+    , is_dark    :: Maybe Bool                          -- ^ True, if the background is dark and is recommended to be used with dark theme
+    , name       :: Maybe T.Text                        -- ^ Unique background name
+    , document   :: Maybe Document.Document             -- ^ Document with the background; may be null. Null only for filled backgrounds
+    , _type      :: Maybe BackgroundType.BackgroundType -- ^ Type of the background
+    }
+  deriving (Eq, Show)
 
-instance Show Background where
-  show
-    Background
-      { _type = _type_,
-        document = document_,
-        name = name_,
-        is_dark = is_dark_,
-        is_default = is_default_,
-        _id = _id_
-      } =
-      "Background"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "document" document_,
-            U.p "name" name_,
-            U.p "is_dark" is_dark_,
-            U.p "is_default" is_default_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow Background where
+  shortShow Background
+    { _id        = _id_
+    , is_default = is_default_
+    , is_dark    = is_dark_
+    , name       = name_
+    , document   = document_
+    , _type      = _type_
+    }
+      = "Background"
+        ++ I.cc
+        [ "_id"        `I.p` _id_
+        , "is_default" `I.p` is_default_
+        , "is_dark"    `I.p` is_dark_
+        , "name"       `I.p` name_
+        , "document"   `I.p` document_
+        , "_type"      `I.p` _type_
+        ]
 
-instance T.FromJSON Background where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Background where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "background" -> parseBackground v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseBackground :: A.Value -> T.Parser Background
+      parseBackground :: A.Value -> AT.Parser Background
       parseBackground = A.withObject "Background" $ \o -> do
-        _type_ <- o A..:? "type"
-        document_ <- o A..:? "document"
-        name_ <- o A..:? "name"
-        is_dark_ <- o A..:? "is_dark"
-        is_default_ <- o A..:? "is_default"
-        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ Background {_type = _type_, document = document_, name = name_, is_dark = is_dark_, is_default = is_default_, _id = _id_}
+        _id_        <- fmap I.readInt64 <$> o A..:?  "id"
+        is_default_ <- o A..:?                       "is_default"
+        is_dark_    <- o A..:?                       "is_dark"
+        name_       <- o A..:?                       "name"
+        document_   <- o A..:?                       "document"
+        _type_      <- o A..:?                       "type"
+        pure $ Background
+          { _id        = _id_
+          , is_default = is_default_
+          , is_dark    = is_dark_
+          , name       = name_
+          , document   = document_
+          , _type      = _type_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Background where
-  toJSON
-    Background
-      { _type = _type_,
-        document = document_,
-        name = name_,
-        is_dark = is_dark_,
-        is_default = is_default_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "background",
-          "type" A..= _type_,
-          "document" A..= document_,
-          "name" A..= name_,
-          "is_dark" A..= is_dark_,
-          "is_default" A..= is_default_,
-          "id" A..= U.toS _id_
-        ]

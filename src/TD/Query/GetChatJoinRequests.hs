@@ -1,61 +1,68 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatJoinRequests where
+module TD.Query.GetChatJoinRequests
+  (GetChatJoinRequests(..)
+  , defaultGetChatJoinRequests
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
-import qualified Utils as U
 
--- |
--- Returns pending join requests in a chat
-data GetChatJoinRequests = GetChatJoinRequests
-  { -- | The maximum number of requests to join the chat to return
-    limit :: Maybe Int,
-    -- | A chat join request from which to return next requests; pass null to get results from the beginning
-    offset_request :: Maybe ChatJoinRequest.ChatJoinRequest,
-    -- | A query to search for in the first names, last names and usernames of the users to return
-    query :: Maybe String,
-    -- | Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-    invite_link :: Maybe String,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns pending join requests in a chat
+data GetChatJoinRequests
+  = GetChatJoinRequests
+    { chat_id        :: Maybe Int                             -- ^ Chat identifier
+    , invite_link    :: Maybe T.Text                          -- ^ Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    , query          :: Maybe T.Text                          -- ^ A query to search for in the first names, last names and usernames of the users to return
+    , offset_request :: Maybe ChatJoinRequest.ChatJoinRequest -- ^ A chat join request from which to return next requests; pass null to get results from the beginning
+    , limit          :: Maybe Int                             -- ^ The maximum number of requests to join the chat to return
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatJoinRequests where
-  show
+instance I.ShortShow GetChatJoinRequests where
+  shortShow
     GetChatJoinRequests
-      { limit = limit_,
-        offset_request = offset_request_,
-        query = query_,
-        invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      "GetChatJoinRequests"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset_request" offset_request_,
-            U.p "query" query_,
-            U.p "invite_link" invite_link_,
-            U.p "chat_id" chat_id_
+      { chat_id        = chat_id_
+      , invite_link    = invite_link_
+      , query          = query_
+      , offset_request = offset_request_
+      , limit          = limit_
+      }
+        = "GetChatJoinRequests"
+          ++ I.cc
+          [ "chat_id"        `I.p` chat_id_
+          , "invite_link"    `I.p` invite_link_
+          , "query"          `I.p` query_
+          , "offset_request" `I.p` offset_request_
+          , "limit"          `I.p` limit_
           ]
 
-instance T.ToJSON GetChatJoinRequests where
+instance AT.ToJSON GetChatJoinRequests where
   toJSON
     GetChatJoinRequests
-      { limit = limit_,
-        offset_request = offset_request_,
-        query = query_,
-        invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatJoinRequests",
-          "limit" A..= limit_,
-          "offset_request" A..= offset_request_,
-          "query" A..= query_,
-          "invite_link" A..= invite_link_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id        = chat_id_
+      , invite_link    = invite_link_
+      , query          = query_
+      , offset_request = offset_request_
+      , limit          = limit_
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getChatJoinRequests"
+          , "chat_id"        A..= chat_id_
+          , "invite_link"    A..= invite_link_
+          , "query"          A..= query_
+          , "offset_request" A..= offset_request_
+          , "limit"          A..= limit_
+          ]
+
+defaultGetChatJoinRequests :: GetChatJoinRequests
+defaultGetChatJoinRequests =
+  GetChatJoinRequests
+    { chat_id        = Nothing
+    , invite_link    = Nothing
+    , query          = Nothing
+    , offset_request = Nothing
+    , limit          = Nothing
+    }
+

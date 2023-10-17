@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetStickerEmojis where
+module TD.Query.SetStickerEmojis
+  (SetStickerEmojis(..)
+  , defaultSetStickerEmojis
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
-data SetStickerEmojis = SetStickerEmojis
-  { -- | New string with 1-20 emoji corresponding to the sticker
-    emojis :: Maybe String,
-    -- | Sticker
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+data SetStickerEmojis
+  = SetStickerEmojis
+    { sticker :: Maybe InputFile.InputFile -- ^ Sticker
+    , emojis  :: Maybe T.Text              -- ^ New string with 1-20 emoji corresponding to the sticker
+    }
+  deriving (Eq, Show)
 
-instance Show SetStickerEmojis where
-  show
+instance I.ShortShow SetStickerEmojis where
+  shortShow
     SetStickerEmojis
-      { emojis = emojis_,
-        sticker = sticker_
-      } =
-      "SetStickerEmojis"
-        ++ U.cc
-          [ U.p "emojis" emojis_,
-            U.p "sticker" sticker_
+      { sticker = sticker_
+      , emojis  = emojis_
+      }
+        = "SetStickerEmojis"
+          ++ I.cc
+          [ "sticker" `I.p` sticker_
+          , "emojis"  `I.p` emojis_
           ]
 
-instance T.ToJSON SetStickerEmojis where
+instance AT.ToJSON SetStickerEmojis where
   toJSON
     SetStickerEmojis
-      { emojis = emojis_,
-        sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "setStickerEmojis",
-          "emojis" A..= emojis_,
-          "sticker" A..= sticker_
-        ]
+      { sticker = sticker_
+      , emojis  = emojis_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setStickerEmojis"
+          , "sticker" A..= sticker_
+          , "emojis"  A..= emojis_
+          ]
+
+defaultSetStickerEmojis :: SetStickerEmojis
+defaultSetStickerEmojis =
+  SetStickerEmojis
+    { sticker = Nothing
+    , emojis  = Nothing
+    }
+

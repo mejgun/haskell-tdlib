@@ -1,79 +1,60 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.FileDownload where
+module TD.Data.FileDownload
+  (FileDownload(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Message as Message
-import qualified Utils as U
 
--- |
-data FileDownload = -- | Describes a file added to file download list
-  FileDownload
-  { -- | True, if downloading of the file is paused
-    is_paused :: Maybe Bool,
-    -- | Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
-    complete_date :: Maybe Int,
-    -- | Point in time (Unix timestamp) when the file was added to the download list
-    add_date :: Maybe Int,
-    -- | The message with the file
-    message :: Maybe Message.Message,
-    -- | File identifier
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+data FileDownload
+  = FileDownload -- ^ Describes a file added to file download list
+    { file_id       :: Maybe Int             -- ^ File identifier
+    , message       :: Maybe Message.Message -- ^ The message with the file
+    , add_date      :: Maybe Int             -- ^ Point in time (Unix timestamp) when the file was added to the download list
+    , complete_date :: Maybe Int             -- ^ Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
+    , is_paused     :: Maybe Bool            -- ^ True, if downloading of the file is paused
+    }
+  deriving (Eq, Show)
 
-instance Show FileDownload where
-  show
-    FileDownload
-      { is_paused = is_paused_,
-        complete_date = complete_date_,
-        add_date = add_date_,
-        message = message_,
-        file_id = file_id_
-      } =
-      "FileDownload"
-        ++ U.cc
-          [ U.p "is_paused" is_paused_,
-            U.p "complete_date" complete_date_,
-            U.p "add_date" add_date_,
-            U.p "message" message_,
-            U.p "file_id" file_id_
-          ]
+instance I.ShortShow FileDownload where
+  shortShow FileDownload
+    { file_id       = file_id_
+    , message       = message_
+    , add_date      = add_date_
+    , complete_date = complete_date_
+    , is_paused     = is_paused_
+    }
+      = "FileDownload"
+        ++ I.cc
+        [ "file_id"       `I.p` file_id_
+        , "message"       `I.p` message_
+        , "add_date"      `I.p` add_date_
+        , "complete_date" `I.p` complete_date_
+        , "is_paused"     `I.p` is_paused_
+        ]
 
-instance T.FromJSON FileDownload where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON FileDownload where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "fileDownload" -> parseFileDownload v
-      _ -> mempty
+      _              -> mempty
+    
     where
-      parseFileDownload :: A.Value -> T.Parser FileDownload
+      parseFileDownload :: A.Value -> AT.Parser FileDownload
       parseFileDownload = A.withObject "FileDownload" $ \o -> do
-        is_paused_ <- o A..:? "is_paused"
-        complete_date_ <- o A..:? "complete_date"
-        add_date_ <- o A..:? "add_date"
-        message_ <- o A..:? "message"
-        file_id_ <- o A..:? "file_id"
-        return $ FileDownload {is_paused = is_paused_, complete_date = complete_date_, add_date = add_date_, message = message_, file_id = file_id_}
+        file_id_       <- o A..:?  "file_id"
+        message_       <- o A..:?  "message"
+        add_date_      <- o A..:?  "add_date"
+        complete_date_ <- o A..:?  "complete_date"
+        is_paused_     <- o A..:?  "is_paused"
+        pure $ FileDownload
+          { file_id       = file_id_
+          , message       = message_
+          , add_date      = add_date_
+          , complete_date = complete_date_
+          , is_paused     = is_paused_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON FileDownload where
-  toJSON
-    FileDownload
-      { is_paused = is_paused_,
-        complete_date = complete_date_,
-        add_date = add_date_,
-        message = message_,
-        file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "fileDownload",
-          "is_paused" A..= is_paused_,
-          "complete_date" A..= complete_date_,
-          "add_date" A..= add_date_,
-          "message" A..= message_,
-          "file_id" A..= file_id_
-        ]

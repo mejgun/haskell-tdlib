@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetExternalLinkInfo where
+module TD.Query.GetExternalLinkInfo
+  (GetExternalLinkInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats @link The link
-data GetExternalLinkInfo = GetExternalLinkInfo
-  { -- |
-    link :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
+data GetExternalLinkInfo
+  = GetExternalLinkInfo
+    { link :: Maybe T.Text -- ^ The link
+    }
+  deriving (Eq, Show)
 
-instance Show GetExternalLinkInfo where
-  show
+instance I.ShortShow GetExternalLinkInfo where
+  shortShow
     GetExternalLinkInfo
       { link = link_
-      } =
-      "GetExternalLinkInfo"
-        ++ U.cc
-          [ U.p "link" link_
+      }
+        = "GetExternalLinkInfo"
+          ++ I.cc
+          [ "link" `I.p` link_
           ]
 
-instance T.ToJSON GetExternalLinkInfo where
+instance AT.ToJSON GetExternalLinkInfo where
   toJSON
     GetExternalLinkInfo
       { link = link_
-      } =
-      A.object
-        [ "@type" A..= T.String "getExternalLinkInfo",
-          "link" A..= link_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getExternalLinkInfo"
+          , "link"  A..= link_
+          ]
+

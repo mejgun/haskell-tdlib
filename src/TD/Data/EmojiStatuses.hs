@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EmojiStatuses where
+module TD.Data.EmojiStatuses
+  (EmojiStatuses(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data EmojiStatuses = -- | Contains a list of custom emoji identifiers, which can be set as emoji statuses @custom_emoji_ids The list of custom emoji identifiers
-  EmojiStatuses
-  { -- |
-    custom_emoji_ids :: Maybe [Int]
-  }
-  deriving (Eq)
+data EmojiStatuses
+  = EmojiStatuses -- ^ Contains a list of custom emoji identifiers, which can be set as emoji statuses
+    { custom_emoji_ids :: Maybe [Int] -- ^ The list of custom emoji identifiers
+    }
+  deriving (Eq, Show)
 
-instance Show EmojiStatuses where
-  show
-    EmojiStatuses
-      { custom_emoji_ids = custom_emoji_ids_
-      } =
-      "EmojiStatuses"
-        ++ U.cc
-          [ U.p "custom_emoji_ids" custom_emoji_ids_
-          ]
+instance I.ShortShow EmojiStatuses where
+  shortShow EmojiStatuses
+    { custom_emoji_ids = custom_emoji_ids_
+    }
+      = "EmojiStatuses"
+        ++ I.cc
+        [ "custom_emoji_ids" `I.p` custom_emoji_ids_
+        ]
 
-instance T.FromJSON EmojiStatuses where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EmojiStatuses where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "emojiStatuses" -> parseEmojiStatuses v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parseEmojiStatuses :: A.Value -> T.Parser EmojiStatuses
+      parseEmojiStatuses :: A.Value -> AT.Parser EmojiStatuses
       parseEmojiStatuses = A.withObject "EmojiStatuses" $ \o -> do
-        custom_emoji_ids_ <- U.rl <$> (o A..:? "custom_emoji_ids" :: T.Parser (Maybe [String])) :: T.Parser (Maybe [Int])
-        return $ EmojiStatuses {custom_emoji_ids = custom_emoji_ids_}
+        custom_emoji_ids_ <- fmap (fmap I.readInt64) <$> o A..:?  "custom_emoji_ids"
+        pure $ EmojiStatuses
+          { custom_emoji_ids = custom_emoji_ids_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON EmojiStatuses where
-  toJSON
-    EmojiStatuses
-      { custom_emoji_ids = custom_emoji_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "emojiStatuses",
-          "custom_emoji_ids" A..= U.toLS custom_emoji_ids_
-        ]

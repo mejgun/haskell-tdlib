@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetTextEntities where
+module TD.Query.GetTextEntities
+  (GetTextEntities(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously @text The text in which to look for entities
-data GetTextEntities = GetTextEntities
-  { -- |
-    text :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+data GetTextEntities
+  = GetTextEntities
+    { text :: Maybe T.Text -- ^ The text in which to look for entities
+    }
+  deriving (Eq, Show)
 
-instance Show GetTextEntities where
-  show
+instance I.ShortShow GetTextEntities where
+  shortShow
     GetTextEntities
       { text = text_
-      } =
-      "GetTextEntities"
-        ++ U.cc
-          [ U.p "text" text_
+      }
+        = "GetTextEntities"
+          ++ I.cc
+          [ "text" `I.p` text_
           ]
 
-instance T.ToJSON GetTextEntities where
+instance AT.ToJSON GetTextEntities where
   toJSON
     GetTextEntities
       { text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "getTextEntities",
-          "text" A..= text_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getTextEntities"
+          , "text"  A..= text_
+          ]
+

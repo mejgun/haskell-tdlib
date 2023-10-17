@@ -1,5 +1,5 @@
 name:                haskell-tdlib
-version:             0.2.54.0
+version:             2.0.0.0
 github:              "mejgun/haskell-tdlib"
 license:             BSD3
 author:              "Author name here"
@@ -22,7 +22,19 @@ description:         Please see the README on GitHub at <https://github.com/mejg
 dependencies:
 - base >= 4.7 && < 5
 
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wno-partial-fields
+- -Wredundant-constraints
+
 library:
+  language:    GHC2021
   source-dirs: src
   extra-libraries: tdjson
   dependencies:
@@ -32,11 +44,13 @@ library:
   - unordered-containers
   - text
   - containers
-  ghc-options:
-  - -ltdjson
+  - base64-bytestring
+  default-extensions:
+  - OverloadedStrings
 
 executables:
   haskell-tdlib-exe:
+    language:    GHC2021
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -48,9 +62,14 @@ executables:
     - -Werror
     dependencies:
     - haskell-tdlib
+    default-extensions:
+    - DuplicateRecordFields
+    - NoFieldSelectors
+    - OverloadedStrings
 
 tests:
   haskell-tdlib-test:
+    language:    GHC2021
     main:                Spec.hs
     source-dirs:         test
     ghc-options:

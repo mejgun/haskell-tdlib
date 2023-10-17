@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessage where
+module TD.Query.GetMessage
+  (GetMessage(..)
+  , defaultGetMessage
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a message @chat_id Identifier of the chat the message belongs to @message_id Identifier of the message to get
-data GetMessage = GetMessage
-  { -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a message
+data GetMessage
+  = GetMessage
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
+    , message_id :: Maybe Int -- ^ Identifier of the message to get
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessage where
-  show
+instance I.ShortShow GetMessage where
+  shortShow
     GetMessage
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessage"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessage"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetMessage where
+instance AT.ToJSON GetMessage where
   toJSON
     GetMessage
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessage",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessage"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetMessage :: GetMessage
+defaultGetMessage =
+  GetMessage
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

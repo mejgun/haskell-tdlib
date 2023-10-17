@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetFileDownloadedPrefixSize where
+module TD.Query.GetFileDownloadedPrefixSize
+  (GetFileDownloadedPrefixSize(..)
+  , defaultGetFileDownloadedPrefixSize
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns file downloaded prefix size from a given offset, in bytes @file_id Identifier of the file @offset Offset from which downloaded prefix size needs to be calculated
-data GetFileDownloadedPrefixSize = GetFileDownloadedPrefixSize
-  { -- |
-    offset :: Maybe Int,
-    -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns file downloaded prefix size from a given offset, in bytes
+data GetFileDownloadedPrefixSize
+  = GetFileDownloadedPrefixSize
+    { file_id :: Maybe Int -- ^ Identifier of the file
+    , offset  :: Maybe Int -- ^ Offset from which downloaded prefix size needs to be calculated
+    }
+  deriving (Eq, Show)
 
-instance Show GetFileDownloadedPrefixSize where
-  show
+instance I.ShortShow GetFileDownloadedPrefixSize where
+  shortShow
     GetFileDownloadedPrefixSize
-      { offset = offset_,
-        file_id = file_id_
-      } =
-      "GetFileDownloadedPrefixSize"
-        ++ U.cc
-          [ U.p "offset" offset_,
-            U.p "file_id" file_id_
+      { file_id = file_id_
+      , offset  = offset_
+      }
+        = "GetFileDownloadedPrefixSize"
+          ++ I.cc
+          [ "file_id" `I.p` file_id_
+          , "offset"  `I.p` offset_
           ]
 
-instance T.ToJSON GetFileDownloadedPrefixSize where
+instance AT.ToJSON GetFileDownloadedPrefixSize where
   toJSON
     GetFileDownloadedPrefixSize
-      { offset = offset_,
-        file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getFileDownloadedPrefixSize",
-          "offset" A..= offset_,
-          "file_id" A..= file_id_
-        ]
+      { file_id = file_id_
+      , offset  = offset_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getFileDownloadedPrefixSize"
+          , "file_id" A..= file_id_
+          , "offset"  A..= offset_
+          ]
+
+defaultGetFileDownloadedPrefixSize :: GetFileDownloadedPrefixSize
+defaultGetFileDownloadedPrefixSize =
+  GetFileDownloadedPrefixSize
+    { file_id = Nothing
+    , offset  = Nothing
+    }
+

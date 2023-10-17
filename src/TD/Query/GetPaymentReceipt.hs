@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPaymentReceipt where
+module TD.Query.GetPaymentReceipt
+  (GetPaymentReceipt(..)
+  , defaultGetPaymentReceipt
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a successful payment @chat_id Chat identifier of the messagePaymentSuccessful message @message_id Message identifier
-data GetPaymentReceipt = GetPaymentReceipt
-  { -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a successful payment
+data GetPaymentReceipt
+  = GetPaymentReceipt
+    { chat_id    :: Maybe Int -- ^ Chat identifier of the messagePaymentSuccessful message
+    , message_id :: Maybe Int -- ^ Message identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetPaymentReceipt where
-  show
+instance I.ShortShow GetPaymentReceipt where
+  shortShow
     GetPaymentReceipt
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetPaymentReceipt"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetPaymentReceipt"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetPaymentReceipt where
+instance AT.ToJSON GetPaymentReceipt where
   toJSON
     GetPaymentReceipt
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPaymentReceipt",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getPaymentReceipt"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetPaymentReceipt :: GetPaymentReceipt
+defaultGetPaymentReceipt =
+  GetPaymentReceipt
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

@@ -1,57 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PaymentResult where
+module TD.Data.PaymentResult
+  (PaymentResult(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data PaymentResult = -- | Contains the result of a payment request @success True, if the payment request was successful; otherwise, the verification_url will be non-empty @verification_url URL for additional payment credentials verification
-  PaymentResult
-  { -- |
-    verification_url :: Maybe String,
-    -- |
-    success :: Maybe Bool
-  }
-  deriving (Eq)
+data PaymentResult
+  = PaymentResult -- ^ Contains the result of a payment request
+    { success          :: Maybe Bool   -- ^ True, if the payment request was successful; otherwise, the verification_url will be non-empty
+    , verification_url :: Maybe T.Text -- ^ URL for additional payment credentials verification
+    }
+  deriving (Eq, Show)
 
-instance Show PaymentResult where
-  show
-    PaymentResult
-      { verification_url = verification_url_,
-        success = success_
-      } =
-      "PaymentResult"
-        ++ U.cc
-          [ U.p "verification_url" verification_url_,
-            U.p "success" success_
-          ]
+instance I.ShortShow PaymentResult where
+  shortShow PaymentResult
+    { success          = success_
+    , verification_url = verification_url_
+    }
+      = "PaymentResult"
+        ++ I.cc
+        [ "success"          `I.p` success_
+        , "verification_url" `I.p` verification_url_
+        ]
 
-instance T.FromJSON PaymentResult where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PaymentResult where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "paymentResult" -> parsePaymentResult v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parsePaymentResult :: A.Value -> T.Parser PaymentResult
+      parsePaymentResult :: A.Value -> AT.Parser PaymentResult
       parsePaymentResult = A.withObject "PaymentResult" $ \o -> do
-        verification_url_ <- o A..:? "verification_url"
-        success_ <- o A..:? "success"
-        return $ PaymentResult {verification_url = verification_url_, success = success_}
+        success_          <- o A..:?  "success"
+        verification_url_ <- o A..:?  "verification_url"
+        pure $ PaymentResult
+          { success          = success_
+          , verification_url = verification_url_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PaymentResult where
-  toJSON
-    PaymentResult
-      { verification_url = verification_url_,
-        success = success_
-      } =
-      A.object
-        [ "@type" A..= T.String "paymentResult",
-          "verification_url" A..= verification_url_,
-          "success" A..= success_
-        ]

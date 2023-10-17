@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetImportedContactCount where
+module TD.Query.GetImportedContactCount
+  (GetImportedContactCount(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the total number of imported contacts
-data GetImportedContactCount = GetImportedContactCount
-  {
-  }
-  deriving (Eq)
+-- | Returns the total number of imported contacts
+data GetImportedContactCount
+  = GetImportedContactCount
+  deriving (Eq, Show)
 
-instance Show GetImportedContactCount where
-  show GetImportedContactCount =
-    "GetImportedContactCount"
-      ++ U.cc
-        []
+instance I.ShortShow GetImportedContactCount where
+  shortShow
+    GetImportedContactCount
+        = "GetImportedContactCount"
 
-instance T.ToJSON GetImportedContactCount where
-  toJSON GetImportedContactCount =
-    A.object
-      [ "@type" A..= T.String "getImportedContactCount"
-      ]
+instance AT.ToJSON GetImportedContactCount where
+  toJSON
+    GetImportedContactCount
+        = A.object
+          [ "@type" A..= AT.String "getImportedContactCount"
+          ]
+

@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TestVectorInt where
+module TD.Data.TestVectorInt
+  (TestVectorInt(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data TestVectorInt = -- | A simple object containing a vector of numbers; for testing only @value Vector of numbers
-  TestVectorInt
-  { -- |
-    value :: Maybe [Int]
-  }
-  deriving (Eq)
+data TestVectorInt
+  = TestVectorInt -- ^ A simple object containing a vector of numbers; for testing only
+    { value :: Maybe [Int] -- ^ Vector of numbers
+    }
+  deriving (Eq, Show)
 
-instance Show TestVectorInt where
-  show
-    TestVectorInt
-      { value = value_
-      } =
-      "TestVectorInt"
-        ++ U.cc
-          [ U.p "value" value_
-          ]
+instance I.ShortShow TestVectorInt where
+  shortShow TestVectorInt
+    { value = value_
+    }
+      = "TestVectorInt"
+        ++ I.cc
+        [ "value" `I.p` value_
+        ]
 
-instance T.FromJSON TestVectorInt where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TestVectorInt where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "testVectorInt" -> parseTestVectorInt v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parseTestVectorInt :: A.Value -> T.Parser TestVectorInt
+      parseTestVectorInt :: A.Value -> AT.Parser TestVectorInt
       parseTestVectorInt = A.withObject "TestVectorInt" $ \o -> do
-        value_ <- o A..:? "value"
-        return $ TestVectorInt {value = value_}
+        value_ <- o A..:?  "value"
+        pure $ TestVectorInt
+          { value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TestVectorInt where
-  toJSON
-    TestVectorInt
-      { value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "testVectorInt",
-          "value" A..= value_
-        ]

@@ -1,65 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TermsOfService where
+module TD.Data.TermsOfService
+  (TermsOfService(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import qualified Utils as U
 
--- |
-data TermsOfService = -- | Contains Telegram terms of service @text Text of the terms of service @min_user_age The minimum age of a user to be able to accept the terms; 0 if age isn't restricted @show_popup True, if a blocking popup with terms of service must be shown to the user
-  TermsOfService
-  { -- |
-    show_popup :: Maybe Bool,
-    -- |
-    min_user_age :: Maybe Int,
-    -- |
-    text :: Maybe FormattedText.FormattedText
-  }
-  deriving (Eq)
+data TermsOfService
+  = TermsOfService -- ^ Contains Telegram terms of service
+    { text         :: Maybe FormattedText.FormattedText -- ^ Text of the terms of service
+    , min_user_age :: Maybe Int                         -- ^ The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
+    , show_popup   :: Maybe Bool                        -- ^ True, if a blocking popup with terms of service must be shown to the user
+    }
+  deriving (Eq, Show)
 
-instance Show TermsOfService where
-  show
-    TermsOfService
-      { show_popup = show_popup_,
-        min_user_age = min_user_age_,
-        text = text_
-      } =
-      "TermsOfService"
-        ++ U.cc
-          [ U.p "show_popup" show_popup_,
-            U.p "min_user_age" min_user_age_,
-            U.p "text" text_
-          ]
+instance I.ShortShow TermsOfService where
+  shortShow TermsOfService
+    { text         = text_
+    , min_user_age = min_user_age_
+    , show_popup   = show_popup_
+    }
+      = "TermsOfService"
+        ++ I.cc
+        [ "text"         `I.p` text_
+        , "min_user_age" `I.p` min_user_age_
+        , "show_popup"   `I.p` show_popup_
+        ]
 
-instance T.FromJSON TermsOfService where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TermsOfService where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "termsOfService" -> parseTermsOfService v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseTermsOfService :: A.Value -> T.Parser TermsOfService
+      parseTermsOfService :: A.Value -> AT.Parser TermsOfService
       parseTermsOfService = A.withObject "TermsOfService" $ \o -> do
-        show_popup_ <- o A..:? "show_popup"
-        min_user_age_ <- o A..:? "min_user_age"
-        text_ <- o A..:? "text"
-        return $ TermsOfService {show_popup = show_popup_, min_user_age = min_user_age_, text = text_}
+        text_         <- o A..:?  "text"
+        min_user_age_ <- o A..:?  "min_user_age"
+        show_popup_   <- o A..:?  "show_popup"
+        pure $ TermsOfService
+          { text         = text_
+          , min_user_age = min_user_age_
+          , show_popup   = show_popup_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TermsOfService where
-  toJSON
-    TermsOfService
-      { show_popup = show_popup_,
-        min_user_age = min_user_age_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "termsOfService",
-          "show_popup" A..= show_popup_,
-          "min_user_age" A..= min_user_age_,
-          "text" A..= text_
-        ]

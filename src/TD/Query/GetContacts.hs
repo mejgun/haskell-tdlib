@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetContacts where
+module TD.Query.GetContacts
+  (GetContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns all contacts of the user
-data GetContacts = GetContacts
-  {
-  }
-  deriving (Eq)
+-- | Returns all contacts of the user
+data GetContacts
+  = GetContacts
+  deriving (Eq, Show)
 
-instance Show GetContacts where
-  show GetContacts =
-    "GetContacts"
-      ++ U.cc
-        []
+instance I.ShortShow GetContacts where
+  shortShow
+    GetContacts
+        = "GetContacts"
 
-instance T.ToJSON GetContacts where
-  toJSON GetContacts =
-    A.object
-      [ "@type" A..= T.String "getContacts"
-      ]
+instance AT.ToJSON GetContacts where
+  toJSON
+    GetContacts
+        = A.object
+          [ "@type" A..= AT.String "getContacts"
+          ]
+

@@ -1,82 +1,75 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendStory where
+module TD.Query.SendStory
+  (SendStory(..)
+  , defaultSendStory
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.InputStoryAreas as InputStoryAreas
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputStoryContent as InputStoryContent
+import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
-import qualified Utils as U
 
--- |
--- Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
-data SendStory = SendStory
-  { -- | Pass true if the content of the story must be protected from forwarding and screenshotting
-    protect_content :: Maybe Bool,
-    -- | Pass true to keep the story accessible after expiration
-    is_pinned :: Maybe Bool,
-    -- | Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
-    active_period :: Maybe Int,
-    -- | The privacy settings for the story
-    privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings,
-    -- | Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
-    caption :: Maybe FormattedText.FormattedText,
-    -- | Clickable rectangle areas to be shown on the story media; pass null if none
-    areas :: Maybe InputStoryAreas.InputStoryAreas,
-    -- | Content of the story
-    content :: Maybe InputStoryContent.InputStoryContent,
-    -- | Identifier of the chat that will post the story
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a new story. Returns a temporary story with identifier 0
+data SendStory
+  = SendStory
+    { content          :: Maybe InputStoryContent.InputStoryContent       -- ^ Content of the story
+    , caption          :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
+    , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story
+    , active_period    :: Maybe Int                                       -- ^ Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, 2 * 86400, 3 * 86400, or 7 * 86400 for Telegram Premium users, and 86400 otherwise
+    , is_pinned        :: Maybe Bool                                      -- ^ Pass true to keep the story accessible after expiration
+    , protect_content  :: Maybe Bool                                      -- ^ Pass true if the content of the story must be protected from forwarding and screenshotting
+    }
+  deriving (Eq, Show)
 
-instance Show SendStory where
-  show
+instance I.ShortShow SendStory where
+  shortShow
     SendStory
-      { protect_content = protect_content_,
-        is_pinned = is_pinned_,
-        active_period = active_period_,
-        privacy_settings = privacy_settings_,
-        caption = caption_,
-        areas = areas_,
-        content = content_,
-        chat_id = chat_id_
-      } =
-      "SendStory"
-        ++ U.cc
-          [ U.p "protect_content" protect_content_,
-            U.p "is_pinned" is_pinned_,
-            U.p "active_period" active_period_,
-            U.p "privacy_settings" privacy_settings_,
-            U.p "caption" caption_,
-            U.p "areas" areas_,
-            U.p "content" content_,
-            U.p "chat_id" chat_id_
+      { content          = content_
+      , caption          = caption_
+      , privacy_settings = privacy_settings_
+      , active_period    = active_period_
+      , is_pinned        = is_pinned_
+      , protect_content  = protect_content_
+      }
+        = "SendStory"
+          ++ I.cc
+          [ "content"          `I.p` content_
+          , "caption"          `I.p` caption_
+          , "privacy_settings" `I.p` privacy_settings_
+          , "active_period"    `I.p` active_period_
+          , "is_pinned"        `I.p` is_pinned_
+          , "protect_content"  `I.p` protect_content_
           ]
 
-instance T.ToJSON SendStory where
+instance AT.ToJSON SendStory where
   toJSON
     SendStory
-      { protect_content = protect_content_,
-        is_pinned = is_pinned_,
-        active_period = active_period_,
-        privacy_settings = privacy_settings_,
-        caption = caption_,
-        areas = areas_,
-        content = content_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendStory",
-          "protect_content" A..= protect_content_,
-          "is_pinned" A..= is_pinned_,
-          "active_period" A..= active_period_,
-          "privacy_settings" A..= privacy_settings_,
-          "caption" A..= caption_,
-          "areas" A..= areas_,
-          "content" A..= content_,
-          "chat_id" A..= chat_id_
-        ]
+      { content          = content_
+      , caption          = caption_
+      , privacy_settings = privacy_settings_
+      , active_period    = active_period_
+      , is_pinned        = is_pinned_
+      , protect_content  = protect_content_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "sendStory"
+          , "content"          A..= content_
+          , "caption"          A..= caption_
+          , "privacy_settings" A..= privacy_settings_
+          , "active_period"    A..= active_period_
+          , "is_pinned"        A..= is_pinned_
+          , "protect_content"  A..= protect_content_
+          ]
+
+defaultSendStory :: SendStory
+defaultSendStory =
+  SendStory
+    { content          = Nothing
+    , caption          = Nothing
+    , privacy_settings = Nothing
+    , active_period    = Nothing
+    , is_pinned        = Nothing
+    , protect_content  = Nothing
+    }
+

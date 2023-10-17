@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditChatFolder where
+module TD.Query.EditChatFolder
+  (EditChatFolder(..)
+  , defaultEditChatFolder
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
-import qualified Utils as U
 
--- |
--- Edits existing chat folder. Returns information about the edited chat folder @chat_folder_id Chat folder identifier @folder The edited chat folder
-data EditChatFolder = EditChatFolder
-  { -- |
-    folder :: Maybe ChatFolder.ChatFolder,
-    -- |
-    chat_folder_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Edits existing chat folder. Returns information about the edited chat folder
+data EditChatFolder
+  = EditChatFolder
+    { chat_folder_id :: Maybe Int                   -- ^ Chat folder identifier
+    , folder         :: Maybe ChatFolder.ChatFolder -- ^ The edited chat folder
+    }
+  deriving (Eq, Show)
 
-instance Show EditChatFolder where
-  show
+instance I.ShortShow EditChatFolder where
+  shortShow
     EditChatFolder
-      { folder = folder_,
-        chat_folder_id = chat_folder_id_
-      } =
-      "EditChatFolder"
-        ++ U.cc
-          [ U.p "folder" folder_,
-            U.p "chat_folder_id" chat_folder_id_
+      { chat_folder_id = chat_folder_id_
+      , folder         = folder_
+      }
+        = "EditChatFolder"
+          ++ I.cc
+          [ "chat_folder_id" `I.p` chat_folder_id_
+          , "folder"         `I.p` folder_
           ]
 
-instance T.ToJSON EditChatFolder where
+instance AT.ToJSON EditChatFolder where
   toJSON
     EditChatFolder
-      { folder = folder_,
-        chat_folder_id = chat_folder_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "editChatFolder",
-          "folder" A..= folder_,
-          "chat_folder_id" A..= chat_folder_id_
-        ]
+      { chat_folder_id = chat_folder_id_
+      , folder         = folder_
+      }
+        = A.object
+          [ "@type"          A..= AT.String "editChatFolder"
+          , "chat_folder_id" A..= chat_folder_id_
+          , "folder"         A..= folder_
+          ]
+
+defaultEditChatFolder :: EditChatFolder
+defaultEditChatFolder =
+  EditChatFolder
+    { chat_folder_id = Nothing
+    , folder         = Nothing
+    }
+

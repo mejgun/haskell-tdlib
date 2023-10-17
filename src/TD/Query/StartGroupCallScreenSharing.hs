@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.StartGroupCallScreenSharing where
+module TD.Query.StartGroupCallScreenSharing
+  (StartGroupCallScreenSharing(..)
+  , defaultStartGroupCallScreenSharing
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Starts screen sharing in a joined group call. Returns join response payload for tgcalls
-data StartGroupCallScreenSharing = StartGroupCallScreenSharing
-  { -- | Group call join payload; received from tgcalls
-    payload :: Maybe String,
-    -- | Screen sharing audio channel synchronization source identifier; received from tgcalls
-    audio_source_id :: Maybe Int,
-    -- | Group call identifier
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+data StartGroupCallScreenSharing
+  = StartGroupCallScreenSharing
+    { group_call_id   :: Maybe Int    -- ^ Group call identifier
+    , audio_source_id :: Maybe Int    -- ^ Screen sharing audio channel synchronization source identifier; received from tgcalls
+    , payload         :: Maybe T.Text -- ^ Group call join payload; received from tgcalls
+    }
+  deriving (Eq, Show)
 
-instance Show StartGroupCallScreenSharing where
-  show
+instance I.ShortShow StartGroupCallScreenSharing where
+  shortShow
     StartGroupCallScreenSharing
-      { payload = payload_,
-        audio_source_id = audio_source_id_,
-        group_call_id = group_call_id_
-      } =
-      "StartGroupCallScreenSharing"
-        ++ U.cc
-          [ U.p "payload" payload_,
-            U.p "audio_source_id" audio_source_id_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id   = group_call_id_
+      , audio_source_id = audio_source_id_
+      , payload         = payload_
+      }
+        = "StartGroupCallScreenSharing"
+          ++ I.cc
+          [ "group_call_id"   `I.p` group_call_id_
+          , "audio_source_id" `I.p` audio_source_id_
+          , "payload"         `I.p` payload_
           ]
 
-instance T.ToJSON StartGroupCallScreenSharing where
+instance AT.ToJSON StartGroupCallScreenSharing where
   toJSON
     StartGroupCallScreenSharing
-      { payload = payload_,
-        audio_source_id = audio_source_id_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "startGroupCallScreenSharing",
-          "payload" A..= payload_,
-          "audio_source_id" A..= audio_source_id_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id   = group_call_id_
+      , audio_source_id = audio_source_id_
+      , payload         = payload_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "startGroupCallScreenSharing"
+          , "group_call_id"   A..= group_call_id_
+          , "audio_source_id" A..= audio_source_id_
+          , "payload"         A..= payload_
+          ]
+
+defaultStartGroupCallScreenSharing :: StartGroupCallScreenSharing
+defaultStartGroupCallScreenSharing =
+  StartGroupCallScreenSharing
+    { group_call_id   = Nothing
+    , audio_source_id = Nothing
+    , payload         = Nothing
+    }
+

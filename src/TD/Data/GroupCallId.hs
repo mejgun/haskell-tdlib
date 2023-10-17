@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.GroupCallId where
+module TD.Data.GroupCallId
+  (GroupCallId(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data GroupCallId = -- | Contains the group call identifier @id Group call identifier
-  GroupCallId
-  { -- |
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data GroupCallId
+  = GroupCallId -- ^ Contains the group call identifier
+    { _id :: Maybe Int -- ^ Group call identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GroupCallId where
-  show
-    GroupCallId
-      { _id = _id_
-      } =
-      "GroupCallId"
-        ++ U.cc
-          [ U.p "_id" _id_
-          ]
+instance I.ShortShow GroupCallId where
+  shortShow GroupCallId
+    { _id = _id_
+    }
+      = "GroupCallId"
+        ++ I.cc
+        [ "_id" `I.p` _id_
+        ]
 
-instance T.FromJSON GroupCallId where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON GroupCallId where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "groupCallId" -> parseGroupCallId v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseGroupCallId :: A.Value -> T.Parser GroupCallId
+      parseGroupCallId :: A.Value -> AT.Parser GroupCallId
       parseGroupCallId = A.withObject "GroupCallId" $ \o -> do
-        _id_ <- o A..:? "id"
-        return $ GroupCallId {_id = _id_}
+        _id_ <- o A..:?  "id"
+        pure $ GroupCallId
+          { _id = _id_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON GroupCallId where
-  toJSON
-    GroupCallId
-      { _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "groupCallId",
-          "id" A..= _id_
-        ]

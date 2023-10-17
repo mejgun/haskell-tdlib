@@ -1,58 +1,46 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.RecommendedChatFolder where
+module TD.Data.RecommendedChatFolder
+  (RecommendedChatFolder(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data RecommendedChatFolder = -- | Describes a recommended chat folder @folder The chat folder @param_description Chat folder description
-  RecommendedChatFolder
-  { -- |
-    description :: Maybe String,
-    -- |
-    folder :: Maybe ChatFolder.ChatFolder
-  }
-  deriving (Eq)
+data RecommendedChatFolder
+  = RecommendedChatFolder -- ^ Describes a recommended chat folder
+    { folder      :: Maybe ChatFolder.ChatFolder -- ^ The chat folder
+    , description :: Maybe T.Text
+    }
+  deriving (Eq, Show)
 
-instance Show RecommendedChatFolder where
-  show
-    RecommendedChatFolder
-      { description = description_,
-        folder = folder_
-      } =
-      "RecommendedChatFolder"
-        ++ U.cc
-          [ U.p "description" description_,
-            U.p "folder" folder_
-          ]
+instance I.ShortShow RecommendedChatFolder where
+  shortShow RecommendedChatFolder
+    { folder      = folder_
+    , description = description_
+    }
+      = "RecommendedChatFolder"
+        ++ I.cc
+        [ "folder"      `I.p` folder_
+        , "description" `I.p` description_
+        ]
 
-instance T.FromJSON RecommendedChatFolder where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON RecommendedChatFolder where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "recommendedChatFolder" -> parseRecommendedChatFolder v
-      _ -> mempty
+      _                       -> mempty
+    
     where
-      parseRecommendedChatFolder :: A.Value -> T.Parser RecommendedChatFolder
+      parseRecommendedChatFolder :: A.Value -> AT.Parser RecommendedChatFolder
       parseRecommendedChatFolder = A.withObject "RecommendedChatFolder" $ \o -> do
-        description_ <- o A..:? "description"
-        folder_ <- o A..:? "folder"
-        return $ RecommendedChatFolder {description = description_, folder = folder_}
+        folder_      <- o A..:?  "folder"
+        description_ <- o A..:?  "description"
+        pure $ RecommendedChatFolder
+          { folder      = folder_
+          , description = description_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON RecommendedChatFolder where
-  toJSON
-    RecommendedChatFolder
-      { description = description_,
-        folder = folder_
-      } =
-      A.object
-        [ "@type" A..= T.String "recommendedChatFolder",
-          "description" A..= description_,
-          "folder" A..= folder_
-        ]

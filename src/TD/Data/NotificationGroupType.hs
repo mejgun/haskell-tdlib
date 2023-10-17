@@ -1,80 +1,38 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.NotificationGroupType where
+module TD.Data.NotificationGroupType
+  (NotificationGroupType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the type of notifications in a notification group
 data NotificationGroupType
-  = -- | A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
-    NotificationGroupTypeMessages
-  | -- | A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
-    NotificationGroupTypeMentions
-  | -- | A group containing a notification of type notificationTypeNewSecretChat
-    NotificationGroupTypeSecretChat
-  | -- | A group containing notifications of type notificationTypeNewCall
-    NotificationGroupTypeCalls
-  deriving (Eq)
+  = NotificationGroupTypeMessages -- ^ A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
+  | NotificationGroupTypeMentions -- ^ A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
+  | NotificationGroupTypeSecretChat -- ^ A group containing a notification of type notificationTypeNewSecretChat
+  | NotificationGroupTypeCalls -- ^ A group containing notifications of type notificationTypeNewCall
+  deriving (Eq, Show)
 
-instance Show NotificationGroupType where
-  show NotificationGroupTypeMessages =
-    "NotificationGroupTypeMessages"
-      ++ U.cc
-        []
-  show NotificationGroupTypeMentions =
-    "NotificationGroupTypeMentions"
-      ++ U.cc
-        []
-  show NotificationGroupTypeSecretChat =
-    "NotificationGroupTypeSecretChat"
-      ++ U.cc
-        []
-  show NotificationGroupTypeCalls =
-    "NotificationGroupTypeCalls"
-      ++ U.cc
-        []
+instance I.ShortShow NotificationGroupType where
+  shortShow NotificationGroupTypeMessages
+      = "NotificationGroupTypeMessages"
+  shortShow NotificationGroupTypeMentions
+      = "NotificationGroupTypeMentions"
+  shortShow NotificationGroupTypeSecretChat
+      = "NotificationGroupTypeSecretChat"
+  shortShow NotificationGroupTypeCalls
+      = "NotificationGroupTypeCalls"
 
-instance T.FromJSON NotificationGroupType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON NotificationGroupType where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "notificationGroupTypeMessages" -> parseNotificationGroupTypeMessages v
-      "notificationGroupTypeMentions" -> parseNotificationGroupTypeMentions v
-      "notificationGroupTypeSecretChat" -> parseNotificationGroupTypeSecretChat v
-      "notificationGroupTypeCalls" -> parseNotificationGroupTypeCalls v
-      _ -> mempty
-    where
-      parseNotificationGroupTypeMessages :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeMessages = A.withObject "NotificationGroupTypeMessages" $ \_ -> return NotificationGroupTypeMessages
-
-      parseNotificationGroupTypeMentions :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeMentions = A.withObject "NotificationGroupTypeMentions" $ \_ -> return NotificationGroupTypeMentions
-
-      parseNotificationGroupTypeSecretChat :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeSecretChat = A.withObject "NotificationGroupTypeSecretChat" $ \_ -> return NotificationGroupTypeSecretChat
-
-      parseNotificationGroupTypeCalls :: A.Value -> T.Parser NotificationGroupType
-      parseNotificationGroupTypeCalls = A.withObject "NotificationGroupTypeCalls" $ \_ -> return NotificationGroupTypeCalls
+      "notificationGroupTypeMessages"   -> pure NotificationGroupTypeMessages
+      "notificationGroupTypeMentions"   -> pure NotificationGroupTypeMentions
+      "notificationGroupTypeSecretChat" -> pure NotificationGroupTypeSecretChat
+      "notificationGroupTypeCalls"      -> pure NotificationGroupTypeCalls
+      _                                 -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON NotificationGroupType where
-  toJSON NotificationGroupTypeMessages =
-    A.object
-      [ "@type" A..= T.String "notificationGroupTypeMessages"
-      ]
-  toJSON NotificationGroupTypeMentions =
-    A.object
-      [ "@type" A..= T.String "notificationGroupTypeMentions"
-      ]
-  toJSON NotificationGroupTypeSecretChat =
-    A.object
-      [ "@type" A..= T.String "notificationGroupTypeSecretChat"
-      ]
-  toJSON NotificationGroupTypeCalls =
-    A.object
-      [ "@type" A..= T.String "notificationGroupTypeCalls"
-      ]

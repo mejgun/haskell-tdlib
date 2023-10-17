@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetGroupCallStreams where
+module TD.Query.GetGroupCallStreams
+  (GetGroupCallStreams(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about available group call streams @group_call_id Group call identifier
-data GetGroupCallStreams = GetGroupCallStreams
-  { -- |
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about available group call streams
+data GetGroupCallStreams
+  = GetGroupCallStreams
+    { group_call_id :: Maybe Int -- ^ Group call identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetGroupCallStreams where
-  show
+instance I.ShortShow GetGroupCallStreams where
+  shortShow
     GetGroupCallStreams
       { group_call_id = group_call_id_
-      } =
-      "GetGroupCallStreams"
-        ++ U.cc
-          [ U.p "group_call_id" group_call_id_
+      }
+        = "GetGroupCallStreams"
+          ++ I.cc
+          [ "group_call_id" `I.p` group_call_id_
           ]
 
-instance T.ToJSON GetGroupCallStreams where
+instance AT.ToJSON GetGroupCallStreams where
   toJSON
     GetGroupCallStreams
       { group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getGroupCallStreams",
-          "group_call_id" A..= group_call_id_
-        ]
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getGroupCallStreams"
+          , "group_call_id" A..= group_call_id_
+          ]
+

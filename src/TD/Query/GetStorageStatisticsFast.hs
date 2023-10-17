@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStorageStatisticsFast where
+module TD.Query.GetStorageStatisticsFast
+  (GetStorageStatisticsFast(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Quickly returns approximate storage usage statistics. Can be called before authorization
-data GetStorageStatisticsFast = GetStorageStatisticsFast
-  {
-  }
-  deriving (Eq)
+-- | Quickly returns approximate storage usage statistics. Can be called before authorization
+data GetStorageStatisticsFast
+  = GetStorageStatisticsFast
+  deriving (Eq, Show)
 
-instance Show GetStorageStatisticsFast where
-  show GetStorageStatisticsFast =
-    "GetStorageStatisticsFast"
-      ++ U.cc
-        []
+instance I.ShortShow GetStorageStatisticsFast where
+  shortShow
+    GetStorageStatisticsFast
+        = "GetStorageStatisticsFast"
 
-instance T.ToJSON GetStorageStatisticsFast where
-  toJSON GetStorageStatisticsFast =
-    A.object
-      [ "@type" A..= T.String "getStorageStatisticsFast"
-      ]
+instance AT.ToJSON GetStorageStatisticsFast where
+  toJSON
+    GetStorageStatisticsFast
+        = A.object
+          [ "@type" A..= AT.String "getStorageStatisticsFast"
+          ]
+

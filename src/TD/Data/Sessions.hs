@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Sessions where
+module TD.Data.Sessions
+  (Sessions(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Session as Session
-import qualified Utils as U
 
--- |
-data Sessions = -- | Contains a list of sessions @sessions List of sessions @inactive_session_ttl_days Number of days of inactivity before sessions will automatically be terminated; 1-366 days
-  Sessions
-  { -- |
-    inactive_session_ttl_days :: Maybe Int,
-    -- |
-    sessions :: Maybe [Session.Session]
-  }
-  deriving (Eq)
+data Sessions
+  = Sessions -- ^ Contains a list of sessions
+    { sessions                  :: Maybe [Session.Session] -- ^ List of sessions
+    , inactive_session_ttl_days :: Maybe Int               -- ^ Number of days of inactivity before sessions will automatically be terminated; 1-366 days
+    }
+  deriving (Eq, Show)
 
-instance Show Sessions where
-  show
-    Sessions
-      { inactive_session_ttl_days = inactive_session_ttl_days_,
-        sessions = sessions_
-      } =
-      "Sessions"
-        ++ U.cc
-          [ U.p "inactive_session_ttl_days" inactive_session_ttl_days_,
-            U.p "sessions" sessions_
-          ]
+instance I.ShortShow Sessions where
+  shortShow Sessions
+    { sessions                  = sessions_
+    , inactive_session_ttl_days = inactive_session_ttl_days_
+    }
+      = "Sessions"
+        ++ I.cc
+        [ "sessions"                  `I.p` sessions_
+        , "inactive_session_ttl_days" `I.p` inactive_session_ttl_days_
+        ]
 
-instance T.FromJSON Sessions where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Sessions where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "sessions" -> parseSessions v
-      _ -> mempty
+      _          -> mempty
+    
     where
-      parseSessions :: A.Value -> T.Parser Sessions
+      parseSessions :: A.Value -> AT.Parser Sessions
       parseSessions = A.withObject "Sessions" $ \o -> do
-        inactive_session_ttl_days_ <- o A..:? "inactive_session_ttl_days"
-        sessions_ <- o A..:? "sessions"
-        return $ Sessions {inactive_session_ttl_days = inactive_session_ttl_days_, sessions = sessions_}
+        sessions_                  <- o A..:?  "sessions"
+        inactive_session_ttl_days_ <- o A..:?  "inactive_session_ttl_days"
+        pure $ Sessions
+          { sessions                  = sessions_
+          , inactive_session_ttl_days = inactive_session_ttl_days_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Sessions where
-  toJSON
-    Sessions
-      { inactive_session_ttl_days = inactive_session_ttl_days_,
-        sessions = sessions_
-      } =
-      A.object
-        [ "@type" A..= T.String "sessions",
-          "inactive_session_ttl_days" A..= inactive_session_ttl_days_,
-          "sessions" A..= sessions_
-        ]

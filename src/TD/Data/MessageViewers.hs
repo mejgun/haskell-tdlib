@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageViewers where
+module TD.Data.MessageViewers
+  (MessageViewers(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageViewer as MessageViewer
-import qualified Utils as U
 
--- |
-data MessageViewers = -- | Represents a list of message viewers @viewers List of message viewers
-  MessageViewers
-  { -- |
-    viewers :: Maybe [MessageViewer.MessageViewer]
-  }
-  deriving (Eq)
+data MessageViewers
+  = MessageViewers -- ^ Represents a list of message viewers
+    { viewers :: Maybe [MessageViewer.MessageViewer] -- ^ List of message viewers
+    }
+  deriving (Eq, Show)
 
-instance Show MessageViewers where
-  show
-    MessageViewers
-      { viewers = viewers_
-      } =
-      "MessageViewers"
-        ++ U.cc
-          [ U.p "viewers" viewers_
-          ]
+instance I.ShortShow MessageViewers where
+  shortShow MessageViewers
+    { viewers = viewers_
+    }
+      = "MessageViewers"
+        ++ I.cc
+        [ "viewers" `I.p` viewers_
+        ]
 
-instance T.FromJSON MessageViewers where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageViewers where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageViewers" -> parseMessageViewers v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseMessageViewers :: A.Value -> T.Parser MessageViewers
+      parseMessageViewers :: A.Value -> AT.Parser MessageViewers
       parseMessageViewers = A.withObject "MessageViewers" $ \o -> do
-        viewers_ <- o A..:? "viewers"
-        return $ MessageViewers {viewers = viewers_}
+        viewers_ <- o A..:?  "viewers"
+        pure $ MessageViewers
+          { viewers = viewers_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageViewers where
-  toJSON
-    MessageViewers
-      { viewers = viewers_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageViewers",
-          "viewers" A..= viewers_
-        ]

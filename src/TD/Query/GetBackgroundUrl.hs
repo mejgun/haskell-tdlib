@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBackgroundUrl where
+module TD.Query.GetBackgroundUrl
+  (GetBackgroundUrl(..)
+  , defaultGetBackgroundUrl
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.BackgroundType as BackgroundType
-import qualified Utils as U
 
--- |
--- Constructs a persistent HTTP URL for a background @name Background name @type Background type
-data GetBackgroundUrl = GetBackgroundUrl
-  { -- |
-    _type :: Maybe BackgroundType.BackgroundType,
-    -- |
-    name :: Maybe String
-  }
-  deriving (Eq)
+-- | Constructs a persistent HTTP URL for a background
+data GetBackgroundUrl
+  = GetBackgroundUrl
+    { name  :: Maybe T.Text                        -- ^ Background name
+    , _type :: Maybe BackgroundType.BackgroundType -- ^ Background type
+    }
+  deriving (Eq, Show)
 
-instance Show GetBackgroundUrl where
-  show
+instance I.ShortShow GetBackgroundUrl where
+  shortShow
     GetBackgroundUrl
-      { _type = _type_,
-        name = name_
-      } =
-      "GetBackgroundUrl"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "name" name_
+      { name  = name_
+      , _type = _type_
+      }
+        = "GetBackgroundUrl"
+          ++ I.cc
+          [ "name"  `I.p` name_
+          , "_type" `I.p` _type_
           ]
 
-instance T.ToJSON GetBackgroundUrl where
+instance AT.ToJSON GetBackgroundUrl where
   toJSON
     GetBackgroundUrl
-      { _type = _type_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBackgroundUrl",
-          "type" A..= _type_,
-          "name" A..= name_
-        ]
+      { name  = name_
+      , _type = _type_
+      }
+        = A.object
+          [ "@type" A..= AT.String "getBackgroundUrl"
+          , "name"  A..= name_
+          , "type"  A..= _type_
+          ]
+
+defaultGetBackgroundUrl :: GetBackgroundUrl
+defaultGetBackgroundUrl =
+  GetBackgroundUrl
+    { name  = Nothing
+    , _type = Nothing
+    }
+

@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleChatIsMarkedAsUnread where
+module TD.Query.ToggleChatIsMarkedAsUnread
+  (ToggleChatIsMarkedAsUnread(..)
+  , defaultToggleChatIsMarkedAsUnread
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the marked as unread state of a chat @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
-data ToggleChatIsMarkedAsUnread = ToggleChatIsMarkedAsUnread
-  { -- |
-    is_marked_as_unread :: Maybe Bool,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the marked as unread state of a chat
+data ToggleChatIsMarkedAsUnread
+  = ToggleChatIsMarkedAsUnread
+    { chat_id             :: Maybe Int  -- ^ Chat identifier
+    , is_marked_as_unread :: Maybe Bool -- ^ New value of is_marked_as_unread
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleChatIsMarkedAsUnread where
-  show
+instance I.ShortShow ToggleChatIsMarkedAsUnread where
+  shortShow
     ToggleChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread_,
-        chat_id = chat_id_
-      } =
-      "ToggleChatIsMarkedAsUnread"
-        ++ U.cc
-          [ U.p "is_marked_as_unread" is_marked_as_unread_,
-            U.p "chat_id" chat_id_
+      { chat_id             = chat_id_
+      , is_marked_as_unread = is_marked_as_unread_
+      }
+        = "ToggleChatIsMarkedAsUnread"
+          ++ I.cc
+          [ "chat_id"             `I.p` chat_id_
+          , "is_marked_as_unread" `I.p` is_marked_as_unread_
           ]
 
-instance T.ToJSON ToggleChatIsMarkedAsUnread where
+instance AT.ToJSON ToggleChatIsMarkedAsUnread where
   toJSON
     ToggleChatIsMarkedAsUnread
-      { is_marked_as_unread = is_marked_as_unread_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleChatIsMarkedAsUnread",
-          "is_marked_as_unread" A..= is_marked_as_unread_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id             = chat_id_
+      , is_marked_as_unread = is_marked_as_unread_
+      }
+        = A.object
+          [ "@type"               A..= AT.String "toggleChatIsMarkedAsUnread"
+          , "chat_id"             A..= chat_id_
+          , "is_marked_as_unread" A..= is_marked_as_unread_
+          ]
+
+defaultToggleChatIsMarkedAsUnread :: ToggleChatIsMarkedAsUnread
+defaultToggleChatIsMarkedAsUnread =
+  ToggleChatIsMarkedAsUnread
+    { chat_id             = Nothing
+    , is_marked_as_unread = Nothing
+    }
+

@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageStatistics where
+module TD.Query.GetMessageStatistics
+  (GetMessageStatistics(..)
+  , defaultGetMessageStatistics
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true @chat_id Chat identifier @message_id Message identifier @is_dark Pass true if a dark theme is used by the application
-data GetMessageStatistics = GetMessageStatistics
-  { -- |
-    is_dark :: Maybe Bool,
-    -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+data GetMessageStatistics
+  = GetMessageStatistics
+    { chat_id    :: Maybe Int  -- ^ Chat identifier
+    , message_id :: Maybe Int  -- ^ Message identifier
+    , is_dark    :: Maybe Bool -- ^ Pass true if a dark theme is used by the application
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageStatistics where
-  show
+instance I.ShortShow GetMessageStatistics where
+  shortShow
     GetMessageStatistics
-      { is_dark = is_dark_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageStatistics"
-        ++ U.cc
-          [ U.p "is_dark" is_dark_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , is_dark    = is_dark_
+      }
+        = "GetMessageStatistics"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "is_dark"    `I.p` is_dark_
           ]
 
-instance T.ToJSON GetMessageStatistics where
+instance AT.ToJSON GetMessageStatistics where
   toJSON
     GetMessageStatistics
-      { is_dark = is_dark_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageStatistics",
-          "is_dark" A..= is_dark_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , is_dark    = is_dark_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageStatistics"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "is_dark"    A..= is_dark_
+          ]
+
+defaultGetMessageStatistics :: GetMessageStatistics
+defaultGetMessageStatistics =
+  GetMessageStatistics
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , is_dark    = Nothing
+    }
+

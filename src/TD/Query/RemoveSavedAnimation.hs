@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveSavedAnimation where
+module TD.Query.RemoveSavedAnimation
+  (RemoveSavedAnimation(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Removes an animation from the list of saved animations @animation Animation file to be removed
-data RemoveSavedAnimation = RemoveSavedAnimation
-  { -- |
-    animation :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Removes an animation from the list of saved animations
+data RemoveSavedAnimation
+  = RemoveSavedAnimation
+    { animation :: Maybe InputFile.InputFile -- ^ Animation file to be removed
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveSavedAnimation where
-  show
+instance I.ShortShow RemoveSavedAnimation where
+  shortShow
     RemoveSavedAnimation
       { animation = animation_
-      } =
-      "RemoveSavedAnimation"
-        ++ U.cc
-          [ U.p "animation" animation_
+      }
+        = "RemoveSavedAnimation"
+          ++ I.cc
+          [ "animation" `I.p` animation_
           ]
 
-instance T.ToJSON RemoveSavedAnimation where
+instance AT.ToJSON RemoveSavedAnimation where
   toJSON
     RemoveSavedAnimation
       { animation = animation_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeSavedAnimation",
-          "animation" A..= animation_
-        ]
+      }
+        = A.object
+          [ "@type"     A..= AT.String "removeSavedAnimation"
+          , "animation" A..= animation_
+          ]
+

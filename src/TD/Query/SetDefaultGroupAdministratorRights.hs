@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetDefaultGroupAdministratorRights where
+module TD.Query.SetDefaultGroupAdministratorRights
+  (SetDefaultGroupAdministratorRights(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
-import qualified Utils as U
 
--- |
--- Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only @default_group_administrator_rights Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
-data SetDefaultGroupAdministratorRights = SetDefaultGroupAdministratorRights
-  { -- |
-    default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights
-  }
-  deriving (Eq)
+-- | Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
+data SetDefaultGroupAdministratorRights
+  = SetDefaultGroupAdministratorRights
+    { default_group_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights
+    }
+  deriving (Eq, Show)
 
-instance Show SetDefaultGroupAdministratorRights where
-  show
+instance I.ShortShow SetDefaultGroupAdministratorRights where
+  shortShow
     SetDefaultGroupAdministratorRights
       { default_group_administrator_rights = default_group_administrator_rights_
-      } =
-      "SetDefaultGroupAdministratorRights"
-        ++ U.cc
-          [ U.p "default_group_administrator_rights" default_group_administrator_rights_
+      }
+        = "SetDefaultGroupAdministratorRights"
+          ++ I.cc
+          [ "default_group_administrator_rights" `I.p` default_group_administrator_rights_
           ]
 
-instance T.ToJSON SetDefaultGroupAdministratorRights where
+instance AT.ToJSON SetDefaultGroupAdministratorRights where
   toJSON
     SetDefaultGroupAdministratorRights
       { default_group_administrator_rights = default_group_administrator_rights_
-      } =
-      A.object
-        [ "@type" A..= T.String "setDefaultGroupAdministratorRights",
-          "default_group_administrator_rights" A..= default_group_administrator_rights_
-        ]
+      }
+        = A.object
+          [ "@type"                              A..= AT.String "setDefaultGroupAdministratorRights"
+          , "default_group_administrator_rights" A..= default_group_administrator_rights_
+          ]
+

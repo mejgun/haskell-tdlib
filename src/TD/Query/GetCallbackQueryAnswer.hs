@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetCallbackQueryAnswer where
+module TD.Query.GetCallbackQueryAnswer
+  (GetCallbackQueryAnswer(..)
+  , defaultGetCallbackQueryAnswer
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
-import qualified Utils as U
 
--- |
--- Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
-data GetCallbackQueryAnswer = GetCallbackQueryAnswer
-  { -- | Query payload
-    payload :: Maybe CallbackQueryPayload.CallbackQueryPayload,
-    -- | Identifier of the message from which the query originated
-    message_id :: Maybe Int,
-    -- | Identifier of the chat with the message
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
+data GetCallbackQueryAnswer
+  = GetCallbackQueryAnswer
+    { chat_id    :: Maybe Int                                       -- ^ Identifier of the chat with the message
+    , message_id :: Maybe Int                                       -- ^ Identifier of the message from which the query originated
+    , payload    :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
+    }
+  deriving (Eq, Show)
 
-instance Show GetCallbackQueryAnswer where
-  show
+instance I.ShortShow GetCallbackQueryAnswer where
+  shortShow
     GetCallbackQueryAnswer
-      { payload = payload_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetCallbackQueryAnswer"
-        ++ U.cc
-          [ U.p "payload" payload_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , payload    = payload_
+      }
+        = "GetCallbackQueryAnswer"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "payload"    `I.p` payload_
           ]
 
-instance T.ToJSON GetCallbackQueryAnswer where
+instance AT.ToJSON GetCallbackQueryAnswer where
   toJSON
     GetCallbackQueryAnswer
-      { payload = payload_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getCallbackQueryAnswer",
-          "payload" A..= payload_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , payload    = payload_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getCallbackQueryAnswer"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "payload"    A..= payload_
+          ]
+
+defaultGetCallbackQueryAnswer :: GetCallbackQueryAnswer
+defaultGetCallbackQueryAnswer =
+  GetCallbackQueryAnswer
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , payload    = Nothing
+    }
+

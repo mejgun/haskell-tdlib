@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SearchUserByToken where
+module TD.Query.SearchUserByToken
+  (SearchUserByToken(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Searches a user by a token from the user's link @token Token to search for
-data SearchUserByToken = SearchUserByToken
-  { -- |
-    token :: Maybe String
-  }
-  deriving (Eq)
+-- | Searches a user by a token from the user's link
+data SearchUserByToken
+  = SearchUserByToken
+    { token :: Maybe T.Text -- ^ Token to search for
+    }
+  deriving (Eq, Show)
 
-instance Show SearchUserByToken where
-  show
+instance I.ShortShow SearchUserByToken where
+  shortShow
     SearchUserByToken
       { token = token_
-      } =
-      "SearchUserByToken"
-        ++ U.cc
-          [ U.p "token" token_
+      }
+        = "SearchUserByToken"
+          ++ I.cc
+          [ "token" `I.p` token_
           ]
 
-instance T.ToJSON SearchUserByToken where
+instance AT.ToJSON SearchUserByToken where
   toJSON
     SearchUserByToken
       { token = token_
-      } =
-      A.object
-        [ "@type" A..= T.String "searchUserByToken",
-          "token" A..= token_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "searchUserByToken"
+          , "token" A..= token_
+          ]
+

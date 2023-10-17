@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetCloseFriends where
+module TD.Query.GetCloseFriends
+  (GetCloseFriends(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns all close friends of the current user
-data GetCloseFriends = GetCloseFriends
-  {
-  }
-  deriving (Eq)
+-- | Returns all close friends of the current user
+data GetCloseFriends
+  = GetCloseFriends
+  deriving (Eq, Show)
 
-instance Show GetCloseFriends where
-  show GetCloseFriends =
-    "GetCloseFriends"
-      ++ U.cc
-        []
+instance I.ShortShow GetCloseFriends where
+  shortShow
+    GetCloseFriends
+        = "GetCloseFriends"
 
-instance T.ToJSON GetCloseFriends where
-  toJSON GetCloseFriends =
-    A.object
-      [ "@type" A..= T.String "getCloseFriends"
-      ]
+instance AT.ToJSON GetCloseFriends where
+  toJSON
+    GetCloseFriends
+        = A.object
+          [ "@type" A..= AT.String "getCloseFriends"
+          ]
+

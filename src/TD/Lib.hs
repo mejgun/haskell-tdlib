@@ -1,4 +1,3 @@
--- {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 
 module TD.Lib
@@ -8,19 +7,23 @@ module TD.Lib
     receive,
     destroy,
     Client,
+    Extra,
+    ShortShow (shortShow),
   )
 where
 
-import qualified Data.Aeson as A
-import qualified Data.ByteString as B
-import qualified Data.ByteString.Lazy as BL
-import qualified Data.HashMap.Strict as H
-import qualified Data.Text as T
-import qualified Data.Time.Clock.System as Time
+import Data.Aeson qualified as A
+import Data.Aeson.Key qualified as K
+import Data.Aeson.KeyMap qualified as KM
+import Data.ByteString qualified as B
+import Data.ByteString.Lazy qualified as BL
+import Data.Text qualified as T
+import Data.Time.Clock.System qualified as Time
 import Foreign (Ptr, nullPtr)
 import Foreign.C.String (CString)
 import Foreign.C.Types ()
-import TD.Data.GeneralResult as GeneralResult (ResultWithExtra)
+import TD.GeneralResult (GeneralResult)
+import TD.Lib.Internal (Extra (..), ShortShow (shortShow))
 
 foreign import ccall "libtdjson td_json_client_create" c_create :: IO Client
 
@@ -38,39 +41,48 @@ create :: IO Client
 create = c_create
 
 send :: (A.ToJSON a) => Client -> a -> IO ()
-send c d = B.useAsCString enc (c_send c) where enc = BL.toStrict (A.encode d)
+send c d = B.useAsCString enc (c_send c)
+  where
+    enc = BL.toStrict (A.encode d)
 
-sendWExtra :: (A.ToJSON a) => Client -> a -> IO String
+sendWExtra :: (A.ToJSON a) => Client -> a -> IO Extra
 sendWExtra c d = do
   extra <- getUnixTime
   B.useAsCString (enc extra) (c_send c)
-  return extra
+  pure $ Extra extra
   where
     enc :: String -> B.ByteString
-    enc xtr = do
-      BL.toStrict $ A.encode (addExtra d xtr)
-    addExtra :: (A.ToJSON a) => a -> String -> H.HashMap T.Text A.Value
-    addExtra dd s =
-      let A.Object t = A.toJSON dd
-       in H.insert (T.pack "@extra") (A.String (T.pack s)) t
-    getUnixTime :: IO String
-    getUnixTime = do
-      let s = show . Time.systemSeconds <$> Time.getSystemTime
-      let ns = show . Time.systemNanoseconds <$> Time.getSystemTime
-      let str = (++) <$> s <*> ns
-      str
+    enc xtr = BL.toStrict $ A.encode (addExtra d xtr)
 
-receive :: Client -> IO (Maybe GeneralResult.ResultWithExtra)
+    addExtra :: (A.ToJSON a) => a -> String -> KM.KeyMap A.Value
+    addExtra dd s =
+      case A.toJSON dd of
+        A.Object t -> KM.insert (K.fromString "@extra") (A.String (T.pack s)) t
+        _ -> error $ "error. not object: " <> show (A.encode dd)
+
+    getUnixTime :: IO String
+    getUnixTime =
+      let s = show . Time.systemSeconds <$> Time.getSystemTime
+          ns = show . Time.systemNanoseconds <$> Time.getSystemTime
+          str = (++) <$> s <*> ns
+       in str
+
+receive :: Client -> IO (Maybe (GeneralResult, Maybe Extra))
 receive c = dec $ c_receive c 1.0
   where
-    dec :: IO CString -> IO (Maybe GeneralResult.ResultWithExtra)
+    dec :: IO CString -> IO (Maybe (GeneralResult, Maybe Extra))
     dec ics = do
       cs <- ics
       if cs == nullPtr
-        then return Nothing
+        then pure Nothing
         else do
           -- B.packCString cs >>= print --DEBUG
-          A.decodeStrict <$> B.packCString cs
+          a <- A.decodeStrict <$> B.packCString cs
+          case a of
+            Nothing -> pure Nothing
+            (Just r) -> do
+              b <- A.decodeStrict <$> B.packCString cs
+              pure $ Just (r, b)
 
 destroy :: Client -> IO ()
 destroy = c_destroy

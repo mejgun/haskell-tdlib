@@ -1,58 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatLocation where
+module TD.Data.ChatLocation
+  ( ChatLocation(..)    
+  , defaultChatLocation 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data ChatLocation = -- | Represents a location to which a chat is connected @location The location @address Location address; 1-64 characters, as defined by the chat owner
-  ChatLocation
-  { -- |
-    address :: Maybe String,
-    -- |
-    location :: Maybe Location.Location
-  }
-  deriving (Eq)
+data ChatLocation
+  = ChatLocation -- ^ Represents a location to which a chat is connected
+    { location :: Maybe Location.Location -- ^ The location
+    , address  :: Maybe T.Text            -- ^ Location address; 1-64 characters, as defined by the chat owner
+    }
+  deriving (Eq, Show)
 
-instance Show ChatLocation where
-  show
-    ChatLocation
-      { address = address_,
-        location = location_
-      } =
-      "ChatLocation"
-        ++ U.cc
-          [ U.p "address" address_,
-            U.p "location" location_
-          ]
+instance I.ShortShow ChatLocation where
+  shortShow ChatLocation
+    { location = location_
+    , address  = address_
+    }
+      = "ChatLocation"
+        ++ I.cc
+        [ "location" `I.p` location_
+        , "address"  `I.p` address_
+        ]
 
-instance T.FromJSON ChatLocation where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatLocation where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatLocation" -> parseChatLocation v
-      _ -> mempty
+      _              -> mempty
+    
     where
-      parseChatLocation :: A.Value -> T.Parser ChatLocation
+      parseChatLocation :: A.Value -> AT.Parser ChatLocation
       parseChatLocation = A.withObject "ChatLocation" $ \o -> do
-        address_ <- o A..:? "address"
-        location_ <- o A..:? "location"
-        return $ ChatLocation {address = address_, location = location_}
+        location_ <- o A..:?  "location"
+        address_  <- o A..:?  "address"
+        pure $ ChatLocation
+          { location = location_
+          , address  = address_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatLocation where
-  toJSON
-    ChatLocation
-      { address = address_,
-        location = location_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatLocation",
-          "address" A..= address_,
-          "location" A..= location_
+instance AT.ToJSON ChatLocation where
+  toJSON ChatLocation
+    { location = location_
+    , address  = address_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "chatLocation"
+        , "location" A..= location_
+        , "address"  A..= address_
         ]
+
+defaultChatLocation :: ChatLocation
+defaultChatLocation =
+  ChatLocation
+    { location = Nothing
+    , address  = Nothing
+    }
+

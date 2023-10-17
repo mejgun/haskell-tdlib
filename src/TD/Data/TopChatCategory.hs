@@ -1,122 +1,80 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TopChatCategory where
+module TD.Data.TopChatCategory
+  (TopChatCategory(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Represents the categories of chats for which a list of frequently used chats can be retrieved
 data TopChatCategory
-  = -- | A category containing frequently used private chats with non-bot users
-    TopChatCategoryUsers
-  | -- | A category containing frequently used private chats with bot users
-    TopChatCategoryBots
-  | -- | A category containing frequently used basic groups and supergroups
-    TopChatCategoryGroups
-  | -- | A category containing frequently used channels
-    TopChatCategoryChannels
-  | -- | A category containing frequently used chats with inline bots sorted by their usage in inline mode
-    TopChatCategoryInlineBots
-  | -- | A category containing frequently used chats used for calls
-    TopChatCategoryCalls
-  | -- | A category containing frequently used chats used to forward messages
-    TopChatCategoryForwardChats
-  deriving (Eq)
+  = TopChatCategoryUsers -- ^ A category containing frequently used private chats with non-bot users
+  | TopChatCategoryBots -- ^ A category containing frequently used private chats with bot users
+  | TopChatCategoryGroups -- ^ A category containing frequently used basic groups and supergroups
+  | TopChatCategoryChannels -- ^ A category containing frequently used channels
+  | TopChatCategoryInlineBots -- ^ A category containing frequently used chats with inline bots sorted by their usage in inline mode
+  | TopChatCategoryCalls -- ^ A category containing frequently used chats used for calls
+  | TopChatCategoryForwardChats -- ^ A category containing frequently used chats used to forward messages
+  deriving (Eq, Show)
 
-instance Show TopChatCategory where
-  show TopChatCategoryUsers =
-    "TopChatCategoryUsers"
-      ++ U.cc
-        []
-  show TopChatCategoryBots =
-    "TopChatCategoryBots"
-      ++ U.cc
-        []
-  show TopChatCategoryGroups =
-    "TopChatCategoryGroups"
-      ++ U.cc
-        []
-  show TopChatCategoryChannels =
-    "TopChatCategoryChannels"
-      ++ U.cc
-        []
-  show TopChatCategoryInlineBots =
-    "TopChatCategoryInlineBots"
-      ++ U.cc
-        []
-  show TopChatCategoryCalls =
-    "TopChatCategoryCalls"
-      ++ U.cc
-        []
-  show TopChatCategoryForwardChats =
-    "TopChatCategoryForwardChats"
-      ++ U.cc
-        []
+instance I.ShortShow TopChatCategory where
+  shortShow TopChatCategoryUsers
+      = "TopChatCategoryUsers"
+  shortShow TopChatCategoryBots
+      = "TopChatCategoryBots"
+  shortShow TopChatCategoryGroups
+      = "TopChatCategoryGroups"
+  shortShow TopChatCategoryChannels
+      = "TopChatCategoryChannels"
+  shortShow TopChatCategoryInlineBots
+      = "TopChatCategoryInlineBots"
+  shortShow TopChatCategoryCalls
+      = "TopChatCategoryCalls"
+  shortShow TopChatCategoryForwardChats
+      = "TopChatCategoryForwardChats"
 
-instance T.FromJSON TopChatCategory where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TopChatCategory where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "topChatCategoryUsers" -> parseTopChatCategoryUsers v
-      "topChatCategoryBots" -> parseTopChatCategoryBots v
-      "topChatCategoryGroups" -> parseTopChatCategoryGroups v
-      "topChatCategoryChannels" -> parseTopChatCategoryChannels v
-      "topChatCategoryInlineBots" -> parseTopChatCategoryInlineBots v
-      "topChatCategoryCalls" -> parseTopChatCategoryCalls v
-      "topChatCategoryForwardChats" -> parseTopChatCategoryForwardChats v
-      _ -> mempty
-    where
-      parseTopChatCategoryUsers :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryUsers = A.withObject "TopChatCategoryUsers" $ \_ -> return TopChatCategoryUsers
-
-      parseTopChatCategoryBots :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryBots = A.withObject "TopChatCategoryBots" $ \_ -> return TopChatCategoryBots
-
-      parseTopChatCategoryGroups :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryGroups = A.withObject "TopChatCategoryGroups" $ \_ -> return TopChatCategoryGroups
-
-      parseTopChatCategoryChannels :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryChannels = A.withObject "TopChatCategoryChannels" $ \_ -> return TopChatCategoryChannels
-
-      parseTopChatCategoryInlineBots :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryInlineBots = A.withObject "TopChatCategoryInlineBots" $ \_ -> return TopChatCategoryInlineBots
-
-      parseTopChatCategoryCalls :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryCalls = A.withObject "TopChatCategoryCalls" $ \_ -> return TopChatCategoryCalls
-
-      parseTopChatCategoryForwardChats :: A.Value -> T.Parser TopChatCategory
-      parseTopChatCategoryForwardChats = A.withObject "TopChatCategoryForwardChats" $ \_ -> return TopChatCategoryForwardChats
+      "topChatCategoryUsers"        -> pure TopChatCategoryUsers
+      "topChatCategoryBots"         -> pure TopChatCategoryBots
+      "topChatCategoryGroups"       -> pure TopChatCategoryGroups
+      "topChatCategoryChannels"     -> pure TopChatCategoryChannels
+      "topChatCategoryInlineBots"   -> pure TopChatCategoryInlineBots
+      "topChatCategoryCalls"        -> pure TopChatCategoryCalls
+      "topChatCategoryForwardChats" -> pure TopChatCategoryForwardChats
+      _                             -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON TopChatCategory where
-  toJSON TopChatCategoryUsers =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryUsers"
-      ]
-  toJSON TopChatCategoryBots =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryBots"
-      ]
-  toJSON TopChatCategoryGroups =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryGroups"
-      ]
-  toJSON TopChatCategoryChannels =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryChannels"
-      ]
-  toJSON TopChatCategoryInlineBots =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryInlineBots"
-      ]
-  toJSON TopChatCategoryCalls =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryCalls"
-      ]
-  toJSON TopChatCategoryForwardChats =
-    A.object
-      [ "@type" A..= T.String "topChatCategoryForwardChats"
-      ]
+instance AT.ToJSON TopChatCategory where
+  toJSON TopChatCategoryUsers
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryUsers"
+        ]
+  toJSON TopChatCategoryBots
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryBots"
+        ]
+  toJSON TopChatCategoryGroups
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryGroups"
+        ]
+  toJSON TopChatCategoryChannels
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryChannels"
+        ]
+  toJSON TopChatCategoryInlineBots
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryInlineBots"
+        ]
+  toJSON TopChatCategoryCalls
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryCalls"
+        ]
+  toJSON TopChatCategoryForwardChats
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryForwardChats"
+        ]
+

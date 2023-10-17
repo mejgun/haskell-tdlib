@@ -1,28 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.Destroy where
+module TD.Query.Destroy
+  (Destroy(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed.
--- After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
-data Destroy = Destroy
-  {
-  }
-  deriving (Eq)
+-- | Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
+data Destroy
+  = Destroy
+  deriving (Eq, Show)
 
-instance Show Destroy where
-  show Destroy =
-    "Destroy"
-      ++ U.cc
-        []
+instance I.ShortShow Destroy where
+  shortShow
+    Destroy
+        = "Destroy"
 
-instance T.ToJSON Destroy where
-  toJSON Destroy =
-    A.object
-      [ "@type" A..= T.String "destroy"
-      ]
+instance AT.ToJSON Destroy where
+  toJSON
+    Destroy
+        = A.object
+          [ "@type" A..= AT.String "destroy"
+          ]
+

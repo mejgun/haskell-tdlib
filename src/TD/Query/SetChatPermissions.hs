@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatPermissions where
+module TD.Query.SetChatPermissions
+  (SetChatPermissions(..)
+  , defaultSetChatPermissions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPermissions as ChatPermissions
-import qualified Utils as U
 
--- |
--- Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
-data SetChatPermissions = SetChatPermissions
-  { -- | New non-administrator members permissions in the chat
-    permissions :: Maybe ChatPermissions.ChatPermissions,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+data SetChatPermissions
+  = SetChatPermissions
+    { chat_id     :: Maybe Int                             -- ^ Chat identifier
+    , permissions :: Maybe ChatPermissions.ChatPermissions -- ^ New non-administrator members permissions in the chat
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatPermissions where
-  show
+instance I.ShortShow SetChatPermissions where
+  shortShow
     SetChatPermissions
-      { permissions = permissions_,
-        chat_id = chat_id_
-      } =
-      "SetChatPermissions"
-        ++ U.cc
-          [ U.p "permissions" permissions_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , permissions = permissions_
+      }
+        = "SetChatPermissions"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "permissions" `I.p` permissions_
           ]
 
-instance T.ToJSON SetChatPermissions where
+instance AT.ToJSON SetChatPermissions where
   toJSON
     SetChatPermissions
-      { permissions = permissions_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatPermissions",
-          "permissions" A..= permissions_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , permissions = permissions_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "setChatPermissions"
+          , "chat_id"     A..= chat_id_
+          , "permissions" A..= permissions_
+          ]
+
+defaultSetChatPermissions :: SetChatPermissions
+defaultSetChatPermissions =
+  SetChatPermissions
+    { chat_id     = Nothing
+    , permissions = Nothing
+    }
+

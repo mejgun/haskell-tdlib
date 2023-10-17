@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatLists where
+module TD.Data.ChatLists
+  (ChatLists(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
-import qualified Utils as U
 
--- |
-data ChatLists = -- | Contains a list of chat lists @chat_lists List of chat lists
-  ChatLists
-  { -- |
-    chat_lists :: Maybe [ChatList.ChatList]
-  }
-  deriving (Eq)
+data ChatLists
+  = ChatLists -- ^ Contains a list of chat lists
+    { chat_lists :: Maybe [ChatList.ChatList] -- ^ List of chat lists
+    }
+  deriving (Eq, Show)
 
-instance Show ChatLists where
-  show
-    ChatLists
-      { chat_lists = chat_lists_
-      } =
-      "ChatLists"
-        ++ U.cc
-          [ U.p "chat_lists" chat_lists_
-          ]
+instance I.ShortShow ChatLists where
+  shortShow ChatLists
+    { chat_lists = chat_lists_
+    }
+      = "ChatLists"
+        ++ I.cc
+        [ "chat_lists" `I.p` chat_lists_
+        ]
 
-instance T.FromJSON ChatLists where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatLists where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatLists" -> parseChatLists v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseChatLists :: A.Value -> T.Parser ChatLists
+      parseChatLists :: A.Value -> AT.Parser ChatLists
       parseChatLists = A.withObject "ChatLists" $ \o -> do
-        chat_lists_ <- o A..:? "chat_lists"
-        return $ ChatLists {chat_lists = chat_lists_}
+        chat_lists_ <- o A..:?  "chat_lists"
+        pure $ ChatLists
+          { chat_lists = chat_lists_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatLists where
-  toJSON
-    ChatLists
-      { chat_lists = chat_lists_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatLists",
-          "chat_lists" A..= chat_lists_
-        ]

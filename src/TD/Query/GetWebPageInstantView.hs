@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetWebPageInstantView where
+module TD.Query.GetWebPageInstantView
+  (GetWebPageInstantView(..)
+  , defaultGetWebPageInstantView
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page @url The web page URL @force_full Pass true to get full instant view for the web page
-data GetWebPageInstantView = GetWebPageInstantView
-  { -- |
-    force_full :: Maybe Bool,
-    -- |
-    url :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
+data GetWebPageInstantView
+  = GetWebPageInstantView
+    { url        :: Maybe T.Text -- ^ The web page URL
+    , force_full :: Maybe Bool   -- ^ Pass true to get full instant view for the web page
+    }
+  deriving (Eq, Show)
 
-instance Show GetWebPageInstantView where
-  show
+instance I.ShortShow GetWebPageInstantView where
+  shortShow
     GetWebPageInstantView
-      { force_full = force_full_,
-        url = url_
-      } =
-      "GetWebPageInstantView"
-        ++ U.cc
-          [ U.p "force_full" force_full_,
-            U.p "url" url_
+      { url        = url_
+      , force_full = force_full_
+      }
+        = "GetWebPageInstantView"
+          ++ I.cc
+          [ "url"        `I.p` url_
+          , "force_full" `I.p` force_full_
           ]
 
-instance T.ToJSON GetWebPageInstantView where
+instance AT.ToJSON GetWebPageInstantView where
   toJSON
     GetWebPageInstantView
-      { force_full = force_full_,
-        url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "getWebPageInstantView",
-          "force_full" A..= force_full_,
-          "url" A..= url_
-        ]
+      { url        = url_
+      , force_full = force_full_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getWebPageInstantView"
+          , "url"        A..= url_
+          , "force_full" A..= force_full_
+          ]
+
+defaultGetWebPageInstantView :: GetWebPageInstantView
+defaultGetWebPageInstantView =
+  GetWebPageInstantView
+    { url        = Nothing
+    , force_full = Nothing
+    }
+

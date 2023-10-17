@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SearchChatRecentLocationMessages where
+module TD.Query.SearchChatRecentLocationMessages
+  (SearchChatRecentLocationMessages(..)
+  , defaultSearchChatRecentLocationMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user @chat_id Chat identifier @limit The maximum number of messages to be returned
-data SearchChatRecentLocationMessages = SearchChatRecentLocationMessages
-  { -- |
-    limit :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+data SearchChatRecentLocationMessages
+  = SearchChatRecentLocationMessages
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    , limit   :: Maybe Int -- ^ The maximum number of messages to be returned
+    }
+  deriving (Eq, Show)
 
-instance Show SearchChatRecentLocationMessages where
-  show
+instance I.ShortShow SearchChatRecentLocationMessages where
+  shortShow
     SearchChatRecentLocationMessages
-      { limit = limit_,
-        chat_id = chat_id_
-      } =
-      "SearchChatRecentLocationMessages"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , limit   = limit_
+      }
+        = "SearchChatRecentLocationMessages"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "limit"   `I.p` limit_
           ]
 
-instance T.ToJSON SearchChatRecentLocationMessages where
+instance AT.ToJSON SearchChatRecentLocationMessages where
   toJSON
     SearchChatRecentLocationMessages
-      { limit = limit_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "searchChatRecentLocationMessages",
-          "limit" A..= limit_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , limit   = limit_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "searchChatRecentLocationMessages"
+          , "chat_id" A..= chat_id_
+          , "limit"   A..= limit_
+          ]
+
+defaultSearchChatRecentLocationMessages :: SearchChatRecentLocationMessages
+defaultSearchChatRecentLocationMessages =
+  SearchChatRecentLocationMessages
+    { chat_id = Nothing
+    , limit   = Nothing
+    }
+

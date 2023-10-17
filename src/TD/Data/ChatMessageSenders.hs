@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatMessageSenders where
+module TD.Data.ChatMessageSenders
+  (ChatMessageSenders(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatMessageSender as ChatMessageSender
-import qualified Utils as U
 
--- |
-data ChatMessageSenders = -- | Represents a list of message senders, which can be used to send messages in a chat @senders List of available message senders
-  ChatMessageSenders
-  { -- |
-    senders :: Maybe [ChatMessageSender.ChatMessageSender]
-  }
-  deriving (Eq)
+data ChatMessageSenders
+  = ChatMessageSenders -- ^ Represents a list of message senders, which can be used to send messages in a chat
+    { senders :: Maybe [ChatMessageSender.ChatMessageSender] -- ^ List of available message senders
+    }
+  deriving (Eq, Show)
 
-instance Show ChatMessageSenders where
-  show
-    ChatMessageSenders
-      { senders = senders_
-      } =
-      "ChatMessageSenders"
-        ++ U.cc
-          [ U.p "senders" senders_
-          ]
+instance I.ShortShow ChatMessageSenders where
+  shortShow ChatMessageSenders
+    { senders = senders_
+    }
+      = "ChatMessageSenders"
+        ++ I.cc
+        [ "senders" `I.p` senders_
+        ]
 
-instance T.FromJSON ChatMessageSenders where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatMessageSenders where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatMessageSenders" -> parseChatMessageSenders v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parseChatMessageSenders :: A.Value -> T.Parser ChatMessageSenders
+      parseChatMessageSenders :: A.Value -> AT.Parser ChatMessageSenders
       parseChatMessageSenders = A.withObject "ChatMessageSenders" $ \o -> do
-        senders_ <- o A..:? "senders"
-        return $ ChatMessageSenders {senders = senders_}
+        senders_ <- o A..:?  "senders"
+        pure $ ChatMessageSenders
+          { senders = senders_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatMessageSenders where
-  toJSON
-    ChatMessageSenders
-      { senders = senders_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatMessageSenders",
-          "senders" A..= senders_
-        ]

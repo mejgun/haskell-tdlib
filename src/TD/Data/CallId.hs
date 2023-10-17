@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.CallId where
+module TD.Data.CallId
+  (CallId(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data CallId = -- | Contains the call identifier @id Call identifier
-  CallId
-  { -- |
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data CallId
+  = CallId -- ^ Contains the call identifier
+    { _id :: Maybe Int -- ^ Call identifier
+    }
+  deriving (Eq, Show)
 
-instance Show CallId where
-  show
-    CallId
-      { _id = _id_
-      } =
-      "CallId"
-        ++ U.cc
-          [ U.p "_id" _id_
-          ]
+instance I.ShortShow CallId where
+  shortShow CallId
+    { _id = _id_
+    }
+      = "CallId"
+        ++ I.cc
+        [ "_id" `I.p` _id_
+        ]
 
-instance T.FromJSON CallId where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON CallId where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "callId" -> parseCallId v
-      _ -> mempty
+      _        -> mempty
+    
     where
-      parseCallId :: A.Value -> T.Parser CallId
+      parseCallId :: A.Value -> AT.Parser CallId
       parseCallId = A.withObject "CallId" $ \o -> do
-        _id_ <- o A..:? "id"
-        return $ CallId {_id = _id_}
+        _id_ <- o A..:?  "id"
+        pure $ CallId
+          { _id = _id_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON CallId where
-  toJSON
-    CallId
-      { _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "callId",
-          "id" A..= _id_
-        ]

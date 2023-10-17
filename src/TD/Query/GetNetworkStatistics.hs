@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetNetworkStatistics where
+module TD.Query.GetNetworkStatistics
+  (GetNetworkStatistics(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns network data usage statistics. Can be called before authorization @only_current Pass true to get statistics only for the current library launch
-data GetNetworkStatistics = GetNetworkStatistics
-  { -- |
-    only_current :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Returns network data usage statistics. Can be called before authorization
+data GetNetworkStatistics
+  = GetNetworkStatistics
+    { only_current :: Maybe Bool -- ^ Pass true to get statistics only for the current library launch
+    }
+  deriving (Eq, Show)
 
-instance Show GetNetworkStatistics where
-  show
+instance I.ShortShow GetNetworkStatistics where
+  shortShow
     GetNetworkStatistics
       { only_current = only_current_
-      } =
-      "GetNetworkStatistics"
-        ++ U.cc
-          [ U.p "only_current" only_current_
+      }
+        = "GetNetworkStatistics"
+          ++ I.cc
+          [ "only_current" `I.p` only_current_
           ]
 
-instance T.ToJSON GetNetworkStatistics where
+instance AT.ToJSON GetNetworkStatistics where
   toJSON
     GetNetworkStatistics
       { only_current = only_current_
-      } =
-      A.object
-        [ "@type" A..= T.String "getNetworkStatistics",
-          "only_current" A..= only_current_
-        ]
+      }
+        = A.object
+          [ "@type"        A..= AT.String "getNetworkStatistics"
+          , "only_current" A..= only_current_
+          ]
+

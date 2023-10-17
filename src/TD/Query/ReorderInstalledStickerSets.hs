@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReorderInstalledStickerSets where
+module TD.Query.ReorderInstalledStickerSets
+  (ReorderInstalledStickerSets(..)
+  , defaultReorderInstalledStickerSets
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
-import qualified Utils as U
 
--- |
--- Changes the order of installed sticker sets @sticker_type Type of the sticker sets to reorder @sticker_set_ids Identifiers of installed sticker sets in the new correct order
-data ReorderInstalledStickerSets = ReorderInstalledStickerSets
-  { -- |
-    sticker_set_ids :: Maybe [Int],
-    -- |
-    sticker_type :: Maybe StickerType.StickerType
-  }
-  deriving (Eq)
+-- | Changes the order of installed sticker sets
+data ReorderInstalledStickerSets
+  = ReorderInstalledStickerSets
+    { sticker_type    :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to reorder
+    , sticker_set_ids :: Maybe [Int]                   -- ^ Identifiers of installed sticker sets in the new correct order
+    }
+  deriving (Eq, Show)
 
-instance Show ReorderInstalledStickerSets where
-  show
+instance I.ShortShow ReorderInstalledStickerSets where
+  shortShow
     ReorderInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids_,
-        sticker_type = sticker_type_
-      } =
-      "ReorderInstalledStickerSets"
-        ++ U.cc
-          [ U.p "sticker_set_ids" sticker_set_ids_,
-            U.p "sticker_type" sticker_type_
+      { sticker_type    = sticker_type_
+      , sticker_set_ids = sticker_set_ids_
+      }
+        = "ReorderInstalledStickerSets"
+          ++ I.cc
+          [ "sticker_type"    `I.p` sticker_type_
+          , "sticker_set_ids" `I.p` sticker_set_ids_
           ]
 
-instance T.ToJSON ReorderInstalledStickerSets where
+instance AT.ToJSON ReorderInstalledStickerSets where
   toJSON
     ReorderInstalledStickerSets
-      { sticker_set_ids = sticker_set_ids_,
-        sticker_type = sticker_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "reorderInstalledStickerSets",
-          "sticker_set_ids" A..= U.toLS sticker_set_ids_,
-          "sticker_type" A..= sticker_type_
-        ]
+      { sticker_type    = sticker_type_
+      , sticker_set_ids = sticker_set_ids_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "reorderInstalledStickerSets"
+          , "sticker_type"    A..= sticker_type_
+          , "sticker_set_ids" A..= fmap (fmap I.writeInt64 ) sticker_set_ids_
+          ]
+
+defaultReorderInstalledStickerSets :: ReorderInstalledStickerSets
+defaultReorderInstalledStickerSets =
+  ReorderInstalledStickerSets
+    { sticker_type    = Nothing
+    , sticker_set_ids = Nothing
+    }
+

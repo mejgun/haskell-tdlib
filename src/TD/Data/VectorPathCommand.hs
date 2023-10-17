@@ -1,93 +1,68 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.VectorPathCommand where
+module TD.Data.VectorPathCommand
+  (VectorPathCommand(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Point as Point
-import qualified Utils as U
 
 -- | Represents a vector path command
 data VectorPathCommand
-  = -- | A straight line to a given point @end_point The end point of the straight line
-    VectorPathCommandLine
-      { -- |
-        end_point :: Maybe Point.Point
-      }
-  | -- | A cubic Bézier curve to a given point @start_control_point The start control point of the curve @end_control_point The end control point of the curve @end_point The end point of the curve
-    VectorPathCommandCubicBezierCurve
-      { -- |
-        end_point :: Maybe Point.Point,
-        -- |
-        end_control_point :: Maybe Point.Point,
-        -- |
-        start_control_point :: Maybe Point.Point
-      }
-  deriving (Eq)
+  = VectorPathCommandLine -- ^ A straight line to a given point
+    { end_point :: Maybe Point.Point -- ^ The end point of the straight line
+    }
+  | VectorPathCommandCubicBezierCurve -- ^ A cubic Bézier curve to a given point
+    { start_control_point :: Maybe Point.Point -- ^ The start control point of the curve
+    , end_control_point   :: Maybe Point.Point -- ^ The end control point of the curve
+    , end_point           :: Maybe Point.Point -- ^ The end point of the curve
+    }
+  deriving (Eq, Show)
 
-instance Show VectorPathCommand where
-  show
-    VectorPathCommandLine
-      { end_point = end_point_
-      } =
-      "VectorPathCommandLine"
-        ++ U.cc
-          [ U.p "end_point" end_point_
-          ]
-  show
-    VectorPathCommandCubicBezierCurve
-      { end_point = end_point_,
-        end_control_point = end_control_point_,
-        start_control_point = start_control_point_
-      } =
-      "VectorPathCommandCubicBezierCurve"
-        ++ U.cc
-          [ U.p "end_point" end_point_,
-            U.p "end_control_point" end_control_point_,
-            U.p "start_control_point" start_control_point_
-          ]
+instance I.ShortShow VectorPathCommand where
+  shortShow VectorPathCommandLine
+    { end_point = end_point_
+    }
+      = "VectorPathCommandLine"
+        ++ I.cc
+        [ "end_point" `I.p` end_point_
+        ]
+  shortShow VectorPathCommandCubicBezierCurve
+    { start_control_point = start_control_point_
+    , end_control_point   = end_control_point_
+    , end_point           = end_point_
+    }
+      = "VectorPathCommandCubicBezierCurve"
+        ++ I.cc
+        [ "start_control_point" `I.p` start_control_point_
+        , "end_control_point"   `I.p` end_control_point_
+        , "end_point"           `I.p` end_point_
+        ]
 
-instance T.FromJSON VectorPathCommand where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON VectorPathCommand where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "vectorPathCommandLine" -> parseVectorPathCommandLine v
+      "vectorPathCommandLine"             -> parseVectorPathCommandLine v
       "vectorPathCommandCubicBezierCurve" -> parseVectorPathCommandCubicBezierCurve v
-      _ -> mempty
+      _                                   -> mempty
+    
     where
-      parseVectorPathCommandLine :: A.Value -> T.Parser VectorPathCommand
+      parseVectorPathCommandLine :: A.Value -> AT.Parser VectorPathCommand
       parseVectorPathCommandLine = A.withObject "VectorPathCommandLine" $ \o -> do
-        end_point_ <- o A..:? "end_point"
-        return $ VectorPathCommandLine {end_point = end_point_}
-
-      parseVectorPathCommandCubicBezierCurve :: A.Value -> T.Parser VectorPathCommand
+        end_point_ <- o A..:?  "end_point"
+        pure $ VectorPathCommandLine
+          { end_point = end_point_
+          }
+      parseVectorPathCommandCubicBezierCurve :: A.Value -> AT.Parser VectorPathCommand
       parseVectorPathCommandCubicBezierCurve = A.withObject "VectorPathCommandCubicBezierCurve" $ \o -> do
-        end_point_ <- o A..:? "end_point"
-        end_control_point_ <- o A..:? "end_control_point"
-        start_control_point_ <- o A..:? "start_control_point"
-        return $ VectorPathCommandCubicBezierCurve {end_point = end_point_, end_control_point = end_control_point_, start_control_point = start_control_point_}
+        start_control_point_ <- o A..:?  "start_control_point"
+        end_control_point_   <- o A..:?  "end_control_point"
+        end_point_           <- o A..:?  "end_point"
+        pure $ VectorPathCommandCubicBezierCurve
+          { start_control_point = start_control_point_
+          , end_control_point   = end_control_point_
+          , end_point           = end_point_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON VectorPathCommand where
-  toJSON
-    VectorPathCommandLine
-      { end_point = end_point_
-      } =
-      A.object
-        [ "@type" A..= T.String "vectorPathCommandLine",
-          "end_point" A..= end_point_
-        ]
-  toJSON
-    VectorPathCommandCubicBezierCurve
-      { end_point = end_point_,
-        end_control_point = end_control_point_,
-        start_control_point = start_control_point_
-      } =
-      A.object
-        [ "@type" A..= T.String "vectorPathCommandCubicBezierCurve",
-          "end_point" A..= end_point_,
-          "end_control_point" A..= end_control_point_,
-          "start_control_point" A..= start_control_point_
-        ]

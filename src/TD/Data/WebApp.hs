@@ -1,80 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.WebApp where
+module TD.Data.WebApp
+  (WebApp(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.Animation as Animation
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Photo as Photo
-import qualified Utils as U
+import qualified TD.Data.Animation as Animation
 
--- |
-data WebApp = -- | Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
-  WebApp
-  { -- | Web App animation; may be null
-    animation :: Maybe Animation.Animation,
-    -- | Web App photo
-    photo :: Maybe Photo.Photo,
-    -- |
-    description :: Maybe String,
-    -- | Web App title
-    title :: Maybe String,
-    -- | Web App short name
-    short_name :: Maybe String
-  }
-  deriving (Eq)
+data WebApp
+  = WebApp -- ^ Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
+    { short_name  :: Maybe T.Text              -- ^ Web App short name
+    , title       :: Maybe T.Text              -- ^ Web App title
+    , description :: Maybe T.Text
+    , photo       :: Maybe Photo.Photo         -- ^ Web App photo
+    , animation   :: Maybe Animation.Animation -- ^ Web App animation; may be null
+    }
+  deriving (Eq, Show)
 
-instance Show WebApp where
-  show
-    WebApp
-      { animation = animation_,
-        photo = photo_,
-        description = description_,
-        title = title_,
-        short_name = short_name_
-      } =
-      "WebApp"
-        ++ U.cc
-          [ U.p "animation" animation_,
-            U.p "photo" photo_,
-            U.p "description" description_,
-            U.p "title" title_,
-            U.p "short_name" short_name_
-          ]
+instance I.ShortShow WebApp where
+  shortShow WebApp
+    { short_name  = short_name_
+    , title       = title_
+    , description = description_
+    , photo       = photo_
+    , animation   = animation_
+    }
+      = "WebApp"
+        ++ I.cc
+        [ "short_name"  `I.p` short_name_
+        , "title"       `I.p` title_
+        , "description" `I.p` description_
+        , "photo"       `I.p` photo_
+        , "animation"   `I.p` animation_
+        ]
 
-instance T.FromJSON WebApp where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON WebApp where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "webApp" -> parseWebApp v
-      _ -> mempty
+      _        -> mempty
+    
     where
-      parseWebApp :: A.Value -> T.Parser WebApp
+      parseWebApp :: A.Value -> AT.Parser WebApp
       parseWebApp = A.withObject "WebApp" $ \o -> do
-        animation_ <- o A..:? "animation"
-        photo_ <- o A..:? "photo"
-        description_ <- o A..:? "description"
-        title_ <- o A..:? "title"
-        short_name_ <- o A..:? "short_name"
-        return $ WebApp {animation = animation_, photo = photo_, description = description_, title = title_, short_name = short_name_}
+        short_name_  <- o A..:?  "short_name"
+        title_       <- o A..:?  "title"
+        description_ <- o A..:?  "description"
+        photo_       <- o A..:?  "photo"
+        animation_   <- o A..:?  "animation"
+        pure $ WebApp
+          { short_name  = short_name_
+          , title       = title_
+          , description = description_
+          , photo       = photo_
+          , animation   = animation_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON WebApp where
-  toJSON
-    WebApp
-      { animation = animation_,
-        photo = photo_,
-        description = description_,
-        title = title_,
-        short_name = short_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "webApp",
-          "animation" A..= animation_,
-          "photo" A..= photo_,
-          "description" A..= description_,
-          "title" A..= title_,
-          "short_name" A..= short_name_
-        ]

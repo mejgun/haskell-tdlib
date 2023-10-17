@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TerminateSession where
+module TD.Query.TerminateSession
+  (TerminateSession(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Terminates a session of the current user @session_id Session identifier
-data TerminateSession = TerminateSession
-  { -- |
-    session_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Terminates a session of the current user
+data TerminateSession
+  = TerminateSession
+    { session_id :: Maybe Int -- ^ Session identifier
+    }
+  deriving (Eq, Show)
 
-instance Show TerminateSession where
-  show
+instance I.ShortShow TerminateSession where
+  shortShow
     TerminateSession
       { session_id = session_id_
-      } =
-      "TerminateSession"
-        ++ U.cc
-          [ U.p "session_id" session_id_
+      }
+        = "TerminateSession"
+          ++ I.cc
+          [ "session_id" `I.p` session_id_
           ]
 
-instance T.ToJSON TerminateSession where
+instance AT.ToJSON TerminateSession where
   toJSON
     TerminateSession
       { session_id = session_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "terminateSession",
-          "session_id" A..= U.toS session_id_
-        ]
+      }
+        = A.object
+          [ "@type"      A..= AT.String "terminateSession"
+          , "session_id" A..= fmap I.writeInt64  session_id_
+          ]
+

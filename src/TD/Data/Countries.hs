@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Countries where
+module TD.Data.Countries
+  (Countries(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.CountryInfo as CountryInfo
-import qualified Utils as U
 
--- |
-data Countries = -- | Contains information about countries @countries The list of countries
-  Countries
-  { -- |
-    countries :: Maybe [CountryInfo.CountryInfo]
-  }
-  deriving (Eq)
+data Countries
+  = Countries -- ^ Contains information about countries
+    { countries :: Maybe [CountryInfo.CountryInfo] -- ^ The list of countries
+    }
+  deriving (Eq, Show)
 
-instance Show Countries where
-  show
-    Countries
-      { countries = countries_
-      } =
-      "Countries"
-        ++ U.cc
-          [ U.p "countries" countries_
-          ]
+instance I.ShortShow Countries where
+  shortShow Countries
+    { countries = countries_
+    }
+      = "Countries"
+        ++ I.cc
+        [ "countries" `I.p` countries_
+        ]
 
-instance T.FromJSON Countries where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Countries where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "countries" -> parseCountries v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseCountries :: A.Value -> T.Parser Countries
+      parseCountries :: A.Value -> AT.Parser Countries
       parseCountries = A.withObject "Countries" $ \o -> do
-        countries_ <- o A..:? "countries"
-        return $ Countries {countries = countries_}
+        countries_ <- o A..:?  "countries"
+        pure $ Countries
+          { countries = countries_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Countries where
-  toJSON
-    Countries
-      { countries = countries_
-      } =
-      A.object
-        [ "@type" A..= T.String "countries",
-          "countries" A..= countries_
-        ]

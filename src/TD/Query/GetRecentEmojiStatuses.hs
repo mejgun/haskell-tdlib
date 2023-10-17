@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetRecentEmojiStatuses where
+module TD.Query.GetRecentEmojiStatuses
+  (GetRecentEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns recent emoji statuses
-data GetRecentEmojiStatuses = GetRecentEmojiStatuses
-  {
-  }
-  deriving (Eq)
+-- | Returns recent emoji statuses
+data GetRecentEmojiStatuses
+  = GetRecentEmojiStatuses
+  deriving (Eq, Show)
 
-instance Show GetRecentEmojiStatuses where
-  show GetRecentEmojiStatuses =
-    "GetRecentEmojiStatuses"
-      ++ U.cc
-        []
+instance I.ShortShow GetRecentEmojiStatuses where
+  shortShow
+    GetRecentEmojiStatuses
+        = "GetRecentEmojiStatuses"
 
-instance T.ToJSON GetRecentEmojiStatuses where
-  toJSON GetRecentEmojiStatuses =
-    A.object
-      [ "@type" A..= T.String "getRecentEmojiStatuses"
-      ]
+instance AT.ToJSON GetRecentEmojiStatuses where
+  toJSON
+    GetRecentEmojiStatuses
+        = A.object
+          [ "@type" A..= AT.String "getRecentEmojiStatuses"
+          ]
+

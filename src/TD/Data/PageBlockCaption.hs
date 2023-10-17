@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PageBlockCaption where
+module TD.Data.PageBlockCaption
+  (PageBlockCaption(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.RichText as RichText
-import qualified Utils as U
 
--- |
-data PageBlockCaption = -- | Contains a caption of an instant view web page block, consisting of a text and a trailing credit @text Content of the caption @credit Block credit (like HTML tag <cite>)
-  PageBlockCaption
-  { -- |
-    credit :: Maybe RichText.RichText,
-    -- |
-    text :: Maybe RichText.RichText
-  }
-  deriving (Eq)
+data PageBlockCaption
+  = PageBlockCaption -- ^ Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+    { text   :: Maybe RichText.RichText -- ^ Content of the caption
+    , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>)
+    }
+  deriving (Eq, Show)
 
-instance Show PageBlockCaption where
-  show
-    PageBlockCaption
-      { credit = credit_,
-        text = text_
-      } =
-      "PageBlockCaption"
-        ++ U.cc
-          [ U.p "credit" credit_,
-            U.p "text" text_
-          ]
+instance I.ShortShow PageBlockCaption where
+  shortShow PageBlockCaption
+    { text   = text_
+    , credit = credit_
+    }
+      = "PageBlockCaption"
+        ++ I.cc
+        [ "text"   `I.p` text_
+        , "credit" `I.p` credit_
+        ]
 
-instance T.FromJSON PageBlockCaption where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PageBlockCaption where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "pageBlockCaption" -> parsePageBlockCaption v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parsePageBlockCaption :: A.Value -> T.Parser PageBlockCaption
+      parsePageBlockCaption :: A.Value -> AT.Parser PageBlockCaption
       parsePageBlockCaption = A.withObject "PageBlockCaption" $ \o -> do
-        credit_ <- o A..:? "credit"
-        text_ <- o A..:? "text"
-        return $ PageBlockCaption {credit = credit_, text = text_}
+        text_   <- o A..:?  "text"
+        credit_ <- o A..:?  "credit"
+        pure $ PageBlockCaption
+          { text   = text_
+          , credit = credit_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PageBlockCaption where
-  toJSON
-    PageBlockCaption
-      { credit = credit_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "pageBlockCaption",
-          "credit" A..= credit_,
-          "text" A..= text_
-        ]

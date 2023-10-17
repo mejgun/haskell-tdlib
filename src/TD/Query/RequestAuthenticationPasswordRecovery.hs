@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RequestAuthenticationPasswordRecovery where
+module TD.Query.RequestAuthenticationPasswordRecovery
+  (RequestAuthenticationPasswordRecovery(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
-data RequestAuthenticationPasswordRecovery = RequestAuthenticationPasswordRecovery
-  {
-  }
-  deriving (Eq)
+-- | Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
+data RequestAuthenticationPasswordRecovery
+  = RequestAuthenticationPasswordRecovery
+  deriving (Eq, Show)
 
-instance Show RequestAuthenticationPasswordRecovery where
-  show RequestAuthenticationPasswordRecovery =
-    "RequestAuthenticationPasswordRecovery"
-      ++ U.cc
-        []
+instance I.ShortShow RequestAuthenticationPasswordRecovery where
+  shortShow
+    RequestAuthenticationPasswordRecovery
+        = "RequestAuthenticationPasswordRecovery"
 
-instance T.ToJSON RequestAuthenticationPasswordRecovery where
-  toJSON RequestAuthenticationPasswordRecovery =
-    A.object
-      [ "@type" A..= T.String "requestAuthenticationPasswordRecovery"
-      ]
+instance AT.ToJSON RequestAuthenticationPasswordRecovery where
+  toJSON
+    RequestAuthenticationPasswordRecovery
+        = A.object
+          [ "@type" A..= AT.String "requestAuthenticationPasswordRecovery"
+          ]
+

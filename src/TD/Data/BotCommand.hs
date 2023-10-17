@@ -1,57 +1,65 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.BotCommand where
+module TD.Data.BotCommand
+  ( BotCommand(..)    
+  , defaultBotCommand 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data BotCommand = -- | Represents a command supported by a bot @command Text of the bot command @param_description Description of the bot command
-  BotCommand
-  { -- |
-    description :: Maybe String,
-    -- |
-    command :: Maybe String
-  }
-  deriving (Eq)
+data BotCommand
+  = BotCommand -- ^ Represents a command supported by a bot
+    { command     :: Maybe T.Text -- ^ Text of the bot command
+    , description :: Maybe T.Text
+    }
+  deriving (Eq, Show)
 
-instance Show BotCommand where
-  show
-    BotCommand
-      { description = description_,
-        command = command_
-      } =
-      "BotCommand"
-        ++ U.cc
-          [ U.p "description" description_,
-            U.p "command" command_
-          ]
+instance I.ShortShow BotCommand where
+  shortShow BotCommand
+    { command     = command_
+    , description = description_
+    }
+      = "BotCommand"
+        ++ I.cc
+        [ "command"     `I.p` command_
+        , "description" `I.p` description_
+        ]
 
-instance T.FromJSON BotCommand where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON BotCommand where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "botCommand" -> parseBotCommand v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseBotCommand :: A.Value -> T.Parser BotCommand
+      parseBotCommand :: A.Value -> AT.Parser BotCommand
       parseBotCommand = A.withObject "BotCommand" $ \o -> do
-        description_ <- o A..:? "description"
-        command_ <- o A..:? "command"
-        return $ BotCommand {description = description_, command = command_}
+        command_     <- o A..:?  "command"
+        description_ <- o A..:?  "description"
+        pure $ BotCommand
+          { command     = command_
+          , description = description_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON BotCommand where
-  toJSON
-    BotCommand
-      { description = description_,
-        command = command_
-      } =
-      A.object
-        [ "@type" A..= T.String "botCommand",
-          "description" A..= description_,
-          "command" A..= command_
+instance AT.ToJSON BotCommand where
+  toJSON BotCommand
+    { command     = command_
+    , description = description_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "botCommand"
+        , "command"     A..= command_
+        , "description" A..= description_
         ]
+
+defaultBotCommand :: BotCommand
+defaultBotCommand =
+  BotCommand
+    { command     = Nothing
+    , description = Nothing
+    }
+

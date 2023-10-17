@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessagePositions where
+module TD.Data.MessagePositions
+  (MessagePositions(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessagePosition as MessagePosition
-import qualified Utils as U
 
--- |
-data MessagePositions = -- | Contains a list of message positions @total_count Total number of messages found @positions List of message positions
-  MessagePositions
-  { -- |
-    positions :: Maybe [MessagePosition.MessagePosition],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data MessagePositions
+  = MessagePositions -- ^ Contains a list of message positions
+    { total_count :: Maybe Int                               -- ^ Total number of messages found
+    , positions   :: Maybe [MessagePosition.MessagePosition] -- ^ List of message positions
+    }
+  deriving (Eq, Show)
 
-instance Show MessagePositions where
-  show
-    MessagePositions
-      { positions = positions_,
-        total_count = total_count_
-      } =
-      "MessagePositions"
-        ++ U.cc
-          [ U.p "positions" positions_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow MessagePositions where
+  shortShow MessagePositions
+    { total_count = total_count_
+    , positions   = positions_
+    }
+      = "MessagePositions"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "positions"   `I.p` positions_
+        ]
 
-instance T.FromJSON MessagePositions where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessagePositions where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messagePositions" -> parseMessagePositions v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseMessagePositions :: A.Value -> T.Parser MessagePositions
+      parseMessagePositions :: A.Value -> AT.Parser MessagePositions
       parseMessagePositions = A.withObject "MessagePositions" $ \o -> do
-        positions_ <- o A..:? "positions"
-        total_count_ <- o A..:? "total_count"
-        return $ MessagePositions {positions = positions_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        positions_   <- o A..:?  "positions"
+        pure $ MessagePositions
+          { total_count = total_count_
+          , positions   = positions_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessagePositions where
-  toJSON
-    MessagePositions
-      { positions = positions_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePositions",
-          "positions" A..= positions_,
-          "total_count" A..= total_count_
-        ]

@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatActiveStories where
+module TD.Query.GetChatActiveStories
+  (GetChatActiveStories(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the list of active stories posted by the given chat @chat_id Chat identifier
-data GetChatActiveStories = GetChatActiveStories
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the list of active stories posted by the given chat
+data GetChatActiveStories
+  = GetChatActiveStories
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatActiveStories where
-  show
+instance I.ShortShow GetChatActiveStories where
+  shortShow
     GetChatActiveStories
       { chat_id = chat_id_
-      } =
-      "GetChatActiveStories"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChatActiveStories"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChatActiveStories where
+instance AT.ToJSON GetChatActiveStories where
   toJSON
     GetChatActiveStories
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatActiveStories",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatActiveStories"
+          , "chat_id" A..= chat_id_
+          ]
+

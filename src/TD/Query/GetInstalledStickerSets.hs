@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetInstalledStickerSets where
+module TD.Query.GetInstalledStickerSets
+  (GetInstalledStickerSets(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
-import qualified Utils as U
 
--- |
--- Returns a list of installed sticker sets @sticker_type Type of the sticker sets to return
-data GetInstalledStickerSets = GetInstalledStickerSets
-  { -- |
-    sticker_type :: Maybe StickerType.StickerType
-  }
-  deriving (Eq)
+-- | Returns a list of installed sticker sets
+data GetInstalledStickerSets
+  = GetInstalledStickerSets
+    { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
+    }
+  deriving (Eq, Show)
 
-instance Show GetInstalledStickerSets where
-  show
+instance I.ShortShow GetInstalledStickerSets where
+  shortShow
     GetInstalledStickerSets
       { sticker_type = sticker_type_
-      } =
-      "GetInstalledStickerSets"
-        ++ U.cc
-          [ U.p "sticker_type" sticker_type_
+      }
+        = "GetInstalledStickerSets"
+          ++ I.cc
+          [ "sticker_type" `I.p` sticker_type_
           ]
 
-instance T.ToJSON GetInstalledStickerSets where
+instance AT.ToJSON GetInstalledStickerSets where
   toJSON
     GetInstalledStickerSets
       { sticker_type = sticker_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getInstalledStickerSets",
-          "sticker_type" A..= sticker_type_
-        ]
+      }
+        = A.object
+          [ "@type"        A..= AT.String "getInstalledStickerSets"
+          , "sticker_type" A..= sticker_type_
+          ]
+

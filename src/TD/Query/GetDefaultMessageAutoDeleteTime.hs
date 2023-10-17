@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetDefaultMessageAutoDeleteTime where
+module TD.Query.GetDefaultMessageAutoDeleteTime
+  (GetDefaultMessageAutoDeleteTime(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns default message auto-delete time setting for new chats
-data GetDefaultMessageAutoDeleteTime = GetDefaultMessageAutoDeleteTime
-  {
-  }
-  deriving (Eq)
+-- | Returns default message auto-delete time setting for new chats
+data GetDefaultMessageAutoDeleteTime
+  = GetDefaultMessageAutoDeleteTime
+  deriving (Eq, Show)
 
-instance Show GetDefaultMessageAutoDeleteTime where
-  show GetDefaultMessageAutoDeleteTime =
-    "GetDefaultMessageAutoDeleteTime"
-      ++ U.cc
-        []
+instance I.ShortShow GetDefaultMessageAutoDeleteTime where
+  shortShow
+    GetDefaultMessageAutoDeleteTime
+        = "GetDefaultMessageAutoDeleteTime"
 
-instance T.ToJSON GetDefaultMessageAutoDeleteTime where
-  toJSON GetDefaultMessageAutoDeleteTime =
-    A.object
-      [ "@type" A..= T.String "getDefaultMessageAutoDeleteTime"
-      ]
+instance AT.ToJSON GetDefaultMessageAutoDeleteTime where
+  toJSON
+    GetDefaultMessageAutoDeleteTime
+        = A.object
+          [ "@type" A..= AT.String "getDefaultMessageAutoDeleteTime"
+          ]
+

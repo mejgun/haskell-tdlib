@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteChatHistory where
+module TD.Query.DeleteChatHistory
+  (DeleteChatHistory(..)
+  , defaultDeleteChatHistory
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
-data DeleteChatHistory = DeleteChatHistory
-  { -- | Pass true to delete chat history for all users
-    revoke :: Maybe Bool,
-    -- | Pass true to remove the chat from all chat lists
-    remove_from_chat_list :: Maybe Bool,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+data DeleteChatHistory
+  = DeleteChatHistory
+    { chat_id               :: Maybe Int  -- ^ Chat identifier
+    , remove_from_chat_list :: Maybe Bool -- ^ Pass true to remove the chat from all chat lists
+    , revoke                :: Maybe Bool -- ^ Pass true to delete chat history for all users
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteChatHistory where
-  show
+instance I.ShortShow DeleteChatHistory where
+  shortShow
     DeleteChatHistory
-      { revoke = revoke_,
-        remove_from_chat_list = remove_from_chat_list_,
-        chat_id = chat_id_
-      } =
-      "DeleteChatHistory"
-        ++ U.cc
-          [ U.p "revoke" revoke_,
-            U.p "remove_from_chat_list" remove_from_chat_list_,
-            U.p "chat_id" chat_id_
+      { chat_id               = chat_id_
+      , remove_from_chat_list = remove_from_chat_list_
+      , revoke                = revoke_
+      }
+        = "DeleteChatHistory"
+          ++ I.cc
+          [ "chat_id"               `I.p` chat_id_
+          , "remove_from_chat_list" `I.p` remove_from_chat_list_
+          , "revoke"                `I.p` revoke_
           ]
 
-instance T.ToJSON DeleteChatHistory where
+instance AT.ToJSON DeleteChatHistory where
   toJSON
     DeleteChatHistory
-      { revoke = revoke_,
-        remove_from_chat_list = remove_from_chat_list_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteChatHistory",
-          "revoke" A..= revoke_,
-          "remove_from_chat_list" A..= remove_from_chat_list_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id               = chat_id_
+      , remove_from_chat_list = remove_from_chat_list_
+      , revoke                = revoke_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "deleteChatHistory"
+          , "chat_id"               A..= chat_id_
+          , "remove_from_chat_list" A..= remove_from_chat_list_
+          , "revoke"                A..= revoke_
+          ]
+
+defaultDeleteChatHistory :: DeleteChatHistory
+defaultDeleteChatHistory =
+  DeleteChatHistory
+    { chat_id               = Nothing
+    , remove_from_chat_list = Nothing
+    , revoke                = Nothing
+    }
+

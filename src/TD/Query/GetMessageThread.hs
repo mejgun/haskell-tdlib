@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageThread where
+module TD.Query.GetMessageThread
+  (GetMessageThread(..)
+  , defaultGetMessageThread
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a message thread. Can be used only if message.can_get_message_thread == true @chat_id Chat identifier @message_id Identifier of the message
-data GetMessageThread = GetMessageThread
-  { -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+data GetMessageThread
+  = GetMessageThread
+    { chat_id    :: Maybe Int -- ^ Chat identifier
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageThread where
-  show
+instance I.ShortShow GetMessageThread where
+  shortShow
     GetMessageThread
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageThread"
-        ++ U.cc
-          [ U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = "GetMessageThread"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
           ]
 
-instance T.ToJSON GetMessageThread where
+instance AT.ToJSON GetMessageThread where
   toJSON
     GetMessageThread
-      { message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageThread",
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageThread"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          ]
+
+defaultGetMessageThread :: GetMessageThread
+defaultGetMessageThread =
+  GetMessageThread
+    { chat_id    = Nothing
+    , message_id = Nothing
+    }
+

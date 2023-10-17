@@ -1,71 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatStatisticsAdministratorActionsInfo where
+module TD.Data.ChatStatisticsAdministratorActionsInfo
+  (ChatStatisticsAdministratorActionsInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data ChatStatisticsAdministratorActionsInfo = -- | Contains statistics about administrator actions done by a user
-  ChatStatisticsAdministratorActionsInfo
-  { -- | Number of users restricted by the administrator
-    restricted_user_count :: Maybe Int,
-    -- | Number of users banned by the administrator
-    banned_user_count :: Maybe Int,
-    -- | Number of messages deleted by the administrator
-    deleted_message_count :: Maybe Int,
-    -- | Administrator user identifier
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatStatisticsAdministratorActionsInfo
+  = ChatStatisticsAdministratorActionsInfo -- ^ Contains statistics about administrator actions done by a user
+    { user_id               :: Maybe Int -- ^ Administrator user identifier
+    , deleted_message_count :: Maybe Int -- ^ Number of messages deleted by the administrator
+    , banned_user_count     :: Maybe Int -- ^ Number of users banned by the administrator
+    , restricted_user_count :: Maybe Int -- ^ Number of users restricted by the administrator
+    }
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsAdministratorActionsInfo where
-  show
-    ChatStatisticsAdministratorActionsInfo
-      { restricted_user_count = restricted_user_count_,
-        banned_user_count = banned_user_count_,
-        deleted_message_count = deleted_message_count_,
-        user_id = user_id_
-      } =
-      "ChatStatisticsAdministratorActionsInfo"
-        ++ U.cc
-          [ U.p "restricted_user_count" restricted_user_count_,
-            U.p "banned_user_count" banned_user_count_,
-            U.p "deleted_message_count" deleted_message_count_,
-            U.p "user_id" user_id_
-          ]
+instance I.ShortShow ChatStatisticsAdministratorActionsInfo where
+  shortShow ChatStatisticsAdministratorActionsInfo
+    { user_id               = user_id_
+    , deleted_message_count = deleted_message_count_
+    , banned_user_count     = banned_user_count_
+    , restricted_user_count = restricted_user_count_
+    }
+      = "ChatStatisticsAdministratorActionsInfo"
+        ++ I.cc
+        [ "user_id"               `I.p` user_id_
+        , "deleted_message_count" `I.p` deleted_message_count_
+        , "banned_user_count"     `I.p` banned_user_count_
+        , "restricted_user_count" `I.p` restricted_user_count_
+        ]
 
-instance T.FromJSON ChatStatisticsAdministratorActionsInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatStatisticsAdministratorActionsInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatStatisticsAdministratorActionsInfo" -> parseChatStatisticsAdministratorActionsInfo v
-      _ -> mempty
+      _                                        -> mempty
+    
     where
-      parseChatStatisticsAdministratorActionsInfo :: A.Value -> T.Parser ChatStatisticsAdministratorActionsInfo
+      parseChatStatisticsAdministratorActionsInfo :: A.Value -> AT.Parser ChatStatisticsAdministratorActionsInfo
       parseChatStatisticsAdministratorActionsInfo = A.withObject "ChatStatisticsAdministratorActionsInfo" $ \o -> do
-        restricted_user_count_ <- o A..:? "restricted_user_count"
-        banned_user_count_ <- o A..:? "banned_user_count"
-        deleted_message_count_ <- o A..:? "deleted_message_count"
-        user_id_ <- o A..:? "user_id"
-        return $ ChatStatisticsAdministratorActionsInfo {restricted_user_count = restricted_user_count_, banned_user_count = banned_user_count_, deleted_message_count = deleted_message_count_, user_id = user_id_}
+        user_id_               <- o A..:?  "user_id"
+        deleted_message_count_ <- o A..:?  "deleted_message_count"
+        banned_user_count_     <- o A..:?  "banned_user_count"
+        restricted_user_count_ <- o A..:?  "restricted_user_count"
+        pure $ ChatStatisticsAdministratorActionsInfo
+          { user_id               = user_id_
+          , deleted_message_count = deleted_message_count_
+          , banned_user_count     = banned_user_count_
+          , restricted_user_count = restricted_user_count_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatStatisticsAdministratorActionsInfo where
-  toJSON
-    ChatStatisticsAdministratorActionsInfo
-      { restricted_user_count = restricted_user_count_,
-        banned_user_count = banned_user_count_,
-        deleted_message_count = deleted_message_count_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatStatisticsAdministratorActionsInfo",
-          "restricted_user_count" A..= restricted_user_count_,
-          "banned_user_count" A..= banned_user_count_,
-          "deleted_message_count" A..= deleted_message_count_,
-          "user_id" A..= user_id_
-        ]

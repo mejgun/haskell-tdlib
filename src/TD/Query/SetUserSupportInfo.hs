@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetUserSupportInfo where
+module TD.Query.SetUserSupportInfo
+  (SetUserSupportInfo(..)
+  , defaultSetUserSupportInfo
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import qualified Utils as U
 
--- |
--- Sets support information for the given user; for Telegram support only @user_id User identifier @message New information message
-data SetUserSupportInfo = SetUserSupportInfo
-  { -- |
-    message :: Maybe FormattedText.FormattedText,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets support information for the given user; for Telegram support only
+data SetUserSupportInfo
+  = SetUserSupportInfo
+    { user_id :: Maybe Int                         -- ^ User identifier
+    , message :: Maybe FormattedText.FormattedText -- ^ New information message
+    }
+  deriving (Eq, Show)
 
-instance Show SetUserSupportInfo where
-  show
+instance I.ShortShow SetUserSupportInfo where
+  shortShow
     SetUserSupportInfo
-      { message = message_,
-        user_id = user_id_
-      } =
-      "SetUserSupportInfo"
-        ++ U.cc
-          [ U.p "message" message_,
-            U.p "user_id" user_id_
+      { user_id = user_id_
+      , message = message_
+      }
+        = "SetUserSupportInfo"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "message" `I.p` message_
           ]
 
-instance T.ToJSON SetUserSupportInfo where
+instance AT.ToJSON SetUserSupportInfo where
   toJSON
     SetUserSupportInfo
-      { message = message_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setUserSupportInfo",
-          "message" A..= message_,
-          "user_id" A..= user_id_
-        ]
+      { user_id = user_id_
+      , message = message_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setUserSupportInfo"
+          , "user_id" A..= user_id_
+          , "message" A..= message_
+          ]
+
+defaultSetUserSupportInfo :: SetUserSupportInfo
+defaultSetUserSupportInfo =
+  SetUserSupportInfo
+    { user_id = Nothing
+    , message = Nothing
+    }
+

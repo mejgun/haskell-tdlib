@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteAllRevokedChatInviteLinks where
+module TD.Query.DeleteAllRevokedChatInviteLinks
+  (DeleteAllRevokedChatInviteLinks(..)
+  , defaultDeleteAllRevokedChatInviteLinks
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-data DeleteAllRevokedChatInviteLinks = DeleteAllRevokedChatInviteLinks
-  { -- | User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
-    creator_user_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+data DeleteAllRevokedChatInviteLinks
+  = DeleteAllRevokedChatInviteLinks
+    { chat_id         :: Maybe Int -- ^ Chat identifier
+    , creator_user_id :: Maybe Int -- ^ User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteAllRevokedChatInviteLinks where
-  show
+instance I.ShortShow DeleteAllRevokedChatInviteLinks where
+  shortShow
     DeleteAllRevokedChatInviteLinks
-      { creator_user_id = creator_user_id_,
-        chat_id = chat_id_
-      } =
-      "DeleteAllRevokedChatInviteLinks"
-        ++ U.cc
-          [ U.p "creator_user_id" creator_user_id_,
-            U.p "chat_id" chat_id_
+      { chat_id         = chat_id_
+      , creator_user_id = creator_user_id_
+      }
+        = "DeleteAllRevokedChatInviteLinks"
+          ++ I.cc
+          [ "chat_id"         `I.p` chat_id_
+          , "creator_user_id" `I.p` creator_user_id_
           ]
 
-instance T.ToJSON DeleteAllRevokedChatInviteLinks where
+instance AT.ToJSON DeleteAllRevokedChatInviteLinks where
   toJSON
     DeleteAllRevokedChatInviteLinks
-      { creator_user_id = creator_user_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteAllRevokedChatInviteLinks",
-          "creator_user_id" A..= creator_user_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id         = chat_id_
+      , creator_user_id = creator_user_id_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "deleteAllRevokedChatInviteLinks"
+          , "chat_id"         A..= chat_id_
+          , "creator_user_id" A..= creator_user_id_
+          ]
+
+defaultDeleteAllRevokedChatInviteLinks :: DeleteAllRevokedChatInviteLinks
+defaultDeleteAllRevokedChatInviteLinks =
+  DeleteAllRevokedChatInviteLinks
+    { chat_id         = Nothing
+    , creator_user_id = Nothing
+    }
+

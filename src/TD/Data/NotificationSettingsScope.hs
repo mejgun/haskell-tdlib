@@ -1,66 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.NotificationSettingsScope where
+module TD.Data.NotificationSettingsScope
+  (NotificationSettingsScope(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the types of chats to which notification settings are relevant
 data NotificationSettingsScope
-  = -- | Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
-    NotificationSettingsScopePrivateChats
-  | -- | Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
-    NotificationSettingsScopeGroupChats
-  | -- | Notification settings applied to all channel chats when the corresponding chat setting has a default value
-    NotificationSettingsScopeChannelChats
-  deriving (Eq)
+  = NotificationSettingsScopePrivateChats -- ^ Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
+  | NotificationSettingsScopeGroupChats -- ^ Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
+  | NotificationSettingsScopeChannelChats -- ^ Notification settings applied to all channel chats when the corresponding chat setting has a default value
+  deriving (Eq, Show)
 
-instance Show NotificationSettingsScope where
-  show NotificationSettingsScopePrivateChats =
-    "NotificationSettingsScopePrivateChats"
-      ++ U.cc
-        []
-  show NotificationSettingsScopeGroupChats =
-    "NotificationSettingsScopeGroupChats"
-      ++ U.cc
-        []
-  show NotificationSettingsScopeChannelChats =
-    "NotificationSettingsScopeChannelChats"
-      ++ U.cc
-        []
+instance I.ShortShow NotificationSettingsScope where
+  shortShow NotificationSettingsScopePrivateChats
+      = "NotificationSettingsScopePrivateChats"
+  shortShow NotificationSettingsScopeGroupChats
+      = "NotificationSettingsScopeGroupChats"
+  shortShow NotificationSettingsScopeChannelChats
+      = "NotificationSettingsScopeChannelChats"
 
-instance T.FromJSON NotificationSettingsScope where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON NotificationSettingsScope where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "notificationSettingsScopePrivateChats" -> parseNotificationSettingsScopePrivateChats v
-      "notificationSettingsScopeGroupChats" -> parseNotificationSettingsScopeGroupChats v
-      "notificationSettingsScopeChannelChats" -> parseNotificationSettingsScopeChannelChats v
-      _ -> mempty
-    where
-      parseNotificationSettingsScopePrivateChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopePrivateChats = A.withObject "NotificationSettingsScopePrivateChats" $ \_ -> return NotificationSettingsScopePrivateChats
-
-      parseNotificationSettingsScopeGroupChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopeGroupChats = A.withObject "NotificationSettingsScopeGroupChats" $ \_ -> return NotificationSettingsScopeGroupChats
-
-      parseNotificationSettingsScopeChannelChats :: A.Value -> T.Parser NotificationSettingsScope
-      parseNotificationSettingsScopeChannelChats = A.withObject "NotificationSettingsScopeChannelChats" $ \_ -> return NotificationSettingsScopeChannelChats
+      "notificationSettingsScopePrivateChats" -> pure NotificationSettingsScopePrivateChats
+      "notificationSettingsScopeGroupChats"   -> pure NotificationSettingsScopeGroupChats
+      "notificationSettingsScopeChannelChats" -> pure NotificationSettingsScopeChannelChats
+      _                                       -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON NotificationSettingsScope where
-  toJSON NotificationSettingsScopePrivateChats =
-    A.object
-      [ "@type" A..= T.String "notificationSettingsScopePrivateChats"
-      ]
-  toJSON NotificationSettingsScopeGroupChats =
-    A.object
-      [ "@type" A..= T.String "notificationSettingsScopeGroupChats"
-      ]
-  toJSON NotificationSettingsScopeChannelChats =
-    A.object
-      [ "@type" A..= T.String "notificationSettingsScopeChannelChats"
-      ]
+instance AT.ToJSON NotificationSettingsScope where
+  toJSON NotificationSettingsScopePrivateChats
+      = A.object
+        [ "@type" A..= AT.String "notificationSettingsScopePrivateChats"
+        ]
+  toJSON NotificationSettingsScopeGroupChats
+      = A.object
+        [ "@type" A..= AT.String "notificationSettingsScopeGroupChats"
+        ]
+  toJSON NotificationSettingsScopeChannelChats
+      = A.object
+        [ "@type" A..= AT.String "notificationSettingsScopeChannelChats"
+        ]
+

@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CloseWebApp where
+module TD.Query.CloseWebApp
+  (CloseWebApp(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Informs TDLib that a previously opened Web App was closed @web_app_launch_id Identifier of Web App launch, received from openWebApp
-data CloseWebApp = CloseWebApp
-  { -- |
-    web_app_launch_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Informs TDLib that a previously opened Web App was closed
+data CloseWebApp
+  = CloseWebApp
+    { web_app_launch_id :: Maybe Int -- ^ Identifier of Web App launch, received from openWebApp
+    }
+  deriving (Eq, Show)
 
-instance Show CloseWebApp where
-  show
+instance I.ShortShow CloseWebApp where
+  shortShow
     CloseWebApp
       { web_app_launch_id = web_app_launch_id_
-      } =
-      "CloseWebApp"
-        ++ U.cc
-          [ U.p "web_app_launch_id" web_app_launch_id_
+      }
+        = "CloseWebApp"
+          ++ I.cc
+          [ "web_app_launch_id" `I.p` web_app_launch_id_
           ]
 
-instance T.ToJSON CloseWebApp where
+instance AT.ToJSON CloseWebApp where
   toJSON
     CloseWebApp
       { web_app_launch_id = web_app_launch_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "closeWebApp",
-          "web_app_launch_id" A..= U.toS web_app_launch_id_
-        ]
+      }
+        = A.object
+          [ "@type"             A..= AT.String "closeWebApp"
+          , "web_app_launch_id" A..= fmap I.writeInt64  web_app_launch_id_
+          ]
+

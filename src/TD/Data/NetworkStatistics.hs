@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.NetworkStatistics where
+module TD.Data.NetworkStatistics
+  (NetworkStatistics(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.NetworkStatisticsEntry as NetworkStatisticsEntry
-import qualified Utils as U
 
--- |
-data NetworkStatistics = -- | A full list of available network statistic entries @since_date Point in time (Unix timestamp) from which the statistics are collected @entries Network statistics entries
-  NetworkStatistics
-  { -- |
-    entries :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry],
-    -- |
-    since_date :: Maybe Int
-  }
-  deriving (Eq)
+data NetworkStatistics
+  = NetworkStatistics -- ^ A full list of available network statistic entries
+    { since_date :: Maybe Int                                             -- ^ Point in time (Unix timestamp) from which the statistics are collected
+    , entries    :: Maybe [NetworkStatisticsEntry.NetworkStatisticsEntry] -- ^ Network statistics entries
+    }
+  deriving (Eq, Show)
 
-instance Show NetworkStatistics where
-  show
-    NetworkStatistics
-      { entries = entries_,
-        since_date = since_date_
-      } =
-      "NetworkStatistics"
-        ++ U.cc
-          [ U.p "entries" entries_,
-            U.p "since_date" since_date_
-          ]
+instance I.ShortShow NetworkStatistics where
+  shortShow NetworkStatistics
+    { since_date = since_date_
+    , entries    = entries_
+    }
+      = "NetworkStatistics"
+        ++ I.cc
+        [ "since_date" `I.p` since_date_
+        , "entries"    `I.p` entries_
+        ]
 
-instance T.FromJSON NetworkStatistics where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON NetworkStatistics where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "networkStatistics" -> parseNetworkStatistics v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseNetworkStatistics :: A.Value -> T.Parser NetworkStatistics
+      parseNetworkStatistics :: A.Value -> AT.Parser NetworkStatistics
       parseNetworkStatistics = A.withObject "NetworkStatistics" $ \o -> do
-        entries_ <- o A..:? "entries"
-        since_date_ <- o A..:? "since_date"
-        return $ NetworkStatistics {entries = entries_, since_date = since_date_}
+        since_date_ <- o A..:?  "since_date"
+        entries_    <- o A..:?  "entries"
+        pure $ NetworkStatistics
+          { since_date = since_date_
+          , entries    = entries_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON NetworkStatistics where
-  toJSON
-    NetworkStatistics
-      { entries = entries_,
-        since_date = since_date_
-      } =
-      A.object
-        [ "@type" A..= T.String "networkStatistics",
-          "entries" A..= entries_,
-          "since_date" A..= since_date_
-        ]

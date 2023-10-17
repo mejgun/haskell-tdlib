@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetFileGenerationProgress where
+module TD.Query.SetFileGenerationProgress
+  (SetFileGenerationProgress(..)
+  , defaultSetFileGenerationProgress
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Informs TDLib on a file generation progress
-data SetFileGenerationProgress = SetFileGenerationProgress
-  { -- | The number of bytes already generated
-    local_prefix_size :: Maybe Int,
-    -- | Expected size of the generated file, in bytes; 0 if unknown
-    expected_size :: Maybe Int,
-    -- | The identifier of the generation process
-    generation_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Informs TDLib on a file generation progress
+data SetFileGenerationProgress
+  = SetFileGenerationProgress
+    { generation_id     :: Maybe Int -- ^ The identifier of the generation process
+    , expected_size     :: Maybe Int -- ^ Expected size of the generated file, in bytes; 0 if unknown
+    , local_prefix_size :: Maybe Int -- ^ The number of bytes already generated
+    }
+  deriving (Eq, Show)
 
-instance Show SetFileGenerationProgress where
-  show
+instance I.ShortShow SetFileGenerationProgress where
+  shortShow
     SetFileGenerationProgress
-      { local_prefix_size = local_prefix_size_,
-        expected_size = expected_size_,
-        generation_id = generation_id_
-      } =
-      "SetFileGenerationProgress"
-        ++ U.cc
-          [ U.p "local_prefix_size" local_prefix_size_,
-            U.p "expected_size" expected_size_,
-            U.p "generation_id" generation_id_
+      { generation_id     = generation_id_
+      , expected_size     = expected_size_
+      , local_prefix_size = local_prefix_size_
+      }
+        = "SetFileGenerationProgress"
+          ++ I.cc
+          [ "generation_id"     `I.p` generation_id_
+          , "expected_size"     `I.p` expected_size_
+          , "local_prefix_size" `I.p` local_prefix_size_
           ]
 
-instance T.ToJSON SetFileGenerationProgress where
+instance AT.ToJSON SetFileGenerationProgress where
   toJSON
     SetFileGenerationProgress
-      { local_prefix_size = local_prefix_size_,
-        expected_size = expected_size_,
-        generation_id = generation_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setFileGenerationProgress",
-          "local_prefix_size" A..= local_prefix_size_,
-          "expected_size" A..= expected_size_,
-          "generation_id" A..= U.toS generation_id_
-        ]
+      { generation_id     = generation_id_
+      , expected_size     = expected_size_
+      , local_prefix_size = local_prefix_size_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "setFileGenerationProgress"
+          , "generation_id"     A..= fmap I.writeInt64  generation_id_
+          , "expected_size"     A..= expected_size_
+          , "local_prefix_size" A..= local_prefix_size_
+          ]
+
+defaultSetFileGenerationProgress :: SetFileGenerationProgress
+defaultSetFileGenerationProgress =
+  SetFileGenerationProgress
+    { generation_id     = Nothing
+    , expected_size     = Nothing
+    , local_prefix_size = Nothing
+    }
+

@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Text where
+module TD.Data.Text
+  (Text(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data Text = -- | Contains some text @text Text
-  Text
-  { -- |
-    text :: Maybe String
-  }
-  deriving (Eq)
+data Text
+  = Text -- ^ Contains some text
+    { text :: Maybe T.Text -- ^ Text
+    }
+  deriving (Eq, Show)
 
-instance Show Text where
-  show
-    Text
-      { text = text_
-      } =
-      "Text"
-        ++ U.cc
-          [ U.p "text" text_
-          ]
+instance I.ShortShow Text where
+  shortShow Text
+    { text = text_
+    }
+      = "Text"
+        ++ I.cc
+        [ "text" `I.p` text_
+        ]
 
-instance T.FromJSON Text where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Text where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "text" -> parseText v
-      _ -> mempty
+      _      -> mempty
+    
     where
-      parseText :: A.Value -> T.Parser Text
+      parseText :: A.Value -> AT.Parser Text
       parseText = A.withObject "Text" $ \o -> do
-        text_ <- o A..:? "text"
-        return $ Text {text = text_}
+        text_ <- o A..:?  "text"
+        pure $ Text
+          { text = text_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Text where
-  toJSON
-    Text
-      { text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "text",
-          "text" A..= text_
-        ]

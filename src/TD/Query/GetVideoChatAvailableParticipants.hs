@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetVideoChatAvailableParticipants where
+module TD.Query.GetVideoChatAvailableParticipants
+  (GetVideoChatAvailableParticipants(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined @chat_id Chat identifier
-data GetVideoChatAvailableParticipants = GetVideoChatAvailableParticipants
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+data GetVideoChatAvailableParticipants
+  = GetVideoChatAvailableParticipants
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetVideoChatAvailableParticipants where
-  show
+instance I.ShortShow GetVideoChatAvailableParticipants where
+  shortShow
     GetVideoChatAvailableParticipants
       { chat_id = chat_id_
-      } =
-      "GetVideoChatAvailableParticipants"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetVideoChatAvailableParticipants"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetVideoChatAvailableParticipants where
+instance AT.ToJSON GetVideoChatAvailableParticipants where
   toJSON
     GetVideoChatAvailableParticipants
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getVideoChatAvailableParticipants",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getVideoChatAvailableParticipants"
+          , "chat_id" A..= chat_id_
+          ]
+

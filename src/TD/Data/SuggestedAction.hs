@@ -1,176 +1,129 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.SuggestedAction where
+module TD.Data.SuggestedAction
+  (SuggestedAction(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes an action suggested to the current user
 data SuggestedAction
-  = -- | Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
-    SuggestedActionEnableArchiveAndMuteNewChats
-  | -- | Suggests the user to check whether they still remember their 2-step verification password
-    SuggestedActionCheckPassword
-  | -- | Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
-    SuggestedActionCheckPhoneNumber
-  | -- | Suggests the user to view a hint about the meaning of one and two check marks on sent messages
-    SuggestedActionViewChecksHint
-  | -- | Suggests the user to convert specified supergroup to a broadcast group @supergroup_id Supergroup identifier
-    SuggestedActionConvertToBroadcastGroup
-      { -- |
-        supergroup_id :: Maybe Int
-      }
-  | -- | Suggests the user to set a 2-step verification password to be able to log in again
-    SuggestedActionSetPassword
-      { -- | The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
-        authorization_delay :: Maybe Int
-      }
-  | -- | Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
-    SuggestedActionUpgradePremium
-  | -- | Suggests the user to restore a recently expired Premium subscription
-    SuggestedActionRestorePremium
-  | -- | Suggests the user to subscribe to the Premium subscription with annual payments
-    SuggestedActionSubscribeToAnnualPremium
-  deriving (Eq)
+  = SuggestedActionEnableArchiveAndMuteNewChats -- ^ Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
+  | SuggestedActionCheckPassword -- ^ Suggests the user to check whether they still remember their 2-step verification password
+  | SuggestedActionCheckPhoneNumber -- ^ Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
+  | SuggestedActionViewChecksHint -- ^ Suggests the user to view a hint about the meaning of one and two check marks on sent messages
+  | SuggestedActionConvertToBroadcastGroup -- ^ Suggests the user to convert specified supergroup to a broadcast group
+    { supergroup_id :: Maybe Int -- ^ Supergroup identifier
+    }
+  | SuggestedActionSetPassword -- ^ Suggests the user to set a 2-step verification password to be able to log in again
+    { authorization_delay :: Maybe Int -- ^ The number of days to pass between consecutive authorizations if the user declines to set password; if 0, then the user is advised to set the password for security reasons
+    }
+  | SuggestedActionUpgradePremium -- ^ Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
+  | SuggestedActionRestorePremium -- ^ Suggests the user to restore a recently expired Premium subscription
+  | SuggestedActionSubscribeToAnnualPremium -- ^ Suggests the user to subscribe to the Premium subscription with annual payments
+  deriving (Eq, Show)
 
-instance Show SuggestedAction where
-  show SuggestedActionEnableArchiveAndMuteNewChats =
-    "SuggestedActionEnableArchiveAndMuteNewChats"
-      ++ U.cc
-        []
-  show SuggestedActionCheckPassword =
-    "SuggestedActionCheckPassword"
-      ++ U.cc
-        []
-  show SuggestedActionCheckPhoneNumber =
-    "SuggestedActionCheckPhoneNumber"
-      ++ U.cc
-        []
-  show SuggestedActionViewChecksHint =
-    "SuggestedActionViewChecksHint"
-      ++ U.cc
-        []
-  show
-    SuggestedActionConvertToBroadcastGroup
-      { supergroup_id = supergroup_id_
-      } =
-      "SuggestedActionConvertToBroadcastGroup"
-        ++ U.cc
-          [ U.p "supergroup_id" supergroup_id_
-          ]
-  show
-    SuggestedActionSetPassword
-      { authorization_delay = authorization_delay_
-      } =
-      "SuggestedActionSetPassword"
-        ++ U.cc
-          [ U.p "authorization_delay" authorization_delay_
-          ]
-  show SuggestedActionUpgradePremium =
-    "SuggestedActionUpgradePremium"
-      ++ U.cc
-        []
-  show SuggestedActionRestorePremium =
-    "SuggestedActionRestorePremium"
-      ++ U.cc
-        []
-  show SuggestedActionSubscribeToAnnualPremium =
-    "SuggestedActionSubscribeToAnnualPremium"
-      ++ U.cc
-        []
+instance I.ShortShow SuggestedAction where
+  shortShow SuggestedActionEnableArchiveAndMuteNewChats
+      = "SuggestedActionEnableArchiveAndMuteNewChats"
+  shortShow SuggestedActionCheckPassword
+      = "SuggestedActionCheckPassword"
+  shortShow SuggestedActionCheckPhoneNumber
+      = "SuggestedActionCheckPhoneNumber"
+  shortShow SuggestedActionViewChecksHint
+      = "SuggestedActionViewChecksHint"
+  shortShow SuggestedActionConvertToBroadcastGroup
+    { supergroup_id = supergroup_id_
+    }
+      = "SuggestedActionConvertToBroadcastGroup"
+        ++ I.cc
+        [ "supergroup_id" `I.p` supergroup_id_
+        ]
+  shortShow SuggestedActionSetPassword
+    { authorization_delay = authorization_delay_
+    }
+      = "SuggestedActionSetPassword"
+        ++ I.cc
+        [ "authorization_delay" `I.p` authorization_delay_
+        ]
+  shortShow SuggestedActionUpgradePremium
+      = "SuggestedActionUpgradePremium"
+  shortShow SuggestedActionRestorePremium
+      = "SuggestedActionRestorePremium"
+  shortShow SuggestedActionSubscribeToAnnualPremium
+      = "SuggestedActionSubscribeToAnnualPremium"
 
-instance T.FromJSON SuggestedAction where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON SuggestedAction where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "suggestedActionEnableArchiveAndMuteNewChats" -> parseSuggestedActionEnableArchiveAndMuteNewChats v
-      "suggestedActionCheckPassword" -> parseSuggestedActionCheckPassword v
-      "suggestedActionCheckPhoneNumber" -> parseSuggestedActionCheckPhoneNumber v
-      "suggestedActionViewChecksHint" -> parseSuggestedActionViewChecksHint v
-      "suggestedActionConvertToBroadcastGroup" -> parseSuggestedActionConvertToBroadcastGroup v
-      "suggestedActionSetPassword" -> parseSuggestedActionSetPassword v
-      "suggestedActionUpgradePremium" -> parseSuggestedActionUpgradePremium v
-      "suggestedActionRestorePremium" -> parseSuggestedActionRestorePremium v
-      "suggestedActionSubscribeToAnnualPremium" -> parseSuggestedActionSubscribeToAnnualPremium v
-      _ -> mempty
+      "suggestedActionEnableArchiveAndMuteNewChats" -> pure SuggestedActionEnableArchiveAndMuteNewChats
+      "suggestedActionCheckPassword"                -> pure SuggestedActionCheckPassword
+      "suggestedActionCheckPhoneNumber"             -> pure SuggestedActionCheckPhoneNumber
+      "suggestedActionViewChecksHint"               -> pure SuggestedActionViewChecksHint
+      "suggestedActionConvertToBroadcastGroup"      -> parseSuggestedActionConvertToBroadcastGroup v
+      "suggestedActionSetPassword"                  -> parseSuggestedActionSetPassword v
+      "suggestedActionUpgradePremium"               -> pure SuggestedActionUpgradePremium
+      "suggestedActionRestorePremium"               -> pure SuggestedActionRestorePremium
+      "suggestedActionSubscribeToAnnualPremium"     -> pure SuggestedActionSubscribeToAnnualPremium
+      _                                             -> mempty
+    
     where
-      parseSuggestedActionEnableArchiveAndMuteNewChats :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionEnableArchiveAndMuteNewChats = A.withObject "SuggestedActionEnableArchiveAndMuteNewChats" $ \_ -> return SuggestedActionEnableArchiveAndMuteNewChats
-
-      parseSuggestedActionCheckPassword :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionCheckPassword = A.withObject "SuggestedActionCheckPassword" $ \_ -> return SuggestedActionCheckPassword
-
-      parseSuggestedActionCheckPhoneNumber :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionCheckPhoneNumber = A.withObject "SuggestedActionCheckPhoneNumber" $ \_ -> return SuggestedActionCheckPhoneNumber
-
-      parseSuggestedActionViewChecksHint :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionViewChecksHint = A.withObject "SuggestedActionViewChecksHint" $ \_ -> return SuggestedActionViewChecksHint
-
-      parseSuggestedActionConvertToBroadcastGroup :: A.Value -> T.Parser SuggestedAction
+      parseSuggestedActionConvertToBroadcastGroup :: A.Value -> AT.Parser SuggestedAction
       parseSuggestedActionConvertToBroadcastGroup = A.withObject "SuggestedActionConvertToBroadcastGroup" $ \o -> do
-        supergroup_id_ <- o A..:? "supergroup_id"
-        return $ SuggestedActionConvertToBroadcastGroup {supergroup_id = supergroup_id_}
-
-      parseSuggestedActionSetPassword :: A.Value -> T.Parser SuggestedAction
+        supergroup_id_ <- o A..:?  "supergroup_id"
+        pure $ SuggestedActionConvertToBroadcastGroup
+          { supergroup_id = supergroup_id_
+          }
+      parseSuggestedActionSetPassword :: A.Value -> AT.Parser SuggestedAction
       parseSuggestedActionSetPassword = A.withObject "SuggestedActionSetPassword" $ \o -> do
-        authorization_delay_ <- o A..:? "authorization_delay"
-        return $ SuggestedActionSetPassword {authorization_delay = authorization_delay_}
-
-      parseSuggestedActionUpgradePremium :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionUpgradePremium = A.withObject "SuggestedActionUpgradePremium" $ \_ -> return SuggestedActionUpgradePremium
-
-      parseSuggestedActionRestorePremium :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionRestorePremium = A.withObject "SuggestedActionRestorePremium" $ \_ -> return SuggestedActionRestorePremium
-
-      parseSuggestedActionSubscribeToAnnualPremium :: A.Value -> T.Parser SuggestedAction
-      parseSuggestedActionSubscribeToAnnualPremium = A.withObject "SuggestedActionSubscribeToAnnualPremium" $ \_ -> return SuggestedActionSubscribeToAnnualPremium
+        authorization_delay_ <- o A..:?  "authorization_delay"
+        pure $ SuggestedActionSetPassword
+          { authorization_delay = authorization_delay_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON SuggestedAction where
-  toJSON SuggestedActionEnableArchiveAndMuteNewChats =
-    A.object
-      [ "@type" A..= T.String "suggestedActionEnableArchiveAndMuteNewChats"
-      ]
-  toJSON SuggestedActionCheckPassword =
-    A.object
-      [ "@type" A..= T.String "suggestedActionCheckPassword"
-      ]
-  toJSON SuggestedActionCheckPhoneNumber =
-    A.object
-      [ "@type" A..= T.String "suggestedActionCheckPhoneNumber"
-      ]
-  toJSON SuggestedActionViewChecksHint =
-    A.object
-      [ "@type" A..= T.String "suggestedActionViewChecksHint"
-      ]
-  toJSON
-    SuggestedActionConvertToBroadcastGroup
-      { supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "suggestedActionConvertToBroadcastGroup",
-          "supergroup_id" A..= supergroup_id_
+instance AT.ToJSON SuggestedAction where
+  toJSON SuggestedActionEnableArchiveAndMuteNewChats
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionEnableArchiveAndMuteNewChats"
         ]
-  toJSON
-    SuggestedActionSetPassword
-      { authorization_delay = authorization_delay_
-      } =
-      A.object
-        [ "@type" A..= T.String "suggestedActionSetPassword",
-          "authorization_delay" A..= authorization_delay_
+  toJSON SuggestedActionCheckPassword
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionCheckPassword"
         ]
-  toJSON SuggestedActionUpgradePremium =
-    A.object
-      [ "@type" A..= T.String "suggestedActionUpgradePremium"
-      ]
-  toJSON SuggestedActionRestorePremium =
-    A.object
-      [ "@type" A..= T.String "suggestedActionRestorePremium"
-      ]
-  toJSON SuggestedActionSubscribeToAnnualPremium =
-    A.object
-      [ "@type" A..= T.String "suggestedActionSubscribeToAnnualPremium"
-      ]
+  toJSON SuggestedActionCheckPhoneNumber
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionCheckPhoneNumber"
+        ]
+  toJSON SuggestedActionViewChecksHint
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionViewChecksHint"
+        ]
+  toJSON SuggestedActionConvertToBroadcastGroup
+    { supergroup_id = supergroup_id_
+    }
+      = A.object
+        [ "@type"         A..= AT.String "suggestedActionConvertToBroadcastGroup"
+        , "supergroup_id" A..= supergroup_id_
+        ]
+  toJSON SuggestedActionSetPassword
+    { authorization_delay = authorization_delay_
+    }
+      = A.object
+        [ "@type"               A..= AT.String "suggestedActionSetPassword"
+        , "authorization_delay" A..= authorization_delay_
+        ]
+  toJSON SuggestedActionUpgradePremium
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionUpgradePremium"
+        ]
+  toJSON SuggestedActionRestorePremium
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionRestorePremium"
+        ]
+  toJSON SuggestedActionSubscribeToAnnualPremium
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionSubscribeToAnnualPremium"
+        ]
+

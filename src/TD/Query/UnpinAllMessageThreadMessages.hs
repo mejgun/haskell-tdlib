@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.UnpinAllMessageThreadMessages where
+module TD.Query.UnpinAllMessageThreadMessages
+  (UnpinAllMessageThreadMessages(..)
+  , defaultUnpinAllMessageThreadMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
-data UnpinAllMessageThreadMessages = UnpinAllMessageThreadMessages
-  { -- | Message thread identifier in which messages will be unpinned
-    message_thread_id :: Maybe Int,
-    -- | Identifier of the chat
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+data UnpinAllMessageThreadMessages
+  = UnpinAllMessageThreadMessages
+    { chat_id           :: Maybe Int -- ^ Identifier of the chat
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier in which messages will be unpinned
+    }
+  deriving (Eq, Show)
 
-instance Show UnpinAllMessageThreadMessages where
-  show
+instance I.ShortShow UnpinAllMessageThreadMessages where
+  shortShow
     UnpinAllMessageThreadMessages
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "UnpinAllMessageThreadMessages"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "UnpinAllMessageThreadMessages"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON UnpinAllMessageThreadMessages where
+instance AT.ToJSON UnpinAllMessageThreadMessages where
   toJSON
     UnpinAllMessageThreadMessages
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "unpinAllMessageThreadMessages",
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "unpinAllMessageThreadMessages"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultUnpinAllMessageThreadMessages :: UnpinAllMessageThreadMessages
+defaultUnpinAllMessageThreadMessages =
+  UnpinAllMessageThreadMessages
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

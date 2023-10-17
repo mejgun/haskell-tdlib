@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TMeUrls where
+module TD.Data.TMeUrls
+  (TMeUrls(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TMeUrl as TMeUrl
-import qualified Utils as U
 
--- |
-data TMeUrls = -- | Contains a list of t.me URLs @urls List of URLs
-  TMeUrls
-  { -- |
-    urls :: Maybe [TMeUrl.TMeUrl]
-  }
-  deriving (Eq)
+data TMeUrls
+  = TMeUrls -- ^ Contains a list of t.me URLs
+    { urls :: Maybe [TMeUrl.TMeUrl] -- ^ List of URLs
+    }
+  deriving (Eq, Show)
 
-instance Show TMeUrls where
-  show
-    TMeUrls
-      { urls = urls_
-      } =
-      "TMeUrls"
-        ++ U.cc
-          [ U.p "urls" urls_
-          ]
+instance I.ShortShow TMeUrls where
+  shortShow TMeUrls
+    { urls = urls_
+    }
+      = "TMeUrls"
+        ++ I.cc
+        [ "urls" `I.p` urls_
+        ]
 
-instance T.FromJSON TMeUrls where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TMeUrls where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "tMeUrls" -> parseTMeUrls v
-      _ -> mempty
+      _         -> mempty
+    
     where
-      parseTMeUrls :: A.Value -> T.Parser TMeUrls
+      parseTMeUrls :: A.Value -> AT.Parser TMeUrls
       parseTMeUrls = A.withObject "TMeUrls" $ \o -> do
-        urls_ <- o A..:? "urls"
-        return $ TMeUrls {urls = urls_}
+        urls_ <- o A..:?  "urls"
+        pure $ TMeUrls
+          { urls = urls_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TMeUrls where
-  toJSON
-    TMeUrls
-      { urls = urls_
-      } =
-      A.object
-        [ "@type" A..= T.String "tMeUrls",
-          "urls" A..= urls_
-        ]

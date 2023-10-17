@@ -1,54 +1,60 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.BlockMessageSenderFromReplies where
+module TD.Query.BlockMessageSenderFromReplies
+  (BlockMessageSenderFromReplies(..)
+  , defaultBlockMessageSenderFromReplies
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Blocks an original sender of a message in the Replies chat
-data BlockMessageSenderFromReplies = BlockMessageSenderFromReplies
-  { -- | Pass true to report the sender to the Telegram moderators
-    report_spam :: Maybe Bool,
-    -- | Pass true to delete all messages from the same sender
-    delete_all_messages :: Maybe Bool,
-    -- | Pass true to delete the message
-    delete_message :: Maybe Bool,
-    -- | The identifier of an incoming message in the Replies chat
-    message_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Blocks an original sender of a message in the Replies chat
+data BlockMessageSenderFromReplies
+  = BlockMessageSenderFromReplies
+    { message_id          :: Maybe Int  -- ^ The identifier of an incoming message in the Replies chat
+    , delete_message      :: Maybe Bool -- ^ Pass true to delete the message
+    , delete_all_messages :: Maybe Bool -- ^ Pass true to delete all messages from the same sender
+    , report_spam         :: Maybe Bool -- ^ Pass true to report the sender to the Telegram moderators
+    }
+  deriving (Eq, Show)
 
-instance Show BlockMessageSenderFromReplies where
-  show
+instance I.ShortShow BlockMessageSenderFromReplies where
+  shortShow
     BlockMessageSenderFromReplies
-      { report_spam = report_spam_,
-        delete_all_messages = delete_all_messages_,
-        delete_message = delete_message_,
-        message_id = message_id_
-      } =
-      "BlockMessageSenderFromReplies"
-        ++ U.cc
-          [ U.p "report_spam" report_spam_,
-            U.p "delete_all_messages" delete_all_messages_,
-            U.p "delete_message" delete_message_,
-            U.p "message_id" message_id_
+      { message_id          = message_id_
+      , delete_message      = delete_message_
+      , delete_all_messages = delete_all_messages_
+      , report_spam         = report_spam_
+      }
+        = "BlockMessageSenderFromReplies"
+          ++ I.cc
+          [ "message_id"          `I.p` message_id_
+          , "delete_message"      `I.p` delete_message_
+          , "delete_all_messages" `I.p` delete_all_messages_
+          , "report_spam"         `I.p` report_spam_
           ]
 
-instance T.ToJSON BlockMessageSenderFromReplies where
+instance AT.ToJSON BlockMessageSenderFromReplies where
   toJSON
     BlockMessageSenderFromReplies
-      { report_spam = report_spam_,
-        delete_all_messages = delete_all_messages_,
-        delete_message = delete_message_,
-        message_id = message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "blockMessageSenderFromReplies",
-          "report_spam" A..= report_spam_,
-          "delete_all_messages" A..= delete_all_messages_,
-          "delete_message" A..= delete_message_,
-          "message_id" A..= message_id_
-        ]
+      { message_id          = message_id_
+      , delete_message      = delete_message_
+      , delete_all_messages = delete_all_messages_
+      , report_spam         = report_spam_
+      }
+        = A.object
+          [ "@type"               A..= AT.String "blockMessageSenderFromReplies"
+          , "message_id"          A..= message_id_
+          , "delete_message"      A..= delete_message_
+          , "delete_all_messages" A..= delete_all_messages_
+          , "report_spam"         A..= report_spam_
+          ]
+
+defaultBlockMessageSenderFromReplies :: BlockMessageSenderFromReplies
+defaultBlockMessageSenderFromReplies =
+  BlockMessageSenderFromReplies
+    { message_id          = Nothing
+    , delete_message      = Nothing
+    , delete_all_messages = Nothing
+    , report_spam         = Nothing
+    }
+

@@ -1,86 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PageBlockRelatedArticle where
+module TD.Data.PageBlockRelatedArticle
+  (PageBlockRelatedArticle(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Photo as Photo
-import qualified Utils as U
 
--- |
-data PageBlockRelatedArticle = -- | Contains information about a related article
-  PageBlockRelatedArticle
-  { -- | Point in time (Unix timestamp) when the article was published; 0 if unknown
-    publish_date :: Maybe Int,
-    -- | Article author; may be empty
-    author :: Maybe String,
-    -- | Article photo; may be null
-    photo :: Maybe Photo.Photo,
-    -- |
-    description :: Maybe String,
-    -- | Article title; may be empty
-    title :: Maybe String,
-    -- | Related article URL
-    url :: Maybe String
-  }
-  deriving (Eq)
+data PageBlockRelatedArticle
+  = PageBlockRelatedArticle -- ^ Contains information about a related article
+    { url          :: Maybe T.Text      -- ^ Related article URL
+    , title        :: Maybe T.Text      -- ^ Article title; may be empty
+    , description  :: Maybe T.Text
+    , photo        :: Maybe Photo.Photo -- ^ Article photo; may be null
+    , author       :: Maybe T.Text      -- ^ Article author; may be empty
+    , publish_date :: Maybe Int         -- ^ Point in time (Unix timestamp) when the article was published; 0 if unknown
+    }
+  deriving (Eq, Show)
 
-instance Show PageBlockRelatedArticle where
-  show
-    PageBlockRelatedArticle
-      { publish_date = publish_date_,
-        author = author_,
-        photo = photo_,
-        description = description_,
-        title = title_,
-        url = url_
-      } =
-      "PageBlockRelatedArticle"
-        ++ U.cc
-          [ U.p "publish_date" publish_date_,
-            U.p "author" author_,
-            U.p "photo" photo_,
-            U.p "description" description_,
-            U.p "title" title_,
-            U.p "url" url_
-          ]
+instance I.ShortShow PageBlockRelatedArticle where
+  shortShow PageBlockRelatedArticle
+    { url          = url_
+    , title        = title_
+    , description  = description_
+    , photo        = photo_
+    , author       = author_
+    , publish_date = publish_date_
+    }
+      = "PageBlockRelatedArticle"
+        ++ I.cc
+        [ "url"          `I.p` url_
+        , "title"        `I.p` title_
+        , "description"  `I.p` description_
+        , "photo"        `I.p` photo_
+        , "author"       `I.p` author_
+        , "publish_date" `I.p` publish_date_
+        ]
 
-instance T.FromJSON PageBlockRelatedArticle where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PageBlockRelatedArticle where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "pageBlockRelatedArticle" -> parsePageBlockRelatedArticle v
-      _ -> mempty
+      _                         -> mempty
+    
     where
-      parsePageBlockRelatedArticle :: A.Value -> T.Parser PageBlockRelatedArticle
+      parsePageBlockRelatedArticle :: A.Value -> AT.Parser PageBlockRelatedArticle
       parsePageBlockRelatedArticle = A.withObject "PageBlockRelatedArticle" $ \o -> do
-        publish_date_ <- o A..:? "publish_date"
-        author_ <- o A..:? "author"
-        photo_ <- o A..:? "photo"
-        description_ <- o A..:? "description"
-        title_ <- o A..:? "title"
-        url_ <- o A..:? "url"
-        return $ PageBlockRelatedArticle {publish_date = publish_date_, author = author_, photo = photo_, description = description_, title = title_, url = url_}
+        url_          <- o A..:?  "url"
+        title_        <- o A..:?  "title"
+        description_  <- o A..:?  "description"
+        photo_        <- o A..:?  "photo"
+        author_       <- o A..:?  "author"
+        publish_date_ <- o A..:?  "publish_date"
+        pure $ PageBlockRelatedArticle
+          { url          = url_
+          , title        = title_
+          , description  = description_
+          , photo        = photo_
+          , author       = author_
+          , publish_date = publish_date_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PageBlockRelatedArticle where
-  toJSON
-    PageBlockRelatedArticle
-      { publish_date = publish_date_,
-        author = author_,
-        photo = photo_,
-        description = description_,
-        title = title_,
-        url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "pageBlockRelatedArticle",
-          "publish_date" A..= publish_date_,
-          "author" A..= author_,
-          "photo" A..= photo_,
-          "description" A..= description_,
-          "title" A..= title_,
-          "url" A..= url_
-        ]

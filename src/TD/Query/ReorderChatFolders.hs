@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReorderChatFolders where
+module TD.Query.ReorderChatFolders
+  (ReorderChatFolders(..)
+  , defaultReorderChatFolders
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the order of chat folders @chat_folder_ids Identifiers of chat folders in the new correct order @main_chat_list_position Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
-data ReorderChatFolders = ReorderChatFolders
-  { -- |
-    main_chat_list_position :: Maybe Int,
-    -- |
-    chat_folder_ids :: Maybe [Int]
-  }
-  deriving (Eq)
+-- | Changes the order of chat folders
+data ReorderChatFolders
+  = ReorderChatFolders
+    { chat_folder_ids         :: Maybe [Int] -- ^ Identifiers of chat folders in the new correct order
+    , main_chat_list_position :: Maybe Int   -- ^ Position of the main chat list among chat folders, 0-based. Can be non-zero only for Premium users
+    }
+  deriving (Eq, Show)
 
-instance Show ReorderChatFolders where
-  show
+instance I.ShortShow ReorderChatFolders where
+  shortShow
     ReorderChatFolders
-      { main_chat_list_position = main_chat_list_position_,
-        chat_folder_ids = chat_folder_ids_
-      } =
-      "ReorderChatFolders"
-        ++ U.cc
-          [ U.p "main_chat_list_position" main_chat_list_position_,
-            U.p "chat_folder_ids" chat_folder_ids_
+      { chat_folder_ids         = chat_folder_ids_
+      , main_chat_list_position = main_chat_list_position_
+      }
+        = "ReorderChatFolders"
+          ++ I.cc
+          [ "chat_folder_ids"         `I.p` chat_folder_ids_
+          , "main_chat_list_position" `I.p` main_chat_list_position_
           ]
 
-instance T.ToJSON ReorderChatFolders where
+instance AT.ToJSON ReorderChatFolders where
   toJSON
     ReorderChatFolders
-      { main_chat_list_position = main_chat_list_position_,
-        chat_folder_ids = chat_folder_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "reorderChatFolders",
-          "main_chat_list_position" A..= main_chat_list_position_,
-          "chat_folder_ids" A..= chat_folder_ids_
-        ]
+      { chat_folder_ids         = chat_folder_ids_
+      , main_chat_list_position = main_chat_list_position_
+      }
+        = A.object
+          [ "@type"                   A..= AT.String "reorderChatFolders"
+          , "chat_folder_ids"         A..= chat_folder_ids_
+          , "main_chat_list_position" A..= main_chat_list_position_
+          ]
+
+defaultReorderChatFolders :: ReorderChatFolders
+defaultReorderChatFolders =
+  ReorderChatFolders
+    { chat_folder_ids         = Nothing
+    , main_chat_list_position = Nothing
+    }
+

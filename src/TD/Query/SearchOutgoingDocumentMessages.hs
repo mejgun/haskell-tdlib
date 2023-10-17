@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SearchOutgoingDocumentMessages where
+module TD.Query.SearchOutgoingDocumentMessages
+  (SearchOutgoingDocumentMessages(..)
+  , defaultSearchOutgoingDocumentMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
-data SearchOutgoingDocumentMessages = SearchOutgoingDocumentMessages
-  { -- | The maximum number of messages to be returned; up to 100
-    limit :: Maybe Int,
-    -- | Query to search for in document file name and message caption
-    query :: Maybe String
-  }
-  deriving (Eq)
+-- | Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+data SearchOutgoingDocumentMessages
+  = SearchOutgoingDocumentMessages
+    { query :: Maybe T.Text -- ^ Query to search for in document file name and message caption
+    , limit :: Maybe Int    -- ^ The maximum number of messages to be returned; up to 100
+    }
+  deriving (Eq, Show)
 
-instance Show SearchOutgoingDocumentMessages where
-  show
+instance I.ShortShow SearchOutgoingDocumentMessages where
+  shortShow
     SearchOutgoingDocumentMessages
-      { limit = limit_,
-        query = query_
-      } =
-      "SearchOutgoingDocumentMessages"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "query" query_
+      { query = query_
+      , limit = limit_
+      }
+        = "SearchOutgoingDocumentMessages"
+          ++ I.cc
+          [ "query" `I.p` query_
+          , "limit" `I.p` limit_
           ]
 
-instance T.ToJSON SearchOutgoingDocumentMessages where
+instance AT.ToJSON SearchOutgoingDocumentMessages where
   toJSON
     SearchOutgoingDocumentMessages
-      { limit = limit_,
-        query = query_
-      } =
-      A.object
-        [ "@type" A..= T.String "searchOutgoingDocumentMessages",
-          "limit" A..= limit_,
-          "query" A..= query_
-        ]
+      { query = query_
+      , limit = limit_
+      }
+        = A.object
+          [ "@type" A..= AT.String "searchOutgoingDocumentMessages"
+          , "query" A..= query_
+          , "limit" A..= limit_
+          ]
+
+defaultSearchOutgoingDocumentMessages :: SearchOutgoingDocumentMessages
+defaultSearchOutgoingDocumentMessages =
+  SearchOutgoingDocumentMessages
+    { query = Nothing
+    , limit = Nothing
+    }
+

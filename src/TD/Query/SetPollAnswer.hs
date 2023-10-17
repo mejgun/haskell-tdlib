@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetPollAnswer where
+module TD.Query.SetPollAnswer
+  (SetPollAnswer(..)
+  , defaultSetPollAnswer
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the user answer to a poll. A poll in quiz mode can be answered only once
-data SetPollAnswer = SetPollAnswer
-  { -- | 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
-    option_ids :: Maybe [Int],
-    -- | Identifier of the message containing the poll
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the poll belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the user answer to a poll. A poll in quiz mode can be answered only once
+data SetPollAnswer
+  = SetPollAnswer
+    { chat_id    :: Maybe Int   -- ^ Identifier of the chat to which the poll belongs
+    , message_id :: Maybe Int   -- ^ Identifier of the message containing the poll
+    , option_ids :: Maybe [Int] -- ^ 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
+    }
+  deriving (Eq, Show)
 
-instance Show SetPollAnswer where
-  show
+instance I.ShortShow SetPollAnswer where
+  shortShow
     SetPollAnswer
-      { option_ids = option_ids_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "SetPollAnswer"
-        ++ U.cc
-          [ U.p "option_ids" option_ids_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , option_ids = option_ids_
+      }
+        = "SetPollAnswer"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "option_ids" `I.p` option_ids_
           ]
 
-instance T.ToJSON SetPollAnswer where
+instance AT.ToJSON SetPollAnswer where
   toJSON
     SetPollAnswer
-      { option_ids = option_ids_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setPollAnswer",
-          "option_ids" A..= option_ids_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , option_ids = option_ids_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "setPollAnswer"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "option_ids" A..= option_ids_
+          ]
+
+defaultSetPollAnswer :: SetPollAnswer
+defaultSetPollAnswer =
+  SetPollAnswer
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , option_ids = Nothing
+    }
+

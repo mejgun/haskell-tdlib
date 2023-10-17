@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddRecentlyFoundChat where
+module TD.Query.AddRecentlyFoundChat
+  (AddRecentlyFoundChat(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first @chat_id Identifier of the chat to add
-data AddRecentlyFoundChat = AddRecentlyFoundChat
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
+data AddRecentlyFoundChat
+  = AddRecentlyFoundChat
+    { chat_id :: Maybe Int -- ^ Identifier of the chat to add
+    }
+  deriving (Eq, Show)
 
-instance Show AddRecentlyFoundChat where
-  show
+instance I.ShortShow AddRecentlyFoundChat where
+  shortShow
     AddRecentlyFoundChat
       { chat_id = chat_id_
-      } =
-      "AddRecentlyFoundChat"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "AddRecentlyFoundChat"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON AddRecentlyFoundChat where
+instance AT.ToJSON AddRecentlyFoundChat where
   toJSON
     AddRecentlyFoundChat
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addRecentlyFoundChat",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "addRecentlyFoundChat"
+          , "chat_id" A..= chat_id_
+          ]
+

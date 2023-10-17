@@ -1,66 +1,34 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.SecretChatState where
+module TD.Data.SecretChatState
+  (SecretChatState(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the current secret chat state
 data SecretChatState
-  = -- | The secret chat is not yet created; waiting for the other user to get online
-    SecretChatStatePending
-  | -- | The secret chat is ready to use
-    SecretChatStateReady
-  | -- | The secret chat is closed
-    SecretChatStateClosed
-  deriving (Eq)
+  = SecretChatStatePending -- ^ The secret chat is not yet created; waiting for the other user to get online
+  | SecretChatStateReady -- ^ The secret chat is ready to use
+  | SecretChatStateClosed -- ^ The secret chat is closed
+  deriving (Eq, Show)
 
-instance Show SecretChatState where
-  show SecretChatStatePending =
-    "SecretChatStatePending"
-      ++ U.cc
-        []
-  show SecretChatStateReady =
-    "SecretChatStateReady"
-      ++ U.cc
-        []
-  show SecretChatStateClosed =
-    "SecretChatStateClosed"
-      ++ U.cc
-        []
+instance I.ShortShow SecretChatState where
+  shortShow SecretChatStatePending
+      = "SecretChatStatePending"
+  shortShow SecretChatStateReady
+      = "SecretChatStateReady"
+  shortShow SecretChatStateClosed
+      = "SecretChatStateClosed"
 
-instance T.FromJSON SecretChatState where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON SecretChatState where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "secretChatStatePending" -> parseSecretChatStatePending v
-      "secretChatStateReady" -> parseSecretChatStateReady v
-      "secretChatStateClosed" -> parseSecretChatStateClosed v
-      _ -> mempty
-    where
-      parseSecretChatStatePending :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStatePending = A.withObject "SecretChatStatePending" $ \_ -> return SecretChatStatePending
-
-      parseSecretChatStateReady :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStateReady = A.withObject "SecretChatStateReady" $ \_ -> return SecretChatStateReady
-
-      parseSecretChatStateClosed :: A.Value -> T.Parser SecretChatState
-      parseSecretChatStateClosed = A.withObject "SecretChatStateClosed" $ \_ -> return SecretChatStateClosed
+      "secretChatStatePending" -> pure SecretChatStatePending
+      "secretChatStateReady"   -> pure SecretChatStateReady
+      "secretChatStateClosed"  -> pure SecretChatStateClosed
+      _                        -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON SecretChatState where
-  toJSON SecretChatStatePending =
-    A.object
-      [ "@type" A..= T.String "secretChatStatePending"
-      ]
-  toJSON SecretChatStateReady =
-    A.object
-      [ "@type" A..= T.String "secretChatStateReady"
-      ]
-  toJSON SecretChatStateClosed =
-    A.object
-      [ "@type" A..= T.String "secretChatStateClosed"
-      ]

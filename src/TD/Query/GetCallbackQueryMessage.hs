@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetCallbackQueryMessage where
+module TD.Query.GetCallbackQueryMessage
+  (GetCallbackQueryMessage(..)
+  , defaultGetCallbackQueryMessage
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a message with the callback button that originated a callback query; for bots only @chat_id Identifier of the chat the message belongs to @message_id Message identifier @callback_query_id Identifier of the callback query
-data GetCallbackQueryMessage = GetCallbackQueryMessage
-  { -- |
-    callback_query_id :: Maybe Int,
-    -- |
-    message_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a message with the callback button that originated a callback query; for bots only
+data GetCallbackQueryMessage
+  = GetCallbackQueryMessage
+    { chat_id           :: Maybe Int -- ^ Identifier of the chat the message belongs to
+    , message_id        :: Maybe Int -- ^ Message identifier
+    , callback_query_id :: Maybe Int -- ^ Identifier of the callback query
+    }
+  deriving (Eq, Show)
 
-instance Show GetCallbackQueryMessage where
-  show
+instance I.ShortShow GetCallbackQueryMessage where
+  shortShow
     GetCallbackQueryMessage
-      { callback_query_id = callback_query_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetCallbackQueryMessage"
-        ++ U.cc
-          [ U.p "callback_query_id" callback_query_id_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_id        = message_id_
+      , callback_query_id = callback_query_id_
+      }
+        = "GetCallbackQueryMessage"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_id"        `I.p` message_id_
+          , "callback_query_id" `I.p` callback_query_id_
           ]
 
-instance T.ToJSON GetCallbackQueryMessage where
+instance AT.ToJSON GetCallbackQueryMessage where
   toJSON
     GetCallbackQueryMessage
-      { callback_query_id = callback_query_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getCallbackQueryMessage",
-          "callback_query_id" A..= U.toS callback_query_id_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_id        = message_id_
+      , callback_query_id = callback_query_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "getCallbackQueryMessage"
+          , "chat_id"           A..= chat_id_
+          , "message_id"        A..= message_id_
+          , "callback_query_id" A..= fmap I.writeInt64  callback_query_id_
+          ]
+
+defaultGetCallbackQueryMessage :: GetCallbackQueryMessage
+defaultGetCallbackQueryMessage =
+  GetCallbackQueryMessage
+    { chat_id           = Nothing
+    , message_id        = Nothing
+    , callback_query_id = Nothing
+    }
+

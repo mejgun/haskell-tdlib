@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckChatUsername where
+module TD.Query.CheckChatUsername
+  (CheckChatUsername(..)
+  , defaultCheckChatUsername
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks whether a username can be set for a chat @chat_id Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created @username Username to be checked
-data CheckChatUsername = CheckChatUsername
-  { -- |
-    username :: Maybe String,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Checks whether a username can be set for a chat
+data CheckChatUsername
+  = CheckChatUsername
+    { chat_id  :: Maybe Int    -- ^ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+    , username :: Maybe T.Text -- ^ Username to be checked
+    }
+  deriving (Eq, Show)
 
-instance Show CheckChatUsername where
-  show
+instance I.ShortShow CheckChatUsername where
+  shortShow
     CheckChatUsername
-      { username = username_,
-        chat_id = chat_id_
-      } =
-      "CheckChatUsername"
-        ++ U.cc
-          [ U.p "username" username_,
-            U.p "chat_id" chat_id_
+      { chat_id  = chat_id_
+      , username = username_
+      }
+        = "CheckChatUsername"
+          ++ I.cc
+          [ "chat_id"  `I.p` chat_id_
+          , "username" `I.p` username_
           ]
 
-instance T.ToJSON CheckChatUsername where
+instance AT.ToJSON CheckChatUsername where
   toJSON
     CheckChatUsername
-      { username = username_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkChatUsername",
-          "username" A..= username_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id  = chat_id_
+      , username = username_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "checkChatUsername"
+          , "chat_id"  A..= chat_id_
+          , "username" A..= username_
+          ]
+
+defaultCheckChatUsername :: CheckChatUsername
+defaultCheckChatUsername =
+  CheckChatUsername
+    { chat_id  = Nothing
+    , username = Nothing
+    }
+

@@ -1,2161 +1,1383 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageContent where
+module TD.Data.MessageContent
+  (MessageContent(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.WebPage as WebPage
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
-import qualified TD.Data.CallDiscardReason as CallDiscardReason
-import qualified TD.Data.ChatBackground as ChatBackground
-import qualified TD.Data.ChatPhoto as ChatPhoto
-import qualified TD.Data.Contact as Contact
-import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Document as Document
-import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
-import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
-import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
-import qualified TD.Data.Game as Game
-import qualified TD.Data.Location as Location
-import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
-import qualified TD.Data.MessageSender as MessageSender
-import qualified TD.Data.OrderInfo as OrderInfo
-import qualified TD.Data.PassportElementType as PassportElementType
 import qualified TD.Data.Photo as Photo
-import qualified TD.Data.Poll as Poll
 import qualified TD.Data.Sticker as Sticker
-import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
+import qualified TD.Data.Location as Location
+import qualified TD.Data.Venue as Venue
+import qualified TD.Data.Contact as Contact
+import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
+import qualified Data.Text as T
+import qualified TD.Data.DiceStickers as DiceStickers
+import qualified TD.Data.Game as Game
+import qualified TD.Data.Poll as Poll
+import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
+import qualified TD.Data.CallDiscardReason as CallDiscardReason
+import qualified TD.Data.ChatPhoto as ChatPhoto
+import qualified TD.Data.ChatBackground as ChatBackground
+import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
+import qualified Data.ByteString as BS
+import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.WebApp as WebApp
-import qualified TD.Data.WebPage as WebPage
-import qualified Utils as U
+import qualified TD.Data.PassportElementType as PassportElementType
+import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
+import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
+import qualified TD.Data.MessageSender as MessageSender
 
 -- | Contains the content of a message
 data MessageContent
-  = -- | A text message @text Text of the message @web_page A preview of the web page that's mentioned in the text; may be null
-    MessageText
-      { -- |
-        web_page :: Maybe WebPage.WebPage,
-        -- |
-        text :: Maybe FormattedText.FormattedText
-      }
-  | -- | An animation message (GIF-style).
-    MessageAnimation
-      { -- | True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
-        is_secret :: Maybe Bool,
-        -- | True, if the animation preview must be covered by a spoiler animation
-        has_spoiler :: Maybe Bool,
-        -- | Animation caption
-        caption :: Maybe FormattedText.FormattedText,
-        -- | The animation description
-        animation :: Maybe Animation.Animation
-      }
-  | -- | An audio message @audio The audio description @caption Audio caption
-    MessageAudio
-      { -- |
-        caption :: Maybe FormattedText.FormattedText,
-        -- |
-        audio :: Maybe Audio.Audio
-      }
-  | -- | A document message (general file) @document The document description @caption Document caption
-    MessageDocument
-      { -- |
-        caption :: Maybe FormattedText.FormattedText,
-        -- |
-        document :: Maybe Document.Document
-      }
-  | -- | A photo message
-    MessagePhoto
-      { -- | True, if the photo must be blurred and must be shown only while tapped
-        is_secret :: Maybe Bool,
-        -- | True, if the photo preview must be covered by a spoiler animation
-        has_spoiler :: Maybe Bool,
-        -- | Photo caption
-        caption :: Maybe FormattedText.FormattedText,
-        -- | The photo
-        photo :: Maybe Photo.Photo
-      }
-  | -- | A self-destructed photo message
-    MessageExpiredPhoto
-  | -- | A sticker message @sticker The sticker description @is_premium True, if premium animation of the sticker must be played
-    MessageSticker
-      { -- |
-        is_premium :: Maybe Bool,
-        -- |
-        sticker :: Maybe Sticker.Sticker
-      }
-  | -- | A video message
-    MessageVideo
-      { -- | True, if the video thumbnail must be blurred and the video must be shown only while tapped
-        is_secret :: Maybe Bool,
-        -- | True, if the video preview must be covered by a spoiler animation
-        has_spoiler :: Maybe Bool,
-        -- | Video caption
-        caption :: Maybe FormattedText.FormattedText,
-        -- | The video description
-        video :: Maybe Video.Video
-      }
-  | -- | A self-destructed video message
-    MessageExpiredVideo
-  | -- | A video note message @video_note The video note description @is_viewed True, if at least one of the recipients has viewed the video note @is_secret True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
-    MessageVideoNote
-      { -- |
-        is_secret :: Maybe Bool,
-        -- |
-        is_viewed :: Maybe Bool,
-        -- |
-        video_note :: Maybe VideoNote.VideoNote
-      }
-  | -- | A voice note message @voice_note The voice note description @caption Voice note caption @is_listened True, if at least one of the recipients has listened to the voice note
-    MessageVoiceNote
-      { -- |
-        is_listened :: Maybe Bool,
-        -- |
-        caption :: Maybe FormattedText.FormattedText,
-        -- |
-        voice_note :: Maybe VoiceNote.VoiceNote
-      }
-  | -- | A message with a location
-    MessageLocation
-      { -- | For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
-        proximity_alert_radius :: Maybe Int,
-        -- | For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-        heading :: Maybe Int,
-        -- | Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
-        expires_in :: Maybe Int,
-        -- | Time relative to the message send date, for which the location can be updated, in seconds
-        live_period :: Maybe Int,
-        -- | The location description
-        location :: Maybe Location.Location
-      }
-  | -- | A message with information about a venue @venue The venue description
-    MessageVenue
-      { -- |
-        venue :: Maybe Venue.Venue
-      }
-  | -- | A message with a user contact @contact The contact description
-    MessageContact
-      { -- |
-        contact :: Maybe Contact.Contact
-      }
-  | -- | A message with an animated emoji @animated_emoji The animated emoji @emoji The corresponding emoji
-    MessageAnimatedEmoji
-      { -- |
-        emoji :: Maybe String,
-        -- |
-        animated_emoji :: Maybe AnimatedEmoji.AnimatedEmoji
-      }
-  | -- | A dice message. The dice value is randomly generated by the server
-    MessageDice
-      { -- | Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
-        success_animation_frame_number :: Maybe Int,
-        -- | The dice value. If the value is 0, the dice don't have final state yet
-        value :: Maybe Int,
-        -- | Emoji on which the dice throw animation is based
-        emoji :: Maybe String,
-        -- | The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-        final_state :: Maybe DiceStickers.DiceStickers,
-        -- | The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-        initial_state :: Maybe DiceStickers.DiceStickers
-      }
-  | -- | A message with a game @game The game description
-    MessageGame
-      { -- |
-        game :: Maybe Game.Game
-      }
-  | -- | A message with a poll @poll The poll description
-    MessagePoll
-      { -- |
-        poll :: Maybe Poll.Poll
-      }
-  | -- | A message with a forwarded story
-    MessageStory
-      { -- | True, if the story was automatically forwarded because of a mention of the user
-        via_mention :: Maybe Bool,
-        -- | Story identifier
-        story_id :: Maybe Int,
-        -- | Identifier of the chat that posted the story
-        story_sender_chat_id :: Maybe Int
-      }
-  | -- | A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
-    MessageInvoice
-      { -- | Extended media attached to the invoice; may be null
-        extended_media :: Maybe MessageExtendedMedia.MessageExtendedMedia,
-        -- | The identifier of the message with the receipt, after the product has been purchased
-        receipt_message_id :: Maybe Int,
-        -- | True, if the shipping address must be specified
-        need_shipping_address :: Maybe Bool,
-        -- | True, if the invoice is a test invoice
-        is_test :: Maybe Bool,
-        -- | Unique invoice bot start_parameter to be passed to getInternalLink
-        start_parameter :: Maybe String,
-        -- | Product total price in the smallest units of the currency
-        total_amount :: Maybe Int,
-        -- | Currency for the product price
-        currency :: Maybe String,
-        -- | Product photo; may be null
-        photo :: Maybe Photo.Photo,
-        -- |
-        description :: Maybe FormattedText.FormattedText,
-        -- | Product title
-        title :: Maybe String
-      }
-  | -- | A message with information about an ended call @is_video True, if the call was a video call @discard_reason Reason why the call was discarded @duration Call duration, in seconds
-    MessageCall
-      { -- |
-        duration :: Maybe Int,
-        -- |
-        discard_reason :: Maybe CallDiscardReason.CallDiscardReason,
-        -- |
-        is_video :: Maybe Bool
-      }
-  | -- | A new video chat was scheduled @group_call_id Identifier of the video chat. The video chat can be received through the method getGroupCall @start_date Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
-    MessageVideoChatScheduled
-      { -- |
-        start_date :: Maybe Int,
-        -- |
-        group_call_id :: Maybe Int
-      }
-  | -- | A newly created video chat @group_call_id Identifier of the video chat. The video chat can be received through the method getGroupCall
-    MessageVideoChatStarted
-      { -- |
-        group_call_id :: Maybe Int
-      }
-  | -- | A message with information about an ended video chat @duration Call duration, in seconds
-    MessageVideoChatEnded
-      { -- |
-        duration :: Maybe Int
-      }
-  | -- | A message with information about an invite to a video chat @group_call_id Identifier of the video chat. The video chat can be received through the method getGroupCall @user_ids Invited user identifiers
-    MessageInviteVideoChatParticipants
-      { -- |
-        user_ids :: Maybe [Int],
-        -- |
-        group_call_id :: Maybe Int
-      }
-  | -- | A newly created basic group @title Title of the basic group @member_user_ids User identifiers of members in the basic group
-    MessageBasicGroupChatCreate
-      { -- |
-        member_user_ids :: Maybe [Int],
-        -- |
-        title :: Maybe String
-      }
-  | -- | A newly created supergroup or channel @title Title of the supergroup or channel
-    MessageSupergroupChatCreate
-      { -- |
-        title :: Maybe String
-      }
-  | -- | An updated chat title @title New chat title
-    MessageChatChangeTitle
-      { -- |
-        title :: Maybe String
-      }
-  | -- | An updated chat photo @photo New chat photo
-    MessageChatChangePhoto
-      { -- |
-        _photo :: Maybe ChatPhoto.ChatPhoto
-      }
-  | -- | A deleted chat photo
-    MessageChatDeletePhoto
-  | -- | New chat members were added @member_user_ids User identifiers of the new members
-    MessageChatAddMembers
-      { -- |
-        member_user_ids :: Maybe [Int]
-      }
-  | -- | A new member joined the chat via an invite link
-    MessageChatJoinByLink
-  | -- | A new member was accepted to the chat by an administrator
-    MessageChatJoinByRequest
-  | -- | A chat member was deleted @user_id User identifier of the deleted chat member
-    MessageChatDeleteMember
-      { -- |
-        user_id :: Maybe Int
-      }
-  | -- | A basic group was upgraded to a supergroup and was deactivated as the result @supergroup_id Identifier of the supergroup to which the basic group was upgraded
-    MessageChatUpgradeTo
-      { -- |
-        supergroup_id :: Maybe Int
-      }
-  | -- | A supergroup has been created from a basic group @title Title of the newly created supergroup @basic_group_id The identifier of the original basic group
-    MessageChatUpgradeFrom
-      { -- |
-        basic_group_id :: Maybe Int,
-        -- |
-        title :: Maybe String
-      }
-  | -- | A message has been pinned @message_id Identifier of the pinned message, can be an identifier of a deleted message or 0
-    MessagePinMessage
-      { -- |
-        message_id :: Maybe Int
-      }
-  | -- | A screenshot of a message in the chat has been taken
-    MessageScreenshotTaken
-  | -- | A new background was set in the chat @old_background_message_id Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message @background The new background
-    MessageChatSetBackground
-      { -- |
-        background :: Maybe ChatBackground.ChatBackground,
-        -- |
-        old_background_message_id :: Maybe Int
-      }
-  | -- | A theme in the chat has been changed @theme_name If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
-    MessageChatSetTheme
-      { -- |
-        theme_name :: Maybe String
-      }
-  | -- | The auto-delete or self-destruct timer for messages in the chat has been changed @message_auto_delete_time New value auto-delete or self-destruct time, in seconds; 0 if disabled @from_user_id If not 0, a user identifier, which default setting was automatically applied
-    MessageChatSetMessageAutoDeleteTime
-      { -- |
-        from_user_id :: Maybe Int,
-        -- |
-        message_auto_delete_time :: Maybe Int
-      }
-  | -- | A forum topic has been created @name Name of the topic @icon Icon of the topic
-    MessageForumTopicCreated
-      { -- |
-        icon :: Maybe ForumTopicIcon.ForumTopicIcon,
-        -- |
-        name :: Maybe String
-      }
-  | -- | A forum topic has been edited
-    MessageForumTopicEdited
-      { -- | New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
-        icon_custom_emoji_id :: Maybe Int,
-        -- | True, if icon's custom_emoji_id is changed
-        edit_icon_custom_emoji_id :: Maybe Bool,
-        -- | If non-empty, the new name of the topic
-        name :: Maybe String
-      }
-  | -- | A forum topic has been closed or opened @is_closed True, if the topic was closed; otherwise, the topic was reopened
-    MessageForumTopicIsClosedToggled
-      { -- |
-        is_closed :: Maybe Bool
-      }
-  | -- | A General forum topic has been hidden or unhidden @is_hidden True, if the topic was hidden; otherwise, the topic was unhidden
-    MessageForumTopicIsHiddenToggled
-      { -- |
-        is_hidden :: Maybe Bool
-      }
-  | -- | A profile photo was suggested to a user in a private chat @photo The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo
-    MessageSuggestProfilePhoto
-      { -- |
-        _photo :: Maybe ChatPhoto.ChatPhoto
-      }
-  | -- | A non-standard action has happened in the chat @text Message text to be shown in the chat
-    MessageCustomServiceAction
-      { -- |
-        _text :: Maybe String
-      }
-  | -- | A new high score was achieved in a game @game_message_id Identifier of the message with the game, can be an identifier of a deleted message @game_id Identifier of the game; may be different from the games presented in the message with the game @score New score
-    MessageGameScore
-      { -- |
-        score :: Maybe Int,
-        -- |
-        game_id :: Maybe Int,
-        -- |
-        game_message_id :: Maybe Int
-      }
-  | -- | A payment has been completed
-    MessagePaymentSuccessful
-      { -- | Name of the invoice; may be empty if unknown
-        invoice_name :: Maybe String,
-        -- | True, if this is the first recurring payment
-        is_first_recurring :: Maybe Bool,
-        -- | True, if this is a recurring payment
-        is_recurring :: Maybe Bool,
-        -- | Total price for the product, in the smallest units of the currency
-        total_amount :: Maybe Int,
-        -- | Currency for the price of the product
-        currency :: Maybe String,
-        -- | Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
-        invoice_message_id :: Maybe Int,
-        -- | Identifier of the chat, containing the corresponding invoice message
-        invoice_chat_id :: Maybe Int
-      }
-  | -- | A payment has been completed; for bots only
-    MessagePaymentSuccessfulBot
-      { -- | Provider payment identifier
-        provider_payment_charge_id :: Maybe String,
-        -- | Telegram payment identifier
-        telegram_payment_charge_id :: Maybe String,
-        -- | Information about the order; may be null
-        order_info :: Maybe OrderInfo.OrderInfo,
-        -- | Identifier of the shipping option chosen by the user; may be empty if not applicable
-        shipping_option_id :: Maybe String,
-        -- | Invoice payload
-        invoice_payload :: Maybe String,
-        -- | True, if this is the first recurring payment
-        is_first_recurring :: Maybe Bool,
-        -- | True, if this is a recurring payment
-        is_recurring :: Maybe Bool,
-        -- | Total price for the product, in the smallest units of the currency
-        total_amount :: Maybe Int,
-        -- | Currency for price of the product
-        currency :: Maybe String
-      }
-  | -- | Telegram Premium was gifted to the user
-    MessageGiftedPremium
-      { -- | A sticker to be shown in the message; may be null if unknown
-        sticker :: Maybe Sticker.Sticker,
-        -- | Number of month the Telegram Premium subscription will be active
-        month_count :: Maybe Int,
-        -- | The paid amount, in the smallest units of the cryptocurrency
-        cryptocurrency_amount :: Maybe Int,
-        -- | Cryptocurrency used to pay for the gift; may be empty if none
-        cryptocurrency :: Maybe String,
-        -- | The paid amount, in the smallest units of the currency
-        amount :: Maybe Int,
-        -- | Currency for the paid amount
-        currency :: Maybe String,
-        -- | The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
-        gifter_user_id :: Maybe Int
-      }
-  | -- | A contact has registered with Telegram
-    MessageContactRegistered
-  | -- | The current user shared a user, which was requested by the bot @user_id Identifier of the shared user @button_id Identifier of the keyboard button with the request
-    MessageUserShared
-      { -- |
-        button_id :: Maybe Int,
-        -- |
-        user_id :: Maybe Int
-      }
-  | -- | The current user shared a chat, which was requested by the bot @chat_id Identifier of the shared chat @button_id Identifier of the keyboard button with the request
-    MessageChatShared
-      { -- |
-        button_id :: Maybe Int,
-        -- |
-        chat_id :: Maybe Int
-      }
-  | -- | The current user has connected a website by logging in using Telegram Login Widget on it @domain_name Domain name of the connected website
-    MessageWebsiteConnected
-      { -- |
-        domain_name :: Maybe String
-      }
-  | -- | The user allowed the bot to send messages
-    MessageBotWriteAccessAllowed
-      { -- | True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
-        by_request :: Maybe Bool,
-        -- | Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
-        web_app :: Maybe WebApp.WebApp
-      }
-  | -- | Data from a Web App has been sent to a bot @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App
-    MessageWebAppDataSent
-      { -- |
-        button_text :: Maybe String
-      }
-  | -- | Data from a Web App has been received; for bots only @button_text Text of the keyboardButtonTypeWebApp button, which opened the Web App @data The data
-    MessageWebAppDataReceived
-      { -- |
-        _data :: Maybe String,
-        -- |
-        button_text :: Maybe String
-      }
-  | -- | Telegram Passport data has been sent to a bot @types List of Telegram Passport element types sent
-    MessagePassportDataSent
-      { -- |
-        types :: Maybe [PassportElementType.PassportElementType]
-      }
-  | -- | Telegram Passport data has been received; for bots only @elements List of received Telegram Passport elements @credentials Encrypted data credentials
-    MessagePassportDataReceived
-      { -- |
-        credentials :: Maybe EncryptedCredentials.EncryptedCredentials,
-        -- |
-        elements :: Maybe [EncryptedPassportElement.EncryptedPassportElement]
-      }
-  | -- | A user in the chat came within proximity alert range @traveler_id The identifier of a user or chat that triggered the proximity alert @watcher_id The identifier of a user or chat that subscribed for the proximity alert @distance The distance between the users
-    MessageProximityAlertTriggered
-      { -- |
-        distance :: Maybe Int,
-        -- |
-        watcher_id :: Maybe MessageSender.MessageSender,
-        -- |
-        traveler_id :: Maybe MessageSender.MessageSender
-      }
-  | -- | A message content that is not supported in the current TDLib version
-    MessageUnsupported
-  deriving (Eq)
+  = MessageText -- ^ A text message
+    { text     :: Maybe FormattedText.FormattedText -- ^ Text of the message
+    , web_page :: Maybe WebPage.WebPage             -- ^ A preview of the web page that's mentioned in the text; may be null
+    }
+  | MessageAnimation -- ^ An animation message (GIF-style).
+    { animation   :: Maybe Animation.Animation         -- ^ The animation description
+    , caption     :: Maybe FormattedText.FormattedText -- ^ Animation caption
+    , has_spoiler :: Maybe Bool                        -- ^ True, if the animation preview must be covered by a spoiler animation
+    , is_secret   :: Maybe Bool                        -- ^ True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
+    }
+  | MessageAudio -- ^ An audio message
+    { audio   :: Maybe Audio.Audio                 -- ^ The audio description
+    , caption :: Maybe FormattedText.FormattedText -- ^ Audio caption
+    }
+  | MessageDocument -- ^ A document message (general file)
+    { document :: Maybe Document.Document           -- ^ The document description
+    , caption  :: Maybe FormattedText.FormattedText -- ^ Document caption
+    }
+  | MessagePhoto -- ^ A photo message
+    { photo       :: Maybe Photo.Photo                 -- ^ The photo
+    , caption     :: Maybe FormattedText.FormattedText -- ^ Photo caption
+    , has_spoiler :: Maybe Bool                        -- ^ True, if the photo preview must be covered by a spoiler animation
+    , is_secret   :: Maybe Bool                        -- ^ True, if the photo must be blurred and must be shown only while tapped
+    }
+  | MessageExpiredPhoto -- ^ A self-destructed photo message
+  | MessageSticker -- ^ A sticker message
+    { sticker    :: Maybe Sticker.Sticker -- ^ The sticker description
+    , is_premium :: Maybe Bool            -- ^ True, if premium animation of the sticker must be played
+    }
+  | MessageVideo -- ^ A video message
+    { video       :: Maybe Video.Video                 -- ^ The video description
+    , caption     :: Maybe FormattedText.FormattedText -- ^ Video caption
+    , has_spoiler :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
+    , is_secret   :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
+    }
+  | MessageExpiredVideo -- ^ A self-destructed video message
+  | MessageVideoNote -- ^ A video note message
+    { video_note :: Maybe VideoNote.VideoNote -- ^ The video note description
+    , is_viewed  :: Maybe Bool                -- ^ True, if at least one of the recipients has viewed the video note
+    , is_secret  :: Maybe Bool                -- ^ True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
+    }
+  | MessageVoiceNote -- ^ A voice note message
+    { voice_note  :: Maybe VoiceNote.VoiceNote         -- ^ The voice note description
+    , caption     :: Maybe FormattedText.FormattedText -- ^ Voice note caption
+    , is_listened :: Maybe Bool                        -- ^ True, if at least one of the recipients has listened to the voice note
+    }
+  | MessageLocation -- ^ A message with a location
+    { location               :: Maybe Location.Location -- ^ The location description
+    , live_period            :: Maybe Int               -- ^ Time relative to the message send date, for which the location can be updated, in seconds
+    , expires_in             :: Maybe Int               -- ^ Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
+    , heading                :: Maybe Int               -- ^ For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
+    , proximity_alert_radius :: Maybe Int               -- ^ For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
+    }
+  | MessageVenue -- ^ A message with information about a venue
+    { venue :: Maybe Venue.Venue -- ^ The venue description
+    }
+  | MessageContact -- ^ A message with a user contact
+    { contact :: Maybe Contact.Contact -- ^ The contact description
+    }
+  | MessageAnimatedEmoji -- ^ A message with an animated emoji
+    { animated_emoji :: Maybe AnimatedEmoji.AnimatedEmoji -- ^ The animated emoji
+    , emoji          :: Maybe T.Text                      -- ^ The corresponding emoji
+    }
+  | MessageDice -- ^ A dice message. The dice value is randomly generated by the server
+    { initial_state                  :: Maybe DiceStickers.DiceStickers -- ^ The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+    , final_state                    :: Maybe DiceStickers.DiceStickers -- ^ The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
+    , emoji                          :: Maybe T.Text                    -- ^ Emoji on which the dice throw animation is based
+    , value                          :: Maybe Int                       -- ^ The dice value. If the value is 0, the dice don't have final state yet
+    , success_animation_frame_number :: Maybe Int                       -- ^ Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
+    }
+  | MessageGame -- ^ A message with a game
+    { game :: Maybe Game.Game -- ^ The game description
+    }
+  | MessagePoll -- ^ A message with a poll
+    { poll :: Maybe Poll.Poll -- ^ The poll description
+    }
+  | MessageStory -- ^ A message with a forwarded story
+    { story_sender_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story
+    , story_id             :: Maybe Int  -- ^ Story identifier
+    , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
+    }
+  | MessageInvoice -- ^ A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
+    { title                 :: Maybe T.Text                                    -- ^ Product title
+    , description           :: Maybe FormattedText.FormattedText
+    , photo                 :: Maybe Photo.Photo                               -- ^ Product photo; may be null
+    , currency              :: Maybe T.Text                                    -- ^ Currency for the product price
+    , total_amount          :: Maybe Int                                       -- ^ Product total price in the smallest units of the currency
+    , start_parameter       :: Maybe T.Text                                    -- ^ Unique invoice bot start_parameter to be passed to getInternalLink
+    , is_test               :: Maybe Bool                                      -- ^ True, if the invoice is a test invoice
+    , need_shipping_address :: Maybe Bool                                      -- ^ True, if the shipping address must be specified
+    , receipt_message_id    :: Maybe Int                                       -- ^ The identifier of the message with the receipt, after the product has been purchased
+    , extended_media        :: Maybe MessageExtendedMedia.MessageExtendedMedia -- ^ Extended media attached to the invoice; may be null
+    }
+  | MessageCall -- ^ A message with information about an ended call
+    { is_video       :: Maybe Bool                                -- ^ True, if the call was a video call
+    , discard_reason :: Maybe CallDiscardReason.CallDiscardReason -- ^ Reason why the call was discarded
+    , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
+    }
+  | MessageVideoChatScheduled -- ^ A new video chat was scheduled
+    { group_call_id :: Maybe Int -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
+    , start_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    }
+  | MessageVideoChatStarted -- ^ A newly created video chat
+    { group_call_id :: Maybe Int -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
+    }
+  | MessageVideoChatEnded -- ^ A message with information about an ended video chat
+    { duration :: Maybe Int -- ^ Call duration, in seconds
+    }
+  | MessageInviteVideoChatParticipants -- ^ A message with information about an invite to a video chat
+    { group_call_id :: Maybe Int   -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
+    , user_ids      :: Maybe [Int] -- ^ Invited user identifiers
+    }
+  | MessageBasicGroupChatCreate -- ^ A newly created basic group
+    { title           :: Maybe T.Text -- ^ Title of the basic group
+    , member_user_ids :: Maybe [Int]  -- ^ User identifiers of members in the basic group
+    }
+  | MessageSupergroupChatCreate -- ^ A newly created supergroup or channel
+    { title :: Maybe T.Text -- ^ Title of the supergroup or channel
+    }
+  | MessageChatChangeTitle -- ^ An updated chat title
+    { title :: Maybe T.Text -- ^ New chat title
+    }
+  | MessageChatChangePhoto -- ^ An updated chat photo
+    { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ New chat photo
+    }
+  | MessageChatDeletePhoto -- ^ A deleted chat photo
+  | MessageChatAddMembers -- ^ New chat members were added
+    { member_user_ids :: Maybe [Int] -- ^ User identifiers of the new members
+    }
+  | MessageChatJoinByLink -- ^ A new member joined the chat via an invite link
+  | MessageChatJoinByRequest -- ^ A new member was accepted to the chat by an administrator
+  | MessageChatDeleteMember -- ^ A chat member was deleted
+    { user_id :: Maybe Int -- ^ User identifier of the deleted chat member
+    }
+  | MessageChatUpgradeTo -- ^ A basic group was upgraded to a supergroup and was deactivated as the result
+    { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup to which the basic group was upgraded
+    }
+  | MessageChatUpgradeFrom -- ^ A supergroup has been created from a basic group
+    { title          :: Maybe T.Text -- ^ Title of the newly created supergroup
+    , basic_group_id :: Maybe Int    -- ^ The identifier of the original basic group
+    }
+  | MessagePinMessage -- ^ A message has been pinned
+    { message_id :: Maybe Int -- ^ Identifier of the pinned message, can be an identifier of a deleted message or 0
+    }
+  | MessageScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
+  | MessageChatSetBackground -- ^ A new background was set in the chat
+    { old_background_message_id :: Maybe Int                           -- ^ Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
+    , background                :: Maybe ChatBackground.ChatBackground -- ^ The new background
+    }
+  | MessageChatSetTheme -- ^ A theme in the chat has been changed
+    { theme_name :: Maybe T.Text -- ^ If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
+    }
+  | MessageChatSetMessageAutoDeleteTime -- ^ The auto-delete or self-destruct timer for messages in the chat has been changed
+    { message_auto_delete_time :: Maybe Int -- ^ New value auto-delete or self-destruct time, in seconds; 0 if disabled
+    , from_user_id             :: Maybe Int -- ^ If not 0, a user identifier, which default setting was automatically applied
+    }
+  | MessageForumTopicCreated -- ^ A forum topic has been created
+    { name :: Maybe T.Text                        -- ^ Name of the topic
+    , icon :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
+    }
+  | MessageForumTopicEdited -- ^ A forum topic has been edited
+    { name                      :: Maybe T.Text -- ^ If non-empty, the new name of the topic
+    , edit_icon_custom_emoji_id :: Maybe Bool   -- ^ True, if icon's custom_emoji_id is changed
+    , icon_custom_emoji_id      :: Maybe Int    -- ^ New unique identifier of the custom emoji shown on the topic icon; 0 if none. Must be ignored if edit_icon_custom_emoji_id is false
+    }
+  | MessageForumTopicIsClosedToggled -- ^ A forum topic has been closed or opened
+    { is_closed :: Maybe Bool -- ^ True, if the topic was closed; otherwise, the topic was reopened
+    }
+  | MessageForumTopicIsHiddenToggled -- ^ A General forum topic has been hidden or unhidden
+    { is_hidden :: Maybe Bool -- ^ True, if the topic was hidden; otherwise, the topic was unhidden
+    }
+  | MessageSuggestProfilePhoto -- ^ A profile photo was suggested to a user in a private chat
+    { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo
+    }
+  | MessageCustomServiceAction -- ^ A non-standard action has happened in the chat
+    { _text :: Maybe T.Text -- ^ Message text to be shown in the chat
+    }
+  | MessageGameScore -- ^ A new high score was achieved in a game
+    { game_message_id :: Maybe Int -- ^ Identifier of the message with the game, can be an identifier of a deleted message
+    , game_id         :: Maybe Int -- ^ Identifier of the game; may be different from the games presented in the message with the game
+    , score           :: Maybe Int -- ^ New score
+    }
+  | MessagePaymentSuccessful -- ^ A payment has been completed
+    { invoice_chat_id    :: Maybe Int    -- ^ Identifier of the chat, containing the corresponding invoice message
+    , invoice_message_id :: Maybe Int    -- ^ Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
+    , currency           :: Maybe T.Text -- ^ Currency for the price of the product
+    , total_amount       :: Maybe Int    -- ^ Total price for the product, in the smallest units of the currency
+    , is_recurring       :: Maybe Bool   -- ^ True, if this is a recurring payment
+    , is_first_recurring :: Maybe Bool   -- ^ True, if this is the first recurring payment
+    , invoice_name       :: Maybe T.Text -- ^ Name of the invoice; may be empty if unknown
+    }
+  | MessagePaymentSuccessfulBot -- ^ A payment has been completed; for bots only
+    { currency                   :: Maybe T.Text              -- ^ Currency for price of the product
+    , total_amount               :: Maybe Int                 -- ^ Total price for the product, in the smallest units of the currency
+    , is_recurring               :: Maybe Bool                -- ^ True, if this is a recurring payment
+    , is_first_recurring         :: Maybe Bool                -- ^ True, if this is the first recurring payment
+    , invoice_payload            :: Maybe BS.ByteString       -- ^ Invoice payload
+    , shipping_option_id         :: Maybe T.Text              -- ^ Identifier of the shipping option chosen by the user; may be empty if not applicable
+    , order_info                 :: Maybe OrderInfo.OrderInfo -- ^ Information about the order; may be null
+    , telegram_payment_charge_id :: Maybe T.Text              -- ^ Telegram payment identifier
+    , provider_payment_charge_id :: Maybe T.Text              -- ^ Provider payment identifier
+    }
+  | MessageGiftedPremium -- ^ Telegram Premium was gifted to the user
+    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+    , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
+    , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
+    , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
+    , cryptocurrency_amount :: Maybe Int             -- ^ The paid amount, in the smallest units of the cryptocurrency
+    , month_count           :: Maybe Int             -- ^ Number of month the Telegram Premium subscription will be active
+    , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
+    }
+  | MessageContactRegistered -- ^ A contact has registered with Telegram
+  | MessageUserShared -- ^ The current user shared a user, which was requested by the bot
+    { user_id   :: Maybe Int -- ^ Identifier of the shared user
+    , button_id :: Maybe Int -- ^ Identifier of the keyboard button with the request
+    }
+  | MessageChatShared -- ^ The current user shared a chat, which was requested by the bot
+    { chat_id   :: Maybe Int -- ^ Identifier of the shared chat
+    , button_id :: Maybe Int -- ^ Identifier of the keyboard button with the request
+    }
+  | MessageWebsiteConnected -- ^ The current user has connected a website by logging in using Telegram Login Widget on it
+    { domain_name :: Maybe T.Text -- ^ Domain name of the connected website
+    }
+  | MessageBotWriteAccessAllowed -- ^ The user allowed the bot to send messages
+    { web_app :: Maybe WebApp.WebApp -- ^ Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu
+    }
+  | MessageWebAppDataSent -- ^ Data from a Web App has been sent to a bot
+    { button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
+    }
+  | MessageWebAppDataReceived -- ^ Data from a Web App has been received; for bots only
+    { button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
+    , _data       :: Maybe T.Text -- ^ The data
+    }
+  | MessagePassportDataSent -- ^ Telegram Passport data has been sent to a bot
+    { types :: Maybe [PassportElementType.PassportElementType] -- ^ List of Telegram Passport element types sent
+    }
+  | MessagePassportDataReceived -- ^ Telegram Passport data has been received; for bots only
+    { elements    :: Maybe [EncryptedPassportElement.EncryptedPassportElement] -- ^ List of received Telegram Passport elements
+    , credentials :: Maybe EncryptedCredentials.EncryptedCredentials           -- ^ Encrypted data credentials
+    }
+  | MessageProximityAlertTriggered -- ^ A user in the chat came within proximity alert range
+    { traveler_id :: Maybe MessageSender.MessageSender -- ^ The identifier of a user or chat that triggered the proximity alert
+    , watcher_id  :: Maybe MessageSender.MessageSender -- ^ The identifier of a user or chat that subscribed for the proximity alert
+    , distance    :: Maybe Int                         -- ^ The distance between the users
+    }
+  | MessageUnsupported -- ^ A message content that is not supported in the current TDLib version
+  deriving (Eq, Show)
 
-instance Show MessageContent where
-  show
-    MessageText
-      { web_page = web_page_,
-        text = text_
-      } =
-      "MessageText"
-        ++ U.cc
-          [ U.p "web_page" web_page_,
-            U.p "text" text_
-          ]
-  show
-    MessageAnimation
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        animation = animation_
-      } =
-      "MessageAnimation"
-        ++ U.cc
-          [ U.p "is_secret" is_secret_,
-            U.p "has_spoiler" has_spoiler_,
-            U.p "caption" caption_,
-            U.p "animation" animation_
-          ]
-  show
-    MessageAudio
-      { caption = caption_,
-        audio = audio_
-      } =
-      "MessageAudio"
-        ++ U.cc
-          [ U.p "caption" caption_,
-            U.p "audio" audio_
-          ]
-  show
-    MessageDocument
-      { caption = caption_,
-        document = document_
-      } =
-      "MessageDocument"
-        ++ U.cc
-          [ U.p "caption" caption_,
-            U.p "document" document_
-          ]
-  show
-    MessagePhoto
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        photo = photo_
-      } =
-      "MessagePhoto"
-        ++ U.cc
-          [ U.p "is_secret" is_secret_,
-            U.p "has_spoiler" has_spoiler_,
-            U.p "caption" caption_,
-            U.p "photo" photo_
-          ]
-  show MessageExpiredPhoto =
-    "MessageExpiredPhoto"
-      ++ U.cc
-        []
-  show
-    MessageSticker
-      { is_premium = is_premium_,
-        sticker = sticker_
-      } =
-      "MessageSticker"
-        ++ U.cc
-          [ U.p "is_premium" is_premium_,
-            U.p "sticker" sticker_
-          ]
-  show
-    MessageVideo
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        video = video_
-      } =
-      "MessageVideo"
-        ++ U.cc
-          [ U.p "is_secret" is_secret_,
-            U.p "has_spoiler" has_spoiler_,
-            U.p "caption" caption_,
-            U.p "video" video_
-          ]
-  show MessageExpiredVideo =
-    "MessageExpiredVideo"
-      ++ U.cc
-        []
-  show
-    MessageVideoNote
-      { is_secret = is_secret_,
-        is_viewed = is_viewed_,
-        video_note = video_note_
-      } =
-      "MessageVideoNote"
-        ++ U.cc
-          [ U.p "is_secret" is_secret_,
-            U.p "is_viewed" is_viewed_,
-            U.p "video_note" video_note_
-          ]
-  show
-    MessageVoiceNote
-      { is_listened = is_listened_,
-        caption = caption_,
-        voice_note = voice_note_
-      } =
-      "MessageVoiceNote"
-        ++ U.cc
-          [ U.p "is_listened" is_listened_,
-            U.p "caption" caption_,
-            U.p "voice_note" voice_note_
-          ]
-  show
-    MessageLocation
-      { proximity_alert_radius = proximity_alert_radius_,
-        heading = heading_,
-        expires_in = expires_in_,
-        live_period = live_period_,
-        location = location_
-      } =
-      "MessageLocation"
-        ++ U.cc
-          [ U.p "proximity_alert_radius" proximity_alert_radius_,
-            U.p "heading" heading_,
-            U.p "expires_in" expires_in_,
-            U.p "live_period" live_period_,
-            U.p "location" location_
-          ]
-  show
-    MessageVenue
-      { venue = venue_
-      } =
-      "MessageVenue"
-        ++ U.cc
-          [ U.p "venue" venue_
-          ]
-  show
-    MessageContact
-      { contact = contact_
-      } =
-      "MessageContact"
-        ++ U.cc
-          [ U.p "contact" contact_
-          ]
-  show
-    MessageAnimatedEmoji
-      { emoji = emoji_,
-        animated_emoji = animated_emoji_
-      } =
-      "MessageAnimatedEmoji"
-        ++ U.cc
-          [ U.p "emoji" emoji_,
-            U.p "animated_emoji" animated_emoji_
-          ]
-  show
-    MessageDice
-      { success_animation_frame_number = success_animation_frame_number_,
-        value = value_,
-        emoji = emoji_,
-        final_state = final_state_,
-        initial_state = initial_state_
-      } =
-      "MessageDice"
-        ++ U.cc
-          [ U.p "success_animation_frame_number" success_animation_frame_number_,
-            U.p "value" value_,
-            U.p "emoji" emoji_,
-            U.p "final_state" final_state_,
-            U.p "initial_state" initial_state_
-          ]
-  show
-    MessageGame
-      { game = game_
-      } =
-      "MessageGame"
-        ++ U.cc
-          [ U.p "game" game_
-          ]
-  show
-    MessagePoll
-      { poll = poll_
-      } =
-      "MessagePoll"
-        ++ U.cc
-          [ U.p "poll" poll_
-          ]
-  show
-    MessageStory
-      { via_mention = via_mention_,
-        story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      "MessageStory"
-        ++ U.cc
-          [ U.p "via_mention" via_mention_,
-            U.p "story_id" story_id_,
-            U.p "story_sender_chat_id" story_sender_chat_id_
-          ]
-  show
-    MessageInvoice
-      { extended_media = extended_media_,
-        receipt_message_id = receipt_message_id_,
-        need_shipping_address = need_shipping_address_,
-        is_test = is_test_,
-        start_parameter = start_parameter_,
-        total_amount = total_amount_,
-        currency = currency_,
-        photo = photo_,
-        description = description_,
-        title = title_
-      } =
-      "MessageInvoice"
-        ++ U.cc
-          [ U.p "extended_media" extended_media_,
-            U.p "receipt_message_id" receipt_message_id_,
-            U.p "need_shipping_address" need_shipping_address_,
-            U.p "is_test" is_test_,
-            U.p "start_parameter" start_parameter_,
-            U.p "total_amount" total_amount_,
-            U.p "currency" currency_,
-            U.p "photo" photo_,
-            U.p "description" description_,
-            U.p "title" title_
-          ]
-  show
-    MessageCall
-      { duration = duration_,
-        discard_reason = discard_reason_,
-        is_video = is_video_
-      } =
-      "MessageCall"
-        ++ U.cc
-          [ U.p "duration" duration_,
-            U.p "discard_reason" discard_reason_,
-            U.p "is_video" is_video_
-          ]
-  show
-    MessageVideoChatScheduled
-      { start_date = start_date_,
-        group_call_id = group_call_id_
-      } =
-      "MessageVideoChatScheduled"
-        ++ U.cc
-          [ U.p "start_date" start_date_,
-            U.p "group_call_id" group_call_id_
-          ]
-  show
-    MessageVideoChatStarted
-      { group_call_id = group_call_id_
-      } =
-      "MessageVideoChatStarted"
-        ++ U.cc
-          [ U.p "group_call_id" group_call_id_
-          ]
-  show
-    MessageVideoChatEnded
-      { duration = duration_
-      } =
-      "MessageVideoChatEnded"
-        ++ U.cc
-          [ U.p "duration" duration_
-          ]
-  show
-    MessageInviteVideoChatParticipants
-      { user_ids = user_ids_,
-        group_call_id = group_call_id_
-      } =
-      "MessageInviteVideoChatParticipants"
-        ++ U.cc
-          [ U.p "user_ids" user_ids_,
-            U.p "group_call_id" group_call_id_
-          ]
-  show
-    MessageBasicGroupChatCreate
-      { member_user_ids = member_user_ids_,
-        title = title_
-      } =
-      "MessageBasicGroupChatCreate"
-        ++ U.cc
-          [ U.p "member_user_ids" member_user_ids_,
-            U.p "title" title_
-          ]
-  show
-    MessageSupergroupChatCreate
-      { title = title_
-      } =
-      "MessageSupergroupChatCreate"
-        ++ U.cc
-          [ U.p "title" title_
-          ]
-  show
-    MessageChatChangeTitle
-      { title = title_
-      } =
-      "MessageChatChangeTitle"
-        ++ U.cc
-          [ U.p "title" title_
-          ]
-  show
-    MessageChatChangePhoto
-      { _photo = _photo_
-      } =
-      "MessageChatChangePhoto"
-        ++ U.cc
-          [ U.p "_photo" _photo_
-          ]
-  show MessageChatDeletePhoto =
-    "MessageChatDeletePhoto"
-      ++ U.cc
-        []
-  show
-    MessageChatAddMembers
-      { member_user_ids = member_user_ids_
-      } =
-      "MessageChatAddMembers"
-        ++ U.cc
-          [ U.p "member_user_ids" member_user_ids_
-          ]
-  show MessageChatJoinByLink =
-    "MessageChatJoinByLink"
-      ++ U.cc
-        []
-  show MessageChatJoinByRequest =
-    "MessageChatJoinByRequest"
-      ++ U.cc
-        []
-  show
-    MessageChatDeleteMember
-      { user_id = user_id_
-      } =
-      "MessageChatDeleteMember"
-        ++ U.cc
-          [ U.p "user_id" user_id_
-          ]
-  show
-    MessageChatUpgradeTo
-      { supergroup_id = supergroup_id_
-      } =
-      "MessageChatUpgradeTo"
-        ++ U.cc
-          [ U.p "supergroup_id" supergroup_id_
-          ]
-  show
-    MessageChatUpgradeFrom
-      { basic_group_id = basic_group_id_,
-        title = title_
-      } =
-      "MessageChatUpgradeFrom"
-        ++ U.cc
-          [ U.p "basic_group_id" basic_group_id_,
-            U.p "title" title_
-          ]
-  show
-    MessagePinMessage
-      { message_id = message_id_
-      } =
-      "MessagePinMessage"
-        ++ U.cc
-          [ U.p "message_id" message_id_
-          ]
-  show MessageScreenshotTaken =
-    "MessageScreenshotTaken"
-      ++ U.cc
-        []
-  show
-    MessageChatSetBackground
-      { background = background_,
-        old_background_message_id = old_background_message_id_
-      } =
-      "MessageChatSetBackground"
-        ++ U.cc
-          [ U.p "background" background_,
-            U.p "old_background_message_id" old_background_message_id_
-          ]
-  show
-    MessageChatSetTheme
-      { theme_name = theme_name_
-      } =
-      "MessageChatSetTheme"
-        ++ U.cc
-          [ U.p "theme_name" theme_name_
-          ]
-  show
-    MessageChatSetMessageAutoDeleteTime
-      { from_user_id = from_user_id_,
-        message_auto_delete_time = message_auto_delete_time_
-      } =
-      "MessageChatSetMessageAutoDeleteTime"
-        ++ U.cc
-          [ U.p "from_user_id" from_user_id_,
-            U.p "message_auto_delete_time" message_auto_delete_time_
-          ]
-  show
-    MessageForumTopicCreated
-      { icon = icon_,
-        name = name_
-      } =
-      "MessageForumTopicCreated"
-        ++ U.cc
-          [ U.p "icon" icon_,
-            U.p "name" name_
-          ]
-  show
-    MessageForumTopicEdited
-      { icon_custom_emoji_id = icon_custom_emoji_id_,
-        edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_,
-        name = name_
-      } =
-      "MessageForumTopicEdited"
-        ++ U.cc
-          [ U.p "icon_custom_emoji_id" icon_custom_emoji_id_,
-            U.p "edit_icon_custom_emoji_id" edit_icon_custom_emoji_id_,
-            U.p "name" name_
-          ]
-  show
-    MessageForumTopicIsClosedToggled
-      { is_closed = is_closed_
-      } =
-      "MessageForumTopicIsClosedToggled"
-        ++ U.cc
-          [ U.p "is_closed" is_closed_
-          ]
-  show
-    MessageForumTopicIsHiddenToggled
-      { is_hidden = is_hidden_
-      } =
-      "MessageForumTopicIsHiddenToggled"
-        ++ U.cc
-          [ U.p "is_hidden" is_hidden_
-          ]
-  show
-    MessageSuggestProfilePhoto
-      { _photo = _photo_
-      } =
-      "MessageSuggestProfilePhoto"
-        ++ U.cc
-          [ U.p "_photo" _photo_
-          ]
-  show
-    MessageCustomServiceAction
-      { _text = _text_
-      } =
-      "MessageCustomServiceAction"
-        ++ U.cc
-          [ U.p "_text" _text_
-          ]
-  show
-    MessageGameScore
-      { score = score_,
-        game_id = game_id_,
-        game_message_id = game_message_id_
-      } =
-      "MessageGameScore"
-        ++ U.cc
-          [ U.p "score" score_,
-            U.p "game_id" game_id_,
-            U.p "game_message_id" game_message_id_
-          ]
-  show
-    MessagePaymentSuccessful
-      { invoice_name = invoice_name_,
-        is_first_recurring = is_first_recurring_,
-        is_recurring = is_recurring_,
-        total_amount = total_amount_,
-        currency = currency_,
-        invoice_message_id = invoice_message_id_,
-        invoice_chat_id = invoice_chat_id_
-      } =
-      "MessagePaymentSuccessful"
-        ++ U.cc
-          [ U.p "invoice_name" invoice_name_,
-            U.p "is_first_recurring" is_first_recurring_,
-            U.p "is_recurring" is_recurring_,
-            U.p "total_amount" total_amount_,
-            U.p "currency" currency_,
-            U.p "invoice_message_id" invoice_message_id_,
-            U.p "invoice_chat_id" invoice_chat_id_
-          ]
-  show
-    MessagePaymentSuccessfulBot
-      { provider_payment_charge_id = provider_payment_charge_id_,
-        telegram_payment_charge_id = telegram_payment_charge_id_,
-        order_info = order_info_,
-        shipping_option_id = shipping_option_id_,
-        invoice_payload = invoice_payload_,
-        is_first_recurring = is_first_recurring_,
-        is_recurring = is_recurring_,
-        total_amount = total_amount_,
-        currency = currency_
-      } =
-      "MessagePaymentSuccessfulBot"
-        ++ U.cc
-          [ U.p "provider_payment_charge_id" provider_payment_charge_id_,
-            U.p "telegram_payment_charge_id" telegram_payment_charge_id_,
-            U.p "order_info" order_info_,
-            U.p "shipping_option_id" shipping_option_id_,
-            U.p "invoice_payload" invoice_payload_,
-            U.p "is_first_recurring" is_first_recurring_,
-            U.p "is_recurring" is_recurring_,
-            U.p "total_amount" total_amount_,
-            U.p "currency" currency_
-          ]
-  show
-    MessageGiftedPremium
-      { sticker = sticker_,
-        month_count = month_count_,
-        cryptocurrency_amount = cryptocurrency_amount_,
-        cryptocurrency = cryptocurrency_,
-        amount = amount_,
-        currency = currency_,
-        gifter_user_id = gifter_user_id_
-      } =
-      "MessageGiftedPremium"
-        ++ U.cc
-          [ U.p "sticker" sticker_,
-            U.p "month_count" month_count_,
-            U.p "cryptocurrency_amount" cryptocurrency_amount_,
-            U.p "cryptocurrency" cryptocurrency_,
-            U.p "amount" amount_,
-            U.p "currency" currency_,
-            U.p "gifter_user_id" gifter_user_id_
-          ]
-  show MessageContactRegistered =
-    "MessageContactRegistered"
-      ++ U.cc
-        []
-  show
-    MessageUserShared
-      { button_id = button_id_,
-        user_id = user_id_
-      } =
-      "MessageUserShared"
-        ++ U.cc
-          [ U.p "button_id" button_id_,
-            U.p "user_id" user_id_
-          ]
-  show
-    MessageChatShared
-      { button_id = button_id_,
-        chat_id = chat_id_
-      } =
-      "MessageChatShared"
-        ++ U.cc
-          [ U.p "button_id" button_id_,
-            U.p "chat_id" chat_id_
-          ]
-  show
-    MessageWebsiteConnected
-      { domain_name = domain_name_
-      } =
-      "MessageWebsiteConnected"
-        ++ U.cc
-          [ U.p "domain_name" domain_name_
-          ]
-  show
-    MessageBotWriteAccessAllowed
-      { by_request = by_request_,
-        web_app = web_app_
-      } =
-      "MessageBotWriteAccessAllowed"
-        ++ U.cc
-          [ U.p "by_request" by_request_,
-            U.p "web_app" web_app_
-          ]
-  show
-    MessageWebAppDataSent
-      { button_text = button_text_
-      } =
-      "MessageWebAppDataSent"
-        ++ U.cc
-          [ U.p "button_text" button_text_
-          ]
-  show
-    MessageWebAppDataReceived
-      { _data = _data_,
-        button_text = button_text_
-      } =
-      "MessageWebAppDataReceived"
-        ++ U.cc
-          [ U.p "_data" _data_,
-            U.p "button_text" button_text_
-          ]
-  show
-    MessagePassportDataSent
-      { types = types_
-      } =
-      "MessagePassportDataSent"
-        ++ U.cc
-          [ U.p "types" types_
-          ]
-  show
-    MessagePassportDataReceived
-      { credentials = credentials_,
-        elements = elements_
-      } =
-      "MessagePassportDataReceived"
-        ++ U.cc
-          [ U.p "credentials" credentials_,
-            U.p "elements" elements_
-          ]
-  show
-    MessageProximityAlertTriggered
-      { distance = distance_,
-        watcher_id = watcher_id_,
-        traveler_id = traveler_id_
-      } =
-      "MessageProximityAlertTriggered"
-        ++ U.cc
-          [ U.p "distance" distance_,
-            U.p "watcher_id" watcher_id_,
-            U.p "traveler_id" traveler_id_
-          ]
-  show MessageUnsupported =
-    "MessageUnsupported"
-      ++ U.cc
-        []
+instance I.ShortShow MessageContent where
+  shortShow MessageText
+    { text     = text_
+    , web_page = web_page_
+    }
+      = "MessageText"
+        ++ I.cc
+        [ "text"     `I.p` text_
+        , "web_page" `I.p` web_page_
+        ]
+  shortShow MessageAnimation
+    { animation   = animation_
+    , caption     = caption_
+    , has_spoiler = has_spoiler_
+    , is_secret   = is_secret_
+    }
+      = "MessageAnimation"
+        ++ I.cc
+        [ "animation"   `I.p` animation_
+        , "caption"     `I.p` caption_
+        , "has_spoiler" `I.p` has_spoiler_
+        , "is_secret"   `I.p` is_secret_
+        ]
+  shortShow MessageAudio
+    { audio   = audio_
+    , caption = caption_
+    }
+      = "MessageAudio"
+        ++ I.cc
+        [ "audio"   `I.p` audio_
+        , "caption" `I.p` caption_
+        ]
+  shortShow MessageDocument
+    { document = document_
+    , caption  = caption_
+    }
+      = "MessageDocument"
+        ++ I.cc
+        [ "document" `I.p` document_
+        , "caption"  `I.p` caption_
+        ]
+  shortShow MessagePhoto
+    { photo       = photo_
+    , caption     = caption_
+    , has_spoiler = has_spoiler_
+    , is_secret   = is_secret_
+    }
+      = "MessagePhoto"
+        ++ I.cc
+        [ "photo"       `I.p` photo_
+        , "caption"     `I.p` caption_
+        , "has_spoiler" `I.p` has_spoiler_
+        , "is_secret"   `I.p` is_secret_
+        ]
+  shortShow MessageExpiredPhoto
+      = "MessageExpiredPhoto"
+  shortShow MessageSticker
+    { sticker    = sticker_
+    , is_premium = is_premium_
+    }
+      = "MessageSticker"
+        ++ I.cc
+        [ "sticker"    `I.p` sticker_
+        , "is_premium" `I.p` is_premium_
+        ]
+  shortShow MessageVideo
+    { video       = video_
+    , caption     = caption_
+    , has_spoiler = has_spoiler_
+    , is_secret   = is_secret_
+    }
+      = "MessageVideo"
+        ++ I.cc
+        [ "video"       `I.p` video_
+        , "caption"     `I.p` caption_
+        , "has_spoiler" `I.p` has_spoiler_
+        , "is_secret"   `I.p` is_secret_
+        ]
+  shortShow MessageExpiredVideo
+      = "MessageExpiredVideo"
+  shortShow MessageVideoNote
+    { video_note = video_note_
+    , is_viewed  = is_viewed_
+    , is_secret  = is_secret_
+    }
+      = "MessageVideoNote"
+        ++ I.cc
+        [ "video_note" `I.p` video_note_
+        , "is_viewed"  `I.p` is_viewed_
+        , "is_secret"  `I.p` is_secret_
+        ]
+  shortShow MessageVoiceNote
+    { voice_note  = voice_note_
+    , caption     = caption_
+    , is_listened = is_listened_
+    }
+      = "MessageVoiceNote"
+        ++ I.cc
+        [ "voice_note"  `I.p` voice_note_
+        , "caption"     `I.p` caption_
+        , "is_listened" `I.p` is_listened_
+        ]
+  shortShow MessageLocation
+    { location               = location_
+    , live_period            = live_period_
+    , expires_in             = expires_in_
+    , heading                = heading_
+    , proximity_alert_radius = proximity_alert_radius_
+    }
+      = "MessageLocation"
+        ++ I.cc
+        [ "location"               `I.p` location_
+        , "live_period"            `I.p` live_period_
+        , "expires_in"             `I.p` expires_in_
+        , "heading"                `I.p` heading_
+        , "proximity_alert_radius" `I.p` proximity_alert_radius_
+        ]
+  shortShow MessageVenue
+    { venue = venue_
+    }
+      = "MessageVenue"
+        ++ I.cc
+        [ "venue" `I.p` venue_
+        ]
+  shortShow MessageContact
+    { contact = contact_
+    }
+      = "MessageContact"
+        ++ I.cc
+        [ "contact" `I.p` contact_
+        ]
+  shortShow MessageAnimatedEmoji
+    { animated_emoji = animated_emoji_
+    , emoji          = emoji_
+    }
+      = "MessageAnimatedEmoji"
+        ++ I.cc
+        [ "animated_emoji" `I.p` animated_emoji_
+        , "emoji"          `I.p` emoji_
+        ]
+  shortShow MessageDice
+    { initial_state                  = initial_state_
+    , final_state                    = final_state_
+    , emoji                          = emoji_
+    , value                          = value_
+    , success_animation_frame_number = success_animation_frame_number_
+    }
+      = "MessageDice"
+        ++ I.cc
+        [ "initial_state"                  `I.p` initial_state_
+        , "final_state"                    `I.p` final_state_
+        , "emoji"                          `I.p` emoji_
+        , "value"                          `I.p` value_
+        , "success_animation_frame_number" `I.p` success_animation_frame_number_
+        ]
+  shortShow MessageGame
+    { game = game_
+    }
+      = "MessageGame"
+        ++ I.cc
+        [ "game" `I.p` game_
+        ]
+  shortShow MessagePoll
+    { poll = poll_
+    }
+      = "MessagePoll"
+        ++ I.cc
+        [ "poll" `I.p` poll_
+        ]
+  shortShow MessageStory
+    { story_sender_chat_id = story_sender_chat_id_
+    , story_id             = story_id_
+    , via_mention          = via_mention_
+    }
+      = "MessageStory"
+        ++ I.cc
+        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        , "story_id"             `I.p` story_id_
+        , "via_mention"          `I.p` via_mention_
+        ]
+  shortShow MessageInvoice
+    { title                 = title_
+    , description           = description_
+    , photo                 = photo_
+    , currency              = currency_
+    , total_amount          = total_amount_
+    , start_parameter       = start_parameter_
+    , is_test               = is_test_
+    , need_shipping_address = need_shipping_address_
+    , receipt_message_id    = receipt_message_id_
+    , extended_media        = extended_media_
+    }
+      = "MessageInvoice"
+        ++ I.cc
+        [ "title"                 `I.p` title_
+        , "description"           `I.p` description_
+        , "photo"                 `I.p` photo_
+        , "currency"              `I.p` currency_
+        , "total_amount"          `I.p` total_amount_
+        , "start_parameter"       `I.p` start_parameter_
+        , "is_test"               `I.p` is_test_
+        , "need_shipping_address" `I.p` need_shipping_address_
+        , "receipt_message_id"    `I.p` receipt_message_id_
+        , "extended_media"        `I.p` extended_media_
+        ]
+  shortShow MessageCall
+    { is_video       = is_video_
+    , discard_reason = discard_reason_
+    , duration       = duration_
+    }
+      = "MessageCall"
+        ++ I.cc
+        [ "is_video"       `I.p` is_video_
+        , "discard_reason" `I.p` discard_reason_
+        , "duration"       `I.p` duration_
+        ]
+  shortShow MessageVideoChatScheduled
+    { group_call_id = group_call_id_
+    , start_date    = start_date_
+    }
+      = "MessageVideoChatScheduled"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "start_date"    `I.p` start_date_
+        ]
+  shortShow MessageVideoChatStarted
+    { group_call_id = group_call_id_
+    }
+      = "MessageVideoChatStarted"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        ]
+  shortShow MessageVideoChatEnded
+    { duration = duration_
+    }
+      = "MessageVideoChatEnded"
+        ++ I.cc
+        [ "duration" `I.p` duration_
+        ]
+  shortShow MessageInviteVideoChatParticipants
+    { group_call_id = group_call_id_
+    , user_ids      = user_ids_
+    }
+      = "MessageInviteVideoChatParticipants"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "user_ids"      `I.p` user_ids_
+        ]
+  shortShow MessageBasicGroupChatCreate
+    { title           = title_
+    , member_user_ids = member_user_ids_
+    }
+      = "MessageBasicGroupChatCreate"
+        ++ I.cc
+        [ "title"           `I.p` title_
+        , "member_user_ids" `I.p` member_user_ids_
+        ]
+  shortShow MessageSupergroupChatCreate
+    { title = title_
+    }
+      = "MessageSupergroupChatCreate"
+        ++ I.cc
+        [ "title" `I.p` title_
+        ]
+  shortShow MessageChatChangeTitle
+    { title = title_
+    }
+      = "MessageChatChangeTitle"
+        ++ I.cc
+        [ "title" `I.p` title_
+        ]
+  shortShow MessageChatChangePhoto
+    { _photo = _photo_
+    }
+      = "MessageChatChangePhoto"
+        ++ I.cc
+        [ "_photo" `I.p` _photo_
+        ]
+  shortShow MessageChatDeletePhoto
+      = "MessageChatDeletePhoto"
+  shortShow MessageChatAddMembers
+    { member_user_ids = member_user_ids_
+    }
+      = "MessageChatAddMembers"
+        ++ I.cc
+        [ "member_user_ids" `I.p` member_user_ids_
+        ]
+  shortShow MessageChatJoinByLink
+      = "MessageChatJoinByLink"
+  shortShow MessageChatJoinByRequest
+      = "MessageChatJoinByRequest"
+  shortShow MessageChatDeleteMember
+    { user_id = user_id_
+    }
+      = "MessageChatDeleteMember"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        ]
+  shortShow MessageChatUpgradeTo
+    { supergroup_id = supergroup_id_
+    }
+      = "MessageChatUpgradeTo"
+        ++ I.cc
+        [ "supergroup_id" `I.p` supergroup_id_
+        ]
+  shortShow MessageChatUpgradeFrom
+    { title          = title_
+    , basic_group_id = basic_group_id_
+    }
+      = "MessageChatUpgradeFrom"
+        ++ I.cc
+        [ "title"          `I.p` title_
+        , "basic_group_id" `I.p` basic_group_id_
+        ]
+  shortShow MessagePinMessage
+    { message_id = message_id_
+    }
+      = "MessagePinMessage"
+        ++ I.cc
+        [ "message_id" `I.p` message_id_
+        ]
+  shortShow MessageScreenshotTaken
+      = "MessageScreenshotTaken"
+  shortShow MessageChatSetBackground
+    { old_background_message_id = old_background_message_id_
+    , background                = background_
+    }
+      = "MessageChatSetBackground"
+        ++ I.cc
+        [ "old_background_message_id" `I.p` old_background_message_id_
+        , "background"                `I.p` background_
+        ]
+  shortShow MessageChatSetTheme
+    { theme_name = theme_name_
+    }
+      = "MessageChatSetTheme"
+        ++ I.cc
+        [ "theme_name" `I.p` theme_name_
+        ]
+  shortShow MessageChatSetMessageAutoDeleteTime
+    { message_auto_delete_time = message_auto_delete_time_
+    , from_user_id             = from_user_id_
+    }
+      = "MessageChatSetMessageAutoDeleteTime"
+        ++ I.cc
+        [ "message_auto_delete_time" `I.p` message_auto_delete_time_
+        , "from_user_id"             `I.p` from_user_id_
+        ]
+  shortShow MessageForumTopicCreated
+    { name = name_
+    , icon = icon_
+    }
+      = "MessageForumTopicCreated"
+        ++ I.cc
+        [ "name" `I.p` name_
+        , "icon" `I.p` icon_
+        ]
+  shortShow MessageForumTopicEdited
+    { name                      = name_
+    , edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_
+    , icon_custom_emoji_id      = icon_custom_emoji_id_
+    }
+      = "MessageForumTopicEdited"
+        ++ I.cc
+        [ "name"                      `I.p` name_
+        , "edit_icon_custom_emoji_id" `I.p` edit_icon_custom_emoji_id_
+        , "icon_custom_emoji_id"      `I.p` icon_custom_emoji_id_
+        ]
+  shortShow MessageForumTopicIsClosedToggled
+    { is_closed = is_closed_
+    }
+      = "MessageForumTopicIsClosedToggled"
+        ++ I.cc
+        [ "is_closed" `I.p` is_closed_
+        ]
+  shortShow MessageForumTopicIsHiddenToggled
+    { is_hidden = is_hidden_
+    }
+      = "MessageForumTopicIsHiddenToggled"
+        ++ I.cc
+        [ "is_hidden" `I.p` is_hidden_
+        ]
+  shortShow MessageSuggestProfilePhoto
+    { _photo = _photo_
+    }
+      = "MessageSuggestProfilePhoto"
+        ++ I.cc
+        [ "_photo" `I.p` _photo_
+        ]
+  shortShow MessageCustomServiceAction
+    { _text = _text_
+    }
+      = "MessageCustomServiceAction"
+        ++ I.cc
+        [ "_text" `I.p` _text_
+        ]
+  shortShow MessageGameScore
+    { game_message_id = game_message_id_
+    , game_id         = game_id_
+    , score           = score_
+    }
+      = "MessageGameScore"
+        ++ I.cc
+        [ "game_message_id" `I.p` game_message_id_
+        , "game_id"         `I.p` game_id_
+        , "score"           `I.p` score_
+        ]
+  shortShow MessagePaymentSuccessful
+    { invoice_chat_id    = invoice_chat_id_
+    , invoice_message_id = invoice_message_id_
+    , currency           = currency_
+    , total_amount       = total_amount_
+    , is_recurring       = is_recurring_
+    , is_first_recurring = is_first_recurring_
+    , invoice_name       = invoice_name_
+    }
+      = "MessagePaymentSuccessful"
+        ++ I.cc
+        [ "invoice_chat_id"    `I.p` invoice_chat_id_
+        , "invoice_message_id" `I.p` invoice_message_id_
+        , "currency"           `I.p` currency_
+        , "total_amount"       `I.p` total_amount_
+        , "is_recurring"       `I.p` is_recurring_
+        , "is_first_recurring" `I.p` is_first_recurring_
+        , "invoice_name"       `I.p` invoice_name_
+        ]
+  shortShow MessagePaymentSuccessfulBot
+    { currency                   = currency_
+    , total_amount               = total_amount_
+    , is_recurring               = is_recurring_
+    , is_first_recurring         = is_first_recurring_
+    , invoice_payload            = invoice_payload_
+    , shipping_option_id         = shipping_option_id_
+    , order_info                 = order_info_
+    , telegram_payment_charge_id = telegram_payment_charge_id_
+    , provider_payment_charge_id = provider_payment_charge_id_
+    }
+      = "MessagePaymentSuccessfulBot"
+        ++ I.cc
+        [ "currency"                   `I.p` currency_
+        , "total_amount"               `I.p` total_amount_
+        , "is_recurring"               `I.p` is_recurring_
+        , "is_first_recurring"         `I.p` is_first_recurring_
+        , "invoice_payload"            `I.p` invoice_payload_
+        , "shipping_option_id"         `I.p` shipping_option_id_
+        , "order_info"                 `I.p` order_info_
+        , "telegram_payment_charge_id" `I.p` telegram_payment_charge_id_
+        , "provider_payment_charge_id" `I.p` provider_payment_charge_id_
+        ]
+  shortShow MessageGiftedPremium
+    { gifter_user_id        = gifter_user_id_
+    , currency              = currency_
+    , amount                = amount_
+    , cryptocurrency        = cryptocurrency_
+    , cryptocurrency_amount = cryptocurrency_amount_
+    , month_count           = month_count_
+    , sticker               = sticker_
+    }
+      = "MessageGiftedPremium"
+        ++ I.cc
+        [ "gifter_user_id"        `I.p` gifter_user_id_
+        , "currency"              `I.p` currency_
+        , "amount"                `I.p` amount_
+        , "cryptocurrency"        `I.p` cryptocurrency_
+        , "cryptocurrency_amount" `I.p` cryptocurrency_amount_
+        , "month_count"           `I.p` month_count_
+        , "sticker"               `I.p` sticker_
+        ]
+  shortShow MessageContactRegistered
+      = "MessageContactRegistered"
+  shortShow MessageUserShared
+    { user_id   = user_id_
+    , button_id = button_id_
+    }
+      = "MessageUserShared"
+        ++ I.cc
+        [ "user_id"   `I.p` user_id_
+        , "button_id" `I.p` button_id_
+        ]
+  shortShow MessageChatShared
+    { chat_id   = chat_id_
+    , button_id = button_id_
+    }
+      = "MessageChatShared"
+        ++ I.cc
+        [ "chat_id"   `I.p` chat_id_
+        , "button_id" `I.p` button_id_
+        ]
+  shortShow MessageWebsiteConnected
+    { domain_name = domain_name_
+    }
+      = "MessageWebsiteConnected"
+        ++ I.cc
+        [ "domain_name" `I.p` domain_name_
+        ]
+  shortShow MessageBotWriteAccessAllowed
+    { web_app = web_app_
+    }
+      = "MessageBotWriteAccessAllowed"
+        ++ I.cc
+        [ "web_app" `I.p` web_app_
+        ]
+  shortShow MessageWebAppDataSent
+    { button_text = button_text_
+    }
+      = "MessageWebAppDataSent"
+        ++ I.cc
+        [ "button_text" `I.p` button_text_
+        ]
+  shortShow MessageWebAppDataReceived
+    { button_text = button_text_
+    , _data       = _data_
+    }
+      = "MessageWebAppDataReceived"
+        ++ I.cc
+        [ "button_text" `I.p` button_text_
+        , "_data"       `I.p` _data_
+        ]
+  shortShow MessagePassportDataSent
+    { types = types_
+    }
+      = "MessagePassportDataSent"
+        ++ I.cc
+        [ "types" `I.p` types_
+        ]
+  shortShow MessagePassportDataReceived
+    { elements    = elements_
+    , credentials = credentials_
+    }
+      = "MessagePassportDataReceived"
+        ++ I.cc
+        [ "elements"    `I.p` elements_
+        , "credentials" `I.p` credentials_
+        ]
+  shortShow MessageProximityAlertTriggered
+    { traveler_id = traveler_id_
+    , watcher_id  = watcher_id_
+    , distance    = distance_
+    }
+      = "MessageProximityAlertTriggered"
+        ++ I.cc
+        [ "traveler_id" `I.p` traveler_id_
+        , "watcher_id"  `I.p` watcher_id_
+        , "distance"    `I.p` distance_
+        ]
+  shortShow MessageUnsupported
+      = "MessageUnsupported"
 
-instance T.FromJSON MessageContent where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageContent where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "messageText" -> parseMessageText v
-      "messageAnimation" -> parseMessageAnimation v
-      "messageAudio" -> parseMessageAudio v
-      "messageDocument" -> parseMessageDocument v
-      "messagePhoto" -> parseMessagePhoto v
-      "messageExpiredPhoto" -> parseMessageExpiredPhoto v
-      "messageSticker" -> parseMessageSticker v
-      "messageVideo" -> parseMessageVideo v
-      "messageExpiredVideo" -> parseMessageExpiredVideo v
-      "messageVideoNote" -> parseMessageVideoNote v
-      "messageVoiceNote" -> parseMessageVoiceNote v
-      "messageLocation" -> parseMessageLocation v
-      "messageVenue" -> parseMessageVenue v
-      "messageContact" -> parseMessageContact v
-      "messageAnimatedEmoji" -> parseMessageAnimatedEmoji v
-      "messageDice" -> parseMessageDice v
-      "messageGame" -> parseMessageGame v
-      "messagePoll" -> parseMessagePoll v
-      "messageStory" -> parseMessageStory v
-      "messageInvoice" -> parseMessageInvoice v
-      "messageCall" -> parseMessageCall v
-      "messageVideoChatScheduled" -> parseMessageVideoChatScheduled v
-      "messageVideoChatStarted" -> parseMessageVideoChatStarted v
-      "messageVideoChatEnded" -> parseMessageVideoChatEnded v
-      "messageInviteVideoChatParticipants" -> parseMessageInviteVideoChatParticipants v
-      "messageBasicGroupChatCreate" -> parseMessageBasicGroupChatCreate v
-      "messageSupergroupChatCreate" -> parseMessageSupergroupChatCreate v
-      "messageChatChangeTitle" -> parseMessageChatChangeTitle v
-      "messageChatChangePhoto" -> parseMessageChatChangePhoto v
-      "messageChatDeletePhoto" -> parseMessageChatDeletePhoto v
-      "messageChatAddMembers" -> parseMessageChatAddMembers v
-      "messageChatJoinByLink" -> parseMessageChatJoinByLink v
-      "messageChatJoinByRequest" -> parseMessageChatJoinByRequest v
-      "messageChatDeleteMember" -> parseMessageChatDeleteMember v
-      "messageChatUpgradeTo" -> parseMessageChatUpgradeTo v
-      "messageChatUpgradeFrom" -> parseMessageChatUpgradeFrom v
-      "messagePinMessage" -> parseMessagePinMessage v
-      "messageScreenshotTaken" -> parseMessageScreenshotTaken v
-      "messageChatSetBackground" -> parseMessageChatSetBackground v
-      "messageChatSetTheme" -> parseMessageChatSetTheme v
+      "messageText"                         -> parseMessageText v
+      "messageAnimation"                    -> parseMessageAnimation v
+      "messageAudio"                        -> parseMessageAudio v
+      "messageDocument"                     -> parseMessageDocument v
+      "messagePhoto"                        -> parseMessagePhoto v
+      "messageExpiredPhoto"                 -> pure MessageExpiredPhoto
+      "messageSticker"                      -> parseMessageSticker v
+      "messageVideo"                        -> parseMessageVideo v
+      "messageExpiredVideo"                 -> pure MessageExpiredVideo
+      "messageVideoNote"                    -> parseMessageVideoNote v
+      "messageVoiceNote"                    -> parseMessageVoiceNote v
+      "messageLocation"                     -> parseMessageLocation v
+      "messageVenue"                        -> parseMessageVenue v
+      "messageContact"                      -> parseMessageContact v
+      "messageAnimatedEmoji"                -> parseMessageAnimatedEmoji v
+      "messageDice"                         -> parseMessageDice v
+      "messageGame"                         -> parseMessageGame v
+      "messagePoll"                         -> parseMessagePoll v
+      "messageStory"                        -> parseMessageStory v
+      "messageInvoice"                      -> parseMessageInvoice v
+      "messageCall"                         -> parseMessageCall v
+      "messageVideoChatScheduled"           -> parseMessageVideoChatScheduled v
+      "messageVideoChatStarted"             -> parseMessageVideoChatStarted v
+      "messageVideoChatEnded"               -> parseMessageVideoChatEnded v
+      "messageInviteVideoChatParticipants"  -> parseMessageInviteVideoChatParticipants v
+      "messageBasicGroupChatCreate"         -> parseMessageBasicGroupChatCreate v
+      "messageSupergroupChatCreate"         -> parseMessageSupergroupChatCreate v
+      "messageChatChangeTitle"              -> parseMessageChatChangeTitle v
+      "messageChatChangePhoto"              -> parseMessageChatChangePhoto v
+      "messageChatDeletePhoto"              -> pure MessageChatDeletePhoto
+      "messageChatAddMembers"               -> parseMessageChatAddMembers v
+      "messageChatJoinByLink"               -> pure MessageChatJoinByLink
+      "messageChatJoinByRequest"            -> pure MessageChatJoinByRequest
+      "messageChatDeleteMember"             -> parseMessageChatDeleteMember v
+      "messageChatUpgradeTo"                -> parseMessageChatUpgradeTo v
+      "messageChatUpgradeFrom"              -> parseMessageChatUpgradeFrom v
+      "messagePinMessage"                   -> parseMessagePinMessage v
+      "messageScreenshotTaken"              -> pure MessageScreenshotTaken
+      "messageChatSetBackground"            -> parseMessageChatSetBackground v
+      "messageChatSetTheme"                 -> parseMessageChatSetTheme v
       "messageChatSetMessageAutoDeleteTime" -> parseMessageChatSetMessageAutoDeleteTime v
-      "messageForumTopicCreated" -> parseMessageForumTopicCreated v
-      "messageForumTopicEdited" -> parseMessageForumTopicEdited v
-      "messageForumTopicIsClosedToggled" -> parseMessageForumTopicIsClosedToggled v
-      "messageForumTopicIsHiddenToggled" -> parseMessageForumTopicIsHiddenToggled v
-      "messageSuggestProfilePhoto" -> parseMessageSuggestProfilePhoto v
-      "messageCustomServiceAction" -> parseMessageCustomServiceAction v
-      "messageGameScore" -> parseMessageGameScore v
-      "messagePaymentSuccessful" -> parseMessagePaymentSuccessful v
-      "messagePaymentSuccessfulBot" -> parseMessagePaymentSuccessfulBot v
-      "messageGiftedPremium" -> parseMessageGiftedPremium v
-      "messageContactRegistered" -> parseMessageContactRegistered v
-      "messageUserShared" -> parseMessageUserShared v
-      "messageChatShared" -> parseMessageChatShared v
-      "messageWebsiteConnected" -> parseMessageWebsiteConnected v
-      "messageBotWriteAccessAllowed" -> parseMessageBotWriteAccessAllowed v
-      "messageWebAppDataSent" -> parseMessageWebAppDataSent v
-      "messageWebAppDataReceived" -> parseMessageWebAppDataReceived v
-      "messagePassportDataSent" -> parseMessagePassportDataSent v
-      "messagePassportDataReceived" -> parseMessagePassportDataReceived v
-      "messageProximityAlertTriggered" -> parseMessageProximityAlertTriggered v
-      "messageUnsupported" -> parseMessageUnsupported v
-      _ -> mempty
+      "messageForumTopicCreated"            -> parseMessageForumTopicCreated v
+      "messageForumTopicEdited"             -> parseMessageForumTopicEdited v
+      "messageForumTopicIsClosedToggled"    -> parseMessageForumTopicIsClosedToggled v
+      "messageForumTopicIsHiddenToggled"    -> parseMessageForumTopicIsHiddenToggled v
+      "messageSuggestProfilePhoto"          -> parseMessageSuggestProfilePhoto v
+      "messageCustomServiceAction"          -> parseMessageCustomServiceAction v
+      "messageGameScore"                    -> parseMessageGameScore v
+      "messagePaymentSuccessful"            -> parseMessagePaymentSuccessful v
+      "messagePaymentSuccessfulBot"         -> parseMessagePaymentSuccessfulBot v
+      "messageGiftedPremium"                -> parseMessageGiftedPremium v
+      "messageContactRegistered"            -> pure MessageContactRegistered
+      "messageUserShared"                   -> parseMessageUserShared v
+      "messageChatShared"                   -> parseMessageChatShared v
+      "messageWebsiteConnected"             -> parseMessageWebsiteConnected v
+      "messageBotWriteAccessAllowed"        -> parseMessageBotWriteAccessAllowed v
+      "messageWebAppDataSent"               -> parseMessageWebAppDataSent v
+      "messageWebAppDataReceived"           -> parseMessageWebAppDataReceived v
+      "messagePassportDataSent"             -> parseMessagePassportDataSent v
+      "messagePassportDataReceived"         -> parseMessagePassportDataReceived v
+      "messageProximityAlertTriggered"      -> parseMessageProximityAlertTriggered v
+      "messageUnsupported"                  -> pure MessageUnsupported
+      _                                     -> mempty
+    
     where
-      parseMessageText :: A.Value -> T.Parser MessageContent
+      parseMessageText :: A.Value -> AT.Parser MessageContent
       parseMessageText = A.withObject "MessageText" $ \o -> do
-        web_page_ <- o A..:? "web_page"
-        text_ <- o A..:? "text"
-        return $ MessageText {web_page = web_page_, text = text_}
-
-      parseMessageAnimation :: A.Value -> T.Parser MessageContent
+        text_     <- o A..:?  "text"
+        web_page_ <- o A..:?  "web_page"
+        pure $ MessageText
+          { text     = text_
+          , web_page = web_page_
+          }
+      parseMessageAnimation :: A.Value -> AT.Parser MessageContent
       parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
-        is_secret_ <- o A..:? "is_secret"
-        has_spoiler_ <- o A..:? "has_spoiler"
-        caption_ <- o A..:? "caption"
-        animation_ <- o A..:? "animation"
-        return $ MessageAnimation {is_secret = is_secret_, has_spoiler = has_spoiler_, caption = caption_, animation = animation_}
-
-      parseMessageAudio :: A.Value -> T.Parser MessageContent
+        animation_   <- o A..:?  "animation"
+        caption_     <- o A..:?  "caption"
+        has_spoiler_ <- o A..:?  "has_spoiler"
+        is_secret_   <- o A..:?  "is_secret"
+        pure $ MessageAnimation
+          { animation   = animation_
+          , caption     = caption_
+          , has_spoiler = has_spoiler_
+          , is_secret   = is_secret_
+          }
+      parseMessageAudio :: A.Value -> AT.Parser MessageContent
       parseMessageAudio = A.withObject "MessageAudio" $ \o -> do
-        caption_ <- o A..:? "caption"
-        audio_ <- o A..:? "audio"
-        return $ MessageAudio {caption = caption_, audio = audio_}
-
-      parseMessageDocument :: A.Value -> T.Parser MessageContent
+        audio_   <- o A..:?  "audio"
+        caption_ <- o A..:?  "caption"
+        pure $ MessageAudio
+          { audio   = audio_
+          , caption = caption_
+          }
+      parseMessageDocument :: A.Value -> AT.Parser MessageContent
       parseMessageDocument = A.withObject "MessageDocument" $ \o -> do
-        caption_ <- o A..:? "caption"
-        document_ <- o A..:? "document"
-        return $ MessageDocument {caption = caption_, document = document_}
-
-      parseMessagePhoto :: A.Value -> T.Parser MessageContent
+        document_ <- o A..:?  "document"
+        caption_  <- o A..:?  "caption"
+        pure $ MessageDocument
+          { document = document_
+          , caption  = caption_
+          }
+      parseMessagePhoto :: A.Value -> AT.Parser MessageContent
       parseMessagePhoto = A.withObject "MessagePhoto" $ \o -> do
-        is_secret_ <- o A..:? "is_secret"
-        has_spoiler_ <- o A..:? "has_spoiler"
-        caption_ <- o A..:? "caption"
-        photo_ <- o A..:? "photo"
-        return $ MessagePhoto {is_secret = is_secret_, has_spoiler = has_spoiler_, caption = caption_, photo = photo_}
-
-      parseMessageExpiredPhoto :: A.Value -> T.Parser MessageContent
-      parseMessageExpiredPhoto = A.withObject "MessageExpiredPhoto" $ \_ -> return MessageExpiredPhoto
-
-      parseMessageSticker :: A.Value -> T.Parser MessageContent
+        photo_       <- o A..:?  "photo"
+        caption_     <- o A..:?  "caption"
+        has_spoiler_ <- o A..:?  "has_spoiler"
+        is_secret_   <- o A..:?  "is_secret"
+        pure $ MessagePhoto
+          { photo       = photo_
+          , caption     = caption_
+          , has_spoiler = has_spoiler_
+          , is_secret   = is_secret_
+          }
+      parseMessageSticker :: A.Value -> AT.Parser MessageContent
       parseMessageSticker = A.withObject "MessageSticker" $ \o -> do
-        is_premium_ <- o A..:? "is_premium"
-        sticker_ <- o A..:? "sticker"
-        return $ MessageSticker {is_premium = is_premium_, sticker = sticker_}
-
-      parseMessageVideo :: A.Value -> T.Parser MessageContent
+        sticker_    <- o A..:?  "sticker"
+        is_premium_ <- o A..:?  "is_premium"
+        pure $ MessageSticker
+          { sticker    = sticker_
+          , is_premium = is_premium_
+          }
+      parseMessageVideo :: A.Value -> AT.Parser MessageContent
       parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
-        is_secret_ <- o A..:? "is_secret"
-        has_spoiler_ <- o A..:? "has_spoiler"
-        caption_ <- o A..:? "caption"
-        video_ <- o A..:? "video"
-        return $ MessageVideo {is_secret = is_secret_, has_spoiler = has_spoiler_, caption = caption_, video = video_}
-
-      parseMessageExpiredVideo :: A.Value -> T.Parser MessageContent
-      parseMessageExpiredVideo = A.withObject "MessageExpiredVideo" $ \_ -> return MessageExpiredVideo
-
-      parseMessageVideoNote :: A.Value -> T.Parser MessageContent
+        video_       <- o A..:?  "video"
+        caption_     <- o A..:?  "caption"
+        has_spoiler_ <- o A..:?  "has_spoiler"
+        is_secret_   <- o A..:?  "is_secret"
+        pure $ MessageVideo
+          { video       = video_
+          , caption     = caption_
+          , has_spoiler = has_spoiler_
+          , is_secret   = is_secret_
+          }
+      parseMessageVideoNote :: A.Value -> AT.Parser MessageContent
       parseMessageVideoNote = A.withObject "MessageVideoNote" $ \o -> do
-        is_secret_ <- o A..:? "is_secret"
-        is_viewed_ <- o A..:? "is_viewed"
-        video_note_ <- o A..:? "video_note"
-        return $ MessageVideoNote {is_secret = is_secret_, is_viewed = is_viewed_, video_note = video_note_}
-
-      parseMessageVoiceNote :: A.Value -> T.Parser MessageContent
+        video_note_ <- o A..:?  "video_note"
+        is_viewed_  <- o A..:?  "is_viewed"
+        is_secret_  <- o A..:?  "is_secret"
+        pure $ MessageVideoNote
+          { video_note = video_note_
+          , is_viewed  = is_viewed_
+          , is_secret  = is_secret_
+          }
+      parseMessageVoiceNote :: A.Value -> AT.Parser MessageContent
       parseMessageVoiceNote = A.withObject "MessageVoiceNote" $ \o -> do
-        is_listened_ <- o A..:? "is_listened"
-        caption_ <- o A..:? "caption"
-        voice_note_ <- o A..:? "voice_note"
-        return $ MessageVoiceNote {is_listened = is_listened_, caption = caption_, voice_note = voice_note_}
-
-      parseMessageLocation :: A.Value -> T.Parser MessageContent
+        voice_note_  <- o A..:?  "voice_note"
+        caption_     <- o A..:?  "caption"
+        is_listened_ <- o A..:?  "is_listened"
+        pure $ MessageVoiceNote
+          { voice_note  = voice_note_
+          , caption     = caption_
+          , is_listened = is_listened_
+          }
+      parseMessageLocation :: A.Value -> AT.Parser MessageContent
       parseMessageLocation = A.withObject "MessageLocation" $ \o -> do
-        proximity_alert_radius_ <- o A..:? "proximity_alert_radius"
-        heading_ <- o A..:? "heading"
-        expires_in_ <- o A..:? "expires_in"
-        live_period_ <- o A..:? "live_period"
-        location_ <- o A..:? "location"
-        return $ MessageLocation {proximity_alert_radius = proximity_alert_radius_, heading = heading_, expires_in = expires_in_, live_period = live_period_, location = location_}
-
-      parseMessageVenue :: A.Value -> T.Parser MessageContent
+        location_               <- o A..:?  "location"
+        live_period_            <- o A..:?  "live_period"
+        expires_in_             <- o A..:?  "expires_in"
+        heading_                <- o A..:?  "heading"
+        proximity_alert_radius_ <- o A..:?  "proximity_alert_radius"
+        pure $ MessageLocation
+          { location               = location_
+          , live_period            = live_period_
+          , expires_in             = expires_in_
+          , heading                = heading_
+          , proximity_alert_radius = proximity_alert_radius_
+          }
+      parseMessageVenue :: A.Value -> AT.Parser MessageContent
       parseMessageVenue = A.withObject "MessageVenue" $ \o -> do
-        venue_ <- o A..:? "venue"
-        return $ MessageVenue {venue = venue_}
-
-      parseMessageContact :: A.Value -> T.Parser MessageContent
+        venue_ <- o A..:?  "venue"
+        pure $ MessageVenue
+          { venue = venue_
+          }
+      parseMessageContact :: A.Value -> AT.Parser MessageContent
       parseMessageContact = A.withObject "MessageContact" $ \o -> do
-        contact_ <- o A..:? "contact"
-        return $ MessageContact {contact = contact_}
-
-      parseMessageAnimatedEmoji :: A.Value -> T.Parser MessageContent
+        contact_ <- o A..:?  "contact"
+        pure $ MessageContact
+          { contact = contact_
+          }
+      parseMessageAnimatedEmoji :: A.Value -> AT.Parser MessageContent
       parseMessageAnimatedEmoji = A.withObject "MessageAnimatedEmoji" $ \o -> do
-        emoji_ <- o A..:? "emoji"
-        animated_emoji_ <- o A..:? "animated_emoji"
-        return $ MessageAnimatedEmoji {emoji = emoji_, animated_emoji = animated_emoji_}
-
-      parseMessageDice :: A.Value -> T.Parser MessageContent
+        animated_emoji_ <- o A..:?  "animated_emoji"
+        emoji_          <- o A..:?  "emoji"
+        pure $ MessageAnimatedEmoji
+          { animated_emoji = animated_emoji_
+          , emoji          = emoji_
+          }
+      parseMessageDice :: A.Value -> AT.Parser MessageContent
       parseMessageDice = A.withObject "MessageDice" $ \o -> do
-        success_animation_frame_number_ <- o A..:? "success_animation_frame_number"
-        value_ <- o A..:? "value"
-        emoji_ <- o A..:? "emoji"
-        final_state_ <- o A..:? "final_state"
-        initial_state_ <- o A..:? "initial_state"
-        return $ MessageDice {success_animation_frame_number = success_animation_frame_number_, value = value_, emoji = emoji_, final_state = final_state_, initial_state = initial_state_}
-
-      parseMessageGame :: A.Value -> T.Parser MessageContent
+        initial_state_                  <- o A..:?  "initial_state"
+        final_state_                    <- o A..:?  "final_state"
+        emoji_                          <- o A..:?  "emoji"
+        value_                          <- o A..:?  "value"
+        success_animation_frame_number_ <- o A..:?  "success_animation_frame_number"
+        pure $ MessageDice
+          { initial_state                  = initial_state_
+          , final_state                    = final_state_
+          , emoji                          = emoji_
+          , value                          = value_
+          , success_animation_frame_number = success_animation_frame_number_
+          }
+      parseMessageGame :: A.Value -> AT.Parser MessageContent
       parseMessageGame = A.withObject "MessageGame" $ \o -> do
-        game_ <- o A..:? "game"
-        return $ MessageGame {game = game_}
-
-      parseMessagePoll :: A.Value -> T.Parser MessageContent
+        game_ <- o A..:?  "game"
+        pure $ MessageGame
+          { game = game_
+          }
+      parseMessagePoll :: A.Value -> AT.Parser MessageContent
       parseMessagePoll = A.withObject "MessagePoll" $ \o -> do
-        poll_ <- o A..:? "poll"
-        return $ MessagePoll {poll = poll_}
-
-      parseMessageStory :: A.Value -> T.Parser MessageContent
+        poll_ <- o A..:?  "poll"
+        pure $ MessagePoll
+          { poll = poll_
+          }
+      parseMessageStory :: A.Value -> AT.Parser MessageContent
       parseMessageStory = A.withObject "MessageStory" $ \o -> do
-        via_mention_ <- o A..:? "via_mention"
-        story_id_ <- o A..:? "story_id"
-        story_sender_chat_id_ <- o A..:? "story_sender_chat_id"
-        return $ MessageStory {via_mention = via_mention_, story_id = story_id_, story_sender_chat_id = story_sender_chat_id_}
-
-      parseMessageInvoice :: A.Value -> T.Parser MessageContent
+        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_id_             <- o A..:?  "story_id"
+        via_mention_          <- o A..:?  "via_mention"
+        pure $ MessageStory
+          { story_sender_chat_id = story_sender_chat_id_
+          , story_id             = story_id_
+          , via_mention          = via_mention_
+          }
+      parseMessageInvoice :: A.Value -> AT.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
-        extended_media_ <- o A..:? "extended_media"
-        receipt_message_id_ <- o A..:? "receipt_message_id"
-        need_shipping_address_ <- o A..:? "need_shipping_address"
-        is_test_ <- o A..:? "is_test"
-        start_parameter_ <- o A..:? "start_parameter"
-        total_amount_ <- o A..:? "total_amount"
-        currency_ <- o A..:? "currency"
-        photo_ <- o A..:? "photo"
-        description_ <- o A..:? "description"
-        title_ <- o A..:? "title"
-        return $ MessageInvoice {extended_media = extended_media_, receipt_message_id = receipt_message_id_, need_shipping_address = need_shipping_address_, is_test = is_test_, start_parameter = start_parameter_, total_amount = total_amount_, currency = currency_, photo = photo_, description = description_, title = title_}
-
-      parseMessageCall :: A.Value -> T.Parser MessageContent
+        title_                 <- o A..:?  "title"
+        description_           <- o A..:?  "description"
+        photo_                 <- o A..:?  "photo"
+        currency_              <- o A..:?  "currency"
+        total_amount_          <- o A..:?  "total_amount"
+        start_parameter_       <- o A..:?  "start_parameter"
+        is_test_               <- o A..:?  "is_test"
+        need_shipping_address_ <- o A..:?  "need_shipping_address"
+        receipt_message_id_    <- o A..:?  "receipt_message_id"
+        extended_media_        <- o A..:?  "extended_media"
+        pure $ MessageInvoice
+          { title                 = title_
+          , description           = description_
+          , photo                 = photo_
+          , currency              = currency_
+          , total_amount          = total_amount_
+          , start_parameter       = start_parameter_
+          , is_test               = is_test_
+          , need_shipping_address = need_shipping_address_
+          , receipt_message_id    = receipt_message_id_
+          , extended_media        = extended_media_
+          }
+      parseMessageCall :: A.Value -> AT.Parser MessageContent
       parseMessageCall = A.withObject "MessageCall" $ \o -> do
-        duration_ <- o A..:? "duration"
-        discard_reason_ <- o A..:? "discard_reason"
-        is_video_ <- o A..:? "is_video"
-        return $ MessageCall {duration = duration_, discard_reason = discard_reason_, is_video = is_video_}
-
-      parseMessageVideoChatScheduled :: A.Value -> T.Parser MessageContent
+        is_video_       <- o A..:?  "is_video"
+        discard_reason_ <- o A..:?  "discard_reason"
+        duration_       <- o A..:?  "duration"
+        pure $ MessageCall
+          { is_video       = is_video_
+          , discard_reason = discard_reason_
+          , duration       = duration_
+          }
+      parseMessageVideoChatScheduled :: A.Value -> AT.Parser MessageContent
       parseMessageVideoChatScheduled = A.withObject "MessageVideoChatScheduled" $ \o -> do
-        start_date_ <- o A..:? "start_date"
-        group_call_id_ <- o A..:? "group_call_id"
-        return $ MessageVideoChatScheduled {start_date = start_date_, group_call_id = group_call_id_}
-
-      parseMessageVideoChatStarted :: A.Value -> T.Parser MessageContent
+        group_call_id_ <- o A..:?  "group_call_id"
+        start_date_    <- o A..:?  "start_date"
+        pure $ MessageVideoChatScheduled
+          { group_call_id = group_call_id_
+          , start_date    = start_date_
+          }
+      parseMessageVideoChatStarted :: A.Value -> AT.Parser MessageContent
       parseMessageVideoChatStarted = A.withObject "MessageVideoChatStarted" $ \o -> do
-        group_call_id_ <- o A..:? "group_call_id"
-        return $ MessageVideoChatStarted {group_call_id = group_call_id_}
-
-      parseMessageVideoChatEnded :: A.Value -> T.Parser MessageContent
+        group_call_id_ <- o A..:?  "group_call_id"
+        pure $ MessageVideoChatStarted
+          { group_call_id = group_call_id_
+          }
+      parseMessageVideoChatEnded :: A.Value -> AT.Parser MessageContent
       parseMessageVideoChatEnded = A.withObject "MessageVideoChatEnded" $ \o -> do
-        duration_ <- o A..:? "duration"
-        return $ MessageVideoChatEnded {duration = duration_}
-
-      parseMessageInviteVideoChatParticipants :: A.Value -> T.Parser MessageContent
+        duration_ <- o A..:?  "duration"
+        pure $ MessageVideoChatEnded
+          { duration = duration_
+          }
+      parseMessageInviteVideoChatParticipants :: A.Value -> AT.Parser MessageContent
       parseMessageInviteVideoChatParticipants = A.withObject "MessageInviteVideoChatParticipants" $ \o -> do
-        user_ids_ <- o A..:? "user_ids"
-        group_call_id_ <- o A..:? "group_call_id"
-        return $ MessageInviteVideoChatParticipants {user_ids = user_ids_, group_call_id = group_call_id_}
-
-      parseMessageBasicGroupChatCreate :: A.Value -> T.Parser MessageContent
+        group_call_id_ <- o A..:?  "group_call_id"
+        user_ids_      <- o A..:?  "user_ids"
+        pure $ MessageInviteVideoChatParticipants
+          { group_call_id = group_call_id_
+          , user_ids      = user_ids_
+          }
+      parseMessageBasicGroupChatCreate :: A.Value -> AT.Parser MessageContent
       parseMessageBasicGroupChatCreate = A.withObject "MessageBasicGroupChatCreate" $ \o -> do
-        member_user_ids_ <- o A..:? "member_user_ids"
-        title_ <- o A..:? "title"
-        return $ MessageBasicGroupChatCreate {member_user_ids = member_user_ids_, title = title_}
-
-      parseMessageSupergroupChatCreate :: A.Value -> T.Parser MessageContent
+        title_           <- o A..:?  "title"
+        member_user_ids_ <- o A..:?  "member_user_ids"
+        pure $ MessageBasicGroupChatCreate
+          { title           = title_
+          , member_user_ids = member_user_ids_
+          }
+      parseMessageSupergroupChatCreate :: A.Value -> AT.Parser MessageContent
       parseMessageSupergroupChatCreate = A.withObject "MessageSupergroupChatCreate" $ \o -> do
-        title_ <- o A..:? "title"
-        return $ MessageSupergroupChatCreate {title = title_}
-
-      parseMessageChatChangeTitle :: A.Value -> T.Parser MessageContent
+        title_ <- o A..:?  "title"
+        pure $ MessageSupergroupChatCreate
+          { title = title_
+          }
+      parseMessageChatChangeTitle :: A.Value -> AT.Parser MessageContent
       parseMessageChatChangeTitle = A.withObject "MessageChatChangeTitle" $ \o -> do
-        title_ <- o A..:? "title"
-        return $ MessageChatChangeTitle {title = title_}
-
-      parseMessageChatChangePhoto :: A.Value -> T.Parser MessageContent
+        title_ <- o A..:?  "title"
+        pure $ MessageChatChangeTitle
+          { title = title_
+          }
+      parseMessageChatChangePhoto :: A.Value -> AT.Parser MessageContent
       parseMessageChatChangePhoto = A.withObject "MessageChatChangePhoto" $ \o -> do
-        _photo_ <- o A..:? "photo"
-        return $ MessageChatChangePhoto {_photo = _photo_}
-
-      parseMessageChatDeletePhoto :: A.Value -> T.Parser MessageContent
-      parseMessageChatDeletePhoto = A.withObject "MessageChatDeletePhoto" $ \_ -> return MessageChatDeletePhoto
-
-      parseMessageChatAddMembers :: A.Value -> T.Parser MessageContent
+        _photo_ <- o A..:?  "photo"
+        pure $ MessageChatChangePhoto
+          { _photo = _photo_
+          }
+      parseMessageChatAddMembers :: A.Value -> AT.Parser MessageContent
       parseMessageChatAddMembers = A.withObject "MessageChatAddMembers" $ \o -> do
-        member_user_ids_ <- o A..:? "member_user_ids"
-        return $ MessageChatAddMembers {member_user_ids = member_user_ids_}
-
-      parseMessageChatJoinByLink :: A.Value -> T.Parser MessageContent
-      parseMessageChatJoinByLink = A.withObject "MessageChatJoinByLink" $ \_ -> return MessageChatJoinByLink
-
-      parseMessageChatJoinByRequest :: A.Value -> T.Parser MessageContent
-      parseMessageChatJoinByRequest = A.withObject "MessageChatJoinByRequest" $ \_ -> return MessageChatJoinByRequest
-
-      parseMessageChatDeleteMember :: A.Value -> T.Parser MessageContent
+        member_user_ids_ <- o A..:?  "member_user_ids"
+        pure $ MessageChatAddMembers
+          { member_user_ids = member_user_ids_
+          }
+      parseMessageChatDeleteMember :: A.Value -> AT.Parser MessageContent
       parseMessageChatDeleteMember = A.withObject "MessageChatDeleteMember" $ \o -> do
-        user_id_ <- o A..:? "user_id"
-        return $ MessageChatDeleteMember {user_id = user_id_}
-
-      parseMessageChatUpgradeTo :: A.Value -> T.Parser MessageContent
+        user_id_ <- o A..:?  "user_id"
+        pure $ MessageChatDeleteMember
+          { user_id = user_id_
+          }
+      parseMessageChatUpgradeTo :: A.Value -> AT.Parser MessageContent
       parseMessageChatUpgradeTo = A.withObject "MessageChatUpgradeTo" $ \o -> do
-        supergroup_id_ <- o A..:? "supergroup_id"
-        return $ MessageChatUpgradeTo {supergroup_id = supergroup_id_}
-
-      parseMessageChatUpgradeFrom :: A.Value -> T.Parser MessageContent
+        supergroup_id_ <- o A..:?  "supergroup_id"
+        pure $ MessageChatUpgradeTo
+          { supergroup_id = supergroup_id_
+          }
+      parseMessageChatUpgradeFrom :: A.Value -> AT.Parser MessageContent
       parseMessageChatUpgradeFrom = A.withObject "MessageChatUpgradeFrom" $ \o -> do
-        basic_group_id_ <- o A..:? "basic_group_id"
-        title_ <- o A..:? "title"
-        return $ MessageChatUpgradeFrom {basic_group_id = basic_group_id_, title = title_}
-
-      parseMessagePinMessage :: A.Value -> T.Parser MessageContent
+        title_          <- o A..:?  "title"
+        basic_group_id_ <- o A..:?  "basic_group_id"
+        pure $ MessageChatUpgradeFrom
+          { title          = title_
+          , basic_group_id = basic_group_id_
+          }
+      parseMessagePinMessage :: A.Value -> AT.Parser MessageContent
       parseMessagePinMessage = A.withObject "MessagePinMessage" $ \o -> do
-        message_id_ <- o A..:? "message_id"
-        return $ MessagePinMessage {message_id = message_id_}
-
-      parseMessageScreenshotTaken :: A.Value -> T.Parser MessageContent
-      parseMessageScreenshotTaken = A.withObject "MessageScreenshotTaken" $ \_ -> return MessageScreenshotTaken
-
-      parseMessageChatSetBackground :: A.Value -> T.Parser MessageContent
+        message_id_ <- o A..:?  "message_id"
+        pure $ MessagePinMessage
+          { message_id = message_id_
+          }
+      parseMessageChatSetBackground :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetBackground = A.withObject "MessageChatSetBackground" $ \o -> do
-        background_ <- o A..:? "background"
-        old_background_message_id_ <- o A..:? "old_background_message_id"
-        return $ MessageChatSetBackground {background = background_, old_background_message_id = old_background_message_id_}
-
-      parseMessageChatSetTheme :: A.Value -> T.Parser MessageContent
+        old_background_message_id_ <- o A..:?  "old_background_message_id"
+        background_                <- o A..:?  "background"
+        pure $ MessageChatSetBackground
+          { old_background_message_id = old_background_message_id_
+          , background                = background_
+          }
+      parseMessageChatSetTheme :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetTheme = A.withObject "MessageChatSetTheme" $ \o -> do
-        theme_name_ <- o A..:? "theme_name"
-        return $ MessageChatSetTheme {theme_name = theme_name_}
-
-      parseMessageChatSetMessageAutoDeleteTime :: A.Value -> T.Parser MessageContent
+        theme_name_ <- o A..:?  "theme_name"
+        pure $ MessageChatSetTheme
+          { theme_name = theme_name_
+          }
+      parseMessageChatSetMessageAutoDeleteTime :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetMessageAutoDeleteTime = A.withObject "MessageChatSetMessageAutoDeleteTime" $ \o -> do
-        from_user_id_ <- o A..:? "from_user_id"
-        message_auto_delete_time_ <- o A..:? "message_auto_delete_time"
-        return $ MessageChatSetMessageAutoDeleteTime {from_user_id = from_user_id_, message_auto_delete_time = message_auto_delete_time_}
-
-      parseMessageForumTopicCreated :: A.Value -> T.Parser MessageContent
+        message_auto_delete_time_ <- o A..:?  "message_auto_delete_time"
+        from_user_id_             <- o A..:?  "from_user_id"
+        pure $ MessageChatSetMessageAutoDeleteTime
+          { message_auto_delete_time = message_auto_delete_time_
+          , from_user_id             = from_user_id_
+          }
+      parseMessageForumTopicCreated :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicCreated = A.withObject "MessageForumTopicCreated" $ \o -> do
-        icon_ <- o A..:? "icon"
-        name_ <- o A..:? "name"
-        return $ MessageForumTopicCreated {icon = icon_, name = name_}
-
-      parseMessageForumTopicEdited :: A.Value -> T.Parser MessageContent
+        name_ <- o A..:?  "name"
+        icon_ <- o A..:?  "icon"
+        pure $ MessageForumTopicCreated
+          { name = name_
+          , icon = icon_
+          }
+      parseMessageForumTopicEdited :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicEdited = A.withObject "MessageForumTopicEdited" $ \o -> do
-        icon_custom_emoji_id_ <- U.rm <$> (o A..:? "icon_custom_emoji_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        edit_icon_custom_emoji_id_ <- o A..:? "edit_icon_custom_emoji_id"
-        name_ <- o A..:? "name"
-        return $ MessageForumTopicEdited {icon_custom_emoji_id = icon_custom_emoji_id_, edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_, name = name_}
-
-      parseMessageForumTopicIsClosedToggled :: A.Value -> T.Parser MessageContent
+        name_                      <- o A..:?                       "name"
+        edit_icon_custom_emoji_id_ <- o A..:?                       "edit_icon_custom_emoji_id"
+        icon_custom_emoji_id_      <- fmap I.readInt64 <$> o A..:?  "icon_custom_emoji_id"
+        pure $ MessageForumTopicEdited
+          { name                      = name_
+          , edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_
+          , icon_custom_emoji_id      = icon_custom_emoji_id_
+          }
+      parseMessageForumTopicIsClosedToggled :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicIsClosedToggled = A.withObject "MessageForumTopicIsClosedToggled" $ \o -> do
-        is_closed_ <- o A..:? "is_closed"
-        return $ MessageForumTopicIsClosedToggled {is_closed = is_closed_}
-
-      parseMessageForumTopicIsHiddenToggled :: A.Value -> T.Parser MessageContent
+        is_closed_ <- o A..:?  "is_closed"
+        pure $ MessageForumTopicIsClosedToggled
+          { is_closed = is_closed_
+          }
+      parseMessageForumTopicIsHiddenToggled :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicIsHiddenToggled = A.withObject "MessageForumTopicIsHiddenToggled" $ \o -> do
-        is_hidden_ <- o A..:? "is_hidden"
-        return $ MessageForumTopicIsHiddenToggled {is_hidden = is_hidden_}
-
-      parseMessageSuggestProfilePhoto :: A.Value -> T.Parser MessageContent
+        is_hidden_ <- o A..:?  "is_hidden"
+        pure $ MessageForumTopicIsHiddenToggled
+          { is_hidden = is_hidden_
+          }
+      parseMessageSuggestProfilePhoto :: A.Value -> AT.Parser MessageContent
       parseMessageSuggestProfilePhoto = A.withObject "MessageSuggestProfilePhoto" $ \o -> do
-        _photo_ <- o A..:? "photo"
-        return $ MessageSuggestProfilePhoto {_photo = _photo_}
-
-      parseMessageCustomServiceAction :: A.Value -> T.Parser MessageContent
+        _photo_ <- o A..:?  "photo"
+        pure $ MessageSuggestProfilePhoto
+          { _photo = _photo_
+          }
+      parseMessageCustomServiceAction :: A.Value -> AT.Parser MessageContent
       parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
-        _text_ <- o A..:? "text"
-        return $ MessageCustomServiceAction {_text = _text_}
-
-      parseMessageGameScore :: A.Value -> T.Parser MessageContent
+        _text_ <- o A..:?  "text"
+        pure $ MessageCustomServiceAction
+          { _text = _text_
+          }
+      parseMessageGameScore :: A.Value -> AT.Parser MessageContent
       parseMessageGameScore = A.withObject "MessageGameScore" $ \o -> do
-        score_ <- o A..:? "score"
-        game_id_ <- U.rm <$> (o A..:? "game_id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        game_message_id_ <- o A..:? "game_message_id"
-        return $ MessageGameScore {score = score_, game_id = game_id_, game_message_id = game_message_id_}
-
-      parseMessagePaymentSuccessful :: A.Value -> T.Parser MessageContent
+        game_message_id_ <- o A..:?                       "game_message_id"
+        game_id_         <- fmap I.readInt64 <$> o A..:?  "game_id"
+        score_           <- o A..:?                       "score"
+        pure $ MessageGameScore
+          { game_message_id = game_message_id_
+          , game_id         = game_id_
+          , score           = score_
+          }
+      parseMessagePaymentSuccessful :: A.Value -> AT.Parser MessageContent
       parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
-        invoice_name_ <- o A..:? "invoice_name"
-        is_first_recurring_ <- o A..:? "is_first_recurring"
-        is_recurring_ <- o A..:? "is_recurring"
-        total_amount_ <- o A..:? "total_amount"
-        currency_ <- o A..:? "currency"
-        invoice_message_id_ <- o A..:? "invoice_message_id"
-        invoice_chat_id_ <- o A..:? "invoice_chat_id"
-        return $ MessagePaymentSuccessful {invoice_name = invoice_name_, is_first_recurring = is_first_recurring_, is_recurring = is_recurring_, total_amount = total_amount_, currency = currency_, invoice_message_id = invoice_message_id_, invoice_chat_id = invoice_chat_id_}
-
-      parseMessagePaymentSuccessfulBot :: A.Value -> T.Parser MessageContent
+        invoice_chat_id_    <- o A..:?  "invoice_chat_id"
+        invoice_message_id_ <- o A..:?  "invoice_message_id"
+        currency_           <- o A..:?  "currency"
+        total_amount_       <- o A..:?  "total_amount"
+        is_recurring_       <- o A..:?  "is_recurring"
+        is_first_recurring_ <- o A..:?  "is_first_recurring"
+        invoice_name_       <- o A..:?  "invoice_name"
+        pure $ MessagePaymentSuccessful
+          { invoice_chat_id    = invoice_chat_id_
+          , invoice_message_id = invoice_message_id_
+          , currency           = currency_
+          , total_amount       = total_amount_
+          , is_recurring       = is_recurring_
+          , is_first_recurring = is_first_recurring_
+          , invoice_name       = invoice_name_
+          }
+      parseMessagePaymentSuccessfulBot :: A.Value -> AT.Parser MessageContent
       parseMessagePaymentSuccessfulBot = A.withObject "MessagePaymentSuccessfulBot" $ \o -> do
-        provider_payment_charge_id_ <- o A..:? "provider_payment_charge_id"
-        telegram_payment_charge_id_ <- o A..:? "telegram_payment_charge_id"
-        order_info_ <- o A..:? "order_info"
-        shipping_option_id_ <- o A..:? "shipping_option_id"
-        invoice_payload_ <- o A..:? "invoice_payload"
-        is_first_recurring_ <- o A..:? "is_first_recurring"
-        is_recurring_ <- o A..:? "is_recurring"
-        total_amount_ <- o A..:? "total_amount"
-        currency_ <- o A..:? "currency"
-        return $ MessagePaymentSuccessfulBot {provider_payment_charge_id = provider_payment_charge_id_, telegram_payment_charge_id = telegram_payment_charge_id_, order_info = order_info_, shipping_option_id = shipping_option_id_, invoice_payload = invoice_payload_, is_first_recurring = is_first_recurring_, is_recurring = is_recurring_, total_amount = total_amount_, currency = currency_}
-
-      parseMessageGiftedPremium :: A.Value -> T.Parser MessageContent
+        currency_                   <- o A..:?                       "currency"
+        total_amount_               <- o A..:?                       "total_amount"
+        is_recurring_               <- o A..:?                       "is_recurring"
+        is_first_recurring_         <- o A..:?                       "is_first_recurring"
+        invoice_payload_            <- fmap I.readBytes <$> o A..:?  "invoice_payload"
+        shipping_option_id_         <- o A..:?                       "shipping_option_id"
+        order_info_                 <- o A..:?                       "order_info"
+        telegram_payment_charge_id_ <- o A..:?                       "telegram_payment_charge_id"
+        provider_payment_charge_id_ <- o A..:?                       "provider_payment_charge_id"
+        pure $ MessagePaymentSuccessfulBot
+          { currency                   = currency_
+          , total_amount               = total_amount_
+          , is_recurring               = is_recurring_
+          , is_first_recurring         = is_first_recurring_
+          , invoice_payload            = invoice_payload_
+          , shipping_option_id         = shipping_option_id_
+          , order_info                 = order_info_
+          , telegram_payment_charge_id = telegram_payment_charge_id_
+          , provider_payment_charge_id = provider_payment_charge_id_
+          }
+      parseMessageGiftedPremium :: A.Value -> AT.Parser MessageContent
       parseMessageGiftedPremium = A.withObject "MessageGiftedPremium" $ \o -> do
-        sticker_ <- o A..:? "sticker"
-        month_count_ <- o A..:? "month_count"
-        cryptocurrency_amount_ <- U.rm <$> (o A..:? "cryptocurrency_amount" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        cryptocurrency_ <- o A..:? "cryptocurrency"
-        amount_ <- o A..:? "amount"
-        currency_ <- o A..:? "currency"
-        gifter_user_id_ <- o A..:? "gifter_user_id"
-        return $ MessageGiftedPremium {sticker = sticker_, month_count = month_count_, cryptocurrency_amount = cryptocurrency_amount_, cryptocurrency = cryptocurrency_, amount = amount_, currency = currency_, gifter_user_id = gifter_user_id_}
-
-      parseMessageContactRegistered :: A.Value -> T.Parser MessageContent
-      parseMessageContactRegistered = A.withObject "MessageContactRegistered" $ \_ -> return MessageContactRegistered
-
-      parseMessageUserShared :: A.Value -> T.Parser MessageContent
+        gifter_user_id_        <- o A..:?                       "gifter_user_id"
+        currency_              <- o A..:?                       "currency"
+        amount_                <- o A..:?                       "amount"
+        cryptocurrency_        <- o A..:?                       "cryptocurrency"
+        cryptocurrency_amount_ <- fmap I.readInt64 <$> o A..:?  "cryptocurrency_amount"
+        month_count_           <- o A..:?                       "month_count"
+        sticker_               <- o A..:?                       "sticker"
+        pure $ MessageGiftedPremium
+          { gifter_user_id        = gifter_user_id_
+          , currency              = currency_
+          , amount                = amount_
+          , cryptocurrency        = cryptocurrency_
+          , cryptocurrency_amount = cryptocurrency_amount_
+          , month_count           = month_count_
+          , sticker               = sticker_
+          }
+      parseMessageUserShared :: A.Value -> AT.Parser MessageContent
       parseMessageUserShared = A.withObject "MessageUserShared" $ \o -> do
-        button_id_ <- o A..:? "button_id"
-        user_id_ <- o A..:? "user_id"
-        return $ MessageUserShared {button_id = button_id_, user_id = user_id_}
-
-      parseMessageChatShared :: A.Value -> T.Parser MessageContent
+        user_id_   <- o A..:?  "user_id"
+        button_id_ <- o A..:?  "button_id"
+        pure $ MessageUserShared
+          { user_id   = user_id_
+          , button_id = button_id_
+          }
+      parseMessageChatShared :: A.Value -> AT.Parser MessageContent
       parseMessageChatShared = A.withObject "MessageChatShared" $ \o -> do
-        button_id_ <- o A..:? "button_id"
-        chat_id_ <- o A..:? "chat_id"
-        return $ MessageChatShared {button_id = button_id_, chat_id = chat_id_}
-
-      parseMessageWebsiteConnected :: A.Value -> T.Parser MessageContent
+        chat_id_   <- o A..:?  "chat_id"
+        button_id_ <- o A..:?  "button_id"
+        pure $ MessageChatShared
+          { chat_id   = chat_id_
+          , button_id = button_id_
+          }
+      parseMessageWebsiteConnected :: A.Value -> AT.Parser MessageContent
       parseMessageWebsiteConnected = A.withObject "MessageWebsiteConnected" $ \o -> do
-        domain_name_ <- o A..:? "domain_name"
-        return $ MessageWebsiteConnected {domain_name = domain_name_}
-
-      parseMessageBotWriteAccessAllowed :: A.Value -> T.Parser MessageContent
+        domain_name_ <- o A..:?  "domain_name"
+        pure $ MessageWebsiteConnected
+          { domain_name = domain_name_
+          }
+      parseMessageBotWriteAccessAllowed :: A.Value -> AT.Parser MessageContent
       parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \o -> do
-        by_request_ <- o A..:? "by_request"
-        web_app_ <- o A..:? "web_app"
-        return $ MessageBotWriteAccessAllowed {by_request = by_request_, web_app = web_app_}
-
-      parseMessageWebAppDataSent :: A.Value -> T.Parser MessageContent
+        web_app_ <- o A..:?  "web_app"
+        pure $ MessageBotWriteAccessAllowed
+          { web_app = web_app_
+          }
+      parseMessageWebAppDataSent :: A.Value -> AT.Parser MessageContent
       parseMessageWebAppDataSent = A.withObject "MessageWebAppDataSent" $ \o -> do
-        button_text_ <- o A..:? "button_text"
-        return $ MessageWebAppDataSent {button_text = button_text_}
-
-      parseMessageWebAppDataReceived :: A.Value -> T.Parser MessageContent
+        button_text_ <- o A..:?  "button_text"
+        pure $ MessageWebAppDataSent
+          { button_text = button_text_
+          }
+      parseMessageWebAppDataReceived :: A.Value -> AT.Parser MessageContent
       parseMessageWebAppDataReceived = A.withObject "MessageWebAppDataReceived" $ \o -> do
-        _data_ <- o A..:? "data"
-        button_text_ <- o A..:? "button_text"
-        return $ MessageWebAppDataReceived {_data = _data_, button_text = button_text_}
-
-      parseMessagePassportDataSent :: A.Value -> T.Parser MessageContent
+        button_text_ <- o A..:?  "button_text"
+        _data_       <- o A..:?  "data"
+        pure $ MessageWebAppDataReceived
+          { button_text = button_text_
+          , _data       = _data_
+          }
+      parseMessagePassportDataSent :: A.Value -> AT.Parser MessageContent
       parseMessagePassportDataSent = A.withObject "MessagePassportDataSent" $ \o -> do
-        types_ <- o A..:? "types"
-        return $ MessagePassportDataSent {types = types_}
-
-      parseMessagePassportDataReceived :: A.Value -> T.Parser MessageContent
+        types_ <- o A..:?  "types"
+        pure $ MessagePassportDataSent
+          { types = types_
+          }
+      parseMessagePassportDataReceived :: A.Value -> AT.Parser MessageContent
       parseMessagePassportDataReceived = A.withObject "MessagePassportDataReceived" $ \o -> do
-        credentials_ <- o A..:? "credentials"
-        elements_ <- o A..:? "elements"
-        return $ MessagePassportDataReceived {credentials = credentials_, elements = elements_}
-
-      parseMessageProximityAlertTriggered :: A.Value -> T.Parser MessageContent
+        elements_    <- o A..:?  "elements"
+        credentials_ <- o A..:?  "credentials"
+        pure $ MessagePassportDataReceived
+          { elements    = elements_
+          , credentials = credentials_
+          }
+      parseMessageProximityAlertTriggered :: A.Value -> AT.Parser MessageContent
       parseMessageProximityAlertTriggered = A.withObject "MessageProximityAlertTriggered" $ \o -> do
-        distance_ <- o A..:? "distance"
-        watcher_id_ <- o A..:? "watcher_id"
-        traveler_id_ <- o A..:? "traveler_id"
-        return $ MessageProximityAlertTriggered {distance = distance_, watcher_id = watcher_id_, traveler_id = traveler_id_}
-
-      parseMessageUnsupported :: A.Value -> T.Parser MessageContent
-      parseMessageUnsupported = A.withObject "MessageUnsupported" $ \_ -> return MessageUnsupported
+        traveler_id_ <- o A..:?  "traveler_id"
+        watcher_id_  <- o A..:?  "watcher_id"
+        distance_    <- o A..:?  "distance"
+        pure $ MessageProximityAlertTriggered
+          { traveler_id = traveler_id_
+          , watcher_id  = watcher_id_
+          , distance    = distance_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageContent where
-  toJSON
-    MessageText
-      { web_page = web_page_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageText",
-          "web_page" A..= web_page_,
-          "text" A..= text_
-        ]
-  toJSON
-    MessageAnimation
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        animation = animation_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageAnimation",
-          "is_secret" A..= is_secret_,
-          "has_spoiler" A..= has_spoiler_,
-          "caption" A..= caption_,
-          "animation" A..= animation_
-        ]
-  toJSON
-    MessageAudio
-      { caption = caption_,
-        audio = audio_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageAudio",
-          "caption" A..= caption_,
-          "audio" A..= audio_
-        ]
-  toJSON
-    MessageDocument
-      { caption = caption_,
-        document = document_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageDocument",
-          "caption" A..= caption_,
-          "document" A..= document_
-        ]
-  toJSON
-    MessagePhoto
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        photo = photo_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePhoto",
-          "is_secret" A..= is_secret_,
-          "has_spoiler" A..= has_spoiler_,
-          "caption" A..= caption_,
-          "photo" A..= photo_
-        ]
-  toJSON MessageExpiredPhoto =
-    A.object
-      [ "@type" A..= T.String "messageExpiredPhoto"
-      ]
-  toJSON
-    MessageSticker
-      { is_premium = is_premium_,
-        sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSticker",
-          "is_premium" A..= is_premium_,
-          "sticker" A..= sticker_
-        ]
-  toJSON
-    MessageVideo
-      { is_secret = is_secret_,
-        has_spoiler = has_spoiler_,
-        caption = caption_,
-        video = video_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVideo",
-          "is_secret" A..= is_secret_,
-          "has_spoiler" A..= has_spoiler_,
-          "caption" A..= caption_,
-          "video" A..= video_
-        ]
-  toJSON MessageExpiredVideo =
-    A.object
-      [ "@type" A..= T.String "messageExpiredVideo"
-      ]
-  toJSON
-    MessageVideoNote
-      { is_secret = is_secret_,
-        is_viewed = is_viewed_,
-        video_note = video_note_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVideoNote",
-          "is_secret" A..= is_secret_,
-          "is_viewed" A..= is_viewed_,
-          "video_note" A..= video_note_
-        ]
-  toJSON
-    MessageVoiceNote
-      { is_listened = is_listened_,
-        caption = caption_,
-        voice_note = voice_note_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVoiceNote",
-          "is_listened" A..= is_listened_,
-          "caption" A..= caption_,
-          "voice_note" A..= voice_note_
-        ]
-  toJSON
-    MessageLocation
-      { proximity_alert_radius = proximity_alert_radius_,
-        heading = heading_,
-        expires_in = expires_in_,
-        live_period = live_period_,
-        location = location_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageLocation",
-          "proximity_alert_radius" A..= proximity_alert_radius_,
-          "heading" A..= heading_,
-          "expires_in" A..= expires_in_,
-          "live_period" A..= live_period_,
-          "location" A..= location_
-        ]
-  toJSON
-    MessageVenue
-      { venue = venue_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVenue",
-          "venue" A..= venue_
-        ]
-  toJSON
-    MessageContact
-      { contact = contact_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageContact",
-          "contact" A..= contact_
-        ]
-  toJSON
-    MessageAnimatedEmoji
-      { emoji = emoji_,
-        animated_emoji = animated_emoji_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageAnimatedEmoji",
-          "emoji" A..= emoji_,
-          "animated_emoji" A..= animated_emoji_
-        ]
-  toJSON
-    MessageDice
-      { success_animation_frame_number = success_animation_frame_number_,
-        value = value_,
-        emoji = emoji_,
-        final_state = final_state_,
-        initial_state = initial_state_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageDice",
-          "success_animation_frame_number" A..= success_animation_frame_number_,
-          "value" A..= value_,
-          "emoji" A..= emoji_,
-          "final_state" A..= final_state_,
-          "initial_state" A..= initial_state_
-        ]
-  toJSON
-    MessageGame
-      { game = game_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageGame",
-          "game" A..= game_
-        ]
-  toJSON
-    MessagePoll
-      { poll = poll_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePoll",
-          "poll" A..= poll_
-        ]
-  toJSON
-    MessageStory
-      { via_mention = via_mention_,
-        story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageStory",
-          "via_mention" A..= via_mention_,
-          "story_id" A..= story_id_,
-          "story_sender_chat_id" A..= story_sender_chat_id_
-        ]
-  toJSON
-    MessageInvoice
-      { extended_media = extended_media_,
-        receipt_message_id = receipt_message_id_,
-        need_shipping_address = need_shipping_address_,
-        is_test = is_test_,
-        start_parameter = start_parameter_,
-        total_amount = total_amount_,
-        currency = currency_,
-        photo = photo_,
-        description = description_,
-        title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageInvoice",
-          "extended_media" A..= extended_media_,
-          "receipt_message_id" A..= receipt_message_id_,
-          "need_shipping_address" A..= need_shipping_address_,
-          "is_test" A..= is_test_,
-          "start_parameter" A..= start_parameter_,
-          "total_amount" A..= total_amount_,
-          "currency" A..= currency_,
-          "photo" A..= photo_,
-          "description" A..= description_,
-          "title" A..= title_
-        ]
-  toJSON
-    MessageCall
-      { duration = duration_,
-        discard_reason = discard_reason_,
-        is_video = is_video_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageCall",
-          "duration" A..= duration_,
-          "discard_reason" A..= discard_reason_,
-          "is_video" A..= is_video_
-        ]
-  toJSON
-    MessageVideoChatScheduled
-      { start_date = start_date_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVideoChatScheduled",
-          "start_date" A..= start_date_,
-          "group_call_id" A..= group_call_id_
-        ]
-  toJSON
-    MessageVideoChatStarted
-      { group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVideoChatStarted",
-          "group_call_id" A..= group_call_id_
-        ]
-  toJSON
-    MessageVideoChatEnded
-      { duration = duration_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageVideoChatEnded",
-          "duration" A..= duration_
-        ]
-  toJSON
-    MessageInviteVideoChatParticipants
-      { user_ids = user_ids_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageInviteVideoChatParticipants",
-          "user_ids" A..= user_ids_,
-          "group_call_id" A..= group_call_id_
-        ]
-  toJSON
-    MessageBasicGroupChatCreate
-      { member_user_ids = member_user_ids_,
-        title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageBasicGroupChatCreate",
-          "member_user_ids" A..= member_user_ids_,
-          "title" A..= title_
-        ]
-  toJSON
-    MessageSupergroupChatCreate
-      { title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSupergroupChatCreate",
-          "title" A..= title_
-        ]
-  toJSON
-    MessageChatChangeTitle
-      { title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatChangeTitle",
-          "title" A..= title_
-        ]
-  toJSON
-    MessageChatChangePhoto
-      { _photo = _photo_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatChangePhoto",
-          "photo" A..= _photo_
-        ]
-  toJSON MessageChatDeletePhoto =
-    A.object
-      [ "@type" A..= T.String "messageChatDeletePhoto"
-      ]
-  toJSON
-    MessageChatAddMembers
-      { member_user_ids = member_user_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatAddMembers",
-          "member_user_ids" A..= member_user_ids_
-        ]
-  toJSON MessageChatJoinByLink =
-    A.object
-      [ "@type" A..= T.String "messageChatJoinByLink"
-      ]
-  toJSON MessageChatJoinByRequest =
-    A.object
-      [ "@type" A..= T.String "messageChatJoinByRequest"
-      ]
-  toJSON
-    MessageChatDeleteMember
-      { user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatDeleteMember",
-          "user_id" A..= user_id_
-        ]
-  toJSON
-    MessageChatUpgradeTo
-      { supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatUpgradeTo",
-          "supergroup_id" A..= supergroup_id_
-        ]
-  toJSON
-    MessageChatUpgradeFrom
-      { basic_group_id = basic_group_id_,
-        title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatUpgradeFrom",
-          "basic_group_id" A..= basic_group_id_,
-          "title" A..= title_
-        ]
-  toJSON
-    MessagePinMessage
-      { message_id = message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePinMessage",
-          "message_id" A..= message_id_
-        ]
-  toJSON MessageScreenshotTaken =
-    A.object
-      [ "@type" A..= T.String "messageScreenshotTaken"
-      ]
-  toJSON
-    MessageChatSetBackground
-      { background = background_,
-        old_background_message_id = old_background_message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatSetBackground",
-          "background" A..= background_,
-          "old_background_message_id" A..= old_background_message_id_
-        ]
-  toJSON
-    MessageChatSetTheme
-      { theme_name = theme_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatSetTheme",
-          "theme_name" A..= theme_name_
-        ]
-  toJSON
-    MessageChatSetMessageAutoDeleteTime
-      { from_user_id = from_user_id_,
-        message_auto_delete_time = message_auto_delete_time_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatSetMessageAutoDeleteTime",
-          "from_user_id" A..= from_user_id_,
-          "message_auto_delete_time" A..= message_auto_delete_time_
-        ]
-  toJSON
-    MessageForumTopicCreated
-      { icon = icon_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageForumTopicCreated",
-          "icon" A..= icon_,
-          "name" A..= name_
-        ]
-  toJSON
-    MessageForumTopicEdited
-      { icon_custom_emoji_id = icon_custom_emoji_id_,
-        edit_icon_custom_emoji_id = edit_icon_custom_emoji_id_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageForumTopicEdited",
-          "icon_custom_emoji_id" A..= U.toS icon_custom_emoji_id_,
-          "edit_icon_custom_emoji_id" A..= edit_icon_custom_emoji_id_,
-          "name" A..= name_
-        ]
-  toJSON
-    MessageForumTopicIsClosedToggled
-      { is_closed = is_closed_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageForumTopicIsClosedToggled",
-          "is_closed" A..= is_closed_
-        ]
-  toJSON
-    MessageForumTopicIsHiddenToggled
-      { is_hidden = is_hidden_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageForumTopicIsHiddenToggled",
-          "is_hidden" A..= is_hidden_
-        ]
-  toJSON
-    MessageSuggestProfilePhoto
-      { _photo = _photo_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageSuggestProfilePhoto",
-          "photo" A..= _photo_
-        ]
-  toJSON
-    MessageCustomServiceAction
-      { _text = _text_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageCustomServiceAction",
-          "text" A..= _text_
-        ]
-  toJSON
-    MessageGameScore
-      { score = score_,
-        game_id = game_id_,
-        game_message_id = game_message_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageGameScore",
-          "score" A..= score_,
-          "game_id" A..= U.toS game_id_,
-          "game_message_id" A..= game_message_id_
-        ]
-  toJSON
-    MessagePaymentSuccessful
-      { invoice_name = invoice_name_,
-        is_first_recurring = is_first_recurring_,
-        is_recurring = is_recurring_,
-        total_amount = total_amount_,
-        currency = currency_,
-        invoice_message_id = invoice_message_id_,
-        invoice_chat_id = invoice_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePaymentSuccessful",
-          "invoice_name" A..= invoice_name_,
-          "is_first_recurring" A..= is_first_recurring_,
-          "is_recurring" A..= is_recurring_,
-          "total_amount" A..= total_amount_,
-          "currency" A..= currency_,
-          "invoice_message_id" A..= invoice_message_id_,
-          "invoice_chat_id" A..= invoice_chat_id_
-        ]
-  toJSON
-    MessagePaymentSuccessfulBot
-      { provider_payment_charge_id = provider_payment_charge_id_,
-        telegram_payment_charge_id = telegram_payment_charge_id_,
-        order_info = order_info_,
-        shipping_option_id = shipping_option_id_,
-        invoice_payload = invoice_payload_,
-        is_first_recurring = is_first_recurring_,
-        is_recurring = is_recurring_,
-        total_amount = total_amount_,
-        currency = currency_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePaymentSuccessfulBot",
-          "provider_payment_charge_id" A..= provider_payment_charge_id_,
-          "telegram_payment_charge_id" A..= telegram_payment_charge_id_,
-          "order_info" A..= order_info_,
-          "shipping_option_id" A..= shipping_option_id_,
-          "invoice_payload" A..= invoice_payload_,
-          "is_first_recurring" A..= is_first_recurring_,
-          "is_recurring" A..= is_recurring_,
-          "total_amount" A..= total_amount_,
-          "currency" A..= currency_
-        ]
-  toJSON
-    MessageGiftedPremium
-      { sticker = sticker_,
-        month_count = month_count_,
-        cryptocurrency_amount = cryptocurrency_amount_,
-        cryptocurrency = cryptocurrency_,
-        amount = amount_,
-        currency = currency_,
-        gifter_user_id = gifter_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageGiftedPremium",
-          "sticker" A..= sticker_,
-          "month_count" A..= month_count_,
-          "cryptocurrency_amount" A..= U.toS cryptocurrency_amount_,
-          "cryptocurrency" A..= cryptocurrency_,
-          "amount" A..= amount_,
-          "currency" A..= currency_,
-          "gifter_user_id" A..= gifter_user_id_
-        ]
-  toJSON MessageContactRegistered =
-    A.object
-      [ "@type" A..= T.String "messageContactRegistered"
-      ]
-  toJSON
-    MessageUserShared
-      { button_id = button_id_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageUserShared",
-          "button_id" A..= button_id_,
-          "user_id" A..= user_id_
-        ]
-  toJSON
-    MessageChatShared
-      { button_id = button_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageChatShared",
-          "button_id" A..= button_id_,
-          "chat_id" A..= chat_id_
-        ]
-  toJSON
-    MessageWebsiteConnected
-      { domain_name = domain_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageWebsiteConnected",
-          "domain_name" A..= domain_name_
-        ]
-  toJSON
-    MessageBotWriteAccessAllowed
-      { by_request = by_request_,
-        web_app = web_app_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageBotWriteAccessAllowed",
-          "by_request" A..= by_request_,
-          "web_app" A..= web_app_
-        ]
-  toJSON
-    MessageWebAppDataSent
-      { button_text = button_text_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageWebAppDataSent",
-          "button_text" A..= button_text_
-        ]
-  toJSON
-    MessageWebAppDataReceived
-      { _data = _data_,
-        button_text = button_text_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageWebAppDataReceived",
-          "data" A..= _data_,
-          "button_text" A..= button_text_
-        ]
-  toJSON
-    MessagePassportDataSent
-      { types = types_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePassportDataSent",
-          "types" A..= types_
-        ]
-  toJSON
-    MessagePassportDataReceived
-      { credentials = credentials_,
-        elements = elements_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePassportDataReceived",
-          "credentials" A..= credentials_,
-          "elements" A..= elements_
-        ]
-  toJSON
-    MessageProximityAlertTriggered
-      { distance = distance_,
-        watcher_id = watcher_id_,
-        traveler_id = traveler_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageProximityAlertTriggered",
-          "distance" A..= distance_,
-          "watcher_id" A..= watcher_id_,
-          "traveler_id" A..= traveler_id_
-        ]
-  toJSON MessageUnsupported =
-    A.object
-      [ "@type" A..= T.String "messageUnsupported"
-      ]

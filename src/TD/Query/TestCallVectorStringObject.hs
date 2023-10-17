@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.TestCallVectorStringObject where
+module TD.Query.TestCallVectorStringObject
+  (TestCallVectorStringObject(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TestString as TestString
-import qualified Utils as U
 
--- |
--- Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization @x Vector of objects to return
-data TestCallVectorStringObject = TestCallVectorStringObject
-  { -- |
-    x :: Maybe [TestString.TestString]
-  }
-  deriving (Eq)
+-- | Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
+data TestCallVectorStringObject
+  = TestCallVectorStringObject
+    { x :: Maybe [TestString.TestString] -- ^ Vector of objects to return
+    }
+  deriving (Eq, Show)
 
-instance Show TestCallVectorStringObject where
-  show
+instance I.ShortShow TestCallVectorStringObject where
+  shortShow
     TestCallVectorStringObject
       { x = x_
-      } =
-      "TestCallVectorStringObject"
-        ++ U.cc
-          [ U.p "x" x_
+      }
+        = "TestCallVectorStringObject"
+          ++ I.cc
+          [ "x" `I.p` x_
           ]
 
-instance T.ToJSON TestCallVectorStringObject where
+instance AT.ToJSON TestCallVectorStringObject where
   toJSON
     TestCallVectorStringObject
       { x = x_
-      } =
-      A.object
-        [ "@type" A..= T.String "testCallVectorStringObject",
-          "x" A..= x_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "testCallVectorStringObject"
+          , "x"     A..= x_
+          ]
+

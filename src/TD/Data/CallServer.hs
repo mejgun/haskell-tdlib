@@ -1,79 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.CallServer where
+module TD.Data.CallServer
+  (CallServer(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.CallServerType as CallServerType
-import qualified Utils as U
 
--- |
-data CallServer = -- | Describes a server for relaying call data
-  CallServer
-  { -- | Server type
-    _type :: Maybe CallServerType.CallServerType,
-    -- | Server port number
-    port :: Maybe Int,
-    -- | Server IPv6 address
-    ipv6_address :: Maybe String,
-    -- | Server IPv4 address
-    ip_address :: Maybe String,
-    -- | Server identifier
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data CallServer
+  = CallServer -- ^ Describes a server for relaying call data
+    { _id          :: Maybe Int                           -- ^ Server identifier
+    , ip_address   :: Maybe T.Text                        -- ^ Server IPv4 address
+    , ipv6_address :: Maybe T.Text                        -- ^ Server IPv6 address
+    , port         :: Maybe Int                           -- ^ Server port number
+    , _type        :: Maybe CallServerType.CallServerType -- ^ Server type
+    }
+  deriving (Eq, Show)
 
-instance Show CallServer where
-  show
-    CallServer
-      { _type = _type_,
-        port = port_,
-        ipv6_address = ipv6_address_,
-        ip_address = ip_address_,
-        _id = _id_
-      } =
-      "CallServer"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "port" port_,
-            U.p "ipv6_address" ipv6_address_,
-            U.p "ip_address" ip_address_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow CallServer where
+  shortShow CallServer
+    { _id          = _id_
+    , ip_address   = ip_address_
+    , ipv6_address = ipv6_address_
+    , port         = port_
+    , _type        = _type_
+    }
+      = "CallServer"
+        ++ I.cc
+        [ "_id"          `I.p` _id_
+        , "ip_address"   `I.p` ip_address_
+        , "ipv6_address" `I.p` ipv6_address_
+        , "port"         `I.p` port_
+        , "_type"        `I.p` _type_
+        ]
 
-instance T.FromJSON CallServer where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON CallServer where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "callServer" -> parseCallServer v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseCallServer :: A.Value -> T.Parser CallServer
+      parseCallServer :: A.Value -> AT.Parser CallServer
       parseCallServer = A.withObject "CallServer" $ \o -> do
-        _type_ <- o A..:? "type"
-        port_ <- o A..:? "port"
-        ipv6_address_ <- o A..:? "ipv6_address"
-        ip_address_ <- o A..:? "ip_address"
-        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ CallServer {_type = _type_, port = port_, ipv6_address = ipv6_address_, ip_address = ip_address_, _id = _id_}
+        _id_          <- fmap I.readInt64 <$> o A..:?  "id"
+        ip_address_   <- o A..:?                       "ip_address"
+        ipv6_address_ <- o A..:?                       "ipv6_address"
+        port_         <- o A..:?                       "port"
+        _type_        <- o A..:?                       "type"
+        pure $ CallServer
+          { _id          = _id_
+          , ip_address   = ip_address_
+          , ipv6_address = ipv6_address_
+          , port         = port_
+          , _type        = _type_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON CallServer where
-  toJSON
-    CallServer
-      { _type = _type_,
-        port = port_,
-        ipv6_address = ipv6_address_,
-        ip_address = ip_address_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "callServer",
-          "type" A..= _type_,
-          "port" A..= port_,
-          "ipv6_address" A..= ipv6_address_,
-          "ip_address" A..= ip_address_,
-          "id" A..= U.toS _id_
-        ]

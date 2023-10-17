@@ -1,58 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.JsonObjectMember where
+module TD.Data.JsonObjectMember
+  ( JsonObjectMember(..)    
+  , defaultJsonObjectMember 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import {-# SOURCE #-} qualified TD.Data.JsonValue as JsonValue
-import qualified Utils as U
 
--- |
-data JsonObjectMember = -- | Represents one member of a JSON object @key Member's key @value Member's value
-  JsonObjectMember
-  { -- |
-    value :: Maybe JsonValue.JsonValue,
-    -- |
-    key :: Maybe String
-  }
-  deriving (Eq)
+data JsonObjectMember
+  = JsonObjectMember -- ^ Represents one member of a JSON object
+    { key   :: Maybe T.Text              -- ^ Member's key
+    , value :: Maybe JsonValue.JsonValue -- ^ Member's value
+    }
+  deriving (Eq, Show)
 
-instance Show JsonObjectMember where
-  show
-    JsonObjectMember
-      { value = value_,
-        key = key_
-      } =
-      "JsonObjectMember"
-        ++ U.cc
-          [ U.p "value" value_,
-            U.p "key" key_
-          ]
+instance I.ShortShow JsonObjectMember where
+  shortShow JsonObjectMember
+    { key   = key_
+    , value = value_
+    }
+      = "JsonObjectMember"
+        ++ I.cc
+        [ "key"   `I.p` key_
+        , "value" `I.p` value_
+        ]
 
-instance T.FromJSON JsonObjectMember where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON JsonObjectMember where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "jsonObjectMember" -> parseJsonObjectMember v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseJsonObjectMember :: A.Value -> T.Parser JsonObjectMember
+      parseJsonObjectMember :: A.Value -> AT.Parser JsonObjectMember
       parseJsonObjectMember = A.withObject "JsonObjectMember" $ \o -> do
-        value_ <- o A..:? "value"
-        key_ <- o A..:? "key"
-        return $ JsonObjectMember {value = value_, key = key_}
+        key_   <- o A..:?  "key"
+        value_ <- o A..:?  "value"
+        pure $ JsonObjectMember
+          { key   = key_
+          , value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON JsonObjectMember where
-  toJSON
-    JsonObjectMember
-      { value = value_,
-        key = key_
-      } =
-      A.object
-        [ "@type" A..= T.String "jsonObjectMember",
-          "value" A..= value_,
-          "key" A..= key_
+instance AT.ToJSON JsonObjectMember where
+  toJSON JsonObjectMember
+    { key   = key_
+    , value = value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "jsonObjectMember"
+        , "key"   A..= key_
+        , "value" A..= value_
         ]
+
+defaultJsonObjectMember :: JsonObjectMember
+defaultJsonObjectMember =
+  JsonObjectMember
+    { key   = Nothing
+    , value = Nothing
+    }
+

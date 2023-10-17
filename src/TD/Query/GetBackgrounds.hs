@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBackgrounds where
+module TD.Query.GetBackgrounds
+  (GetBackgrounds(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns backgrounds installed by the user @for_dark_theme Pass true to order returned backgrounds for a dark theme
-data GetBackgrounds = GetBackgrounds
-  { -- |
-    for_dark_theme :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Returns backgrounds installed by the user
+data GetBackgrounds
+  = GetBackgrounds
+    { for_dark_theme :: Maybe Bool -- ^ Pass true to order returned backgrounds for a dark theme
+    }
+  deriving (Eq, Show)
 
-instance Show GetBackgrounds where
-  show
+instance I.ShortShow GetBackgrounds where
+  shortShow
     GetBackgrounds
       { for_dark_theme = for_dark_theme_
-      } =
-      "GetBackgrounds"
-        ++ U.cc
-          [ U.p "for_dark_theme" for_dark_theme_
+      }
+        = "GetBackgrounds"
+          ++ I.cc
+          [ "for_dark_theme" `I.p` for_dark_theme_
           ]
 
-instance T.ToJSON GetBackgrounds where
+instance AT.ToJSON GetBackgrounds where
   toJSON
     GetBackgrounds
       { for_dark_theme = for_dark_theme_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBackgrounds",
-          "for_dark_theme" A..= for_dark_theme_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getBackgrounds"
+          , "for_dark_theme" A..= for_dark_theme_
+          ]
+

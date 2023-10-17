@@ -1,60 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPollVoters where
+module TD.Query.GetPollVoters
+  (GetPollVoters(..)
+  , defaultGetPollVoters
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
-data GetPollVoters = GetPollVoters
-  { -- | The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
-    limit :: Maybe Int,
-    -- | Number of voters to skip in the result; must be non-negative
-    offset :: Maybe Int,
-    -- | 0-based identifier of the answer option
-    option_id :: Maybe Int,
-    -- | Identifier of the message containing the poll
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the poll belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+data GetPollVoters
+  = GetPollVoters
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the poll belongs
+    , message_id :: Maybe Int -- ^ Identifier of the message containing the poll
+    , option_id  :: Maybe Int -- ^ 0-based identifier of the answer option
+    , offset     :: Maybe Int -- ^ Number of voters to skip in the result; must be non-negative
+    , limit      :: Maybe Int -- ^ The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+    }
+  deriving (Eq, Show)
 
-instance Show GetPollVoters where
-  show
+instance I.ShortShow GetPollVoters where
+  shortShow
     GetPollVoters
-      { limit = limit_,
-        offset = offset_,
-        option_id = option_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetPollVoters"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "option_id" option_id_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , option_id  = option_id_
+      , offset     = offset_
+      , limit      = limit_
+      }
+        = "GetPollVoters"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "option_id"  `I.p` option_id_
+          , "offset"     `I.p` offset_
+          , "limit"      `I.p` limit_
           ]
 
-instance T.ToJSON GetPollVoters where
+instance AT.ToJSON GetPollVoters where
   toJSON
     GetPollVoters
-      { limit = limit_,
-        offset = offset_,
-        option_id = option_id_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPollVoters",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "option_id" A..= option_id_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , option_id  = option_id_
+      , offset     = offset_
+      , limit      = limit_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getPollVoters"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "option_id"  A..= option_id_
+          , "offset"     A..= offset_
+          , "limit"      A..= limit_
+          ]
+
+defaultGetPollVoters :: GetPollVoters
+defaultGetPollVoters =
+  GetPollVoters
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , option_id  = Nothing
+    , offset     = Nothing
+    , limit      = Nothing
+    }
+

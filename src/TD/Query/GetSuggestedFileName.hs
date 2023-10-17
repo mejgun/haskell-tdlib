@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetSuggestedFileName where
+module TD.Query.GetSuggestedFileName
+  (GetSuggestedFileName(..)
+  , defaultGetSuggestedFileName
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns suggested name for saving a file in a given directory @file_id Identifier of the file @directory Directory in which the file is supposed to be saved
-data GetSuggestedFileName = GetSuggestedFileName
-  { -- |
-    directory :: Maybe String,
-    -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns suggested name for saving a file in a given directory
+data GetSuggestedFileName
+  = GetSuggestedFileName
+    { file_id   :: Maybe Int    -- ^ Identifier of the file
+    , directory :: Maybe T.Text -- ^ Directory in which the file is supposed to be saved
+    }
+  deriving (Eq, Show)
 
-instance Show GetSuggestedFileName where
-  show
+instance I.ShortShow GetSuggestedFileName where
+  shortShow
     GetSuggestedFileName
-      { directory = directory_,
-        file_id = file_id_
-      } =
-      "GetSuggestedFileName"
-        ++ U.cc
-          [ U.p "directory" directory_,
-            U.p "file_id" file_id_
+      { file_id   = file_id_
+      , directory = directory_
+      }
+        = "GetSuggestedFileName"
+          ++ I.cc
+          [ "file_id"   `I.p` file_id_
+          , "directory" `I.p` directory_
           ]
 
-instance T.ToJSON GetSuggestedFileName where
+instance AT.ToJSON GetSuggestedFileName where
   toJSON
     GetSuggestedFileName
-      { directory = directory_,
-        file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getSuggestedFileName",
-          "directory" A..= directory_,
-          "file_id" A..= file_id_
-        ]
+      { file_id   = file_id_
+      , directory = directory_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "getSuggestedFileName"
+          , "file_id"   A..= file_id_
+          , "directory" A..= directory_
+          ]
+
+defaultGetSuggestedFileName :: GetSuggestedFileName
+defaultGetSuggestedFileName =
+  GetSuggestedFileName
+    { file_id   = Nothing
+    , directory = Nothing
+    }
+

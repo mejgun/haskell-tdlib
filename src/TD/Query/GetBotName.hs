@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBotName where
+module TD.Query.GetBotName
+  (GetBotName(..)
+  , defaultGetBotName
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
-data GetBotName = GetBotName
-  { -- | A two-letter ISO 639-1 language code or an empty string
-    language_code :: Maybe String,
-    -- | Identifier of the target bot
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
+data GetBotName
+  = GetBotName
+    { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot
+    , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code or an empty string
+    }
+  deriving (Eq, Show)
 
-instance Show GetBotName where
-  show
+instance I.ShortShow GetBotName where
+  shortShow
     GetBotName
-      { language_code = language_code_,
-        bot_user_id = bot_user_id_
-      } =
-      "GetBotName"
-        ++ U.cc
-          [ U.p "language_code" language_code_,
-            U.p "bot_user_id" bot_user_id_
+      { bot_user_id   = bot_user_id_
+      , language_code = language_code_
+      }
+        = "GetBotName"
+          ++ I.cc
+          [ "bot_user_id"   `I.p` bot_user_id_
+          , "language_code" `I.p` language_code_
           ]
 
-instance T.ToJSON GetBotName where
+instance AT.ToJSON GetBotName where
   toJSON
     GetBotName
-      { language_code = language_code_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBotName",
-          "language_code" A..= language_code_,
-          "bot_user_id" A..= bot_user_id_
-        ]
+      { bot_user_id   = bot_user_id_
+      , language_code = language_code_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getBotName"
+          , "bot_user_id"   A..= bot_user_id_
+          , "language_code" A..= language_code_
+          ]
+
+defaultGetBotName :: GetBotName
+defaultGetBotName =
+  GetBotName
+    { bot_user_id   = Nothing
+    , language_code = Nothing
+    }
+

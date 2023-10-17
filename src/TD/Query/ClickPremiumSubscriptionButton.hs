@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClickPremiumSubscriptionButton where
+module TD.Query.ClickPremiumSubscriptionButton
+  (ClickPremiumSubscriptionButton(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Informs TDLib that the user clicked Premium subscription button on the Premium features screen
-data ClickPremiumSubscriptionButton = ClickPremiumSubscriptionButton
-  {
-  }
-  deriving (Eq)
+-- | Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+data ClickPremiumSubscriptionButton
+  = ClickPremiumSubscriptionButton
+  deriving (Eq, Show)
 
-instance Show ClickPremiumSubscriptionButton where
-  show ClickPremiumSubscriptionButton =
-    "ClickPremiumSubscriptionButton"
-      ++ U.cc
-        []
+instance I.ShortShow ClickPremiumSubscriptionButton where
+  shortShow
+    ClickPremiumSubscriptionButton
+        = "ClickPremiumSubscriptionButton"
 
-instance T.ToJSON ClickPremiumSubscriptionButton where
-  toJSON ClickPremiumSubscriptionButton =
-    A.object
-      [ "@type" A..= T.String "clickPremiumSubscriptionButton"
-      ]
+instance AT.ToJSON ClickPremiumSubscriptionButton where
+  toJSON
+    ClickPremiumSubscriptionButton
+        = A.object
+          [ "@type" A..= AT.String "clickPremiumSubscriptionButton"
+          ]
+

@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatMessageSender where
+module TD.Query.SetChatMessageSender
+  (SetChatMessageSender(..)
+  , defaultSetChatMessageSender
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
--- Selects a message sender to send messages in a chat @chat_id Chat identifier @message_sender_id New message sender for the chat
-data SetChatMessageSender = SetChatMessageSender
-  { -- |
-    message_sender_id :: Maybe MessageSender.MessageSender,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Selects a message sender to send messages in a chat
+data SetChatMessageSender
+  = SetChatMessageSender
+    { chat_id           :: Maybe Int                         -- ^ Chat identifier
+    , message_sender_id :: Maybe MessageSender.MessageSender -- ^ New message sender for the chat
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatMessageSender where
-  show
+instance I.ShortShow SetChatMessageSender where
+  shortShow
     SetChatMessageSender
-      { message_sender_id = message_sender_id_,
-        chat_id = chat_id_
-      } =
-      "SetChatMessageSender"
-        ++ U.cc
-          [ U.p "message_sender_id" message_sender_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_sender_id = message_sender_id_
+      }
+        = "SetChatMessageSender"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_sender_id" `I.p` message_sender_id_
           ]
 
-instance T.ToJSON SetChatMessageSender where
+instance AT.ToJSON SetChatMessageSender where
   toJSON
     SetChatMessageSender
-      { message_sender_id = message_sender_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatMessageSender",
-          "message_sender_id" A..= message_sender_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_sender_id = message_sender_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "setChatMessageSender"
+          , "chat_id"           A..= chat_id_
+          , "message_sender_id" A..= message_sender_id_
+          ]
+
+defaultSetChatMessageSender :: SetChatMessageSender
+defaultSetChatMessageSender =
+  SetChatMessageSender
+    { chat_id           = Nothing
+    , message_sender_id = Nothing
+    }
+

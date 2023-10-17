@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CanTransferOwnership where
+module TD.Query.CanTransferOwnership
+  (CanTransferOwnership(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Checks whether the current session can be used to transfer a chat ownership to another user
-data CanTransferOwnership = CanTransferOwnership
-  {
-  }
-  deriving (Eq)
+-- | Checks whether the current session can be used to transfer a chat ownership to another user
+data CanTransferOwnership
+  = CanTransferOwnership
+  deriving (Eq, Show)
 
-instance Show CanTransferOwnership where
-  show CanTransferOwnership =
-    "CanTransferOwnership"
-      ++ U.cc
-        []
+instance I.ShortShow CanTransferOwnership where
+  shortShow
+    CanTransferOwnership
+        = "CanTransferOwnership"
 
-instance T.ToJSON CanTransferOwnership where
-  toJSON CanTransferOwnership =
-    A.object
-      [ "@type" A..= T.String "canTransferOwnership"
-      ]
+instance AT.ToJSON CanTransferOwnership where
+  toJSON
+    CanTransferOwnership
+        = A.object
+          [ "@type" A..= AT.String "canTransferOwnership"
+          ]
+

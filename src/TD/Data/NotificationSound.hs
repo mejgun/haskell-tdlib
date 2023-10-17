@@ -1,86 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.NotificationSound where
+module TD.Data.NotificationSound
+  (NotificationSound(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.File as File
-import qualified Utils as U
 
--- |
-data NotificationSound = -- | Describes a notification sound in MP3 format
-  NotificationSound
-  { -- | File containing the sound
-    sound :: Maybe File.File,
-    -- | Arbitrary data, defined while the sound was uploaded
-    _data :: Maybe String,
-    -- | Title of the notification sound
-    title :: Maybe String,
-    -- | Point in time (Unix timestamp) when the sound was created
-    date :: Maybe Int,
-    -- | Duration of the sound, in seconds
-    duration :: Maybe Int,
-    -- | Unique identifier of the notification sound
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data NotificationSound
+  = NotificationSound -- ^ Describes a notification sound in MP3 format
+    { _id      :: Maybe Int       -- ^ Unique identifier of the notification sound
+    , duration :: Maybe Int       -- ^ Duration of the sound, in seconds
+    , date     :: Maybe Int       -- ^ Point in time (Unix timestamp) when the sound was created
+    , title    :: Maybe T.Text    -- ^ Title of the notification sound
+    , _data    :: Maybe T.Text    -- ^ Arbitrary data, defined while the sound was uploaded
+    , sound    :: Maybe File.File -- ^ File containing the sound
+    }
+  deriving (Eq, Show)
 
-instance Show NotificationSound where
-  show
-    NotificationSound
-      { sound = sound_,
-        _data = _data_,
-        title = title_,
-        date = date_,
-        duration = duration_,
-        _id = _id_
-      } =
-      "NotificationSound"
-        ++ U.cc
-          [ U.p "sound" sound_,
-            U.p "_data" _data_,
-            U.p "title" title_,
-            U.p "date" date_,
-            U.p "duration" duration_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow NotificationSound where
+  shortShow NotificationSound
+    { _id      = _id_
+    , duration = duration_
+    , date     = date_
+    , title    = title_
+    , _data    = _data_
+    , sound    = sound_
+    }
+      = "NotificationSound"
+        ++ I.cc
+        [ "_id"      `I.p` _id_
+        , "duration" `I.p` duration_
+        , "date"     `I.p` date_
+        , "title"    `I.p` title_
+        , "_data"    `I.p` _data_
+        , "sound"    `I.p` sound_
+        ]
 
-instance T.FromJSON NotificationSound where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON NotificationSound where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "notificationSound" -> parseNotificationSound v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseNotificationSound :: A.Value -> T.Parser NotificationSound
+      parseNotificationSound :: A.Value -> AT.Parser NotificationSound
       parseNotificationSound = A.withObject "NotificationSound" $ \o -> do
-        sound_ <- o A..:? "sound"
-        _data_ <- o A..:? "data"
-        title_ <- o A..:? "title"
-        date_ <- o A..:? "date"
-        duration_ <- o A..:? "duration"
-        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ NotificationSound {sound = sound_, _data = _data_, title = title_, date = date_, duration = duration_, _id = _id_}
+        _id_      <- fmap I.readInt64 <$> o A..:?  "id"
+        duration_ <- o A..:?                       "duration"
+        date_     <- o A..:?                       "date"
+        title_    <- o A..:?                       "title"
+        _data_    <- o A..:?                       "data"
+        sound_    <- o A..:?                       "sound"
+        pure $ NotificationSound
+          { _id      = _id_
+          , duration = duration_
+          , date     = date_
+          , title    = title_
+          , _data    = _data_
+          , sound    = sound_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON NotificationSound where
-  toJSON
-    NotificationSound
-      { sound = sound_,
-        _data = _data_,
-        title = title_,
-        date = date_,
-        duration = duration_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "notificationSound",
-          "sound" A..= sound_,
-          "data" A..= _data_,
-          "title" A..= title_,
-          "date" A..= date_,
-          "duration" A..= duration_,
-          "id" A..= U.toS _id_
-        ]

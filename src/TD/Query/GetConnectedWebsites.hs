@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetConnectedWebsites where
+module TD.Query.GetConnectedWebsites
+  (GetConnectedWebsites(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns all website where the current user used Telegram to log in
-data GetConnectedWebsites = GetConnectedWebsites
-  {
-  }
-  deriving (Eq)
+-- | Returns all website where the current user used Telegram to log in
+data GetConnectedWebsites
+  = GetConnectedWebsites
+  deriving (Eq, Show)
 
-instance Show GetConnectedWebsites where
-  show GetConnectedWebsites =
-    "GetConnectedWebsites"
-      ++ U.cc
-        []
+instance I.ShortShow GetConnectedWebsites where
+  shortShow
+    GetConnectedWebsites
+        = "GetConnectedWebsites"
 
-instance T.ToJSON GetConnectedWebsites where
-  toJSON GetConnectedWebsites =
-    A.object
-      [ "@type" A..= T.String "getConnectedWebsites"
-      ]
+instance AT.ToJSON GetConnectedWebsites where
+  toJSON
+    GetConnectedWebsites
+        = A.object
+          [ "@type" A..= AT.String "getConnectedWebsites"
+          ]
+

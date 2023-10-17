@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetActiveSessions where
+module TD.Query.GetActiveSessions
+  (GetActiveSessions(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns all active sessions of the current user
-data GetActiveSessions = GetActiveSessions
-  {
-  }
-  deriving (Eq)
+-- | Returns all active sessions of the current user
+data GetActiveSessions
+  = GetActiveSessions
+  deriving (Eq, Show)
 
-instance Show GetActiveSessions where
-  show GetActiveSessions =
-    "GetActiveSessions"
-      ++ U.cc
-        []
+instance I.ShortShow GetActiveSessions where
+  shortShow
+    GetActiveSessions
+        = "GetActiveSessions"
 
-instance T.ToJSON GetActiveSessions where
-  toJSON GetActiveSessions =
-    A.object
-      [ "@type" A..= T.String "getActiveSessions"
-      ]
+instance AT.ToJSON GetActiveSessions where
+  toJSON
+    GetActiveSessions
+        = A.object
+          [ "@type" A..= AT.String "getActiveSessions"
+          ]
+

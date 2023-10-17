@@ -1,52 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StoryList where
+module TD.Data.StoryList
+  (StoryList(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a list of stories
 data StoryList
-  = -- | The list of stories, shown in the main chat list and folder chat lists
-    StoryListMain
-  | -- | The list of stories, shown in the Arvhive chat list
-    StoryListArchive
-  deriving (Eq)
+  = StoryListMain -- ^ The list of stories, shown in the main chat list and folder chat lists
+  | StoryListArchive -- ^ The list of stories, shown in the Arvhive chat list
+  deriving (Eq, Show)
 
-instance Show StoryList where
-  show StoryListMain =
-    "StoryListMain"
-      ++ U.cc
-        []
-  show StoryListArchive =
-    "StoryListArchive"
-      ++ U.cc
-        []
+instance I.ShortShow StoryList where
+  shortShow StoryListMain
+      = "StoryListMain"
+  shortShow StoryListArchive
+      = "StoryListArchive"
 
-instance T.FromJSON StoryList where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StoryList where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "storyListMain" -> parseStoryListMain v
-      "storyListArchive" -> parseStoryListArchive v
-      _ -> mempty
-    where
-      parseStoryListMain :: A.Value -> T.Parser StoryList
-      parseStoryListMain = A.withObject "StoryListMain" $ \_ -> return StoryListMain
-
-      parseStoryListArchive :: A.Value -> T.Parser StoryList
-      parseStoryListArchive = A.withObject "StoryListArchive" $ \_ -> return StoryListArchive
+      "storyListMain"    -> pure StoryListMain
+      "storyListArchive" -> pure StoryListArchive
+      _                  -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON StoryList where
-  toJSON StoryListMain =
-    A.object
-      [ "@type" A..= T.String "storyListMain"
-      ]
-  toJSON StoryListArchive =
-    A.object
-      [ "@type" A..= T.String "storyListArchive"
-      ]
+instance AT.ToJSON StoryList where
+  toJSON StoryListMain
+      = A.object
+        [ "@type" A..= AT.String "storyListMain"
+        ]
+  toJSON StoryListArchive
+      = A.object
+        [ "@type" A..= AT.String "storyListArchive"
+        ]
+

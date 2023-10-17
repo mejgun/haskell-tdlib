@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetUserLink where
+module TD.Query.GetUserLink
+  (GetUserLink(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns an HTTPS link, which can be used to get information about the current user
-data GetUserLink = GetUserLink
-  {
-  }
-  deriving (Eq)
+-- | Returns an HTTPS link, which can be used to get information about the current user
+data GetUserLink
+  = GetUserLink
+  deriving (Eq, Show)
 
-instance Show GetUserLink where
-  show GetUserLink =
-    "GetUserLink"
-      ++ U.cc
-        []
+instance I.ShortShow GetUserLink where
+  shortShow
+    GetUserLink
+        = "GetUserLink"
 
-instance T.ToJSON GetUserLink where
-  toJSON GetUserLink =
-    A.object
-      [ "@type" A..= T.String "getUserLink"
-      ]
+instance AT.ToJSON GetUserLink where
+  toJSON
+    GetUserLink
+        = A.object
+          [ "@type" A..= AT.String "getUserLink"
+          ]
+

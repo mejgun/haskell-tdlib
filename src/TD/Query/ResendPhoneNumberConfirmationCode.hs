@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResendPhoneNumberConfirmationCode where
+module TD.Query.ResendPhoneNumberConfirmationCode
+  (ResendPhoneNumberConfirmationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resends phone number confirmation code
-data ResendPhoneNumberConfirmationCode = ResendPhoneNumberConfirmationCode
-  {
-  }
-  deriving (Eq)
+-- | Resends phone number confirmation code
+data ResendPhoneNumberConfirmationCode
+  = ResendPhoneNumberConfirmationCode
+  deriving (Eq, Show)
 
-instance Show ResendPhoneNumberConfirmationCode where
-  show ResendPhoneNumberConfirmationCode =
-    "ResendPhoneNumberConfirmationCode"
-      ++ U.cc
-        []
+instance I.ShortShow ResendPhoneNumberConfirmationCode where
+  shortShow
+    ResendPhoneNumberConfirmationCode
+        = "ResendPhoneNumberConfirmationCode"
 
-instance T.ToJSON ResendPhoneNumberConfirmationCode where
-  toJSON ResendPhoneNumberConfirmationCode =
-    A.object
-      [ "@type" A..= T.String "resendPhoneNumberConfirmationCode"
-      ]
+instance AT.ToJSON ResendPhoneNumberConfirmationCode where
+  toJSON
+    ResendPhoneNumberConfirmationCode
+        = A.object
+          [ "@type" A..= AT.String "resendPhoneNumberConfirmationCode"
+          ]
+

@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveNotificationGroup where
+module TD.Query.RemoveNotificationGroup
+  (RemoveNotificationGroup(..)
+  , defaultRemoveNotificationGroup
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user @notification_group_id Notification group identifier @max_notification_id The maximum identifier of removed notifications
-data RemoveNotificationGroup = RemoveNotificationGroup
-  { -- |
-    max_notification_id :: Maybe Int,
-    -- |
-    notification_group_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
+data RemoveNotificationGroup
+  = RemoveNotificationGroup
+    { notification_group_id :: Maybe Int -- ^ Notification group identifier
+    , max_notification_id   :: Maybe Int -- ^ The maximum identifier of removed notifications
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveNotificationGroup where
-  show
+instance I.ShortShow RemoveNotificationGroup where
+  shortShow
     RemoveNotificationGroup
-      { max_notification_id = max_notification_id_,
-        notification_group_id = notification_group_id_
-      } =
-      "RemoveNotificationGroup"
-        ++ U.cc
-          [ U.p "max_notification_id" max_notification_id_,
-            U.p "notification_group_id" notification_group_id_
+      { notification_group_id = notification_group_id_
+      , max_notification_id   = max_notification_id_
+      }
+        = "RemoveNotificationGroup"
+          ++ I.cc
+          [ "notification_group_id" `I.p` notification_group_id_
+          , "max_notification_id"   `I.p` max_notification_id_
           ]
 
-instance T.ToJSON RemoveNotificationGroup where
+instance AT.ToJSON RemoveNotificationGroup where
   toJSON
     RemoveNotificationGroup
-      { max_notification_id = max_notification_id_,
-        notification_group_id = notification_group_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeNotificationGroup",
-          "max_notification_id" A..= max_notification_id_,
-          "notification_group_id" A..= notification_group_id_
-        ]
+      { notification_group_id = notification_group_id_
+      , max_notification_id   = max_notification_id_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "removeNotificationGroup"
+          , "notification_group_id" A..= notification_group_id_
+          , "max_notification_id"   A..= max_notification_id_
+          ]
+
+defaultRemoveNotificationGroup :: RemoveNotificationGroup
+defaultRemoveNotificationGroup =
+  RemoveNotificationGroup
+    { notification_group_id = Nothing
+    , max_notification_id   = Nothing
+    }
+

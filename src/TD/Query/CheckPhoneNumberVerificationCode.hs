@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckPhoneNumberVerificationCode where
+module TD.Query.CheckPhoneNumberVerificationCode
+  (CheckPhoneNumberVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks the phone number verification code for Telegram Passport @code Verification code to check
-data CheckPhoneNumberVerificationCode = CheckPhoneNumberVerificationCode
-  { -- |
-    code :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks the phone number verification code for Telegram Passport
+data CheckPhoneNumberVerificationCode
+  = CheckPhoneNumberVerificationCode
+    { code :: Maybe T.Text -- ^ Verification code to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckPhoneNumberVerificationCode where
-  show
+instance I.ShortShow CheckPhoneNumberVerificationCode where
+  shortShow
     CheckPhoneNumberVerificationCode
       { code = code_
-      } =
-      "CheckPhoneNumberVerificationCode"
-        ++ U.cc
-          [ U.p "code" code_
+      }
+        = "CheckPhoneNumberVerificationCode"
+          ++ I.cc
+          [ "code" `I.p` code_
           ]
 
-instance T.ToJSON CheckPhoneNumberVerificationCode where
+instance AT.ToJSON CheckPhoneNumberVerificationCode where
   toJSON
     CheckPhoneNumberVerificationCode
       { code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkPhoneNumberVerificationCode",
-          "code" A..= code_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkPhoneNumberVerificationCode"
+          , "code"  A..= code_
+          ]
+

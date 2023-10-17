@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStatisticalGraph where
+module TD.Query.GetStatisticalGraph
+  (GetStatisticalGraph(..)
+  , defaultGetStatisticalGraph
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Loads an asynchronous or a zoomed in statistical graph @chat_id Chat identifier @token The token for graph loading @x X-value for zoomed in graph or 0 otherwise
-data GetStatisticalGraph = GetStatisticalGraph
-  { -- |
-    x :: Maybe Int,
-    -- |
-    token :: Maybe String,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Loads an asynchronous or a zoomed in statistical graph
+data GetStatisticalGraph
+  = GetStatisticalGraph
+    { chat_id :: Maybe Int    -- ^ Chat identifier
+    , token   :: Maybe T.Text -- ^ The token for graph loading
+    , x       :: Maybe Int    -- ^ X-value for zoomed in graph or 0 otherwise
+    }
+  deriving (Eq, Show)
 
-instance Show GetStatisticalGraph where
-  show
+instance I.ShortShow GetStatisticalGraph where
+  shortShow
     GetStatisticalGraph
-      { x = x_,
-        token = token_,
-        chat_id = chat_id_
-      } =
-      "GetStatisticalGraph"
-        ++ U.cc
-          [ U.p "x" x_,
-            U.p "token" token_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , token   = token_
+      , x       = x_
+      }
+        = "GetStatisticalGraph"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "token"   `I.p` token_
+          , "x"       `I.p` x_
           ]
 
-instance T.ToJSON GetStatisticalGraph where
+instance AT.ToJSON GetStatisticalGraph where
   toJSON
     GetStatisticalGraph
-      { x = x_,
-        token = token_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getStatisticalGraph",
-          "x" A..= x_,
-          "token" A..= token_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , token   = token_
+      , x       = x_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getStatisticalGraph"
+          , "chat_id" A..= chat_id_
+          , "token"   A..= token_
+          , "x"       A..= x_
+          ]
+
+defaultGetStatisticalGraph :: GetStatisticalGraph
+defaultGetStatisticalGraph =
+  GetStatisticalGraph
+    { chat_id = Nothing
+    , token   = Nothing
+    , x       = Nothing
+    }
+

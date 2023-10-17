@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetMenuButton where
+module TD.Query.SetMenuButton
+  (SetMenuButton(..)
+  , defaultSetMenuButton
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotMenuButton as BotMenuButton
-import qualified Utils as U
 
--- |
--- Sets menu button for the given user or for all users; for bots only
-data SetMenuButton = SetMenuButton
-  { -- | New menu button
-    menu_button :: Maybe BotMenuButton.BotMenuButton,
-    -- | Identifier of the user or 0 to set menu button for all users
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets menu button for the given user or for all users; for bots only
+data SetMenuButton
+  = SetMenuButton
+    { user_id     :: Maybe Int                         -- ^ Identifier of the user or 0 to set menu button for all users
+    , menu_button :: Maybe BotMenuButton.BotMenuButton -- ^ New menu button
+    }
+  deriving (Eq, Show)
 
-instance Show SetMenuButton where
-  show
+instance I.ShortShow SetMenuButton where
+  shortShow
     SetMenuButton
-      { menu_button = menu_button_,
-        user_id = user_id_
-      } =
-      "SetMenuButton"
-        ++ U.cc
-          [ U.p "menu_button" menu_button_,
-            U.p "user_id" user_id_
+      { user_id     = user_id_
+      , menu_button = menu_button_
+      }
+        = "SetMenuButton"
+          ++ I.cc
+          [ "user_id"     `I.p` user_id_
+          , "menu_button" `I.p` menu_button_
           ]
 
-instance T.ToJSON SetMenuButton where
+instance AT.ToJSON SetMenuButton where
   toJSON
     SetMenuButton
-      { menu_button = menu_button_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setMenuButton",
-          "menu_button" A..= menu_button_,
-          "user_id" A..= user_id_
-        ]
+      { user_id     = user_id_
+      , menu_button = menu_button_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "setMenuButton"
+          , "user_id"     A..= user_id_
+          , "menu_button" A..= menu_button_
+          ]
+
+defaultSetMenuButton :: SetMenuButton
+defaultSetMenuButton =
+  SetMenuButton
+    { user_id     = Nothing
+    , menu_button = Nothing
+    }
+

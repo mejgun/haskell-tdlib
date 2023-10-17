@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ConnectedWebsites where
+module TD.Data.ConnectedWebsites
+  (ConnectedWebsites(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ConnectedWebsite as ConnectedWebsite
-import qualified Utils as U
 
--- |
-data ConnectedWebsites = -- | Contains a list of websites the current user is logged in with Telegram @websites List of connected websites
-  ConnectedWebsites
-  { -- |
-    websites :: Maybe [ConnectedWebsite.ConnectedWebsite]
-  }
-  deriving (Eq)
+data ConnectedWebsites
+  = ConnectedWebsites -- ^ Contains a list of websites the current user is logged in with Telegram
+    { websites :: Maybe [ConnectedWebsite.ConnectedWebsite] -- ^ List of connected websites
+    }
+  deriving (Eq, Show)
 
-instance Show ConnectedWebsites where
-  show
-    ConnectedWebsites
-      { websites = websites_
-      } =
-      "ConnectedWebsites"
-        ++ U.cc
-          [ U.p "websites" websites_
-          ]
+instance I.ShortShow ConnectedWebsites where
+  shortShow ConnectedWebsites
+    { websites = websites_
+    }
+      = "ConnectedWebsites"
+        ++ I.cc
+        [ "websites" `I.p` websites_
+        ]
 
-instance T.FromJSON ConnectedWebsites where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ConnectedWebsites where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "connectedWebsites" -> parseConnectedWebsites v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseConnectedWebsites :: A.Value -> T.Parser ConnectedWebsites
+      parseConnectedWebsites :: A.Value -> AT.Parser ConnectedWebsites
       parseConnectedWebsites = A.withObject "ConnectedWebsites" $ \o -> do
-        websites_ <- o A..:? "websites"
-        return $ ConnectedWebsites {websites = websites_}
+        websites_ <- o A..:?  "websites"
+        pure $ ConnectedWebsites
+          { websites = websites_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ConnectedWebsites where
-  toJSON
-    ConnectedWebsites
-      { websites = websites_
-      } =
-      A.object
-        [ "@type" A..= T.String "connectedWebsites",
-          "websites" A..= websites_
-        ]

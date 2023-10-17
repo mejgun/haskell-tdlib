@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPhoneNumberInfo where
+module TD.Query.GetPhoneNumberInfo
+  (GetPhoneNumberInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns information about a phone number by its prefix. Can be called before authorization @phone_number_prefix The phone number prefix
-data GetPhoneNumberInfo = GetPhoneNumberInfo
-  { -- |
-    phone_number_prefix :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns information about a phone number by its prefix. Can be called before authorization
+data GetPhoneNumberInfo
+  = GetPhoneNumberInfo
+    { phone_number_prefix :: Maybe T.Text -- ^ The phone number prefix
+    }
+  deriving (Eq, Show)
 
-instance Show GetPhoneNumberInfo where
-  show
+instance I.ShortShow GetPhoneNumberInfo where
+  shortShow
     GetPhoneNumberInfo
       { phone_number_prefix = phone_number_prefix_
-      } =
-      "GetPhoneNumberInfo"
-        ++ U.cc
-          [ U.p "phone_number_prefix" phone_number_prefix_
+      }
+        = "GetPhoneNumberInfo"
+          ++ I.cc
+          [ "phone_number_prefix" `I.p` phone_number_prefix_
           ]
 
-instance T.ToJSON GetPhoneNumberInfo where
+instance AT.ToJSON GetPhoneNumberInfo where
   toJSON
     GetPhoneNumberInfo
       { phone_number_prefix = phone_number_prefix_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPhoneNumberInfo",
-          "phone_number_prefix" A..= phone_number_prefix_
-        ]
+      }
+        = A.object
+          [ "@type"               A..= AT.String "getPhoneNumberInfo"
+          , "phone_number_prefix" A..= phone_number_prefix_
+          ]
+

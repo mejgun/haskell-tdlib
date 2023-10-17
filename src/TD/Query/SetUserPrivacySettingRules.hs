@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetUserPrivacySettingRules where
+module TD.Query.SetUserPrivacySettingRules
+  (SetUserPrivacySettingRules(..)
+  , defaultSetUserPrivacySettingRules
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
-import qualified Utils as U
 
--- |
--- Changes user privacy settings @setting The privacy setting @rules The new privacy rules
-data SetUserPrivacySettingRules = SetUserPrivacySettingRules
-  { -- |
-    rules :: Maybe UserPrivacySettingRules.UserPrivacySettingRules,
-    -- |
-    setting :: Maybe UserPrivacySetting.UserPrivacySetting
-  }
-  deriving (Eq)
+-- | Changes user privacy settings
+data SetUserPrivacySettingRules
+  = SetUserPrivacySettingRules
+    { setting :: Maybe UserPrivacySetting.UserPrivacySetting           -- ^ The privacy setting
+    , rules   :: Maybe UserPrivacySettingRules.UserPrivacySettingRules -- ^ The new privacy rules
+    }
+  deriving (Eq, Show)
 
-instance Show SetUserPrivacySettingRules where
-  show
+instance I.ShortShow SetUserPrivacySettingRules where
+  shortShow
     SetUserPrivacySettingRules
-      { rules = rules_,
-        setting = setting_
-      } =
-      "SetUserPrivacySettingRules"
-        ++ U.cc
-          [ U.p "rules" rules_,
-            U.p "setting" setting_
+      { setting = setting_
+      , rules   = rules_
+      }
+        = "SetUserPrivacySettingRules"
+          ++ I.cc
+          [ "setting" `I.p` setting_
+          , "rules"   `I.p` rules_
           ]
 
-instance T.ToJSON SetUserPrivacySettingRules where
+instance AT.ToJSON SetUserPrivacySettingRules where
   toJSON
     SetUserPrivacySettingRules
-      { rules = rules_,
-        setting = setting_
-      } =
-      A.object
-        [ "@type" A..= T.String "setUserPrivacySettingRules",
-          "rules" A..= rules_,
-          "setting" A..= setting_
-        ]
+      { setting = setting_
+      , rules   = rules_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setUserPrivacySettingRules"
+          , "setting" A..= setting_
+          , "rules"   A..= rules_
+          ]
+
+defaultSetUserPrivacySettingRules :: SetUserPrivacySettingRules
+defaultSetUserPrivacySettingRules =
+  SetUserPrivacySettingRules
+    { setting = Nothing
+    , rules   = Nothing
+    }
+

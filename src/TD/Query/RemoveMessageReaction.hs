@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveMessageReaction where
+module TD.Query.RemoveMessageReaction
+  (RemoveMessageReaction(..)
+  , defaultRemoveMessageReaction
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
 
--- |
--- Removes a reaction from a message. A chosen reaction can always be removed
-data RemoveMessageReaction = RemoveMessageReaction
-  { -- | Type of the reaction to remove
-    reaction_type :: Maybe ReactionType.ReactionType,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the message belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes a reaction from a message. A chosen reaction can always be removed
+data RemoveMessageReaction
+  = RemoveMessageReaction
+    { chat_id       :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
+    , message_id    :: Maybe Int                       -- ^ Identifier of the message
+    , reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to remove
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveMessageReaction where
-  show
+instance I.ShortShow RemoveMessageReaction where
+  shortShow
     RemoveMessageReaction
-      { reaction_type = reaction_type_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "RemoveMessageReaction"
-        ++ U.cc
-          [ U.p "reaction_type" reaction_type_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id       = chat_id_
+      , message_id    = message_id_
+      , reaction_type = reaction_type_
+      }
+        = "RemoveMessageReaction"
+          ++ I.cc
+          [ "chat_id"       `I.p` chat_id_
+          , "message_id"    `I.p` message_id_
+          , "reaction_type" `I.p` reaction_type_
           ]
 
-instance T.ToJSON RemoveMessageReaction where
+instance AT.ToJSON RemoveMessageReaction where
   toJSON
     RemoveMessageReaction
-      { reaction_type = reaction_type_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeMessageReaction",
-          "reaction_type" A..= reaction_type_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id       = chat_id_
+      , message_id    = message_id_
+      , reaction_type = reaction_type_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "removeMessageReaction"
+          , "chat_id"       A..= chat_id_
+          , "message_id"    A..= message_id_
+          , "reaction_type" A..= reaction_type_
+          ]
+
+defaultRemoveMessageReaction :: RemoveMessageReaction
+defaultRemoveMessageReaction =
+  RemoveMessageReaction
+    { chat_id       = Nothing
+    , message_id    = Nothing
+    , reaction_type = Nothing
+    }
+

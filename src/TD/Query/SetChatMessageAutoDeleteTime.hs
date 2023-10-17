@@ -1,43 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatMessageAutoDeleteTime where
+module TD.Query.SetChatMessageAutoDeleteTime
+  (SetChatMessageAutoDeleteTime(..)
+  , defaultSetChatMessageAutoDeleteTime
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels
--- Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
-data SetChatMessageAutoDeleteTime = SetChatMessageAutoDeleteTime
-  { -- | New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    message_auto_delete_time :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
+data SetChatMessageAutoDeleteTime
+  = SetChatMessageAutoDeleteTime
+    { chat_id                  :: Maybe Int -- ^ Chat identifier
+    , message_auto_delete_time :: Maybe Int -- ^ New time value, in seconds; unless the chat is secret, it must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatMessageAutoDeleteTime where
-  show
+instance I.ShortShow SetChatMessageAutoDeleteTime where
+  shortShow
     SetChatMessageAutoDeleteTime
-      { message_auto_delete_time = message_auto_delete_time_,
-        chat_id = chat_id_
-      } =
-      "SetChatMessageAutoDeleteTime"
-        ++ U.cc
-          [ U.p "message_auto_delete_time" message_auto_delete_time_,
-            U.p "chat_id" chat_id_
+      { chat_id                  = chat_id_
+      , message_auto_delete_time = message_auto_delete_time_
+      }
+        = "SetChatMessageAutoDeleteTime"
+          ++ I.cc
+          [ "chat_id"                  `I.p` chat_id_
+          , "message_auto_delete_time" `I.p` message_auto_delete_time_
           ]
 
-instance T.ToJSON SetChatMessageAutoDeleteTime where
+instance AT.ToJSON SetChatMessageAutoDeleteTime where
   toJSON
     SetChatMessageAutoDeleteTime
-      { message_auto_delete_time = message_auto_delete_time_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatMessageAutoDeleteTime",
-          "message_auto_delete_time" A..= message_auto_delete_time_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id                  = chat_id_
+      , message_auto_delete_time = message_auto_delete_time_
+      }
+        = A.object
+          [ "@type"                    A..= AT.String "setChatMessageAutoDeleteTime"
+          , "chat_id"                  A..= chat_id_
+          , "message_auto_delete_time" A..= message_auto_delete_time_
+          ]
+
+defaultSetChatMessageAutoDeleteTime :: SetChatMessageAutoDeleteTime
+defaultSetChatMessageAutoDeleteTime =
+  SetChatMessageAutoDeleteTime
+    { chat_id                  = Nothing
+    , message_auto_delete_time = Nothing
+    }
+

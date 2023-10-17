@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteSavedOrderInfo where
+module TD.Query.DeleteSavedOrderInfo
+  (DeleteSavedOrderInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes saved order information
-data DeleteSavedOrderInfo = DeleteSavedOrderInfo
-  {
-  }
-  deriving (Eq)
+-- | Deletes saved order information
+data DeleteSavedOrderInfo
+  = DeleteSavedOrderInfo
+  deriving (Eq, Show)
 
-instance Show DeleteSavedOrderInfo where
-  show DeleteSavedOrderInfo =
-    "DeleteSavedOrderInfo"
-      ++ U.cc
-        []
+instance I.ShortShow DeleteSavedOrderInfo where
+  shortShow
+    DeleteSavedOrderInfo
+        = "DeleteSavedOrderInfo"
 
-instance T.ToJSON DeleteSavedOrderInfo where
-  toJSON DeleteSavedOrderInfo =
-    A.object
-      [ "@type" A..= T.String "deleteSavedOrderInfo"
-      ]
+instance AT.ToJSON DeleteSavedOrderInfo where
+  toJSON
+    DeleteSavedOrderInfo
+        = A.object
+          [ "@type" A..= AT.String "deleteSavedOrderInfo"
+          ]
+

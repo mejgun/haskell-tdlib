@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessageEmbeddingCode where
+module TD.Query.GetMessageEmbeddingCode
+  (GetMessageEmbeddingCode(..)
+  , defaultGetMessageEmbeddingCode
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
-data GetMessageEmbeddingCode = GetMessageEmbeddingCode
-  { -- | Pass true to return an HTML code for embedding of the whole media album
-    for_album :: Maybe Bool,
-    -- | Identifier of the message
-    message_id :: Maybe Int,
-    -- | Identifier of the chat to which the message belongs
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+data GetMessageEmbeddingCode
+  = GetMessageEmbeddingCode
+    { chat_id    :: Maybe Int  -- ^ Identifier of the chat to which the message belongs
+    , message_id :: Maybe Int  -- ^ Identifier of the message
+    , for_album  :: Maybe Bool -- ^ Pass true to return an HTML code for embedding of the whole media album
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessageEmbeddingCode where
-  show
+instance I.ShortShow GetMessageEmbeddingCode where
+  shortShow
     GetMessageEmbeddingCode
-      { for_album = for_album_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetMessageEmbeddingCode"
-        ++ U.cc
-          [ U.p "for_album" for_album_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , for_album  = for_album_
+      }
+        = "GetMessageEmbeddingCode"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "message_id" `I.p` message_id_
+          , "for_album"  `I.p` for_album_
           ]
 
-instance T.ToJSON GetMessageEmbeddingCode where
+instance AT.ToJSON GetMessageEmbeddingCode where
   toJSON
     GetMessageEmbeddingCode
-      { for_album = for_album_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessageEmbeddingCode",
-          "for_album" A..= for_album_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , message_id = message_id_
+      , for_album  = for_album_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "getMessageEmbeddingCode"
+          , "chat_id"    A..= chat_id_
+          , "message_id" A..= message_id_
+          , "for_album"  A..= for_album_
+          ]
+
+defaultGetMessageEmbeddingCode :: GetMessageEmbeddingCode
+defaultGetMessageEmbeddingCode =
+  GetMessageEmbeddingCode
+    { chat_id    = Nothing
+    , message_id = Nothing
+    , for_album  = Nothing
+    }
+

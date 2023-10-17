@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAttachedStickerSets where
+module TD.Query.GetAttachedStickerSets
+  (GetAttachedStickerSets(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets @file_id File identifier
-data GetAttachedStickerSets = GetAttachedStickerSets
-  { -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
+data GetAttachedStickerSets
+  = GetAttachedStickerSets
+    { file_id :: Maybe Int -- ^ File identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetAttachedStickerSets where
-  show
+instance I.ShortShow GetAttachedStickerSets where
+  shortShow
     GetAttachedStickerSets
       { file_id = file_id_
-      } =
-      "GetAttachedStickerSets"
-        ++ U.cc
-          [ U.p "file_id" file_id_
+      }
+        = "GetAttachedStickerSets"
+          ++ I.cc
+          [ "file_id" `I.p` file_id_
           ]
 
-instance T.ToJSON GetAttachedStickerSets where
+instance AT.ToJSON GetAttachedStickerSets where
   toJSON
     GetAttachedStickerSets
       { file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getAttachedStickerSets",
-          "file_id" A..= file_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getAttachedStickerSets"
+          , "file_id" A..= file_id_
+          ]
+

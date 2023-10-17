@@ -1,58 +1,46 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TMeUrl where
+module TD.Data.TMeUrl
+  (TMeUrl(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.TMeUrlType as TMeUrlType
-import qualified Utils as U
 
--- |
-data TMeUrl = -- | Represents a URL linking to an internal Telegram entity @url URL @type Type of the URL
-  TMeUrl
-  { -- |
-    _type :: Maybe TMeUrlType.TMeUrlType,
-    -- |
-    url :: Maybe String
-  }
-  deriving (Eq)
+data TMeUrl
+  = TMeUrl -- ^ Represents a URL linking to an internal Telegram entity
+    { url   :: Maybe T.Text                -- ^ URL
+    , _type :: Maybe TMeUrlType.TMeUrlType -- ^ Type of the URL
+    }
+  deriving (Eq, Show)
 
-instance Show TMeUrl where
-  show
-    TMeUrl
-      { _type = _type_,
-        url = url_
-      } =
-      "TMeUrl"
-        ++ U.cc
-          [ U.p "_type" _type_,
-            U.p "url" url_
-          ]
+instance I.ShortShow TMeUrl where
+  shortShow TMeUrl
+    { url   = url_
+    , _type = _type_
+    }
+      = "TMeUrl"
+        ++ I.cc
+        [ "url"   `I.p` url_
+        , "_type" `I.p` _type_
+        ]
 
-instance T.FromJSON TMeUrl where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TMeUrl where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "tMeUrl" -> parseTMeUrl v
-      _ -> mempty
+      _        -> mempty
+    
     where
-      parseTMeUrl :: A.Value -> T.Parser TMeUrl
+      parseTMeUrl :: A.Value -> AT.Parser TMeUrl
       parseTMeUrl = A.withObject "TMeUrl" $ \o -> do
-        _type_ <- o A..:? "type"
-        url_ <- o A..:? "url"
-        return $ TMeUrl {_type = _type_, url = url_}
+        url_   <- o A..:?  "url"
+        _type_ <- o A..:?  "type"
+        pure $ TMeUrl
+          { url   = url_
+          , _type = _type_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TMeUrl where
-  toJSON
-    TMeUrl
-      { _type = _type_,
-        url = url_
-      } =
-      A.object
-        [ "@type" A..= T.String "tMeUrl",
-          "type" A..= _type_,
-          "url" A..= url_
-        ]

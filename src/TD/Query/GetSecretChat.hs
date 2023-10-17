@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetSecretChat where
+module TD.Query.GetSecretChat
+  (GetSecretChat(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a secret chat by its identifier. This is an offline request @secret_chat_id Secret chat identifier
-data GetSecretChat = GetSecretChat
-  { -- |
-    secret_chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a secret chat by its identifier. This is an offline request
+data GetSecretChat
+  = GetSecretChat
+    { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetSecretChat where
-  show
+instance I.ShortShow GetSecretChat where
+  shortShow
     GetSecretChat
       { secret_chat_id = secret_chat_id_
-      } =
-      "GetSecretChat"
-        ++ U.cc
-          [ U.p "secret_chat_id" secret_chat_id_
+      }
+        = "GetSecretChat"
+          ++ I.cc
+          [ "secret_chat_id" `I.p` secret_chat_id_
           ]
 
-instance T.ToJSON GetSecretChat where
+instance AT.ToJSON GetSecretChat where
   toJSON
     GetSecretChat
       { secret_chat_id = secret_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getSecretChat",
-          "secret_chat_id" A..= secret_chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getSecretChat"
+          , "secret_chat_id" A..= secret_chat_id_
+          ]
+

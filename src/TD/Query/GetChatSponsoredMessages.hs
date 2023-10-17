@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatSponsoredMessages where
+module TD.Query.GetChatSponsoredMessages
+  (GetChatSponsoredMessages(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns sponsored messages to be shown in a chat; for channel chats only @chat_id Identifier of the chat
-data GetChatSponsoredMessages = GetChatSponsoredMessages
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns sponsored messages to be shown in a chat; for channel chats only
+data GetChatSponsoredMessages
+  = GetChatSponsoredMessages
+    { chat_id :: Maybe Int -- ^ Identifier of the chat
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatSponsoredMessages where
-  show
+instance I.ShortShow GetChatSponsoredMessages where
+  shortShow
     GetChatSponsoredMessages
       { chat_id = chat_id_
-      } =
-      "GetChatSponsoredMessages"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChatSponsoredMessages"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChatSponsoredMessages where
+instance AT.ToJSON GetChatSponsoredMessages where
   toJSON
     GetChatSponsoredMessages
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatSponsoredMessages",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatSponsoredMessages"
+          , "chat_id" A..= chat_id_
+          ]
+

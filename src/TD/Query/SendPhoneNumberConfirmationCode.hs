@@ -1,49 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendPhoneNumberConfirmationCode where
+module TD.Query.SendPhoneNumberConfirmationCode
+  (SendPhoneNumberConfirmationCode(..)
+  , defaultSendPhoneNumberConfirmationCode
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
-import qualified Utils as U
 
--- |
--- Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
-data SendPhoneNumberConfirmationCode = SendPhoneNumberConfirmationCode
-  { -- | Settings for the authentication of the user's phone number; pass null to use default settings
-    settings :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings,
-    -- | Phone number value from the link
-    phone_number :: Maybe String,
-    -- | Hash value from the link
-    hash :: Maybe String
-  }
-  deriving (Eq)
+-- | Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
+data SendPhoneNumberConfirmationCode
+  = SendPhoneNumberConfirmationCode
+    { hash         :: Maybe T.Text                                                              -- ^ Hash value from the link
+    , phone_number :: Maybe T.Text                                                              -- ^ Phone number value from the link
+    , settings     :: Maybe PhoneNumberAuthenticationSettings.PhoneNumberAuthenticationSettings -- ^ Settings for the authentication of the user's phone number; pass null to use default settings
+    }
+  deriving (Eq, Show)
 
-instance Show SendPhoneNumberConfirmationCode where
-  show
+instance I.ShortShow SendPhoneNumberConfirmationCode where
+  shortShow
     SendPhoneNumberConfirmationCode
-      { settings = settings_,
-        phone_number = phone_number_,
-        hash = hash_
-      } =
-      "SendPhoneNumberConfirmationCode"
-        ++ U.cc
-          [ U.p "settings" settings_,
-            U.p "phone_number" phone_number_,
-            U.p "hash" hash_
+      { hash         = hash_
+      , phone_number = phone_number_
+      , settings     = settings_
+      }
+        = "SendPhoneNumberConfirmationCode"
+          ++ I.cc
+          [ "hash"         `I.p` hash_
+          , "phone_number" `I.p` phone_number_
+          , "settings"     `I.p` settings_
           ]
 
-instance T.ToJSON SendPhoneNumberConfirmationCode where
+instance AT.ToJSON SendPhoneNumberConfirmationCode where
   toJSON
     SendPhoneNumberConfirmationCode
-      { settings = settings_,
-        phone_number = phone_number_,
-        hash = hash_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendPhoneNumberConfirmationCode",
-          "settings" A..= settings_,
-          "phone_number" A..= phone_number_,
-          "hash" A..= hash_
-        ]
+      { hash         = hash_
+      , phone_number = phone_number_
+      , settings     = settings_
+      }
+        = A.object
+          [ "@type"        A..= AT.String "sendPhoneNumberConfirmationCode"
+          , "hash"         A..= hash_
+          , "phone_number" A..= phone_number_
+          , "settings"     A..= settings_
+          ]
+
+defaultSendPhoneNumberConfirmationCode :: SendPhoneNumberConfirmationCode
+defaultSendPhoneNumberConfirmationCode =
+  SendPhoneNumberConfirmationCode
+    { hash         = Nothing
+    , phone_number = Nothing
+    , settings     = Nothing
+    }
+

@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TemporaryPasswordState where
+module TD.Data.TemporaryPasswordState
+  (TemporaryPasswordState(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data TemporaryPasswordState = -- | Returns information about the availability of a temporary password, which can be used for payments @has_password True, if a temporary password is available @valid_for Time left before the temporary password expires, in seconds
-  TemporaryPasswordState
-  { -- |
-    valid_for :: Maybe Int,
-    -- |
-    has_password :: Maybe Bool
-  }
-  deriving (Eq)
+data TemporaryPasswordState
+  = TemporaryPasswordState -- ^ Returns information about the availability of a temporary password, which can be used for payments
+    { has_password :: Maybe Bool -- ^ True, if a temporary password is available
+    , valid_for    :: Maybe Int  -- ^ Time left before the temporary password expires, in seconds
+    }
+  deriving (Eq, Show)
 
-instance Show TemporaryPasswordState where
-  show
-    TemporaryPasswordState
-      { valid_for = valid_for_,
-        has_password = has_password_
-      } =
-      "TemporaryPasswordState"
-        ++ U.cc
-          [ U.p "valid_for" valid_for_,
-            U.p "has_password" has_password_
-          ]
+instance I.ShortShow TemporaryPasswordState where
+  shortShow TemporaryPasswordState
+    { has_password = has_password_
+    , valid_for    = valid_for_
+    }
+      = "TemporaryPasswordState"
+        ++ I.cc
+        [ "has_password" `I.p` has_password_
+        , "valid_for"    `I.p` valid_for_
+        ]
 
-instance T.FromJSON TemporaryPasswordState where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TemporaryPasswordState where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "temporaryPasswordState" -> parseTemporaryPasswordState v
-      _ -> mempty
+      _                        -> mempty
+    
     where
-      parseTemporaryPasswordState :: A.Value -> T.Parser TemporaryPasswordState
+      parseTemporaryPasswordState :: A.Value -> AT.Parser TemporaryPasswordState
       parseTemporaryPasswordState = A.withObject "TemporaryPasswordState" $ \o -> do
-        valid_for_ <- o A..:? "valid_for"
-        has_password_ <- o A..:? "has_password"
-        return $ TemporaryPasswordState {valid_for = valid_for_, has_password = has_password_}
+        has_password_ <- o A..:?  "has_password"
+        valid_for_    <- o A..:?  "valid_for"
+        pure $ TemporaryPasswordState
+          { has_password = has_password_
+          , valid_for    = valid_for_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TemporaryPasswordState where
-  toJSON
-    TemporaryPasswordState
-      { valid_for = valid_for_,
-        has_password = has_password_
-      } =
-      A.object
-        [ "@type" A..= T.String "temporaryPasswordState",
-          "valid_for" A..= valid_for_,
-          "has_password" A..= has_password_
-        ]

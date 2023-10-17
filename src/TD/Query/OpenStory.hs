@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.OpenStory where
+module TD.Query.OpenStory
+  (OpenStory(..)
+  , defaultOpenStory
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Informs TDLib that a story is opened and is being viewed by the user
-data OpenStory = OpenStory
-  { -- | The identifier of the story
-    story_id :: Maybe Int,
-    -- | The identifier of the sender of the opened story
-    story_sender_chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Informs TDLib that a story is opened and is being viewed by the user
+data OpenStory
+  = OpenStory
+    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the opened story
+    , story_id             :: Maybe Int -- ^ The identifier of the story
+    }
+  deriving (Eq, Show)
 
-instance Show OpenStory where
-  show
+instance I.ShortShow OpenStory where
+  shortShow
     OpenStory
-      { story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      "OpenStory"
-        ++ U.cc
-          [ U.p "story_id" story_id_,
-            U.p "story_sender_chat_id" story_sender_chat_id_
+      { story_sender_chat_id = story_sender_chat_id_
+      , story_id             = story_id_
+      }
+        = "OpenStory"
+          ++ I.cc
+          [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+          , "story_id"             `I.p` story_id_
           ]
 
-instance T.ToJSON OpenStory where
+instance AT.ToJSON OpenStory where
   toJSON
     OpenStory
-      { story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "openStory",
-          "story_id" A..= story_id_,
-          "story_sender_chat_id" A..= story_sender_chat_id_
-        ]
+      { story_sender_chat_id = story_sender_chat_id_
+      , story_id             = story_id_
+      }
+        = A.object
+          [ "@type"                A..= AT.String "openStory"
+          , "story_sender_chat_id" A..= story_sender_chat_id_
+          , "story_id"             A..= story_id_
+          ]
+
+defaultOpenStory :: OpenStory
+defaultOpenStory =
+  OpenStory
+    { story_sender_chat_id = Nothing
+    , story_id             = Nothing
+    }
+

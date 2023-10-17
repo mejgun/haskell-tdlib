@@ -1,119 +1,111 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.BackgroundFill where
+module TD.Data.BackgroundFill
+  (BackgroundFill(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a fill of a background
 data BackgroundFill
-  = -- | Describes a solid fill of a background @color A color of the background in the RGB24 format
-    BackgroundFillSolid
-      { -- |
-        color :: Maybe Int
-      }
-  | -- | Describes a gradient fill of a background
-    BackgroundFillGradient
-      { -- | Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
-        rotation_angle :: Maybe Int,
-        -- | A bottom color of the background in the RGB24 format
-        bottom_color :: Maybe Int,
-        -- | A top color of the background in the RGB24 format
-        top_color :: Maybe Int
-      }
-  | -- | Describes a freeform gradient fill of a background @colors A list of 3 or 4 colors of the freeform gradients in the RGB24 format
-    BackgroundFillFreeformGradient
-      { -- |
-        colors :: Maybe [Int]
-      }
-  deriving (Eq)
+  = BackgroundFillSolid -- ^ Describes a solid fill of a background
+    { color :: Maybe Int -- ^ A color of the background in the RGB24 format
+    }
+  | BackgroundFillGradient -- ^ Describes a gradient fill of a background
+    { top_color      :: Maybe Int -- ^ A top color of the background in the RGB24 format
+    , bottom_color   :: Maybe Int -- ^ A bottom color of the background in the RGB24 format
+    , rotation_angle :: Maybe Int -- ^ Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
+    }
+  | BackgroundFillFreeformGradient -- ^ Describes a freeform gradient fill of a background
+    { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradients in the RGB24 format
+    }
+  deriving (Eq, Show)
 
-instance Show BackgroundFill where
-  show
-    BackgroundFillSolid
-      { color = color_
-      } =
-      "BackgroundFillSolid"
-        ++ U.cc
-          [ U.p "color" color_
-          ]
-  show
-    BackgroundFillGradient
-      { rotation_angle = rotation_angle_,
-        bottom_color = bottom_color_,
-        top_color = top_color_
-      } =
-      "BackgroundFillGradient"
-        ++ U.cc
-          [ U.p "rotation_angle" rotation_angle_,
-            U.p "bottom_color" bottom_color_,
-            U.p "top_color" top_color_
-          ]
-  show
-    BackgroundFillFreeformGradient
-      { colors = colors_
-      } =
-      "BackgroundFillFreeformGradient"
-        ++ U.cc
-          [ U.p "colors" colors_
-          ]
+instance I.ShortShow BackgroundFill where
+  shortShow BackgroundFillSolid
+    { color = color_
+    }
+      = "BackgroundFillSolid"
+        ++ I.cc
+        [ "color" `I.p` color_
+        ]
+  shortShow BackgroundFillGradient
+    { top_color      = top_color_
+    , bottom_color   = bottom_color_
+    , rotation_angle = rotation_angle_
+    }
+      = "BackgroundFillGradient"
+        ++ I.cc
+        [ "top_color"      `I.p` top_color_
+        , "bottom_color"   `I.p` bottom_color_
+        , "rotation_angle" `I.p` rotation_angle_
+        ]
+  shortShow BackgroundFillFreeformGradient
+    { colors = colors_
+    }
+      = "BackgroundFillFreeformGradient"
+        ++ I.cc
+        [ "colors" `I.p` colors_
+        ]
 
-instance T.FromJSON BackgroundFill where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON BackgroundFill where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "backgroundFillSolid" -> parseBackgroundFillSolid v
-      "backgroundFillGradient" -> parseBackgroundFillGradient v
+      "backgroundFillSolid"            -> parseBackgroundFillSolid v
+      "backgroundFillGradient"         -> parseBackgroundFillGradient v
       "backgroundFillFreeformGradient" -> parseBackgroundFillFreeformGradient v
-      _ -> mempty
+      _                                -> mempty
+    
     where
-      parseBackgroundFillSolid :: A.Value -> T.Parser BackgroundFill
+      parseBackgroundFillSolid :: A.Value -> AT.Parser BackgroundFill
       parseBackgroundFillSolid = A.withObject "BackgroundFillSolid" $ \o -> do
-        color_ <- o A..:? "color"
-        return $ BackgroundFillSolid {color = color_}
-
-      parseBackgroundFillGradient :: A.Value -> T.Parser BackgroundFill
+        color_ <- o A..:?  "color"
+        pure $ BackgroundFillSolid
+          { color = color_
+          }
+      parseBackgroundFillGradient :: A.Value -> AT.Parser BackgroundFill
       parseBackgroundFillGradient = A.withObject "BackgroundFillGradient" $ \o -> do
-        rotation_angle_ <- o A..:? "rotation_angle"
-        bottom_color_ <- o A..:? "bottom_color"
-        top_color_ <- o A..:? "top_color"
-        return $ BackgroundFillGradient {rotation_angle = rotation_angle_, bottom_color = bottom_color_, top_color = top_color_}
-
-      parseBackgroundFillFreeformGradient :: A.Value -> T.Parser BackgroundFill
+        top_color_      <- o A..:?  "top_color"
+        bottom_color_   <- o A..:?  "bottom_color"
+        rotation_angle_ <- o A..:?  "rotation_angle"
+        pure $ BackgroundFillGradient
+          { top_color      = top_color_
+          , bottom_color   = bottom_color_
+          , rotation_angle = rotation_angle_
+          }
+      parseBackgroundFillFreeformGradient :: A.Value -> AT.Parser BackgroundFill
       parseBackgroundFillFreeformGradient = A.withObject "BackgroundFillFreeformGradient" $ \o -> do
-        colors_ <- o A..:? "colors"
-        return $ BackgroundFillFreeformGradient {colors = colors_}
+        colors_ <- o A..:?  "colors"
+        pure $ BackgroundFillFreeformGradient
+          { colors = colors_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON BackgroundFill where
-  toJSON
-    BackgroundFillSolid
-      { color = color_
-      } =
-      A.object
-        [ "@type" A..= T.String "backgroundFillSolid",
-          "color" A..= color_
+instance AT.ToJSON BackgroundFill where
+  toJSON BackgroundFillSolid
+    { color = color_
+    }
+      = A.object
+        [ "@type" A..= AT.String "backgroundFillSolid"
+        , "color" A..= color_
         ]
-  toJSON
-    BackgroundFillGradient
-      { rotation_angle = rotation_angle_,
-        bottom_color = bottom_color_,
-        top_color = top_color_
-      } =
-      A.object
-        [ "@type" A..= T.String "backgroundFillGradient",
-          "rotation_angle" A..= rotation_angle_,
-          "bottom_color" A..= bottom_color_,
-          "top_color" A..= top_color_
+  toJSON BackgroundFillGradient
+    { top_color      = top_color_
+    , bottom_color   = bottom_color_
+    , rotation_angle = rotation_angle_
+    }
+      = A.object
+        [ "@type"          A..= AT.String "backgroundFillGradient"
+        , "top_color"      A..= top_color_
+        , "bottom_color"   A..= bottom_color_
+        , "rotation_angle" A..= rotation_angle_
         ]
-  toJSON
-    BackgroundFillFreeformGradient
-      { colors = colors_
-      } =
-      A.object
-        [ "@type" A..= T.String "backgroundFillFreeformGradient",
-          "colors" A..= colors_
+  toJSON BackgroundFillFreeformGradient
+    { colors = colors_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "backgroundFillFreeformGradient"
+        , "colors" A..= colors_
         ]
+

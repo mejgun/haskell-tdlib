@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatFolderNewChats where
+module TD.Query.GetChatFolderNewChats
+  (GetChatFolderNewChats(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder @chat_folder_id Chat folder identifier
-data GetChatFolderNewChats = GetChatFolderNewChats
-  { -- |
-    chat_folder_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
+data GetChatFolderNewChats
+  = GetChatFolderNewChats
+    { chat_folder_id :: Maybe Int -- ^ Chat folder identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatFolderNewChats where
-  show
+instance I.ShortShow GetChatFolderNewChats where
+  shortShow
     GetChatFolderNewChats
       { chat_folder_id = chat_folder_id_
-      } =
-      "GetChatFolderNewChats"
-        ++ U.cc
-          [ U.p "chat_folder_id" chat_folder_id_
+      }
+        = "GetChatFolderNewChats"
+          ++ I.cc
+          [ "chat_folder_id" `I.p` chat_folder_id_
           ]
 
-instance T.ToJSON GetChatFolderNewChats where
+instance AT.ToJSON GetChatFolderNewChats where
   toJSON
     GetChatFolderNewChats
       { chat_folder_id = chat_folder_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatFolderNewChats",
-          "chat_folder_id" A..= chat_folder_id_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getChatFolderNewChats"
+          , "chat_folder_id" A..= chat_folder_id_
+          ]
+

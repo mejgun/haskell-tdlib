@@ -1,60 +1,67 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AnswerCallbackQuery where
+module TD.Query.AnswerCallbackQuery
+  (AnswerCallbackQuery(..)
+  , defaultAnswerCallbackQuery
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sets the result of a callback query; for bots only
-data AnswerCallbackQuery = AnswerCallbackQuery
-  { -- | Time during which the result of the query can be cached, in seconds
-    cache_time :: Maybe Int,
-    -- | URL to be opened
-    url :: Maybe String,
-    -- | Pass true to show an alert to the user instead of a toast notification
-    show_alert :: Maybe Bool,
-    -- | Text of the answer
-    text :: Maybe String,
-    -- | Identifier of the callback query
-    callback_query_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets the result of a callback query; for bots only
+data AnswerCallbackQuery
+  = AnswerCallbackQuery
+    { callback_query_id :: Maybe Int    -- ^ Identifier of the callback query
+    , text              :: Maybe T.Text -- ^ Text of the answer
+    , show_alert        :: Maybe Bool   -- ^ Pass true to show an alert to the user instead of a toast notification
+    , url               :: Maybe T.Text -- ^ URL to be opened
+    , cache_time        :: Maybe Int    -- ^ Time during which the result of the query can be cached, in seconds
+    }
+  deriving (Eq, Show)
 
-instance Show AnswerCallbackQuery where
-  show
+instance I.ShortShow AnswerCallbackQuery where
+  shortShow
     AnswerCallbackQuery
-      { cache_time = cache_time_,
-        url = url_,
-        show_alert = show_alert_,
-        text = text_,
-        callback_query_id = callback_query_id_
-      } =
-      "AnswerCallbackQuery"
-        ++ U.cc
-          [ U.p "cache_time" cache_time_,
-            U.p "url" url_,
-            U.p "show_alert" show_alert_,
-            U.p "text" text_,
-            U.p "callback_query_id" callback_query_id_
+      { callback_query_id = callback_query_id_
+      , text              = text_
+      , show_alert        = show_alert_
+      , url               = url_
+      , cache_time        = cache_time_
+      }
+        = "AnswerCallbackQuery"
+          ++ I.cc
+          [ "callback_query_id" `I.p` callback_query_id_
+          , "text"              `I.p` text_
+          , "show_alert"        `I.p` show_alert_
+          , "url"               `I.p` url_
+          , "cache_time"        `I.p` cache_time_
           ]
 
-instance T.ToJSON AnswerCallbackQuery where
+instance AT.ToJSON AnswerCallbackQuery where
   toJSON
     AnswerCallbackQuery
-      { cache_time = cache_time_,
-        url = url_,
-        show_alert = show_alert_,
-        text = text_,
-        callback_query_id = callback_query_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "answerCallbackQuery",
-          "cache_time" A..= cache_time_,
-          "url" A..= url_,
-          "show_alert" A..= show_alert_,
-          "text" A..= text_,
-          "callback_query_id" A..= U.toS callback_query_id_
-        ]
+      { callback_query_id = callback_query_id_
+      , text              = text_
+      , show_alert        = show_alert_
+      , url               = url_
+      , cache_time        = cache_time_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "answerCallbackQuery"
+          , "callback_query_id" A..= fmap I.writeInt64  callback_query_id_
+          , "text"              A..= text_
+          , "show_alert"        A..= show_alert_
+          , "url"               A..= url_
+          , "cache_time"        A..= cache_time_
+          ]
+
+defaultAnswerCallbackQuery :: AnswerCallbackQuery
+defaultAnswerCallbackQuery =
+  AnswerCallbackQuery
+    { callback_query_id = Nothing
+    , text              = Nothing
+    , show_alert        = Nothing
+    , url               = Nothing
+    , cache_time        = Nothing
+    }
+

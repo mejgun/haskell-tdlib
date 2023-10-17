@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatsNearby where
+module TD.Data.ChatsNearby
+  (ChatsNearby(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatNearby as ChatNearby
-import qualified Utils as U
 
--- |
-data ChatsNearby = -- | Represents a list of chats located nearby @users_nearby List of users nearby @supergroups_nearby List of location-based supergroups nearby
-  ChatsNearby
-  { -- |
-    supergroups_nearby :: Maybe [ChatNearby.ChatNearby],
-    -- |
-    users_nearby :: Maybe [ChatNearby.ChatNearby]
-  }
-  deriving (Eq)
+data ChatsNearby
+  = ChatsNearby -- ^ Represents a list of chats located nearby
+    { users_nearby       :: Maybe [ChatNearby.ChatNearby] -- ^ List of users nearby
+    , supergroups_nearby :: Maybe [ChatNearby.ChatNearby] -- ^ List of location-based supergroups nearby
+    }
+  deriving (Eq, Show)
 
-instance Show ChatsNearby where
-  show
-    ChatsNearby
-      { supergroups_nearby = supergroups_nearby_,
-        users_nearby = users_nearby_
-      } =
-      "ChatsNearby"
-        ++ U.cc
-          [ U.p "supergroups_nearby" supergroups_nearby_,
-            U.p "users_nearby" users_nearby_
-          ]
+instance I.ShortShow ChatsNearby where
+  shortShow ChatsNearby
+    { users_nearby       = users_nearby_
+    , supergroups_nearby = supergroups_nearby_
+    }
+      = "ChatsNearby"
+        ++ I.cc
+        [ "users_nearby"       `I.p` users_nearby_
+        , "supergroups_nearby" `I.p` supergroups_nearby_
+        ]
 
-instance T.FromJSON ChatsNearby where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatsNearby where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatsNearby" -> parseChatsNearby v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseChatsNearby :: A.Value -> T.Parser ChatsNearby
+      parseChatsNearby :: A.Value -> AT.Parser ChatsNearby
       parseChatsNearby = A.withObject "ChatsNearby" $ \o -> do
-        supergroups_nearby_ <- o A..:? "supergroups_nearby"
-        users_nearby_ <- o A..:? "users_nearby"
-        return $ ChatsNearby {supergroups_nearby = supergroups_nearby_, users_nearby = users_nearby_}
+        users_nearby_       <- o A..:?  "users_nearby"
+        supergroups_nearby_ <- o A..:?  "supergroups_nearby"
+        pure $ ChatsNearby
+          { users_nearby       = users_nearby_
+          , supergroups_nearby = supergroups_nearby_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatsNearby where
-  toJSON
-    ChatsNearby
-      { supergroups_nearby = supergroups_nearby_,
-        users_nearby = users_nearby_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatsNearby",
-          "supergroups_nearby" A..= supergroups_nearby_,
-          "users_nearby" A..= users_nearby_
-        ]

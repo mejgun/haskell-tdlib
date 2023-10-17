@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetThemedEmojiStatuses where
+module TD.Query.GetThemedEmojiStatuses
+  (GetThemedEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
-data GetThemedEmojiStatuses = GetThemedEmojiStatuses
-  {
-  }
-  deriving (Eq)
+-- | Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+data GetThemedEmojiStatuses
+  = GetThemedEmojiStatuses
+  deriving (Eq, Show)
 
-instance Show GetThemedEmojiStatuses where
-  show GetThemedEmojiStatuses =
-    "GetThemedEmojiStatuses"
-      ++ U.cc
-        []
+instance I.ShortShow GetThemedEmojiStatuses where
+  shortShow
+    GetThemedEmojiStatuses
+        = "GetThemedEmojiStatuses"
 
-instance T.ToJSON GetThemedEmojiStatuses where
-  toJSON GetThemedEmojiStatuses =
-    A.object
-      [ "@type" A..= T.String "getThemedEmojiStatuses"
-      ]
+instance AT.ToJSON GetThemedEmojiStatuses where
+  toJSON
+    GetThemedEmojiStatuses
+        = A.object
+          [ "@type" A..= AT.String "getThemedEmojiStatuses"
+          ]
+

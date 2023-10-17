@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatActiveStoriesList where
+module TD.Query.SetChatActiveStoriesList
+  (SetChatActiveStoriesList(..)
+  , defaultSetChatActiveStoriesList
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryList as StoryList
-import qualified Utils as U
 
--- |
--- Changes story list in which stories from the chat are shown @chat_id Identifier of the chat that posted stories @story_list New list for active stories posted by the chat
-data SetChatActiveStoriesList = SetChatActiveStoriesList
-  { -- |
-    story_list :: Maybe StoryList.StoryList,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes story list in which stories from the chat are shown
+data SetChatActiveStoriesList
+  = SetChatActiveStoriesList
+    { chat_id    :: Maybe Int                 -- ^ Identifier of the chat that posted stories
+    , story_list :: Maybe StoryList.StoryList -- ^ New list for active stories posted by the chat
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatActiveStoriesList where
-  show
+instance I.ShortShow SetChatActiveStoriesList where
+  shortShow
     SetChatActiveStoriesList
-      { story_list = story_list_,
-        chat_id = chat_id_
-      } =
-      "SetChatActiveStoriesList"
-        ++ U.cc
-          [ U.p "story_list" story_list_,
-            U.p "chat_id" chat_id_
+      { chat_id    = chat_id_
+      , story_list = story_list_
+      }
+        = "SetChatActiveStoriesList"
+          ++ I.cc
+          [ "chat_id"    `I.p` chat_id_
+          , "story_list" `I.p` story_list_
           ]
 
-instance T.ToJSON SetChatActiveStoriesList where
+instance AT.ToJSON SetChatActiveStoriesList where
   toJSON
     SetChatActiveStoriesList
-      { story_list = story_list_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatActiveStoriesList",
-          "story_list" A..= story_list_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id    = chat_id_
+      , story_list = story_list_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "setChatActiveStoriesList"
+          , "chat_id"    A..= chat_id_
+          , "story_list" A..= story_list_
+          ]
+
+defaultSetChatActiveStoriesList :: SetChatActiveStoriesList
+defaultSetChatActiveStoriesList =
+  SetChatActiveStoriesList
+    { chat_id    = Nothing
+    , story_list = Nothing
+    }
+

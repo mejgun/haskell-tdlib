@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetTopChats where
+module TD.Query.GetTopChats
+  (GetTopChats(..)
+  , defaultGetTopChats
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TopChatCategory as TopChatCategory
-import qualified Utils as U
 
--- |
--- Returns a list of frequently used chats @category Category of chats to be returned @limit The maximum number of chats to be returned; up to 30
-data GetTopChats = GetTopChats
-  { -- |
-    limit :: Maybe Int,
-    -- |
-    category :: Maybe TopChatCategory.TopChatCategory
-  }
-  deriving (Eq)
+-- | Returns a list of frequently used chats. Supported only if the chat info database is enabled
+data GetTopChats
+  = GetTopChats
+    { category :: Maybe TopChatCategory.TopChatCategory -- ^ Category of chats to be returned
+    , limit    :: Maybe Int                             -- ^ The maximum number of chats to be returned; up to 30
+    }
+  deriving (Eq, Show)
 
-instance Show GetTopChats where
-  show
+instance I.ShortShow GetTopChats where
+  shortShow
     GetTopChats
-      { limit = limit_,
-        category = category_
-      } =
-      "GetTopChats"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "category" category_
+      { category = category_
+      , limit    = limit_
+      }
+        = "GetTopChats"
+          ++ I.cc
+          [ "category" `I.p` category_
+          , "limit"    `I.p` limit_
           ]
 
-instance T.ToJSON GetTopChats where
+instance AT.ToJSON GetTopChats where
   toJSON
     GetTopChats
-      { limit = limit_,
-        category = category_
-      } =
-      A.object
-        [ "@type" A..= T.String "getTopChats",
-          "limit" A..= limit_,
-          "category" A..= category_
-        ]
+      { category = category_
+      , limit    = limit_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "getTopChats"
+          , "category" A..= category_
+          , "limit"    A..= limit_
+          ]
+
+defaultGetTopChats :: GetTopChats
+defaultGetTopChats =
+  GetTopChats
+    { category = Nothing
+    , limit    = Nothing
+    }
+

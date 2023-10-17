@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveContacts where
+module TD.Query.RemoveContacts
+  (RemoveContacts(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes users from the contact list @user_ids Identifiers of users to be deleted
-data RemoveContacts = RemoveContacts
-  { -- |
-    user_ids :: Maybe [Int]
-  }
-  deriving (Eq)
+-- | Removes users from the contact list
+data RemoveContacts
+  = RemoveContacts
+    { user_ids :: Maybe [Int] -- ^ Identifiers of users to be deleted
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveContacts where
-  show
+instance I.ShortShow RemoveContacts where
+  shortShow
     RemoveContacts
       { user_ids = user_ids_
-      } =
-      "RemoveContacts"
-        ++ U.cc
-          [ U.p "user_ids" user_ids_
+      }
+        = "RemoveContacts"
+          ++ I.cc
+          [ "user_ids" `I.p` user_ids_
           ]
 
-instance T.ToJSON RemoveContacts where
+instance AT.ToJSON RemoveContacts where
   toJSON
     RemoveContacts
       { user_ids = user_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeContacts",
-          "user_ids" A..= user_ids_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "removeContacts"
+          , "user_ids" A..= user_ids_
+          ]
+

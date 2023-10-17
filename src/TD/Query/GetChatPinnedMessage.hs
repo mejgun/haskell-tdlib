@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatPinnedMessage where
+module TD.Query.GetChatPinnedMessage
+  (GetChatPinnedMessage(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a newest pinned message in the chat @chat_id Identifier of the chat the message belongs to
-data GetChatPinnedMessage = GetChatPinnedMessage
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a newest pinned message in the chat
+data GetChatPinnedMessage
+  = GetChatPinnedMessage
+    { chat_id :: Maybe Int -- ^ Identifier of the chat the message belongs to
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatPinnedMessage where
-  show
+instance I.ShortShow GetChatPinnedMessage where
+  shortShow
     GetChatPinnedMessage
       { chat_id = chat_id_
-      } =
-      "GetChatPinnedMessage"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChatPinnedMessage"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChatPinnedMessage where
+instance AT.ToJSON GetChatPinnedMessage where
   toJSON
     GetChatPinnedMessage
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatPinnedMessage",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChatPinnedMessage"
+          , "chat_id" A..= chat_id_
+          ]
+

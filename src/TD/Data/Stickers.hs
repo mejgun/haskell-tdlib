@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Stickers where
+module TD.Data.Stickers
+  (Stickers(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Sticker as Sticker
-import qualified Utils as U
 
--- |
-data Stickers = -- | Represents a list of stickers @stickers List of stickers
-  Stickers
-  { -- |
-    stickers :: Maybe [Sticker.Sticker]
-  }
-  deriving (Eq)
+data Stickers
+  = Stickers -- ^ Represents a list of stickers
+    { stickers :: Maybe [Sticker.Sticker] -- ^ List of stickers
+    }
+  deriving (Eq, Show)
 
-instance Show Stickers where
-  show
-    Stickers
-      { stickers = stickers_
-      } =
-      "Stickers"
-        ++ U.cc
-          [ U.p "stickers" stickers_
-          ]
+instance I.ShortShow Stickers where
+  shortShow Stickers
+    { stickers = stickers_
+    }
+      = "Stickers"
+        ++ I.cc
+        [ "stickers" `I.p` stickers_
+        ]
 
-instance T.FromJSON Stickers where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Stickers where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "stickers" -> parseStickers v
-      _ -> mempty
+      _          -> mempty
+    
     where
-      parseStickers :: A.Value -> T.Parser Stickers
+      parseStickers :: A.Value -> AT.Parser Stickers
       parseStickers = A.withObject "Stickers" $ \o -> do
-        stickers_ <- o A..:? "stickers"
-        return $ Stickers {stickers = stickers_}
+        stickers_ <- o A..:?  "stickers"
+        pure $ Stickers
+          { stickers = stickers_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Stickers where
-  toJSON
-    Stickers
-      { stickers = stickers_
-      } =
-      A.object
-        [ "@type" A..= T.String "stickers",
-          "stickers" A..= stickers_
-        ]

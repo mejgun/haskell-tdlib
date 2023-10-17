@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReorderActiveUsernames where
+module TD.Query.ReorderActiveUsernames
+  (ReorderActiveUsernames(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes order of active usernames of the current user @usernames The new order of active usernames. All currently active usernames must be specified
-data ReorderActiveUsernames = ReorderActiveUsernames
-  { -- |
-    usernames :: Maybe [String]
-  }
-  deriving (Eq)
+-- | Changes order of active usernames of the current user
+data ReorderActiveUsernames
+  = ReorderActiveUsernames
+    { usernames :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified
+    }
+  deriving (Eq, Show)
 
-instance Show ReorderActiveUsernames where
-  show
+instance I.ShortShow ReorderActiveUsernames where
+  shortShow
     ReorderActiveUsernames
       { usernames = usernames_
-      } =
-      "ReorderActiveUsernames"
-        ++ U.cc
-          [ U.p "usernames" usernames_
+      }
+        = "ReorderActiveUsernames"
+          ++ I.cc
+          [ "usernames" `I.p` usernames_
           ]
 
-instance T.ToJSON ReorderActiveUsernames where
+instance AT.ToJSON ReorderActiveUsernames where
   toJSON
     ReorderActiveUsernames
       { usernames = usernames_
-      } =
-      A.object
-        [ "@type" A..= T.String "reorderActiveUsernames",
-          "usernames" A..= usernames_
-        ]
+      }
+        = A.object
+          [ "@type"     A..= AT.String "reorderActiveUsernames"
+          , "usernames" A..= usernames_
+          ]
+

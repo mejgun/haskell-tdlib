@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBasicGroup where
+module TD.Query.GetBasicGroup
+  (GetBasicGroup(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot @basic_group_id Basic group identifier
-data GetBasicGroup = GetBasicGroup
-  { -- |
-    basic_group_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
+data GetBasicGroup
+  = GetBasicGroup
+    { basic_group_id :: Maybe Int -- ^ Basic group identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetBasicGroup where
-  show
+instance I.ShortShow GetBasicGroup where
+  shortShow
     GetBasicGroup
       { basic_group_id = basic_group_id_
-      } =
-      "GetBasicGroup"
-        ++ U.cc
-          [ U.p "basic_group_id" basic_group_id_
+      }
+        = "GetBasicGroup"
+          ++ I.cc
+          [ "basic_group_id" `I.p` basic_group_id_
           ]
 
-instance T.ToJSON GetBasicGroup where
+instance AT.ToJSON GetBasicGroup where
   toJSON
     GetBasicGroup
       { basic_group_id = basic_group_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBasicGroup",
-          "basic_group_id" A..= basic_group_id_
-        ]
+      }
+        = A.object
+          [ "@type"          A..= AT.String "getBasicGroup"
+          , "basic_group_id" A..= basic_group_id_
+          ]
+

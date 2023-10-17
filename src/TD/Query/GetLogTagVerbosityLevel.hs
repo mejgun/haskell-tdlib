@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetLogTagVerbosityLevel where
+module TD.Query.GetLogTagVerbosityLevel
+  (GetLogTagVerbosityLevel(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously @tag Logging tag to change verbosity level
-data GetLogTagVerbosityLevel = GetLogTagVerbosityLevel
-  { -- |
-    tag :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
+data GetLogTagVerbosityLevel
+  = GetLogTagVerbosityLevel
+    { tag :: Maybe T.Text -- ^ Logging tag to change verbosity level
+    }
+  deriving (Eq, Show)
 
-instance Show GetLogTagVerbosityLevel where
-  show
+instance I.ShortShow GetLogTagVerbosityLevel where
+  shortShow
     GetLogTagVerbosityLevel
       { tag = tag_
-      } =
-      "GetLogTagVerbosityLevel"
-        ++ U.cc
-          [ U.p "tag" tag_
+      }
+        = "GetLogTagVerbosityLevel"
+          ++ I.cc
+          [ "tag" `I.p` tag_
           ]
 
-instance T.ToJSON GetLogTagVerbosityLevel where
+instance AT.ToJSON GetLogTagVerbosityLevel where
   toJSON
     GetLogTagVerbosityLevel
       { tag = tag_
-      } =
-      A.object
-        [ "@type" A..= T.String "getLogTagVerbosityLevel",
-          "tag" A..= tag_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getLogTagVerbosityLevel"
+          , "tag"   A..= tag_
+          ]
+

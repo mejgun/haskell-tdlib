@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveStickerFromSet where
+module TD.Query.RemoveStickerFromSet
+  (RemoveStickerFromSet(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot @sticker Sticker
-data RemoveStickerFromSet = RemoveStickerFromSet
-  { -- |
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
+data RemoveStickerFromSet
+  = RemoveStickerFromSet
+    { sticker :: Maybe InputFile.InputFile -- ^ Sticker
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveStickerFromSet where
-  show
+instance I.ShortShow RemoveStickerFromSet where
+  shortShow
     RemoveStickerFromSet
       { sticker = sticker_
-      } =
-      "RemoveStickerFromSet"
-        ++ U.cc
-          [ U.p "sticker" sticker_
+      }
+        = "RemoveStickerFromSet"
+          ++ I.cc
+          [ "sticker" `I.p` sticker_
           ]
 
-instance T.ToJSON RemoveStickerFromSet where
+instance AT.ToJSON RemoveStickerFromSet where
   toJSON
     RemoveStickerFromSet
       { sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeStickerFromSet",
-          "sticker" A..= sticker_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "removeStickerFromSet"
+          , "sticker" A..= sticker_
+          ]
+

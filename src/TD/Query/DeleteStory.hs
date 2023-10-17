@@ -1,42 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteStory where
+module TD.Query.DeleteStory
+  (DeleteStory(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes a previously sent story. Can be called only if story.can_be_deleted == true
-data DeleteStory = DeleteStory
-  { -- | Identifier of the story to delete
-    story_id :: Maybe Int,
-    -- | Identifier of the chat that posted the story
-    story_sender_chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes a previously sent story
+data DeleteStory
+  = DeleteStory
+    { story_id :: Maybe Int -- ^ Identifier of the story to delete
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteStory where
-  show
+instance I.ShortShow DeleteStory where
+  shortShow
     DeleteStory
-      { story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      "DeleteStory"
-        ++ U.cc
-          [ U.p "story_id" story_id_,
-            U.p "story_sender_chat_id" story_sender_chat_id_
+      { story_id = story_id_
+      }
+        = "DeleteStory"
+          ++ I.cc
+          [ "story_id" `I.p` story_id_
           ]
 
-instance T.ToJSON DeleteStory where
+instance AT.ToJSON DeleteStory where
   toJSON
     DeleteStory
-      { story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteStory",
-          "story_id" A..= story_id_,
-          "story_sender_chat_id" A..= story_sender_chat_id_
-        ]
+      { story_id = story_id_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "deleteStory"
+          , "story_id" A..= story_id_
+          ]
+

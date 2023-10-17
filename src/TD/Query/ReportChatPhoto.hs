@@ -1,55 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReportChatPhoto where
+module TD.Query.ReportChatPhoto
+  (ReportChatPhoto(..)
+  , defaultReportChatPhoto
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReportReason as ReportReason
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
-data ReportChatPhoto = ReportChatPhoto
-  { -- | Additional report details; 0-1024 characters
-    text :: Maybe String,
-    -- | The reason for reporting the chat photo
-    reason :: Maybe ReportReason.ReportReason,
-    -- | Identifier of the photo to report. Only full photos from chatPhoto can be reported
-    file_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
+data ReportChatPhoto
+  = ReportChatPhoto
+    { chat_id :: Maybe Int                       -- ^ Chat identifier
+    , file_id :: Maybe Int                       -- ^ Identifier of the photo to report. Only full photos from chatPhoto can be reported
+    , reason  :: Maybe ReportReason.ReportReason -- ^ The reason for reporting the chat photo
+    , text    :: Maybe T.Text                    -- ^ Additional report details; 0-1024 characters
+    }
+  deriving (Eq, Show)
 
-instance Show ReportChatPhoto where
-  show
+instance I.ShortShow ReportChatPhoto where
+  shortShow
     ReportChatPhoto
-      { text = text_,
-        reason = reason_,
-        file_id = file_id_,
-        chat_id = chat_id_
-      } =
-      "ReportChatPhoto"
-        ++ U.cc
-          [ U.p "text" text_,
-            U.p "reason" reason_,
-            U.p "file_id" file_id_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , file_id = file_id_
+      , reason  = reason_
+      , text    = text_
+      }
+        = "ReportChatPhoto"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "file_id" `I.p` file_id_
+          , "reason"  `I.p` reason_
+          , "text"    `I.p` text_
           ]
 
-instance T.ToJSON ReportChatPhoto where
+instance AT.ToJSON ReportChatPhoto where
   toJSON
     ReportChatPhoto
-      { text = text_,
-        reason = reason_,
-        file_id = file_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "reportChatPhoto",
-          "text" A..= text_,
-          "reason" A..= reason_,
-          "file_id" A..= file_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , file_id = file_id_
+      , reason  = reason_
+      , text    = text_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "reportChatPhoto"
+          , "chat_id" A..= chat_id_
+          , "file_id" A..= file_id_
+          , "reason"  A..= reason_
+          , "text"    A..= text_
+          ]
+
+defaultReportChatPhoto :: ReportChatPhoto
+defaultReportChatPhoto =
+  ReportChatPhoto
+    { chat_id = Nothing
+    , file_id = Nothing
+    , reason  = Nothing
+    , text    = Nothing
+    }
+

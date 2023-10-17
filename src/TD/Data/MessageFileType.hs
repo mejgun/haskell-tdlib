@@ -1,92 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageFileType where
+module TD.Data.MessageFileType
+  (MessageFileType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Contains information about a file with messages exported from another app
 data MessageFileType
-  = -- | The messages was exported from a private chat @name Name of the other party; may be empty if unrecognized
-    MessageFileTypePrivate
-      { -- |
-        name :: Maybe String
-      }
-  | -- | The messages was exported from a group chat @title Title of the group chat; may be empty if unrecognized
-    MessageFileTypeGroup
-      { -- |
-        title :: Maybe String
-      }
-  | -- | The messages was exported from a chat of unknown type
-    MessageFileTypeUnknown
-  deriving (Eq)
+  = MessageFileTypePrivate -- ^ The messages was exported from a private chat
+    { name :: Maybe T.Text -- ^ Name of the other party; may be empty if unrecognized
+    }
+  | MessageFileTypeGroup -- ^ The messages was exported from a group chat
+    { title :: Maybe T.Text -- ^ Title of the group chat; may be empty if unrecognized
+    }
+  | MessageFileTypeUnknown -- ^ The messages was exported from a chat of unknown type
+  deriving (Eq, Show)
 
-instance Show MessageFileType where
-  show
-    MessageFileTypePrivate
-      { name = name_
-      } =
-      "MessageFileTypePrivate"
-        ++ U.cc
-          [ U.p "name" name_
-          ]
-  show
-    MessageFileTypeGroup
-      { title = title_
-      } =
-      "MessageFileTypeGroup"
-        ++ U.cc
-          [ U.p "title" title_
-          ]
-  show MessageFileTypeUnknown =
-    "MessageFileTypeUnknown"
-      ++ U.cc
-        []
+instance I.ShortShow MessageFileType where
+  shortShow MessageFileTypePrivate
+    { name = name_
+    }
+      = "MessageFileTypePrivate"
+        ++ I.cc
+        [ "name" `I.p` name_
+        ]
+  shortShow MessageFileTypeGroup
+    { title = title_
+    }
+      = "MessageFileTypeGroup"
+        ++ I.cc
+        [ "title" `I.p` title_
+        ]
+  shortShow MessageFileTypeUnknown
+      = "MessageFileTypeUnknown"
 
-instance T.FromJSON MessageFileType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageFileType where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageFileTypePrivate" -> parseMessageFileTypePrivate v
-      "messageFileTypeGroup" -> parseMessageFileTypeGroup v
-      "messageFileTypeUnknown" -> parseMessageFileTypeUnknown v
-      _ -> mempty
+      "messageFileTypeGroup"   -> parseMessageFileTypeGroup v
+      "messageFileTypeUnknown" -> pure MessageFileTypeUnknown
+      _                        -> mempty
+    
     where
-      parseMessageFileTypePrivate :: A.Value -> T.Parser MessageFileType
+      parseMessageFileTypePrivate :: A.Value -> AT.Parser MessageFileType
       parseMessageFileTypePrivate = A.withObject "MessageFileTypePrivate" $ \o -> do
-        name_ <- o A..:? "name"
-        return $ MessageFileTypePrivate {name = name_}
-
-      parseMessageFileTypeGroup :: A.Value -> T.Parser MessageFileType
+        name_ <- o A..:?  "name"
+        pure $ MessageFileTypePrivate
+          { name = name_
+          }
+      parseMessageFileTypeGroup :: A.Value -> AT.Parser MessageFileType
       parseMessageFileTypeGroup = A.withObject "MessageFileTypeGroup" $ \o -> do
-        title_ <- o A..:? "title"
-        return $ MessageFileTypeGroup {title = title_}
-
-      parseMessageFileTypeUnknown :: A.Value -> T.Parser MessageFileType
-      parseMessageFileTypeUnknown = A.withObject "MessageFileTypeUnknown" $ \_ -> return MessageFileTypeUnknown
+        title_ <- o A..:?  "title"
+        pure $ MessageFileTypeGroup
+          { title = title_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageFileType where
-  toJSON
-    MessageFileTypePrivate
-      { name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageFileTypePrivate",
-          "name" A..= name_
-        ]
-  toJSON
-    MessageFileTypeGroup
-      { title = title_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageFileTypeGroup",
-          "title" A..= title_
-        ]
-  toJSON MessageFileTypeUnknown =
-    A.object
-      [ "@type" A..= T.String "messageFileTypeUnknown"
-      ]

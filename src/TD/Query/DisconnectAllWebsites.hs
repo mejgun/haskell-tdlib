@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DisconnectAllWebsites where
+module TD.Query.DisconnectAllWebsites
+  (DisconnectAllWebsites(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Disconnects all websites from the current user's Telegram account
-data DisconnectAllWebsites = DisconnectAllWebsites
-  {
-  }
-  deriving (Eq)
+-- | Disconnects all websites from the current user's Telegram account
+data DisconnectAllWebsites
+  = DisconnectAllWebsites
+  deriving (Eq, Show)
 
-instance Show DisconnectAllWebsites where
-  show DisconnectAllWebsites =
-    "DisconnectAllWebsites"
-      ++ U.cc
-        []
+instance I.ShortShow DisconnectAllWebsites where
+  shortShow
+    DisconnectAllWebsites
+        = "DisconnectAllWebsites"
 
-instance T.ToJSON DisconnectAllWebsites where
-  toJSON DisconnectAllWebsites =
-    A.object
-      [ "@type" A..= T.String "disconnectAllWebsites"
-      ]
+instance AT.ToJSON DisconnectAllWebsites where
+  toJSON
+    DisconnectAllWebsites
+        = A.object
+          [ "@type" A..= AT.String "disconnectAllWebsites"
+          ]
+

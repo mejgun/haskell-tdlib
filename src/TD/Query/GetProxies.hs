@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetProxies where
+module TD.Query.GetProxies
+  (GetProxies(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns list of proxies that are currently set up. Can be called before authorization
-data GetProxies = GetProxies
-  {
-  }
-  deriving (Eq)
+-- | Returns list of proxies that are currently set up. Can be called before authorization
+data GetProxies
+  = GetProxies
+  deriving (Eq, Show)
 
-instance Show GetProxies where
-  show GetProxies =
-    "GetProxies"
-      ++ U.cc
-        []
+instance I.ShortShow GetProxies where
+  shortShow
+    GetProxies
+        = "GetProxies"
 
-instance T.ToJSON GetProxies where
-  toJSON GetProxies =
-    A.object
-      [ "@type" A..= T.String "getProxies"
-      ]
+instance AT.ToJSON GetProxies where
+  toJSON
+    GetProxies
+        = A.object
+          [ "@type" A..= AT.String "getProxies"
+          ]
+

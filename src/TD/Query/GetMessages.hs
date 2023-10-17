@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMessages where
+module TD.Query.GetMessages
+  (GetMessages(..)
+  , defaultGetMessages
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about messages. If a message is not found, returns null on the corresponding position of the result @chat_id Identifier of the chat the messages belong to @message_ids Identifiers of the messages to get
-data GetMessages = GetMessages
-  { -- |
-    message_ids :: Maybe [Int],
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about messages. If a message is not found, returns null on the corresponding position of the result
+data GetMessages
+  = GetMessages
+    { chat_id     :: Maybe Int   -- ^ Identifier of the chat the messages belong to
+    , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to get
+    }
+  deriving (Eq, Show)
 
-instance Show GetMessages where
-  show
+instance I.ShortShow GetMessages where
+  shortShow
     GetMessages
-      { message_ids = message_ids_,
-        chat_id = chat_id_
-      } =
-      "GetMessages"
-        ++ U.cc
-          [ U.p "message_ids" message_ids_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , message_ids = message_ids_
+      }
+        = "GetMessages"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "message_ids" `I.p` message_ids_
           ]
 
-instance T.ToJSON GetMessages where
+instance AT.ToJSON GetMessages where
   toJSON
     GetMessages
-      { message_ids = message_ids_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMessages",
-          "message_ids" A..= message_ids_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , message_ids = message_ids_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "getMessages"
+          , "chat_id"     A..= chat_id_
+          , "message_ids" A..= message_ids_
+          ]
+
+defaultGetMessages :: GetMessages
+defaultGetMessages =
+  GetMessages
+    { chat_id     = Nothing
+    , message_ids = Nothing
+    }
+

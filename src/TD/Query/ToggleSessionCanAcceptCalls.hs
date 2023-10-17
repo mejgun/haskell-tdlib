@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleSessionCanAcceptCalls where
+module TD.Query.ToggleSessionCanAcceptCalls
+  (ToggleSessionCanAcceptCalls(..)
+  , defaultToggleSessionCanAcceptCalls
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether a session can accept incoming calls @session_id Session identifier @can_accept_calls Pass true to allow accepting incoming calls by the session; pass false otherwise
-data ToggleSessionCanAcceptCalls = ToggleSessionCanAcceptCalls
-  { -- |
-    can_accept_calls :: Maybe Bool,
-    -- |
-    session_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether a session can accept incoming calls
+data ToggleSessionCanAcceptCalls
+  = ToggleSessionCanAcceptCalls
+    { session_id       :: Maybe Int  -- ^ Session identifier
+    , can_accept_calls :: Maybe Bool -- ^ Pass true to allow accepting incoming calls by the session; pass false otherwise
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleSessionCanAcceptCalls where
-  show
+instance I.ShortShow ToggleSessionCanAcceptCalls where
+  shortShow
     ToggleSessionCanAcceptCalls
-      { can_accept_calls = can_accept_calls_,
-        session_id = session_id_
-      } =
-      "ToggleSessionCanAcceptCalls"
-        ++ U.cc
-          [ U.p "can_accept_calls" can_accept_calls_,
-            U.p "session_id" session_id_
+      { session_id       = session_id_
+      , can_accept_calls = can_accept_calls_
+      }
+        = "ToggleSessionCanAcceptCalls"
+          ++ I.cc
+          [ "session_id"       `I.p` session_id_
+          , "can_accept_calls" `I.p` can_accept_calls_
           ]
 
-instance T.ToJSON ToggleSessionCanAcceptCalls where
+instance AT.ToJSON ToggleSessionCanAcceptCalls where
   toJSON
     ToggleSessionCanAcceptCalls
-      { can_accept_calls = can_accept_calls_,
-        session_id = session_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleSessionCanAcceptCalls",
-          "can_accept_calls" A..= can_accept_calls_,
-          "session_id" A..= U.toS session_id_
-        ]
+      { session_id       = session_id_
+      , can_accept_calls = can_accept_calls_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "toggleSessionCanAcceptCalls"
+          , "session_id"       A..= fmap I.writeInt64  session_id_
+          , "can_accept_calls" A..= can_accept_calls_
+          ]
+
+defaultToggleSessionCanAcceptCalls :: ToggleSessionCanAcceptCalls
+defaultToggleSessionCanAcceptCalls =
+  ToggleSessionCanAcceptCalls
+    { session_id       = Nothing
+    , can_accept_calls = Nothing
+    }
+

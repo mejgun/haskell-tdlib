@@ -1,136 +1,87 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatInviteLinkInfo where
+module TD.Data.ChatInviteLinkInfo
+  (ChatInviteLinkInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.ChatType as ChatType
+import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
-import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
-import qualified Utils as U
 
--- |
-data ChatInviteLinkInfo = -- | Contains information about a chat invite link
-  ChatInviteLinkInfo
-  { -- | True, if many users reported this chat as a fake account
-    is_fake :: Maybe Bool,
-    -- | True, if many users reported this chat as a scam
-    is_scam :: Maybe Bool,
-    -- | True, if the chat is verified
-    is_verified :: Maybe Bool,
-    -- | True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
-    is_public :: Maybe Bool,
-    -- | True, if the link only creates join request
-    creates_join_request :: Maybe Bool,
-    -- | User identifiers of some chat members that may be known to the current user
-    member_user_ids :: Maybe [Int],
-    -- | Number of members in the chat
-    member_count :: Maybe Int,
-    -- |
-    description :: Maybe String,
-    -- | Chat photo; may be null
-    photo :: Maybe ChatPhotoInfo.ChatPhotoInfo,
-    -- | Title of the chat
-    title :: Maybe String,
-    -- | Type of the chat
-    _type :: Maybe InviteLinkChatType.InviteLinkChatType,
-    -- | If non-zero, the amount of time for which read access to the chat will remain available, in seconds
-    accessible_for :: Maybe Int,
-    -- | Chat identifier of the invite link; 0 if the user has no access to the chat before joining
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatInviteLinkInfo
+  = ChatInviteLinkInfo -- ^ Contains information about a chat invite link
+    { chat_id              :: Maybe Int                         -- ^ Chat identifier of the invite link; 0 if the user has no access to the chat before joining
+    , accessible_for       :: Maybe Int                         -- ^ If non-zero, the amount of time for which read access to the chat will remain available, in seconds
+    , _type                :: Maybe ChatType.ChatType           -- ^ Type of the chat
+    , title                :: Maybe T.Text                      -- ^ Title of the chat
+    , photo                :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ Chat photo; may be null
+    , description          :: Maybe T.Text
+    , member_count         :: Maybe Int                         -- ^ Number of members in the chat
+    , member_user_ids      :: Maybe [Int]                       -- ^ User identifiers of some chat members that may be known to the current user
+    , creates_join_request :: Maybe Bool                        -- ^ True, if the link only creates join request
+    , is_public            :: Maybe Bool                        -- ^ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
+    }
+  deriving (Eq, Show)
 
-instance Show ChatInviteLinkInfo where
-  show
-    ChatInviteLinkInfo
-      { is_fake = is_fake_,
-        is_scam = is_scam_,
-        is_verified = is_verified_,
-        is_public = is_public_,
-        creates_join_request = creates_join_request_,
-        member_user_ids = member_user_ids_,
-        member_count = member_count_,
-        description = description_,
-        photo = photo_,
-        title = title_,
-        _type = _type_,
-        accessible_for = accessible_for_,
-        chat_id = chat_id_
-      } =
-      "ChatInviteLinkInfo"
-        ++ U.cc
-          [ U.p "is_fake" is_fake_,
-            U.p "is_scam" is_scam_,
-            U.p "is_verified" is_verified_,
-            U.p "is_public" is_public_,
-            U.p "creates_join_request" creates_join_request_,
-            U.p "member_user_ids" member_user_ids_,
-            U.p "member_count" member_count_,
-            U.p "description" description_,
-            U.p "photo" photo_,
-            U.p "title" title_,
-            U.p "_type" _type_,
-            U.p "accessible_for" accessible_for_,
-            U.p "chat_id" chat_id_
-          ]
+instance I.ShortShow ChatInviteLinkInfo where
+  shortShow ChatInviteLinkInfo
+    { chat_id              = chat_id_
+    , accessible_for       = accessible_for_
+    , _type                = _type_
+    , title                = title_
+    , photo                = photo_
+    , description          = description_
+    , member_count         = member_count_
+    , member_user_ids      = member_user_ids_
+    , creates_join_request = creates_join_request_
+    , is_public            = is_public_
+    }
+      = "ChatInviteLinkInfo"
+        ++ I.cc
+        [ "chat_id"              `I.p` chat_id_
+        , "accessible_for"       `I.p` accessible_for_
+        , "_type"                `I.p` _type_
+        , "title"                `I.p` title_
+        , "photo"                `I.p` photo_
+        , "description"          `I.p` description_
+        , "member_count"         `I.p` member_count_
+        , "member_user_ids"      `I.p` member_user_ids_
+        , "creates_join_request" `I.p` creates_join_request_
+        , "is_public"            `I.p` is_public_
+        ]
 
-instance T.FromJSON ChatInviteLinkInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatInviteLinkInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatInviteLinkInfo" -> parseChatInviteLinkInfo v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parseChatInviteLinkInfo :: A.Value -> T.Parser ChatInviteLinkInfo
+      parseChatInviteLinkInfo :: A.Value -> AT.Parser ChatInviteLinkInfo
       parseChatInviteLinkInfo = A.withObject "ChatInviteLinkInfo" $ \o -> do
-        is_fake_ <- o A..:? "is_fake"
-        is_scam_ <- o A..:? "is_scam"
-        is_verified_ <- o A..:? "is_verified"
-        is_public_ <- o A..:? "is_public"
-        creates_join_request_ <- o A..:? "creates_join_request"
-        member_user_ids_ <- o A..:? "member_user_ids"
-        member_count_ <- o A..:? "member_count"
-        description_ <- o A..:? "description"
-        photo_ <- o A..:? "photo"
-        title_ <- o A..:? "title"
-        _type_ <- o A..:? "type"
-        accessible_for_ <- o A..:? "accessible_for"
-        chat_id_ <- o A..:? "chat_id"
-        return $ ChatInviteLinkInfo {is_fake = is_fake_, is_scam = is_scam_, is_verified = is_verified_, is_public = is_public_, creates_join_request = creates_join_request_, member_user_ids = member_user_ids_, member_count = member_count_, description = description_, photo = photo_, title = title_, _type = _type_, accessible_for = accessible_for_, chat_id = chat_id_}
+        chat_id_              <- o A..:?  "chat_id"
+        accessible_for_       <- o A..:?  "accessible_for"
+        _type_                <- o A..:?  "type"
+        title_                <- o A..:?  "title"
+        photo_                <- o A..:?  "photo"
+        description_          <- o A..:?  "description"
+        member_count_         <- o A..:?  "member_count"
+        member_user_ids_      <- o A..:?  "member_user_ids"
+        creates_join_request_ <- o A..:?  "creates_join_request"
+        is_public_            <- o A..:?  "is_public"
+        pure $ ChatInviteLinkInfo
+          { chat_id              = chat_id_
+          , accessible_for       = accessible_for_
+          , _type                = _type_
+          , title                = title_
+          , photo                = photo_
+          , description          = description_
+          , member_count         = member_count_
+          , member_user_ids      = member_user_ids_
+          , creates_join_request = creates_join_request_
+          , is_public            = is_public_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatInviteLinkInfo where
-  toJSON
-    ChatInviteLinkInfo
-      { is_fake = is_fake_,
-        is_scam = is_scam_,
-        is_verified = is_verified_,
-        is_public = is_public_,
-        creates_join_request = creates_join_request_,
-        member_user_ids = member_user_ids_,
-        member_count = member_count_,
-        description = description_,
-        photo = photo_,
-        title = title_,
-        _type = _type_,
-        accessible_for = accessible_for_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatInviteLinkInfo",
-          "is_fake" A..= is_fake_,
-          "is_scam" A..= is_scam_,
-          "is_verified" A..= is_verified_,
-          "is_public" A..= is_public_,
-          "creates_join_request" A..= creates_join_request_,
-          "member_user_ids" A..= member_user_ids_,
-          "member_count" A..= member_count_,
-          "description" A..= description_,
-          "photo" A..= photo_,
-          "title" A..= title_,
-          "type" A..= _type_,
-          "accessible_for" A..= accessible_for_,
-          "chat_id" A..= chat_id_
-        ]

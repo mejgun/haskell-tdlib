@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveProxy where
+module TD.Query.RemoveProxy
+  (RemoveProxy(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes a proxy server. Can be called before authorization @proxy_id Proxy identifier
-data RemoveProxy = RemoveProxy
-  { -- |
-    proxy_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Removes a proxy server. Can be called before authorization
+data RemoveProxy
+  = RemoveProxy
+    { proxy_id :: Maybe Int -- ^ Proxy identifier
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveProxy where
-  show
+instance I.ShortShow RemoveProxy where
+  shortShow
     RemoveProxy
       { proxy_id = proxy_id_
-      } =
-      "RemoveProxy"
-        ++ U.cc
-          [ U.p "proxy_id" proxy_id_
+      }
+        = "RemoveProxy"
+          ++ I.cc
+          [ "proxy_id" `I.p` proxy_id_
           ]
 
-instance T.ToJSON RemoveProxy where
+instance AT.ToJSON RemoveProxy where
   toJSON
     RemoveProxy
       { proxy_id = proxy_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeProxy",
-          "proxy_id" A..= proxy_id_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "removeProxy"
+          , "proxy_id" A..= proxy_id_
+          ]
+

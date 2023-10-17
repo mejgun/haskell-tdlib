@@ -1,67 +1,73 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMapThumbnailFile where
+module TD.Query.GetMapThumbnailFile
+  (GetMapThumbnailFile(..)
+  , defaultGetMapThumbnailFile
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
-import qualified Utils as U
 
--- |
--- Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
-data GetMapThumbnailFile = GetMapThumbnailFile
-  { -- | Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
-    chat_id :: Maybe Int,
-    -- | Map scale; 1-3
-    scale :: Maybe Int,
-    -- | Map height in pixels before applying scale; 16-1024
-    height :: Maybe Int,
-    -- | Map width in pixels before applying scale; 16-1024
-    width :: Maybe Int,
-    -- | Map zoom level; 13-20
-    zoom :: Maybe Int,
-    -- | Location of the map center
-    location :: Maybe Location.Location
-  }
-  deriving (Eq)
+-- | Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+data GetMapThumbnailFile
+  = GetMapThumbnailFile
+    { location :: Maybe Location.Location -- ^ Location of the map center
+    , zoom     :: Maybe Int               -- ^ Map zoom level; 13-20
+    , width    :: Maybe Int               -- ^ Map width in pixels before applying scale; 16-1024
+    , height   :: Maybe Int               -- ^ Map height in pixels before applying scale; 16-1024
+    , scale    :: Maybe Int               -- ^ Map scale; 1-3
+    , chat_id  :: Maybe Int               -- ^ Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
+    }
+  deriving (Eq, Show)
 
-instance Show GetMapThumbnailFile where
-  show
+instance I.ShortShow GetMapThumbnailFile where
+  shortShow
     GetMapThumbnailFile
-      { chat_id = chat_id_,
-        scale = scale_,
-        height = height_,
-        width = width_,
-        zoom = zoom_,
-        location = location_
-      } =
-      "GetMapThumbnailFile"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_,
-            U.p "scale" scale_,
-            U.p "height" height_,
-            U.p "width" width_,
-            U.p "zoom" zoom_,
-            U.p "location" location_
+      { location = location_
+      , zoom     = zoom_
+      , width    = width_
+      , height   = height_
+      , scale    = scale_
+      , chat_id  = chat_id_
+      }
+        = "GetMapThumbnailFile"
+          ++ I.cc
+          [ "location" `I.p` location_
+          , "zoom"     `I.p` zoom_
+          , "width"    `I.p` width_
+          , "height"   `I.p` height_
+          , "scale"    `I.p` scale_
+          , "chat_id"  `I.p` chat_id_
           ]
 
-instance T.ToJSON GetMapThumbnailFile where
+instance AT.ToJSON GetMapThumbnailFile where
   toJSON
     GetMapThumbnailFile
-      { chat_id = chat_id_,
-        scale = scale_,
-        height = height_,
-        width = width_,
-        zoom = zoom_,
-        location = location_
-      } =
-      A.object
-        [ "@type" A..= T.String "getMapThumbnailFile",
-          "chat_id" A..= chat_id_,
-          "scale" A..= scale_,
-          "height" A..= height_,
-          "width" A..= width_,
-          "zoom" A..= zoom_,
-          "location" A..= location_
-        ]
+      { location = location_
+      , zoom     = zoom_
+      , width    = width_
+      , height   = height_
+      , scale    = scale_
+      , chat_id  = chat_id_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "getMapThumbnailFile"
+          , "location" A..= location_
+          , "zoom"     A..= zoom_
+          , "width"    A..= width_
+          , "height"   A..= height_
+          , "scale"    A..= scale_
+          , "chat_id"  A..= chat_id_
+          ]
+
+defaultGetMapThumbnailFile :: GetMapThumbnailFile
+defaultGetMapThumbnailFile =
+  GetMapThumbnailFile
+    { location = Nothing
+    , zoom     = Nothing
+    , width    = Nothing
+    , height   = Nothing
+    , scale    = Nothing
+    , chat_id  = Nothing
+    }
+

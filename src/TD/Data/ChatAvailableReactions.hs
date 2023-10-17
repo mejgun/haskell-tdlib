@@ -1,66 +1,58 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatAvailableReactions where
+module TD.Data.ChatAvailableReactions
+  (ChatAvailableReactions(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
 
 -- | Describes reactions available in the chat
 data ChatAvailableReactions
-  = -- | All reactions are available in the chat
-    ChatAvailableReactionsAll
-  | -- | Only specific reactions are available in the chat @reactions The list of reactions
-    ChatAvailableReactionsSome
-      { -- |
-        reactions :: Maybe [ReactionType.ReactionType]
-      }
-  deriving (Eq)
+  = ChatAvailableReactionsAll -- ^ All reactions are available in the chat
+  | ChatAvailableReactionsSome -- ^ Only specific reactions are available in the chat
+    { reactions :: Maybe [ReactionType.ReactionType] -- ^ The list of reactions
+    }
+  deriving (Eq, Show)
 
-instance Show ChatAvailableReactions where
-  show ChatAvailableReactionsAll =
-    "ChatAvailableReactionsAll"
-      ++ U.cc
-        []
-  show
-    ChatAvailableReactionsSome
-      { reactions = reactions_
-      } =
-      "ChatAvailableReactionsSome"
-        ++ U.cc
-          [ U.p "reactions" reactions_
-          ]
+instance I.ShortShow ChatAvailableReactions where
+  shortShow ChatAvailableReactionsAll
+      = "ChatAvailableReactionsAll"
+  shortShow ChatAvailableReactionsSome
+    { reactions = reactions_
+    }
+      = "ChatAvailableReactionsSome"
+        ++ I.cc
+        [ "reactions" `I.p` reactions_
+        ]
 
-instance T.FromJSON ChatAvailableReactions where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatAvailableReactions where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "chatAvailableReactionsAll" -> parseChatAvailableReactionsAll v
+      "chatAvailableReactionsAll"  -> pure ChatAvailableReactionsAll
       "chatAvailableReactionsSome" -> parseChatAvailableReactionsSome v
-      _ -> mempty
+      _                            -> mempty
+    
     where
-      parseChatAvailableReactionsAll :: A.Value -> T.Parser ChatAvailableReactions
-      parseChatAvailableReactionsAll = A.withObject "ChatAvailableReactionsAll" $ \_ -> return ChatAvailableReactionsAll
-
-      parseChatAvailableReactionsSome :: A.Value -> T.Parser ChatAvailableReactions
+      parseChatAvailableReactionsSome :: A.Value -> AT.Parser ChatAvailableReactions
       parseChatAvailableReactionsSome = A.withObject "ChatAvailableReactionsSome" $ \o -> do
-        reactions_ <- o A..:? "reactions"
-        return $ ChatAvailableReactionsSome {reactions = reactions_}
+        reactions_ <- o A..:?  "reactions"
+        pure $ ChatAvailableReactionsSome
+          { reactions = reactions_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatAvailableReactions where
-  toJSON ChatAvailableReactionsAll =
-    A.object
-      [ "@type" A..= T.String "chatAvailableReactionsAll"
-      ]
-  toJSON
-    ChatAvailableReactionsSome
-      { reactions = reactions_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatAvailableReactionsSome",
-          "reactions" A..= reactions_
+instance AT.ToJSON ChatAvailableReactions where
+  toJSON ChatAvailableReactionsAll
+      = A.object
+        [ "@type" A..= AT.String "chatAvailableReactionsAll"
         ]
+  toJSON ChatAvailableReactionsSome
+    { reactions = reactions_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "chatAvailableReactionsSome"
+        , "reactions" A..= reactions_
+        ]
+

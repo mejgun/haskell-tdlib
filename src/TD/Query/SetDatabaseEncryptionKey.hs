@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetDatabaseEncryptionKey where
+module TD.Query.SetDatabaseEncryptionKey
+  (SetDatabaseEncryptionKey(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
--- Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain @new_encryption_key New encryption key
-data SetDatabaseEncryptionKey = SetDatabaseEncryptionKey
-  { -- |
-    new_encryption_key :: Maybe String
-  }
-  deriving (Eq)
+-- | Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
+data SetDatabaseEncryptionKey
+  = SetDatabaseEncryptionKey
+    { new_encryption_key :: Maybe BS.ByteString -- ^ New encryption key
+    }
+  deriving (Eq, Show)
 
-instance Show SetDatabaseEncryptionKey where
-  show
+instance I.ShortShow SetDatabaseEncryptionKey where
+  shortShow
     SetDatabaseEncryptionKey
       { new_encryption_key = new_encryption_key_
-      } =
-      "SetDatabaseEncryptionKey"
-        ++ U.cc
-          [ U.p "new_encryption_key" new_encryption_key_
+      }
+        = "SetDatabaseEncryptionKey"
+          ++ I.cc
+          [ "new_encryption_key" `I.p` new_encryption_key_
           ]
 
-instance T.ToJSON SetDatabaseEncryptionKey where
+instance AT.ToJSON SetDatabaseEncryptionKey where
   toJSON
     SetDatabaseEncryptionKey
       { new_encryption_key = new_encryption_key_
-      } =
-      A.object
-        [ "@type" A..= T.String "setDatabaseEncryptionKey",
-          "new_encryption_key" A..= new_encryption_key_
-        ]
+      }
+        = A.object
+          [ "@type"              A..= AT.String "setDatabaseEncryptionKey"
+          , "new_encryption_key" A..= fmap I.writeBytes  new_encryption_key_
+          ]
+

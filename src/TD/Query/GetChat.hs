@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChat where
+module TD.Query.GetChat
+  (GetChat(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a chat by its identifier; this is an offline request if the current user is not a bot @chat_id Chat identifier
-data GetChat = GetChat
-  { -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
+data GetChat
+  = GetChat
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChat where
-  show
+instance I.ShortShow GetChat where
+  shortShow
     GetChat
       { chat_id = chat_id_
-      } =
-      "GetChat"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "GetChat"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON GetChat where
+instance AT.ToJSON GetChat where
   toJSON
     GetChat
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChat",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getChat"
+          , "chat_id" A..= chat_id_
+          ]
+

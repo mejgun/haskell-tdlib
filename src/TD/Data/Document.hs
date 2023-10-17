@@ -1,81 +1,63 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Document where
+module TD.Data.Document
+  (Document(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.File as File
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
-import qualified Utils as U
+import qualified TD.Data.File as File
 
--- |
-data Document = -- | Describes a document of any type
-  Document
-  { -- | File containing the document
-    document :: Maybe File.File,
-    -- | Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
-    thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- | Document minithumbnail; may be null
-    minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- | MIME type of the file; as defined by the sender
-    mime_type :: Maybe String,
-    -- | Original name of the file; as defined by the sender
-    file_name :: Maybe String
-  }
-  deriving (Eq)
+data Document
+  = Document -- ^ Describes a document of any type
+    { file_name     :: Maybe T.Text                      -- ^ Original name of the file; as defined by the sender
+    , mime_type     :: Maybe T.Text                      -- ^ MIME type of the file; as defined by the sender
+    , minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ Document minithumbnail; may be null
+    , thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
+    , document      :: Maybe File.File                   -- ^ File containing the document
+    }
+  deriving (Eq, Show)
 
-instance Show Document where
-  show
-    Document
-      { document = document_,
-        thumbnail = thumbnail_,
-        minithumbnail = minithumbnail_,
-        mime_type = mime_type_,
-        file_name = file_name_
-      } =
-      "Document"
-        ++ U.cc
-          [ U.p "document" document_,
-            U.p "thumbnail" thumbnail_,
-            U.p "minithumbnail" minithumbnail_,
-            U.p "mime_type" mime_type_,
-            U.p "file_name" file_name_
-          ]
+instance I.ShortShow Document where
+  shortShow Document
+    { file_name     = file_name_
+    , mime_type     = mime_type_
+    , minithumbnail = minithumbnail_
+    , thumbnail     = thumbnail_
+    , document      = document_
+    }
+      = "Document"
+        ++ I.cc
+        [ "file_name"     `I.p` file_name_
+        , "mime_type"     `I.p` mime_type_
+        , "minithumbnail" `I.p` minithumbnail_
+        , "thumbnail"     `I.p` thumbnail_
+        , "document"      `I.p` document_
+        ]
 
-instance T.FromJSON Document where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Document where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "document" -> parseDocument v
-      _ -> mempty
+      _          -> mempty
+    
     where
-      parseDocument :: A.Value -> T.Parser Document
+      parseDocument :: A.Value -> AT.Parser Document
       parseDocument = A.withObject "Document" $ \o -> do
-        document_ <- o A..:? "document"
-        thumbnail_ <- o A..:? "thumbnail"
-        minithumbnail_ <- o A..:? "minithumbnail"
-        mime_type_ <- o A..:? "mime_type"
-        file_name_ <- o A..:? "file_name"
-        return $ Document {document = document_, thumbnail = thumbnail_, minithumbnail = minithumbnail_, mime_type = mime_type_, file_name = file_name_}
+        file_name_     <- o A..:?  "file_name"
+        mime_type_     <- o A..:?  "mime_type"
+        minithumbnail_ <- o A..:?  "minithumbnail"
+        thumbnail_     <- o A..:?  "thumbnail"
+        document_      <- o A..:?  "document"
+        pure $ Document
+          { file_name     = file_name_
+          , mime_type     = mime_type_
+          , minithumbnail = minithumbnail_
+          , thumbnail     = thumbnail_
+          , document      = document_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Document where
-  toJSON
-    Document
-      { document = document_,
-        thumbnail = thumbnail_,
-        minithumbnail = minithumbnail_,
-        mime_type = mime_type_,
-        file_name = file_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "document",
-          "document" A..= document_,
-          "thumbnail" A..= thumbnail_,
-          "minithumbnail" A..= minithumbnail_,
-          "mime_type" A..= mime_type_,
-          "file_name" A..= file_name_
-        ]

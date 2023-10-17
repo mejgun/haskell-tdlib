@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetStickerKeywords where
+module TD.Query.SetStickerKeywords
+  (SetStickerKeywords(..)
+  , defaultSetStickerKeywords
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
-data SetStickerKeywords = SetStickerKeywords
-  { -- | List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
-    keywords :: Maybe [String],
-    -- | Sticker
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+data SetStickerKeywords
+  = SetStickerKeywords
+    { sticker  :: Maybe InputFile.InputFile -- ^ Sticker
+    , keywords :: Maybe [T.Text]            -- ^ List of up to 20 keywords with total length up to 64 characters, which can be used to find the sticker
+    }
+  deriving (Eq, Show)
 
-instance Show SetStickerKeywords where
-  show
+instance I.ShortShow SetStickerKeywords where
+  shortShow
     SetStickerKeywords
-      { keywords = keywords_,
-        sticker = sticker_
-      } =
-      "SetStickerKeywords"
-        ++ U.cc
-          [ U.p "keywords" keywords_,
-            U.p "sticker" sticker_
+      { sticker  = sticker_
+      , keywords = keywords_
+      }
+        = "SetStickerKeywords"
+          ++ I.cc
+          [ "sticker"  `I.p` sticker_
+          , "keywords" `I.p` keywords_
           ]
 
-instance T.ToJSON SetStickerKeywords where
+instance AT.ToJSON SetStickerKeywords where
   toJSON
     SetStickerKeywords
-      { keywords = keywords_,
-        sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "setStickerKeywords",
-          "keywords" A..= keywords_,
-          "sticker" A..= sticker_
-        ]
+      { sticker  = sticker_
+      , keywords = keywords_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setStickerKeywords"
+          , "sticker"  A..= sticker_
+          , "keywords" A..= keywords_
+          ]
+
+defaultSetStickerKeywords :: SetStickerKeywords
+defaultSetStickerKeywords =
+  SetStickerKeywords
+    { sticker  = Nothing
+    , keywords = Nothing
+    }
+

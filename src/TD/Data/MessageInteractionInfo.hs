@@ -1,73 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageInteractionInfo where
+module TD.Data.MessageInteractionInfo
+  (MessageInteractionInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.MessageReaction as MessageReaction
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
-import qualified Utils as U
+import qualified TD.Data.MessageReaction as MessageReaction
 
--- |
-data MessageInteractionInfo = -- | Contains information about interactions with a message
-  MessageInteractionInfo
-  { -- | The list of reactions added to the message
-    reactions :: Maybe [MessageReaction.MessageReaction],
-    -- | Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
-    reply_info :: Maybe MessageReplyInfo.MessageReplyInfo,
-    -- | Number of times the message was forwarded
-    forward_count :: Maybe Int,
-    -- | Number of times the message was viewed
-    view_count :: Maybe Int
-  }
-  deriving (Eq)
+data MessageInteractionInfo
+  = MessageInteractionInfo -- ^ Contains information about interactions with a message
+    { view_count    :: Maybe Int                               -- ^ Number of times the message was viewed
+    , forward_count :: Maybe Int                               -- ^ Number of times the message was forwarded
+    , reply_info    :: Maybe MessageReplyInfo.MessageReplyInfo -- ^ Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
+    , reactions     :: Maybe [MessageReaction.MessageReaction] -- ^ The list of reactions added to the message
+    }
+  deriving (Eq, Show)
 
-instance Show MessageInteractionInfo where
-  show
-    MessageInteractionInfo
-      { reactions = reactions_,
-        reply_info = reply_info_,
-        forward_count = forward_count_,
-        view_count = view_count_
-      } =
-      "MessageInteractionInfo"
-        ++ U.cc
-          [ U.p "reactions" reactions_,
-            U.p "reply_info" reply_info_,
-            U.p "forward_count" forward_count_,
-            U.p "view_count" view_count_
-          ]
+instance I.ShortShow MessageInteractionInfo where
+  shortShow MessageInteractionInfo
+    { view_count    = view_count_
+    , forward_count = forward_count_
+    , reply_info    = reply_info_
+    , reactions     = reactions_
+    }
+      = "MessageInteractionInfo"
+        ++ I.cc
+        [ "view_count"    `I.p` view_count_
+        , "forward_count" `I.p` forward_count_
+        , "reply_info"    `I.p` reply_info_
+        , "reactions"     `I.p` reactions_
+        ]
 
-instance T.FromJSON MessageInteractionInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageInteractionInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageInteractionInfo" -> parseMessageInteractionInfo v
-      _ -> mempty
+      _                        -> mempty
+    
     where
-      parseMessageInteractionInfo :: A.Value -> T.Parser MessageInteractionInfo
+      parseMessageInteractionInfo :: A.Value -> AT.Parser MessageInteractionInfo
       parseMessageInteractionInfo = A.withObject "MessageInteractionInfo" $ \o -> do
-        reactions_ <- o A..:? "reactions"
-        reply_info_ <- o A..:? "reply_info"
-        forward_count_ <- o A..:? "forward_count"
-        view_count_ <- o A..:? "view_count"
-        return $ MessageInteractionInfo {reactions = reactions_, reply_info = reply_info_, forward_count = forward_count_, view_count = view_count_}
+        view_count_    <- o A..:?  "view_count"
+        forward_count_ <- o A..:?  "forward_count"
+        reply_info_    <- o A..:?  "reply_info"
+        reactions_     <- o A..:?  "reactions"
+        pure $ MessageInteractionInfo
+          { view_count    = view_count_
+          , forward_count = forward_count_
+          , reply_info    = reply_info_
+          , reactions     = reactions_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageInteractionInfo where
-  toJSON
-    MessageInteractionInfo
-      { reactions = reactions_,
-        reply_info = reply_info_,
-        forward_count = forward_count_,
-        view_count = view_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageInteractionInfo",
-          "reactions" A..= reactions_,
-          "reply_info" A..= reply_info_,
-          "forward_count" A..= forward_count_,
-          "view_count" A..= view_count_
-        ]

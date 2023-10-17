@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClearRecentReactions where
+module TD.Query.ClearRecentReactions
+  (ClearRecentReactions(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Clears the list of recently used reactions
-data ClearRecentReactions = ClearRecentReactions
-  {
-  }
-  deriving (Eq)
+-- | Clears the list of recently used reactions
+data ClearRecentReactions
+  = ClearRecentReactions
+  deriving (Eq, Show)
 
-instance Show ClearRecentReactions where
-  show ClearRecentReactions =
-    "ClearRecentReactions"
-      ++ U.cc
-        []
+instance I.ShortShow ClearRecentReactions where
+  shortShow
+    ClearRecentReactions
+        = "ClearRecentReactions"
 
-instance T.ToJSON ClearRecentReactions where
-  toJSON ClearRecentReactions =
-    A.object
-      [ "@type" A..= T.String "clearRecentReactions"
-      ]
+instance AT.ToJSON ClearRecentReactions where
+  toJSON
+    ClearRecentReactions
+        = A.object
+          [ "@type" A..= AT.String "clearRecentReactions"
+          ]
+

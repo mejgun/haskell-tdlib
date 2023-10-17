@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SearchWebApp where
+module TD.Query.SearchWebApp
+  (SearchWebApp(..)
+  , defaultSearchWebApp
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
-data SearchWebApp = SearchWebApp
-  { -- | Short name of the Web App
-    web_app_short_name :: Maybe String,
-    -- | Identifier of the target bot
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
+data SearchWebApp
+  = SearchWebApp
+    { bot_user_id        :: Maybe Int    -- ^ Identifier of the target bot
+    , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
+    }
+  deriving (Eq, Show)
 
-instance Show SearchWebApp where
-  show
+instance I.ShortShow SearchWebApp where
+  shortShow
     SearchWebApp
-      { web_app_short_name = web_app_short_name_,
-        bot_user_id = bot_user_id_
-      } =
-      "SearchWebApp"
-        ++ U.cc
-          [ U.p "web_app_short_name" web_app_short_name_,
-            U.p "bot_user_id" bot_user_id_
+      { bot_user_id        = bot_user_id_
+      , web_app_short_name = web_app_short_name_
+      }
+        = "SearchWebApp"
+          ++ I.cc
+          [ "bot_user_id"        `I.p` bot_user_id_
+          , "web_app_short_name" `I.p` web_app_short_name_
           ]
 
-instance T.ToJSON SearchWebApp where
+instance AT.ToJSON SearchWebApp where
   toJSON
     SearchWebApp
-      { web_app_short_name = web_app_short_name_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "searchWebApp",
-          "web_app_short_name" A..= web_app_short_name_,
-          "bot_user_id" A..= bot_user_id_
-        ]
+      { bot_user_id        = bot_user_id_
+      , web_app_short_name = web_app_short_name_
+      }
+        = A.object
+          [ "@type"              A..= AT.String "searchWebApp"
+          , "bot_user_id"        A..= bot_user_id_
+          , "web_app_short_name" A..= web_app_short_name_
+          ]
+
+defaultSearchWebApp :: SearchWebApp
+defaultSearchWebApp =
+  SearchWebApp
+    { bot_user_id        = Nothing
+    , web_app_short_name = Nothing
+    }
+

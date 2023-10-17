@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetAutosaveSettings where
+module TD.Query.SetAutosaveSettings
+  (SetAutosaveSettings(..)
+  , defaultSetAutosaveSettings
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
 import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
-import qualified Utils as U
 
--- |
--- Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings @scope Autosave settings scope @settings New autosave settings for the scope; pass null to set autosave settings to default
-data SetAutosaveSettings = SetAutosaveSettings
-  { -- |
-    settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings,
-    -- |
-    scope :: Maybe AutosaveSettingsScope.AutosaveSettingsScope
-  }
-  deriving (Eq)
+-- | Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
+data SetAutosaveSettings
+  = SetAutosaveSettings
+    { scope    :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Autosave settings scope
+    , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ New autosave settings for the scope; pass null to set autosave settings to default
+    }
+  deriving (Eq, Show)
 
-instance Show SetAutosaveSettings where
-  show
+instance I.ShortShow SetAutosaveSettings where
+  shortShow
     SetAutosaveSettings
-      { settings = settings_,
-        scope = scope_
-      } =
-      "SetAutosaveSettings"
-        ++ U.cc
-          [ U.p "settings" settings_,
-            U.p "scope" scope_
+      { scope    = scope_
+      , settings = settings_
+      }
+        = "SetAutosaveSettings"
+          ++ I.cc
+          [ "scope"    `I.p` scope_
+          , "settings" `I.p` settings_
           ]
 
-instance T.ToJSON SetAutosaveSettings where
+instance AT.ToJSON SetAutosaveSettings where
   toJSON
     SetAutosaveSettings
-      { settings = settings_,
-        scope = scope_
-      } =
-      A.object
-        [ "@type" A..= T.String "setAutosaveSettings",
-          "settings" A..= settings_,
-          "scope" A..= scope_
-        ]
+      { scope    = scope_
+      , settings = settings_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setAutosaveSettings"
+          , "scope"    A..= scope_
+          , "settings" A..= settings_
+          ]
+
+defaultSetAutosaveSettings :: SetAutosaveSettings
+defaultSetAutosaveSettings =
+  SetAutosaveSettings
+    { scope    = Nothing
+    , settings = Nothing
+    }
+

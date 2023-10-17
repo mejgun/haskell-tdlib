@@ -1,72 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.FoundWebApp where
+module TD.Data.FoundWebApp
+  (FoundWebApp(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.WebApp as WebApp
-import qualified Utils as U
 
--- |
-data FoundWebApp = -- | Contains information about a Web App found by its short name
-  FoundWebApp
-  { -- | True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
-    skip_confirmation :: Maybe Bool,
-    -- | True, if the user must be asked for the permission to the bot to send them messages
-    request_write_access :: Maybe Bool,
-    -- | True, if the app supports "settings_button_pressed" event
-    supports_settings :: Maybe Bool,
-    -- | The Web App
-    web_app :: Maybe WebApp.WebApp
-  }
-  deriving (Eq)
+data FoundWebApp
+  = FoundWebApp -- ^ Contains information about a Web App found by its short name
+    { web_app              :: Maybe WebApp.WebApp -- ^ The Web App
+    , request_write_access :: Maybe Bool          -- ^ True, if the user must be asked for the permission to the bot to send them messages
+    , skip_confirmation    :: Maybe Bool          -- ^ True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
+    }
+  deriving (Eq, Show)
 
-instance Show FoundWebApp where
-  show
-    FoundWebApp
-      { skip_confirmation = skip_confirmation_,
-        request_write_access = request_write_access_,
-        supports_settings = supports_settings_,
-        web_app = web_app_
-      } =
-      "FoundWebApp"
-        ++ U.cc
-          [ U.p "skip_confirmation" skip_confirmation_,
-            U.p "request_write_access" request_write_access_,
-            U.p "supports_settings" supports_settings_,
-            U.p "web_app" web_app_
-          ]
+instance I.ShortShow FoundWebApp where
+  shortShow FoundWebApp
+    { web_app              = web_app_
+    , request_write_access = request_write_access_
+    , skip_confirmation    = skip_confirmation_
+    }
+      = "FoundWebApp"
+        ++ I.cc
+        [ "web_app"              `I.p` web_app_
+        , "request_write_access" `I.p` request_write_access_
+        , "skip_confirmation"    `I.p` skip_confirmation_
+        ]
 
-instance T.FromJSON FoundWebApp where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON FoundWebApp where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "foundWebApp" -> parseFoundWebApp v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseFoundWebApp :: A.Value -> T.Parser FoundWebApp
+      parseFoundWebApp :: A.Value -> AT.Parser FoundWebApp
       parseFoundWebApp = A.withObject "FoundWebApp" $ \o -> do
-        skip_confirmation_ <- o A..:? "skip_confirmation"
-        request_write_access_ <- o A..:? "request_write_access"
-        supports_settings_ <- o A..:? "supports_settings"
-        web_app_ <- o A..:? "web_app"
-        return $ FoundWebApp {skip_confirmation = skip_confirmation_, request_write_access = request_write_access_, supports_settings = supports_settings_, web_app = web_app_}
+        web_app_              <- o A..:?  "web_app"
+        request_write_access_ <- o A..:?  "request_write_access"
+        skip_confirmation_    <- o A..:?  "skip_confirmation"
+        pure $ FoundWebApp
+          { web_app              = web_app_
+          , request_write_access = request_write_access_
+          , skip_confirmation    = skip_confirmation_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON FoundWebApp where
-  toJSON
-    FoundWebApp
-      { skip_confirmation = skip_confirmation_,
-        request_write_access = request_write_access_,
-        supports_settings = supports_settings_,
-        web_app = web_app_
-      } =
-      A.object
-        [ "@type" A..= T.String "foundWebApp",
-          "skip_confirmation" A..= skip_confirmation_,
-          "request_write_access" A..= request_write_access_,
-          "supports_settings" A..= supports_settings_,
-          "web_app" A..= web_app_
-        ]

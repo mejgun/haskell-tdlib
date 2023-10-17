@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.FinishFileGeneration where
+module TD.Query.FinishFileGeneration
+  (FinishFileGeneration(..)
+  , defaultFinishFileGeneration
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Error as Error
-import qualified Utils as U
 
--- |
--- Finishes the file generation
-data FinishFileGeneration = FinishFileGeneration
-  { -- | If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
-    _error :: Maybe Error.Error,
-    -- | The identifier of the generation process
-    generation_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Finishes the file generation
+data FinishFileGeneration
+  = FinishFileGeneration
+    { generation_id :: Maybe Int         -- ^ The identifier of the generation process
+    , _error        :: Maybe Error.Error -- ^ If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
+    }
+  deriving (Eq, Show)
 
-instance Show FinishFileGeneration where
-  show
+instance I.ShortShow FinishFileGeneration where
+  shortShow
     FinishFileGeneration
-      { _error = _error_,
-        generation_id = generation_id_
-      } =
-      "FinishFileGeneration"
-        ++ U.cc
-          [ U.p "_error" _error_,
-            U.p "generation_id" generation_id_
+      { generation_id = generation_id_
+      , _error        = _error_
+      }
+        = "FinishFileGeneration"
+          ++ I.cc
+          [ "generation_id" `I.p` generation_id_
+          , "_error"        `I.p` _error_
           ]
 
-instance T.ToJSON FinishFileGeneration where
+instance AT.ToJSON FinishFileGeneration where
   toJSON
     FinishFileGeneration
-      { _error = _error_,
-        generation_id = generation_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "finishFileGeneration",
-          "error" A..= _error_,
-          "generation_id" A..= U.toS generation_id_
-        ]
+      { generation_id = generation_id_
+      , _error        = _error_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "finishFileGeneration"
+          , "generation_id" A..= fmap I.writeInt64  generation_id_
+          , "error"         A..= _error_
+          ]
+
+defaultFinishFileGeneration :: FinishFileGeneration
+defaultFinishFileGeneration =
+  FinishFileGeneration
+    { generation_id = Nothing
+    , _error        = Nothing
+    }
+

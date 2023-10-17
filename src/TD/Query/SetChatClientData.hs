@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatClientData where
+module TD.Query.SetChatClientData
+  (SetChatClientData(..)
+  , defaultSetChatClientData
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes application-specific data associated with a chat @chat_id Chat identifier @client_data New value of client_data
-data SetChatClientData = SetChatClientData
-  { -- |
-    client_data :: Maybe String,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes application-specific data associated with a chat
+data SetChatClientData
+  = SetChatClientData
+    { chat_id     :: Maybe Int    -- ^ Chat identifier
+    , client_data :: Maybe T.Text -- ^ New value of client_data
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatClientData where
-  show
+instance I.ShortShow SetChatClientData where
+  shortShow
     SetChatClientData
-      { client_data = client_data_,
-        chat_id = chat_id_
-      } =
-      "SetChatClientData"
-        ++ U.cc
-          [ U.p "client_data" client_data_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , client_data = client_data_
+      }
+        = "SetChatClientData"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "client_data" `I.p` client_data_
           ]
 
-instance T.ToJSON SetChatClientData where
+instance AT.ToJSON SetChatClientData where
   toJSON
     SetChatClientData
-      { client_data = client_data_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatClientData",
-          "client_data" A..= client_data_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , client_data = client_data_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "setChatClientData"
+          , "chat_id"     A..= chat_id_
+          , "client_data" A..= client_data_
+          ]
+
+defaultSetChatClientData :: SetChatClientData
+defaultSetChatClientData =
+  SetChatClientData
+    { chat_id     = Nothing
+    , client_data = Nothing
+    }
+

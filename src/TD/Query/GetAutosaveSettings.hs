@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAutosaveSettings where
+module TD.Query.GetAutosaveSettings
+  (GetAutosaveSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns autosave settings for the current user
-data GetAutosaveSettings = GetAutosaveSettings
-  {
-  }
-  deriving (Eq)
+-- | Returns autosave settings for the current user
+data GetAutosaveSettings
+  = GetAutosaveSettings
+  deriving (Eq, Show)
 
-instance Show GetAutosaveSettings where
-  show GetAutosaveSettings =
-    "GetAutosaveSettings"
-      ++ U.cc
-        []
+instance I.ShortShow GetAutosaveSettings where
+  shortShow
+    GetAutosaveSettings
+        = "GetAutosaveSettings"
 
-instance T.ToJSON GetAutosaveSettings where
-  toJSON GetAutosaveSettings =
-    A.object
-      [ "@type" A..= T.String "getAutosaveSettings"
-      ]
+instance AT.ToJSON GetAutosaveSettings where
+  toJSON
+    GetAutosaveSettings
+        = A.object
+          [ "@type" A..= AT.String "getAutosaveSettings"
+          ]
+

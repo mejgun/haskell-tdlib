@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStickerSet where
+module TD.Query.GetStickerSet
+  (GetStickerSet(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a sticker set by its identifier @set_id Identifier of the sticker set
-data GetStickerSet = GetStickerSet
-  { -- |
-    set_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a sticker set by its identifier
+data GetStickerSet
+  = GetStickerSet
+    { set_id :: Maybe Int -- ^ Identifier of the sticker set
+    }
+  deriving (Eq, Show)
 
-instance Show GetStickerSet where
-  show
+instance I.ShortShow GetStickerSet where
+  shortShow
     GetStickerSet
       { set_id = set_id_
-      } =
-      "GetStickerSet"
-        ++ U.cc
-          [ U.p "set_id" set_id_
+      }
+        = "GetStickerSet"
+          ++ I.cc
+          [ "set_id" `I.p` set_id_
           ]
 
-instance T.ToJSON GetStickerSet where
+instance AT.ToJSON GetStickerSet where
   toJSON
     GetStickerSet
       { set_id = set_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getStickerSet",
-          "set_id" A..= U.toS set_id_
-        ]
+      }
+        = A.object
+          [ "@type"  A..= AT.String "getStickerSet"
+          , "set_id" A..= fmap I.writeInt64  set_id_
+          ]
+

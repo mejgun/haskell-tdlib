@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TextEntities where
+module TD.Data.TextEntities
+  (TextEntities(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.TextEntity as TextEntity
-import qualified Utils as U
 
--- |
-data TextEntities = -- | Contains a list of text entities @entities List of text entities
-  TextEntities
-  { -- |
-    entities :: Maybe [TextEntity.TextEntity]
-  }
-  deriving (Eq)
+data TextEntities
+  = TextEntities -- ^ Contains a list of text entities
+    { entities :: Maybe [TextEntity.TextEntity] -- ^ List of text entities
+    }
+  deriving (Eq, Show)
 
-instance Show TextEntities where
-  show
-    TextEntities
-      { entities = entities_
-      } =
-      "TextEntities"
-        ++ U.cc
-          [ U.p "entities" entities_
-          ]
+instance I.ShortShow TextEntities where
+  shortShow TextEntities
+    { entities = entities_
+    }
+      = "TextEntities"
+        ++ I.cc
+        [ "entities" `I.p` entities_
+        ]
 
-instance T.FromJSON TextEntities where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TextEntities where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "textEntities" -> parseTextEntities v
-      _ -> mempty
+      _              -> mempty
+    
     where
-      parseTextEntities :: A.Value -> T.Parser TextEntities
+      parseTextEntities :: A.Value -> AT.Parser TextEntities
       parseTextEntities = A.withObject "TextEntities" $ \o -> do
-        entities_ <- o A..:? "entities"
-        return $ TextEntities {entities = entities_}
+        entities_ <- o A..:?  "entities"
+        pure $ TextEntities
+          { entities = entities_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TextEntities where
-  toJSON
-    TextEntities
-      { entities = entities_
-      } =
-      A.object
-        [ "@type" A..= T.String "textEntities",
-          "entities" A..= entities_
-        ]

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResetPassword where
+module TD.Query.ResetPassword
+  (ResetPassword(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
-data ResetPassword = ResetPassword
-  {
-  }
-  deriving (Eq)
+-- | Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+data ResetPassword
+  = ResetPassword
+  deriving (Eq, Show)
 
-instance Show ResetPassword where
-  show ResetPassword =
-    "ResetPassword"
-      ++ U.cc
-        []
+instance I.ShortShow ResetPassword where
+  shortShow
+    ResetPassword
+        = "ResetPassword"
 
-instance T.ToJSON ResetPassword where
-  toJSON ResetPassword =
-    A.object
-      [ "@type" A..= T.String "resetPassword"
-      ]
+instance AT.ToJSON ResetPassword where
+  toJSON
+    ResetPassword
+        = A.object
+          [ "@type" A..= AT.String "resetPassword"
+          ]
+

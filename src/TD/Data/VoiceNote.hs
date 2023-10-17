@@ -1,80 +1,63 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.VoiceNote where
+module TD.Data.VoiceNote
+  (VoiceNote(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.File as File
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
+import qualified Data.Text as T
 import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
-import qualified Utils as U
+import qualified TD.Data.File as File
 
--- |
-data VoiceNote = -- | Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
-  VoiceNote
-  { -- | File containing the voice note
-    voice :: Maybe File.File,
-    -- | Result of speech recognition in the voice note; may be null
-    speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult,
-    -- | MIME type of the file; as defined by the sender
-    mime_type :: Maybe String,
-    -- | A waveform representation of the voice note in 5-bit format
-    waveform :: Maybe String,
-    -- | Duration of the voice note, in seconds; as defined by the sender
-    duration :: Maybe Int
-  }
-  deriving (Eq)
+data VoiceNote
+  = VoiceNote -- ^ Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
+    { duration                  :: Maybe Int                                             -- ^ Duration of the voice note, in seconds; as defined by the sender
+    , waveform                  :: Maybe BS.ByteString                                   -- ^ A waveform representation of the voice note in 5-bit format
+    , mime_type                 :: Maybe T.Text                                          -- ^ MIME type of the file; as defined by the sender
+    , speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult -- ^ Result of speech recognition in the voice note; may be null
+    , voice                     :: Maybe File.File                                       -- ^ File containing the voice note
+    }
+  deriving (Eq, Show)
 
-instance Show VoiceNote where
-  show
-    VoiceNote
-      { voice = voice_,
-        speech_recognition_result = speech_recognition_result_,
-        mime_type = mime_type_,
-        waveform = waveform_,
-        duration = duration_
-      } =
-      "VoiceNote"
-        ++ U.cc
-          [ U.p "voice" voice_,
-            U.p "speech_recognition_result" speech_recognition_result_,
-            U.p "mime_type" mime_type_,
-            U.p "waveform" waveform_,
-            U.p "duration" duration_
-          ]
+instance I.ShortShow VoiceNote where
+  shortShow VoiceNote
+    { duration                  = duration_
+    , waveform                  = waveform_
+    , mime_type                 = mime_type_
+    , speech_recognition_result = speech_recognition_result_
+    , voice                     = voice_
+    }
+      = "VoiceNote"
+        ++ I.cc
+        [ "duration"                  `I.p` duration_
+        , "waveform"                  `I.p` waveform_
+        , "mime_type"                 `I.p` mime_type_
+        , "speech_recognition_result" `I.p` speech_recognition_result_
+        , "voice"                     `I.p` voice_
+        ]
 
-instance T.FromJSON VoiceNote where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON VoiceNote where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "voiceNote" -> parseVoiceNote v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseVoiceNote :: A.Value -> T.Parser VoiceNote
+      parseVoiceNote :: A.Value -> AT.Parser VoiceNote
       parseVoiceNote = A.withObject "VoiceNote" $ \o -> do
-        voice_ <- o A..:? "voice"
-        speech_recognition_result_ <- o A..:? "speech_recognition_result"
-        mime_type_ <- o A..:? "mime_type"
-        waveform_ <- o A..:? "waveform"
-        duration_ <- o A..:? "duration"
-        return $ VoiceNote {voice = voice_, speech_recognition_result = speech_recognition_result_, mime_type = mime_type_, waveform = waveform_, duration = duration_}
+        duration_                  <- o A..:?                       "duration"
+        waveform_                  <- fmap I.readBytes <$> o A..:?  "waveform"
+        mime_type_                 <- o A..:?                       "mime_type"
+        speech_recognition_result_ <- o A..:?                       "speech_recognition_result"
+        voice_                     <- o A..:?                       "voice"
+        pure $ VoiceNote
+          { duration                  = duration_
+          , waveform                  = waveform_
+          , mime_type                 = mime_type_
+          , speech_recognition_result = speech_recognition_result_
+          , voice                     = voice_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON VoiceNote where
-  toJSON
-    VoiceNote
-      { voice = voice_,
-        speech_recognition_result = speech_recognition_result_,
-        mime_type = mime_type_,
-        waveform = waveform_,
-        duration = duration_
-      } =
-      A.object
-        [ "@type" A..= T.String "voiceNote",
-          "voice" A..= voice_,
-          "speech_recognition_result" A..= speech_recognition_result_,
-          "mime_type" A..= mime_type_,
-          "waveform" A..= waveform_,
-          "duration" A..= duration_
-        ]

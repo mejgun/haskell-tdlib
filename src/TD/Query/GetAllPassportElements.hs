@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAllPassportElements where
+module TD.Query.GetAllPassportElements
+  (GetAllPassportElements(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns all available Telegram Passport elements @password The 2-step verification password of the current user
-data GetAllPassportElements = GetAllPassportElements
-  { -- |
-    password :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns all available Telegram Passport elements
+data GetAllPassportElements
+  = GetAllPassportElements
+    { password :: Maybe T.Text -- ^ The 2-step verification password of the current user
+    }
+  deriving (Eq, Show)
 
-instance Show GetAllPassportElements where
-  show
+instance I.ShortShow GetAllPassportElements where
+  shortShow
     GetAllPassportElements
       { password = password_
-      } =
-      "GetAllPassportElements"
-        ++ U.cc
-          [ U.p "password" password_
+      }
+        = "GetAllPassportElements"
+          ++ I.cc
+          [ "password" `I.p` password_
           ]
 
-instance T.ToJSON GetAllPassportElements where
+instance AT.ToJSON GetAllPassportElements where
   toJSON
     GetAllPassportElements
       { password = password_
-      } =
-      A.object
-        [ "@type" A..= T.String "getAllPassportElements",
-          "password" A..= password_
-        ]
+      }
+        = A.object
+          [ "@type"    A..= AT.String "getAllPassportElements"
+          , "password" A..= password_
+          ]
+

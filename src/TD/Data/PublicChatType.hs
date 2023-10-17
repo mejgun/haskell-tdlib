@@ -1,52 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PublicChatType where
+module TD.Data.PublicChatType
+  (PublicChatType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes a type of public chats
 data PublicChatType
-  = -- | The chat is public, because it has an active username
-    PublicChatTypeHasUsername
-  | -- | The chat is public, because it is a location-based supergroup
-    PublicChatTypeIsLocationBased
-  deriving (Eq)
+  = PublicChatTypeHasUsername -- ^ The chat is public, because it has an active username
+  | PublicChatTypeIsLocationBased -- ^ The chat is public, because it is a location-based supergroup
+  deriving (Eq, Show)
 
-instance Show PublicChatType where
-  show PublicChatTypeHasUsername =
-    "PublicChatTypeHasUsername"
-      ++ U.cc
-        []
-  show PublicChatTypeIsLocationBased =
-    "PublicChatTypeIsLocationBased"
-      ++ U.cc
-        []
+instance I.ShortShow PublicChatType where
+  shortShow PublicChatTypeHasUsername
+      = "PublicChatTypeHasUsername"
+  shortShow PublicChatTypeIsLocationBased
+      = "PublicChatTypeIsLocationBased"
 
-instance T.FromJSON PublicChatType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PublicChatType where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "publicChatTypeHasUsername" -> parsePublicChatTypeHasUsername v
-      "publicChatTypeIsLocationBased" -> parsePublicChatTypeIsLocationBased v
-      _ -> mempty
-    where
-      parsePublicChatTypeHasUsername :: A.Value -> T.Parser PublicChatType
-      parsePublicChatTypeHasUsername = A.withObject "PublicChatTypeHasUsername" $ \_ -> return PublicChatTypeHasUsername
-
-      parsePublicChatTypeIsLocationBased :: A.Value -> T.Parser PublicChatType
-      parsePublicChatTypeIsLocationBased = A.withObject "PublicChatTypeIsLocationBased" $ \_ -> return PublicChatTypeIsLocationBased
+      "publicChatTypeHasUsername"     -> pure PublicChatTypeHasUsername
+      "publicChatTypeIsLocationBased" -> pure PublicChatTypeIsLocationBased
+      _                               -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON PublicChatType where
-  toJSON PublicChatTypeHasUsername =
-    A.object
-      [ "@type" A..= T.String "publicChatTypeHasUsername"
-      ]
-  toJSON PublicChatTypeIsLocationBased =
-    A.object
-      [ "@type" A..= T.String "publicChatTypeIsLocationBased"
-      ]
+instance AT.ToJSON PublicChatType where
+  toJSON PublicChatTypeHasUsername
+      = A.object
+        [ "@type" A..= AT.String "publicChatTypeHasUsername"
+        ]
+  toJSON PublicChatTypeIsLocationBased
+      = A.object
+        [ "@type" A..= AT.String "publicChatTypeIsLocationBased"
+        ]
+

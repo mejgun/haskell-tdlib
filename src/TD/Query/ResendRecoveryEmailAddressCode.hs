@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResendRecoveryEmailAddressCode where
+module TD.Query.ResendRecoveryEmailAddressCode
+  (ResendRecoveryEmailAddressCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resends the 2-step verification recovery email address verification code
-data ResendRecoveryEmailAddressCode = ResendRecoveryEmailAddressCode
-  {
-  }
-  deriving (Eq)
+-- | Resends the 2-step verification recovery email address verification code
+data ResendRecoveryEmailAddressCode
+  = ResendRecoveryEmailAddressCode
+  deriving (Eq, Show)
 
-instance Show ResendRecoveryEmailAddressCode where
-  show ResendRecoveryEmailAddressCode =
-    "ResendRecoveryEmailAddressCode"
-      ++ U.cc
-        []
+instance I.ShortShow ResendRecoveryEmailAddressCode where
+  shortShow
+    ResendRecoveryEmailAddressCode
+        = "ResendRecoveryEmailAddressCode"
 
-instance T.ToJSON ResendRecoveryEmailAddressCode where
-  toJSON ResendRecoveryEmailAddressCode =
-    A.object
-      [ "@type" A..= T.String "resendRecoveryEmailAddressCode"
-      ]
+instance AT.ToJSON ResendRecoveryEmailAddressCode where
+  toJSON
+    ResendRecoveryEmailAddressCode
+        = A.object
+          [ "@type" A..= AT.String "resendRecoveryEmailAddressCode"
+          ]
+

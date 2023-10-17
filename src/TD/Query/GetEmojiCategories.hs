@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetEmojiCategories where
+module TD.Query.GetEmojiCategories
+  (GetEmojiCategories(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiCategoryType as EmojiCategoryType
-import qualified Utils as U
 
--- |
--- Returns available emojis categories @type Type of emoji categories to return; pass null to get default emoji categories
-data GetEmojiCategories = GetEmojiCategories
-  { -- |
-    _type :: Maybe EmojiCategoryType.EmojiCategoryType
-  }
-  deriving (Eq)
+-- | Returns available emojis categories
+data GetEmojiCategories
+  = GetEmojiCategories
+    { _type :: Maybe EmojiCategoryType.EmojiCategoryType -- ^ Type of emoji categories to return; pass null to get default emoji categories
+    }
+  deriving (Eq, Show)
 
-instance Show GetEmojiCategories where
-  show
+instance I.ShortShow GetEmojiCategories where
+  shortShow
     GetEmojiCategories
       { _type = _type_
-      } =
-      "GetEmojiCategories"
-        ++ U.cc
-          [ U.p "_type" _type_
+      }
+        = "GetEmojiCategories"
+          ++ I.cc
+          [ "_type" `I.p` _type_
           ]
 
-instance T.ToJSON GetEmojiCategories where
+instance AT.ToJSON GetEmojiCategories where
   toJSON
     GetEmojiCategories
       { _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getEmojiCategories",
-          "type" A..= _type_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getEmojiCategories"
+          , "type"  A..= _type_
+          ]
+

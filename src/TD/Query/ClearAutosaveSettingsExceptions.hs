@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClearAutosaveSettingsExceptions where
+module TD.Query.ClearAutosaveSettingsExceptions
+  (ClearAutosaveSettingsExceptions(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
-data ClearAutosaveSettingsExceptions = ClearAutosaveSettingsExceptions
-  {
-  }
-  deriving (Eq)
+-- | Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
+data ClearAutosaveSettingsExceptions
+  = ClearAutosaveSettingsExceptions
+  deriving (Eq, Show)
 
-instance Show ClearAutosaveSettingsExceptions where
-  show ClearAutosaveSettingsExceptions =
-    "ClearAutosaveSettingsExceptions"
-      ++ U.cc
-        []
+instance I.ShortShow ClearAutosaveSettingsExceptions where
+  shortShow
+    ClearAutosaveSettingsExceptions
+        = "ClearAutosaveSettingsExceptions"
 
-instance T.ToJSON ClearAutosaveSettingsExceptions where
-  toJSON ClearAutosaveSettingsExceptions =
-    A.object
-      [ "@type" A..= T.String "clearAutosaveSettingsExceptions"
-      ]
+instance AT.ToJSON ClearAutosaveSettingsExceptions where
+  toJSON
+    ClearAutosaveSettingsExceptions
+        = A.object
+          [ "@type" A..= AT.String "clearAutosaveSettingsExceptions"
+          ]
+

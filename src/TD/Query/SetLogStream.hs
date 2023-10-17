@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetLogStream where
+module TD.Query.SetLogStream
+  (SetLogStream(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.LogStream as LogStream
-import qualified Utils as U
 
--- |
--- Sets new log stream for internal logging of TDLib. Can be called synchronously @log_stream New log stream
-data SetLogStream = SetLogStream
-  { -- |
-    log_stream :: Maybe LogStream.LogStream
-  }
-  deriving (Eq)
+-- | Sets new log stream for internal logging of TDLib. Can be called synchronously
+data SetLogStream
+  = SetLogStream
+    { log_stream :: Maybe LogStream.LogStream -- ^ New log stream
+    }
+  deriving (Eq, Show)
 
-instance Show SetLogStream where
-  show
+instance I.ShortShow SetLogStream where
+  shortShow
     SetLogStream
       { log_stream = log_stream_
-      } =
-      "SetLogStream"
-        ++ U.cc
-          [ U.p "log_stream" log_stream_
+      }
+        = "SetLogStream"
+          ++ I.cc
+          [ "log_stream" `I.p` log_stream_
           ]
 
-instance T.ToJSON SetLogStream where
+instance AT.ToJSON SetLogStream where
   toJSON
     SetLogStream
       { log_stream = log_stream_
-      } =
-      A.object
-        [ "@type" A..= T.String "setLogStream",
-          "log_stream" A..= log_stream_
-        ]
+      }
+        = A.object
+          [ "@type"      A..= AT.String "setLogStream"
+          , "log_stream" A..= log_stream_
+          ]
+

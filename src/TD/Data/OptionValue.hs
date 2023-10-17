@@ -1,119 +1,106 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.OptionValue where
+module TD.Data.OptionValue
+  (OptionValue(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Represents the value of an option
 data OptionValue
-  = -- | Represents a boolean option @value The value of the option
-    OptionValueBoolean
-      { -- |
-        value :: Maybe Bool
-      }
-  | -- | Represents an unknown option or an option which has a default value
-    OptionValueEmpty
-  | -- | Represents an integer option @value The value of the option
-    OptionValueInteger
-      { -- |
-        _value :: Maybe Int
-      }
-  | -- | Represents a string option @value The value of the option
-    OptionValueString
-      { -- |
-        __value :: Maybe String
-      }
-  deriving (Eq)
+  = OptionValueBoolean -- ^ Represents a boolean option
+    { value :: Maybe Bool -- ^ The value of the option
+    }
+  | OptionValueEmpty -- ^ Represents an unknown option or an option which has a default value
+  | OptionValueInteger -- ^ Represents an integer option
+    { _value :: Maybe Int -- ^ The value of the option
+    }
+  | OptionValueString -- ^ Represents a string option
+    { __value :: Maybe T.Text -- ^ The value of the option
+    }
+  deriving (Eq, Show)
 
-instance Show OptionValue where
-  show
-    OptionValueBoolean
-      { value = value_
-      } =
-      "OptionValueBoolean"
-        ++ U.cc
-          [ U.p "value" value_
-          ]
-  show OptionValueEmpty =
-    "OptionValueEmpty"
-      ++ U.cc
-        []
-  show
-    OptionValueInteger
-      { _value = _value_
-      } =
-      "OptionValueInteger"
-        ++ U.cc
-          [ U.p "_value" _value_
-          ]
-  show
-    OptionValueString
-      { __value = __value_
-      } =
-      "OptionValueString"
-        ++ U.cc
-          [ U.p "__value" __value_
-          ]
+instance I.ShortShow OptionValue where
+  shortShow OptionValueBoolean
+    { value = value_
+    }
+      = "OptionValueBoolean"
+        ++ I.cc
+        [ "value" `I.p` value_
+        ]
+  shortShow OptionValueEmpty
+      = "OptionValueEmpty"
+  shortShow OptionValueInteger
+    { _value = _value_
+    }
+      = "OptionValueInteger"
+        ++ I.cc
+        [ "_value" `I.p` _value_
+        ]
+  shortShow OptionValueString
+    { __value = __value_
+    }
+      = "OptionValueString"
+        ++ I.cc
+        [ "__value" `I.p` __value_
+        ]
 
-instance T.FromJSON OptionValue where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON OptionValue where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "optionValueBoolean" -> parseOptionValueBoolean v
-      "optionValueEmpty" -> parseOptionValueEmpty v
+      "optionValueEmpty"   -> pure OptionValueEmpty
       "optionValueInteger" -> parseOptionValueInteger v
-      "optionValueString" -> parseOptionValueString v
-      _ -> mempty
+      "optionValueString"  -> parseOptionValueString v
+      _                    -> mempty
+    
     where
-      parseOptionValueBoolean :: A.Value -> T.Parser OptionValue
+      parseOptionValueBoolean :: A.Value -> AT.Parser OptionValue
       parseOptionValueBoolean = A.withObject "OptionValueBoolean" $ \o -> do
-        value_ <- o A..:? "value"
-        return $ OptionValueBoolean {value = value_}
-
-      parseOptionValueEmpty :: A.Value -> T.Parser OptionValue
-      parseOptionValueEmpty = A.withObject "OptionValueEmpty" $ \_ -> return OptionValueEmpty
-
-      parseOptionValueInteger :: A.Value -> T.Parser OptionValue
+        value_ <- o A..:?  "value"
+        pure $ OptionValueBoolean
+          { value = value_
+          }
+      parseOptionValueInteger :: A.Value -> AT.Parser OptionValue
       parseOptionValueInteger = A.withObject "OptionValueInteger" $ \o -> do
-        _value_ <- U.rm <$> (o A..:? "value" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ OptionValueInteger {_value = _value_}
-
-      parseOptionValueString :: A.Value -> T.Parser OptionValue
+        _value_ <- fmap I.readInt64 <$> o A..:?  "value"
+        pure $ OptionValueInteger
+          { _value = _value_
+          }
+      parseOptionValueString :: A.Value -> AT.Parser OptionValue
       parseOptionValueString = A.withObject "OptionValueString" $ \o -> do
-        __value_ <- o A..:? "value"
-        return $ OptionValueString {__value = __value_}
+        __value_ <- o A..:?  "value"
+        pure $ OptionValueString
+          { __value = __value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON OptionValue where
-  toJSON
-    OptionValueBoolean
-      { value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "optionValueBoolean",
-          "value" A..= value_
+instance AT.ToJSON OptionValue where
+  toJSON OptionValueBoolean
+    { value = value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "optionValueBoolean"
+        , "value" A..= value_
         ]
-  toJSON OptionValueEmpty =
-    A.object
-      [ "@type" A..= T.String "optionValueEmpty"
-      ]
-  toJSON
-    OptionValueInteger
-      { _value = _value_
-      } =
-      A.object
-        [ "@type" A..= T.String "optionValueInteger",
-          "value" A..= U.toS _value_
+  toJSON OptionValueEmpty
+      = A.object
+        [ "@type" A..= AT.String "optionValueEmpty"
         ]
-  toJSON
-    OptionValueString
-      { __value = __value_
-      } =
-      A.object
-        [ "@type" A..= T.String "optionValueString",
-          "value" A..= __value_
+  toJSON OptionValueInteger
+    { _value = _value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "optionValueInteger"
+        , "value" A..= fmap I.writeInt64  _value_
         ]
+  toJSON OptionValueString
+    { __value = __value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "optionValueString"
+        , "value" A..= __value_
+        ]
+

@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetCustomEmojiStickerSetThumbnail where
+module TD.Query.SetCustomEmojiStickerSetThumbnail
+  (SetCustomEmojiStickerSetThumbnail(..)
+  , defaultSetCustomEmojiStickerSetThumbnail
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sets a custom emoji sticker set thumbnail; for bots only
-data SetCustomEmojiStickerSetThumbnail = SetCustomEmojiStickerSetThumbnail
-  { -- | Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
-    custom_emoji_id :: Maybe Int,
-    -- | Sticker set name
-    name :: Maybe String
-  }
-  deriving (Eq)
+-- | Sets a custom emoji sticker set thumbnail; for bots only
+data SetCustomEmojiStickerSetThumbnail
+  = SetCustomEmojiStickerSetThumbnail
+    { name            :: Maybe T.Text -- ^ Sticker set name
+    , custom_emoji_id :: Maybe Int    -- ^ Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
+    }
+  deriving (Eq, Show)
 
-instance Show SetCustomEmojiStickerSetThumbnail where
-  show
+instance I.ShortShow SetCustomEmojiStickerSetThumbnail where
+  shortShow
     SetCustomEmojiStickerSetThumbnail
-      { custom_emoji_id = custom_emoji_id_,
-        name = name_
-      } =
-      "SetCustomEmojiStickerSetThumbnail"
-        ++ U.cc
-          [ U.p "custom_emoji_id" custom_emoji_id_,
-            U.p "name" name_
+      { name            = name_
+      , custom_emoji_id = custom_emoji_id_
+      }
+        = "SetCustomEmojiStickerSetThumbnail"
+          ++ I.cc
+          [ "name"            `I.p` name_
+          , "custom_emoji_id" `I.p` custom_emoji_id_
           ]
 
-instance T.ToJSON SetCustomEmojiStickerSetThumbnail where
+instance AT.ToJSON SetCustomEmojiStickerSetThumbnail where
   toJSON
     SetCustomEmojiStickerSetThumbnail
-      { custom_emoji_id = custom_emoji_id_,
-        name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "setCustomEmojiStickerSetThumbnail",
-          "custom_emoji_id" A..= U.toS custom_emoji_id_,
-          "name" A..= name_
-        ]
+      { name            = name_
+      , custom_emoji_id = custom_emoji_id_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "setCustomEmojiStickerSetThumbnail"
+          , "name"            A..= name_
+          , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
+          ]
+
+defaultSetCustomEmojiStickerSetThumbnail :: SetCustomEmojiStickerSetThumbnail
+defaultSetCustomEmojiStickerSetThumbnail =
+  SetCustomEmojiStickerSetThumbnail
+    { name            = Nothing
+    , custom_emoji_id = Nothing
+    }
+

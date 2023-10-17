@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetSavedAnimations where
+module TD.Query.GetSavedAnimations
+  (GetSavedAnimations(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns saved animations
-data GetSavedAnimations = GetSavedAnimations
-  {
-  }
-  deriving (Eq)
+-- | Returns saved animations
+data GetSavedAnimations
+  = GetSavedAnimations
+  deriving (Eq, Show)
 
-instance Show GetSavedAnimations where
-  show GetSavedAnimations =
-    "GetSavedAnimations"
-      ++ U.cc
-        []
+instance I.ShortShow GetSavedAnimations where
+  shortShow
+    GetSavedAnimations
+        = "GetSavedAnimations"
 
-instance T.ToJSON GetSavedAnimations where
-  toJSON GetSavedAnimations =
-    A.object
-      [ "@type" A..= T.String "getSavedAnimations"
-      ]
+instance AT.ToJSON GetSavedAnimations where
+  toJSON
+    GetSavedAnimations
+        = A.object
+          [ "@type" A..= AT.String "getSavedAnimations"
+          ]
+

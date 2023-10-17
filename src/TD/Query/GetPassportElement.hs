@@ -1,43 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPassportElement where
+module TD.Query.GetPassportElement
+  (GetPassportElement(..)
+  , defaultGetPassportElement
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
--- Returns one of the available Telegram Passport elements @type Telegram Passport element type @password The 2-step verification password of the current user
-data GetPassportElement = GetPassportElement
-  { -- |
-    password :: Maybe String,
-    -- |
-    _type :: Maybe PassportElementType.PassportElementType
-  }
-  deriving (Eq)
+-- | Returns one of the available Telegram Passport elements
+data GetPassportElement
+  = GetPassportElement
+    { _type    :: Maybe PassportElementType.PassportElementType -- ^ Telegram Passport element type
+    , password :: Maybe T.Text                                  -- ^ The 2-step verification password of the current user
+    }
+  deriving (Eq, Show)
 
-instance Show GetPassportElement where
-  show
+instance I.ShortShow GetPassportElement where
+  shortShow
     GetPassportElement
-      { password = password_,
-        _type = _type_
-      } =
-      "GetPassportElement"
-        ++ U.cc
-          [ U.p "password" password_,
-            U.p "_type" _type_
+      { _type    = _type_
+      , password = password_
+      }
+        = "GetPassportElement"
+          ++ I.cc
+          [ "_type"    `I.p` _type_
+          , "password" `I.p` password_
           ]
 
-instance T.ToJSON GetPassportElement where
+instance AT.ToJSON GetPassportElement where
   toJSON
     GetPassportElement
-      { password = password_,
-        _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "getPassportElement",
-          "password" A..= password_,
-          "type" A..= _type_
-        ]
+      { _type    = _type_
+      , password = password_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "getPassportElement"
+          , "type"     A..= _type_
+          , "password" A..= password_
+          ]
+
+defaultGetPassportElement :: GetPassportElement
+defaultGetPassportElement =
+  GetPassportElement
+    { _type    = Nothing
+    , password = Nothing
+    }
+

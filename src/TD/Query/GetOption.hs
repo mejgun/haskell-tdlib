@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetOption where
+module TD.Query.GetOption
+  (GetOption(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
-data GetOption = GetOption
-  { -- | The name of the option
-    name :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
+data GetOption
+  = GetOption
+    { name :: Maybe T.Text -- ^ The name of the option
+    }
+  deriving (Eq, Show)
 
-instance Show GetOption where
-  show
+instance I.ShortShow GetOption where
+  shortShow
     GetOption
       { name = name_
-      } =
-      "GetOption"
-        ++ U.cc
-          [ U.p "name" name_
+      }
+        = "GetOption"
+          ++ I.cc
+          [ "name" `I.p` name_
           ]
 
-instance T.ToJSON GetOption where
+instance AT.ToJSON GetOption where
   toJSON
     GetOption
       { name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "getOption",
-          "name" A..= name_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getOption"
+          , "name"  A..= name_
+          ]
+

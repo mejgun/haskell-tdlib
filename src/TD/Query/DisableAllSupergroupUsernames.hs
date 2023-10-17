@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DisableAllSupergroupUsernames where
+module TD.Query.DisableAllSupergroupUsernames
+  (DisableAllSupergroupUsernames(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel @supergroup_id Identifier of the supergroup or channel
-data DisableAllSupergroupUsernames = DisableAllSupergroupUsernames
-  { -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+data DisableAllSupergroupUsernames
+  = DisableAllSupergroupUsernames
+    { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup or channel
+    }
+  deriving (Eq, Show)
 
-instance Show DisableAllSupergroupUsernames where
-  show
+instance I.ShortShow DisableAllSupergroupUsernames where
+  shortShow
     DisableAllSupergroupUsernames
       { supergroup_id = supergroup_id_
-      } =
-      "DisableAllSupergroupUsernames"
-        ++ U.cc
-          [ U.p "supergroup_id" supergroup_id_
+      }
+        = "DisableAllSupergroupUsernames"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
           ]
 
-instance T.ToJSON DisableAllSupergroupUsernames where
+instance AT.ToJSON DisableAllSupergroupUsernames where
   toJSON
     DisableAllSupergroupUsernames
       { supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "disableAllSupergroupUsernames",
-          "supergroup_id" A..= supergroup_id_
-        ]
+      }
+        = A.object
+          [ "@type"         A..= AT.String "disableAllSupergroupUsernames"
+          , "supergroup_id" A..= supergroup_id_
+          ]
+

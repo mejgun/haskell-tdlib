@@ -1,66 +1,51 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.UnreadReaction where
+module TD.Data.UnreadReaction
+  (UnreadReaction(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.MessageSender as MessageSender
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
-import qualified Utils as U
+import qualified TD.Data.MessageSender as MessageSender
 
--- |
-data UnreadReaction = -- | Contains information about an unread reaction to a message
-  UnreadReaction
-  { -- | True, if the reaction was added with a big animation
-    is_big :: Maybe Bool,
-    -- | Identifier of the sender, added the reaction
-    sender_id :: Maybe MessageSender.MessageSender,
-    -- | Type of the reaction
-    _type :: Maybe ReactionType.ReactionType
-  }
-  deriving (Eq)
+data UnreadReaction
+  = UnreadReaction -- ^ Contains information about an unread reaction to a message
+    { _type     :: Maybe ReactionType.ReactionType   -- ^ Type of the reaction
+    , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender, added the reaction
+    , is_big    :: Maybe Bool                        -- ^ True, if the reaction was added with a big animation
+    }
+  deriving (Eq, Show)
 
-instance Show UnreadReaction where
-  show
-    UnreadReaction
-      { is_big = is_big_,
-        sender_id = sender_id_,
-        _type = _type_
-      } =
-      "UnreadReaction"
-        ++ U.cc
-          [ U.p "is_big" is_big_,
-            U.p "sender_id" sender_id_,
-            U.p "_type" _type_
-          ]
+instance I.ShortShow UnreadReaction where
+  shortShow UnreadReaction
+    { _type     = _type_
+    , sender_id = sender_id_
+    , is_big    = is_big_
+    }
+      = "UnreadReaction"
+        ++ I.cc
+        [ "_type"     `I.p` _type_
+        , "sender_id" `I.p` sender_id_
+        , "is_big"    `I.p` is_big_
+        ]
 
-instance T.FromJSON UnreadReaction where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON UnreadReaction where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "unreadReaction" -> parseUnreadReaction v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseUnreadReaction :: A.Value -> T.Parser UnreadReaction
+      parseUnreadReaction :: A.Value -> AT.Parser UnreadReaction
       parseUnreadReaction = A.withObject "UnreadReaction" $ \o -> do
-        is_big_ <- o A..:? "is_big"
-        sender_id_ <- o A..:? "sender_id"
-        _type_ <- o A..:? "type"
-        return $ UnreadReaction {is_big = is_big_, sender_id = sender_id_, _type = _type_}
+        _type_     <- o A..:?  "type"
+        sender_id_ <- o A..:?  "sender_id"
+        is_big_    <- o A..:?  "is_big"
+        pure $ UnreadReaction
+          { _type     = _type_
+          , sender_id = sender_id_
+          , is_big    = is_big_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON UnreadReaction where
-  toJSON
-    UnreadReaction
-      { is_big = is_big_,
-        sender_id = sender_id_,
-        _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "unreadReaction",
-          "is_big" A..= is_big_,
-          "sender_id" A..= sender_id_,
-          "type" A..= _type_
-        ]

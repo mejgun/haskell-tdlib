@@ -1,60 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DiscardCall where
+module TD.Query.DiscardCall
+  (DiscardCall(..)
+  , defaultDiscardCall
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Discards a call
-data DiscardCall = DiscardCall
-  { -- | Identifier of the connection used during the call
-    connection_id :: Maybe Int,
-    -- | Pass true if the call was a video call
-    is_video :: Maybe Bool,
-    -- | The call duration, in seconds
-    duration :: Maybe Int,
-    -- | Pass true if the user was disconnected
-    is_disconnected :: Maybe Bool,
-    -- | Call identifier
-    call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Discards a call
+data DiscardCall
+  = DiscardCall
+    { call_id         :: Maybe Int  -- ^ Call identifier
+    , is_disconnected :: Maybe Bool -- ^ Pass true if the user was disconnected
+    , duration        :: Maybe Int  -- ^ The call duration, in seconds
+    , is_video        :: Maybe Bool -- ^ Pass true if the call was a video call
+    , connection_id   :: Maybe Int  -- ^ Identifier of the connection used during the call
+    }
+  deriving (Eq, Show)
 
-instance Show DiscardCall where
-  show
+instance I.ShortShow DiscardCall where
+  shortShow
     DiscardCall
-      { connection_id = connection_id_,
-        is_video = is_video_,
-        duration = duration_,
-        is_disconnected = is_disconnected_,
-        call_id = call_id_
-      } =
-      "DiscardCall"
-        ++ U.cc
-          [ U.p "connection_id" connection_id_,
-            U.p "is_video" is_video_,
-            U.p "duration" duration_,
-            U.p "is_disconnected" is_disconnected_,
-            U.p "call_id" call_id_
+      { call_id         = call_id_
+      , is_disconnected = is_disconnected_
+      , duration        = duration_
+      , is_video        = is_video_
+      , connection_id   = connection_id_
+      }
+        = "DiscardCall"
+          ++ I.cc
+          [ "call_id"         `I.p` call_id_
+          , "is_disconnected" `I.p` is_disconnected_
+          , "duration"        `I.p` duration_
+          , "is_video"        `I.p` is_video_
+          , "connection_id"   `I.p` connection_id_
           ]
 
-instance T.ToJSON DiscardCall where
+instance AT.ToJSON DiscardCall where
   toJSON
     DiscardCall
-      { connection_id = connection_id_,
-        is_video = is_video_,
-        duration = duration_,
-        is_disconnected = is_disconnected_,
-        call_id = call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "discardCall",
-          "connection_id" A..= U.toS connection_id_,
-          "is_video" A..= is_video_,
-          "duration" A..= duration_,
-          "is_disconnected" A..= is_disconnected_,
-          "call_id" A..= call_id_
-        ]
+      { call_id         = call_id_
+      , is_disconnected = is_disconnected_
+      , duration        = duration_
+      , is_video        = is_video_
+      , connection_id   = connection_id_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "discardCall"
+          , "call_id"         A..= call_id_
+          , "is_disconnected" A..= is_disconnected_
+          , "duration"        A..= duration_
+          , "is_video"        A..= is_video_
+          , "connection_id"   A..= fmap I.writeInt64  connection_id_
+          ]
+
+defaultDiscardCall :: DiscardCall
+defaultDiscardCall =
+  DiscardCall
+    { call_id         = Nothing
+    , is_disconnected = Nothing
+    , duration        = Nothing
+    , is_video        = Nothing
+    , connection_id   = Nothing
+    }
+

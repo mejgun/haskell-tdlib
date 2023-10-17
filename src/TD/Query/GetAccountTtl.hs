@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAccountTtl where
+module TD.Query.GetAccountTtl
+  (GetAccountTtl(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the period of inactivity after which the account of the current user will automatically be deleted
-data GetAccountTtl = GetAccountTtl
-  {
-  }
-  deriving (Eq)
+-- | Returns the period of inactivity after which the account of the current user will automatically be deleted
+data GetAccountTtl
+  = GetAccountTtl
+  deriving (Eq, Show)
 
-instance Show GetAccountTtl where
-  show GetAccountTtl =
-    "GetAccountTtl"
-      ++ U.cc
-        []
+instance I.ShortShow GetAccountTtl where
+  shortShow
+    GetAccountTtl
+        = "GetAccountTtl"
 
-instance T.ToJSON GetAccountTtl where
-  toJSON GetAccountTtl =
-    A.object
-      [ "@type" A..= T.String "getAccountTtl"
-      ]
+instance AT.ToJSON GetAccountTtl where
+  toJSON
+    GetAccountTtl
+        = A.object
+          [ "@type" A..= AT.String "getAccountTtl"
+          ]
+

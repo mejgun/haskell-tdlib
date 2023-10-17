@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBotInfoDescription where
+module TD.Query.GetBotInfoDescription
+  (GetBotInfoDescription(..)
+  , defaultGetBotInfoDescription
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
-data GetBotInfoDescription = GetBotInfoDescription
-  { -- | A two-letter ISO 639-1 language code or an empty string
-    language_code :: Maybe String,
-    -- | Identifier of the target bot
-    bot_user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
+data GetBotInfoDescription
+  = GetBotInfoDescription
+    { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot
+    , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code or an empty string
+    }
+  deriving (Eq, Show)
 
-instance Show GetBotInfoDescription where
-  show
+instance I.ShortShow GetBotInfoDescription where
+  shortShow
     GetBotInfoDescription
-      { language_code = language_code_,
-        bot_user_id = bot_user_id_
-      } =
-      "GetBotInfoDescription"
-        ++ U.cc
-          [ U.p "language_code" language_code_,
-            U.p "bot_user_id" bot_user_id_
+      { bot_user_id   = bot_user_id_
+      , language_code = language_code_
+      }
+        = "GetBotInfoDescription"
+          ++ I.cc
+          [ "bot_user_id"   `I.p` bot_user_id_
+          , "language_code" `I.p` language_code_
           ]
 
-instance T.ToJSON GetBotInfoDescription where
+instance AT.ToJSON GetBotInfoDescription where
   toJSON
     GetBotInfoDescription
-      { language_code = language_code_,
-        bot_user_id = bot_user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBotInfoDescription",
-          "language_code" A..= language_code_,
-          "bot_user_id" A..= bot_user_id_
-        ]
+      { bot_user_id   = bot_user_id_
+      , language_code = language_code_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "getBotInfoDescription"
+          , "bot_user_id"   A..= bot_user_id_
+          , "language_code" A..= language_code_
+          ]
+
+defaultGetBotInfoDescription :: GetBotInfoDescription
+defaultGetBotInfoDescription =
+  GetBotInfoDescription
+    { bot_user_id   = Nothing
+    , language_code = Nothing
+    }
+

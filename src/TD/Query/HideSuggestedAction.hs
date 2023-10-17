@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.HideSuggestedAction where
+module TD.Query.HideSuggestedAction
+  (HideSuggestedAction(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.SuggestedAction as SuggestedAction
-import qualified Utils as U
 
--- |
--- Hides a suggested action @action Suggested action to hide
-data HideSuggestedAction = HideSuggestedAction
-  { -- |
-    action :: Maybe SuggestedAction.SuggestedAction
-  }
-  deriving (Eq)
+-- | Hides a suggested action
+data HideSuggestedAction
+  = HideSuggestedAction
+    { action :: Maybe SuggestedAction.SuggestedAction -- ^ Suggested action to hide
+    }
+  deriving (Eq, Show)
 
-instance Show HideSuggestedAction where
-  show
+instance I.ShortShow HideSuggestedAction where
+  shortShow
     HideSuggestedAction
       { action = action_
-      } =
-      "HideSuggestedAction"
-        ++ U.cc
-          [ U.p "action" action_
+      }
+        = "HideSuggestedAction"
+          ++ I.cc
+          [ "action" `I.p` action_
           ]
 
-instance T.ToJSON HideSuggestedAction where
+instance AT.ToJSON HideSuggestedAction where
   toJSON
     HideSuggestedAction
       { action = action_
-      } =
-      A.object
-        [ "@type" A..= T.String "hideSuggestedAction",
-          "action" A..= action_
-        ]
+      }
+        = A.object
+          [ "@type"  A..= AT.String "hideSuggestedAction"
+          , "action" A..= action_
+          ]
+

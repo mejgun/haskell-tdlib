@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ClearRecentEmojiStatuses where
+module TD.Query.ClearRecentEmojiStatuses
+  (ClearRecentEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Clears the list of recently used emoji statuses
-data ClearRecentEmojiStatuses = ClearRecentEmojiStatuses
-  {
-  }
-  deriving (Eq)
+-- | Clears the list of recently used emoji statuses
+data ClearRecentEmojiStatuses
+  = ClearRecentEmojiStatuses
+  deriving (Eq, Show)
 
-instance Show ClearRecentEmojiStatuses where
-  show ClearRecentEmojiStatuses =
-    "ClearRecentEmojiStatuses"
-      ++ U.cc
-        []
+instance I.ShortShow ClearRecentEmojiStatuses where
+  shortShow
+    ClearRecentEmojiStatuses
+        = "ClearRecentEmojiStatuses"
 
-instance T.ToJSON ClearRecentEmojiStatuses where
-  toJSON ClearRecentEmojiStatuses =
-    A.object
-      [ "@type" A..= T.String "clearRecentEmojiStatuses"
-      ]
+instance AT.ToJSON ClearRecentEmojiStatuses where
+  toJSON
+    ClearRecentEmojiStatuses
+        = A.object
+          [ "@type" A..= AT.String "clearRecentEmojiStatuses"
+          ]
+

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetDefaultProfilePhotoCustomEmojiStickers where
+module TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
+  (GetDefaultProfilePhotoCustomEmojiStickers(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns default list of custom emoji stickers for placing on a profile photo
-data GetDefaultProfilePhotoCustomEmojiStickers = GetDefaultProfilePhotoCustomEmojiStickers
-  {
-  }
-  deriving (Eq)
+-- | Returns default list of custom emoji stickers for placing on a profile photo
+data GetDefaultProfilePhotoCustomEmojiStickers
+  = GetDefaultProfilePhotoCustomEmojiStickers
+  deriving (Eq, Show)
 
-instance Show GetDefaultProfilePhotoCustomEmojiStickers where
-  show GetDefaultProfilePhotoCustomEmojiStickers =
-    "GetDefaultProfilePhotoCustomEmojiStickers"
-      ++ U.cc
-        []
+instance I.ShortShow GetDefaultProfilePhotoCustomEmojiStickers where
+  shortShow
+    GetDefaultProfilePhotoCustomEmojiStickers
+        = "GetDefaultProfilePhotoCustomEmojiStickers"
 
-instance T.ToJSON GetDefaultProfilePhotoCustomEmojiStickers where
-  toJSON GetDefaultProfilePhotoCustomEmojiStickers =
-    A.object
-      [ "@type" A..= T.String "getDefaultProfilePhotoCustomEmojiStickers"
-      ]
+instance AT.ToJSON GetDefaultProfilePhotoCustomEmojiStickers where
+  toJSON
+    GetDefaultProfilePhotoCustomEmojiStickers
+        = A.object
+          [ "@type" A..= AT.String "getDefaultProfilePhotoCustomEmojiStickers"
+          ]
+

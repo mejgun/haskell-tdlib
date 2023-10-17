@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatMembers where
+module TD.Data.ChatMembers
+  (ChatMembers(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatMember as ChatMember
-import qualified Utils as U
 
--- |
-data ChatMembers = -- | Contains a list of chat members @total_count Approximate total number of chat members found @members A list of chat members
-  ChatMembers
-  { -- |
-    members :: Maybe [ChatMember.ChatMember],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data ChatMembers
+  = ChatMembers -- ^ Contains a list of chat members
+    { total_count :: Maybe Int                     -- ^ Approximate total number of chat members found
+    , members     :: Maybe [ChatMember.ChatMember] -- ^ A list of chat members
+    }
+  deriving (Eq, Show)
 
-instance Show ChatMembers where
-  show
-    ChatMembers
-      { members = members_,
-        total_count = total_count_
-      } =
-      "ChatMembers"
-        ++ U.cc
-          [ U.p "members" members_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow ChatMembers where
+  shortShow ChatMembers
+    { total_count = total_count_
+    , members     = members_
+    }
+      = "ChatMembers"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "members"     `I.p` members_
+        ]
 
-instance T.FromJSON ChatMembers where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatMembers where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatMembers" -> parseChatMembers v
-      _ -> mempty
+      _             -> mempty
+    
     where
-      parseChatMembers :: A.Value -> T.Parser ChatMembers
+      parseChatMembers :: A.Value -> AT.Parser ChatMembers
       parseChatMembers = A.withObject "ChatMembers" $ \o -> do
-        members_ <- o A..:? "members"
-        total_count_ <- o A..:? "total_count"
-        return $ ChatMembers {members = members_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        members_     <- o A..:?  "members"
+        pure $ ChatMembers
+          { total_count = total_count_
+          , members     = members_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatMembers where
-  toJSON
-    ChatMembers
-      { members = members_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatMembers",
-          "members" A..= members_,
-          "total_count" A..= total_count_
-        ]

@@ -1,37 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DeleteChat where
+module TD.Query.DeleteChat
+  (DeleteChat(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members.
--- Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
-data DeleteChat = DeleteChat
-  { -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
+data DeleteChat
+  = DeleteChat
+    { chat_id :: Maybe Int -- ^ Chat identifier
+    }
+  deriving (Eq, Show)
 
-instance Show DeleteChat where
-  show
+instance I.ShortShow DeleteChat where
+  shortShow
     DeleteChat
       { chat_id = chat_id_
-      } =
-      "DeleteChat"
-        ++ U.cc
-          [ U.p "chat_id" chat_id_
+      }
+        = "DeleteChat"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
           ]
 
-instance T.ToJSON DeleteChat where
+instance AT.ToJSON DeleteChat where
   toJSON
     DeleteChat
       { chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "deleteChat",
-          "chat_id" A..= chat_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "deleteChat"
+          , "chat_id" A..= chat_id_
+          ]
+

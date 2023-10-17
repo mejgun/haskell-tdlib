@@ -1,64 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatStatisticsMessageSenderInfo where
+module TD.Data.ChatStatisticsMessageSenderInfo
+  (ChatStatisticsMessageSenderInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data ChatStatisticsMessageSenderInfo = -- | Contains statistics about messages sent by a user
-  ChatStatisticsMessageSenderInfo
-  { -- | Average number of characters in sent messages; 0 if unknown
-    average_character_count :: Maybe Int,
-    -- | Number of sent messages
-    sent_message_count :: Maybe Int,
-    -- | User identifier
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatStatisticsMessageSenderInfo
+  = ChatStatisticsMessageSenderInfo -- ^ Contains statistics about messages sent by a user
+    { user_id                 :: Maybe Int -- ^ User identifier
+    , sent_message_count      :: Maybe Int -- ^ Number of sent messages
+    , average_character_count :: Maybe Int -- ^ Average number of characters in sent messages; 0 if unknown
+    }
+  deriving (Eq, Show)
 
-instance Show ChatStatisticsMessageSenderInfo where
-  show
-    ChatStatisticsMessageSenderInfo
-      { average_character_count = average_character_count_,
-        sent_message_count = sent_message_count_,
-        user_id = user_id_
-      } =
-      "ChatStatisticsMessageSenderInfo"
-        ++ U.cc
-          [ U.p "average_character_count" average_character_count_,
-            U.p "sent_message_count" sent_message_count_,
-            U.p "user_id" user_id_
-          ]
+instance I.ShortShow ChatStatisticsMessageSenderInfo where
+  shortShow ChatStatisticsMessageSenderInfo
+    { user_id                 = user_id_
+    , sent_message_count      = sent_message_count_
+    , average_character_count = average_character_count_
+    }
+      = "ChatStatisticsMessageSenderInfo"
+        ++ I.cc
+        [ "user_id"                 `I.p` user_id_
+        , "sent_message_count"      `I.p` sent_message_count_
+        , "average_character_count" `I.p` average_character_count_
+        ]
 
-instance T.FromJSON ChatStatisticsMessageSenderInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatStatisticsMessageSenderInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatStatisticsMessageSenderInfo" -> parseChatStatisticsMessageSenderInfo v
-      _ -> mempty
+      _                                 -> mempty
+    
     where
-      parseChatStatisticsMessageSenderInfo :: A.Value -> T.Parser ChatStatisticsMessageSenderInfo
+      parseChatStatisticsMessageSenderInfo :: A.Value -> AT.Parser ChatStatisticsMessageSenderInfo
       parseChatStatisticsMessageSenderInfo = A.withObject "ChatStatisticsMessageSenderInfo" $ \o -> do
-        average_character_count_ <- o A..:? "average_character_count"
-        sent_message_count_ <- o A..:? "sent_message_count"
-        user_id_ <- o A..:? "user_id"
-        return $ ChatStatisticsMessageSenderInfo {average_character_count = average_character_count_, sent_message_count = sent_message_count_, user_id = user_id_}
+        user_id_                 <- o A..:?  "user_id"
+        sent_message_count_      <- o A..:?  "sent_message_count"
+        average_character_count_ <- o A..:?  "average_character_count"
+        pure $ ChatStatisticsMessageSenderInfo
+          { user_id                 = user_id_
+          , sent_message_count      = sent_message_count_
+          , average_character_count = average_character_count_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatStatisticsMessageSenderInfo where
-  toJSON
-    ChatStatisticsMessageSenderInfo
-      { average_character_count = average_character_count_,
-        sent_message_count = sent_message_count_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatStatisticsMessageSenderInfo",
-          "average_character_count" A..= average_character_count_,
-          "sent_message_count" A..= sent_message_count_,
-          "user_id" A..= user_id_
-        ]

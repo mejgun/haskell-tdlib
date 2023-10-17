@@ -1,66 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EmojiCategoryType where
+module TD.Data.EmojiCategoryType
+  (EmojiCategoryType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes type of an emoji category
 data EmojiCategoryType
-  = -- | The category must be used by default
-    EmojiCategoryTypeDefault
-  | -- | The category must be used for emoji status selection
-    EmojiCategoryTypeEmojiStatus
-  | -- | The category must be used for chat photo emoji selection
-    EmojiCategoryTypeChatPhoto
-  deriving (Eq)
+  = EmojiCategoryTypeDefault -- ^ The category must be used by default
+  | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection
+  | EmojiCategoryTypeChatPhoto -- ^ The category must be used for chat photo emoji selection
+  deriving (Eq, Show)
 
-instance Show EmojiCategoryType where
-  show EmojiCategoryTypeDefault =
-    "EmojiCategoryTypeDefault"
-      ++ U.cc
-        []
-  show EmojiCategoryTypeEmojiStatus =
-    "EmojiCategoryTypeEmojiStatus"
-      ++ U.cc
-        []
-  show EmojiCategoryTypeChatPhoto =
-    "EmojiCategoryTypeChatPhoto"
-      ++ U.cc
-        []
+instance I.ShortShow EmojiCategoryType where
+  shortShow EmojiCategoryTypeDefault
+      = "EmojiCategoryTypeDefault"
+  shortShow EmojiCategoryTypeEmojiStatus
+      = "EmojiCategoryTypeEmojiStatus"
+  shortShow EmojiCategoryTypeChatPhoto
+      = "EmojiCategoryTypeChatPhoto"
 
-instance T.FromJSON EmojiCategoryType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EmojiCategoryType where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "emojiCategoryTypeDefault" -> parseEmojiCategoryTypeDefault v
-      "emojiCategoryTypeEmojiStatus" -> parseEmojiCategoryTypeEmojiStatus v
-      "emojiCategoryTypeChatPhoto" -> parseEmojiCategoryTypeChatPhoto v
-      _ -> mempty
-    where
-      parseEmojiCategoryTypeDefault :: A.Value -> T.Parser EmojiCategoryType
-      parseEmojiCategoryTypeDefault = A.withObject "EmojiCategoryTypeDefault" $ \_ -> return EmojiCategoryTypeDefault
-
-      parseEmojiCategoryTypeEmojiStatus :: A.Value -> T.Parser EmojiCategoryType
-      parseEmojiCategoryTypeEmojiStatus = A.withObject "EmojiCategoryTypeEmojiStatus" $ \_ -> return EmojiCategoryTypeEmojiStatus
-
-      parseEmojiCategoryTypeChatPhoto :: A.Value -> T.Parser EmojiCategoryType
-      parseEmojiCategoryTypeChatPhoto = A.withObject "EmojiCategoryTypeChatPhoto" $ \_ -> return EmojiCategoryTypeChatPhoto
+      "emojiCategoryTypeDefault"     -> pure EmojiCategoryTypeDefault
+      "emojiCategoryTypeEmojiStatus" -> pure EmojiCategoryTypeEmojiStatus
+      "emojiCategoryTypeChatPhoto"   -> pure EmojiCategoryTypeChatPhoto
+      _                              -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON EmojiCategoryType where
-  toJSON EmojiCategoryTypeDefault =
-    A.object
-      [ "@type" A..= T.String "emojiCategoryTypeDefault"
-      ]
-  toJSON EmojiCategoryTypeEmojiStatus =
-    A.object
-      [ "@type" A..= T.String "emojiCategoryTypeEmojiStatus"
-      ]
-  toJSON EmojiCategoryTypeChatPhoto =
-    A.object
-      [ "@type" A..= T.String "emojiCategoryTypeChatPhoto"
-      ]
+instance AT.ToJSON EmojiCategoryType where
+  toJSON EmojiCategoryTypeDefault
+      = A.object
+        [ "@type" A..= AT.String "emojiCategoryTypeDefault"
+        ]
+  toJSON EmojiCategoryTypeEmojiStatus
+      = A.object
+        [ "@type" A..= AT.String "emojiCategoryTypeEmojiStatus"
+        ]
+  toJSON EmojiCategoryTypeChatPhoto
+      = A.object
+        [ "@type" A..= AT.String "emojiCategoryTypeChatPhoto"
+        ]
+

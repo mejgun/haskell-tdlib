@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Emojis where
+module TD.Data.Emojis
+  (Emojis(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data Emojis = -- | Represents a list of emoji @emojis List of emojis
-  Emojis
-  { -- |
-    emojis :: Maybe [String]
-  }
-  deriving (Eq)
+data Emojis
+  = Emojis -- ^ Represents a list of emoji
+    { emojis :: Maybe [T.Text] -- ^ List of emojis
+    }
+  deriving (Eq, Show)
 
-instance Show Emojis where
-  show
-    Emojis
-      { emojis = emojis_
-      } =
-      "Emojis"
-        ++ U.cc
-          [ U.p "emojis" emojis_
-          ]
+instance I.ShortShow Emojis where
+  shortShow Emojis
+    { emojis = emojis_
+    }
+      = "Emojis"
+        ++ I.cc
+        [ "emojis" `I.p` emojis_
+        ]
 
-instance T.FromJSON Emojis where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Emojis where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "emojis" -> parseEmojis v
-      _ -> mempty
+      _        -> mempty
+    
     where
-      parseEmojis :: A.Value -> T.Parser Emojis
+      parseEmojis :: A.Value -> AT.Parser Emojis
       parseEmojis = A.withObject "Emojis" $ \o -> do
-        emojis_ <- o A..:? "emojis"
-        return $ Emojis {emojis = emojis_}
+        emojis_ <- o A..:?  "emojis"
+        pure $ Emojis
+          { emojis = emojis_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Emojis where
-  toJSON
-    Emojis
-      { emojis = emojis_
-      } =
-      A.object
-        [ "@type" A..= T.String "emojis",
-          "emojis" A..= emojis_
-        ]

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetMe where
+module TD.Query.GetMe
+  (GetMe(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns the current user
-data GetMe = GetMe
-  {
-  }
-  deriving (Eq)
+-- | Returns the current user
+data GetMe
+  = GetMe
+  deriving (Eq, Show)
 
-instance Show GetMe where
-  show GetMe =
-    "GetMe"
-      ++ U.cc
-        []
+instance I.ShortShow GetMe where
+  shortShow
+    GetMe
+        = "GetMe"
 
-instance T.ToJSON GetMe where
-  toJSON GetMe =
-    A.object
-      [ "@type" A..= T.String "getMe"
-      ]
+instance AT.ToJSON GetMe where
+  toJSON
+    GetMe
+        = A.object
+          [ "@type" A..= AT.String "getMe"
+          ]
+

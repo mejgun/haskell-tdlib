@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResetBackgrounds where
+module TD.Query.ResetBackgrounds
+  (ResetBackgrounds(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resets list of installed backgrounds to its default value
-data ResetBackgrounds = ResetBackgrounds
-  {
-  }
-  deriving (Eq)
+-- | Resets list of installed backgrounds to its default value
+data ResetBackgrounds
+  = ResetBackgrounds
+  deriving (Eq, Show)
 
-instance Show ResetBackgrounds where
-  show ResetBackgrounds =
-    "ResetBackgrounds"
-      ++ U.cc
-        []
+instance I.ShortShow ResetBackgrounds where
+  shortShow
+    ResetBackgrounds
+        = "ResetBackgrounds"
 
-instance T.ToJSON ResetBackgrounds where
-  toJSON ResetBackgrounds =
-    A.object
-      [ "@type" A..= T.String "resetBackgrounds"
-      ]
+instance AT.ToJSON ResetBackgrounds where
+  toJSON
+    ResetBackgrounds
+        = A.object
+          [ "@type" A..= AT.String "resetBackgrounds"
+          ]
+

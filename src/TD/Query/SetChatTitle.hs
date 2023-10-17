@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatTitle where
+module TD.Query.SetChatTitle
+  (SetChatTitle(..)
+  , defaultSetChatTitle
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
-data SetChatTitle = SetChatTitle
-  { -- | New title of the chat; 1-128 characters
-    title :: Maybe String,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+data SetChatTitle
+  = SetChatTitle
+    { chat_id :: Maybe Int    -- ^ Chat identifier
+    , title   :: Maybe T.Text -- ^ New title of the chat; 1-128 characters
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatTitle where
-  show
+instance I.ShortShow SetChatTitle where
+  shortShow
     SetChatTitle
-      { title = title_,
-        chat_id = chat_id_
-      } =
-      "SetChatTitle"
-        ++ U.cc
-          [ U.p "title" title_,
-            U.p "chat_id" chat_id_
+      { chat_id = chat_id_
+      , title   = title_
+      }
+        = "SetChatTitle"
+          ++ I.cc
+          [ "chat_id" `I.p` chat_id_
+          , "title"   `I.p` title_
           ]
 
-instance T.ToJSON SetChatTitle where
+instance AT.ToJSON SetChatTitle where
   toJSON
     SetChatTitle
-      { title = title_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatTitle",
-          "title" A..= title_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id = chat_id_
+      , title   = title_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setChatTitle"
+          , "chat_id" A..= chat_id_
+          , "title"   A..= title_
+          ]
+
+defaultSetChatTitle :: SetChatTitle
+defaultSetChatTitle =
+  SetChatTitle
+    { chat_id = Nothing
+    , title   = Nothing
+    }
+

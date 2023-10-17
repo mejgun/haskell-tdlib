@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CreateNewBasicGroupChat where
+module TD.Query.CreateNewBasicGroupChat
+  (CreateNewBasicGroupChat(..)
+  , defaultCreateNewBasicGroupChat
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
-data CreateNewBasicGroupChat = CreateNewBasicGroupChat
-  { -- | Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
-    message_auto_delete_time :: Maybe Int,
-    -- | Title of the new basic group; 1-128 characters
-    title :: Maybe String,
-    -- | Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
-    user_ids :: Maybe [Int]
-  }
-  deriving (Eq)
+-- | Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+data CreateNewBasicGroupChat
+  = CreateNewBasicGroupChat
+    { user_ids                 :: Maybe [Int]  -- ^ Identifiers of users to be added to the basic group; may be empty to create a basic group without other members
+    , title                    :: Maybe T.Text -- ^ Title of the new basic group; 1-128 characters
+    , message_auto_delete_time :: Maybe Int    -- ^ Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
+    }
+  deriving (Eq, Show)
 
-instance Show CreateNewBasicGroupChat where
-  show
+instance I.ShortShow CreateNewBasicGroupChat where
+  shortShow
     CreateNewBasicGroupChat
-      { message_auto_delete_time = message_auto_delete_time_,
-        title = title_,
-        user_ids = user_ids_
-      } =
-      "CreateNewBasicGroupChat"
-        ++ U.cc
-          [ U.p "message_auto_delete_time" message_auto_delete_time_,
-            U.p "title" title_,
-            U.p "user_ids" user_ids_
+      { user_ids                 = user_ids_
+      , title                    = title_
+      , message_auto_delete_time = message_auto_delete_time_
+      }
+        = "CreateNewBasicGroupChat"
+          ++ I.cc
+          [ "user_ids"                 `I.p` user_ids_
+          , "title"                    `I.p` title_
+          , "message_auto_delete_time" `I.p` message_auto_delete_time_
           ]
 
-instance T.ToJSON CreateNewBasicGroupChat where
+instance AT.ToJSON CreateNewBasicGroupChat where
   toJSON
     CreateNewBasicGroupChat
-      { message_auto_delete_time = message_auto_delete_time_,
-        title = title_,
-        user_ids = user_ids_
-      } =
-      A.object
-        [ "@type" A..= T.String "createNewBasicGroupChat",
-          "message_auto_delete_time" A..= message_auto_delete_time_,
-          "title" A..= title_,
-          "user_ids" A..= user_ids_
-        ]
+      { user_ids                 = user_ids_
+      , title                    = title_
+      , message_auto_delete_time = message_auto_delete_time_
+      }
+        = A.object
+          [ "@type"                    A..= AT.String "createNewBasicGroupChat"
+          , "user_ids"                 A..= user_ids_
+          , "title"                    A..= title_
+          , "message_auto_delete_time" A..= message_auto_delete_time_
+          ]
+
+defaultCreateNewBasicGroupChat :: CreateNewBasicGroupChat
+defaultCreateNewBasicGroupChat =
+  CreateNewBasicGroupChat
+    { user_ids                 = Nothing
+    , title                    = Nothing
+    , message_auto_delete_time = Nothing
+    }
+

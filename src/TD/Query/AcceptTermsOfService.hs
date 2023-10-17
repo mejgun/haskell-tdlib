@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AcceptTermsOfService where
+module TD.Query.AcceptTermsOfService
+  (AcceptTermsOfService(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Accepts Telegram terms of services @terms_of_service_id Terms of service identifier
-data AcceptTermsOfService = AcceptTermsOfService
-  { -- |
-    terms_of_service_id :: Maybe String
-  }
-  deriving (Eq)
+-- | Accepts Telegram terms of services
+data AcceptTermsOfService
+  = AcceptTermsOfService
+    { terms_of_service_id :: Maybe T.Text -- ^ Terms of service identifier
+    }
+  deriving (Eq, Show)
 
-instance Show AcceptTermsOfService where
-  show
+instance I.ShortShow AcceptTermsOfService where
+  shortShow
     AcceptTermsOfService
       { terms_of_service_id = terms_of_service_id_
-      } =
-      "AcceptTermsOfService"
-        ++ U.cc
-          [ U.p "terms_of_service_id" terms_of_service_id_
+      }
+        = "AcceptTermsOfService"
+          ++ I.cc
+          [ "terms_of_service_id" `I.p` terms_of_service_id_
           ]
 
-instance T.ToJSON AcceptTermsOfService where
+instance AT.ToJSON AcceptTermsOfService where
   toJSON
     AcceptTermsOfService
       { terms_of_service_id = terms_of_service_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "acceptTermsOfService",
-          "terms_of_service_id" A..= terms_of_service_id_
-        ]
+      }
+        = A.object
+          [ "@type"               A..= AT.String "acceptTermsOfService"
+          , "terms_of_service_id" A..= terms_of_service_id_
+          ]
+

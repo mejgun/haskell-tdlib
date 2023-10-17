@@ -1,49 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendChatAction where
+module TD.Query.SendChatAction
+  (SendChatAction(..)
+  , defaultSendChatAction
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAction as ChatAction
-import qualified Utils as U
 
--- |
--- Sends a notification about user activity in a chat @chat_id Chat identifier @message_thread_id If not 0, a message thread identifier in which the action was performed @action The action description; pass null to cancel the currently active action
-data SendChatAction = SendChatAction
-  { -- |
-    action :: Maybe ChatAction.ChatAction,
-    -- |
-    message_thread_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a notification about user activity in a chat
+data SendChatAction
+  = SendChatAction
+    { chat_id           :: Maybe Int                   -- ^ Chat identifier
+    , message_thread_id :: Maybe Int                   -- ^ If not 0, a message thread identifier in which the action was performed
+    , action            :: Maybe ChatAction.ChatAction -- ^ The action description; pass null to cancel the currently active action
+    }
+  deriving (Eq, Show)
 
-instance Show SendChatAction where
-  show
+instance I.ShortShow SendChatAction where
+  shortShow
     SendChatAction
-      { action = action_,
-        message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "SendChatAction"
-        ++ U.cc
-          [ U.p "action" action_,
-            U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      , action            = action_
+      }
+        = "SendChatAction"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
+          , "action"            `I.p` action_
           ]
 
-instance T.ToJSON SendChatAction where
+instance AT.ToJSON SendChatAction where
   toJSON
     SendChatAction
-      { action = action_,
-        message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendChatAction",
-          "action" A..= action_,
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      , action            = action_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "sendChatAction"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          , "action"            A..= action_
+          ]
+
+defaultSendChatAction :: SendChatAction
+defaultSendChatAction =
+  SendChatAction
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    , action            = Nothing
+    }
+

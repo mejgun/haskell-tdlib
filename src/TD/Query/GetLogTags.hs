@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetLogTags where
+module TD.Query.GetLogTags
+  (GetLogTags(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
-data GetLogTags = GetLogTags
-  {
-  }
-  deriving (Eq)
+-- | Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+data GetLogTags
+  = GetLogTags
+  deriving (Eq, Show)
 
-instance Show GetLogTags where
-  show GetLogTags =
-    "GetLogTags"
-      ++ U.cc
-        []
+instance I.ShortShow GetLogTags where
+  shortShow
+    GetLogTags
+        = "GetLogTags"
 
-instance T.ToJSON GetLogTags where
-  toJSON GetLogTags =
-    A.object
-      [ "@type" A..= T.String "getLogTags"
-      ]
+instance AT.ToJSON GetLogTags where
+  toJSON
+    GetLogTags
+        = A.object
+          [ "@type" A..= AT.String "getLogTags"
+          ]
+

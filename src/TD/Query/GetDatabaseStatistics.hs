@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetDatabaseStatistics where
+module TD.Query.GetDatabaseStatistics
+  (GetDatabaseStatistics(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns database statistics
-data GetDatabaseStatistics = GetDatabaseStatistics
-  {
-  }
-  deriving (Eq)
+-- | Returns database statistics
+data GetDatabaseStatistics
+  = GetDatabaseStatistics
+  deriving (Eq, Show)
 
-instance Show GetDatabaseStatistics where
-  show GetDatabaseStatistics =
-    "GetDatabaseStatistics"
-      ++ U.cc
-        []
+instance I.ShortShow GetDatabaseStatistics where
+  shortShow
+    GetDatabaseStatistics
+        = "GetDatabaseStatistics"
 
-instance T.ToJSON GetDatabaseStatistics where
-  toJSON GetDatabaseStatistics =
-    A.object
-      [ "@type" A..= T.String "getDatabaseStatistics"
-      ]
+instance AT.ToJSON GetDatabaseStatistics where
+  toJSON
+    GetDatabaseStatistics
+        = A.object
+          [ "@type" A..= AT.String "getDatabaseStatistics"
+          ]
+

@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.EditCustomLanguagePackInfo where
+module TD.Query.EditCustomLanguagePackInfo
+  (EditCustomLanguagePackInfo(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
-import qualified Utils as U
 
--- |
--- Edits information about a custom local language pack in the current localization target. Can be called before authorization @info New information about the custom local language pack
-data EditCustomLanguagePackInfo = EditCustomLanguagePackInfo
-  { -- |
-    info :: Maybe LanguagePackInfo.LanguagePackInfo
-  }
-  deriving (Eq)
+-- | Edits information about a custom local language pack in the current localization target. Can be called before authorization
+data EditCustomLanguagePackInfo
+  = EditCustomLanguagePackInfo
+    { info :: Maybe LanguagePackInfo.LanguagePackInfo -- ^ New information about the custom local language pack
+    }
+  deriving (Eq, Show)
 
-instance Show EditCustomLanguagePackInfo where
-  show
+instance I.ShortShow EditCustomLanguagePackInfo where
+  shortShow
     EditCustomLanguagePackInfo
       { info = info_
-      } =
-      "EditCustomLanguagePackInfo"
-        ++ U.cc
-          [ U.p "info" info_
+      }
+        = "EditCustomLanguagePackInfo"
+          ++ I.cc
+          [ "info" `I.p` info_
           ]
 
-instance T.ToJSON EditCustomLanguagePackInfo where
+instance AT.ToJSON EditCustomLanguagePackInfo where
   toJSON
     EditCustomLanguagePackInfo
       { info = info_
-      } =
-      A.object
-        [ "@type" A..= T.String "editCustomLanguagePackInfo",
-          "info" A..= info_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "editCustomLanguagePackInfo"
+          , "info"  A..= info_
+          ]
+

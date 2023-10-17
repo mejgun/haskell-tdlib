@@ -1,109 +1,83 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Audio where
+module TD.Data.Audio
+  (Audio(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.File as File
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.Minithumbnail as Minithumbnail
 import qualified TD.Data.Thumbnail as Thumbnail
-import qualified Utils as U
+import qualified TD.Data.File as File
 
--- |
-data Audio = -- | Describes an audio file. Audio is usually in MP3 or M4A format
-  Audio
-  { -- | File containing the audio
-    audio :: Maybe File.File,
-    -- | Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
-    external_album_covers :: Maybe [Thumbnail.Thumbnail],
-    -- | The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
-    album_cover_thumbnail :: Maybe Thumbnail.Thumbnail,
-    -- | The minithumbnail of the album cover; may be null
-    album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail,
-    -- | The MIME type of the file; as defined by the sender
-    mime_type :: Maybe String,
-    -- | Original name of the file; as defined by the sender
-    file_name :: Maybe String,
-    -- | Performer of the audio; as defined by the sender
-    performer :: Maybe String,
-    -- | Title of the audio; as defined by the sender
-    title :: Maybe String,
-    -- | Duration of the audio, in seconds; as defined by the sender
-    duration :: Maybe Int
-  }
-  deriving (Eq)
+data Audio
+  = Audio -- ^ Describes an audio file. Audio is usually in MP3 or M4A format
+    { duration                  :: Maybe Int                         -- ^ Duration of the audio, in seconds; as defined by the sender
+    , title                     :: Maybe T.Text                      -- ^ Title of the audio; as defined by the sender
+    , performer                 :: Maybe T.Text                      -- ^ Performer of the audio; as defined by the sender
+    , file_name                 :: Maybe T.Text                      -- ^ Original name of the file; as defined by the sender
+    , mime_type                 :: Maybe T.Text                      -- ^ The MIME type of the file; as defined by the sender
+    , album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ The minithumbnail of the album cover; may be null
+    , album_cover_thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
+    , external_album_covers     :: Maybe [Thumbnail.Thumbnail]       -- ^ Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
+    , audio                     :: Maybe File.File                   -- ^ File containing the audio
+    }
+  deriving (Eq, Show)
 
-instance Show Audio where
-  show
-    Audio
-      { audio = audio_,
-        external_album_covers = external_album_covers_,
-        album_cover_thumbnail = album_cover_thumbnail_,
-        album_cover_minithumbnail = album_cover_minithumbnail_,
-        mime_type = mime_type_,
-        file_name = file_name_,
-        performer = performer_,
-        title = title_,
-        duration = duration_
-      } =
-      "Audio"
-        ++ U.cc
-          [ U.p "audio" audio_,
-            U.p "external_album_covers" external_album_covers_,
-            U.p "album_cover_thumbnail" album_cover_thumbnail_,
-            U.p "album_cover_minithumbnail" album_cover_minithumbnail_,
-            U.p "mime_type" mime_type_,
-            U.p "file_name" file_name_,
-            U.p "performer" performer_,
-            U.p "title" title_,
-            U.p "duration" duration_
-          ]
+instance I.ShortShow Audio where
+  shortShow Audio
+    { duration                  = duration_
+    , title                     = title_
+    , performer                 = performer_
+    , file_name                 = file_name_
+    , mime_type                 = mime_type_
+    , album_cover_minithumbnail = album_cover_minithumbnail_
+    , album_cover_thumbnail     = album_cover_thumbnail_
+    , external_album_covers     = external_album_covers_
+    , audio                     = audio_
+    }
+      = "Audio"
+        ++ I.cc
+        [ "duration"                  `I.p` duration_
+        , "title"                     `I.p` title_
+        , "performer"                 `I.p` performer_
+        , "file_name"                 `I.p` file_name_
+        , "mime_type"                 `I.p` mime_type_
+        , "album_cover_minithumbnail" `I.p` album_cover_minithumbnail_
+        , "album_cover_thumbnail"     `I.p` album_cover_thumbnail_
+        , "external_album_covers"     `I.p` external_album_covers_
+        , "audio"                     `I.p` audio_
+        ]
 
-instance T.FromJSON Audio where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Audio where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "audio" -> parseAudio v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parseAudio :: A.Value -> T.Parser Audio
+      parseAudio :: A.Value -> AT.Parser Audio
       parseAudio = A.withObject "Audio" $ \o -> do
-        audio_ <- o A..:? "audio"
-        external_album_covers_ <- o A..:? "external_album_covers"
-        album_cover_thumbnail_ <- o A..:? "album_cover_thumbnail"
-        album_cover_minithumbnail_ <- o A..:? "album_cover_minithumbnail"
-        mime_type_ <- o A..:? "mime_type"
-        file_name_ <- o A..:? "file_name"
-        performer_ <- o A..:? "performer"
-        title_ <- o A..:? "title"
-        duration_ <- o A..:? "duration"
-        return $ Audio {audio = audio_, external_album_covers = external_album_covers_, album_cover_thumbnail = album_cover_thumbnail_, album_cover_minithumbnail = album_cover_minithumbnail_, mime_type = mime_type_, file_name = file_name_, performer = performer_, title = title_, duration = duration_}
+        duration_                  <- o A..:?  "duration"
+        title_                     <- o A..:?  "title"
+        performer_                 <- o A..:?  "performer"
+        file_name_                 <- o A..:?  "file_name"
+        mime_type_                 <- o A..:?  "mime_type"
+        album_cover_minithumbnail_ <- o A..:?  "album_cover_minithumbnail"
+        album_cover_thumbnail_     <- o A..:?  "album_cover_thumbnail"
+        external_album_covers_     <- o A..:?  "external_album_covers"
+        audio_                     <- o A..:?  "audio"
+        pure $ Audio
+          { duration                  = duration_
+          , title                     = title_
+          , performer                 = performer_
+          , file_name                 = file_name_
+          , mime_type                 = mime_type_
+          , album_cover_minithumbnail = album_cover_minithumbnail_
+          , album_cover_thumbnail     = album_cover_thumbnail_
+          , external_album_covers     = external_album_covers_
+          , audio                     = audio_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Audio where
-  toJSON
-    Audio
-      { audio = audio_,
-        external_album_covers = external_album_covers_,
-        album_cover_thumbnail = album_cover_thumbnail_,
-        album_cover_minithumbnail = album_cover_minithumbnail_,
-        mime_type = mime_type_,
-        file_name = file_name_,
-        performer = performer_,
-        title = title_,
-        duration = duration_
-      } =
-      A.object
-        [ "@type" A..= T.String "audio",
-          "audio" A..= audio_,
-          "external_album_covers" A..= external_album_covers_,
-          "album_cover_thumbnail" A..= album_cover_thumbnail_,
-          "album_cover_minithumbnail" A..= album_cover_minithumbnail_,
-          "mime_type" A..= mime_type_,
-          "file_name" A..= file_name_,
-          "performer" A..= performer_,
-          "title" A..= title_,
-          "duration" A..= duration_
-        ]

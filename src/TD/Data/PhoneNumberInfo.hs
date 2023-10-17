@@ -1,72 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PhoneNumberInfo where
+module TD.Data.PhoneNumberInfo
+  (PhoneNumberInfo(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.CountryInfo as CountryInfo
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data PhoneNumberInfo = -- | Contains information about a phone number
-  PhoneNumberInfo
-  { -- | True, if the phone number was bought on Fragment and isn't tied to a SIM card
-    is_anonymous :: Maybe Bool,
-    -- | The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
-    formatted_phone_number :: Maybe String,
-    -- | The part of the phone number denoting country calling code or its part
-    country_calling_code :: Maybe String,
-    -- | Information about the country to which the phone number belongs; may be null
-    country :: Maybe CountryInfo.CountryInfo
-  }
-  deriving (Eq)
+data PhoneNumberInfo
+  = PhoneNumberInfo -- ^ Contains information about a phone number
+    { country                :: Maybe CountryInfo.CountryInfo -- ^ Information about the country to which the phone number belongs; may be null
+    , country_calling_code   :: Maybe T.Text                  -- ^ The part of the phone number denoting country calling code or its part
+    , formatted_phone_number :: Maybe T.Text                  -- ^ The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
+    , is_anonymous           :: Maybe Bool                    -- ^ True, if the phone number was bought on Fragment and isn't tied to a SIM card
+    }
+  deriving (Eq, Show)
 
-instance Show PhoneNumberInfo where
-  show
-    PhoneNumberInfo
-      { is_anonymous = is_anonymous_,
-        formatted_phone_number = formatted_phone_number_,
-        country_calling_code = country_calling_code_,
-        country = country_
-      } =
-      "PhoneNumberInfo"
-        ++ U.cc
-          [ U.p "is_anonymous" is_anonymous_,
-            U.p "formatted_phone_number" formatted_phone_number_,
-            U.p "country_calling_code" country_calling_code_,
-            U.p "country" country_
-          ]
+instance I.ShortShow PhoneNumberInfo where
+  shortShow PhoneNumberInfo
+    { country                = country_
+    , country_calling_code   = country_calling_code_
+    , formatted_phone_number = formatted_phone_number_
+    , is_anonymous           = is_anonymous_
+    }
+      = "PhoneNumberInfo"
+        ++ I.cc
+        [ "country"                `I.p` country_
+        , "country_calling_code"   `I.p` country_calling_code_
+        , "formatted_phone_number" `I.p` formatted_phone_number_
+        , "is_anonymous"           `I.p` is_anonymous_
+        ]
 
-instance T.FromJSON PhoneNumberInfo where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PhoneNumberInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "phoneNumberInfo" -> parsePhoneNumberInfo v
-      _ -> mempty
+      _                 -> mempty
+    
     where
-      parsePhoneNumberInfo :: A.Value -> T.Parser PhoneNumberInfo
+      parsePhoneNumberInfo :: A.Value -> AT.Parser PhoneNumberInfo
       parsePhoneNumberInfo = A.withObject "PhoneNumberInfo" $ \o -> do
-        is_anonymous_ <- o A..:? "is_anonymous"
-        formatted_phone_number_ <- o A..:? "formatted_phone_number"
-        country_calling_code_ <- o A..:? "country_calling_code"
-        country_ <- o A..:? "country"
-        return $ PhoneNumberInfo {is_anonymous = is_anonymous_, formatted_phone_number = formatted_phone_number_, country_calling_code = country_calling_code_, country = country_}
+        country_                <- o A..:?  "country"
+        country_calling_code_   <- o A..:?  "country_calling_code"
+        formatted_phone_number_ <- o A..:?  "formatted_phone_number"
+        is_anonymous_           <- o A..:?  "is_anonymous"
+        pure $ PhoneNumberInfo
+          { country                = country_
+          , country_calling_code   = country_calling_code_
+          , formatted_phone_number = formatted_phone_number_
+          , is_anonymous           = is_anonymous_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PhoneNumberInfo where
-  toJSON
-    PhoneNumberInfo
-      { is_anonymous = is_anonymous_,
-        formatted_phone_number = formatted_phone_number_,
-        country_calling_code = country_calling_code_,
-        country = country_
-      } =
-      A.object
-        [ "@type" A..= T.String "phoneNumberInfo",
-          "is_anonymous" A..= is_anonymous_,
-          "formatted_phone_number" A..= formatted_phone_number_,
-          "country_calling_code" A..= country_calling_code_,
-          "country" A..= country_
-        ]

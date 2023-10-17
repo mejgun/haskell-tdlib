@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SuggestUserProfilePhoto where
+module TD.Query.SuggestUserProfilePhoto
+  (SuggestUserProfilePhoto(..)
+  , defaultSuggestUserProfilePhoto
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
-import qualified Utils as U
 
--- |
--- Suggests a profile photo to another regular user with common messages @user_id User identifier @photo Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
-data SuggestUserProfilePhoto = SuggestUserProfilePhoto
-  { -- |
-    photo :: Maybe InputChatPhoto.InputChatPhoto,
-    -- |
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Suggests a profile photo to another regular user with common messages
+data SuggestUserProfilePhoto
+  = SuggestUserProfilePhoto
+    { user_id :: Maybe Int                           -- ^ User identifier
+    , photo   :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
+    }
+  deriving (Eq, Show)
 
-instance Show SuggestUserProfilePhoto where
-  show
+instance I.ShortShow SuggestUserProfilePhoto where
+  shortShow
     SuggestUserProfilePhoto
-      { photo = photo_,
-        user_id = user_id_
-      } =
-      "SuggestUserProfilePhoto"
-        ++ U.cc
-          [ U.p "photo" photo_,
-            U.p "user_id" user_id_
+      { user_id = user_id_
+      , photo   = photo_
+      }
+        = "SuggestUserProfilePhoto"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "photo"   `I.p` photo_
           ]
 
-instance T.ToJSON SuggestUserProfilePhoto where
+instance AT.ToJSON SuggestUserProfilePhoto where
   toJSON
     SuggestUserProfilePhoto
-      { photo = photo_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "suggestUserProfilePhoto",
-          "photo" A..= photo_,
-          "user_id" A..= user_id_
-        ]
+      { user_id = user_id_
+      , photo   = photo_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "suggestUserProfilePhoto"
+          , "user_id" A..= user_id_
+          , "photo"   A..= photo_
+          ]
+
+defaultSuggestUserProfilePhoto :: SuggestUserProfilePhoto
+defaultSuggestUserProfilePhoto =
+  SuggestUserProfilePhoto
+    { user_id = Nothing
+    , photo   = Nothing
+    }
+

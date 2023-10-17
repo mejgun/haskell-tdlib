@@ -1,66 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.GroupCallVideoQuality where
+module TD.Data.GroupCallVideoQuality
+  (GroupCallVideoQuality(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the quality of a group call video
 data GroupCallVideoQuality
-  = -- | The worst available video quality
-    GroupCallVideoQualityThumbnail
-  | -- | The medium video quality
-    GroupCallVideoQualityMedium
-  | -- | The best available video quality
-    GroupCallVideoQualityFull
-  deriving (Eq)
+  = GroupCallVideoQualityThumbnail -- ^ The worst available video quality
+  | GroupCallVideoQualityMedium -- ^ The medium video quality
+  | GroupCallVideoQualityFull -- ^ The best available video quality
+  deriving (Eq, Show)
 
-instance Show GroupCallVideoQuality where
-  show GroupCallVideoQualityThumbnail =
-    "GroupCallVideoQualityThumbnail"
-      ++ U.cc
-        []
-  show GroupCallVideoQualityMedium =
-    "GroupCallVideoQualityMedium"
-      ++ U.cc
-        []
-  show GroupCallVideoQualityFull =
-    "GroupCallVideoQualityFull"
-      ++ U.cc
-        []
+instance I.ShortShow GroupCallVideoQuality where
+  shortShow GroupCallVideoQualityThumbnail
+      = "GroupCallVideoQualityThumbnail"
+  shortShow GroupCallVideoQualityMedium
+      = "GroupCallVideoQualityMedium"
+  shortShow GroupCallVideoQualityFull
+      = "GroupCallVideoQualityFull"
 
-instance T.FromJSON GroupCallVideoQuality where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON GroupCallVideoQuality where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "groupCallVideoQualityThumbnail" -> parseGroupCallVideoQualityThumbnail v
-      "groupCallVideoQualityMedium" -> parseGroupCallVideoQualityMedium v
-      "groupCallVideoQualityFull" -> parseGroupCallVideoQualityFull v
-      _ -> mempty
-    where
-      parseGroupCallVideoQualityThumbnail :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityThumbnail = A.withObject "GroupCallVideoQualityThumbnail" $ \_ -> return GroupCallVideoQualityThumbnail
-
-      parseGroupCallVideoQualityMedium :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityMedium = A.withObject "GroupCallVideoQualityMedium" $ \_ -> return GroupCallVideoQualityMedium
-
-      parseGroupCallVideoQualityFull :: A.Value -> T.Parser GroupCallVideoQuality
-      parseGroupCallVideoQualityFull = A.withObject "GroupCallVideoQualityFull" $ \_ -> return GroupCallVideoQualityFull
+      "groupCallVideoQualityThumbnail" -> pure GroupCallVideoQualityThumbnail
+      "groupCallVideoQualityMedium"    -> pure GroupCallVideoQualityMedium
+      "groupCallVideoQualityFull"      -> pure GroupCallVideoQualityFull
+      _                                -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON GroupCallVideoQuality where
-  toJSON GroupCallVideoQualityThumbnail =
-    A.object
-      [ "@type" A..= T.String "groupCallVideoQualityThumbnail"
-      ]
-  toJSON GroupCallVideoQualityMedium =
-    A.object
-      [ "@type" A..= T.String "groupCallVideoQualityMedium"
-      ]
-  toJSON GroupCallVideoQualityFull =
-    A.object
-      [ "@type" A..= T.String "groupCallVideoQualityFull"
-      ]
+instance AT.ToJSON GroupCallVideoQuality where
+  toJSON GroupCallVideoQualityThumbnail
+      = A.object
+        [ "@type" A..= AT.String "groupCallVideoQualityThumbnail"
+        ]
+  toJSON GroupCallVideoQualityMedium
+      = A.object
+        [ "@type" A..= AT.String "groupCallVideoQualityMedium"
+        ]
+  toJSON GroupCallVideoQualityFull
+      = A.object
+        [ "@type" A..= AT.String "groupCallVideoQualityFull"
+        ]
+

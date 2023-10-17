@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleGroupCallScreenSharingIsPaused where
+module TD.Query.ToggleGroupCallScreenSharingIsPaused
+  (ToggleGroupCallScreenSharingIsPaused(..)
+  , defaultToggleGroupCallScreenSharingIsPaused
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Pauses or unpauses screen sharing in a joined group call @group_call_id Group call identifier @is_paused Pass true to pause screen sharing; pass false to unpause it
-data ToggleGroupCallScreenSharingIsPaused = ToggleGroupCallScreenSharingIsPaused
-  { -- |
-    is_paused :: Maybe Bool,
-    -- |
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Pauses or unpauses screen sharing in a joined group call
+data ToggleGroupCallScreenSharingIsPaused
+  = ToggleGroupCallScreenSharingIsPaused
+    { group_call_id :: Maybe Int  -- ^ Group call identifier
+    , is_paused     :: Maybe Bool -- ^ Pass true to pause screen sharing; pass false to unpause it
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallScreenSharingIsPaused where
-  show
+instance I.ShortShow ToggleGroupCallScreenSharingIsPaused where
+  shortShow
     ToggleGroupCallScreenSharingIsPaused
-      { is_paused = is_paused_,
-        group_call_id = group_call_id_
-      } =
-      "ToggleGroupCallScreenSharingIsPaused"
-        ++ U.cc
-          [ U.p "is_paused" is_paused_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id = group_call_id_
+      , is_paused     = is_paused_
+      }
+        = "ToggleGroupCallScreenSharingIsPaused"
+          ++ I.cc
+          [ "group_call_id" `I.p` group_call_id_
+          , "is_paused"     `I.p` is_paused_
           ]
 
-instance T.ToJSON ToggleGroupCallScreenSharingIsPaused where
+instance AT.ToJSON ToggleGroupCallScreenSharingIsPaused where
   toJSON
     ToggleGroupCallScreenSharingIsPaused
-      { is_paused = is_paused_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleGroupCallScreenSharingIsPaused",
-          "is_paused" A..= is_paused_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id = group_call_id_
+      , is_paused     = is_paused_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "toggleGroupCallScreenSharingIsPaused"
+          , "group_call_id" A..= group_call_id_
+          , "is_paused"     A..= is_paused_
+          ]
+
+defaultToggleGroupCallScreenSharingIsPaused :: ToggleGroupCallScreenSharingIsPaused
+defaultToggleGroupCallScreenSharingIsPaused =
+  ToggleGroupCallScreenSharingIsPaused
+    { group_call_id = Nothing
+    , is_paused     = Nothing
+    }
+

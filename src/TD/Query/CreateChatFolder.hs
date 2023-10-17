@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CreateChatFolder where
+module TD.Query.CreateChatFolder
+  (CreateChatFolder(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
-import qualified Utils as U
 
--- |
--- Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium @folder The new chat folder
-data CreateChatFolder = CreateChatFolder
-  { -- |
-    folder :: Maybe ChatFolder.ChatFolder
-  }
-  deriving (Eq)
+-- | Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
+data CreateChatFolder
+  = CreateChatFolder
+    { folder :: Maybe ChatFolder.ChatFolder -- ^ The new chat folder
+    }
+  deriving (Eq, Show)
 
-instance Show CreateChatFolder where
-  show
+instance I.ShortShow CreateChatFolder where
+  shortShow
     CreateChatFolder
       { folder = folder_
-      } =
-      "CreateChatFolder"
-        ++ U.cc
-          [ U.p "folder" folder_
+      }
+        = "CreateChatFolder"
+          ++ I.cc
+          [ "folder" `I.p` folder_
           ]
 
-instance T.ToJSON CreateChatFolder where
+instance AT.ToJSON CreateChatFolder where
   toJSON
     CreateChatFolder
       { folder = folder_
-      } =
-      A.object
-        [ "@type" A..= T.String "createChatFolder",
-          "folder" A..= folder_
-        ]
+      }
+        = A.object
+          [ "@type"  A..= AT.String "createChatFolder"
+          , "folder" A..= folder_
+          ]
+

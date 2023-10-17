@@ -1,49 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddStickerToSet where
+module TD.Query.AddStickerToSet
+  (AddStickerToSet(..)
+  , defaultAddStickerToSet
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.InputSticker as InputSticker
-import qualified Utils as U
 
--- |
--- Adds a new sticker to a set; for bots only
-data AddStickerToSet = AddStickerToSet
-  { -- | Sticker to add to the set
-    sticker :: Maybe InputSticker.InputSticker,
-    -- | Sticker set name
-    name :: Maybe String,
-    -- | Sticker set owner
-    user_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds a new sticker to a set; for bots only
+data AddStickerToSet
+  = AddStickerToSet
+    { user_id :: Maybe Int                       -- ^ Sticker set owner
+    , name    :: Maybe T.Text                    -- ^ Sticker set name
+    , sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to add to the set
+    }
+  deriving (Eq, Show)
 
-instance Show AddStickerToSet where
-  show
+instance I.ShortShow AddStickerToSet where
+  shortShow
     AddStickerToSet
-      { sticker = sticker_,
-        name = name_,
-        user_id = user_id_
-      } =
-      "AddStickerToSet"
-        ++ U.cc
-          [ U.p "sticker" sticker_,
-            U.p "name" name_,
-            U.p "user_id" user_id_
+      { user_id = user_id_
+      , name    = name_
+      , sticker = sticker_
+      }
+        = "AddStickerToSet"
+          ++ I.cc
+          [ "user_id" `I.p` user_id_
+          , "name"    `I.p` name_
+          , "sticker" `I.p` sticker_
           ]
 
-instance T.ToJSON AddStickerToSet where
+instance AT.ToJSON AddStickerToSet where
   toJSON
     AddStickerToSet
-      { sticker = sticker_,
-        name = name_,
-        user_id = user_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addStickerToSet",
-          "sticker" A..= sticker_,
-          "name" A..= name_,
-          "user_id" A..= user_id_
-        ]
+      { user_id = user_id_
+      , name    = name_
+      , sticker = sticker_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "addStickerToSet"
+          , "user_id" A..= user_id_
+          , "name"    A..= name_
+          , "sticker" A..= sticker_
+          ]
+
+defaultAddStickerToSet :: AddStickerToSet
+defaultAddStickerToSet =
+  AddStickerToSet
+    { user_id = Nothing
+    , name    = Nothing
+    , sticker = Nothing
+    }
+

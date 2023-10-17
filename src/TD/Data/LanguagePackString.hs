@@ -1,58 +1,66 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.LanguagePackString where
+module TD.Data.LanguagePackString
+  ( LanguagePackString(..)    
+  , defaultLanguagePackString 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
-import qualified Utils as U
 
--- |
-data LanguagePackString = -- | Represents one language pack string @key String key @value String value; pass null if the string needs to be taken from the built-in English language pack
-  LanguagePackString
-  { -- |
-    value :: Maybe LanguagePackStringValue.LanguagePackStringValue,
-    -- |
-    key :: Maybe String
-  }
-  deriving (Eq)
+data LanguagePackString
+  = LanguagePackString -- ^ Represents one language pack string
+    { key   :: Maybe T.Text                                          -- ^ String key
+    , value :: Maybe LanguagePackStringValue.LanguagePackStringValue -- ^ String value; pass null if the string needs to be taken from the built-in English language pack
+    }
+  deriving (Eq, Show)
 
-instance Show LanguagePackString where
-  show
-    LanguagePackString
-      { value = value_,
-        key = key_
-      } =
-      "LanguagePackString"
-        ++ U.cc
-          [ U.p "value" value_,
-            U.p "key" key_
-          ]
+instance I.ShortShow LanguagePackString where
+  shortShow LanguagePackString
+    { key   = key_
+    , value = value_
+    }
+      = "LanguagePackString"
+        ++ I.cc
+        [ "key"   `I.p` key_
+        , "value" `I.p` value_
+        ]
 
-instance T.FromJSON LanguagePackString where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON LanguagePackString where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "languagePackString" -> parseLanguagePackString v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parseLanguagePackString :: A.Value -> T.Parser LanguagePackString
+      parseLanguagePackString :: A.Value -> AT.Parser LanguagePackString
       parseLanguagePackString = A.withObject "LanguagePackString" $ \o -> do
-        value_ <- o A..:? "value"
-        key_ <- o A..:? "key"
-        return $ LanguagePackString {value = value_, key = key_}
+        key_   <- o A..:?  "key"
+        value_ <- o A..:?  "value"
+        pure $ LanguagePackString
+          { key   = key_
+          , value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON LanguagePackString where
-  toJSON
-    LanguagePackString
-      { value = value_,
-        key = key_
-      } =
-      A.object
-        [ "@type" A..= T.String "languagePackString",
-          "value" A..= value_,
-          "key" A..= key_
+instance AT.ToJSON LanguagePackString where
+  toJSON LanguagePackString
+    { key   = key_
+    , value = value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "languagePackString"
+        , "key"   A..= key_
+        , "value" A..= value_
         ]
+
+defaultLanguagePackString :: LanguagePackString
+defaultLanguagePackString =
+  LanguagePackString
+    { key   = Nothing
+    , value = Nothing
+    }
+

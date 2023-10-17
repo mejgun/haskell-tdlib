@@ -1,88 +1,67 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PageBlockTableCell where
+module TD.Data.PageBlockTableCell
+  (PageBlockTableCell(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.RichText as RichText
 import qualified TD.Data.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 import qualified TD.Data.PageBlockVerticalAlignment as PageBlockVerticalAlignment
-import qualified TD.Data.RichText as RichText
-import qualified Utils as U
 
--- |
-data PageBlockTableCell = -- | Represents a cell of a table
-  PageBlockTableCell
-  { -- | Vertical cell content alignment
-    valign :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment,
-    -- | Horizontal cell content alignment
-    align :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment,
-    -- | The number of rows the cell spans
-    rowspan :: Maybe Int,
-    -- | The number of columns the cell spans
-    colspan :: Maybe Int,
-    -- | True, if it is a header cell
-    is_header :: Maybe Bool,
-    -- | Cell text; may be null. If the text is null, then the cell must be invisible
-    text :: Maybe RichText.RichText
-  }
-  deriving (Eq)
+data PageBlockTableCell
+  = PageBlockTableCell -- ^ Represents a cell of a table
+    { text      :: Maybe RichText.RichText                                         -- ^ Cell text; may be null. If the text is null, then the cell must be invisible
+    , is_header :: Maybe Bool                                                      -- ^ True, if it is a header cell
+    , colspan   :: Maybe Int                                                       -- ^ The number of columns the cell spans
+    , rowspan   :: Maybe Int                                                       -- ^ The number of rows the cell spans
+    , align     :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment -- ^ Horizontal cell content alignment
+    , valign    :: Maybe PageBlockVerticalAlignment.PageBlockVerticalAlignment     -- ^ Vertical cell content alignment
+    }
+  deriving (Eq, Show)
 
-instance Show PageBlockTableCell where
-  show
-    PageBlockTableCell
-      { valign = valign_,
-        align = align_,
-        rowspan = rowspan_,
-        colspan = colspan_,
-        is_header = is_header_,
-        text = text_
-      } =
-      "PageBlockTableCell"
-        ++ U.cc
-          [ U.p "valign" valign_,
-            U.p "align" align_,
-            U.p "rowspan" rowspan_,
-            U.p "colspan" colspan_,
-            U.p "is_header" is_header_,
-            U.p "text" text_
-          ]
+instance I.ShortShow PageBlockTableCell where
+  shortShow PageBlockTableCell
+    { text      = text_
+    , is_header = is_header_
+    , colspan   = colspan_
+    , rowspan   = rowspan_
+    , align     = align_
+    , valign    = valign_
+    }
+      = "PageBlockTableCell"
+        ++ I.cc
+        [ "text"      `I.p` text_
+        , "is_header" `I.p` is_header_
+        , "colspan"   `I.p` colspan_
+        , "rowspan"   `I.p` rowspan_
+        , "align"     `I.p` align_
+        , "valign"    `I.p` valign_
+        ]
 
-instance T.FromJSON PageBlockTableCell where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PageBlockTableCell where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "pageBlockTableCell" -> parsePageBlockTableCell v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parsePageBlockTableCell :: A.Value -> T.Parser PageBlockTableCell
+      parsePageBlockTableCell :: A.Value -> AT.Parser PageBlockTableCell
       parsePageBlockTableCell = A.withObject "PageBlockTableCell" $ \o -> do
-        valign_ <- o A..:? "valign"
-        align_ <- o A..:? "align"
-        rowspan_ <- o A..:? "rowspan"
-        colspan_ <- o A..:? "colspan"
-        is_header_ <- o A..:? "is_header"
-        text_ <- o A..:? "text"
-        return $ PageBlockTableCell {valign = valign_, align = align_, rowspan = rowspan_, colspan = colspan_, is_header = is_header_, text = text_}
+        text_      <- o A..:?  "text"
+        is_header_ <- o A..:?  "is_header"
+        colspan_   <- o A..:?  "colspan"
+        rowspan_   <- o A..:?  "rowspan"
+        align_     <- o A..:?  "align"
+        valign_    <- o A..:?  "valign"
+        pure $ PageBlockTableCell
+          { text      = text_
+          , is_header = is_header_
+          , colspan   = colspan_
+          , rowspan   = rowspan_
+          , align     = align_
+          , valign    = valign_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PageBlockTableCell where
-  toJSON
-    PageBlockTableCell
-      { valign = valign_,
-        align = align_,
-        rowspan = rowspan_,
-        colspan = colspan_,
-        is_header = is_header_,
-        text = text_
-      } =
-      A.object
-        [ "@type" A..= T.String "pageBlockTableCell",
-          "valign" A..= valign_,
-          "align" A..= align_,
-          "rowspan" A..= rowspan_,
-          "colspan" A..= colspan_,
-          "is_header" A..= is_header_,
-          "text" A..= text_
-        ]

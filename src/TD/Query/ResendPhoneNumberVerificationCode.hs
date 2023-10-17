@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResendPhoneNumberVerificationCode where
+module TD.Query.ResendPhoneNumberVerificationCode
+  (ResendPhoneNumberVerificationCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resends the code to verify a phone number to be added to a user's Telegram Passport
-data ResendPhoneNumberVerificationCode = ResendPhoneNumberVerificationCode
-  {
-  }
-  deriving (Eq)
+-- | Resends the code to verify a phone number to be added to a user's Telegram Passport
+data ResendPhoneNumberVerificationCode
+  = ResendPhoneNumberVerificationCode
+  deriving (Eq, Show)
 
-instance Show ResendPhoneNumberVerificationCode where
-  show ResendPhoneNumberVerificationCode =
-    "ResendPhoneNumberVerificationCode"
-      ++ U.cc
-        []
+instance I.ShortShow ResendPhoneNumberVerificationCode where
+  shortShow
+    ResendPhoneNumberVerificationCode
+        = "ResendPhoneNumberVerificationCode"
 
-instance T.ToJSON ResendPhoneNumberVerificationCode where
-  toJSON ResendPhoneNumberVerificationCode =
-    A.object
-      [ "@type" A..= T.String "resendPhoneNumberVerificationCode"
-      ]
+instance AT.ToJSON ResendPhoneNumberVerificationCode where
+  toJSON
+    ResendPhoneNumberVerificationCode
+        = A.object
+          [ "@type" A..= AT.String "resendPhoneNumberVerificationCode"
+          ]
+

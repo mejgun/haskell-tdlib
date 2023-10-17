@@ -1,73 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatEvent where
+module TD.Data.ChatEvent
+  (ChatEvent(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.ChatEventAction as ChatEventAction
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
+import qualified TD.Data.ChatEventAction as ChatEventAction
 
--- |
-data ChatEvent = -- | Represents a chat event
-  ChatEvent
-  { -- | The action
-    action :: Maybe ChatEventAction.ChatEventAction,
-    -- | Identifier of the user or chat who performed the action
-    member_id :: Maybe MessageSender.MessageSender,
-    -- | Point in time (Unix timestamp) when the event happened
-    date :: Maybe Int,
-    -- | Chat event identifier
-    _id :: Maybe Int
-  }
-  deriving (Eq)
+data ChatEvent
+  = ChatEvent -- ^ Represents a chat event
+    { _id       :: Maybe Int                             -- ^ Chat event identifier
+    , date      :: Maybe Int                             -- ^ Point in time (Unix timestamp) when the event happened
+    , member_id :: Maybe MessageSender.MessageSender     -- ^ Identifier of the user or chat who performed the action
+    , action    :: Maybe ChatEventAction.ChatEventAction -- ^ The action
+    }
+  deriving (Eq, Show)
 
-instance Show ChatEvent where
-  show
-    ChatEvent
-      { action = action_,
-        member_id = member_id_,
-        date = date_,
-        _id = _id_
-      } =
-      "ChatEvent"
-        ++ U.cc
-          [ U.p "action" action_,
-            U.p "member_id" member_id_,
-            U.p "date" date_,
-            U.p "_id" _id_
-          ]
+instance I.ShortShow ChatEvent where
+  shortShow ChatEvent
+    { _id       = _id_
+    , date      = date_
+    , member_id = member_id_
+    , action    = action_
+    }
+      = "ChatEvent"
+        ++ I.cc
+        [ "_id"       `I.p` _id_
+        , "date"      `I.p` date_
+        , "member_id" `I.p` member_id_
+        , "action"    `I.p` action_
+        ]
 
-instance T.FromJSON ChatEvent where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatEvent where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatEvent" -> parseChatEvent v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseChatEvent :: A.Value -> T.Parser ChatEvent
+      parseChatEvent :: A.Value -> AT.Parser ChatEvent
       parseChatEvent = A.withObject "ChatEvent" $ \o -> do
-        action_ <- o A..:? "action"
-        member_id_ <- o A..:? "member_id"
-        date_ <- o A..:? "date"
-        _id_ <- U.rm <$> (o A..:? "id" :: T.Parser (Maybe String)) :: T.Parser (Maybe Int)
-        return $ ChatEvent {action = action_, member_id = member_id_, date = date_, _id = _id_}
+        _id_       <- fmap I.readInt64 <$> o A..:?  "id"
+        date_      <- o A..:?                       "date"
+        member_id_ <- o A..:?                       "member_id"
+        action_    <- o A..:?                       "action"
+        pure $ ChatEvent
+          { _id       = _id_
+          , date      = date_
+          , member_id = member_id_
+          , action    = action_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatEvent where
-  toJSON
-    ChatEvent
-      { action = action_,
-        member_id = member_id_,
-        date = date_,
-        _id = _id_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatEvent",
-          "action" A..= action_,
-          "member_id" A..= member_id_,
-          "date" A..= date_,
-          "id" A..= U.toS _id_
-        ]

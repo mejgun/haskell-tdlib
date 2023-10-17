@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetStickerEmojis where
+module TD.Query.GetStickerEmojis
+  (GetStickerEmojis(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object @sticker Sticker file identifier
-data GetStickerEmojis = GetStickerEmojis
-  { -- |
-    sticker :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+-- | Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+data GetStickerEmojis
+  = GetStickerEmojis
+    { sticker :: Maybe InputFile.InputFile -- ^ Sticker file identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetStickerEmojis where
-  show
+instance I.ShortShow GetStickerEmojis where
+  shortShow
     GetStickerEmojis
       { sticker = sticker_
-      } =
-      "GetStickerEmojis"
-        ++ U.cc
-          [ U.p "sticker" sticker_
+      }
+        = "GetStickerEmojis"
+          ++ I.cc
+          [ "sticker" `I.p` sticker_
           ]
 
-instance T.ToJSON GetStickerEmojis where
+instance AT.ToJSON GetStickerEmojis where
   toJSON
     GetStickerEmojis
       { sticker = sticker_
-      } =
-      A.object
-        [ "@type" A..= T.String "getStickerEmojis",
-          "sticker" A..= sticker_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "getStickerEmojis"
+          , "sticker" A..= sticker_
+          ]
+

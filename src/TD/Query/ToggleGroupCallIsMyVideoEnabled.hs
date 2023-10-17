@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleGroupCallIsMyVideoEnabled where
+module TD.Query.ToggleGroupCallIsMyVideoEnabled
+  (ToggleGroupCallIsMyVideoEnabled(..)
+  , defaultToggleGroupCallIsMyVideoEnabled
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Toggles whether current user's video is enabled @group_call_id Group call identifier @is_my_video_enabled Pass true if the current user's video is enabled
-data ToggleGroupCallIsMyVideoEnabled = ToggleGroupCallIsMyVideoEnabled
-  { -- |
-    is_my_video_enabled :: Maybe Bool,
-    -- |
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Toggles whether current user's video is enabled
+data ToggleGroupCallIsMyVideoEnabled
+  = ToggleGroupCallIsMyVideoEnabled
+    { group_call_id       :: Maybe Int  -- ^ Group call identifier
+    , is_my_video_enabled :: Maybe Bool -- ^ Pass true if the current user's video is enabled
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleGroupCallIsMyVideoEnabled where
-  show
+instance I.ShortShow ToggleGroupCallIsMyVideoEnabled where
+  shortShow
     ToggleGroupCallIsMyVideoEnabled
-      { is_my_video_enabled = is_my_video_enabled_,
-        group_call_id = group_call_id_
-      } =
-      "ToggleGroupCallIsMyVideoEnabled"
-        ++ U.cc
-          [ U.p "is_my_video_enabled" is_my_video_enabled_,
-            U.p "group_call_id" group_call_id_
+      { group_call_id       = group_call_id_
+      , is_my_video_enabled = is_my_video_enabled_
+      }
+        = "ToggleGroupCallIsMyVideoEnabled"
+          ++ I.cc
+          [ "group_call_id"       `I.p` group_call_id_
+          , "is_my_video_enabled" `I.p` is_my_video_enabled_
           ]
 
-instance T.ToJSON ToggleGroupCallIsMyVideoEnabled where
+instance AT.ToJSON ToggleGroupCallIsMyVideoEnabled where
   toJSON
     ToggleGroupCallIsMyVideoEnabled
-      { is_my_video_enabled = is_my_video_enabled_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleGroupCallIsMyVideoEnabled",
-          "is_my_video_enabled" A..= is_my_video_enabled_,
-          "group_call_id" A..= group_call_id_
-        ]
+      { group_call_id       = group_call_id_
+      , is_my_video_enabled = is_my_video_enabled_
+      }
+        = A.object
+          [ "@type"               A..= AT.String "toggleGroupCallIsMyVideoEnabled"
+          , "group_call_id"       A..= group_call_id_
+          , "is_my_video_enabled" A..= is_my_video_enabled_
+          ]
+
+defaultToggleGroupCallIsMyVideoEnabled :: ToggleGroupCallIsMyVideoEnabled
+defaultToggleGroupCallIsMyVideoEnabled =
+  ToggleGroupCallIsMyVideoEnabled
+    { group_call_id       = Nothing
+    , is_my_video_enabled = Nothing
+    }
+

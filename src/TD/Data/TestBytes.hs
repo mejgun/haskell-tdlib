@@ -1,50 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TestBytes where
+module TD.Data.TestBytes
+  (TestBytes(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
-data TestBytes = -- | A simple object containing a sequence of bytes; for testing only @value Bytes
-  TestBytes
-  { -- |
-    value :: Maybe String
-  }
-  deriving (Eq)
+data TestBytes
+  = TestBytes -- ^ A simple object containing a sequence of bytes; for testing only
+    { value :: Maybe BS.ByteString -- ^ Bytes
+    }
+  deriving (Eq, Show)
 
-instance Show TestBytes where
-  show
-    TestBytes
-      { value = value_
-      } =
-      "TestBytes"
-        ++ U.cc
-          [ U.p "value" value_
-          ]
+instance I.ShortShow TestBytes where
+  shortShow TestBytes
+    { value = value_
+    }
+      = "TestBytes"
+        ++ I.cc
+        [ "value" `I.p` value_
+        ]
 
-instance T.FromJSON TestBytes where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TestBytes where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "testBytes" -> parseTestBytes v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseTestBytes :: A.Value -> T.Parser TestBytes
+      parseTestBytes :: A.Value -> AT.Parser TestBytes
       parseTestBytes = A.withObject "TestBytes" $ \o -> do
-        value_ <- o A..:? "value"
-        return $ TestBytes {value = value_}
+        value_ <- fmap I.readBytes <$> o A..:?  "value"
+        pure $ TestBytes
+          { value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TestBytes where
-  toJSON
-    TestBytes
-      { value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "testBytes",
-          "value" A..= value_
-        ]

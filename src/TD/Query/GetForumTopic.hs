@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetForumTopic where
+module TD.Query.GetForumTopic
+  (GetForumTopic(..)
+  , defaultGetForumTopic
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about a forum topic @chat_id Identifier of the chat @message_thread_id Message thread identifier of the forum topic
-data GetForumTopic = GetForumTopic
-  { -- |
-    message_thread_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a forum topic
+data GetForumTopic
+  = GetForumTopic
+    { chat_id           :: Maybe Int -- ^ Identifier of the chat
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier of the forum topic
+    }
+  deriving (Eq, Show)
 
-instance Show GetForumTopic where
-  show
+instance I.ShortShow GetForumTopic where
+  shortShow
     GetForumTopic
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "GetForumTopic"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "GetForumTopic"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON GetForumTopic where
+instance AT.ToJSON GetForumTopic where
   toJSON
     GetForumTopic
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getForumTopic",
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "getForumTopic"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultGetForumTopic :: GetForumTopic
+defaultGetForumTopic =
+  GetForumTopic
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

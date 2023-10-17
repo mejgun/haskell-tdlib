@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReadAllMessageThreadMentions where
+module TD.Query.ReadAllMessageThreadMentions
+  (ReadAllMessageThreadMentions(..)
+  , defaultReadAllMessageThreadMentions
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Marks all mentions in a forum topic as read @chat_id Chat identifier @message_thread_id Message thread identifier in which mentions are marked as read
-data ReadAllMessageThreadMentions = ReadAllMessageThreadMentions
-  { -- |
-    message_thread_id :: Maybe Int,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Marks all mentions in a forum topic as read
+data ReadAllMessageThreadMentions
+  = ReadAllMessageThreadMentions
+    { chat_id           :: Maybe Int -- ^ Chat identifier
+    , message_thread_id :: Maybe Int -- ^ Message thread identifier in which mentions are marked as read
+    }
+  deriving (Eq, Show)
 
-instance Show ReadAllMessageThreadMentions where
-  show
+instance I.ShortShow ReadAllMessageThreadMentions where
+  shortShow
     ReadAllMessageThreadMentions
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      "ReadAllMessageThreadMentions"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = "ReadAllMessageThreadMentions"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON ReadAllMessageThreadMentions where
+instance AT.ToJSON ReadAllMessageThreadMentions where
   toJSON
     ReadAllMessageThreadMentions
-      { message_thread_id = message_thread_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "readAllMessageThreadMentions",
-          "message_thread_id" A..= message_thread_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "readAllMessageThreadMentions"
+          , "chat_id"           A..= chat_id_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultReadAllMessageThreadMentions :: ReadAllMessageThreadMentions
+defaultReadAllMessageThreadMentions =
+  ReadAllMessageThreadMentions
+    { chat_id           = Nothing
+    , message_thread_id = Nothing
+    }
+

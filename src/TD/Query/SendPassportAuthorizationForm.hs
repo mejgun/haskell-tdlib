@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendPassportAuthorizationForm where
+module TD.Query.SendPassportAuthorizationForm
+  (SendPassportAuthorizationForm(..)
+  , defaultSendPassportAuthorizationForm
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
-import qualified Utils as U
 
--- |
--- Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
-data SendPassportAuthorizationForm = SendPassportAuthorizationForm
-  { -- | Types of Telegram Passport elements chosen by user to complete the authorization form
-    types :: Maybe [PassportElementType.PassportElementType],
-    -- | Authorization form identifier
-    authorization_form_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
+data SendPassportAuthorizationForm
+  = SendPassportAuthorizationForm
+    { authorization_form_id :: Maybe Int                                       -- ^ Authorization form identifier
+    , types                 :: Maybe [PassportElementType.PassportElementType] -- ^ Types of Telegram Passport elements chosen by user to complete the authorization form
+    }
+  deriving (Eq, Show)
 
-instance Show SendPassportAuthorizationForm where
-  show
+instance I.ShortShow SendPassportAuthorizationForm where
+  shortShow
     SendPassportAuthorizationForm
-      { types = types_,
-        authorization_form_id = authorization_form_id_
-      } =
-      "SendPassportAuthorizationForm"
-        ++ U.cc
-          [ U.p "types" types_,
-            U.p "authorization_form_id" authorization_form_id_
+      { authorization_form_id = authorization_form_id_
+      , types                 = types_
+      }
+        = "SendPassportAuthorizationForm"
+          ++ I.cc
+          [ "authorization_form_id" `I.p` authorization_form_id_
+          , "types"                 `I.p` types_
           ]
 
-instance T.ToJSON SendPassportAuthorizationForm where
+instance AT.ToJSON SendPassportAuthorizationForm where
   toJSON
     SendPassportAuthorizationForm
-      { types = types_,
-        authorization_form_id = authorization_form_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendPassportAuthorizationForm",
-          "types" A..= types_,
-          "authorization_form_id" A..= authorization_form_id_
-        ]
+      { authorization_form_id = authorization_form_id_
+      , types                 = types_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "sendPassportAuthorizationForm"
+          , "authorization_form_id" A..= authorization_form_id_
+          , "types"                 A..= types_
+          ]
+
+defaultSendPassportAuthorizationForm :: SendPassportAuthorizationForm
+defaultSendPassportAuthorizationForm =
+  SendPassportAuthorizationForm
+    { authorization_form_id = Nothing
+    , types                 = Nothing
+    }
+

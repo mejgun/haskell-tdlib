@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckAuthenticationEmailCode where
+module TD.Query.CheckAuthenticationEmailCode
+  (CheckAuthenticationEmailCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmailAddressAuthentication as EmailAddressAuthentication
-import qualified Utils as U
 
--- |
--- Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode @code Email address authentication to check
-data CheckAuthenticationEmailCode = CheckAuthenticationEmailCode
-  { -- |
-    code :: Maybe EmailAddressAuthentication.EmailAddressAuthentication
-  }
-  deriving (Eq)
+-- | Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+data CheckAuthenticationEmailCode
+  = CheckAuthenticationEmailCode
+    { code :: Maybe EmailAddressAuthentication.EmailAddressAuthentication -- ^ Email address authentication to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckAuthenticationEmailCode where
-  show
+instance I.ShortShow CheckAuthenticationEmailCode where
+  shortShow
     CheckAuthenticationEmailCode
       { code = code_
-      } =
-      "CheckAuthenticationEmailCode"
-        ++ U.cc
-          [ U.p "code" code_
+      }
+        = "CheckAuthenticationEmailCode"
+          ++ I.cc
+          [ "code" `I.p` code_
           ]
 
-instance T.ToJSON CheckAuthenticationEmailCode where
+instance AT.ToJSON CheckAuthenticationEmailCode where
   toJSON
     CheckAuthenticationEmailCode
       { code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkAuthenticationEmailCode",
-          "code" A..= code_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkAuthenticationEmailCode"
+          , "code"  A..= code_
+          ]
+

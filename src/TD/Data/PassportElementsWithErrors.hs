@@ -1,59 +1,46 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PassportElementsWithErrors where
+module TD.Data.PassportElementsWithErrors
+  (PassportElementsWithErrors(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElement as PassportElement
 import qualified TD.Data.PassportElementError as PassportElementError
-import qualified Utils as U
 
--- |
-data PassportElementsWithErrors = -- | Contains information about a Telegram Passport elements and corresponding errors @elements Telegram Passport elements @errors Errors in the elements that are already available
-  PassportElementsWithErrors
-  { -- |
-    errors :: Maybe [PassportElementError.PassportElementError],
-    -- |
-    elements :: Maybe [PassportElement.PassportElement]
-  }
-  deriving (Eq)
+data PassportElementsWithErrors
+  = PassportElementsWithErrors -- ^ Contains information about a Telegram Passport elements and corresponding errors
+    { elements :: Maybe [PassportElement.PassportElement]           -- ^ Telegram Passport elements
+    , errors   :: Maybe [PassportElementError.PassportElementError] -- ^ Errors in the elements that are already available
+    }
+  deriving (Eq, Show)
 
-instance Show PassportElementsWithErrors where
-  show
-    PassportElementsWithErrors
-      { errors = errors_,
-        elements = elements_
-      } =
-      "PassportElementsWithErrors"
-        ++ U.cc
-          [ U.p "errors" errors_,
-            U.p "elements" elements_
-          ]
+instance I.ShortShow PassportElementsWithErrors where
+  shortShow PassportElementsWithErrors
+    { elements = elements_
+    , errors   = errors_
+    }
+      = "PassportElementsWithErrors"
+        ++ I.cc
+        [ "elements" `I.p` elements_
+        , "errors"   `I.p` errors_
+        ]
 
-instance T.FromJSON PassportElementsWithErrors where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PassportElementsWithErrors where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "passportElementsWithErrors" -> parsePassportElementsWithErrors v
-      _ -> mempty
+      _                            -> mempty
+    
     where
-      parsePassportElementsWithErrors :: A.Value -> T.Parser PassportElementsWithErrors
+      parsePassportElementsWithErrors :: A.Value -> AT.Parser PassportElementsWithErrors
       parsePassportElementsWithErrors = A.withObject "PassportElementsWithErrors" $ \o -> do
-        errors_ <- o A..:? "errors"
-        elements_ <- o A..:? "elements"
-        return $ PassportElementsWithErrors {errors = errors_, elements = elements_}
+        elements_ <- o A..:?  "elements"
+        errors_   <- o A..:?  "errors"
+        pure $ PassportElementsWithErrors
+          { elements = elements_
+          , errors   = errors_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PassportElementsWithErrors where
-  toJSON
-    PassportElementsWithErrors
-      { errors = errors_,
-        elements = elements_
-      } =
-      A.object
-        [ "@type" A..= T.String "passportElementsWithErrors",
-          "errors" A..= errors_,
-          "elements" A..= elements_
-        ]

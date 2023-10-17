@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetTemporaryPasswordState where
+module TD.Query.GetTemporaryPasswordState
+  (GetTemporaryPasswordState(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns information about the current temporary password
-data GetTemporaryPasswordState = GetTemporaryPasswordState
-  {
-  }
-  deriving (Eq)
+-- | Returns information about the current temporary password
+data GetTemporaryPasswordState
+  = GetTemporaryPasswordState
+  deriving (Eq, Show)
 
-instance Show GetTemporaryPasswordState where
-  show GetTemporaryPasswordState =
-    "GetTemporaryPasswordState"
-      ++ U.cc
-        []
+instance I.ShortShow GetTemporaryPasswordState where
+  shortShow
+    GetTemporaryPasswordState
+        = "GetTemporaryPasswordState"
 
-instance T.ToJSON GetTemporaryPasswordState where
-  toJSON GetTemporaryPasswordState =
-    A.object
-      [ "@type" A..= T.String "getTemporaryPasswordState"
-      ]
+instance AT.ToJSON GetTemporaryPasswordState where
+  toJSON
+    GetTemporaryPasswordState
+        = A.object
+          [ "@type" A..= AT.String "getTemporaryPasswordState"
+          ]
+

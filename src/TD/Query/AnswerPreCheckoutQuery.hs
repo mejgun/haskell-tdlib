@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AnswerPreCheckoutQuery where
+module TD.Query.AnswerPreCheckoutQuery
+  (AnswerPreCheckoutQuery(..)
+  , defaultAnswerPreCheckoutQuery
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Sets the result of a pre-checkout query; for bots only @pre_checkout_query_id Identifier of the pre-checkout query @error_message An error message, empty on success
-data AnswerPreCheckoutQuery = AnswerPreCheckoutQuery
-  { -- |
-    error_message :: Maybe String,
-    -- |
-    pre_checkout_query_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sets the result of a pre-checkout query; for bots only
+data AnswerPreCheckoutQuery
+  = AnswerPreCheckoutQuery
+    { pre_checkout_query_id :: Maybe Int    -- ^ Identifier of the pre-checkout query
+    , error_message         :: Maybe T.Text -- ^ An error message, empty on success
+    }
+  deriving (Eq, Show)
 
-instance Show AnswerPreCheckoutQuery where
-  show
+instance I.ShortShow AnswerPreCheckoutQuery where
+  shortShow
     AnswerPreCheckoutQuery
-      { error_message = error_message_,
-        pre_checkout_query_id = pre_checkout_query_id_
-      } =
-      "AnswerPreCheckoutQuery"
-        ++ U.cc
-          [ U.p "error_message" error_message_,
-            U.p "pre_checkout_query_id" pre_checkout_query_id_
+      { pre_checkout_query_id = pre_checkout_query_id_
+      , error_message         = error_message_
+      }
+        = "AnswerPreCheckoutQuery"
+          ++ I.cc
+          [ "pre_checkout_query_id" `I.p` pre_checkout_query_id_
+          , "error_message"         `I.p` error_message_
           ]
 
-instance T.ToJSON AnswerPreCheckoutQuery where
+instance AT.ToJSON AnswerPreCheckoutQuery where
   toJSON
     AnswerPreCheckoutQuery
-      { error_message = error_message_,
-        pre_checkout_query_id = pre_checkout_query_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "answerPreCheckoutQuery",
-          "error_message" A..= error_message_,
-          "pre_checkout_query_id" A..= U.toS pre_checkout_query_id_
-        ]
+      { pre_checkout_query_id = pre_checkout_query_id_
+      , error_message         = error_message_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "answerPreCheckoutQuery"
+          , "pre_checkout_query_id" A..= fmap I.writeInt64  pre_checkout_query_id_
+          , "error_message"         A..= error_message_
+          ]
+
+defaultAnswerPreCheckoutQuery :: AnswerPreCheckoutQuery
+defaultAnswerPreCheckoutQuery =
+  AnswerPreCheckoutQuery
+    { pre_checkout_query_id = Nothing
+    , error_message         = Nothing
+    }
+

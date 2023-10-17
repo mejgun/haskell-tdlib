@@ -1,42 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleChatHasProtectedContent where
+module TD.Query.ToggleChatHasProtectedContent
+  (ToggleChatHasProtectedContent(..)
+  , defaultToggleChatHasProtectedContent
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
-data ToggleChatHasProtectedContent = ToggleChatHasProtectedContent
-  { -- | New value of has_protected_content
-    has_protected_content :: Maybe Bool,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+data ToggleChatHasProtectedContent
+  = ToggleChatHasProtectedContent
+    { chat_id               :: Maybe Int  -- ^ Chat identifier
+    , has_protected_content :: Maybe Bool -- ^ New value of has_protected_content
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleChatHasProtectedContent where
-  show
+instance I.ShortShow ToggleChatHasProtectedContent where
+  shortShow
     ToggleChatHasProtectedContent
-      { has_protected_content = has_protected_content_,
-        chat_id = chat_id_
-      } =
-      "ToggleChatHasProtectedContent"
-        ++ U.cc
-          [ U.p "has_protected_content" has_protected_content_,
-            U.p "chat_id" chat_id_
+      { chat_id               = chat_id_
+      , has_protected_content = has_protected_content_
+      }
+        = "ToggleChatHasProtectedContent"
+          ++ I.cc
+          [ "chat_id"               `I.p` chat_id_
+          , "has_protected_content" `I.p` has_protected_content_
           ]
 
-instance T.ToJSON ToggleChatHasProtectedContent where
+instance AT.ToJSON ToggleChatHasProtectedContent where
   toJSON
     ToggleChatHasProtectedContent
-      { has_protected_content = has_protected_content_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleChatHasProtectedContent",
-          "has_protected_content" A..= has_protected_content_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id               = chat_id_
+      , has_protected_content = has_protected_content_
+      }
+        = A.object
+          [ "@type"                 A..= AT.String "toggleChatHasProtectedContent"
+          , "chat_id"               A..= chat_id_
+          , "has_protected_content" A..= has_protected_content_
+          ]
+
+defaultToggleChatHasProtectedContent :: ToggleChatHasProtectedContent
+defaultToggleChatHasProtectedContent =
+  ToggleChatHasProtectedContent
+    { chat_id               = Nothing
+    , has_protected_content = Nothing
+    }
+

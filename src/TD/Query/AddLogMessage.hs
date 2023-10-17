@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddLogMessage where
+module TD.Query.AddLogMessage
+  (AddLogMessage(..)
+  , defaultAddLogMessage
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Adds a message to TDLib internal log. Can be called synchronously
-data AddLogMessage = AddLogMessage
-  { -- | Text of a message to log
-    text :: Maybe String,
-    -- | The minimum verbosity level needed for the message to be logged; 0-1023
-    verbosity_level :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds a message to TDLib internal log. Can be called synchronously
+data AddLogMessage
+  = AddLogMessage
+    { verbosity_level :: Maybe Int    -- ^ The minimum verbosity level needed for the message to be logged; 0-1023
+    , text            :: Maybe T.Text -- ^ Text of a message to log
+    }
+  deriving (Eq, Show)
 
-instance Show AddLogMessage where
-  show
+instance I.ShortShow AddLogMessage where
+  shortShow
     AddLogMessage
-      { text = text_,
-        verbosity_level = verbosity_level_
-      } =
-      "AddLogMessage"
-        ++ U.cc
-          [ U.p "text" text_,
-            U.p "verbosity_level" verbosity_level_
+      { verbosity_level = verbosity_level_
+      , text            = text_
+      }
+        = "AddLogMessage"
+          ++ I.cc
+          [ "verbosity_level" `I.p` verbosity_level_
+          , "text"            `I.p` text_
           ]
 
-instance T.ToJSON AddLogMessage where
+instance AT.ToJSON AddLogMessage where
   toJSON
     AddLogMessage
-      { text = text_,
-        verbosity_level = verbosity_level_
-      } =
-      A.object
-        [ "@type" A..= T.String "addLogMessage",
-          "text" A..= text_,
-          "verbosity_level" A..= verbosity_level_
-        ]
+      { verbosity_level = verbosity_level_
+      , text            = text_
+      }
+        = A.object
+          [ "@type"           A..= AT.String "addLogMessage"
+          , "verbosity_level" A..= verbosity_level_
+          , "text"            A..= text_
+          ]
+
+defaultAddLogMessage :: AddLogMessage
+defaultAddLogMessage =
+  AddLogMessage
+    { verbosity_level = Nothing
+    , text            = Nothing
+    }
+

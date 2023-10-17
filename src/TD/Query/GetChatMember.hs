@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatMember where
+module TD.Query.GetChatMember
+  (GetChatMember(..)
+  , defaultGetChatMember
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
--- Returns information about a single member of a chat @chat_id Chat identifier @member_id Member identifier
-data GetChatMember = GetChatMember
-  { -- |
-    member_id :: Maybe MessageSender.MessageSender,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns information about a single member of a chat
+data GetChatMember
+  = GetChatMember
+    { chat_id   :: Maybe Int                         -- ^ Chat identifier
+    , member_id :: Maybe MessageSender.MessageSender -- ^ Member identifier
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatMember where
-  show
+instance I.ShortShow GetChatMember where
+  shortShow
     GetChatMember
-      { member_id = member_id_,
-        chat_id = chat_id_
-      } =
-      "GetChatMember"
-        ++ U.cc
-          [ U.p "member_id" member_id_,
-            U.p "chat_id" chat_id_
+      { chat_id   = chat_id_
+      , member_id = member_id_
+      }
+        = "GetChatMember"
+          ++ I.cc
+          [ "chat_id"   `I.p` chat_id_
+          , "member_id" `I.p` member_id_
           ]
 
-instance T.ToJSON GetChatMember where
+instance AT.ToJSON GetChatMember where
   toJSON
     GetChatMember
-      { member_id = member_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatMember",
-          "member_id" A..= member_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id   = chat_id_
+      , member_id = member_id_
+      }
+        = A.object
+          [ "@type"     A..= AT.String "getChatMember"
+          , "chat_id"   A..= chat_id_
+          , "member_id" A..= member_id_
+          ]
+
+defaultGetChatMember :: GetChatMember
+defaultGetChatMember =
+  GetChatMember
+    { chat_id   = Nothing
+    , member_id = Nothing
+    }
+

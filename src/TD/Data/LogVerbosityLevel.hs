@@ -1,50 +1,39 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.LogVerbosityLevel where
+module TD.Data.LogVerbosityLevel
+  (LogVerbosityLevel(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data LogVerbosityLevel = -- | Contains a TDLib internal log verbosity level @verbosity_level Log verbosity level
-  LogVerbosityLevel
-  { -- |
-    verbosity_level :: Maybe Int
-  }
-  deriving (Eq)
+data LogVerbosityLevel
+  = LogVerbosityLevel -- ^ Contains a TDLib internal log verbosity level
+    { verbosity_level :: Maybe Int -- ^ Log verbosity level
+    }
+  deriving (Eq, Show)
 
-instance Show LogVerbosityLevel where
-  show
-    LogVerbosityLevel
-      { verbosity_level = verbosity_level_
-      } =
-      "LogVerbosityLevel"
-        ++ U.cc
-          [ U.p "verbosity_level" verbosity_level_
-          ]
+instance I.ShortShow LogVerbosityLevel where
+  shortShow LogVerbosityLevel
+    { verbosity_level = verbosity_level_
+    }
+      = "LogVerbosityLevel"
+        ++ I.cc
+        [ "verbosity_level" `I.p` verbosity_level_
+        ]
 
-instance T.FromJSON LogVerbosityLevel where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON LogVerbosityLevel where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "logVerbosityLevel" -> parseLogVerbosityLevel v
-      _ -> mempty
+      _                   -> mempty
+    
     where
-      parseLogVerbosityLevel :: A.Value -> T.Parser LogVerbosityLevel
+      parseLogVerbosityLevel :: A.Value -> AT.Parser LogVerbosityLevel
       parseLogVerbosityLevel = A.withObject "LogVerbosityLevel" $ \o -> do
-        verbosity_level_ <- o A..:? "verbosity_level"
-        return $ LogVerbosityLevel {verbosity_level = verbosity_level_}
+        verbosity_level_ <- o A..:?  "verbosity_level"
+        pure $ LogVerbosityLevel
+          { verbosity_level = verbosity_level_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON LogVerbosityLevel where
-  toJSON
-    LogVerbosityLevel
-      { verbosity_level = verbosity_level_
-      } =
-      A.object
-        [ "@type" A..= T.String "logVerbosityLevel",
-          "verbosity_level" A..= verbosity_level_
-        ]

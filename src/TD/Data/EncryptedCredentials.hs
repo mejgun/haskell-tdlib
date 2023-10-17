@@ -1,64 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EncryptedCredentials where
+module TD.Data.EncryptedCredentials
+  (EncryptedCredentials(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
-data EncryptedCredentials = -- | Contains encrypted Telegram Passport data credentials @data The encrypted credentials @hash The decrypted data hash @secret Secret for data decryption, encrypted with the service's public key
-  EncryptedCredentials
-  { -- |
-    secret :: Maybe String,
-    -- |
-    hash :: Maybe String,
-    -- |
-    _data :: Maybe String
-  }
-  deriving (Eq)
+data EncryptedCredentials
+  = EncryptedCredentials -- ^ Contains encrypted Telegram Passport data credentials
+    { _data  :: Maybe BS.ByteString -- ^ The encrypted credentials
+    , hash   :: Maybe BS.ByteString -- ^ The decrypted data hash
+    , secret :: Maybe BS.ByteString -- ^ Secret for data decryption, encrypted with the service's public key
+    }
+  deriving (Eq, Show)
 
-instance Show EncryptedCredentials where
-  show
-    EncryptedCredentials
-      { secret = secret_,
-        hash = hash_,
-        _data = _data_
-      } =
-      "EncryptedCredentials"
-        ++ U.cc
-          [ U.p "secret" secret_,
-            U.p "hash" hash_,
-            U.p "_data" _data_
-          ]
+instance I.ShortShow EncryptedCredentials where
+  shortShow EncryptedCredentials
+    { _data  = _data_
+    , hash   = hash_
+    , secret = secret_
+    }
+      = "EncryptedCredentials"
+        ++ I.cc
+        [ "_data"  `I.p` _data_
+        , "hash"   `I.p` hash_
+        , "secret" `I.p` secret_
+        ]
 
-instance T.FromJSON EncryptedCredentials where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EncryptedCredentials where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "encryptedCredentials" -> parseEncryptedCredentials v
-      _ -> mempty
+      _                      -> mempty
+    
     where
-      parseEncryptedCredentials :: A.Value -> T.Parser EncryptedCredentials
+      parseEncryptedCredentials :: A.Value -> AT.Parser EncryptedCredentials
       parseEncryptedCredentials = A.withObject "EncryptedCredentials" $ \o -> do
-        secret_ <- o A..:? "secret"
-        hash_ <- o A..:? "hash"
-        _data_ <- o A..:? "data"
-        return $ EncryptedCredentials {secret = secret_, hash = hash_, _data = _data_}
+        _data_  <- fmap I.readBytes <$> o A..:?  "data"
+        hash_   <- fmap I.readBytes <$> o A..:?  "hash"
+        secret_ <- fmap I.readBytes <$> o A..:?  "secret"
+        pure $ EncryptedCredentials
+          { _data  = _data_
+          , hash   = hash_
+          , secret = secret_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON EncryptedCredentials where
-  toJSON
-    EncryptedCredentials
-      { secret = secret_,
-        hash = hash_,
-        _data = _data_
-      } =
-      A.object
-        [ "@type" A..= T.String "encryptedCredentials",
-          "secret" A..= secret_,
-          "hash" A..= hash_,
-          "data" A..= _data_
-        ]

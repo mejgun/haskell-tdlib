@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetName where
+module TD.Query.SetName
+  (SetName(..)
+  , defaultSetName
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes the first and last name of the current user @first_name The new value of the first name for the current user; 1-64 characters @last_name The new value of the optional last name for the current user; 0-64 characters
-data SetName = SetName
-  { -- |
-    last_name :: Maybe String,
-    -- |
-    first_name :: Maybe String
-  }
-  deriving (Eq)
+-- | Changes the first and last name of the current user
+data SetName
+  = SetName
+    { first_name :: Maybe T.Text -- ^ The new value of the first name for the current user; 1-64 characters
+    , last_name  :: Maybe T.Text -- ^ The new value of the optional last name for the current user; 0-64 characters
+    }
+  deriving (Eq, Show)
 
-instance Show SetName where
-  show
+instance I.ShortShow SetName where
+  shortShow
     SetName
-      { last_name = last_name_,
-        first_name = first_name_
-      } =
-      "SetName"
-        ++ U.cc
-          [ U.p "last_name" last_name_,
-            U.p "first_name" first_name_
+      { first_name = first_name_
+      , last_name  = last_name_
+      }
+        = "SetName"
+          ++ I.cc
+          [ "first_name" `I.p` first_name_
+          , "last_name"  `I.p` last_name_
           ]
 
-instance T.ToJSON SetName where
+instance AT.ToJSON SetName where
   toJSON
     SetName
-      { last_name = last_name_,
-        first_name = first_name_
-      } =
-      A.object
-        [ "@type" A..= T.String "setName",
-          "last_name" A..= last_name_,
-          "first_name" A..= first_name_
-        ]
+      { first_name = first_name_
+      , last_name  = last_name_
+      }
+        = A.object
+          [ "@type"      A..= AT.String "setName"
+          , "first_name" A..= first_name_
+          , "last_name"  A..= last_name_
+          ]
+
+defaultSetName :: SetName
+defaultSetName =
+  SetName
+    { first_name = Nothing
+    , last_name  = Nothing
+    }
+

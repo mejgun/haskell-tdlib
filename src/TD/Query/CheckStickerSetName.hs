@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckStickerSetName where
+module TD.Query.CheckStickerSetName
+  (CheckStickerSetName(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks whether a name can be used for a new sticker set @name Name to be checked
-data CheckStickerSetName = CheckStickerSetName
-  { -- |
-    name :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks whether a name can be used for a new sticker set
+data CheckStickerSetName
+  = CheckStickerSetName
+    { name :: Maybe T.Text -- ^ Name to be checked
+    }
+  deriving (Eq, Show)
 
-instance Show CheckStickerSetName where
-  show
+instance I.ShortShow CheckStickerSetName where
+  shortShow
     CheckStickerSetName
       { name = name_
-      } =
-      "CheckStickerSetName"
-        ++ U.cc
-          [ U.p "name" name_
+      }
+        = "CheckStickerSetName"
+          ++ I.cc
+          [ "name" `I.p` name_
           ]
 
-instance T.ToJSON CheckStickerSetName where
+instance AT.ToJSON CheckStickerSetName where
   toJSON
     CheckStickerSetName
       { name = name_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkStickerSetName",
-          "name" A..= name_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkStickerSetName"
+          , "name"  A..= name_
+          ]
+

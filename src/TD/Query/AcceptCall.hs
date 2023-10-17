@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AcceptCall where
+module TD.Query.AcceptCall
+  (AcceptCall(..)
+  , defaultAcceptCall
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallProtocol as CallProtocol
-import qualified Utils as U
 
--- |
--- Accepts an incoming call @call_id Call identifier @protocol The call protocols supported by the application
-data AcceptCall = AcceptCall
-  { -- |
-    protocol :: Maybe CallProtocol.CallProtocol,
-    -- |
-    call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Accepts an incoming call
+data AcceptCall
+  = AcceptCall
+    { call_id  :: Maybe Int                       -- ^ Call identifier
+    , protocol :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
+    }
+  deriving (Eq, Show)
 
-instance Show AcceptCall where
-  show
+instance I.ShortShow AcceptCall where
+  shortShow
     AcceptCall
-      { protocol = protocol_,
-        call_id = call_id_
-      } =
-      "AcceptCall"
-        ++ U.cc
-          [ U.p "protocol" protocol_,
-            U.p "call_id" call_id_
+      { call_id  = call_id_
+      , protocol = protocol_
+      }
+        = "AcceptCall"
+          ++ I.cc
+          [ "call_id"  `I.p` call_id_
+          , "protocol" `I.p` protocol_
           ]
 
-instance T.ToJSON AcceptCall where
+instance AT.ToJSON AcceptCall where
   toJSON
     AcceptCall
-      { protocol = protocol_,
-        call_id = call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "acceptCall",
-          "protocol" A..= protocol_,
-          "call_id" A..= call_id_
-        ]
+      { call_id  = call_id_
+      , protocol = protocol_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "acceptCall"
+          , "call_id"  A..= call_id_
+          , "protocol" A..= protocol_
+          ]
+
+defaultAcceptCall :: AcceptCall
+defaultAcceptCall =
+  AcceptCall
+    { call_id  = Nothing
+    , protocol = Nothing
+    }
+

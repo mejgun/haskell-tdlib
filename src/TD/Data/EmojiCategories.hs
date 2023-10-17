@@ -1,51 +1,40 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.EmojiCategories where
+module TD.Data.EmojiCategories
+  (EmojiCategories(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiCategory as EmojiCategory
-import qualified Utils as U
 
--- |
-data EmojiCategories = -- | Represents a list of emoji categories @categories List of categories
-  EmojiCategories
-  { -- |
-    categories :: Maybe [EmojiCategory.EmojiCategory]
-  }
-  deriving (Eq)
+data EmojiCategories
+  = EmojiCategories -- ^ Represents a list of emoji categories
+    { categories :: Maybe [EmojiCategory.EmojiCategory] -- ^ List of categories
+    }
+  deriving (Eq, Show)
 
-instance Show EmojiCategories where
-  show
-    EmojiCategories
-      { categories = categories_
-      } =
-      "EmojiCategories"
-        ++ U.cc
-          [ U.p "categories" categories_
-          ]
+instance I.ShortShow EmojiCategories where
+  shortShow EmojiCategories
+    { categories = categories_
+    }
+      = "EmojiCategories"
+        ++ I.cc
+        [ "categories" `I.p` categories_
+        ]
 
-instance T.FromJSON EmojiCategories where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON EmojiCategories where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "emojiCategories" -> parseEmojiCategories v
-      _ -> mempty
+      _                 -> mempty
+    
     where
-      parseEmojiCategories :: A.Value -> T.Parser EmojiCategories
+      parseEmojiCategories :: A.Value -> AT.Parser EmojiCategories
       parseEmojiCategories = A.withObject "EmojiCategories" $ \o -> do
-        categories_ <- o A..:? "categories"
-        return $ EmojiCategories {categories = categories_}
+        categories_ <- o A..:?  "categories"
+        pure $ EmojiCategories
+          { categories = categories_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON EmojiCategories where
-  toJSON
-    EmojiCategories
-      { categories = categories_
-      } =
-      A.object
-        [ "@type" A..= T.String "emojiCategories",
-          "categories" A..= categories_
-        ]

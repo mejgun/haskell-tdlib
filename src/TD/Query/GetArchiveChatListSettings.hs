@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetArchiveChatListSettings where
+module TD.Query.GetArchiveChatListSettings
+  (GetArchiveChatListSettings(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns settings for automatic moving of chats to and from the Archive chat lists
-data GetArchiveChatListSettings = GetArchiveChatListSettings
-  {
-  }
-  deriving (Eq)
+-- | Returns settings for automatic moving of chats to and from the Archive chat lists
+data GetArchiveChatListSettings
+  = GetArchiveChatListSettings
+  deriving (Eq, Show)
 
-instance Show GetArchiveChatListSettings where
-  show GetArchiveChatListSettings =
-    "GetArchiveChatListSettings"
-      ++ U.cc
-        []
+instance I.ShortShow GetArchiveChatListSettings where
+  shortShow
+    GetArchiveChatListSettings
+        = "GetArchiveChatListSettings"
 
-instance T.ToJSON GetArchiveChatListSettings where
-  toJSON GetArchiveChatListSettings =
-    A.object
-      [ "@type" A..= T.String "getArchiveChatListSettings"
-      ]
+instance AT.ToJSON GetArchiveChatListSettings where
+  toJSON
+    GetArchiveChatListSettings
+        = A.object
+          [ "@type" A..= AT.String "getArchiveChatListSettings"
+          ]
+

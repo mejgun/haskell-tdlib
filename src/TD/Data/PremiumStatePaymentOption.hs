@@ -1,72 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.PremiumStatePaymentOption where
+module TD.Data.PremiumStatePaymentOption
+  (PremiumStatePaymentOption(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
-import qualified Utils as U
+import qualified Data.Text as T
 
--- |
-data PremiumStatePaymentOption = -- | Describes an option for buying or upgrading Telegram Premium for self
-  PremiumStatePaymentOption
-  { -- | Identifier of the last in-store transaction for the currently used option
-    last_transaction_id :: Maybe String,
-    -- | True, if the payment option can be used to upgrade the existing Telegram Premium subscription
-    is_upgrade :: Maybe Bool,
-    -- | True, if this is the currently used Telegram Premium subscription option
-    is_current :: Maybe Bool,
-    -- | Information about the payment option
-    payment_option :: Maybe PremiumPaymentOption.PremiumPaymentOption
-  }
-  deriving (Eq)
+data PremiumStatePaymentOption
+  = PremiumStatePaymentOption -- ^ Describes an option for buying or upgrading Telegram Premium for self
+    { payment_option      :: Maybe PremiumPaymentOption.PremiumPaymentOption -- ^ Information about the payment option
+    , is_current          :: Maybe Bool                                      -- ^ True, if this is the currently used Telegram Premium subscription option
+    , is_upgrade          :: Maybe Bool                                      -- ^ True, if the payment option can be used to upgrade the existing Telegram Premium subscription
+    , last_transaction_id :: Maybe T.Text                                    -- ^ Identifier of the last in-store transaction for the currently used option
+    }
+  deriving (Eq, Show)
 
-instance Show PremiumStatePaymentOption where
-  show
-    PremiumStatePaymentOption
-      { last_transaction_id = last_transaction_id_,
-        is_upgrade = is_upgrade_,
-        is_current = is_current_,
-        payment_option = payment_option_
-      } =
-      "PremiumStatePaymentOption"
-        ++ U.cc
-          [ U.p "last_transaction_id" last_transaction_id_,
-            U.p "is_upgrade" is_upgrade_,
-            U.p "is_current" is_current_,
-            U.p "payment_option" payment_option_
-          ]
+instance I.ShortShow PremiumStatePaymentOption where
+  shortShow PremiumStatePaymentOption
+    { payment_option      = payment_option_
+    , is_current          = is_current_
+    , is_upgrade          = is_upgrade_
+    , last_transaction_id = last_transaction_id_
+    }
+      = "PremiumStatePaymentOption"
+        ++ I.cc
+        [ "payment_option"      `I.p` payment_option_
+        , "is_current"          `I.p` is_current_
+        , "is_upgrade"          `I.p` is_upgrade_
+        , "last_transaction_id" `I.p` last_transaction_id_
+        ]
 
-instance T.FromJSON PremiumStatePaymentOption where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON PremiumStatePaymentOption where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "premiumStatePaymentOption" -> parsePremiumStatePaymentOption v
-      _ -> mempty
+      _                           -> mempty
+    
     where
-      parsePremiumStatePaymentOption :: A.Value -> T.Parser PremiumStatePaymentOption
+      parsePremiumStatePaymentOption :: A.Value -> AT.Parser PremiumStatePaymentOption
       parsePremiumStatePaymentOption = A.withObject "PremiumStatePaymentOption" $ \o -> do
-        last_transaction_id_ <- o A..:? "last_transaction_id"
-        is_upgrade_ <- o A..:? "is_upgrade"
-        is_current_ <- o A..:? "is_current"
-        payment_option_ <- o A..:? "payment_option"
-        return $ PremiumStatePaymentOption {last_transaction_id = last_transaction_id_, is_upgrade = is_upgrade_, is_current = is_current_, payment_option = payment_option_}
+        payment_option_      <- o A..:?  "payment_option"
+        is_current_          <- o A..:?  "is_current"
+        is_upgrade_          <- o A..:?  "is_upgrade"
+        last_transaction_id_ <- o A..:?  "last_transaction_id"
+        pure $ PremiumStatePaymentOption
+          { payment_option      = payment_option_
+          , is_current          = is_current_
+          , is_upgrade          = is_upgrade_
+          , last_transaction_id = last_transaction_id_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON PremiumStatePaymentOption where
-  toJSON
-    PremiumStatePaymentOption
-      { last_transaction_id = last_transaction_id_,
-        is_upgrade = is_upgrade_,
-        is_current = is_current_,
-        payment_option = payment_option_
-      } =
-      A.object
-        [ "@type" A..= T.String "premiumStatePaymentOption",
-          "last_transaction_id" A..= last_transaction_id_,
-          "is_upgrade" A..= is_upgrade_,
-          "is_current" A..= is_current_,
-          "payment_option" A..= payment_option_
-        ]

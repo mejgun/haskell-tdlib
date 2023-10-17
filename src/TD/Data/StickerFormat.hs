@@ -1,66 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StickerFormat where
+module TD.Data.StickerFormat
+  (StickerFormat(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes format of a sticker
 data StickerFormat
-  = -- | The sticker is an image in WEBP format
-    StickerFormatWebp
-  | -- | The sticker is an animation in TGS format
-    StickerFormatTgs
-  | -- | The sticker is a video in WEBM format
-    StickerFormatWebm
-  deriving (Eq)
+  = StickerFormatWebp -- ^ The sticker is an image in WEBP format
+  | StickerFormatTgs -- ^ The sticker is an animation in TGS format
+  | StickerFormatWebm -- ^ The sticker is a video in WEBM format
+  deriving (Eq, Show)
 
-instance Show StickerFormat where
-  show StickerFormatWebp =
-    "StickerFormatWebp"
-      ++ U.cc
-        []
-  show StickerFormatTgs =
-    "StickerFormatTgs"
-      ++ U.cc
-        []
-  show StickerFormatWebm =
-    "StickerFormatWebm"
-      ++ U.cc
-        []
+instance I.ShortShow StickerFormat where
+  shortShow StickerFormatWebp
+      = "StickerFormatWebp"
+  shortShow StickerFormatTgs
+      = "StickerFormatTgs"
+  shortShow StickerFormatWebm
+      = "StickerFormatWebm"
 
-instance T.FromJSON StickerFormat where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StickerFormat where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "stickerFormatWebp" -> parseStickerFormatWebp v
-      "stickerFormatTgs" -> parseStickerFormatTgs v
-      "stickerFormatWebm" -> parseStickerFormatWebm v
-      _ -> mempty
-    where
-      parseStickerFormatWebp :: A.Value -> T.Parser StickerFormat
-      parseStickerFormatWebp = A.withObject "StickerFormatWebp" $ \_ -> return StickerFormatWebp
-
-      parseStickerFormatTgs :: A.Value -> T.Parser StickerFormat
-      parseStickerFormatTgs = A.withObject "StickerFormatTgs" $ \_ -> return StickerFormatTgs
-
-      parseStickerFormatWebm :: A.Value -> T.Parser StickerFormat
-      parseStickerFormatWebm = A.withObject "StickerFormatWebm" $ \_ -> return StickerFormatWebm
+      "stickerFormatWebp" -> pure StickerFormatWebp
+      "stickerFormatTgs"  -> pure StickerFormatTgs
+      "stickerFormatWebm" -> pure StickerFormatWebm
+      _                   -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON StickerFormat where
-  toJSON StickerFormatWebp =
-    A.object
-      [ "@type" A..= T.String "stickerFormatWebp"
-      ]
-  toJSON StickerFormatTgs =
-    A.object
-      [ "@type" A..= T.String "stickerFormatTgs"
-      ]
-  toJSON StickerFormatWebm =
-    A.object
-      [ "@type" A..= T.String "stickerFormatWebm"
-      ]
+instance AT.ToJSON StickerFormat where
+  toJSON StickerFormatWebp
+      = A.object
+        [ "@type" A..= AT.String "stickerFormatWebp"
+        ]
+  toJSON StickerFormatTgs
+      = A.object
+        [ "@type" A..= AT.String "stickerFormatTgs"
+        ]
+  toJSON StickerFormatWebm
+      = A.object
+        [ "@type" A..= AT.String "stickerFormatWebm"
+        ]
+

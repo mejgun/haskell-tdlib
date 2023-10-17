@@ -1,65 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.VideoChat where
+module TD.Data.VideoChat
+  (VideoChat(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Utils as U
 
--- |
-data VideoChat = -- | Describes a video chat
-  VideoChat
-  { -- | Default group call participant identifier to join the video chat; may be null
-    default_participant_id :: Maybe MessageSender.MessageSender,
-    -- | True, if the video chat has participants
-    has_participants :: Maybe Bool,
-    -- | Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
-    group_call_id :: Maybe Int
-  }
-  deriving (Eq)
+data VideoChat
+  = VideoChat -- ^ Describes a video chat
+    { group_call_id          :: Maybe Int                         -- ^ Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
+    , has_participants       :: Maybe Bool                        -- ^ True, if the video chat has participants
+    , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chat; may be null
+    }
+  deriving (Eq, Show)
 
-instance Show VideoChat where
-  show
-    VideoChat
-      { default_participant_id = default_participant_id_,
-        has_participants = has_participants_,
-        group_call_id = group_call_id_
-      } =
-      "VideoChat"
-        ++ U.cc
-          [ U.p "default_participant_id" default_participant_id_,
-            U.p "has_participants" has_participants_,
-            U.p "group_call_id" group_call_id_
-          ]
+instance I.ShortShow VideoChat where
+  shortShow VideoChat
+    { group_call_id          = group_call_id_
+    , has_participants       = has_participants_
+    , default_participant_id = default_participant_id_
+    }
+      = "VideoChat"
+        ++ I.cc
+        [ "group_call_id"          `I.p` group_call_id_
+        , "has_participants"       `I.p` has_participants_
+        , "default_participant_id" `I.p` default_participant_id_
+        ]
 
-instance T.FromJSON VideoChat where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON VideoChat where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "videoChat" -> parseVideoChat v
-      _ -> mempty
+      _           -> mempty
+    
     where
-      parseVideoChat :: A.Value -> T.Parser VideoChat
+      parseVideoChat :: A.Value -> AT.Parser VideoChat
       parseVideoChat = A.withObject "VideoChat" $ \o -> do
-        default_participant_id_ <- o A..:? "default_participant_id"
-        has_participants_ <- o A..:? "has_participants"
-        group_call_id_ <- o A..:? "group_call_id"
-        return $ VideoChat {default_participant_id = default_participant_id_, has_participants = has_participants_, group_call_id = group_call_id_}
+        group_call_id_          <- o A..:?  "group_call_id"
+        has_participants_       <- o A..:?  "has_participants"
+        default_participant_id_ <- o A..:?  "default_participant_id"
+        pure $ VideoChat
+          { group_call_id          = group_call_id_
+          , has_participants       = has_participants_
+          , default_participant_id = default_participant_id_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON VideoChat where
-  toJSON
-    VideoChat
-      { default_participant_id = default_participant_id_,
-        has_participants = has_participants_,
-        group_call_id = group_call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "videoChat",
-          "default_participant_id" A..= default_participant_id_,
-          "has_participants" A..= has_participants_,
-          "group_call_id" A..= group_call_id_
-        ]

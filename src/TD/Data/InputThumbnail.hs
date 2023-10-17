@@ -1,65 +1,73 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.InputThumbnail where
+module TD.Data.InputThumbnail
+  ( InputThumbnail(..)    
+  , defaultInputThumbnail 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
-data InputThumbnail = -- | A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
-  InputThumbnail
-  { -- | Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
-    height :: Maybe Int,
-    -- | Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
-    width :: Maybe Int,
-    -- | Thumbnail file to send. Sending thumbnails by file_id is currently not supported
-    thumbnail :: Maybe InputFile.InputFile
-  }
-  deriving (Eq)
+data InputThumbnail
+  = InputThumbnail -- ^ A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
+    { thumbnail :: Maybe InputFile.InputFile -- ^ Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+    , width     :: Maybe Int                 -- ^ Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+    , height    :: Maybe Int                 -- ^ Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+    }
+  deriving (Eq, Show)
 
-instance Show InputThumbnail where
-  show
-    InputThumbnail
-      { height = height_,
-        width = width_,
-        thumbnail = thumbnail_
-      } =
-      "InputThumbnail"
-        ++ U.cc
-          [ U.p "height" height_,
-            U.p "width" width_,
-            U.p "thumbnail" thumbnail_
-          ]
+instance I.ShortShow InputThumbnail where
+  shortShow InputThumbnail
+    { thumbnail = thumbnail_
+    , width     = width_
+    , height    = height_
+    }
+      = "InputThumbnail"
+        ++ I.cc
+        [ "thumbnail" `I.p` thumbnail_
+        , "width"     `I.p` width_
+        , "height"    `I.p` height_
+        ]
 
-instance T.FromJSON InputThumbnail where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON InputThumbnail where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "inputThumbnail" -> parseInputThumbnail v
-      _ -> mempty
+      _                -> mempty
+    
     where
-      parseInputThumbnail :: A.Value -> T.Parser InputThumbnail
+      parseInputThumbnail :: A.Value -> AT.Parser InputThumbnail
       parseInputThumbnail = A.withObject "InputThumbnail" $ \o -> do
-        height_ <- o A..:? "height"
-        width_ <- o A..:? "width"
-        thumbnail_ <- o A..:? "thumbnail"
-        return $ InputThumbnail {height = height_, width = width_, thumbnail = thumbnail_}
+        thumbnail_ <- o A..:?  "thumbnail"
+        width_     <- o A..:?  "width"
+        height_    <- o A..:?  "height"
+        pure $ InputThumbnail
+          { thumbnail = thumbnail_
+          , width     = width_
+          , height    = height_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON InputThumbnail where
-  toJSON
-    InputThumbnail
-      { height = height_,
-        width = width_,
-        thumbnail = thumbnail_
-      } =
-      A.object
-        [ "@type" A..= T.String "inputThumbnail",
-          "height" A..= height_,
-          "width" A..= width_,
-          "thumbnail" A..= thumbnail_
+instance AT.ToJSON InputThumbnail where
+  toJSON InputThumbnail
+    { thumbnail = thumbnail_
+    , width     = width_
+    , height    = height_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "inputThumbnail"
+        , "thumbnail" A..= thumbnail_
+        , "width"     A..= width_
+        , "height"    A..= height_
         ]
+
+defaultInputThumbnail :: InputThumbnail
+defaultInputThumbnail =
+  InputThumbnail
+    { thumbnail = Nothing
+    , width     = Nothing
+    , height    = Nothing
+    }
+

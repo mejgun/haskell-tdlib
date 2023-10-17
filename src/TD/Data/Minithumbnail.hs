@@ -1,64 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Minithumbnail where
+module TD.Data.Minithumbnail
+  (Minithumbnail(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.ByteString as BS
 
--- |
-data Minithumbnail = -- | Thumbnail image of a very poor quality and low resolution @width Thumbnail width, usually doesn't exceed 40 @height Thumbnail height, usually doesn't exceed 40 @data The thumbnail in JPEG format
-  Minithumbnail
-  { -- |
-    _data :: Maybe String,
-    -- |
-    height :: Maybe Int,
-    -- |
-    width :: Maybe Int
-  }
-  deriving (Eq)
+data Minithumbnail
+  = Minithumbnail -- ^ Thumbnail image of a very poor quality and low resolution
+    { width  :: Maybe Int           -- ^ Thumbnail width, usually doesn't exceed 40
+    , height :: Maybe Int           -- ^ Thumbnail height, usually doesn't exceed 40
+    , _data  :: Maybe BS.ByteString -- ^ The thumbnail in JPEG format
+    }
+  deriving (Eq, Show)
 
-instance Show Minithumbnail where
-  show
-    Minithumbnail
-      { _data = _data_,
-        height = height_,
-        width = width_
-      } =
-      "Minithumbnail"
-        ++ U.cc
-          [ U.p "_data" _data_,
-            U.p "height" height_,
-            U.p "width" width_
-          ]
+instance I.ShortShow Minithumbnail where
+  shortShow Minithumbnail
+    { width  = width_
+    , height = height_
+    , _data  = _data_
+    }
+      = "Minithumbnail"
+        ++ I.cc
+        [ "width"  `I.p` width_
+        , "height" `I.p` height_
+        , "_data"  `I.p` _data_
+        ]
 
-instance T.FromJSON Minithumbnail where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Minithumbnail where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "minithumbnail" -> parseMinithumbnail v
-      _ -> mempty
+      _               -> mempty
+    
     where
-      parseMinithumbnail :: A.Value -> T.Parser Minithumbnail
+      parseMinithumbnail :: A.Value -> AT.Parser Minithumbnail
       parseMinithumbnail = A.withObject "Minithumbnail" $ \o -> do
-        _data_ <- o A..:? "data"
-        height_ <- o A..:? "height"
-        width_ <- o A..:? "width"
-        return $ Minithumbnail {_data = _data_, height = height_, width = width_}
+        width_  <- o A..:?                       "width"
+        height_ <- o A..:?                       "height"
+        _data_  <- fmap I.readBytes <$> o A..:?  "data"
+        pure $ Minithumbnail
+          { width  = width_
+          , height = height_
+          , _data  = _data_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Minithumbnail where
-  toJSON
-    Minithumbnail
-      { _data = _data_,
-        height = height_,
-        width = width_
-      } =
-      A.object
-        [ "@type" A..= T.String "minithumbnail",
-          "data" A..= _data_,
-          "height" A..= height_,
-          "width" A..= width_
-        ]

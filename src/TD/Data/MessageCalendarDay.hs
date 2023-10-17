@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageCalendarDay where
+module TD.Data.MessageCalendarDay
+  (MessageCalendarDay(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Message as Message
-import qualified Utils as U
 
--- |
-data MessageCalendarDay = -- | Contains information about found messages sent on a specific day @total_count Total number of found messages sent on the day @message First message sent on the day
-  MessageCalendarDay
-  { -- |
-    message :: Maybe Message.Message,
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data MessageCalendarDay
+  = MessageCalendarDay -- ^ Contains information about found messages sent on a specific day
+    { total_count :: Maybe Int             -- ^ Total number of found messages sent on the day
+    , message     :: Maybe Message.Message -- ^ First message sent on the day
+    }
+  deriving (Eq, Show)
 
-instance Show MessageCalendarDay where
-  show
-    MessageCalendarDay
-      { message = message_,
-        total_count = total_count_
-      } =
-      "MessageCalendarDay"
-        ++ U.cc
-          [ U.p "message" message_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow MessageCalendarDay where
+  shortShow MessageCalendarDay
+    { total_count = total_count_
+    , message     = message_
+    }
+      = "MessageCalendarDay"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "message"     `I.p` message_
+        ]
 
-instance T.FromJSON MessageCalendarDay where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageCalendarDay where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageCalendarDay" -> parseMessageCalendarDay v
-      _ -> mempty
+      _                    -> mempty
+    
     where
-      parseMessageCalendarDay :: A.Value -> T.Parser MessageCalendarDay
+      parseMessageCalendarDay :: A.Value -> AT.Parser MessageCalendarDay
       parseMessageCalendarDay = A.withObject "MessageCalendarDay" $ \o -> do
-        message_ <- o A..:? "message"
-        total_count_ <- o A..:? "total_count"
-        return $ MessageCalendarDay {message = message_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        message_     <- o A..:?  "message"
+        pure $ MessageCalendarDay
+          { total_count = total_count_
+          , message     = message_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageCalendarDay where
-  toJSON
-    MessageCalendarDay
-      { message = message_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageCalendarDay",
-          "message" A..= message_,
-          "total_count" A..= total_count_
-        ]

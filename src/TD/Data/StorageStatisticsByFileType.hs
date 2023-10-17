@@ -1,65 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StorageStatisticsByFileType where
+module TD.Data.StorageStatisticsByFileType
+  (StorageStatisticsByFileType(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.FileType as FileType
-import qualified Utils as U
 
--- |
-data StorageStatisticsByFileType = -- | Contains the storage usage statistics for a specific file type
-  StorageStatisticsByFileType
-  { -- | Total number of files
-    count :: Maybe Int,
-    -- | Total size of the files, in bytes
-    size :: Maybe Int,
-    -- | File type
-    file_type :: Maybe FileType.FileType
-  }
-  deriving (Eq)
+data StorageStatisticsByFileType
+  = StorageStatisticsByFileType -- ^ Contains the storage usage statistics for a specific file type
+    { file_type :: Maybe FileType.FileType -- ^ File type
+    , size      :: Maybe Int               -- ^ Total size of the files, in bytes
+    , count     :: Maybe Int               -- ^ Total number of files
+    }
+  deriving (Eq, Show)
 
-instance Show StorageStatisticsByFileType where
-  show
-    StorageStatisticsByFileType
-      { count = count_,
-        size = size_,
-        file_type = file_type_
-      } =
-      "StorageStatisticsByFileType"
-        ++ U.cc
-          [ U.p "count" count_,
-            U.p "size" size_,
-            U.p "file_type" file_type_
-          ]
+instance I.ShortShow StorageStatisticsByFileType where
+  shortShow StorageStatisticsByFileType
+    { file_type = file_type_
+    , size      = size_
+    , count     = count_
+    }
+      = "StorageStatisticsByFileType"
+        ++ I.cc
+        [ "file_type" `I.p` file_type_
+        , "size"      `I.p` size_
+        , "count"     `I.p` count_
+        ]
 
-instance T.FromJSON StorageStatisticsByFileType where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StorageStatisticsByFileType where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "storageStatisticsByFileType" -> parseStorageStatisticsByFileType v
-      _ -> mempty
+      _                             -> mempty
+    
     where
-      parseStorageStatisticsByFileType :: A.Value -> T.Parser StorageStatisticsByFileType
+      parseStorageStatisticsByFileType :: A.Value -> AT.Parser StorageStatisticsByFileType
       parseStorageStatisticsByFileType = A.withObject "StorageStatisticsByFileType" $ \o -> do
-        count_ <- o A..:? "count"
-        size_ <- o A..:? "size"
-        file_type_ <- o A..:? "file_type"
-        return $ StorageStatisticsByFileType {count = count_, size = size_, file_type = file_type_}
+        file_type_ <- o A..:?  "file_type"
+        size_      <- o A..:?  "size"
+        count_     <- o A..:?  "count"
+        pure $ StorageStatisticsByFileType
+          { file_type = file_type_
+          , size      = size_
+          , count     = count_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON StorageStatisticsByFileType where
-  toJSON
-    StorageStatisticsByFileType
-      { count = count_,
-        size = size_,
-        file_type = file_type_
-      } =
-      A.object
-        [ "@type" A..= T.String "storageStatisticsByFileType",
-          "count" A..= count_,
-          "size" A..= size_,
-          "file_type" A..= file_type_
-        ]

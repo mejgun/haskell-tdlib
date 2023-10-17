@@ -1,49 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetStoryPrivacySettings where
+module TD.Query.SetStoryPrivacySettings
+  (SetStoryPrivacySettings(..)
+  , defaultSetStoryPrivacySettings
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
-import qualified Utils as U
 
--- |
--- Changes privacy settings of a story. Can be called only if story.can_be_edited == true
-data SetStoryPrivacySettings = SetStoryPrivacySettings
-  { -- | The new privacy settigs for the story
-    privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings,
-    -- | Identifier of the story
-    story_id :: Maybe Int,
-    -- | Identifier of the chat that posted the story
-    story_sender_chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes privacy settings of a previously sent story
+data SetStoryPrivacySettings
+  = SetStoryPrivacySettings
+    { story_id         :: Maybe Int                                       -- ^ Identifier of the story
+    , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The new privacy settigs for the story
+    }
+  deriving (Eq, Show)
 
-instance Show SetStoryPrivacySettings where
-  show
+instance I.ShortShow SetStoryPrivacySettings where
+  shortShow
     SetStoryPrivacySettings
-      { privacy_settings = privacy_settings_,
-        story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      "SetStoryPrivacySettings"
-        ++ U.cc
-          [ U.p "privacy_settings" privacy_settings_,
-            U.p "story_id" story_id_,
-            U.p "story_sender_chat_id" story_sender_chat_id_
+      { story_id         = story_id_
+      , privacy_settings = privacy_settings_
+      }
+        = "SetStoryPrivacySettings"
+          ++ I.cc
+          [ "story_id"         `I.p` story_id_
+          , "privacy_settings" `I.p` privacy_settings_
           ]
 
-instance T.ToJSON SetStoryPrivacySettings where
+instance AT.ToJSON SetStoryPrivacySettings where
   toJSON
     SetStoryPrivacySettings
-      { privacy_settings = privacy_settings_,
-        story_id = story_id_,
-        story_sender_chat_id = story_sender_chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setStoryPrivacySettings",
-          "privacy_settings" A..= privacy_settings_,
-          "story_id" A..= story_id_,
-          "story_sender_chat_id" A..= story_sender_chat_id_
-        ]
+      { story_id         = story_id_
+      , privacy_settings = privacy_settings_
+      }
+        = A.object
+          [ "@type"            A..= AT.String "setStoryPrivacySettings"
+          , "story_id"         A..= story_id_
+          , "privacy_settings" A..= privacy_settings_
+          ]
+
+defaultSetStoryPrivacySettings :: SetStoryPrivacySettings
+defaultSetStoryPrivacySettings =
+  SetStoryPrivacySettings
+    { story_id         = Nothing
+    , privacy_settings = Nothing
+    }
+

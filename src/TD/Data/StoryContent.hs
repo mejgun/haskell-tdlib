@@ -1,101 +1,68 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.StoryContent where
+module TD.Data.StoryContent
+  (StoryContent(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.StoryVideo as StoryVideo
-import qualified Utils as U
 
 -- | Contains the content of a story
 data StoryContent
-  = -- | A photo story @photo The photo
-    StoryContentPhoto
-      { -- |
-        photo :: Maybe Photo.Photo
-      }
-  | -- | A video story @video The video in MPEG4 format @alternative_video Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
-    StoryContentVideo
-      { -- |
-        alternative_video :: Maybe StoryVideo.StoryVideo,
-        -- |
-        video :: Maybe StoryVideo.StoryVideo
-      }
-  | -- | A story content that is not supported in the current TDLib version
-    StoryContentUnsupported
-  deriving (Eq)
+  = StoryContentPhoto -- ^ A photo story
+    { photo :: Maybe Photo.Photo -- ^ The photo
+    }
+  | StoryContentVideo -- ^ A video story
+    { video             :: Maybe StoryVideo.StoryVideo -- ^ The video in MPEG4 format
+    , alternative_video :: Maybe StoryVideo.StoryVideo -- ^ Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
+    }
+  | StoryContentUnsupported -- ^ A story content that is not supported in the current TDLib version
+  deriving (Eq, Show)
 
-instance Show StoryContent where
-  show
-    StoryContentPhoto
-      { photo = photo_
-      } =
-      "StoryContentPhoto"
-        ++ U.cc
-          [ U.p "photo" photo_
-          ]
-  show
-    StoryContentVideo
-      { alternative_video = alternative_video_,
-        video = video_
-      } =
-      "StoryContentVideo"
-        ++ U.cc
-          [ U.p "alternative_video" alternative_video_,
-            U.p "video" video_
-          ]
-  show StoryContentUnsupported =
-    "StoryContentUnsupported"
-      ++ U.cc
-        []
+instance I.ShortShow StoryContent where
+  shortShow StoryContentPhoto
+    { photo = photo_
+    }
+      = "StoryContentPhoto"
+        ++ I.cc
+        [ "photo" `I.p` photo_
+        ]
+  shortShow StoryContentVideo
+    { video             = video_
+    , alternative_video = alternative_video_
+    }
+      = "StoryContentVideo"
+        ++ I.cc
+        [ "video"             `I.p` video_
+        , "alternative_video" `I.p` alternative_video_
+        ]
+  shortShow StoryContentUnsupported
+      = "StoryContentUnsupported"
 
-instance T.FromJSON StoryContent where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON StoryContent where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "storyContentPhoto" -> parseStoryContentPhoto v
-      "storyContentVideo" -> parseStoryContentVideo v
-      "storyContentUnsupported" -> parseStoryContentUnsupported v
-      _ -> mempty
+      "storyContentPhoto"       -> parseStoryContentPhoto v
+      "storyContentVideo"       -> parseStoryContentVideo v
+      "storyContentUnsupported" -> pure StoryContentUnsupported
+      _                         -> mempty
+    
     where
-      parseStoryContentPhoto :: A.Value -> T.Parser StoryContent
+      parseStoryContentPhoto :: A.Value -> AT.Parser StoryContent
       parseStoryContentPhoto = A.withObject "StoryContentPhoto" $ \o -> do
-        photo_ <- o A..:? "photo"
-        return $ StoryContentPhoto {photo = photo_}
-
-      parseStoryContentVideo :: A.Value -> T.Parser StoryContent
+        photo_ <- o A..:?  "photo"
+        pure $ StoryContentPhoto
+          { photo = photo_
+          }
+      parseStoryContentVideo :: A.Value -> AT.Parser StoryContent
       parseStoryContentVideo = A.withObject "StoryContentVideo" $ \o -> do
-        alternative_video_ <- o A..:? "alternative_video"
-        video_ <- o A..:? "video"
-        return $ StoryContentVideo {alternative_video = alternative_video_, video = video_}
-
-      parseStoryContentUnsupported :: A.Value -> T.Parser StoryContent
-      parseStoryContentUnsupported = A.withObject "StoryContentUnsupported" $ \_ -> return StoryContentUnsupported
+        video_             <- o A..:?  "video"
+        alternative_video_ <- o A..:?  "alternative_video"
+        pure $ StoryContentVideo
+          { video             = video_
+          , alternative_video = alternative_video_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON StoryContent where
-  toJSON
-    StoryContentPhoto
-      { photo = photo_
-      } =
-      A.object
-        [ "@type" A..= T.String "storyContentPhoto",
-          "photo" A..= photo_
-        ]
-  toJSON
-    StoryContentVideo
-      { alternative_video = alternative_video_,
-        video = video_
-      } =
-      A.object
-        [ "@type" A..= T.String "storyContentVideo",
-          "alternative_video" A..= alternative_video_,
-          "video" A..= video_
-        ]
-  toJSON StoryContentUnsupported =
-    A.object
-      [ "@type" A..= T.String "storyContentUnsupported"
-      ]

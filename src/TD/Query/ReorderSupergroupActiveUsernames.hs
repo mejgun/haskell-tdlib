@@ -1,42 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ReorderSupergroupActiveUsernames where
+module TD.Query.ReorderSupergroupActiveUsernames
+  (ReorderSupergroupActiveUsernames(..)
+  , defaultReorderSupergroupActiveUsernames
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel @supergroup_id Identifier of the supergroup or channel @usernames The new order of active usernames. All currently active usernames must be specified
-data ReorderSupergroupActiveUsernames = ReorderSupergroupActiveUsernames
-  { -- |
-    usernames :: Maybe [String],
-    -- |
-    supergroup_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
+data ReorderSupergroupActiveUsernames
+  = ReorderSupergroupActiveUsernames
+    { supergroup_id :: Maybe Int      -- ^ Identifier of the supergroup or channel
+    , usernames     :: Maybe [T.Text] -- ^ The new order of active usernames. All currently active usernames must be specified
+    }
+  deriving (Eq, Show)
 
-instance Show ReorderSupergroupActiveUsernames where
-  show
+instance I.ShortShow ReorderSupergroupActiveUsernames where
+  shortShow
     ReorderSupergroupActiveUsernames
-      { usernames = usernames_,
-        supergroup_id = supergroup_id_
-      } =
-      "ReorderSupergroupActiveUsernames"
-        ++ U.cc
-          [ U.p "usernames" usernames_,
-            U.p "supergroup_id" supergroup_id_
+      { supergroup_id = supergroup_id_
+      , usernames     = usernames_
+      }
+        = "ReorderSupergroupActiveUsernames"
+          ++ I.cc
+          [ "supergroup_id" `I.p` supergroup_id_
+          , "usernames"     `I.p` usernames_
           ]
 
-instance T.ToJSON ReorderSupergroupActiveUsernames where
+instance AT.ToJSON ReorderSupergroupActiveUsernames where
   toJSON
     ReorderSupergroupActiveUsernames
-      { usernames = usernames_,
-        supergroup_id = supergroup_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "reorderSupergroupActiveUsernames",
-          "usernames" A..= usernames_,
-          "supergroup_id" A..= supergroup_id_
-        ]
+      { supergroup_id = supergroup_id_
+      , usernames     = usernames_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "reorderSupergroupActiveUsernames"
+          , "supergroup_id" A..= supergroup_id_
+          , "usernames"     A..= usernames_
+          ]
+
+defaultReorderSupergroupActiveUsernames :: ReorderSupergroupActiveUsernames
+defaultReorderSupergroupActiveUsernames =
+  ReorderSupergroupActiveUsernames
+    { supergroup_id = Nothing
+    , usernames     = Nothing
+    }
+

@@ -1,58 +1,45 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.ChatJoinRequests where
+module TD.Data.ChatJoinRequests
+  (ChatJoinRequests(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
-import qualified Utils as U
 
--- |
-data ChatJoinRequests = -- | Contains a list of requests to join a chat @total_count Approximate total number of requests found @requests List of the requests
-  ChatJoinRequests
-  { -- |
-    requests :: Maybe [ChatJoinRequest.ChatJoinRequest],
-    -- |
-    total_count :: Maybe Int
-  }
-  deriving (Eq)
+data ChatJoinRequests
+  = ChatJoinRequests -- ^ Contains a list of requests to join a chat
+    { total_count :: Maybe Int                               -- ^ Approximate total number of requests found
+    , requests    :: Maybe [ChatJoinRequest.ChatJoinRequest] -- ^ List of the requests
+    }
+  deriving (Eq, Show)
 
-instance Show ChatJoinRequests where
-  show
-    ChatJoinRequests
-      { requests = requests_,
-        total_count = total_count_
-      } =
-      "ChatJoinRequests"
-        ++ U.cc
-          [ U.p "requests" requests_,
-            U.p "total_count" total_count_
-          ]
+instance I.ShortShow ChatJoinRequests where
+  shortShow ChatJoinRequests
+    { total_count = total_count_
+    , requests    = requests_
+    }
+      = "ChatJoinRequests"
+        ++ I.cc
+        [ "total_count" `I.p` total_count_
+        , "requests"    `I.p` requests_
+        ]
 
-instance T.FromJSON ChatJoinRequests where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON ChatJoinRequests where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "chatJoinRequests" -> parseChatJoinRequests v
-      _ -> mempty
+      _                  -> mempty
+    
     where
-      parseChatJoinRequests :: A.Value -> T.Parser ChatJoinRequests
+      parseChatJoinRequests :: A.Value -> AT.Parser ChatJoinRequests
       parseChatJoinRequests = A.withObject "ChatJoinRequests" $ \o -> do
-        requests_ <- o A..:? "requests"
-        total_count_ <- o A..:? "total_count"
-        return $ ChatJoinRequests {requests = requests_, total_count = total_count_}
+        total_count_ <- o A..:?  "total_count"
+        requests_    <- o A..:?  "requests"
+        pure $ ChatJoinRequests
+          { total_count = total_count_
+          , requests    = requests_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON ChatJoinRequests where
-  toJSON
-    ChatJoinRequests
-      { requests = requests_,
-        total_count = total_count_
-      } =
-      A.object
-        [ "@type" A..= T.String "chatJoinRequests",
-          "requests" A..= requests_,
-          "total_count" A..= total_count_
-        ]

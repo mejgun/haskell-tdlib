@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CancelPreliminaryUploadFile where
+module TD.Query.CancelPreliminaryUploadFile
+  (CancelPreliminaryUploadFile(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined @file_id Identifier of the file to stop uploading
-data CancelPreliminaryUploadFile = CancelPreliminaryUploadFile
-  { -- |
-    file_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+data CancelPreliminaryUploadFile
+  = CancelPreliminaryUploadFile
+    { file_id :: Maybe Int -- ^ Identifier of the file to stop uploading
+    }
+  deriving (Eq, Show)
 
-instance Show CancelPreliminaryUploadFile where
-  show
+instance I.ShortShow CancelPreliminaryUploadFile where
+  shortShow
     CancelPreliminaryUploadFile
       { file_id = file_id_
-      } =
-      "CancelPreliminaryUploadFile"
-        ++ U.cc
-          [ U.p "file_id" file_id_
+      }
+        = "CancelPreliminaryUploadFile"
+          ++ I.cc
+          [ "file_id" `I.p` file_id_
           ]
 
-instance T.ToJSON CancelPreliminaryUploadFile where
+instance AT.ToJSON CancelPreliminaryUploadFile where
   toJSON
     CancelPreliminaryUploadFile
       { file_id = file_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "cancelPreliminaryUploadFile",
-          "file_id" A..= file_id_
-        ]
+      }
+        = A.object
+          [ "@type"   A..= AT.String "cancelPreliminaryUploadFile"
+          , "file_id" A..= file_id_
+          ]
+

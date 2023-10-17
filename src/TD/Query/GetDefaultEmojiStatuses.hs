@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetDefaultEmojiStatuses where
+module TD.Query.GetDefaultEmojiStatuses
+  (GetDefaultEmojiStatuses(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns default emoji statuses
-data GetDefaultEmojiStatuses = GetDefaultEmojiStatuses
-  {
-  }
-  deriving (Eq)
+-- | Returns default emoji statuses
+data GetDefaultEmojiStatuses
+  = GetDefaultEmojiStatuses
+  deriving (Eq, Show)
 
-instance Show GetDefaultEmojiStatuses where
-  show GetDefaultEmojiStatuses =
-    "GetDefaultEmojiStatuses"
-      ++ U.cc
-        []
+instance I.ShortShow GetDefaultEmojiStatuses where
+  shortShow
+    GetDefaultEmojiStatuses
+        = "GetDefaultEmojiStatuses"
 
-instance T.ToJSON GetDefaultEmojiStatuses where
-  toJSON GetDefaultEmojiStatuses =
-    A.object
-      [ "@type" A..= T.String "getDefaultEmojiStatuses"
-      ]
+instance AT.ToJSON GetDefaultEmojiStatuses where
+  toJSON
+    GetDefaultEmojiStatuses
+        = A.object
+          [ "@type" A..= AT.String "getDefaultEmojiStatuses"
+          ]
+

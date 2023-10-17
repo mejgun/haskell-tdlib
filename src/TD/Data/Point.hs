@@ -1,57 +1,44 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.Point where
+module TD.Data.Point
+  (Point(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data Point = -- | A point on a Cartesian plane @x The point's first coordinate @y The point's second coordinate
-  Point
-  { -- |
-    y :: Maybe Float,
-    -- |
-    x :: Maybe Float
-  }
-  deriving (Eq)
+data Point
+  = Point -- ^ A point on a Cartesian plane
+    { x :: Maybe Double -- ^ The point's first coordinate
+    , y :: Maybe Double -- ^ The point's second coordinate
+    }
+  deriving (Eq, Show)
 
-instance Show Point where
-  show
-    Point
-      { y = y_,
-        x = x_
-      } =
-      "Point"
-        ++ U.cc
-          [ U.p "y" y_,
-            U.p "x" x_
-          ]
+instance I.ShortShow Point where
+  shortShow Point
+    { x = x_
+    , y = y_
+    }
+      = "Point"
+        ++ I.cc
+        [ "x" `I.p` x_
+        , "y" `I.p` y_
+        ]
 
-instance T.FromJSON Point where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON Point where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "point" -> parsePoint v
-      _ -> mempty
+      _       -> mempty
+    
     where
-      parsePoint :: A.Value -> T.Parser Point
+      parsePoint :: A.Value -> AT.Parser Point
       parsePoint = A.withObject "Point" $ \o -> do
-        y_ <- o A..:? "y"
-        x_ <- o A..:? "x"
-        return $ Point {y = y_, x = x_}
+        x_ <- o A..:?  "x"
+        y_ <- o A..:?  "y"
+        pure $ Point
+          { x = x_
+          , y = y_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON Point where
-  toJSON
-    Point
-      { y = y_,
-        x = x_
-      } =
-      A.object
-        [ "@type" A..= T.String "point",
-          "y" A..= y_,
-          "x" A..= x_
-        ]

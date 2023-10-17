@@ -1,94 +1,42 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.CallDiscardReason where
+module TD.Data.CallDiscardReason
+  (CallDiscardReason(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
 -- | Describes the reason why a call was discarded
 data CallDiscardReason
-  = -- | The call wasn't discarded, or the reason is unknown
-    CallDiscardReasonEmpty
-  | -- | The call was ended before the conversation started. It was canceled by the caller or missed by the other party
-    CallDiscardReasonMissed
-  | -- | The call was ended before the conversation started. It was declined by the other party
-    CallDiscardReasonDeclined
-  | -- | The call was ended during the conversation because the users were disconnected
-    CallDiscardReasonDisconnected
-  | -- | The call was ended because one of the parties hung up
-    CallDiscardReasonHungUp
-  deriving (Eq)
+  = CallDiscardReasonEmpty -- ^ The call wasn't discarded, or the reason is unknown
+  | CallDiscardReasonMissed -- ^ The call was ended before the conversation started. It was canceled by the caller or missed by the other party
+  | CallDiscardReasonDeclined -- ^ The call was ended before the conversation started. It was declined by the other party
+  | CallDiscardReasonDisconnected -- ^ The call was ended during the conversation because the users were disconnected
+  | CallDiscardReasonHungUp -- ^ The call was ended because one of the parties hung up
+  deriving (Eq, Show)
 
-instance Show CallDiscardReason where
-  show CallDiscardReasonEmpty =
-    "CallDiscardReasonEmpty"
-      ++ U.cc
-        []
-  show CallDiscardReasonMissed =
-    "CallDiscardReasonMissed"
-      ++ U.cc
-        []
-  show CallDiscardReasonDeclined =
-    "CallDiscardReasonDeclined"
-      ++ U.cc
-        []
-  show CallDiscardReasonDisconnected =
-    "CallDiscardReasonDisconnected"
-      ++ U.cc
-        []
-  show CallDiscardReasonHungUp =
-    "CallDiscardReasonHungUp"
-      ++ U.cc
-        []
+instance I.ShortShow CallDiscardReason where
+  shortShow CallDiscardReasonEmpty
+      = "CallDiscardReasonEmpty"
+  shortShow CallDiscardReasonMissed
+      = "CallDiscardReasonMissed"
+  shortShow CallDiscardReasonDeclined
+      = "CallDiscardReasonDeclined"
+  shortShow CallDiscardReasonDisconnected
+      = "CallDiscardReasonDisconnected"
+  shortShow CallDiscardReasonHungUp
+      = "CallDiscardReasonHungUp"
 
-instance T.FromJSON CallDiscardReason where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON CallDiscardReason where
+  parseJSON (AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "callDiscardReasonEmpty" -> parseCallDiscardReasonEmpty v
-      "callDiscardReasonMissed" -> parseCallDiscardReasonMissed v
-      "callDiscardReasonDeclined" -> parseCallDiscardReasonDeclined v
-      "callDiscardReasonDisconnected" -> parseCallDiscardReasonDisconnected v
-      "callDiscardReasonHungUp" -> parseCallDiscardReasonHungUp v
-      _ -> mempty
-    where
-      parseCallDiscardReasonEmpty :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonEmpty = A.withObject "CallDiscardReasonEmpty" $ \_ -> return CallDiscardReasonEmpty
-
-      parseCallDiscardReasonMissed :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonMissed = A.withObject "CallDiscardReasonMissed" $ \_ -> return CallDiscardReasonMissed
-
-      parseCallDiscardReasonDeclined :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonDeclined = A.withObject "CallDiscardReasonDeclined" $ \_ -> return CallDiscardReasonDeclined
-
-      parseCallDiscardReasonDisconnected :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonDisconnected = A.withObject "CallDiscardReasonDisconnected" $ \_ -> return CallDiscardReasonDisconnected
-
-      parseCallDiscardReasonHungUp :: A.Value -> T.Parser CallDiscardReason
-      parseCallDiscardReasonHungUp = A.withObject "CallDiscardReasonHungUp" $ \_ -> return CallDiscardReasonHungUp
+      "callDiscardReasonEmpty"        -> pure CallDiscardReasonEmpty
+      "callDiscardReasonMissed"       -> pure CallDiscardReasonMissed
+      "callDiscardReasonDeclined"     -> pure CallDiscardReasonDeclined
+      "callDiscardReasonDisconnected" -> pure CallDiscardReasonDisconnected
+      "callDiscardReasonHungUp"       -> pure CallDiscardReasonHungUp
+      _                               -> mempty
+    
   parseJSON _ = mempty
 
-instance T.ToJSON CallDiscardReason where
-  toJSON CallDiscardReasonEmpty =
-    A.object
-      [ "@type" A..= T.String "callDiscardReasonEmpty"
-      ]
-  toJSON CallDiscardReasonMissed =
-    A.object
-      [ "@type" A..= T.String "callDiscardReasonMissed"
-      ]
-  toJSON CallDiscardReasonDeclined =
-    A.object
-      [ "@type" A..= T.String "callDiscardReasonDeclined"
-      ]
-  toJSON CallDiscardReasonDisconnected =
-    A.object
-      [ "@type" A..= T.String "callDiscardReasonDisconnected"
-      ]
-  toJSON CallDiscardReasonHungUp =
-    A.object
-      [ "@type" A..= T.String "callDiscardReasonHungUp"
-      ]

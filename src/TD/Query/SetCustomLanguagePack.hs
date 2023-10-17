@@ -1,44 +1,50 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetCustomLanguagePack where
+module TD.Query.SetCustomLanguagePack
+  (SetCustomLanguagePack(..)
+  , defaultSetCustomLanguagePack
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackString as LanguagePackString
-import qualified Utils as U
 
--- |
--- Adds or changes a custom local language pack to the current localization target
-data SetCustomLanguagePack = SetCustomLanguagePack
-  { -- | Strings of the new language pack
-    strings :: Maybe [LanguagePackString.LanguagePackString],
-    -- | Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
-    info :: Maybe LanguagePackInfo.LanguagePackInfo
-  }
-  deriving (Eq)
+-- | Adds or changes a custom local language pack to the current localization target
+data SetCustomLanguagePack
+  = SetCustomLanguagePack
+    { info    :: Maybe LanguagePackInfo.LanguagePackInfo       -- ^ Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+    , strings :: Maybe [LanguagePackString.LanguagePackString] -- ^ Strings of the new language pack
+    }
+  deriving (Eq, Show)
 
-instance Show SetCustomLanguagePack where
-  show
+instance I.ShortShow SetCustomLanguagePack where
+  shortShow
     SetCustomLanguagePack
-      { strings = strings_,
-        info = info_
-      } =
-      "SetCustomLanguagePack"
-        ++ U.cc
-          [ U.p "strings" strings_,
-            U.p "info" info_
+      { info    = info_
+      , strings = strings_
+      }
+        = "SetCustomLanguagePack"
+          ++ I.cc
+          [ "info"    `I.p` info_
+          , "strings" `I.p` strings_
           ]
 
-instance T.ToJSON SetCustomLanguagePack where
+instance AT.ToJSON SetCustomLanguagePack where
   toJSON
     SetCustomLanguagePack
-      { strings = strings_,
-        info = info_
-      } =
-      A.object
-        [ "@type" A..= T.String "setCustomLanguagePack",
-          "strings" A..= strings_,
-          "info" A..= info_
-        ]
+      { info    = info_
+      , strings = strings_
+      }
+        = A.object
+          [ "@type"   A..= AT.String "setCustomLanguagePack"
+          , "info"    A..= info_
+          , "strings" A..= strings_
+          ]
+
+defaultSetCustomLanguagePack :: SetCustomLanguagePack
+defaultSetCustomLanguagePack =
+  SetCustomLanguagePack
+    { info    = Nothing
+    , strings = Nothing
+    }
+

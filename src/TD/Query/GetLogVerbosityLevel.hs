@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetLogVerbosityLevel where
+module TD.Query.GetLogVerbosityLevel
+  (GetLogVerbosityLevel(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
-data GetLogVerbosityLevel = GetLogVerbosityLevel
-  {
-  }
-  deriving (Eq)
+-- | Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
+data GetLogVerbosityLevel
+  = GetLogVerbosityLevel
+  deriving (Eq, Show)
 
-instance Show GetLogVerbosityLevel where
-  show GetLogVerbosityLevel =
-    "GetLogVerbosityLevel"
-      ++ U.cc
-        []
+instance I.ShortShow GetLogVerbosityLevel where
+  shortShow
+    GetLogVerbosityLevel
+        = "GetLogVerbosityLevel"
 
-instance T.ToJSON GetLogVerbosityLevel where
-  toJSON GetLogVerbosityLevel =
-    A.object
-      [ "@type" A..= T.String "getLogVerbosityLevel"
-      ]
+instance AT.ToJSON GetLogVerbosityLevel where
+  toJSON
+    GetLogVerbosityLevel
+        = A.object
+          [ "@type" A..= AT.String "getLogVerbosityLevel"
+          ]
+

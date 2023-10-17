@@ -1,55 +1,61 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetChatMessagePosition where
+module TD.Query.GetChatMessagePosition
+  (GetChatMessagePosition(..)
+  , defaultGetChatMessagePosition
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
-import qualified Utils as U
 
--- |
--- Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
-data GetChatMessagePosition = GetChatMessagePosition
-  { -- | If not 0, only messages in the specified thread will be considered; supergroups only
-    message_thread_id :: Maybe Int,
-    -- | Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
-    _filter :: Maybe SearchMessagesFilter.SearchMessagesFilter,
-    -- | Message identifier
-    message_id :: Maybe Int,
-    -- | Identifier of the chat in which to find message position
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+data GetChatMessagePosition
+  = GetChatMessagePosition
+    { chat_id           :: Maybe Int                                       -- ^ Identifier of the chat in which to find message position
+    , message_id        :: Maybe Int                                       -- ^ Message identifier
+    , _filter           :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
+    , message_thread_id :: Maybe Int                                       -- ^ If not 0, only messages in the specified thread will be considered; supergroups only
+    }
+  deriving (Eq, Show)
 
-instance Show GetChatMessagePosition where
-  show
+instance I.ShortShow GetChatMessagePosition where
+  shortShow
     GetChatMessagePosition
-      { message_thread_id = message_thread_id_,
-        _filter = _filter_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      "GetChatMessagePosition"
-        ++ U.cc
-          [ U.p "message_thread_id" message_thread_id_,
-            U.p "_filter" _filter_,
-            U.p "message_id" message_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , message_id        = message_id_
+      , _filter           = _filter_
+      , message_thread_id = message_thread_id_
+      }
+        = "GetChatMessagePosition"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "message_id"        `I.p` message_id_
+          , "_filter"           `I.p` _filter_
+          , "message_thread_id" `I.p` message_thread_id_
           ]
 
-instance T.ToJSON GetChatMessagePosition where
+instance AT.ToJSON GetChatMessagePosition where
   toJSON
     GetChatMessagePosition
-      { message_thread_id = message_thread_id_,
-        _filter = _filter_,
-        message_id = message_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "getChatMessagePosition",
-          "message_thread_id" A..= message_thread_id_,
-          "filter" A..= _filter_,
-          "message_id" A..= message_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , message_id        = message_id_
+      , _filter           = _filter_
+      , message_thread_id = message_thread_id_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "getChatMessagePosition"
+          , "chat_id"           A..= chat_id_
+          , "message_id"        A..= message_id_
+          , "filter"            A..= _filter_
+          , "message_thread_id" A..= message_thread_id_
+          ]
+
+defaultGetChatMessagePosition :: GetChatMessagePosition
+defaultGetChatMessagePosition =
+  GetChatMessagePosition
+    { chat_id           = Nothing
+    , message_id        = Nothing
+    , _filter           = Nothing
+    , message_thread_id = Nothing
+    }
+

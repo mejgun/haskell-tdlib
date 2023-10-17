@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckRecoveryEmailAddressCode where
+module TD.Query.CheckRecoveryEmailAddressCode
+  (CheckRecoveryEmailAddressCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks the 2-step verification recovery email address verification code @code Verification code to check
-data CheckRecoveryEmailAddressCode = CheckRecoveryEmailAddressCode
-  { -- |
-    code :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks the 2-step verification recovery email address verification code
+data CheckRecoveryEmailAddressCode
+  = CheckRecoveryEmailAddressCode
+    { code :: Maybe T.Text -- ^ Verification code to check
+    }
+  deriving (Eq, Show)
 
-instance Show CheckRecoveryEmailAddressCode where
-  show
+instance I.ShortShow CheckRecoveryEmailAddressCode where
+  shortShow
     CheckRecoveryEmailAddressCode
       { code = code_
-      } =
-      "CheckRecoveryEmailAddressCode"
-        ++ U.cc
-          [ U.p "code" code_
+      }
+        = "CheckRecoveryEmailAddressCode"
+          ++ I.cc
+          [ "code" `I.p` code_
           ]
 
-instance T.ToJSON CheckRecoveryEmailAddressCode where
+instance AT.ToJSON CheckRecoveryEmailAddressCode where
   toJSON
     CheckRecoveryEmailAddressCode
       { code = code_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkRecoveryEmailAddressCode",
-          "code" A..= code_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkRecoveryEmailAddressCode"
+          , "code"  A..= code_
+          ]
+

@@ -1,36 +1,35 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ToggleAllDownloadsArePaused where
+module TD.Query.ToggleAllDownloadsArePaused
+  (ToggleAllDownloadsArePaused(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Changes pause state of all files in the file download list @are_paused Pass true to pause all downloads; pass false to unpause them
-data ToggleAllDownloadsArePaused = ToggleAllDownloadsArePaused
-  { -- |
-    are_paused :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Changes pause state of all files in the file download list
+data ToggleAllDownloadsArePaused
+  = ToggleAllDownloadsArePaused
+    { are_paused :: Maybe Bool -- ^ Pass true to pause all downloads; pass false to unpause them
+    }
+  deriving (Eq, Show)
 
-instance Show ToggleAllDownloadsArePaused where
-  show
+instance I.ShortShow ToggleAllDownloadsArePaused where
+  shortShow
     ToggleAllDownloadsArePaused
       { are_paused = are_paused_
-      } =
-      "ToggleAllDownloadsArePaused"
-        ++ U.cc
-          [ U.p "are_paused" are_paused_
+      }
+        = "ToggleAllDownloadsArePaused"
+          ++ I.cc
+          [ "are_paused" `I.p` are_paused_
           ]
 
-instance T.ToJSON ToggleAllDownloadsArePaused where
+instance AT.ToJSON ToggleAllDownloadsArePaused where
   toJSON
     ToggleAllDownloadsArePaused
       { are_paused = are_paused_
-      } =
-      A.object
-        [ "@type" A..= T.String "toggleAllDownloadsArePaused",
-          "are_paused" A..= are_paused_
-        ]
+      }
+        = A.object
+          [ "@type"      A..= AT.String "toggleAllDownloadsArePaused"
+          , "are_paused" A..= are_paused_
+          ]
+

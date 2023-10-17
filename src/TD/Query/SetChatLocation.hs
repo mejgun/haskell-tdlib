@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatLocation where
+module TD.Query.SetChatLocation
+  (SetChatLocation(..)
+  , defaultSetChatLocation
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatLocation as ChatLocation
-import qualified Utils as U
 
--- |
--- Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use @chat_id Chat identifier @location New location for the chat; must be valid and not null
-data SetChatLocation = SetChatLocation
-  { -- |
-    location :: Maybe ChatLocation.ChatLocation,
-    -- |
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
+data SetChatLocation
+  = SetChatLocation
+    { chat_id  :: Maybe Int                       -- ^ Chat identifier
+    , location :: Maybe ChatLocation.ChatLocation -- ^ New location for the chat; must be valid and not null
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatLocation where
-  show
+instance I.ShortShow SetChatLocation where
+  shortShow
     SetChatLocation
-      { location = location_,
-        chat_id = chat_id_
-      } =
-      "SetChatLocation"
-        ++ U.cc
-          [ U.p "location" location_,
-            U.p "chat_id" chat_id_
+      { chat_id  = chat_id_
+      , location = location_
+      }
+        = "SetChatLocation"
+          ++ I.cc
+          [ "chat_id"  `I.p` chat_id_
+          , "location" `I.p` location_
           ]
 
-instance T.ToJSON SetChatLocation where
+instance AT.ToJSON SetChatLocation where
   toJSON
     SetChatLocation
-      { location = location_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatLocation",
-          "location" A..= location_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id  = chat_id_
+      , location = location_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "setChatLocation"
+          , "chat_id"  A..= chat_id_
+          , "location" A..= location_
+          ]
+
+defaultSetChatLocation :: SetChatLocation
+defaultSetChatLocation =
+  SetChatLocation
+    { chat_id  = Nothing
+    , location = Nothing
+    }
+

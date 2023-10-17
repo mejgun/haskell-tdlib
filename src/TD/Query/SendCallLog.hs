@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SendCallLog where
+module TD.Query.SendCallLog
+  (SendCallLog(..)
+  , defaultSendCallLog
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Sends log file for a call to Telegram servers @call_id Call identifier @log_file Call log file. Only inputFileLocal and inputFileGenerated are supported
-data SendCallLog = SendCallLog
-  { -- |
-    log_file :: Maybe InputFile.InputFile,
-    -- |
-    call_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Sends log file for a call to Telegram servers
+data SendCallLog
+  = SendCallLog
+    { call_id  :: Maybe Int                 -- ^ Call identifier
+    , log_file :: Maybe InputFile.InputFile -- ^ Call log file. Only inputFileLocal and inputFileGenerated are supported
+    }
+  deriving (Eq, Show)
 
-instance Show SendCallLog where
-  show
+instance I.ShortShow SendCallLog where
+  shortShow
     SendCallLog
-      { log_file = log_file_,
-        call_id = call_id_
-      } =
-      "SendCallLog"
-        ++ U.cc
-          [ U.p "log_file" log_file_,
-            U.p "call_id" call_id_
+      { call_id  = call_id_
+      , log_file = log_file_
+      }
+        = "SendCallLog"
+          ++ I.cc
+          [ "call_id"  `I.p` call_id_
+          , "log_file" `I.p` log_file_
           ]
 
-instance T.ToJSON SendCallLog where
+instance AT.ToJSON SendCallLog where
   toJSON
     SendCallLog
-      { log_file = log_file_,
-        call_id = call_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "sendCallLog",
-          "log_file" A..= log_file_,
-          "call_id" A..= call_id_
-        ]
+      { call_id  = call_id_
+      , log_file = log_file_
+      }
+        = A.object
+          [ "@type"    A..= AT.String "sendCallLog"
+          , "call_id"  A..= call_id_
+          , "log_file" A..= log_file_
+          ]
+
+defaultSendCallLog :: SendCallLog
+defaultSendCallLog =
+  SendCallLog
+    { call_id  = Nothing
+    , log_file = Nothing
+    }
+

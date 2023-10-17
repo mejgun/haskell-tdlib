@@ -1,48 +1,54 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddChatMember where
+module TD.Query.AddChatMember
+  (AddChatMember(..)
+  , defaultAddChatMember
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Adds a new member to a chat. Members can't be added to private or secret chats
-data AddChatMember = AddChatMember
-  { -- | The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
-    forward_limit :: Maybe Int,
-    -- | Identifier of the user
-    user_id :: Maybe Int,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Adds a new member to a chat. Members can't be added to private or secret chats
+data AddChatMember
+  = AddChatMember
+    { chat_id       :: Maybe Int -- ^ Chat identifier
+    , user_id       :: Maybe Int -- ^ Identifier of the user
+    , forward_limit :: Maybe Int -- ^ The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
+    }
+  deriving (Eq, Show)
 
-instance Show AddChatMember where
-  show
+instance I.ShortShow AddChatMember where
+  shortShow
     AddChatMember
-      { forward_limit = forward_limit_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      "AddChatMember"
-        ++ U.cc
-          [ U.p "forward_limit" forward_limit_,
-            U.p "user_id" user_id_,
-            U.p "chat_id" chat_id_
+      { chat_id       = chat_id_
+      , user_id       = user_id_
+      , forward_limit = forward_limit_
+      }
+        = "AddChatMember"
+          ++ I.cc
+          [ "chat_id"       `I.p` chat_id_
+          , "user_id"       `I.p` user_id_
+          , "forward_limit" `I.p` forward_limit_
           ]
 
-instance T.ToJSON AddChatMember where
+instance AT.ToJSON AddChatMember where
   toJSON
     AddChatMember
-      { forward_limit = forward_limit_,
-        user_id = user_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addChatMember",
-          "forward_limit" A..= forward_limit_,
-          "user_id" A..= user_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id       = chat_id_
+      , user_id       = user_id_
+      , forward_limit = forward_limit_
+      }
+        = A.object
+          [ "@type"         A..= AT.String "addChatMember"
+          , "chat_id"       A..= chat_id_
+          , "user_id"       A..= user_id_
+          , "forward_limit" A..= forward_limit_
+          ]
+
+defaultAddChatMember :: AddChatMember
+defaultAddChatMember =
+  AddChatMember
+    { chat_id       = Nothing
+    , user_id       = Nothing
+    , forward_limit = Nothing
+    }
+

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAutoDownloadSettingsPresets where
+module TD.Query.GetAutoDownloadSettingsPresets
+  (GetAutoDownloadSettingsPresets(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns auto-download settings presets for the current user
-data GetAutoDownloadSettingsPresets = GetAutoDownloadSettingsPresets
-  {
-  }
-  deriving (Eq)
+-- | Returns auto-download settings presets for the current user
+data GetAutoDownloadSettingsPresets
+  = GetAutoDownloadSettingsPresets
+  deriving (Eq, Show)
 
-instance Show GetAutoDownloadSettingsPresets where
-  show GetAutoDownloadSettingsPresets =
-    "GetAutoDownloadSettingsPresets"
-      ++ U.cc
-        []
+instance I.ShortShow GetAutoDownloadSettingsPresets where
+  shortShow
+    GetAutoDownloadSettingsPresets
+        = "GetAutoDownloadSettingsPresets"
 
-instance T.ToJSON GetAutoDownloadSettingsPresets where
-  toJSON GetAutoDownloadSettingsPresets =
-    A.object
-      [ "@type" A..= T.String "getAutoDownloadSettingsPresets"
-      ]
+instance AT.ToJSON GetAutoDownloadSettingsPresets where
+  toJSON
+    GetAutoDownloadSettingsPresets
+        = A.object
+          [ "@type" A..= AT.String "getAutoDownloadSettingsPresets"
+          ]
+

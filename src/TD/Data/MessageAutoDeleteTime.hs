@@ -1,50 +1,56 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessageAutoDeleteTime where
+module TD.Data.MessageAutoDeleteTime
+  ( MessageAutoDeleteTime(..)    
+  , defaultMessageAutoDeleteTime 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data MessageAutoDeleteTime = -- | Contains default auto-delete timer setting for new chats @time Message auto-delete time, in seconds. If 0, then messages aren't deleted automatically
-  MessageAutoDeleteTime
-  { -- |
-    time :: Maybe Int
-  }
-  deriving (Eq)
+data MessageAutoDeleteTime
+  = MessageAutoDeleteTime -- ^ Contains default auto-delete timer setting for new chats
+    { time :: Maybe Int -- ^ Message auto-delete time, in seconds. If 0, then messages aren't deleted automatically
+    }
+  deriving (Eq, Show)
 
-instance Show MessageAutoDeleteTime where
-  show
-    MessageAutoDeleteTime
-      { time = time_
-      } =
-      "MessageAutoDeleteTime"
-        ++ U.cc
-          [ U.p "time" time_
-          ]
+instance I.ShortShow MessageAutoDeleteTime where
+  shortShow MessageAutoDeleteTime
+    { time = time_
+    }
+      = "MessageAutoDeleteTime"
+        ++ I.cc
+        [ "time" `I.p` time_
+        ]
 
-instance T.FromJSON MessageAutoDeleteTime where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessageAutoDeleteTime where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messageAutoDeleteTime" -> parseMessageAutoDeleteTime v
-      _ -> mempty
+      _                       -> mempty
+    
     where
-      parseMessageAutoDeleteTime :: A.Value -> T.Parser MessageAutoDeleteTime
+      parseMessageAutoDeleteTime :: A.Value -> AT.Parser MessageAutoDeleteTime
       parseMessageAutoDeleteTime = A.withObject "MessageAutoDeleteTime" $ \o -> do
-        time_ <- o A..:? "time"
-        return $ MessageAutoDeleteTime {time = time_}
+        time_ <- o A..:?  "time"
+        pure $ MessageAutoDeleteTime
+          { time = time_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessageAutoDeleteTime where
-  toJSON
-    MessageAutoDeleteTime
-      { time = time_
-      } =
-      A.object
-        [ "@type" A..= T.String "messageAutoDeleteTime",
-          "time" A..= time_
+instance AT.ToJSON MessageAutoDeleteTime where
+  toJSON MessageAutoDeleteTime
+    { time = time_
+    }
+      = A.object
+        [ "@type" A..= AT.String "messageAutoDeleteTime"
+        , "time"  A..= time_
         ]
+
+defaultMessageAutoDeleteTime :: MessageAutoDeleteTime
+defaultMessageAutoDeleteTime =
+  MessageAutoDeleteTime
+    { time = Nothing
+    }
+

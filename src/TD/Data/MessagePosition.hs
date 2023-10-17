@@ -1,64 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.MessagePosition where
+module TD.Data.MessagePosition
+  (MessagePosition(..)) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
-data MessagePosition = -- | Contains information about a message in a specific position @position 0-based message position in the full list of suitable messages @message_id Message identifier @date Point in time (Unix timestamp) when the message was sent
-  MessagePosition
-  { -- |
-    date :: Maybe Int,
-    -- |
-    message_id :: Maybe Int,
-    -- |
-    position :: Maybe Int
-  }
-  deriving (Eq)
+data MessagePosition
+  = MessagePosition -- ^ Contains information about a message in a specific position
+    { position   :: Maybe Int -- ^ 0-based message position in the full list of suitable messages
+    , message_id :: Maybe Int -- ^ Message identifier
+    , date       :: Maybe Int -- ^ Point in time (Unix timestamp) when the message was sent
+    }
+  deriving (Eq, Show)
 
-instance Show MessagePosition where
-  show
-    MessagePosition
-      { date = date_,
-        message_id = message_id_,
-        position = position_
-      } =
-      "MessagePosition"
-        ++ U.cc
-          [ U.p "date" date_,
-            U.p "message_id" message_id_,
-            U.p "position" position_
-          ]
+instance I.ShortShow MessagePosition where
+  shortShow MessagePosition
+    { position   = position_
+    , message_id = message_id_
+    , date       = date_
+    }
+      = "MessagePosition"
+        ++ I.cc
+        [ "position"   `I.p` position_
+        , "message_id" `I.p` message_id_
+        , "date"       `I.p` date_
+        ]
 
-instance T.FromJSON MessagePosition where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON MessagePosition where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "messagePosition" -> parseMessagePosition v
-      _ -> mempty
+      _                 -> mempty
+    
     where
-      parseMessagePosition :: A.Value -> T.Parser MessagePosition
+      parseMessagePosition :: A.Value -> AT.Parser MessagePosition
       parseMessagePosition = A.withObject "MessagePosition" $ \o -> do
-        date_ <- o A..:? "date"
-        message_id_ <- o A..:? "message_id"
-        position_ <- o A..:? "position"
-        return $ MessagePosition {date = date_, message_id = message_id_, position = position_}
+        position_   <- o A..:?  "position"
+        message_id_ <- o A..:?  "message_id"
+        date_       <- o A..:?  "date"
+        pure $ MessagePosition
+          { position   = position_
+          , message_id = message_id_
+          , date       = date_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON MessagePosition where
-  toJSON
-    MessagePosition
-      { date = date_,
-        message_id = message_id_,
-        position = position_
-      } =
-      A.object
-        [ "@type" A..= T.String "messagePosition",
-          "date" A..= date_,
-          "message_id" A..= message_id_,
-          "position" A..= position_
-        ]

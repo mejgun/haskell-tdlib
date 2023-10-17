@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetAnimatedEmoji where
+module TD.Query.GetAnimatedEmoji
+  (GetAnimatedEmoji(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji @emoji The emoji
-data GetAnimatedEmoji = GetAnimatedEmoji
-  { -- |
-    emoji :: Maybe String
-  }
-  deriving (Eq)
+-- | Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
+data GetAnimatedEmoji
+  = GetAnimatedEmoji
+    { emoji :: Maybe T.Text -- ^ The emoji
+    }
+  deriving (Eq, Show)
 
-instance Show GetAnimatedEmoji where
-  show
+instance I.ShortShow GetAnimatedEmoji where
+  shortShow
     GetAnimatedEmoji
       { emoji = emoji_
-      } =
-      "GetAnimatedEmoji"
-        ++ U.cc
-          [ U.p "emoji" emoji_
+      }
+        = "GetAnimatedEmoji"
+          ++ I.cc
+          [ "emoji" `I.p` emoji_
           ]
 
-instance T.ToJSON GetAnimatedEmoji where
+instance AT.ToJSON GetAnimatedEmoji where
   toJSON
     GetAnimatedEmoji
       { emoji = emoji_
-      } =
-      A.object
-        [ "@type" A..= T.String "getAnimatedEmoji",
-          "emoji" A..= emoji_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "getAnimatedEmoji"
+          , "emoji" A..= emoji_
+          ]
+

@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetPremiumState where
+module TD.Query.GetPremiumState
+  (GetPremiumState(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns state of Telegram Premium subscription and promotion videos for Premium features
-data GetPremiumState = GetPremiumState
-  {
-  }
-  deriving (Eq)
+-- | Returns state of Telegram Premium subscription and promotion videos for Premium features
+data GetPremiumState
+  = GetPremiumState
+  deriving (Eq, Show)
 
-instance Show GetPremiumState where
-  show GetPremiumState =
-    "GetPremiumState"
-      ++ U.cc
-        []
+instance I.ShortShow GetPremiumState where
+  shortShow
+    GetPremiumState
+        = "GetPremiumState"
 
-instance T.ToJSON GetPremiumState where
-  toJSON GetPremiumState =
-    A.object
-      [ "@type" A..= T.String "getPremiumState"
-      ]
+instance AT.ToJSON GetPremiumState where
+  toJSON
+    GetPremiumState
+        = A.object
+          [ "@type" A..= AT.String "getPremiumState"
+          ]
+

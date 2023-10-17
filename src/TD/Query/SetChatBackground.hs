@@ -1,56 +1,62 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.SetChatBackground where
+module TD.Query.SetChatBackground
+  (SetChatBackground(..)
+  , defaultSetChatBackground
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.BackgroundType as BackgroundType
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputBackground as InputBackground
-import qualified Utils as U
+import qualified TD.Data.BackgroundType as BackgroundType
 
--- |
--- Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
-data SetChatBackground = SetChatBackground
-  { -- | Dimming of the background in dark themes, as a percentage; 0-100
-    dark_theme_dimming :: Maybe Int,
-    -- | Background type; pass null to remove the current background
-    _type :: Maybe BackgroundType.BackgroundType,
-    -- | The input background to use; pass null to create a new filled background or to remove the current background
-    background :: Maybe InputBackground.InputBackground,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+data SetChatBackground
+  = SetChatBackground
+    { chat_id            :: Maybe Int                             -- ^ Chat identifier
+    , background         :: Maybe InputBackground.InputBackground -- ^ The input background to use; pass null to create a new filled background or to remove the current background
+    , _type              :: Maybe BackgroundType.BackgroundType   -- ^ Background type; pass null to remove the current background
+    , dark_theme_dimming :: Maybe Int                             -- ^ Dimming of the background in dark themes, as a percentage; 0-100
+    }
+  deriving (Eq, Show)
 
-instance Show SetChatBackground where
-  show
+instance I.ShortShow SetChatBackground where
+  shortShow
     SetChatBackground
-      { dark_theme_dimming = dark_theme_dimming_,
-        _type = _type_,
-        background = background_,
-        chat_id = chat_id_
-      } =
-      "SetChatBackground"
-        ++ U.cc
-          [ U.p "dark_theme_dimming" dark_theme_dimming_,
-            U.p "_type" _type_,
-            U.p "background" background_,
-            U.p "chat_id" chat_id_
+      { chat_id            = chat_id_
+      , background         = background_
+      , _type              = _type_
+      , dark_theme_dimming = dark_theme_dimming_
+      }
+        = "SetChatBackground"
+          ++ I.cc
+          [ "chat_id"            `I.p` chat_id_
+          , "background"         `I.p` background_
+          , "_type"              `I.p` _type_
+          , "dark_theme_dimming" `I.p` dark_theme_dimming_
           ]
 
-instance T.ToJSON SetChatBackground where
+instance AT.ToJSON SetChatBackground where
   toJSON
     SetChatBackground
-      { dark_theme_dimming = dark_theme_dimming_,
-        _type = _type_,
-        background = background_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "setChatBackground",
-          "dark_theme_dimming" A..= dark_theme_dimming_,
-          "type" A..= _type_,
-          "background" A..= background_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id            = chat_id_
+      , background         = background_
+      , _type              = _type_
+      , dark_theme_dimming = dark_theme_dimming_
+      }
+        = A.object
+          [ "@type"              A..= AT.String "setChatBackground"
+          , "chat_id"            A..= chat_id_
+          , "background"         A..= background_
+          , "type"               A..= _type_
+          , "dark_theme_dimming" A..= dark_theme_dimming_
+          ]
+
+defaultSetChatBackground :: SetChatBackground
+defaultSetChatBackground =
+  SetChatBackground
+    { chat_id            = Nothing
+    , background         = Nothing
+    , _type              = Nothing
+    , dark_theme_dimming = Nothing
+    }
+

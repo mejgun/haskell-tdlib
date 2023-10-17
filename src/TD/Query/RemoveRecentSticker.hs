@@ -1,43 +1,49 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.RemoveRecentSticker where
+module TD.Query.RemoveRecentSticker
+  (RemoveRecentSticker(..)
+  , defaultRemoveRecentSticker
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
-import qualified Utils as U
 
--- |
--- Removes a sticker from the list of recently used stickers @is_attached Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers @sticker Sticker file to delete
-data RemoveRecentSticker = RemoveRecentSticker
-  { -- |
-    sticker :: Maybe InputFile.InputFile,
-    -- |
-    is_attached :: Maybe Bool
-  }
-  deriving (Eq)
+-- | Removes a sticker from the list of recently used stickers
+data RemoveRecentSticker
+  = RemoveRecentSticker
+    { is_attached :: Maybe Bool                -- ^ Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
+    , sticker     :: Maybe InputFile.InputFile -- ^ Sticker file to delete
+    }
+  deriving (Eq, Show)
 
-instance Show RemoveRecentSticker where
-  show
+instance I.ShortShow RemoveRecentSticker where
+  shortShow
     RemoveRecentSticker
-      { sticker = sticker_,
-        is_attached = is_attached_
-      } =
-      "RemoveRecentSticker"
-        ++ U.cc
-          [ U.p "sticker" sticker_,
-            U.p "is_attached" is_attached_
+      { is_attached = is_attached_
+      , sticker     = sticker_
+      }
+        = "RemoveRecentSticker"
+          ++ I.cc
+          [ "is_attached" `I.p` is_attached_
+          , "sticker"     `I.p` sticker_
           ]
 
-instance T.ToJSON RemoveRecentSticker where
+instance AT.ToJSON RemoveRecentSticker where
   toJSON
     RemoveRecentSticker
-      { sticker = sticker_,
-        is_attached = is_attached_
-      } =
-      A.object
-        [ "@type" A..= T.String "removeRecentSticker",
-          "sticker" A..= sticker_,
-          "is_attached" A..= is_attached_
-        ]
+      { is_attached = is_attached_
+      , sticker     = sticker_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "removeRecentSticker"
+          , "is_attached" A..= is_attached_
+          , "sticker"     A..= sticker_
+          ]
+
+defaultRemoveRecentSticker :: RemoveRecentSticker
+defaultRemoveRecentSticker =
+  RemoveRecentSticker
+    { is_attached = Nothing
+    , sticker     = Nothing
+    }
+

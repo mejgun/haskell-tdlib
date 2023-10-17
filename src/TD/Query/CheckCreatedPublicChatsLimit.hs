@@ -1,37 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckCreatedPublicChatsLimit where
+module TD.Query.CheckCreatedPublicChatsLimit
+  (CheckCreatedPublicChatsLimit(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 import qualified TD.Data.PublicChatType as PublicChatType
-import qualified Utils as U
 
--- |
--- Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium @type Type of the public chats, for which to check the limit
-data CheckCreatedPublicChatsLimit = CheckCreatedPublicChatsLimit
-  { -- |
-    _type :: Maybe PublicChatType.PublicChatType
-  }
-  deriving (Eq)
+-- | Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
+data CheckCreatedPublicChatsLimit
+  = CheckCreatedPublicChatsLimit
+    { _type :: Maybe PublicChatType.PublicChatType -- ^ Type of the public chats, for which to check the limit
+    }
+  deriving (Eq, Show)
 
-instance Show CheckCreatedPublicChatsLimit where
-  show
+instance I.ShortShow CheckCreatedPublicChatsLimit where
+  shortShow
     CheckCreatedPublicChatsLimit
       { _type = _type_
-      } =
-      "CheckCreatedPublicChatsLimit"
-        ++ U.cc
-          [ U.p "_type" _type_
+      }
+        = "CheckCreatedPublicChatsLimit"
+          ++ I.cc
+          [ "_type" `I.p` _type_
           ]
 
-instance T.ToJSON CheckCreatedPublicChatsLimit where
+instance AT.ToJSON CheckCreatedPublicChatsLimit where
   toJSON
     CheckCreatedPublicChatsLimit
       { _type = _type_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkCreatedPublicChatsLimit",
-          "type" A..= _type_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkCreatedPublicChatsLimit"
+          , "type"  A..= _type_
+          ]
+

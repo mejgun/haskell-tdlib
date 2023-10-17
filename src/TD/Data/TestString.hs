@@ -1,50 +1,57 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Data.TestString where
+module TD.Data.TestString
+  ( TestString(..)    
+  , defaultTestString 
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
-data TestString = -- | A simple object containing a string; for testing only @value String
-  TestString
-  { -- |
-    value :: Maybe String
-  }
-  deriving (Eq)
+data TestString
+  = TestString -- ^ A simple object containing a string; for testing only
+    { value :: Maybe T.Text -- ^ String
+    }
+  deriving (Eq, Show)
 
-instance Show TestString where
-  show
-    TestString
-      { value = value_
-      } =
-      "TestString"
-        ++ U.cc
-          [ U.p "value" value_
-          ]
+instance I.ShortShow TestString where
+  shortShow TestString
+    { value = value_
+    }
+      = "TestString"
+        ++ I.cc
+        [ "value" `I.p` value_
+        ]
 
-instance T.FromJSON TestString where
-  parseJSON v@(T.Object obj) = do
-    t <- obj A..: "@type" :: T.Parser String
+instance AT.FromJSON TestString where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
 
     case t of
       "testString" -> parseTestString v
-      _ -> mempty
+      _            -> mempty
+    
     where
-      parseTestString :: A.Value -> T.Parser TestString
+      parseTestString :: A.Value -> AT.Parser TestString
       parseTestString = A.withObject "TestString" $ \o -> do
-        value_ <- o A..:? "value"
-        return $ TestString {value = value_}
+        value_ <- o A..:?  "value"
+        pure $ TestString
+          { value = value_
+          }
   parseJSON _ = mempty
 
-instance T.ToJSON TestString where
-  toJSON
-    TestString
-      { value = value_
-      } =
-      A.object
-        [ "@type" A..= T.String "testString",
-          "value" A..= value_
+instance AT.ToJSON TestString where
+  toJSON TestString
+    { value = value_
+    }
+      = A.object
+        [ "@type" A..= AT.String "testString"
+        , "value" A..= value_
         ]
+
+defaultTestString :: TestString
+defaultTestString =
+  TestString
+    { value = Nothing
+    }
+

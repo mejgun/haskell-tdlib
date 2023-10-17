@@ -1,49 +1,48 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.GetBlockedMessageSenders where
+module TD.Query.GetBlockedMessageSenders
+  (GetBlockedMessageSenders(..)
+  , defaultGetBlockedMessageSenders
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.BlockList as BlockList
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Returns users and chats that were blocked by the current user
-data GetBlockedMessageSenders = GetBlockedMessageSenders
-  { -- | The maximum number of users and chats to return; up to 100
-    limit :: Maybe Int,
-    -- | Number of users and chats to skip in the result; must be non-negative
-    offset :: Maybe Int,
-    -- | Block list from which to return users
-    block_list :: Maybe BlockList.BlockList
-  }
-  deriving (Eq)
+-- | Returns users and chats that were blocked by the current user
+data GetBlockedMessageSenders
+  = GetBlockedMessageSenders
+    { offset :: Maybe Int -- ^ Number of users and chats to skip in the result; must be non-negative
+    , limit  :: Maybe Int -- ^ The maximum number of users and chats to return; up to 100
+    }
+  deriving (Eq, Show)
 
-instance Show GetBlockedMessageSenders where
-  show
+instance I.ShortShow GetBlockedMessageSenders where
+  shortShow
     GetBlockedMessageSenders
-      { limit = limit_,
-        offset = offset_,
-        block_list = block_list_
-      } =
-      "GetBlockedMessageSenders"
-        ++ U.cc
-          [ U.p "limit" limit_,
-            U.p "offset" offset_,
-            U.p "block_list" block_list_
+      { offset = offset_
+      , limit  = limit_
+      }
+        = "GetBlockedMessageSenders"
+          ++ I.cc
+          [ "offset" `I.p` offset_
+          , "limit"  `I.p` limit_
           ]
 
-instance T.ToJSON GetBlockedMessageSenders where
+instance AT.ToJSON GetBlockedMessageSenders where
   toJSON
     GetBlockedMessageSenders
-      { limit = limit_,
-        offset = offset_,
-        block_list = block_list_
-      } =
-      A.object
-        [ "@type" A..= T.String "getBlockedMessageSenders",
-          "limit" A..= limit_,
-          "offset" A..= offset_,
-          "block_list" A..= block_list_
-        ]
+      { offset = offset_
+      , limit  = limit_
+      }
+        = A.object
+          [ "@type"  A..= AT.String "getBlockedMessageSenders"
+          , "offset" A..= offset_
+          , "limit"  A..= limit_
+          ]
+
+defaultGetBlockedMessageSenders :: GetBlockedMessageSenders
+defaultGetBlockedMessageSenders =
+  GetBlockedMessageSenders
+    { offset = Nothing
+    , limit  = Nothing
+    }
+

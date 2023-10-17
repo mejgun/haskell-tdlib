@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.DisableProxy where
+module TD.Query.DisableProxy
+  (DisableProxy(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Disables the currently enabled proxy. Can be called before authorization
-data DisableProxy = DisableProxy
-  {
-  }
-  deriving (Eq)
+-- | Disables the currently enabled proxy. Can be called before authorization
+data DisableProxy
+  = DisableProxy
+  deriving (Eq, Show)
 
-instance Show DisableProxy where
-  show DisableProxy =
-    "DisableProxy"
-      ++ U.cc
-        []
+instance I.ShortShow DisableProxy where
+  shortShow
+    DisableProxy
+        = "DisableProxy"
 
-instance T.ToJSON DisableProxy where
-  toJSON DisableProxy =
-    A.object
-      [ "@type" A..= T.String "disableProxy"
-      ]
+instance AT.ToJSON DisableProxy where
+  toJSON
+    DisableProxy
+        = A.object
+          [ "@type" A..= AT.String "disableProxy"
+          ]
+

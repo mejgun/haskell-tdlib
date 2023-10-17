@@ -1,27 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ResendLoginEmailAddressCode where
+module TD.Query.ResendLoginEmailAddressCode
+  (ResendLoginEmailAddressCode(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
 
--- |
--- Resends the login email address verification code
-data ResendLoginEmailAddressCode = ResendLoginEmailAddressCode
-  {
-  }
-  deriving (Eq)
+-- | Resends the login email address verification code
+data ResendLoginEmailAddressCode
+  = ResendLoginEmailAddressCode
+  deriving (Eq, Show)
 
-instance Show ResendLoginEmailAddressCode where
-  show ResendLoginEmailAddressCode =
-    "ResendLoginEmailAddressCode"
-      ++ U.cc
-        []
+instance I.ShortShow ResendLoginEmailAddressCode where
+  shortShow
+    ResendLoginEmailAddressCode
+        = "ResendLoginEmailAddressCode"
 
-instance T.ToJSON ResendLoginEmailAddressCode where
-  toJSON ResendLoginEmailAddressCode =
-    A.object
-      [ "@type" A..= T.String "resendLoginEmailAddressCode"
-      ]
+instance AT.ToJSON ResendLoginEmailAddressCode where
+  toJSON
+    ResendLoginEmailAddressCode
+        = A.object
+          [ "@type" A..= AT.String "resendLoginEmailAddressCode"
+          ]
+

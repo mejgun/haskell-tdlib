@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.AddCustomServerLanguagePack where
+module TD.Query.AddCustomServerLanguagePack
+  (AddCustomServerLanguagePack(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization @language_pack_id Identifier of a language pack to be added
-data AddCustomServerLanguagePack = AddCustomServerLanguagePack
-  { -- |
-    language_pack_id :: Maybe String
-  }
-  deriving (Eq)
+-- | Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
+data AddCustomServerLanguagePack
+  = AddCustomServerLanguagePack
+    { language_pack_id :: Maybe T.Text -- ^ Identifier of a language pack to be added
+    }
+  deriving (Eq, Show)
 
-instance Show AddCustomServerLanguagePack where
-  show
+instance I.ShortShow AddCustomServerLanguagePack where
+  shortShow
     AddCustomServerLanguagePack
       { language_pack_id = language_pack_id_
-      } =
-      "AddCustomServerLanguagePack"
-        ++ U.cc
-          [ U.p "language_pack_id" language_pack_id_
+      }
+        = "AddCustomServerLanguagePack"
+          ++ I.cc
+          [ "language_pack_id" `I.p` language_pack_id_
           ]
 
-instance T.ToJSON AddCustomServerLanguagePack where
+instance AT.ToJSON AddCustomServerLanguagePack where
   toJSON
     AddCustomServerLanguagePack
       { language_pack_id = language_pack_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "addCustomServerLanguagePack",
-          "language_pack_id" A..= language_pack_id_
-        ]
+      }
+        = A.object
+          [ "@type"            A..= AT.String "addCustomServerLanguagePack"
+          , "language_pack_id" A..= language_pack_id_
+          ]
+

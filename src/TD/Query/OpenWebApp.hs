@@ -1,75 +1,81 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.OpenWebApp where
+module TD.Query.OpenWebApp
+  (OpenWebApp(..)
+  , defaultOpenWebApp
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.ThemeParameters as ThemeParameters
-import qualified Utils as U
+import qualified TD.Data.MessageReplyTo as MessageReplyTo
 
--- |
--- Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button.
--- For each bot, a confirmation alert about data sent to the bot must be shown once
-data OpenWebApp = OpenWebApp
-  { -- | Identifier of the replied message or story for the message sent by the Web App; pass null if none
-    reply_to :: Maybe MessageReplyTo.MessageReplyTo,
-    -- | If not 0, a message thread identifier in which the message will be sent
-    message_thread_id :: Maybe Int,
-    -- | Short name of the application; 0-64 English letters, digits, and underscores
-    application_name :: Maybe String,
-    -- | Preferred Web App theme; pass null to use the default theme
-    theme :: Maybe ThemeParameters.ThemeParameters,
-    -- | The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
-    url :: Maybe String,
-    -- | Identifier of the bot, providing the Web App
-    bot_user_id :: Maybe Int,
-    -- | Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+data OpenWebApp
+  = OpenWebApp
+    { chat_id           :: Maybe Int                             -- ^ Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+    , bot_user_id       :: Maybe Int                             -- ^ Identifier of the bot, providing the Web App
+    , url               :: Maybe T.Text                          -- ^ The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    , theme             :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred Web App theme; pass null to use the default theme
+    , application_name  :: Maybe T.Text                          -- ^ Short name of the application; 0-64 English letters, digits, and underscores
+    , message_thread_id :: Maybe Int                             -- ^ If not 0, a message thread identifier in which the message will be sent
+    , reply_to          :: Maybe MessageReplyTo.MessageReplyTo   -- ^ Identifier of the replied message or story for the message sent by the Web App; pass null if none
+    }
+  deriving (Eq, Show)
 
-instance Show OpenWebApp where
-  show
+instance I.ShortShow OpenWebApp where
+  shortShow
     OpenWebApp
-      { reply_to = reply_to_,
-        message_thread_id = message_thread_id_,
-        application_name = application_name_,
-        theme = theme_,
-        url = url_,
-        bot_user_id = bot_user_id_,
-        chat_id = chat_id_
-      } =
-      "OpenWebApp"
-        ++ U.cc
-          [ U.p "reply_to" reply_to_,
-            U.p "message_thread_id" message_thread_id_,
-            U.p "application_name" application_name_,
-            U.p "theme" theme_,
-            U.p "url" url_,
-            U.p "bot_user_id" bot_user_id_,
-            U.p "chat_id" chat_id_
+      { chat_id           = chat_id_
+      , bot_user_id       = bot_user_id_
+      , url               = url_
+      , theme             = theme_
+      , application_name  = application_name_
+      , message_thread_id = message_thread_id_
+      , reply_to          = reply_to_
+      }
+        = "OpenWebApp"
+          ++ I.cc
+          [ "chat_id"           `I.p` chat_id_
+          , "bot_user_id"       `I.p` bot_user_id_
+          , "url"               `I.p` url_
+          , "theme"             `I.p` theme_
+          , "application_name"  `I.p` application_name_
+          , "message_thread_id" `I.p` message_thread_id_
+          , "reply_to"          `I.p` reply_to_
           ]
 
-instance T.ToJSON OpenWebApp where
+instance AT.ToJSON OpenWebApp where
   toJSON
     OpenWebApp
-      { reply_to = reply_to_,
-        message_thread_id = message_thread_id_,
-        application_name = application_name_,
-        theme = theme_,
-        url = url_,
-        bot_user_id = bot_user_id_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "openWebApp",
-          "reply_to" A..= reply_to_,
-          "message_thread_id" A..= message_thread_id_,
-          "application_name" A..= application_name_,
-          "theme" A..= theme_,
-          "url" A..= url_,
-          "bot_user_id" A..= bot_user_id_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id           = chat_id_
+      , bot_user_id       = bot_user_id_
+      , url               = url_
+      , theme             = theme_
+      , application_name  = application_name_
+      , message_thread_id = message_thread_id_
+      , reply_to          = reply_to_
+      }
+        = A.object
+          [ "@type"             A..= AT.String "openWebApp"
+          , "chat_id"           A..= chat_id_
+          , "bot_user_id"       A..= bot_user_id_
+          , "url"               A..= url_
+          , "theme"             A..= theme_
+          , "application_name"  A..= application_name_
+          , "message_thread_id" A..= message_thread_id_
+          , "reply_to"          A..= reply_to_
+          ]
+
+defaultOpenWebApp :: OpenWebApp
+defaultOpenWebApp =
+  OpenWebApp
+    { chat_id           = Nothing
+    , bot_user_id       = Nothing
+    , url               = Nothing
+    , theme             = Nothing
+    , application_name  = Nothing
+    , message_thread_id = Nothing
+    , reply_to          = Nothing
+    }
+

@@ -1,36 +1,36 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.CheckAuthenticationBotToken where
+module TD.Query.CheckAuthenticationBotToken
+  (CheckAuthenticationBotToken(..)
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in @token The bot token
-data CheckAuthenticationBotToken = CheckAuthenticationBotToken
-  { -- |
-    token :: Maybe String
-  }
-  deriving (Eq)
+-- | Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
+data CheckAuthenticationBotToken
+  = CheckAuthenticationBotToken
+    { token :: Maybe T.Text -- ^ The bot token
+    }
+  deriving (Eq, Show)
 
-instance Show CheckAuthenticationBotToken where
-  show
+instance I.ShortShow CheckAuthenticationBotToken where
+  shortShow
     CheckAuthenticationBotToken
       { token = token_
-      } =
-      "CheckAuthenticationBotToken"
-        ++ U.cc
-          [ U.p "token" token_
+      }
+        = "CheckAuthenticationBotToken"
+          ++ I.cc
+          [ "token" `I.p` token_
           ]
 
-instance T.ToJSON CheckAuthenticationBotToken where
+instance AT.ToJSON CheckAuthenticationBotToken where
   toJSON
     CheckAuthenticationBotToken
       { token = token_
-      } =
-      A.object
-        [ "@type" A..= T.String "checkAuthenticationBotToken",
-          "token" A..= token_
-        ]
+      }
+        = A.object
+          [ "@type" A..= AT.String "checkAuthenticationBotToken"
+          , "token" A..= token_
+          ]
+

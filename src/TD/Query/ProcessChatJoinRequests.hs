@@ -1,48 +1,55 @@
-{-# LANGUAGE OverloadedStrings #-}
-
--- |
-module TD.Query.ProcessChatJoinRequests where
+module TD.Query.ProcessChatJoinRequests
+  (ProcessChatJoinRequests(..)
+  , defaultProcessChatJoinRequests
+  ) where
 
 import qualified Data.Aeson as A
-import qualified Data.Aeson.Types as T
-import qualified Utils as U
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
--- |
--- Handles all pending join requests for a given link in a chat
-data ProcessChatJoinRequests = ProcessChatJoinRequests
-  { -- | Pass true to approve all requests; pass false to decline them
-    approve :: Maybe Bool,
-    -- | Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-    invite_link :: Maybe String,
-    -- | Chat identifier
-    chat_id :: Maybe Int
-  }
-  deriving (Eq)
+-- | Handles all pending join requests for a given link in a chat
+data ProcessChatJoinRequests
+  = ProcessChatJoinRequests
+    { chat_id     :: Maybe Int    -- ^ Chat identifier
+    , invite_link :: Maybe T.Text -- ^ Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    , approve     :: Maybe Bool   -- ^ Pass true to approve all requests; pass false to decline them
+    }
+  deriving (Eq, Show)
 
-instance Show ProcessChatJoinRequests where
-  show
+instance I.ShortShow ProcessChatJoinRequests where
+  shortShow
     ProcessChatJoinRequests
-      { approve = approve_,
-        invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      "ProcessChatJoinRequests"
-        ++ U.cc
-          [ U.p "approve" approve_,
-            U.p "invite_link" invite_link_,
-            U.p "chat_id" chat_id_
+      { chat_id     = chat_id_
+      , invite_link = invite_link_
+      , approve     = approve_
+      }
+        = "ProcessChatJoinRequests"
+          ++ I.cc
+          [ "chat_id"     `I.p` chat_id_
+          , "invite_link" `I.p` invite_link_
+          , "approve"     `I.p` approve_
           ]
 
-instance T.ToJSON ProcessChatJoinRequests where
+instance AT.ToJSON ProcessChatJoinRequests where
   toJSON
     ProcessChatJoinRequests
-      { approve = approve_,
-        invite_link = invite_link_,
-        chat_id = chat_id_
-      } =
-      A.object
-        [ "@type" A..= T.String "processChatJoinRequests",
-          "approve" A..= approve_,
-          "invite_link" A..= invite_link_,
-          "chat_id" A..= chat_id_
-        ]
+      { chat_id     = chat_id_
+      , invite_link = invite_link_
+      , approve     = approve_
+      }
+        = A.object
+          [ "@type"       A..= AT.String "processChatJoinRequests"
+          , "chat_id"     A..= chat_id_
+          , "invite_link" A..= invite_link_
+          , "approve"     A..= approve_
+          ]
+
+defaultProcessChatJoinRequests :: ProcessChatJoinRequests
+defaultProcessChatJoinRequests =
+  ProcessChatJoinRequests
+    { chat_id     = Nothing
+    , invite_link = Nothing
+    , approve     = Nothing
+    }
+
