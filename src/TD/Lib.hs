@@ -8,6 +8,7 @@ module TD.Lib
     destroy,
     Client,
     Extra,
+    ShortShow(shortShow)
   )
 where
 
@@ -22,7 +23,7 @@ import Foreign (Ptr, nullPtr)
 import Foreign.C.String (CString)
 import Foreign.C.Types ()
 import TD.GeneralResult (GeneralResult)
-import TD.Lib.Internal (Extra (..))
+import TD.Lib.Internal (Extra (..), ShortShow(shortShow))
 
 foreign import ccall "libtdjson td_json_client_create" c_create :: IO Client
 
