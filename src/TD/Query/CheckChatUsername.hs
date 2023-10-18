@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks whether a username can be set for a chat
+-- | Checks whether a username can be set for a chat. Returns 'TD.Data.CheckChatUsernameResult.CheckChatUsernameResult'
 data CheckChatUsername
   = CheckChatUsername
     { chat_id  :: Maybe Int    -- ^ Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+-- | Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true. Returns 'TD.Data.MessageStatistics.MessageStatistics'
 data GetMessageStatistics
   = GetMessageStatistics
     { chat_id    :: Maybe Int  -- ^ Chat identifier

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 
--- | Changes user privacy settings
+-- | Changes user privacy settings. Returns 'TD.Data.Ok.Ok'
 data SetUserPrivacySettingRules
   = SetUserPrivacySettingRules
     { setting :: Maybe UserPrivacySetting.UserPrivacySetting           -- ^ The privacy setting

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Accepts Telegram terms of services
+-- | Accepts Telegram terms of services. Returns 'TD.Data.Ok.Ok'
 data AcceptTermsOfService
   = AcceptTermsOfService
     { terms_of_service_id :: Maybe T.Text -- ^ Terms of service identifier

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ProxyType as ProxyType
 
--- | Adds a proxy server for network requests. Can be called before authorization
+-- | Adds a proxy server for network requests. Can be called before authorization. Returns 'TD.Data.Proxy.Proxy'
 data AddProxy
   = AddProxy
     { server :: Maybe T.Text              -- ^ Proxy server domain or IP address

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
+-- | Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server. Returns 'TD.Data.ForumTopics.ForumTopics'
 data GetForumTopics
   = GetForumTopics
     { chat_id                  :: Maybe Int    -- ^ Identifier of the forum chat

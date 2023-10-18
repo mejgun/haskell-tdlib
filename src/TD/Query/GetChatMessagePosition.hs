@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 
--- | Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
+-- | Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats. Returns 'TD.Data.Count.Count'
 data GetChatMessagePosition
   = GetChatMessagePosition
     { chat_id           :: Maybe Int                                       -- ^ Identifier of the chat in which to find message position

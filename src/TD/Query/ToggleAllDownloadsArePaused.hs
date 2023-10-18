@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes pause state of all files in the file download list
+-- | Changes pause state of all files in the file download list. Returns 'TD.Data.Ok.Ok'
 data ToggleAllDownloadsArePaused
   = ToggleAllDownloadsArePaused
     { are_paused :: Maybe Bool -- ^ Pass true to pause all downloads; pass false to unpause them

@@ -10,7 +10,7 @@ import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified Data.Text as T
 
--- | Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
+-- | Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message. Returns 'TD.Data.Message.Message'
 data SendInlineQueryResultMessage
   = SendInlineQueryResultMessage
     { chat_id           :: Maybe Int                                   -- ^ Target chat

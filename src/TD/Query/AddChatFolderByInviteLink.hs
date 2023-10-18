@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Adds a chat folder by an invite link
+-- | Adds a chat folder by an invite link. Returns 'TD.Data.Ok.Ok'
 data AddChatFolderByInviteLink
   = AddChatFolderByInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link for the chat folder

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
+-- | Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously. Returns 'TD.Data.LanguagePackStringValue.LanguagePackStringValue'
 data GetLanguagePackString
   = GetLanguagePackString
     { language_pack_database_path :: Maybe T.Text -- ^ Path to the language pack database in which strings are stored

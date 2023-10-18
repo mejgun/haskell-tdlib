@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets group call title. Requires groupCall.can_be_managed group call flag
+-- | Sets group call title. Requires groupCall.can_be_managed group call flag. Returns 'TD.Data.Ok.Ok'
 data SetGroupCallTitle
   = SetGroupCallTitle
     { group_call_id :: Maybe Int    -- ^ Group call identifier

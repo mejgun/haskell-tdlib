@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Changes default participant identifier, on whose behalf a video chat in the chat will be joined
+-- | Changes default participant identifier, on whose behalf a video chat in the chat will be joined. Returns 'TD.Data.Ok.Ok'
 data SetVideoChatDefaultParticipant
   = SetVideoChatDefaultParticipant
     { chat_id                :: Maybe Int                         -- ^ Chat identifier

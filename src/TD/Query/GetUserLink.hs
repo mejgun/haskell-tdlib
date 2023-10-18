@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an HTTPS link, which can be used to get information about the current user
+-- | Returns an HTTPS link, which can be used to get information about the current user. Returns 'TD.Data.UserLink.UserLink'
 data GetUserLink
   = GetUserLink
   deriving (Eq, Show)

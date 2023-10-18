@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.MaskPosition as MaskPosition
 
--- | Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+-- | Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot. Returns 'TD.Data.Ok.Ok'
 data SetStickerMaskPosition
   = SetStickerMaskPosition
     { sticker       :: Maybe InputFile.InputFile       -- ^ Sticker

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Creates a new temporary password for processing payments
+-- | Creates a new temporary password for processing payments. Returns 'TD.Data.TemporaryPasswordState.TemporaryPasswordState'
 data CreateTemporaryPassword
   = CreateTemporaryPassword
     { password  :: Maybe T.Text -- ^ The 2-step verification password of the current user

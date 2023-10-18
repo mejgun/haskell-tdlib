@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.TextParseMode as TextParseMode
 
--- | Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+-- | Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously. Returns 'TD.Data.FormattedText.FormattedText'
 data ParseTextEntities
   = ParseTextEntities
     { text       :: Maybe T.Text                      -- ^ The text to parse

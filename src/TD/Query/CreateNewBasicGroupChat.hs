@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+-- | Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat. Returns 'TD.Data.Chat.Chat'
 data CreateNewBasicGroupChat
   = CreateNewBasicGroupChat
     { user_ids                 :: Maybe [Int]  -- ^ Identifiers of users to be added to the basic group; may be empty to create a basic group without other members

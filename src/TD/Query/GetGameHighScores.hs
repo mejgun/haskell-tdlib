@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
+-- | Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only. Returns 'TD.Data.GameHighScores.GameHighScores'
 data GetGameHighScores
   = GetGameHighScores
     { chat_id    :: Maybe Int -- ^ The chat that contains the message with the game

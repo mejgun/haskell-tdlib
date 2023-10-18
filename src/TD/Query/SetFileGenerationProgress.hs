@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib on a file generation progress
+-- | Informs TDLib on a file generation progress. Returns 'TD.Data.Ok.Ok'
 data SetFileGenerationProgress
   = SetFileGenerationProgress
     { generation_id     :: Maybe Int -- ^ The identifier of the generation process

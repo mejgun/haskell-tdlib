@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether current user's video is paused
+-- | Toggles whether current user's video is paused. Returns 'TD.Data.Ok.Ok'
 data ToggleGroupCallIsMyVideoPaused
   = ToggleGroupCallIsMyVideoPaused
     { group_call_id      :: Maybe Int  -- ^ Group call identifier

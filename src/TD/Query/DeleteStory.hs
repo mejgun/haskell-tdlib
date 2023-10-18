@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Deletes a previously sent story. Can be called only if story.can_be_deleted == true
+-- | Deletes a previously sent story. Can be called only if story.can_be_deleted == true. Returns 'TD.Data.Ok.Ok'
 data DeleteStory
   = DeleteStory
     { story_sender_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story

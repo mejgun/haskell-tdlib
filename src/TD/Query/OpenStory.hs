@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib that a story is opened and is being viewed by the user
+-- | Informs TDLib that a story is opened and is being viewed by the user. Returns 'TD.Data.Ok.Ok'
 data OpenStory
   = OpenStory
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the opened story

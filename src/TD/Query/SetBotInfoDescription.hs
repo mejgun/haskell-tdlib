@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
+-- | Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
 data SetBotInfoDescription
   = SetBotInfoDescription
     { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot

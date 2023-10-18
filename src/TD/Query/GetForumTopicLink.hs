@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an HTTPS link to a topic in a forum chat. This is an offline request
+-- | Returns an HTTPS link to a topic in a forum chat. This is an offline request. Returns 'TD.Data.MessageLink.MessageLink'
 data GetForumTopicLink
   = GetForumTopicLink
     { chat_id           :: Maybe Int -- ^ Identifier of the chat

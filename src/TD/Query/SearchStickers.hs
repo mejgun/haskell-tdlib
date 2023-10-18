@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 import qualified Data.Text as T
 
--- | Searches for stickers from public sticker sets that correspond to any of the given emoji
+-- | Searches for stickers from public sticker sets that correspond to any of the given emoji. Returns 'TD.Data.Stickers.Stickers'
 data SearchStickers
   = SearchStickers
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the stickers to return

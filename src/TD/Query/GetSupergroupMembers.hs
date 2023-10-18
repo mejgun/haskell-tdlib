@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.SupergroupMembersFilter as SupergroupMembersFilter
 
--- | Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+-- | Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters. Returns 'TD.Data.ChatMembers.ChatMembers'
 data GetSupergroupMembers
   = GetSupergroupMembers
     { supergroup_id :: Maybe Int                                             -- ^ Identifier of the supergroup or channel

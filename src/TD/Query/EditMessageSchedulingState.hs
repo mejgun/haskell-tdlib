@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 
--- | Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
+-- | Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed. Returns 'TD.Data.Ok.Ok'
 data EditMessageSchedulingState
   = EditMessageSchedulingState
     { chat_id          :: Maybe Int                                           -- ^ The chat the message belongs to

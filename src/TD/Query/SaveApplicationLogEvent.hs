@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.JsonValue as JsonValue
 
--- | Saves application log event on the server. Can be called before authorization
+-- | Saves application log event on the server. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data SaveApplicationLogEvent
   = SaveApplicationLogEvent
     { _type   :: Maybe T.Text              -- ^ Event type

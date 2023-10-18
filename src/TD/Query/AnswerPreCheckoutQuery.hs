@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets the result of a pre-checkout query; for bots only
+-- | Sets the result of a pre-checkout query; for bots only. Returns 'TD.Data.Ok.Ok'
 data AnswerPreCheckoutQuery
   = AnswerPreCheckoutQuery
     { pre_checkout_query_id :: Maybe Int    -- ^ Identifier of the pre-checkout query

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified Data.Text as T
 
--- | Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+-- | Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved. Returns 'TD.Data.FormattedText.FormattedText'
 data TranslateText
   = TranslateText
     { text             :: Maybe FormattedText.FormattedText -- ^ Text to translate

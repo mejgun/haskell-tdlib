@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Answers a custom query; for bots only
+-- | Answers a custom query; for bots only. Returns 'TD.Data.Ok.Ok'
 data AnswerCustomQuery
   = AnswerCustomQuery
     { custom_query_id :: Maybe Int    -- ^ Identifier of a custom query

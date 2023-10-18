@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
+-- | Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat. Returns 'TD.Data.ChatInviteLink.ChatInviteLink'
 data CreateChatInviteLink
   = CreateChatInviteLink
     { chat_id              :: Maybe Int    -- ^ Chat identifier

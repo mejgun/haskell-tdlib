@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns a list of recently used stickers
+-- | Returns a list of recently used stickers. Returns 'TD.Data.Stickers.Stickers'
 data GetRecentStickers
   = GetRecentStickers
     { is_attached :: Maybe Bool -- ^ Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers

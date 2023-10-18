@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the period of inactivity after which sessions will automatically be terminated
+-- | Changes the period of inactivity after which sessions will automatically be terminated. Returns 'TD.Data.Ok.Ok'
 data SetInactiveSessionTtl
   = SetInactiveSessionTtl
     { inactive_session_ttl_days :: Maybe Int -- ^ New number of days of inactivity before sessions will be automatically terminated; 1-366 days

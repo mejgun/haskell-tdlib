@@ -10,7 +10,7 @@ import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+-- | Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages. Returns 'TD.Data.Messages.Messages'
 data SendMessageAlbum
   = SendMessageAlbum
     { chat_id                :: Maybe Int                                       -- ^ Target chat

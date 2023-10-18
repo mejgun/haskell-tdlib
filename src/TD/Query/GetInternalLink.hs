@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InternalLinkType as InternalLinkType
 
--- | Returns an HTTPS or a tg: link with the given type. Can be called before authorization
+-- | Returns an HTTPS or a tg: link with the given type. Can be called before authorization. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetInternalLink
   = GetInternalLink
     { _type   :: Maybe InternalLinkType.InternalLinkType -- ^ Expected type of the link

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Adds a message to TDLib internal log. Can be called synchronously
+-- | Adds a message to TDLib internal log. Can be called synchronously. Returns 'TD.Data.Ok.Ok'
 data AddLogMessage
   = AddLogMessage
     { verbosity_level :: Maybe Int    -- ^ The minimum verbosity level needed for the message to be logged; 0-1023

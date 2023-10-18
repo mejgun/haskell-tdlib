@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
 
--- | Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+-- | Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Returns 'TD.Data.Ok.Ok'
 data SetLocation
   = SetLocation
     { location :: Maybe Location.Location -- ^ The new location of the user

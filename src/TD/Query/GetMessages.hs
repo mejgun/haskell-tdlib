@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about messages. If a message is not found, returns null on the corresponding position of the result
+-- | Returns information about messages. If a message is not found, returns null on the corresponding position of the result. Returns 'TD.Data.Messages.Messages'
 data GetMessages
   = GetMessages
     { chat_id     :: Maybe Int   -- ^ Identifier of the chat the messages belong to

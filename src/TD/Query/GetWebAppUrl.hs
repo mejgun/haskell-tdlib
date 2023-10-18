@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ThemeParameters as ThemeParameters
 
--- | Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+-- | Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetWebAppUrl
   = GetWebAppUrl
     { bot_user_id      :: Maybe Int                             -- ^ Identifier of the target bot

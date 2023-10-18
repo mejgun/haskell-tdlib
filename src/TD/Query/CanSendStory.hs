@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats
+-- | Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats. Returns 'TD.Data.CanSendStoryResult.CanSendStoryResult'
 data CanSendStory
   = CanSendStory
     { chat_id :: Maybe Int -- ^ Chat identifier

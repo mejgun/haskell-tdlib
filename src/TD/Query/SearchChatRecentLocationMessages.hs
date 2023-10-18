@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
+-- | Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user. Returns 'TD.Data.Messages.Messages'
 data SearchChatRecentLocationMessages
   = SearchChatRecentLocationMessages
     { chat_id :: Maybe Int -- ^ Chat identifier

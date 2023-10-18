@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns full information about a user by their identifier
+-- | Returns full information about a user by their identifier. Returns 'TD.Data.UserFullInfo.UserFullInfo'
 data GetUserFullInfo
   = GetUserFullInfo
     { user_id :: Maybe Int -- ^ User identifier

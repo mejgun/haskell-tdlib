@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Allows the specified bot to send messages to the user
+-- | Allows the specified bot to send messages to the user. Returns 'TD.Data.Ok.Ok'
 data AllowBotToSendMessages
   = AllowBotToSendMessages
     { bot_user_id :: Maybe Int -- ^ Identifier of the target bot

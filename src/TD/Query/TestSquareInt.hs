@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
+-- | Returns the squared received number; for testing only. This is an offline method. Can be called before authorization. Returns 'TD.Data.TestInt.TestInt'
 data TestSquareInt
   = TestSquareInt
     { x :: Maybe Int -- ^ Number to square

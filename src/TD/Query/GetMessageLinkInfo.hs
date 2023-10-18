@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
+-- | Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage. Returns 'TD.Data.MessageLinkInfo.MessageLinkInfo'
 data GetMessageLinkInfo
   = GetMessageLinkInfo
     { url :: Maybe T.Text -- ^ The message link

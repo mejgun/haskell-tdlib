@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatLocation as ChatLocation
 
--- | Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
+-- | Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use. Returns 'TD.Data.Ok.Ok'
 data SetChatLocation
   = SetChatLocation
     { chat_id  :: Maybe Int                       -- ^ Chat identifier

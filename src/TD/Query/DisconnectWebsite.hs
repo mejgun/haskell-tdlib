@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Disconnects website from the current user's Telegram account
+-- | Disconnects website from the current user's Telegram account. Returns 'TD.Data.Ok.Ok'
 data DisconnectWebsite
   = DisconnectWebsite
     { website_id :: Maybe Int -- ^ Website identifier

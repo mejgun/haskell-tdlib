@@ -10,7 +10,7 @@ import qualified Data.Text as T
 import qualified TD.Data.ThemeParameters as ThemeParameters
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
 
--- | Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+-- | Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once. Returns 'TD.Data.WebAppInfo.WebAppInfo'
 data OpenWebApp
   = OpenWebApp
     { chat_id           :: Maybe Int                             -- ^ Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats

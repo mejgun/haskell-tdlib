@@ -10,7 +10,7 @@ import qualified TD.Data.InputInvoice as InputInvoice
 import qualified Data.Text as T
 import qualified TD.Data.InputCredentials as InputCredentials
 
--- | Sends a filled-out payment form to the bot for final verification
+-- | Sends a filled-out payment form to the bot for final verification. Returns 'TD.Data.PaymentResult.PaymentResult'
 data SendPaymentForm
   = SendPaymentForm
     { input_invoice      :: Maybe InputInvoice.InputInvoice         -- ^ The invoice

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the current state of 2-step verification
+-- | Returns the current state of 2-step verification. Returns 'TD.Data.PasswordState.PasswordState'
 data GetPasswordState
   = GetPasswordState
   deriving (Eq, Show)

@@ -11,7 +11,7 @@ import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.InputSticker as InputSticker
 
--- | Creates a new sticker set. Returns the newly created sticker set
+-- | Creates a new sticker set. Returns the newly created sticker set. Returns 'TD.Data.StickerSet.StickerSet'
 data CreateNewStickerSet
   = CreateNewStickerSet
     { user_id          :: Maybe Int                         -- ^ Sticker set owner; ignored for regular users

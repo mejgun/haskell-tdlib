@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.CallProtocol as CallProtocol
 
--- | Accepts an incoming call
+-- | Accepts an incoming call. Returns 'TD.Data.Ok.Ok'
 data AcceptCall
   = AcceptCall
     { call_id  :: Maybe Int                       -- ^ Call identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
+-- | Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link. Returns 'TD.Data.Chats.Chats'
 data GetChatsForChatFolderInviteLink
   = GetChatsForChatFolderInviteLink
     { chat_folder_id :: Maybe Int -- ^ Chat folder identifier

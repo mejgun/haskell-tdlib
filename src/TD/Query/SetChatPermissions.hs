@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatPermissions as ChatPermissions
 
--- | Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+-- | Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right. Returns 'TD.Data.Ok.Ok'
 data SetChatPermissions
   = SetChatPermissions
     { chat_id     :: Maybe Int                             -- ^ Chat identifier

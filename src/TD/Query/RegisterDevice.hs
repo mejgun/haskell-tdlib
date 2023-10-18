@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.DeviceToken as DeviceToken
 
--- | Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
+-- | Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription. Returns 'TD.Data.PushReceiverId.PushReceiverId'
 data RegisterDevice
   = RegisterDevice
     { device_token   :: Maybe DeviceToken.DeviceToken -- ^ Device token

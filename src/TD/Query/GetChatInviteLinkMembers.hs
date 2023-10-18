@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatInviteLinkMember as ChatInviteLinkMember
 
--- | Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+-- | Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. Returns 'TD.Data.ChatInviteLinkMembers.ChatInviteLinkMembers'
 data GetChatInviteLinkMembers
   = GetChatInviteLinkMembers
     { chat_id       :: Maybe Int                                       -- ^ Chat identifier

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Updates the game score of the specified user in the game; for bots only
+-- | Updates the game score of the specified user in the game; for bots only. Returns 'TD.Data.Message.Message'
 data SetGameScore
   = SetGameScore
     { chat_id      :: Maybe Int  -- ^ The chat to which the message with the game belongs

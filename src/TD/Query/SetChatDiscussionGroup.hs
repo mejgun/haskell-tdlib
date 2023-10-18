@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
+-- | Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified. Returns 'TD.Data.Ok.Ok'
 data SetChatDiscussionGroup
   = SetChatDiscussionGroup
     { chat_id            :: Maybe Int -- ^ Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)

@@ -10,7 +10,7 @@ import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+-- | Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only. Returns 'TD.Data.Ok.Ok'
 data EditInlineMessageMedia
   = EditInlineMessageMedia
     { inline_message_id     :: Maybe T.Text                                  -- ^ Inline message identifier

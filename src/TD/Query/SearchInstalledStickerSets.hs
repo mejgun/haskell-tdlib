@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 import qualified Data.Text as T
 
--- | Searches for installed sticker sets by looking for specified query in their title and name
+-- | Searches for installed sticker sets by looking for specified query in their title and name. Returns 'TD.Data.StickerSets.StickerSets'
 data SearchInstalledStickerSets
   = SearchInstalledStickerSets
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to search for

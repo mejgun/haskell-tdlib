@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
+-- | Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization. Returns 'TD.Data.LanguagePackInfo.LanguagePackInfo'
 data GetLanguagePackInfo
   = GetLanguagePackInfo
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier

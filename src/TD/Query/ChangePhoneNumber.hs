@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
--- | Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
+-- | Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code. Returns 'TD.Data.AuthenticationCodeInfo.AuthenticationCodeInfo'
 data ChangePhoneNumber
   = ChangePhoneNumber
     { phone_number :: Maybe T.Text                                                              -- ^ The new phone number of the user in international format

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns premium stickers from regular sticker sets
+-- | Returns premium stickers from regular sticker sets. Returns 'TD.Data.Stickers.Stickers'
 data GetPremiumStickers
   = GetPremiumStickers
     { limit :: Maybe Int -- ^ The maximum number of stickers to be returned; 0-100

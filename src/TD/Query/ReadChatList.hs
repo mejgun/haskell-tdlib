@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 
--- | Traverse all chats in a chat list and marks all messages in the chats as read
+-- | Traverse all chats in a chat list and marks all messages in the chats as read. Returns 'TD.Data.Ok.Ok'
 data ReadChatList
   = ReadChatList
     { chat_list :: Maybe ChatList.ChatList -- ^ Chat list in which to mark all chats as read

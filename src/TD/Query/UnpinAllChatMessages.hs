@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+-- | Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel. Returns 'TD.Data.Ok.Ok'
 data UnpinAllChatMessages
   = UnpinAllChatMessages
     { chat_id :: Maybe Int -- ^ Identifier of the chat

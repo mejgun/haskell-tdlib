@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+-- | Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously. Returns 'TD.Data.FoundPositions.FoundPositions'
 data SearchStringsByPrefix
   = SearchStringsByPrefix
     { strings                     :: Maybe [T.Text] -- ^ The strings to search in for the query

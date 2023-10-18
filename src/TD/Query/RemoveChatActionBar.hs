@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes a chat action bar without any other action
+-- | Removes a chat action bar without any other action. Returns 'TD.Data.Ok.Ok'
 data RemoveChatActionBar
   = RemoveChatActionBar
     { chat_id :: Maybe Int -- ^ Chat identifier

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 import qualified Data.Text as T
 
--- | Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
+-- | Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned. Returns 'TD.Data.Stickers.Stickers'
 data GetStickers
   = GetStickers
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the stickers to return

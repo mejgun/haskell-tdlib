@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 
--- | Informs server about a purchase through Google Play. For official applications only
+-- | Informs server about a purchase through Google Play. For official applications only. Returns 'TD.Data.Ok.Ok'
 data AssignGooglePlayTransaction
   = AssignGooglePlayTransaction
     { package_name     :: Maybe T.Text                                  -- ^ Application package name

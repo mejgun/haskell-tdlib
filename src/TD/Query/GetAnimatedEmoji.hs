@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
+-- | Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji. Returns 'TD.Data.AnimatedEmoji.AnimatedEmoji'
 data GetAnimatedEmoji
   = GetAnimatedEmoji
     { emoji :: Maybe T.Text -- ^ The emoji

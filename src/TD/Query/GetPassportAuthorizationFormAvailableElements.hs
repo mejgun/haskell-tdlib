@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
+-- | Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form. Returns 'TD.Data.PassportElementsWithErrors.PassportElementsWithErrors'
 data GetPassportAuthorizationFormAvailableElements
   = GetPassportAuthorizationFormAvailableElements
     { authorization_form_id :: Maybe Int    -- ^ Authorization form identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
+-- | Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetProxyLink
   = GetProxyLink
     { proxy_id :: Maybe Int -- ^ Proxy identifier

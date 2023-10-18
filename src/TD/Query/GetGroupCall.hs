@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a group call
+-- | Returns information about a group call. Returns 'TD.Data.GroupCall.GroupCall'
 data GetGroupCall
   = GetGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier

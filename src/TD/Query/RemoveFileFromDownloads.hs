@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes a file from the file download list
+-- | Removes a file from the file download list. Returns 'TD.Data.Ok.Ok'
 data RemoveFileFromDownloads
   = RemoveFileFromDownloads
     { file_id           :: Maybe Int  -- ^ Identifier of the downloaded file

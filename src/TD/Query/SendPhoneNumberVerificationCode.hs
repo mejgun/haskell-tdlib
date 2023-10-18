@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
--- | Sends a code to verify a phone number to be added to a user's Telegram Passport
+-- | Sends a code to verify a phone number to be added to a user's Telegram Passport. Returns 'TD.Data.AuthenticationCodeInfo.AuthenticationCodeInfo'
 data SendPhoneNumberVerificationCode
   = SendPhoneNumberVerificationCode
     { phone_number :: Maybe T.Text                                                              -- ^ The phone number of the user, in international format

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
+-- | Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress. Returns 'TD.Data.Ok.Ok'
 data SetAuthenticationEmailAddress
   = SetAuthenticationEmailAddress
     { email_address :: Maybe T.Text -- ^ The email address of the user

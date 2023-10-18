@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true
+-- | Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true. Returns 'TD.Data.Ok.Ok'
 data ToggleStoryIsPinned
   = ToggleStoryIsPinned
     { story_sender_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story

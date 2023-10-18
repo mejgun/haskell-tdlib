@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sends a custom request; for bots only
+-- | Sends a custom request; for bots only. Returns 'TD.Data.CustomRequestResult.CustomRequestResult'
 data SendCustomRequest
   = SendCustomRequest
     { method     :: Maybe T.Text -- ^ The method name

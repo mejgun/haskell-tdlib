@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns all available Telegram Passport elements
+-- | Returns all available Telegram Passport elements. Returns 'TD.Data.PassportElements.PassportElements'
 data GetAllPassportElements
   = GetAllPassportElements
     { password :: Maybe T.Text -- ^ The 2-step verification password of the current user

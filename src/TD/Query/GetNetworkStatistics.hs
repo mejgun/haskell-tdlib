@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns network data usage statistics. Can be called before authorization
+-- | Returns network data usage statistics. Can be called before authorization. Returns 'TD.Data.NetworkStatistics.NetworkStatistics'
 data GetNetworkStatistics
   = GetNetworkStatistics
     { only_current :: Maybe Bool -- ^ Pass true to get statistics only for the current library launch

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Data.Text as T
 
--- | Joins an active group call. Returns join response payload for tgcalls
+-- | Joins an active group call. Returns join response payload for tgcalls. Returns 'TD.Data.Text.Text'
 data JoinGroupCall
   = JoinGroupCall
     { group_call_id       :: Maybe Int                         -- ^ Group call identifier

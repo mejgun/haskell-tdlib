@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns viewers of a story. The method can be called only for stories posted on behalf of the current user
+-- | Returns viewers of a story. The method can be called only for stories posted on behalf of the current user. Returns 'TD.Data.StoryViewers.StoryViewers'
 data GetStoryViewers
   = GetStoryViewers
     { story_id             :: Maybe Int    -- ^ Story identifier

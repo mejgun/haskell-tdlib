@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Removes a reaction from a message. A chosen reaction can always be removed
+-- | Removes a reaction from a message. A chosen reaction can always be removed. Returns 'TD.Data.Ok.Ok'
 data RemoveMessageReaction
   = RemoveMessageReaction
     { chat_id       :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs

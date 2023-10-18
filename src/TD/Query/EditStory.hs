@@ -10,7 +10,7 @@ import qualified TD.Data.InputStoryContent as InputStoryContent
 import qualified TD.Data.InputStoryAreas as InputStoryAreas
 import qualified TD.Data.FormattedText as FormattedText
 
--- | Changes content and caption of a story. Can be called only if story.can_be_edited == true
+-- | Changes content and caption of a story. Can be called only if story.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
 data EditStory
   = EditStory
     { story_sender_chat_id :: Maybe Int                                 -- ^ Identifier of the chat that posted the story

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 
--- | Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
+-- | Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib. Returns 'TD.Data.FoundMessages.FoundMessages'
 data SearchSecretMessages
   = SearchSecretMessages
     { chat_id :: Maybe Int                                       -- ^ Identifier of the chat in which to search. Specify 0 to search in all secret chats

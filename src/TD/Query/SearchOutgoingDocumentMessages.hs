@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
+-- | Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order. Returns 'TD.Data.FoundMessages.FoundMessages'
 data SearchOutgoingDocumentMessages
   = SearchOutgoingDocumentMessages
     { query :: Maybe T.Text -- ^ Query to search for in document file name and message caption

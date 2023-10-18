@@ -10,7 +10,7 @@ import qualified TD.Data.ChatList as ChatList
 import qualified Data.Text as T
 import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 
--- | Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+-- | Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. Returns 'TD.Data.FoundMessages.FoundMessages'
 data SearchMessages
   = SearchMessages
     { chat_list :: Maybe ChatList.ChatList                         -- ^ Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported

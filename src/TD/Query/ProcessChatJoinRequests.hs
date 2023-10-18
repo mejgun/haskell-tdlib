@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Handles all pending join requests for a given link in a chat
+-- | Handles all pending join requests for a given link in a chat. Returns 'TD.Data.Ok.Ok'
 data ProcessChatJoinRequests
   = ProcessChatJoinRequests
     { chat_id     :: Maybe Int    -- ^ Chat identifier

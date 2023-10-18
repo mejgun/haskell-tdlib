@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
+-- | Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupHasAggressiveAntiSpamEnabled
   = ToggleSupergroupHasAggressiveAntiSpamEnabled
     { supergroup_id                    :: Maybe Int  -- ^ The identifier of the supergroup, which isn't a broadcast group

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 
--- | Returns a list of installed sticker sets
+-- | Returns a list of installed sticker sets. Returns 'TD.Data.StickerSets.StickerSets'
 data GetInstalledStickerSets
   = GetInstalledStickerSets
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return

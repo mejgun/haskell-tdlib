@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReportReason as ReportReason
 import qualified Data.Text as T
 
--- | Reports a story to the Telegram moderators
+-- | Reports a story to the Telegram moderators. Returns 'TD.Data.Ok.Ok'
 data ReportStory
   = ReportStory
     { story_sender_chat_id :: Maybe Int                       -- ^ The identifier of the sender of the story to report

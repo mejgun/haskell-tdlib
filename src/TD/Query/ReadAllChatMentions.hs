@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Marks all mentions in a chat as read
+-- | Marks all mentions in a chat as read. Returns 'TD.Data.Ok.Ok'
 data ReadAllChatMentions
   = ReadAllChatMentions
     { chat_id :: Maybe Int -- ^ Chat identifier

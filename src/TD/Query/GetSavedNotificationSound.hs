@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
+-- | Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier. Returns 'TD.Data.NotificationSounds.NotificationSounds'
 data GetSavedNotificationSound
   = GetSavedNotificationSound
     { notification_sound_id :: Maybe Int -- ^ Identifier of the notification sound

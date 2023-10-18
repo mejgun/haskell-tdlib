@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.CallProblem as CallProblem
 
--- | Sends a call rating
+-- | Sends a call rating. Returns 'TD.Data.Ok.Ok'
 data SendCallRating
   = SendCallRating
     { call_id  :: Maybe Int                       -- ^ Call identifier

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
+-- | Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data AddCustomServerLanguagePack
   = AddCustomServerLanguagePack
     { language_pack_id :: Maybe T.Text -- ^ Identifier of a language pack to be added

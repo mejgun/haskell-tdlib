@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Leaves a group call
+-- | Leaves a group call. Returns 'TD.Data.Ok.Ok'
 data LeaveGroupCall
   = LeaveGroupCall
     { group_call_id :: Maybe Int -- ^ Group call identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns chat lists to which the chat can be added. This is an offline request
+-- | Returns chat lists to which the chat can be added. This is an offline request. Returns 'TD.Data.ChatLists.ChatLists'
 data GetChatListsToAddChat
   = GetChatListsToAddChat
     { chat_id :: Maybe Int -- ^ Chat identifier

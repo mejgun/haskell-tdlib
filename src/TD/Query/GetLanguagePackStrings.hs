@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
+-- | Returns strings from a language pack in the current localization target by their keys. Can be called before authorization. Returns 'TD.Data.LanguagePackStrings.LanguagePackStrings'
 data GetLanguagePackStrings
   = GetLanguagePackStrings
     { language_pack_id :: Maybe T.Text   -- ^ Language pack identifier of the strings to be returned

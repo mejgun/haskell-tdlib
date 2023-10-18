@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns a list of administrators of the chat with their custom titles
+-- | Returns a list of administrators of the chat with their custom titles. Returns 'TD.Data.ChatAdministrators.ChatAdministrators'
 data GetChatAdministrators
   = GetChatAdministrators
     { chat_id :: Maybe Int -- ^ Chat identifier

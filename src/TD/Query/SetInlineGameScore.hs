@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Updates the game score of the specified user in a game; for bots only
+-- | Updates the game score of the specified user in a game; for bots only. Returns 'TD.Data.Ok.Ok'
 data SetInlineGameScore
   = SetInlineGameScore
     { inline_message_id :: Maybe T.Text -- ^ Inline message identifier

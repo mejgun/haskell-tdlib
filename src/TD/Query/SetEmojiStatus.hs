@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiStatus as EmojiStatus
 
--- | Changes the emoji status of the current user; for Telegram Premium users only
+-- | Changes the emoji status of the current user; for Telegram Premium users only. Returns 'TD.Data.Ok.Ok'
 data SetEmojiStatus
   = SetEmojiStatus
     { emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ New emoji status; pass null to switch to the default badge

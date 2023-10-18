@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Deletes a file from the TDLib file cache
+-- | Deletes a file from the TDLib file cache. Returns 'TD.Data.Ok.Ok'
 data DeleteFile
   = DeleteFile
     { file_id :: Maybe Int -- ^ Identifier of the file to delete

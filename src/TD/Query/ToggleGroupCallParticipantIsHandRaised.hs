@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Toggles whether a group call participant hand is rased
+-- | Toggles whether a group call participant hand is rased. Returns 'TD.Data.Ok.Ok'
 data ToggleGroupCallParticipantIsHandRaised
   = ToggleGroupCallParticipantIsHandRaised
     { group_call_id  :: Maybe Int                         -- ^ Group call identifier

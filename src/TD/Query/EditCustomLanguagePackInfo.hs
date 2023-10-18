@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 
--- | Edits information about a custom local language pack in the current localization target. Can be called before authorization
+-- | Edits information about a custom local language pack in the current localization target. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data EditCustomLanguagePackInfo
   = EditCustomLanguagePackInfo
     { info :: Maybe LanguagePackInfo.LanguagePackInfo -- ^ New information about the custom local language pack

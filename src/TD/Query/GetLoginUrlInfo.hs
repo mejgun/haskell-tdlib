@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
+-- | Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button. Returns 'TD.Data.LoginUrlInfo.LoginUrlInfo'
 data GetLoginUrlInfo
   = GetLoginUrlInfo
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message with the button

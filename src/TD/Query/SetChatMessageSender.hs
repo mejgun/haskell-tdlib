@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Selects a message sender to send messages in a chat
+-- | Selects a message sender to send messages in a chat. Returns 'TD.Data.Ok.Ok'
 data SetChatMessageSender
   = SetChatMessageSender
     { chat_id           :: Maybe Int                         -- ^ Chat identifier

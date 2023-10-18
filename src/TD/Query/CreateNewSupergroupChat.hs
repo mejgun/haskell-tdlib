@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatLocation as ChatLocation
 
--- | Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
+-- | Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat. Returns 'TD.Data.Chat.Chat'
 data CreateNewSupergroupChat
   = CreateNewSupergroupChat
     { title                    :: Maybe T.Text                    -- ^ Title of the new chat; 1-128 characters

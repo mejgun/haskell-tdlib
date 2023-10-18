@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+-- | Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost. Returns 'TD.Data.ChatBoostLinkInfo.ChatBoostLinkInfo'
 data GetChatBoostLinkInfo
   = GetChatBoostLinkInfo
     { url :: Maybe T.Text -- ^ The link to boost a chat

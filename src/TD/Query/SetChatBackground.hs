@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputBackground as InputBackground
 import qualified TD.Data.BackgroundType as BackgroundType
 
--- | Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+-- | Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users. Returns 'TD.Data.Ok.Ok'
 data SetChatBackground
   = SetChatBackground
     { chat_id            :: Maybe Int                             -- ^ Chat identifier

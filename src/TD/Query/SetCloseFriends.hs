@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the list of close friends of the current user
+-- | Changes the list of close friends of the current user. Returns 'TD.Data.Ok.Ok'
 data SetCloseFriends
   = SetCloseFriends
     { user_ids :: Maybe [Int] -- ^ User identifiers of close friends; the users must be contacts of the current user

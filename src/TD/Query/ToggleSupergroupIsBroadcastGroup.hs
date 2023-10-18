@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
+-- | Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupIsBroadcastGroup
   = ToggleSupergroupIsBroadcastGroup
     { supergroup_id :: Maybe Int -- ^ Identifier of the supergroup

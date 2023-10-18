@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an HTTPS link to boost the specified channel chat
+-- | Returns an HTTPS link to boost the specified channel chat. Returns 'TD.Data.ChatBoostLink.ChatBoostLink'
 data GetChatBoostLink
   = GetChatBoostLink
     { chat_id :: Maybe Int -- ^ Identifier of the chat

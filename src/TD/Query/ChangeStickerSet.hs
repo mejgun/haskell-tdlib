@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Installs/uninstalls or activates/archives a sticker set
+-- | Installs/uninstalls or activates/archives a sticker set. Returns 'TD.Data.Ok.Ok'
 data ChangeStickerSet
   = ChangeStickerSet
     { set_id       :: Maybe Int  -- ^ Identifier of the sticker set

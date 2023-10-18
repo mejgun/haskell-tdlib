@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+-- | Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message. Returns 'TD.Data.Ok.Ok'
 data AddMessageReaction
   = AddMessageReaction
     { chat_id                 :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs

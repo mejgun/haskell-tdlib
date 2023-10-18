@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a message
+-- | Returns information about a message. Returns 'TD.Data.Message.Message'
 data GetMessage
   = GetMessage
     { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to

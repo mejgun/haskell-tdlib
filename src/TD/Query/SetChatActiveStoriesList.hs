@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryList as StoryList
 
--- | Changes story list in which stories from the chat are shown
+-- | Changes story list in which stories from the chat are shown. Returns 'TD.Data.Ok.Ok'
 data SetChatActiveStoriesList
   = SetChatActiveStoriesList
     { chat_id    :: Maybe Int                 -- ^ Identifier of the chat that posted stories

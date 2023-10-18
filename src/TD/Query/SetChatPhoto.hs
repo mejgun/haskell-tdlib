@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 
--- | Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+-- | Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
 data SetChatPhoto
   = SetChatPhoto
     { chat_id :: Maybe Int                           -- ^ Chat identifier

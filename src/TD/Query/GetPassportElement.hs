@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified Data.Text as T
 
--- | Returns one of the available Telegram Passport elements
+-- | Returns one of the available Telegram Passport elements. Returns 'TD.Data.PassportElement.PassportElement'
 data GetPassportElement
   = GetPassportElement
     { _type    :: Maybe PassportElementType.PassportElementType -- ^ Telegram Passport element type

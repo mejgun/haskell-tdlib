@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+-- | Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel. Returns 'TD.Data.Ok.Ok'
 data SetSupergroupUsername
   = SetSupergroupUsername
     { supergroup_id :: Maybe Int    -- ^ Identifier of the supergroup or channel

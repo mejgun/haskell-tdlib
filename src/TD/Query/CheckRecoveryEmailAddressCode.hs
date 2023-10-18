@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks the 2-step verification recovery email address verification code
+-- | Checks the 2-step verification recovery email address verification code. Returns 'TD.Data.PasswordState.PasswordState'
 data CheckRecoveryEmailAddressCode
   = CheckRecoveryEmailAddressCode
     { code :: Maybe T.Text -- ^ Verification code to check

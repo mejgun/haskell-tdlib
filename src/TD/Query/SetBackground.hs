@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputBackground as InputBackground
 import qualified TD.Data.BackgroundType as BackgroundType
 
--- | Changes the background selected by the user; adds background to the list of installed backgrounds
+-- | Changes the background selected by the user; adds background to the list of installed backgrounds. Returns 'TD.Data.Background.Background'
 data SetBackground
   = SetBackground
     { background     :: Maybe InputBackground.InputBackground -- ^ The input background to use; pass null to create a new filled background or to remove the current background

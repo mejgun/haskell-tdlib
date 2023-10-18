@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified Data.ByteString as BS
 
--- | Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
+-- | Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters. Returns 'TD.Data.Ok.Ok'
 data SetTdlibParameters
   = SetTdlibParameters
     { use_test_dc              :: Maybe Bool          -- ^ Pass true to use Telegram test environment instead of the production environment

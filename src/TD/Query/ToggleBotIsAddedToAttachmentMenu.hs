@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+-- | Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true. Returns 'TD.Data.Ok.Ok'
 data ToggleBotIsAddedToAttachmentMenu
   = ToggleBotIsAddedToAttachmentMenu
     { bot_user_id        :: Maybe Int  -- ^ Bot's user identifier

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
+-- | Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data SynchronizeLanguagePack
   = SynchronizeLanguagePack
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier

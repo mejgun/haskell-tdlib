@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+-- | Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group. Returns 'TD.Data.Chat.Chat'
 data UpgradeBasicGroupChatToSupergroupChat
   = UpgradeBasicGroupChatToSupergroupChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat to upgrade

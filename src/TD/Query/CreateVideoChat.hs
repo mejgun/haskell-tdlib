@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+-- | Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights. Returns 'TD.Data.GroupCallId.GroupCallId'
 data CreateVideoChat
   = CreateVideoChat
     { chat_id        :: Maybe Int    -- ^ Identifier of a chat in which the video chat will be created

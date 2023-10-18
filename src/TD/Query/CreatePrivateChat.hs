@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an existing chat corresponding to a given user
+-- | Returns an existing chat corresponding to a given user. Returns 'TD.Data.Chat.Chat'
 data CreatePrivateChat
   = CreatePrivateChat
     { user_id :: Maybe Int  -- ^ User identifier

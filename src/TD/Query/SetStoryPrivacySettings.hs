@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
--- | Changes privacy settings of a story. Can be called only if story.can_be_edited == true
+-- | Changes privacy settings of a story. Can be called only if story.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
 data SetStoryPrivacySettings
   = SetStoryPrivacySettings
     { story_sender_chat_id :: Maybe Int                                       -- ^ Identifier of the chat that posted the story

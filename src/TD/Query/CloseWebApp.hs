@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib that a previously opened Web App was closed
+-- | Informs TDLib that a previously opened Web App was closed. Returns 'TD.Data.Ok.Ok'
 data CloseWebApp
   = CloseWebApp
     { web_app_launch_id :: Maybe Int -- ^ Identifier of Web App launch, received from openWebApp

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+-- | Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
 data SetChatDescription
   = SetChatDescription
     { chat_id     :: Maybe Int    -- ^ Identifier of the chat

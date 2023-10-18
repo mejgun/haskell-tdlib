@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes a notification sound from the list of saved notification sounds
+-- | Removes a notification sound from the list of saved notification sounds. Returns 'TD.Data.Ok.Ok'
 data RemoveSavedNotificationSound
   = RemoveSavedNotificationSound
     { notification_sound_id :: Maybe Int -- ^ Identifier of the notification sound

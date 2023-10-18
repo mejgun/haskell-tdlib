@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+-- | Informs TDLib that the user clicked Premium subscription button on the Premium features screen. Returns 'TD.Data.Ok.Ok'
 data ClickPremiumSubscriptionButton
   = ClickPremiumSubscriptionButton
   deriving (Eq, Show)

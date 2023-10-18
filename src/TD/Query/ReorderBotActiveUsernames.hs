@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
+-- | Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
 data ReorderBotActiveUsernames
   = ReorderBotActiveUsernames
     { bot_user_id :: Maybe Int      -- ^ Identifier of the target bot

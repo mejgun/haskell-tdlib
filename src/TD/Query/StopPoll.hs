@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
--- | Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+-- | Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set. Returns 'TD.Data.Ok.Ok'
 data StopPoll
   = StopPoll
     { chat_id      :: Maybe Int                     -- ^ Identifier of the chat to which the poll belongs

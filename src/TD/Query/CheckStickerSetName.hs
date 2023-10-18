@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks whether a name can be used for a new sticker set
+-- | Checks whether a name can be used for a new sticker set. Returns 'TD.Data.CheckStickerSetNameResult.CheckStickerSetNameResult'
 data CheckStickerSetName
   = CheckStickerSetName
     { name :: Maybe T.Text -- ^ Name to be checked

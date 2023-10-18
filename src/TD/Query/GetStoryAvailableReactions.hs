@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns reactions, which can be chosen for a story
+-- | Returns reactions, which can be chosen for a story. Returns 'TD.Data.AvailableReactions.AvailableReactions'
 data GetStoryAvailableReactions
   = GetStoryAvailableReactions
     { row_size :: Maybe Int -- ^ Number of reaction per row, 5-25

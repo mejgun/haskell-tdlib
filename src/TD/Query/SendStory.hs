@@ -11,7 +11,7 @@ import qualified TD.Data.InputStoryAreas as InputStoryAreas
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
--- | Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story
+-- | Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story. Returns 'TD.Data.Story.Story'
 data SendStory
   = SendStory
     { chat_id          :: Maybe Int                                       -- ^ Identifier of the chat that will post the story

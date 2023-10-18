@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatList as ChatList
 
--- | Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
+-- | Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state. Returns 'TD.Data.Chats.Chats'
 data GetChats
   = GetChats
     { chat_list :: Maybe ChatList.ChatList -- ^ The chat list in which to return chats; pass null to get chats from the main chat list

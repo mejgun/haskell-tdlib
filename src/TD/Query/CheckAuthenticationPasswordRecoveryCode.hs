@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+-- | Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword. Returns 'TD.Data.Ok.Ok'
 data CheckAuthenticationPasswordRecoveryCode
   = CheckAuthenticationPasswordRecoveryCode
     { recovery_code :: Maybe T.Text -- ^ Recovery code to check

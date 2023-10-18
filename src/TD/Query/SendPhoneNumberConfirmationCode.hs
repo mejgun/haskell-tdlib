@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
--- | Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
+-- | Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation. Returns 'TD.Data.AuthenticationCodeInfo.AuthenticationCodeInfo'
 data SendPhoneNumberConfirmationCode
   = SendPhoneNumberConfirmationCode
     { hash         :: Maybe T.Text                                                              -- ^ Hash value from the link

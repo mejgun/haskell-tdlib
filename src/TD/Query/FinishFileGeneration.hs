@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Error as Error
 
--- | Finishes the file generation
+-- | Finishes the file generation. Returns 'TD.Data.Ok.Ok'
 data FinishFileGeneration
   = FinishFileGeneration
     { generation_id :: Maybe Int         -- ^ The identifier of the generation process

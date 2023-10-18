@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a bot that can be added to attachment or side menu
+-- | Returns information about a bot that can be added to attachment or side menu. Returns 'TD.Data.AttachmentMenuBot.AttachmentMenuBot'
 data GetAttachmentMenuBot
   = GetAttachmentMenuBot
     { bot_user_id :: Maybe Int -- ^ Bot's user identifier

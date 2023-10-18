@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
+-- | Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization. Returns 'TD.Data.TestVectorString.TestVectorString'
 data TestCallVectorString
   = TestCallVectorString
     { x :: Maybe [T.Text] -- ^ Vector of strings to return

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sends a custom request from a Web App
+-- | Sends a custom request from a Web App. Returns 'TD.Data.CustomRequestResult.CustomRequestResult'
 data SendWebAppCustomRequest
   = SendWebAppCustomRequest
     { bot_user_id :: Maybe Int    -- ^ Identifier of the bot

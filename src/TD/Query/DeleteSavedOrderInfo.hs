@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Deletes saved order information
+-- | Deletes saved order information. Returns 'TD.Data.Ok.Ok'
 data DeleteSavedOrderInfo
   = DeleteSavedOrderInfo
   deriving (Eq, Show)

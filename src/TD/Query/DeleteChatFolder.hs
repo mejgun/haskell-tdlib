@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Deletes existing chat folder
+-- | Deletes existing chat folder. Returns 'TD.Data.Ok.Ok'
 data DeleteChatFolder
   = DeleteChatFolder
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier

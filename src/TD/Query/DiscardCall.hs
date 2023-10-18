@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Discards a call
+-- | Discards a call. Returns 'TD.Data.Ok.Ok'
 data DiscardCall
   = DiscardCall
     { call_id         :: Maybe Int  -- ^ Call identifier

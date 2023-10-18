@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns up to 20 recently used inline bots in the order of their last usage
+-- | Returns up to 20 recently used inline bots in the order of their last usage. Returns 'TD.Data.Users.Users'
 data GetRecentInlineBots
   = GetRecentInlineBots
   deriving (Eq, Show)

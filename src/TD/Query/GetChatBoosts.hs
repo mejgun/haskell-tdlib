@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts
+-- | Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts. Returns 'TD.Data.FoundChatBoosts.FoundChatBoosts'
 data GetChatBoosts
   = GetChatBoosts
     { chat_id :: Maybe Int    -- ^ Identifier of the chat

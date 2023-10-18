@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Process new chats added to a shareable chat folder by its owner
+-- | Process new chats added to a shareable chat folder by its owner. Returns 'TD.Data.Ok.Ok'
 data ProcessChatFolderNewChats
   = ProcessChatFolderNewChats
     { chat_folder_id :: Maybe Int   -- ^ Chat folder identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the period of inactivity after which the account of the current user will automatically be deleted
+-- | Returns the period of inactivity after which the account of the current user will automatically be deleted. Returns 'TD.Data.AccountTtl.AccountTtl'
 data GetAccountTtl
   = GetAccountTtl
   deriving (Eq, Show)

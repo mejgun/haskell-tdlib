@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 
--- | Returns pending join requests in a chat
+-- | Returns pending join requests in a chat. Returns 'TD.Data.ChatJoinRequests.ChatJoinRequests'
 data GetChatJoinRequests
   = GetChatJoinRequests
     { chat_id        :: Maybe Int                             -- ^ Chat identifier

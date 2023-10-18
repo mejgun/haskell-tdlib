@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Changes type of default reaction for the current user
+-- | Changes type of default reaction for the current user. Returns 'TD.Data.Ok.Ok'
 data SetDefaultReactionType
   = SetDefaultReactionType
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ New type of the default reaction

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns default message auto-delete time setting for new chats
+-- | Returns default message auto-delete time setting for new chats. Returns 'TD.Data.MessageAutoDeleteTime.MessageAutoDeleteTime'
 data GetDefaultMessageAutoDeleteTime
   = GetDefaultMessageAutoDeleteTime
   deriving (Eq, Show)

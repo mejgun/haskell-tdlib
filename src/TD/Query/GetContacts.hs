@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns all contacts of the user
+-- | Returns all contacts of the user. Returns 'TD.Data.Users.Users'
 data GetContacts
   = GetContacts
   deriving (Eq, Show)

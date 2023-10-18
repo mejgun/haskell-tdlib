@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+-- | Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed. Returns 'TD.Data.AuthenticationCodeInfo.AuthenticationCodeInfo'
 data ResendChangePhoneNumberCode
   = ResendChangePhoneNumberCode
   deriving (Eq, Show)

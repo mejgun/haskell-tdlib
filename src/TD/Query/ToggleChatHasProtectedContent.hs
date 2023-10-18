@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+-- | Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges. Returns 'TD.Data.Ok.Ok'
 data ToggleChatHasProtectedContent
   = ToggleChatHasProtectedContent
     { chat_id               :: Maybe Int  -- ^ Chat identifier

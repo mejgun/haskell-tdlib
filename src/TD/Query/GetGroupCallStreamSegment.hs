@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.GroupCallVideoQuality as GroupCallVideoQuality
 
--- | Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
+-- | Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video. Returns 'TD.Data.FilePart.FilePart'
 data GetGroupCallStreamSegment
   = GetGroupCallStreamSegment
     { group_call_id :: Maybe Int                                         -- ^ Group call identifier

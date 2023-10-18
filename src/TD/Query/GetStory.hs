@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns a story
+-- | Returns a story. Returns 'TD.Data.Story.Story'
 data GetStory
   = GetStory
     { story_sender_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story

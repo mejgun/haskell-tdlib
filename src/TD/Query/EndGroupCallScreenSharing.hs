@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Ends screen sharing in a joined group call
+-- | Ends screen sharing in a joined group call. Returns 'TD.Data.Ok.Ok'
 data EndGroupCallScreenSharing
   = EndGroupCallScreenSharing
     { group_call_id :: Maybe Int -- ^ Group call identifier

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a successful payment
+-- | Returns information about a successful payment. Returns 'TD.Data.PaymentReceipt.PaymentReceipt'
 data GetPaymentReceipt
   = GetPaymentReceipt
     { chat_id    :: Maybe Int -- ^ Chat identifier of the messagePaymentSuccessful message

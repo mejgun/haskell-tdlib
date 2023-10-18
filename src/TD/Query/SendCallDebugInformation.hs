@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sends debug information for a call to Telegram servers
+-- | Sends debug information for a call to Telegram servers. Returns 'TD.Data.Ok.Ok'
 data SendCallDebugInformation
   = SendCallDebugInformation
     { call_id           :: Maybe Int    -- ^ Call identifier

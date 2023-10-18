@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the profile photos of a user. Personal and public photo aren't returned
+-- | Returns the profile photos of a user. Personal and public photo aren't returned. Returns 'TD.Data.ChatPhotos.ChatPhotos'
 data GetUserProfilePhotos
   = GetUserProfilePhotos
     { user_id :: Maybe Int -- ^ User identifier

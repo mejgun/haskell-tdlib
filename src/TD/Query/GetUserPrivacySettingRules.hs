@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 
--- | Returns the current privacy settings
+-- | Returns the current privacy settings. Returns 'TD.Data.UserPrivacySettingRules.UserPrivacySettingRules'
 data GetUserPrivacySettingRules
   = GetUserPrivacySettingRules
     { setting :: Maybe UserPrivacySetting.UserPrivacySetting -- ^ The privacy setting

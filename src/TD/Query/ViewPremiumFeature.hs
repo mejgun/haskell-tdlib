@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumFeature as PremiumFeature
 
--- | Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+-- | Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen. Returns 'TD.Data.Ok.Ok'
 data ViewPremiumFeature
   = ViewPremiumFeature
     { feature :: Maybe PremiumFeature.PremiumFeature -- ^ The viewed premium feature

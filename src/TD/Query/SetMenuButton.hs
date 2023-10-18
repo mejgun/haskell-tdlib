@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotMenuButton as BotMenuButton
 
--- | Sets menu button for the given user or for all users; for bots only
+-- | Sets menu button for the given user or for all users; for bots only. Returns 'TD.Data.Ok.Ok'
 data SetMenuButton
   = SetMenuButton
     { user_id     :: Maybe Int                         -- ^ Identifier of the user or 0 to set menu button for all users

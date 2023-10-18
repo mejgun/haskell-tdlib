@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputChatPhoto as InputChatPhoto
 
--- | Changes a profile photo for a bot
+-- | Changes a profile photo for a bot. Returns 'TD.Data.Ok.Ok'
 data SetBotProfilePhoto
   = SetBotProfilePhoto
     { bot_user_id :: Maybe Int                           -- ^ Identifier of the target bot

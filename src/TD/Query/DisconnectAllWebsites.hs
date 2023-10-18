@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Disconnects all websites from the current user's Telegram account
+-- | Disconnects all websites from the current user's Telegram account. Returns 'TD.Data.Ok.Ok'
 data DisconnectAllWebsites
   = DisconnectAllWebsites
   deriving (Eq, Show)

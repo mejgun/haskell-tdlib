@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+-- | Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupIsAllHistoryAvailable
   = ToggleSupergroupIsAllHistoryAvailable
     { supergroup_id            :: Maybe Int  -- ^ The identifier of the supergroup

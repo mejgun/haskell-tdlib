@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes users from the contact list
+-- | Removes users from the contact list. Returns 'TD.Data.Ok.Ok'
 data RemoveContacts
   = RemoveContacts
     { user_ids :: Maybe [Int] -- ^ Identifiers of users to be deleted

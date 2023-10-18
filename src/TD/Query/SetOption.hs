@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.OptionValue as OptionValue
 
--- | Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
+-- | Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data SetOption
   = SetOption
     { name  :: Maybe T.Text                  -- ^ The name of the option

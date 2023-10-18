@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
+-- | Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true. Returns 'TD.Data.Ok.Ok'
 data ReportSupergroupAntiSpamFalsePositive
   = ReportSupergroupAntiSpamFalsePositive
     { supergroup_id :: Maybe Int -- ^ Supergroup identifier

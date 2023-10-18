@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns list of message sender identifiers, which can be used to send messages in a chat
+-- | Returns list of message sender identifiers, which can be used to send messages in a chat. Returns 'TD.Data.ChatMessageSenders.ChatMessageSenders'
 data GetChatAvailableMessageSenders
   = GetChatAvailableMessageSenders
     { chat_id :: Maybe Int -- ^ Chat identifier

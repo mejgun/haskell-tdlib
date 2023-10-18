@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns all active sessions of the current user
+-- | Returns all active sessions of the current user. Returns 'TD.Data.Sessions.Sessions'
 data GetActiveSessions
   = GetActiveSessions
   deriving (Eq, Show)

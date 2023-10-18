@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
+-- | Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos. Returns 'TD.Data.Ok.Ok'
 data SendAuthenticationFirebaseSms
   = SendAuthenticationFirebaseSms
     { token :: Maybe T.Text -- ^ SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.JsonValue as JsonValue
 
--- | Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
+-- | Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously. Returns 'TD.Data.Text.Text'
 data GetJsonString
   = GetJsonString
     { json_value :: Maybe JsonValue.JsonValue -- ^ The JsonValue object

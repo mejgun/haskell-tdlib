@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+-- | Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request. Returns 'TD.Data.Chats.Chats'
 data SearchRecentlyFoundChats
   = SearchRecentlyFoundChats
     { query :: Maybe T.Text -- ^ Query to search for

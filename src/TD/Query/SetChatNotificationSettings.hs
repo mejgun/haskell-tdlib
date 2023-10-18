@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 
--- | Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
+-- | Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed. Returns 'TD.Data.Ok.Ok'
 data SetChatNotificationSettings
   = SetChatNotificationSettings
     { chat_id               :: Maybe Int                                               -- ^ Chat identifier

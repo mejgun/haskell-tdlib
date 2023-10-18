@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the order of chat folders
+-- | Changes the order of chat folders. Returns 'TD.Data.Ok.Ok'
 data ReorderChatFolders
   = ReorderChatFolders
     { chat_folder_ids         :: Maybe [Int] -- ^ Identifiers of chat folders in the new correct order

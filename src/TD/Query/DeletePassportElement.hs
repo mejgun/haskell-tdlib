@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PassportElementType as PassportElementType
 
--- | Deletes a Telegram Passport element
+-- | Deletes a Telegram Passport element. Returns 'TD.Data.Ok.Ok'
 data DeletePassportElement
   = DeletePassportElement
     { _type :: Maybe PassportElementType.PassportElementType -- ^ Element type

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+-- | Returns information about a emoji reaction. Returns a 404 error if the reaction is not found. Returns 'TD.Data.EmojiReaction.EmojiReaction'
 data GetEmojiReaction
   = GetEmojiReaction
     { emoji :: Maybe T.Text -- ^ Text representation of the reaction

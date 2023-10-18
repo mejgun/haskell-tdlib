@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
+-- | Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder. Returns 'TD.Data.ChatFolderInviteLinkInfo.ChatFolderInviteLinkInfo'
 data CheckChatFolderInviteLink
   = CheckChatFolderInviteLink
     { invite_link :: Maybe T.Text -- ^ Invite link to be checked

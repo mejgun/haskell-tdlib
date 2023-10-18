@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
+-- | Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up. Returns 'TD.Data.PasswordState.PasswordState'
 data RecoverPassword
   = RecoverPassword
     { recovery_code :: Maybe T.Text -- ^ Recovery code to check

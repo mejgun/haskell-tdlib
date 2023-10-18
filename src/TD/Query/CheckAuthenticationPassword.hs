@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
+-- | Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword. Returns 'TD.Data.Ok.Ok'
 data CheckAuthenticationPassword
   = CheckAuthenticationPassword
     { password :: Maybe T.Text -- ^ The 2-step verification password to check

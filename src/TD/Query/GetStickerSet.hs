@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a sticker set by its identifier
+-- | Returns information about a sticker set by its identifier. Returns 'TD.Data.StickerSet.StickerSet'
 data GetStickerSet
   = GetStickerSet
     { set_id :: Maybe Int -- ^ Identifier of the sticker set

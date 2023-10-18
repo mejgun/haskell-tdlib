@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.BackgroundType as BackgroundType
 
--- | Constructs a persistent HTTP URL for a background
+-- | Constructs a persistent HTTP URL for a background. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetBackgroundUrl
   = GetBackgroundUrl
     { name  :: Maybe T.Text                        -- ^ Background name

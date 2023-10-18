@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Checks the email address verification code for Telegram Passport
+-- | Checks the email address verification code for Telegram Passport. Returns 'TD.Data.Ok.Ok'
 data CheckEmailAddressVerificationCode
   = CheckEmailAddressVerificationCode
     { code :: Maybe T.Text -- ^ Verification code to check

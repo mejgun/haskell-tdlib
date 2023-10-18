@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PublicChatType as PublicChatType
 
--- | Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
+-- | Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium. Returns 'TD.Data.Ok.Ok'
 data CheckCreatedPublicChatsLimit
   = CheckCreatedPublicChatsLimit
     { _type :: Maybe PublicChatType.PublicChatType -- ^ Type of the public chats, for which to check the limit

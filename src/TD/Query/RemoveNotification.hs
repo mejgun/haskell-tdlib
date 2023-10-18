@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
+-- | Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user. Returns 'TD.Data.Ok.Ok'
 data RemoveNotification
   = RemoveNotification
     { notification_group_id :: Maybe Int -- ^ Identifier of notification group to which the notification belongs

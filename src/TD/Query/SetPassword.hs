@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+-- | Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. Returns 'TD.Data.PasswordState.PasswordState'
 data SetPassword
   = SetPassword
     { old_password               :: Maybe T.Text -- ^ Previous 2-step verification password of the user

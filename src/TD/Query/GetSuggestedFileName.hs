@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns suggested name for saving a file in a given directory
+-- | Returns suggested name for saving a file in a given directory. Returns 'TD.Data.Text.Text'
 data GetSuggestedFileName
   = GetSuggestedFileName
     { file_id   :: Maybe Int    -- ^ Identifier of the file

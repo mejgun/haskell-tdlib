@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an existing chat corresponding to a known basic group
+-- | Returns an existing chat corresponding to a known basic group. Returns 'TD.Data.Chat.Chat'
 data CreateBasicGroupChat
   = CreateBasicGroupChat
     { basic_group_id :: Maybe Int  -- ^ Basic group identifier

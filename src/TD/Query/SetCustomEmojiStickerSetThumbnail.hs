@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets a custom emoji sticker set thumbnail; for bots only
+-- | Sets a custom emoji sticker set thumbnail; for bots only. Returns 'TD.Data.Ok.Ok'
 data SetCustomEmojiStickerSetThumbnail
   = SetCustomEmojiStickerSetThumbnail
     { name            :: Maybe T.Text -- ^ Sticker set name

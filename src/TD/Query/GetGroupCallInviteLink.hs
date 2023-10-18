@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns invite link to a video chat in a public chat
+-- | Returns invite link to a video chat in a public chat. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetGroupCallInviteLink
   = GetGroupCallInviteLink
     { group_call_id   :: Maybe Int  -- ^ Group call identifier

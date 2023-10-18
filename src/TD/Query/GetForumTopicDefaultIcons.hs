@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns list of custom emojis, which can be used as forum topic icon by all users
+-- | Returns list of custom emojis, which can be used as forum topic icon by all users. Returns 'TD.Data.Stickers.Stickers'
 data GetForumTopicDefaultIcons
   = GetForumTopicDefaultIcons
   deriving (Eq, Show)

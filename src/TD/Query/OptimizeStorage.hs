@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FileType as FileType
 
--- | Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
+-- | Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted. Returns 'TD.Data.StorageStatistics.StorageStatistics'
 data OptimizeStorage
   = OptimizeStorage
     { size                           :: Maybe Int                 -- ^ Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit

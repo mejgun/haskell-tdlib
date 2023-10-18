@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+-- | Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges. Returns 'TD.Data.Ok.Ok'
 data DeleteChatMessagesBySender
   = DeleteChatMessagesBySender
     { chat_id   :: Maybe Int                         -- ^ Chat identifier

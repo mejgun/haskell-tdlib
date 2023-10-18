@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Confirms an unconfirmed session of the current user from another device
+-- | Confirms an unconfirmed session of the current user from another device. Returns 'TD.Data.Ok.Ok'
 data ConfirmSession
   = ConfirmSession
     { session_id :: Maybe Int -- ^ Session identifier

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
 import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
 
--- | Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
+-- | Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings. Returns 'TD.Data.Ok.Ok'
 data SetAutosaveSettings
   = SetAutosaveSettings
     { scope    :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Autosave settings scope

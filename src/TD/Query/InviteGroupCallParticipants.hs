@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
+-- | Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats. Returns 'TD.Data.Ok.Ok'
 data InviteGroupCallParticipants
   = InviteGroupCallParticipants
     { group_call_id :: Maybe Int   -- ^ Group call identifier

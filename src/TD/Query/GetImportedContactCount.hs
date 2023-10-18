@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the total number of imported contacts
+-- | Returns the total number of imported contacts. Returns 'TD.Data.Count.Count'
 data GetImportedContactCount
   = GetImportedContactCount
   deriving (Eq, Show)

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether current user's video is enabled
+-- | Toggles whether current user's video is enabled. Returns 'TD.Data.Ok.Ok'
 data ToggleGroupCallIsMyVideoEnabled
   = ToggleGroupCallIsMyVideoEnabled
     { group_call_id       :: Maybe Int  -- ^ Group call identifier

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Contact as Contact
 
--- | Adds a user to the contact list or edits an existing contact by their user identifier
+-- | Adds a user to the contact list or edits an existing contact by their user identifier. Returns 'TD.Data.Ok.Ok'
 data AddContact
   = AddContact
     { contact            :: Maybe Contact.Contact -- ^ The contact to add or edit; phone number may be empty and needs to be specified only if known, vCard is ignored

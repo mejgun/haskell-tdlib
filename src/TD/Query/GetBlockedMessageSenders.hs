@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.BlockList as BlockList
 
--- | Returns users and chats that were blocked by the current user
+-- | Returns users and chats that were blocked by the current user. Returns 'TD.Data.MessageSenders.MessageSenders'
 data GetBlockedMessageSenders
   = GetBlockedMessageSenders
     { block_list :: Maybe BlockList.BlockList -- ^ Block list from which to return users

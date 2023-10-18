@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Checks whether the current user can boost a chat
+-- | Checks whether the current user can boost a chat. Returns 'TD.Data.CanBoostChatResult.CanBoostChatResult'
 data CanBoostChat
   = CanBoostChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat

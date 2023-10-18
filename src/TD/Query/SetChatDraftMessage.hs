@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.DraftMessage as DraftMessage
 
--- | Changes the draft message in a chat
+-- | Changes the draft message in a chat. Returns 'TD.Data.Ok.Ok'
 data SetChatDraftMessage
   = SetChatDraftMessage
     { chat_id           :: Maybe Int                       -- ^ Chat identifier

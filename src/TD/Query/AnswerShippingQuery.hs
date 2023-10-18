@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ShippingOption as ShippingOption
 import qualified Data.Text as T
 
--- | Sets the result of a shipping query; for bots only
+-- | Sets the result of a shipping query; for bots only. Returns 'TD.Data.Ok.Ok'
 data AnswerShippingQuery
   = AnswerShippingQuery
     { shipping_query_id :: Maybe Int                             -- ^ Identifier of the shipping query

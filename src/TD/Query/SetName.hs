@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes the first and last name of the current user
+-- | Changes the first and last name of the current user. Returns 'TD.Data.Ok.Ok'
 data SetName
   = SetName
     { first_name :: Maybe T.Text -- ^ The new value of the first name for the current user; 1-64 characters

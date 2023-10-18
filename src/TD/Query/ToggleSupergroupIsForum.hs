@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
+-- | Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupIsForum
   = ToggleSupergroupIsForum
     { supergroup_id :: Maybe Int  -- ^ Identifier of the supergroup

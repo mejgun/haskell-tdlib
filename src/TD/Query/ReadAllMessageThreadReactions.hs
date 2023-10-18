@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Marks all reactions in a forum topic as read
+-- | Marks all reactions in a forum topic as read. Returns 'TD.Data.Ok.Ok'
 data ReadAllMessageThreadReactions
   = ReadAllMessageThreadReactions
     { chat_id           :: Maybe Int -- ^ Chat identifier

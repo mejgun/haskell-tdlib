@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommandScope as BotCommandScope
 import qualified Data.Text as T
 
--- | Deletes commands supported by the bot for the given user scope and language; for bots only
+-- | Deletes commands supported by the bot for the given user scope and language; for bots only. Returns 'TD.Data.Ok.Ok'
 data DeleteCommands
   = DeleteCommands
     { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to delete commands in the default bot command scope

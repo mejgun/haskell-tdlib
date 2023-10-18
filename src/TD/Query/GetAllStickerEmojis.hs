@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StickerType as StickerType
 import qualified Data.Text as T
 
--- | Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+-- | Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id). Returns 'TD.Data.Emojis.Emojis'
 data GetAllStickerEmojis
   = GetAllStickerEmojis
     { sticker_type           :: Maybe StickerType.StickerType -- ^ Type of the stickers to search for

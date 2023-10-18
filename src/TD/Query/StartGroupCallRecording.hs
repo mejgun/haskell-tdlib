@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
+-- | Starts recording of an active group call. Requires groupCall.can_be_managed group call flag. Returns 'TD.Data.Ok.Ok'
 data StartGroupCallRecording
   = StartGroupCallRecording
     { group_call_id            :: Maybe Int    -- ^ Group call identifier

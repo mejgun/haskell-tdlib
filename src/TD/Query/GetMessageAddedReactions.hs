@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 import qualified Data.Text as T
 
--- | Returns reactions added for a message, along with their sender
+-- | Returns reactions added for a message, along with their sender. Returns 'TD.Data.AddedReactions.AddedReactions'
 data GetMessageAddedReactions
   = GetMessageAddedReactions
     { chat_id       :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs

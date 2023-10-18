@@ -10,7 +10,7 @@ import qualified TD.Data.InlineQueryResultsButton as InlineQueryResultsButton
 import qualified TD.Data.InputInlineQueryResult as InputInlineQueryResult
 import qualified Data.Text as T
 
--- | Sets the result of an inline query; for bots only
+-- | Sets the result of an inline query; for bots only. Returns 'TD.Data.Ok.Ok'
 data AnswerInlineQuery
   = AnswerInlineQuery
     { inline_query_id :: Maybe Int                                               -- ^ Identifier of the inline query

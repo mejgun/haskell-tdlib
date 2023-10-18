@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.BlockList as BlockList
 
--- | Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+-- | Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked. Returns 'TD.Data.Ok.Ok'
 data SetMessageSenderBlockList
   = SetMessageSenderBlockList
     { sender_id  :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender to block/unblock

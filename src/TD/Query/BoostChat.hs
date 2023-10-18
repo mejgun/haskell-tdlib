@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Boosts a chat
+-- | Boosts a chat. Returns 'TD.Data.Ok.Ok'
 data BoostChat
   = BoostChat
     { chat_id :: Maybe Int -- ^ Identifier of the chat

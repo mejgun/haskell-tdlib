@@ -11,7 +11,7 @@ import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Sends a message. Returns the sent message
+-- | Sends a message. Returns the sent message. Returns 'TD.Data.Message.Message'
 data SendMessage
   = SendMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat

@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Changes the chat theme. Supported only in private and secret chats
+-- | Changes the chat theme. Supported only in private and secret chats. Returns 'TD.Data.Ok.Ok'
 data SetChatTheme
   = SetChatTheme
     { chat_id    :: Maybe Int    -- ^ Chat identifier

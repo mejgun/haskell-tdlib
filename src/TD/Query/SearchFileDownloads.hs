@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Searches for files in the file download list or recently downloaded files from the list
+-- | Searches for files in the file download list or recently downloaded files from the list. Returns 'TD.Data.FoundFileDownloads.FoundFileDownloads'
 data SearchFileDownloads
   = SearchFileDownloads
     { query          :: Maybe T.Text -- ^ Query to search for; may be empty to return all downloaded files

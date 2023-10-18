@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 
--- | Changes notification settings for chats of a given type
+-- | Changes notification settings for chats of a given type. Returns 'TD.Data.Ok.Ok'
 data SetScopeNotificationSettings
   = SetScopeNotificationSettings
     { scope                 :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which to change the notification settings

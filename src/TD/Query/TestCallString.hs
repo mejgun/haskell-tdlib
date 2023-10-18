@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns the received string; for testing only. This is an offline method. Can be called before authorization
+-- | Returns the received string; for testing only. This is an offline method. Can be called before authorization. Returns 'TD.Data.TestString.TestString'
 data TestCallString
   = TestCallString
     { x :: Maybe T.Text -- ^ String to return

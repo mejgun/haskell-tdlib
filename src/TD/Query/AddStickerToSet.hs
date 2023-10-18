@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.InputSticker as InputSticker
 
--- | Adds a new sticker to a set; for bots only
+-- | Adds a new sticker to a set; for bots only. Returns 'TD.Data.Ok.Ok'
 data AddStickerToSet
   = AddStickerToSet
     { user_id :: Maybe Int                       -- ^ Sticker set owner

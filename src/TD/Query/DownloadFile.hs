@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
+-- | Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates. Returns 'TD.Data.File.File'
 data DownloadFile
   = DownloadFile
     { file_id     :: Maybe Int  -- ^ Identifier of the file to download

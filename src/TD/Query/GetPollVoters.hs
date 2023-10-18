@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+-- | Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib. Returns 'TD.Data.MessageSenders.MessageSenders'
 data GetPollVoters
   = GetPollVoters
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the poll belongs

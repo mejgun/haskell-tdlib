@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 
--- | Sends call signaling data
+-- | Sends call signaling data. Returns 'TD.Data.Ok.Ok'
 data SendCallSignalingData
   = SendCallSignalingData
     { call_id :: Maybe Int           -- ^ Call identifier

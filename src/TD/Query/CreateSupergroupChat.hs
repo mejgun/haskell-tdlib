@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an existing chat corresponding to a known supergroup or channel
+-- | Returns an existing chat corresponding to a known supergroup or channel. Returns 'TD.Data.Chat.Chat'
 data CreateSupergroupChat
   = CreateSupergroupChat
     { supergroup_id :: Maybe Int  -- ^ Supergroup or channel identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Deletes a profile photo
+-- | Deletes a profile photo. Returns 'TD.Data.Ok.Ok'
 data DeleteProfilePhoto
   = DeleteProfilePhoto
     { profile_photo_id :: Maybe Int -- ^ Identifier of the profile photo to delete

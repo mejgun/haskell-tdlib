@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatFolder as ChatFolder
 
--- | Returns default icon name for a folder. Can be called synchronously
+-- | Returns default icon name for a folder. Can be called synchronously. Returns 'TD.Data.ChatFolderIcon.ChatFolderIcon'
 data GetChatFolderDefaultIconName
   = GetChatFolderDefaultIconName
     { folder :: Maybe ChatFolder.ChatFolder -- ^ Chat folder

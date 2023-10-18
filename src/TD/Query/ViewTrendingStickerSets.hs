@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs the server that some trending sticker sets have been viewed by the user
+-- | Informs the server that some trending sticker sets have been viewed by the user. Returns 'TD.Data.Ok.Ok'
 data ViewTrendingStickerSets
   = ViewTrendingStickerSets
     { sticker_set_ids :: Maybe [Int] -- ^ Identifiers of viewed trending sticker sets

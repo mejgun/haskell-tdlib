@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 
--- | Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
+-- | Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file. Returns 'TD.Data.Ok.Ok'
 data WriteGeneratedFilePart
   = WriteGeneratedFilePart
     { generation_id :: Maybe Int           -- ^ The identifier of the generation process

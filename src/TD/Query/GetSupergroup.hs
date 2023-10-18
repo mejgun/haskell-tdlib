@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
+-- | Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot. Returns 'TD.Data.Supergroup.Supergroup'
 data GetSupergroup
   = GetSupergroup
     { supergroup_id :: Maybe Int -- ^ Supergroup or channel identifier

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+-- | Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined. Returns 'TD.Data.Ok.Ok'
 data CancelPreliminaryUploadFile
   = CancelPreliminaryUploadFile
     { file_id :: Maybe Int -- ^ Identifier of the file to stop uploading

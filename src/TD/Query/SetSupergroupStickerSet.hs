@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the sticker set of a supergroup; requires can_change_info administrator right
+-- | Changes the sticker set of a supergroup; requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
 data SetSupergroupStickerSet
   = SetSupergroupStickerSet
     { supergroup_id  :: Maybe Int -- ^ Identifier of the supergroup
