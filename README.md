@@ -4,38 +4,36 @@
 
 This lib considers [prebuilt](https://github.com/tdlib/td#building) tdlib dynamic `libtdjson.[so|dylib|dll]` in `lib` folder.
 
-## Run
+## Use (stack)
 
- `stack ghci --ghci-options -ltdjson`
+Add dependency to stack.yaml file (do not copy this commit hash)
 
-## Build
+```yaml
+extra-deps:
+- git: https://github.com/mejgun/haskell-tdlib.git
+  commit: a4bd75bd7621a2b0873688dbc24cfaf26c1f14ba
+```
 
-`stack build --ghc-options -ltdjson`
-
-You may need to specify lib path before execution
+You may need to specify lib path before running app
 * Mac OS: `export DYLD_LIBRARY_PATH=lib`
 * Linux: `LD_LIBRARY_PATH=lib`
 
+## Usage example
+
+[queueBot](https://github.com/mejgun/queueBot)
+
 ## Docs
 
-[Online](https://haskell-tdlib.netlify.app). Offline - `docs/index.html`
+  * [Online](https://haskell-tdlib.netlify.app)
+  * Offline - `git clone https://github.com/mejgun/haskell-tdlib-docs`
 
-## FAQ
 
-* Q: Why there are .hs-boot files? \
-A: Because of [recursive imports](https://wiki.haskell.org/Mutually_recursive_modules). 
+## Notes
 
-* Q: Why Int decoding so strange? \
-A: Int64 are sent as [strings](https://github.com/tdlib/td/issues/179) and others are not.
-
-* Q: Why you did X instead of Y? \
-A: I'm new to Haskell, most likely I don’t know about it yet.
-
-* Q: Why there are underlines in some record fields? \
-A: Some record fields have different types in the same data type.
+  * There are .hs-boot files because of [recursive imports](https://wiki.haskell.org/Mutually_recursive_modules).  
+  * TDLib stored Int64 [as string](https://github.com/tdlib/td/issues/179).
+  * [Extra](https://haskell-tdlib.netlify.app/td-lib#t:Extra) needed to [match requests with the corresponding responses](https://core.telegram.org/tdlib/getting-started)
 
 Let me know if there is an easier way to make something.
-
-## Note
 
 _README and FFI code was partially copied from [Nufeen/tglib-haskell-bindings](https://github.com/Nufeen/tglib-haskell-bindings)_
