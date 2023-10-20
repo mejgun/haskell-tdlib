@@ -25,7 +25,8 @@ instance AT.FromJSON Extra where
   parseJSON (AT.Object obj) = Extra <$> obj A..: "@extra"
   parseJSON _ = mempty
 
--- | Show class alternative that hides unset and bytes values
+-- | Show class alternative that hides unset and bytes values,
+-- multiline text values are shown as single line
 class ShortShow a where
   shortShow :: a -> String
 
@@ -39,7 +40,12 @@ instance ShortShow Bool where
   shortShow = show
 
 instance ShortShow T.Text where
-  shortShow x = "\"" <> T.unpack x <> "\""
+  shortShow x =
+    T.unpack
+      . T.cons '"'
+      . T.intercalate " "
+      . T.lines
+      $ T.snoc x '"'
 
 instance ShortShow BS.ByteString where
   shortShow _ = "<bytes>"
