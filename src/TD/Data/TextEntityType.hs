@@ -26,6 +26,7 @@ data TextEntityType
   | TextEntityTypePreCode -- ^ Text that must be formatted as if inside pre, and code HTML tags
     { language :: Maybe T.Text -- ^ Programming language of the code; as defined by the sender
     }
+  | TextEntityTypeBlockQuote -- ^ Text that must be formatted as if inside a blockquote HTML tag
   | TextEntityTypeTextUrl -- ^ A text description shown instead of a raw URL
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the link is clicked
     }
@@ -78,6 +79,8 @@ instance I.ShortShow TextEntityType where
         ++ I.cc
         [ "language" `I.p` language_
         ]
+  shortShow TextEntityTypeBlockQuote
+      = "TextEntityTypeBlockQuote"
   shortShow TextEntityTypeTextUrl
     { url = url_
     }
@@ -128,6 +131,7 @@ instance AT.FromJSON TextEntityType where
       "textEntityTypeCode"           -> pure TextEntityTypeCode
       "textEntityTypePre"            -> pure TextEntityTypePre
       "textEntityTypePreCode"        -> parseTextEntityTypePreCode v
+      "textEntityTypeBlockQuote"     -> pure TextEntityTypeBlockQuote
       "textEntityTypeTextUrl"        -> parseTextEntityTypeTextUrl v
       "textEntityTypeMentionName"    -> parseTextEntityTypeMentionName v
       "textEntityTypeCustomEmoji"    -> parseTextEntityTypeCustomEmoji v
@@ -234,6 +238,10 @@ instance AT.ToJSON TextEntityType where
       = A.object
         [ "@type"    A..= AT.String "textEntityTypePreCode"
         , "language" A..= language_
+        ]
+  toJSON TextEntityTypeBlockQuote
+      = A.object
+        [ "@type" A..= AT.String "textEntityTypeBlockQuote"
         ]
   toJSON TextEntityTypeTextUrl
     { url = url_

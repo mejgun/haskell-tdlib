@@ -61,6 +61,7 @@ import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Background as Background
 import qualified TD.Data.ChatTheme as ChatTheme
+import qualified TD.Data.AccentColor as AccentColor
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
 import qualified TD.Data.TermsOfService as TermsOfService
@@ -81,6 +82,7 @@ import qualified TD.Data.Poll as Poll
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
+import qualified TD.Data.ChatBoost as ChatBoost
 
 -- | Contains notifications about data changes
 data Update
@@ -154,13 +156,21 @@ data Update
     { chat_id :: Maybe Int                         -- ^ Chat identifier
     , photo   :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ The new chat photo; may be null
     }
+  | UpdateChatAccentColor -- ^ A chat accent color has changed
+    { chat_id         :: Maybe Int -- ^ Chat identifier
+    , accent_color_id :: Maybe Int -- ^ The new chat accent color identifier
+    }
+  | UpdateChatBackgroundCustomEmoji -- ^ A chat's custom emoji for reply background has changed
+    { chat_id                    :: Maybe Int -- ^ Chat identifier
+    , background_custom_emoji_id :: Maybe Int -- ^ The new tdentifier of a custom emoji to be shown on the reply header background
+    }
   | UpdateChatPermissions -- ^ Chat permissions was changed
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
     , permissions :: Maybe ChatPermissions.ChatPermissions -- ^ The new chat permissions
     }
-  | UpdateChatLastMessage -- ^ The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
+  | UpdateChatLastMessage -- ^ The last message of a chat was changed
     { chat_id      :: Maybe Int                         -- ^ Chat identifier
-    , last_message :: Maybe Message.Message             -- ^ The new last message in the chat; may be null
+    , last_message :: Maybe Message.Message             -- ^ The new last message in the chat; may be null if the last message became unknown. While the last message is unknown, new messages can be added to the chat without corresponding updateNewMessage update
     , positions    :: Maybe [ChatPosition.ChatPosition] -- ^ The new chat positions in the chat lists
     }
   | UpdateChatPosition -- ^ The position of a chat in a chat list has changed. An updateChatLastMessage or updateChatDraftMessage update might be sent instead of the update
@@ -458,6 +468,10 @@ data Update
   | UpdateChatThemes -- ^ The list of available chat themes has changed
     { chat_themes :: Maybe [ChatTheme.ChatTheme] -- ^ The new list of chat themes
     }
+  | UpdateAccentColors -- ^ The list of supported accent colors has changed
+    { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
+    , available_accent_color_ids :: Maybe [Int]                     -- ^ The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    }
   | UpdateLanguagePackStrings -- ^ Some language pack strings have been updated
     { localization_target :: Maybe T.Text                                  -- ^ Localization target to which the language pack belongs
     , language_pack_id    :: Maybe T.Text                                  -- ^ Identifier of the updated language pack
@@ -587,6 +601,10 @@ data Update
     , request      :: Maybe ChatJoinRequest.ChatJoinRequest -- ^ Join request
     , user_chat_id :: Maybe Int                             -- ^ Chat identifier of the private chat with the user
     , invite_link  :: Maybe ChatInviteLink.ChatInviteLink   -- ^ The invite link, which was used to send join request; may be null
+    }
+  | UpdateChatBoost -- ^ A chat boost has changed; for bots only
+    { chat_id :: Maybe Int                 -- ^ Chat identifier
+    , boost   :: Maybe ChatBoost.ChatBoost -- ^ New information about the boost
     }
   deriving (Eq, Show)
 
@@ -746,6 +764,24 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "chat_id" `I.p` chat_id_
         , "photo"   `I.p` photo_
+        ]
+  shortShow UpdateChatAccentColor
+    { chat_id         = chat_id_
+    , accent_color_id = accent_color_id_
+    }
+      = "UpdateChatAccentColor"
+        ++ I.cc
+        [ "chat_id"         `I.p` chat_id_
+        , "accent_color_id" `I.p` accent_color_id_
+        ]
+  shortShow UpdateChatBackgroundCustomEmoji
+    { chat_id                    = chat_id_
+    , background_custom_emoji_id = background_custom_emoji_id_
+    }
+      = "UpdateChatBackgroundCustomEmoji"
+        ++ I.cc
+        [ "chat_id"                    `I.p` chat_id_
+        , "background_custom_emoji_id" `I.p` background_custom_emoji_id_
         ]
   shortShow UpdateChatPermissions
     { chat_id     = chat_id_
@@ -1429,6 +1465,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "chat_themes" `I.p` chat_themes_
         ]
+  shortShow UpdateAccentColors
+    { colors                     = colors_
+    , available_accent_color_ids = available_accent_color_ids_
+    }
+      = "UpdateAccentColors"
+        ++ I.cc
+        [ "colors"                     `I.p` colors_
+        , "available_accent_color_ids" `I.p` available_accent_color_ids_
+        ]
   shortShow UpdateLanguagePackStrings
     { localization_target = localization_target_
     , language_pack_id    = language_pack_id_
@@ -1716,6 +1761,15 @@ instance I.ShortShow Update where
         , "user_chat_id" `I.p` user_chat_id_
         , "invite_link"  `I.p` invite_link_
         ]
+  shortShow UpdateChatBoost
+    { chat_id = chat_id_
+    , boost   = boost_
+    }
+      = "UpdateChatBoost"
+        ++ I.cc
+        [ "chat_id" `I.p` chat_id_
+        , "boost"   `I.p` boost_
+        ]
 
 instance AT.FromJSON Update where
   parseJSON v@(AT.Object obj) = do
@@ -1738,6 +1792,8 @@ instance AT.FromJSON Update where
       "updateNewChat"                        -> parseUpdateNewChat v
       "updateChatTitle"                      -> parseUpdateChatTitle v
       "updateChatPhoto"                      -> parseUpdateChatPhoto v
+      "updateChatAccentColor"                -> parseUpdateChatAccentColor v
+      "updateChatBackgroundCustomEmoji"      -> parseUpdateChatBackgroundCustomEmoji v
       "updateChatPermissions"                -> parseUpdateChatPermissions v
       "updateChatLastMessage"                -> parseUpdateChatLastMessage v
       "updateChatPosition"                   -> parseUpdateChatPosition v
@@ -1812,6 +1868,7 @@ instance AT.FromJSON Update where
       "updateSavedNotificationSounds"        -> parseUpdateSavedNotificationSounds v
       "updateSelectedBackground"             -> parseUpdateSelectedBackground v
       "updateChatThemes"                     -> parseUpdateChatThemes v
+      "updateAccentColors"                   -> parseUpdateAccentColors v
       "updateLanguagePackStrings"            -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                -> parseUpdateConnectionState v
       "updateTermsOfService"                 -> parseUpdateTermsOfService v
@@ -1839,6 +1896,7 @@ instance AT.FromJSON Update where
       "updatePollAnswer"                     -> parseUpdatePollAnswer v
       "updateChatMember"                     -> parseUpdateChatMember v
       "updateNewChatJoinRequest"             -> parseUpdateNewChatJoinRequest v
+      "updateChatBoost"                      -> parseUpdateChatBoost v
       _                                      -> mempty
     
     where
@@ -1981,6 +2039,22 @@ instance AT.FromJSON Update where
         pure $ UpdateChatPhoto
           { chat_id = chat_id_
           , photo   = photo_
+          }
+      parseUpdateChatAccentColor :: A.Value -> AT.Parser Update
+      parseUpdateChatAccentColor = A.withObject "UpdateChatAccentColor" $ \o -> do
+        chat_id_         <- o A..:?  "chat_id"
+        accent_color_id_ <- o A..:?  "accent_color_id"
+        pure $ UpdateChatAccentColor
+          { chat_id         = chat_id_
+          , accent_color_id = accent_color_id_
+          }
+      parseUpdateChatBackgroundCustomEmoji :: A.Value -> AT.Parser Update
+      parseUpdateChatBackgroundCustomEmoji = A.withObject "UpdateChatBackgroundCustomEmoji" $ \o -> do
+        chat_id_                    <- o A..:?                       "chat_id"
+        background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        pure $ UpdateChatBackgroundCustomEmoji
+          { chat_id                    = chat_id_
+          , background_custom_emoji_id = background_custom_emoji_id_
           }
       parseUpdateChatPermissions :: A.Value -> AT.Parser Update
       parseUpdateChatPermissions = A.withObject "UpdateChatPermissions" $ \o -> do
@@ -2590,6 +2664,14 @@ instance AT.FromJSON Update where
         pure $ UpdateChatThemes
           { chat_themes = chat_themes_
           }
+      parseUpdateAccentColors :: A.Value -> AT.Parser Update
+      parseUpdateAccentColors = A.withObject "UpdateAccentColors" $ \o -> do
+        colors_                     <- o A..:?  "colors"
+        available_accent_color_ids_ <- o A..:?  "available_accent_color_ids"
+        pure $ UpdateAccentColors
+          { colors                     = colors_
+          , available_accent_color_ids = available_accent_color_ids_
+          }
       parseUpdateLanguagePackStrings :: A.Value -> AT.Parser Update
       parseUpdateLanguagePackStrings = A.withObject "UpdateLanguagePackStrings" $ \o -> do
         localization_target_ <- o A..:?  "localization_target"
@@ -2849,6 +2931,14 @@ instance AT.FromJSON Update where
           , request      = request_
           , user_chat_id = user_chat_id_
           , invite_link  = invite_link_
+          }
+      parseUpdateChatBoost :: A.Value -> AT.Parser Update
+      parseUpdateChatBoost = A.withObject "UpdateChatBoost" $ \o -> do
+        chat_id_ <- o A..:?  "chat_id"
+        boost_   <- o A..:?  "boost"
+        pure $ UpdateChatBoost
+          { chat_id = chat_id_
+          , boost   = boost_
           }
   parseJSON _ = mempty
 

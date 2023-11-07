@@ -16,6 +16,7 @@ data MessageSendOptions
     , update_order_of_installed_sticker_sets :: Maybe Bool                                          -- ^ Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
     , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
     , sending_id                             :: Maybe Int                                           -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+    , only_preview                           :: Maybe Bool                                          -- ^ Pass true to get a fake message instead of actually sending them
     }
   deriving (Eq, Show)
 
@@ -27,6 +28,7 @@ instance I.ShortShow MessageSendOptions where
     , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
     , scheduling_state                       = scheduling_state_
     , sending_id                             = sending_id_
+    , only_preview                           = only_preview_
     }
       = "MessageSendOptions"
         ++ I.cc
@@ -36,6 +38,7 @@ instance I.ShortShow MessageSendOptions where
         , "update_order_of_installed_sticker_sets" `I.p` update_order_of_installed_sticker_sets_
         , "scheduling_state"                       `I.p` scheduling_state_
         , "sending_id"                             `I.p` sending_id_
+        , "only_preview"                           `I.p` only_preview_
         ]
 
 instance AT.FromJSON MessageSendOptions where
@@ -55,6 +58,7 @@ instance AT.FromJSON MessageSendOptions where
         update_order_of_installed_sticker_sets_ <- o A..:?  "update_order_of_installed_sticker_sets"
         scheduling_state_                       <- o A..:?  "scheduling_state"
         sending_id_                             <- o A..:?  "sending_id"
+        only_preview_                           <- o A..:?  "only_preview"
         pure $ MessageSendOptions
           { disable_notification                   = disable_notification_
           , from_background                        = from_background_
@@ -62,6 +66,7 @@ instance AT.FromJSON MessageSendOptions where
           , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
           , scheduling_state                       = scheduling_state_
           , sending_id                             = sending_id_
+          , only_preview                           = only_preview_
           }
   parseJSON _ = mempty
 
@@ -73,6 +78,7 @@ instance AT.ToJSON MessageSendOptions where
     , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
     , scheduling_state                       = scheduling_state_
     , sending_id                             = sending_id_
+    , only_preview                           = only_preview_
     }
       = A.object
         [ "@type"                                  A..= AT.String "messageSendOptions"
@@ -82,6 +88,7 @@ instance AT.ToJSON MessageSendOptions where
         , "update_order_of_installed_sticker_sets" A..= update_order_of_installed_sticker_sets_
         , "scheduling_state"                       A..= scheduling_state_
         , "sending_id"                             A..= sending_id_
+        , "only_preview"                           A..= only_preview_
         ]
 
 defaultMessageSendOptions :: MessageSendOptions
@@ -93,5 +100,6 @@ defaultMessageSendOptions =
     , update_order_of_installed_sticker_sets = Nothing
     , scheduling_state                       = Nothing
     , sending_id                             = Nothing
+    , only_preview                           = Nothing
     }
 

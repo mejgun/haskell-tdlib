@@ -6,7 +6,7 @@ module TD.Query.SendMessage
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
@@ -16,7 +16,7 @@ data SendMessage
   = SendMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat
     , message_thread_id     :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
-    , reply_to              :: Maybe MessageReplyTo.MessageReplyTo           -- ^ Identifier of the replied message or story; pass null if none
+    , reply_to              :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , options               :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent

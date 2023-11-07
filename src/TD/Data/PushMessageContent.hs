@@ -65,6 +65,14 @@ data PushMessageContent
     , is_regular :: Maybe Bool   -- ^ True, if the poll is regular and not in quiz mode
     , is_pinned  :: Maybe Bool   -- ^ True, if the message is a pinned message with the specified content
     }
+  | PushMessageContentPremiumGiftCode -- ^ A message with a Telegram Premium gift code created for the user
+    { month_count :: Maybe Int -- ^ Number of month the Telegram Premium subscription will be active after code activation
+    }
+  | PushMessageContentPremiumGiveaway -- ^ A message with a Telegram Premium giveaway
+    { winner_count :: Maybe Int  -- ^ Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
+    , month_count  :: Maybe Int  -- ^ Number of month the Telegram Premium subscription will be active after code activation; 0 for pinned message
+    , is_pinned    :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
+    }
   | PushMessageContentScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
   | PushMessageContentSticker -- ^ A message with a sticker
     { sticker   :: Maybe Sticker.Sticker -- ^ Message content; may be null
@@ -241,6 +249,24 @@ instance I.ShortShow PushMessageContent where
         , "is_regular" `I.p` is_regular_
         , "is_pinned"  `I.p` is_pinned_
         ]
+  shortShow PushMessageContentPremiumGiftCode
+    { month_count = month_count_
+    }
+      = "PushMessageContentPremiumGiftCode"
+        ++ I.cc
+        [ "month_count" `I.p` month_count_
+        ]
+  shortShow PushMessageContentPremiumGiveaway
+    { winner_count = winner_count_
+    , month_count  = month_count_
+    , is_pinned    = is_pinned_
+    }
+      = "PushMessageContentPremiumGiveaway"
+        ++ I.cc
+        [ "winner_count" `I.p` winner_count_
+        , "month_count"  `I.p` month_count_
+        , "is_pinned"    `I.p` is_pinned_
+        ]
   shortShow PushMessageContentScreenshotTaken
       = "PushMessageContentScreenshotTaken"
   shortShow PushMessageContentSticker
@@ -401,6 +427,8 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentLocation"             -> parsePushMessageContentLocation v
       "pushMessageContentPhoto"                -> parsePushMessageContentPhoto v
       "pushMessageContentPoll"                 -> parsePushMessageContentPoll v
+      "pushMessageContentPremiumGiftCode"      -> parsePushMessageContentPremiumGiftCode v
+      "pushMessageContentPremiumGiveaway"      -> parsePushMessageContentPremiumGiveaway v
       "pushMessageContentScreenshotTaken"      -> pure PushMessageContentScreenshotTaken
       "pushMessageContentSticker"              -> parsePushMessageContentSticker v
       "pushMessageContentStory"                -> parsePushMessageContentStory v
@@ -519,6 +547,22 @@ instance AT.FromJSON PushMessageContent where
           { question   = question_
           , is_regular = is_regular_
           , is_pinned  = is_pinned_
+          }
+      parsePushMessageContentPremiumGiftCode :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentPremiumGiftCode = A.withObject "PushMessageContentPremiumGiftCode" $ \o -> do
+        month_count_ <- o A..:?  "month_count"
+        pure $ PushMessageContentPremiumGiftCode
+          { month_count = month_count_
+          }
+      parsePushMessageContentPremiumGiveaway :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentPremiumGiveaway = A.withObject "PushMessageContentPremiumGiveaway" $ \o -> do
+        winner_count_ <- o A..:?  "winner_count"
+        month_count_  <- o A..:?  "month_count"
+        is_pinned_    <- o A..:?  "is_pinned"
+        pure $ PushMessageContentPremiumGiveaway
+          { winner_count = winner_count_
+          , month_count  = month_count_
+          , is_pinned    = is_pinned_
           }
       parsePushMessageContentSticker :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentSticker = A.withObject "PushMessageContentSticker" $ \o -> do

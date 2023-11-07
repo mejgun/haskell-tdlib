@@ -26,6 +26,8 @@ data Chat
     , _type                        :: Maybe ChatType.ChatType                                 -- ^ Type of the chat
     , title                        :: Maybe T.Text                                            -- ^ Chat title
     , photo                        :: Maybe ChatPhotoInfo.ChatPhotoInfo                       -- ^ Chat photo; may be null
+    , accent_color_id              :: Maybe Int                                               -- ^ Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
+    , background_custom_emoji_id   :: Maybe Int                                               -- ^ Identifier of a custom emoji to be shown on the reply header background in replies to messages sent by the chat; 0 if none
     , permissions                  :: Maybe ChatPermissions.ChatPermissions                   -- ^ Actions that non-administrator chat members are allowed to take in the chat
     , last_message                 :: Maybe Message.Message                                   -- ^ Last message in the chat; may be null if none or unknown
     , positions                    :: Maybe [ChatPosition.ChatPosition]                       -- ^ Positions of the chat in chat lists
@@ -64,6 +66,8 @@ instance I.ShortShow Chat where
     , _type                        = _type_
     , title                        = title_
     , photo                        = photo_
+    , accent_color_id              = accent_color_id_
+    , background_custom_emoji_id   = background_custom_emoji_id_
     , permissions                  = permissions_
     , last_message                 = last_message_
     , positions                    = positions_
@@ -100,6 +104,8 @@ instance I.ShortShow Chat where
         , "_type"                        `I.p` _type_
         , "title"                        `I.p` title_
         , "photo"                        `I.p` photo_
+        , "accent_color_id"              `I.p` accent_color_id_
+        , "background_custom_emoji_id"   `I.p` background_custom_emoji_id_
         , "permissions"                  `I.p` permissions_
         , "last_message"                 `I.p` last_message_
         , "positions"                    `I.p` positions_
@@ -142,44 +148,48 @@ instance AT.FromJSON Chat where
     where
       parseChat :: A.Value -> AT.Parser Chat
       parseChat = A.withObject "Chat" $ \o -> do
-        _id_                          <- o A..:?  "id"
-        _type_                        <- o A..:?  "type"
-        title_                        <- o A..:?  "title"
-        photo_                        <- o A..:?  "photo"
-        permissions_                  <- o A..:?  "permissions"
-        last_message_                 <- o A..:?  "last_message"
-        positions_                    <- o A..:?  "positions"
-        message_sender_id_            <- o A..:?  "message_sender_id"
-        block_list_                   <- o A..:?  "block_list"
-        has_protected_content_        <- o A..:?  "has_protected_content"
-        is_translatable_              <- o A..:?  "is_translatable"
-        is_marked_as_unread_          <- o A..:?  "is_marked_as_unread"
-        has_scheduled_messages_       <- o A..:?  "has_scheduled_messages"
-        can_be_deleted_only_for_self_ <- o A..:?  "can_be_deleted_only_for_self"
-        can_be_deleted_for_all_users_ <- o A..:?  "can_be_deleted_for_all_users"
-        can_be_reported_              <- o A..:?  "can_be_reported"
-        default_disable_notification_ <- o A..:?  "default_disable_notification"
-        unread_count_                 <- o A..:?  "unread_count"
-        last_read_inbox_message_id_   <- o A..:?  "last_read_inbox_message_id"
-        last_read_outbox_message_id_  <- o A..:?  "last_read_outbox_message_id"
-        unread_mention_count_         <- o A..:?  "unread_mention_count"
-        unread_reaction_count_        <- o A..:?  "unread_reaction_count"
-        notification_settings_        <- o A..:?  "notification_settings"
-        available_reactions_          <- o A..:?  "available_reactions"
-        message_auto_delete_time_     <- o A..:?  "message_auto_delete_time"
-        background_                   <- o A..:?  "background"
-        theme_name_                   <- o A..:?  "theme_name"
-        action_bar_                   <- o A..:?  "action_bar"
-        video_chat_                   <- o A..:?  "video_chat"
-        pending_join_requests_        <- o A..:?  "pending_join_requests"
-        reply_markup_message_id_      <- o A..:?  "reply_markup_message_id"
-        draft_message_                <- o A..:?  "draft_message"
-        client_data_                  <- o A..:?  "client_data"
+        _id_                          <- o A..:?                       "id"
+        _type_                        <- o A..:?                       "type"
+        title_                        <- o A..:?                       "title"
+        photo_                        <- o A..:?                       "photo"
+        accent_color_id_              <- o A..:?                       "accent_color_id"
+        background_custom_emoji_id_   <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        permissions_                  <- o A..:?                       "permissions"
+        last_message_                 <- o A..:?                       "last_message"
+        positions_                    <- o A..:?                       "positions"
+        message_sender_id_            <- o A..:?                       "message_sender_id"
+        block_list_                   <- o A..:?                       "block_list"
+        has_protected_content_        <- o A..:?                       "has_protected_content"
+        is_translatable_              <- o A..:?                       "is_translatable"
+        is_marked_as_unread_          <- o A..:?                       "is_marked_as_unread"
+        has_scheduled_messages_       <- o A..:?                       "has_scheduled_messages"
+        can_be_deleted_only_for_self_ <- o A..:?                       "can_be_deleted_only_for_self"
+        can_be_deleted_for_all_users_ <- o A..:?                       "can_be_deleted_for_all_users"
+        can_be_reported_              <- o A..:?                       "can_be_reported"
+        default_disable_notification_ <- o A..:?                       "default_disable_notification"
+        unread_count_                 <- o A..:?                       "unread_count"
+        last_read_inbox_message_id_   <- o A..:?                       "last_read_inbox_message_id"
+        last_read_outbox_message_id_  <- o A..:?                       "last_read_outbox_message_id"
+        unread_mention_count_         <- o A..:?                       "unread_mention_count"
+        unread_reaction_count_        <- o A..:?                       "unread_reaction_count"
+        notification_settings_        <- o A..:?                       "notification_settings"
+        available_reactions_          <- o A..:?                       "available_reactions"
+        message_auto_delete_time_     <- o A..:?                       "message_auto_delete_time"
+        background_                   <- o A..:?                       "background"
+        theme_name_                   <- o A..:?                       "theme_name"
+        action_bar_                   <- o A..:?                       "action_bar"
+        video_chat_                   <- o A..:?                       "video_chat"
+        pending_join_requests_        <- o A..:?                       "pending_join_requests"
+        reply_markup_message_id_      <- o A..:?                       "reply_markup_message_id"
+        draft_message_                <- o A..:?                       "draft_message"
+        client_data_                  <- o A..:?                       "client_data"
         pure $ Chat
           { _id                          = _id_
           , _type                        = _type_
           , title                        = title_
           , photo                        = photo_
+          , accent_color_id              = accent_color_id_
+          , background_custom_emoji_id   = background_custom_emoji_id_
           , permissions                  = permissions_
           , last_message                 = last_message_
           , positions                    = positions_

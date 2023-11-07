@@ -118,9 +118,10 @@ data PageBlock
     , caption     :: Maybe PageBlockCaption.PageBlockCaption -- ^ Block caption
     }
   | PageBlockChatLink -- ^ A link to a chat
-    { _title   :: Maybe T.Text                      -- ^ Chat title
-    , _photo   :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ Chat photo; may be null
-    , username :: Maybe T.Text                      -- ^ Chat username by which all other information about the chat can be resolved
+    { _title          :: Maybe T.Text                      -- ^ Chat title
+    , _photo          :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ Chat photo; may be null
+    , accent_color_id :: Maybe Int                         -- ^ Identifier of the accent color for chat title and background of chat photo
+    , username        :: Maybe T.Text                      -- ^ Chat username by which all other information about the chat can be resolved
     }
   | PageBlockTable -- ^ A table
     { _caption    :: Maybe RichText.RichText                         -- ^ Table caption
@@ -365,15 +366,17 @@ instance I.ShortShow PageBlock where
         , "caption"     `I.p` caption_
         ]
   shortShow PageBlockChatLink
-    { _title   = _title_
-    , _photo   = _photo_
-    , username = username_
+    { _title          = _title_
+    , _photo          = _photo_
+    , accent_color_id = accent_color_id_
+    , username        = username_
     }
       = "PageBlockChatLink"
         ++ I.cc
-        [ "_title"   `I.p` _title_
-        , "_photo"   `I.p` _photo_
-        , "username" `I.p` username_
+        [ "_title"          `I.p` _title_
+        , "_photo"          `I.p` _photo_
+        , "accent_color_id" `I.p` accent_color_id_
+        , "username"        `I.p` username_
         ]
   shortShow PageBlockTable
     { _caption    = _caption_
@@ -655,13 +658,15 @@ instance AT.FromJSON PageBlock where
           }
       parsePageBlockChatLink :: A.Value -> AT.Parser PageBlock
       parsePageBlockChatLink = A.withObject "PageBlockChatLink" $ \o -> do
-        _title_   <- o A..:?  "title"
-        _photo_   <- o A..:?  "photo"
-        username_ <- o A..:?  "username"
+        _title_          <- o A..:?  "title"
+        _photo_          <- o A..:?  "photo"
+        accent_color_id_ <- o A..:?  "accent_color_id"
+        username_        <- o A..:?  "username"
         pure $ PageBlockChatLink
-          { _title   = _title_
-          , _photo   = _photo_
-          , username = username_
+          { _title          = _title_
+          , _photo          = _photo_
+          , accent_color_id = accent_color_id_
+          , username        = username_
           }
       parsePageBlockTable :: A.Value -> AT.Parser PageBlock
       parsePageBlockTable = A.withObject "PageBlockTable" $ \o -> do

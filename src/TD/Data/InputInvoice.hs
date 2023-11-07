@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.TelegramPaymentPurpose as TelegramPaymentPurpose
 
 -- | Describes an invoice to process
 data InputInvoice
@@ -14,6 +15,9 @@ data InputInvoice
     }
   | InputInvoiceName -- ^ An invoice from a link of the type internalLinkTypeInvoice
     { name :: Maybe T.Text -- ^ Name of the invoice
+    }
+  | InputInvoiceTelegram -- ^ An invoice for a payment toward Telegram; must not be used in the in-store apps
+    { purpose :: Maybe TelegramPaymentPurpose.TelegramPaymentPurpose -- ^ Transaction purpose
     }
   deriving (Eq, Show)
 
@@ -34,15 +38,23 @@ instance I.ShortShow InputInvoice where
         ++ I.cc
         [ "name" `I.p` name_
         ]
+  shortShow InputInvoiceTelegram
+    { purpose = purpose_
+    }
+      = "InputInvoiceTelegram"
+        ++ I.cc
+        [ "purpose" `I.p` purpose_
+        ]
 
 instance AT.FromJSON InputInvoice where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "inputInvoiceMessage" -> parseInputInvoiceMessage v
-      "inputInvoiceName"    -> parseInputInvoiceName v
-      _                     -> mempty
+      "inputInvoiceMessage"  -> parseInputInvoiceMessage v
+      "inputInvoiceName"     -> parseInputInvoiceName v
+      "inputInvoiceTelegram" -> parseInputInvoiceTelegram v
+      _                      -> mempty
     
     where
       parseInputInvoiceMessage :: A.Value -> AT.Parser InputInvoice
@@ -58,6 +70,12 @@ instance AT.FromJSON InputInvoice where
         name_ <- o A..:?  "name"
         pure $ InputInvoiceName
           { name = name_
+          }
+      parseInputInvoiceTelegram :: A.Value -> AT.Parser InputInvoice
+      parseInputInvoiceTelegram = A.withObject "InputInvoiceTelegram" $ \o -> do
+        purpose_ <- o A..:?  "purpose"
+        pure $ InputInvoiceTelegram
+          { purpose = purpose_
           }
   parseJSON _ = mempty
 
@@ -77,5 +95,12 @@ instance AT.ToJSON InputInvoice where
       = A.object
         [ "@type" A..= AT.String "inputInvoiceName"
         , "name"  A..= name_
+        ]
+  toJSON InputInvoiceTelegram
+    { purpose = purpose_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "inputInvoiceTelegram"
+        , "purpose" A..= purpose_
         ]
 

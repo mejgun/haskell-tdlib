@@ -15,6 +15,7 @@ data ChatInviteLinkInfo
     , _type                :: Maybe InviteLinkChatType.InviteLinkChatType -- ^ Type of the chat
     , title                :: Maybe T.Text                                -- ^ Title of the chat
     , photo                :: Maybe ChatPhotoInfo.ChatPhotoInfo           -- ^ Chat photo; may be null
+    , accent_color_id      :: Maybe Int                                   -- ^ Identifier of the accent color for chat title and background of chat photo
     , description          :: Maybe T.Text
     , member_count         :: Maybe Int                                   -- ^ Number of members in the chat
     , member_user_ids      :: Maybe [Int]                                 -- ^ User identifiers of some chat members that may be known to the current user
@@ -33,6 +34,7 @@ instance I.ShortShow ChatInviteLinkInfo where
     , _type                = _type_
     , title                = title_
     , photo                = photo_
+    , accent_color_id      = accent_color_id_
     , description          = description_
     , member_count         = member_count_
     , member_user_ids      = member_user_ids_
@@ -49,6 +51,7 @@ instance I.ShortShow ChatInviteLinkInfo where
         , "_type"                `I.p` _type_
         , "title"                `I.p` title_
         , "photo"                `I.p` photo_
+        , "accent_color_id"      `I.p` accent_color_id_
         , "description"          `I.p` description_
         , "member_count"         `I.p` member_count_
         , "member_user_ids"      `I.p` member_user_ids_
@@ -75,6 +78,7 @@ instance AT.FromJSON ChatInviteLinkInfo where
         _type_                <- o A..:?  "type"
         title_                <- o A..:?  "title"
         photo_                <- o A..:?  "photo"
+        accent_color_id_      <- o A..:?  "accent_color_id"
         description_          <- o A..:?  "description"
         member_count_         <- o A..:?  "member_count"
         member_user_ids_      <- o A..:?  "member_user_ids"
@@ -89,6 +93,7 @@ instance AT.FromJSON ChatInviteLinkInfo where
           , _type                = _type_
           , title                = title_
           , photo                = photo_
+          , accent_color_id      = accent_color_id_
           , description          = description_
           , member_count         = member_count_
           , member_user_ids      = member_user_ids_

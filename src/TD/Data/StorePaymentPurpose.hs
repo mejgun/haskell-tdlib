@@ -5,17 +5,29 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
 
 -- | Describes a purpose of an in-store payment
 data StorePaymentPurpose
-  = StorePaymentPurposePremiumSubscription -- ^ The user subscribed to Telegram Premium
+  = StorePaymentPurposePremiumSubscription -- ^ The user subscribing to Telegram Premium
     { is_restore :: Maybe Bool -- ^ Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     , is_upgrade :: Maybe Bool -- ^ Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
     }
-  | StorePaymentPurposeGiftedPremium -- ^ The user gifted Telegram Premium to another user
-    { user_id  :: Maybe Int    -- ^ Identifier of the user for which Premium was gifted
+  | StorePaymentPurposeGiftedPremium -- ^ The user gifting Telegram Premium to another user
+    { user_id  :: Maybe Int    -- ^ Identifier of the user to which Premium was gifted
     , currency :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount   :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
+    }
+  | StorePaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
+    { boosted_chat_id :: Maybe Int    -- ^ Identifier of the channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    , currency        :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
+    , amount          :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
+    , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
+    }
+  | StorePaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+    { parameters :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
+    , currency   :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
+    , amount     :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency
     }
   deriving (Eq, Show)
 
@@ -40,6 +52,30 @@ instance I.ShortShow StorePaymentPurpose where
         , "currency" `I.p` currency_
         , "amount"   `I.p` amount_
         ]
+  shortShow StorePaymentPurposePremiumGiftCodes
+    { boosted_chat_id = boosted_chat_id_
+    , currency        = currency_
+    , amount          = amount_
+    , user_ids        = user_ids_
+    }
+      = "StorePaymentPurposePremiumGiftCodes"
+        ++ I.cc
+        [ "boosted_chat_id" `I.p` boosted_chat_id_
+        , "currency"        `I.p` currency_
+        , "amount"          `I.p` amount_
+        , "user_ids"        `I.p` user_ids_
+        ]
+  shortShow StorePaymentPurposePremiumGiveaway
+    { parameters = parameters_
+    , currency   = currency_
+    , amount     = amount_
+    }
+      = "StorePaymentPurposePremiumGiveaway"
+        ++ I.cc
+        [ "parameters" `I.p` parameters_
+        , "currency"   `I.p` currency_
+        , "amount"     `I.p` amount_
+        ]
 
 instance AT.FromJSON StorePaymentPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -48,6 +84,8 @@ instance AT.FromJSON StorePaymentPurpose where
     case t of
       "storePaymentPurposePremiumSubscription" -> parseStorePaymentPurposePremiumSubscription v
       "storePaymentPurposeGiftedPremium"       -> parseStorePaymentPurposeGiftedPremium v
+      "storePaymentPurposePremiumGiftCodes"    -> parseStorePaymentPurposePremiumGiftCodes v
+      "storePaymentPurposePremiumGiveaway"     -> parseStorePaymentPurposePremiumGiveaway v
       _                                        -> mempty
     
     where
@@ -68,6 +106,28 @@ instance AT.FromJSON StorePaymentPurpose where
           { user_id  = user_id_
           , currency = currency_
           , amount   = amount_
+          }
+      parseStorePaymentPurposePremiumGiftCodes :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposePremiumGiftCodes = A.withObject "StorePaymentPurposePremiumGiftCodes" $ \o -> do
+        boosted_chat_id_ <- o A..:?  "boosted_chat_id"
+        currency_        <- o A..:?  "currency"
+        amount_          <- o A..:?  "amount"
+        user_ids_        <- o A..:?  "user_ids"
+        pure $ StorePaymentPurposePremiumGiftCodes
+          { boosted_chat_id = boosted_chat_id_
+          , currency        = currency_
+          , amount          = amount_
+          , user_ids        = user_ids_
+          }
+      parseStorePaymentPurposePremiumGiveaway :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposePremiumGiveaway = A.withObject "StorePaymentPurposePremiumGiveaway" $ \o -> do
+        parameters_ <- o A..:?  "parameters"
+        currency_   <- o A..:?  "currency"
+        amount_     <- o A..:?  "amount"
+        pure $ StorePaymentPurposePremiumGiveaway
+          { parameters = parameters_
+          , currency   = currency_
+          , amount     = amount_
           }
   parseJSON _ = mempty
 
@@ -91,5 +151,29 @@ instance AT.ToJSON StorePaymentPurpose where
         , "user_id"  A..= user_id_
         , "currency" A..= currency_
         , "amount"   A..= amount_
+        ]
+  toJSON StorePaymentPurposePremiumGiftCodes
+    { boosted_chat_id = boosted_chat_id_
+    , currency        = currency_
+    , amount          = amount_
+    , user_ids        = user_ids_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "storePaymentPurposePremiumGiftCodes"
+        , "boosted_chat_id" A..= boosted_chat_id_
+        , "currency"        A..= currency_
+        , "amount"          A..= amount_
+        , "user_ids"        A..= user_ids_
+        ]
+  toJSON StorePaymentPurposePremiumGiveaway
+    { parameters = parameters_
+    , currency   = currency_
+    , amount     = amount_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "storePaymentPurposePremiumGiveaway"
+        , "parameters" A..= parameters_
+        , "currency"   A..= currency_
+        , "amount"     A..= amount_
         ]
 

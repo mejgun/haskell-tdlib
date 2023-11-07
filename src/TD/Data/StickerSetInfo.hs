@@ -23,6 +23,7 @@ data StickerSetInfo
     , is_official       :: Maybe Bool                                -- ^ True, if the sticker set is official
     , sticker_format    :: Maybe StickerFormat.StickerFormat         -- ^ Format of the stickers in the set
     , sticker_type      :: Maybe StickerType.StickerType             -- ^ Type of the stickers in the set
+    , needs_repainting  :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
     , is_viewed         :: Maybe Bool                                -- ^ True for already viewed trending sticker sets
     , size              :: Maybe Int                                 -- ^ Total number of stickers in the set
     , covers            :: Maybe [Sticker.Sticker]                   -- ^ Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
@@ -41,6 +42,7 @@ instance I.ShortShow StickerSetInfo where
     , is_official       = is_official_
     , sticker_format    = sticker_format_
     , sticker_type      = sticker_type_
+    , needs_repainting  = needs_repainting_
     , is_viewed         = is_viewed_
     , size              = size_
     , covers            = covers_
@@ -57,6 +59,7 @@ instance I.ShortShow StickerSetInfo where
         , "is_official"       `I.p` is_official_
         , "sticker_format"    `I.p` sticker_format_
         , "sticker_type"      `I.p` sticker_type_
+        , "needs_repainting"  `I.p` needs_repainting_
         , "is_viewed"         `I.p` is_viewed_
         , "size"              `I.p` size_
         , "covers"            `I.p` covers_
@@ -83,6 +86,7 @@ instance AT.FromJSON StickerSetInfo where
         is_official_       <- o A..:?                       "is_official"
         sticker_format_    <- o A..:?                       "sticker_format"
         sticker_type_      <- o A..:?                       "sticker_type"
+        needs_repainting_  <- o A..:?                       "needs_repainting"
         is_viewed_         <- o A..:?                       "is_viewed"
         size_              <- o A..:?                       "size"
         covers_            <- o A..:?                       "covers"
@@ -97,6 +101,7 @@ instance AT.FromJSON StickerSetInfo where
           , is_official       = is_official_
           , sticker_format    = sticker_format_
           , sticker_type      = sticker_type_
+          , needs_repainting  = needs_repainting_
           , is_viewed         = is_viewed_
           , size              = size_
           , covers            = covers_

@@ -106,6 +106,14 @@ data ChatEventAction
     { old_usernames :: Maybe [T.Text] -- ^ Previous list of active usernames
     , new_usernames :: Maybe [T.Text] -- ^ New list of active usernames
     }
+  | ChatEventAccentColorChanged -- ^ The chat accent color was changed
+    { old_accent_color_id :: Maybe Int -- ^ Previous identifier of chat accent color
+    , new_accent_color_id :: Maybe Int -- ^ New identifier of chat accent color
+    }
+  | ChatEventBackgroundCustomEmojiChanged -- ^ The chat's custom emoji for reply background was changed
+    { old_background_custom_emoji_id :: Maybe Int -- ^ Previous identifier of the custom emoji; 0 if none
+    , new_background_custom_emoji_id :: Maybe Int -- ^ New identifier of the custom emoji; 0 if none
+    }
   | ChatEventHasProtectedContentToggled -- ^ The has_protected_content setting of a channel was toggled
     { has_protected_content :: Maybe Bool -- ^ New value of has_protected_content
     }
@@ -374,6 +382,24 @@ instance I.ShortShow ChatEventAction where
         [ "old_usernames" `I.p` old_usernames_
         , "new_usernames" `I.p` new_usernames_
         ]
+  shortShow ChatEventAccentColorChanged
+    { old_accent_color_id = old_accent_color_id_
+    , new_accent_color_id = new_accent_color_id_
+    }
+      = "ChatEventAccentColorChanged"
+        ++ I.cc
+        [ "old_accent_color_id" `I.p` old_accent_color_id_
+        , "new_accent_color_id" `I.p` new_accent_color_id_
+        ]
+  shortShow ChatEventBackgroundCustomEmojiChanged
+    { old_background_custom_emoji_id = old_background_custom_emoji_id_
+    , new_background_custom_emoji_id = new_background_custom_emoji_id_
+    }
+      = "ChatEventBackgroundCustomEmojiChanged"
+        ++ I.cc
+        [ "old_background_custom_emoji_id" `I.p` old_background_custom_emoji_id_
+        , "new_background_custom_emoji_id" `I.p` new_background_custom_emoji_id_
+        ]
   shortShow ChatEventHasProtectedContentToggled
     { has_protected_content = has_protected_content_
     }
@@ -554,6 +580,8 @@ instance AT.FromJSON ChatEventAction where
       "chatEventTitleChanged"                           -> parseChatEventTitleChanged v
       "chatEventUsernameChanged"                        -> parseChatEventUsernameChanged v
       "chatEventActiveUsernamesChanged"                 -> parseChatEventActiveUsernamesChanged v
+      "chatEventAccentColorChanged"                     -> parseChatEventAccentColorChanged v
+      "chatEventBackgroundCustomEmojiChanged"           -> parseChatEventBackgroundCustomEmojiChanged v
       "chatEventHasProtectedContentToggled"             -> parseChatEventHasProtectedContentToggled v
       "chatEventInvitesToggled"                         -> parseChatEventInvitesToggled v
       "chatEventIsAllHistoryAvailableToggled"           -> parseChatEventIsAllHistoryAvailableToggled v
@@ -750,6 +778,22 @@ instance AT.FromJSON ChatEventAction where
         pure $ ChatEventActiveUsernamesChanged
           { old_usernames = old_usernames_
           , new_usernames = new_usernames_
+          }
+      parseChatEventAccentColorChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventAccentColorChanged = A.withObject "ChatEventAccentColorChanged" $ \o -> do
+        old_accent_color_id_ <- o A..:?  "old_accent_color_id"
+        new_accent_color_id_ <- o A..:?  "new_accent_color_id"
+        pure $ ChatEventAccentColorChanged
+          { old_accent_color_id = old_accent_color_id_
+          , new_accent_color_id = new_accent_color_id_
+          }
+      parseChatEventBackgroundCustomEmojiChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventBackgroundCustomEmojiChanged = A.withObject "ChatEventBackgroundCustomEmojiChanged" $ \o -> do
+        old_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "old_background_custom_emoji_id"
+        new_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "new_background_custom_emoji_id"
+        pure $ ChatEventBackgroundCustomEmojiChanged
+          { old_background_custom_emoji_id = old_background_custom_emoji_id_
+          , new_background_custom_emoji_id = new_background_custom_emoji_id_
           }
       parseChatEventHasProtectedContentToggled :: A.Value -> AT.Parser ChatEventAction
       parseChatEventHasProtectedContentToggled = A.withObject "ChatEventHasProtectedContentToggled" $ \o -> do

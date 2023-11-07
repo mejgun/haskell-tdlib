@@ -6,6 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.WebPage as WebPage
+import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
@@ -29,17 +30,19 @@ import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
+import qualified TD.Data.MessageSender as MessageSender
+import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
 import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
 import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
-import qualified TD.Data.MessageSender as MessageSender
 
 -- | Contains the content of a message
 data MessageContent
   = MessageText -- ^ A text message
-    { text     :: Maybe FormattedText.FormattedText -- ^ Text of the message
-    , web_page :: Maybe WebPage.WebPage             -- ^ A preview of the web page that's mentioned in the text; may be null
+    { text                 :: Maybe FormattedText.FormattedText           -- ^ Text of the message
+    , web_page             :: Maybe WebPage.WebPage                       -- ^ A link preview attached to the message; may be null
+    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which was used for generation of the link preview; may be null if default options were used
     }
   | MessageAnimation -- ^ An animation message (GIF-style).
     { animation   :: Maybe Animation.Animation         -- ^ The animation description
@@ -248,6 +251,21 @@ data MessageContent
     , month_count           :: Maybe Int             -- ^ Number of month the Telegram Premium subscription will be active
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
+  | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
+    { creator_id       :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code
+    , is_from_giveaway :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
+    , is_unclaimed     :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
+    , month_count      :: Maybe Int                         -- ^ Number of month the Telegram Premium subscription will be active after code activation
+    , sticker          :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
+    , code             :: Maybe T.Text                      -- ^ The gift code
+    }
+  | MessagePremiumGiveawayCreated -- ^ A Telegram Premium giveaway was created for the chat
+  | MessagePremiumGiveaway -- ^ A Telegram Premium giveaway
+    { parameters   :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
+    , winner_count :: Maybe Int                                                 -- ^ Number of users which will receive Telegram Premium subscription gift codes
+    , month_count  :: Maybe Int                                                 -- ^ Number of month the Telegram Premium subscription will be active after code activation
+    , sticker      :: Maybe Sticker.Sticker                                     -- ^ A sticker to be shown in the message; may be null if unknown
+    }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUserShared -- ^ The current user shared a user, which was requested by the bot
     { user_id   :: Maybe Int -- ^ Identifier of the shared user
@@ -284,13 +302,15 @@ data MessageContent
 
 instance I.ShortShow MessageContent where
   shortShow MessageText
-    { text     = text_
-    , web_page = web_page_
+    { text                 = text_
+    , web_page             = web_page_
+    , link_preview_options = link_preview_options_
     }
       = "MessageText"
         ++ I.cc
-        [ "text"     `I.p` text_
-        , "web_page" `I.p` web_page_
+        [ "text"                 `I.p` text_
+        , "web_page"             `I.p` web_page_
+        , "link_preview_options" `I.p` link_preview_options_
         ]
   shortShow MessageAnimation
     { animation   = animation_
@@ -750,6 +770,38 @@ instance I.ShortShow MessageContent where
         , "month_count"           `I.p` month_count_
         , "sticker"               `I.p` sticker_
         ]
+  shortShow MessagePremiumGiftCode
+    { creator_id       = creator_id_
+    , is_from_giveaway = is_from_giveaway_
+    , is_unclaimed     = is_unclaimed_
+    , month_count      = month_count_
+    , sticker          = sticker_
+    , code             = code_
+    }
+      = "MessagePremiumGiftCode"
+        ++ I.cc
+        [ "creator_id"       `I.p` creator_id_
+        , "is_from_giveaway" `I.p` is_from_giveaway_
+        , "is_unclaimed"     `I.p` is_unclaimed_
+        , "month_count"      `I.p` month_count_
+        , "sticker"          `I.p` sticker_
+        , "code"             `I.p` code_
+        ]
+  shortShow MessagePremiumGiveawayCreated
+      = "MessagePremiumGiveawayCreated"
+  shortShow MessagePremiumGiveaway
+    { parameters   = parameters_
+    , winner_count = winner_count_
+    , month_count  = month_count_
+    , sticker      = sticker_
+    }
+      = "MessagePremiumGiveaway"
+        ++ I.cc
+        [ "parameters"   `I.p` parameters_
+        , "winner_count" `I.p` winner_count_
+        , "month_count"  `I.p` month_count_
+        , "sticker"      `I.p` sticker_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUserShared
@@ -879,6 +931,9 @@ instance AT.FromJSON MessageContent where
       "messagePaymentSuccessful"            -> parseMessagePaymentSuccessful v
       "messagePaymentSuccessfulBot"         -> parseMessagePaymentSuccessfulBot v
       "messageGiftedPremium"                -> parseMessageGiftedPremium v
+      "messagePremiumGiftCode"              -> parseMessagePremiumGiftCode v
+      "messagePremiumGiveawayCreated"       -> pure MessagePremiumGiveawayCreated
+      "messagePremiumGiveaway"              -> parseMessagePremiumGiveaway v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUserShared"                   -> parseMessageUserShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -894,11 +949,13 @@ instance AT.FromJSON MessageContent where
     where
       parseMessageText :: A.Value -> AT.Parser MessageContent
       parseMessageText = A.withObject "MessageText" $ \o -> do
-        text_     <- o A..:?  "text"
-        web_page_ <- o A..:?  "web_page"
+        text_                 <- o A..:?  "text"
+        web_page_             <- o A..:?  "web_page"
+        link_preview_options_ <- o A..:?  "link_preview_options"
         pure $ MessageText
-          { text     = text_
-          , web_page = web_page_
+          { text                 = text_
+          , web_page             = web_page_
+          , link_preview_options = link_preview_options_
           }
       parseMessageAnimation :: A.Value -> AT.Parser MessageContent
       parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
@@ -1301,6 +1358,34 @@ instance AT.FromJSON MessageContent where
           , cryptocurrency_amount = cryptocurrency_amount_
           , month_count           = month_count_
           , sticker               = sticker_
+          }
+      parseMessagePremiumGiftCode :: A.Value -> AT.Parser MessageContent
+      parseMessagePremiumGiftCode = A.withObject "MessagePremiumGiftCode" $ \o -> do
+        creator_id_       <- o A..:?  "creator_id"
+        is_from_giveaway_ <- o A..:?  "is_from_giveaway"
+        is_unclaimed_     <- o A..:?  "is_unclaimed"
+        month_count_      <- o A..:?  "month_count"
+        sticker_          <- o A..:?  "sticker"
+        code_             <- o A..:?  "code"
+        pure $ MessagePremiumGiftCode
+          { creator_id       = creator_id_
+          , is_from_giveaway = is_from_giveaway_
+          , is_unclaimed     = is_unclaimed_
+          , month_count      = month_count_
+          , sticker          = sticker_
+          , code             = code_
+          }
+      parseMessagePremiumGiveaway :: A.Value -> AT.Parser MessageContent
+      parseMessagePremiumGiveaway = A.withObject "MessagePremiumGiveaway" $ \o -> do
+        parameters_   <- o A..:?  "parameters"
+        winner_count_ <- o A..:?  "winner_count"
+        month_count_  <- o A..:?  "month_count"
+        sticker_      <- o A..:?  "sticker"
+        pure $ MessagePremiumGiveaway
+          { parameters   = parameters_
+          , winner_count = winner_count_
+          , month_count  = month_count_
+          , sticker      = sticker_
           }
       parseMessageUserShared :: A.Value -> AT.Parser MessageContent
       parseMessageUserShared = A.withObject "MessageUserShared" $ \o -> do

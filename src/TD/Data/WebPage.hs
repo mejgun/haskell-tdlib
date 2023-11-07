@@ -16,7 +16,7 @@ import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 
 data WebPage
-  = WebPage -- ^ Describes a web page preview
+  = WebPage -- ^ Describes a link preview
     { url                  :: Maybe T.Text                      -- ^ Original URL of the link
     , display_url          :: Maybe T.Text                      -- ^ URL to display
     , _type                :: Maybe T.Text                      -- ^ Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
@@ -30,6 +30,10 @@ data WebPage
     , embed_height         :: Maybe Int                         -- ^ Height of the embedded preview
     , duration             :: Maybe Int                         -- ^ Duration of the content, in seconds
     , author               :: Maybe T.Text                      -- ^ Author of the content
+    , has_large_media      :: Maybe Bool                        -- ^ True, if the preview has large media and its appearance can be changed
+    , show_large_media     :: Maybe Bool                        -- ^ True, if large media preview must be shown
+    , skip_confirmation    :: Maybe Bool                        -- ^ True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
+    , show_above_text      :: Maybe Bool                        -- ^ True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
     , animation            :: Maybe Animation.Animation         -- ^ Preview of the content as an animation, if available; may be null
     , audio                :: Maybe Audio.Audio                 -- ^ Preview of the content as an audio file, if available; may be null
     , document             :: Maybe Document.Document           -- ^ Preview of the content as a document, if available; may be null
@@ -58,6 +62,10 @@ instance I.ShortShow WebPage where
     , embed_height         = embed_height_
     , duration             = duration_
     , author               = author_
+    , has_large_media      = has_large_media_
+    , show_large_media     = show_large_media_
+    , skip_confirmation    = skip_confirmation_
+    , show_above_text      = show_above_text_
     , animation            = animation_
     , audio                = audio_
     , document             = document_
@@ -84,6 +92,10 @@ instance I.ShortShow WebPage where
         , "embed_height"         `I.p` embed_height_
         , "duration"             `I.p` duration_
         , "author"               `I.p` author_
+        , "has_large_media"      `I.p` has_large_media_
+        , "show_large_media"     `I.p` show_large_media_
+        , "skip_confirmation"    `I.p` skip_confirmation_
+        , "show_above_text"      `I.p` show_above_text_
         , "animation"            `I.p` animation_
         , "audio"                `I.p` audio_
         , "document"             `I.p` document_
@@ -120,6 +132,10 @@ instance AT.FromJSON WebPage where
         embed_height_         <- o A..:?  "embed_height"
         duration_             <- o A..:?  "duration"
         author_               <- o A..:?  "author"
+        has_large_media_      <- o A..:?  "has_large_media"
+        show_large_media_     <- o A..:?  "show_large_media"
+        skip_confirmation_    <- o A..:?  "skip_confirmation"
+        show_above_text_      <- o A..:?  "show_above_text"
         animation_            <- o A..:?  "animation"
         audio_                <- o A..:?  "audio"
         document_             <- o A..:?  "document"
@@ -144,6 +160,10 @@ instance AT.FromJSON WebPage where
           , embed_height         = embed_height_
           , duration             = duration_
           , author               = author_
+          , has_large_media      = has_large_media_
+          , show_large_media     = show_large_media_
+          , skip_confirmation    = skip_confirmation_
+          , show_above_text      = show_above_text_
           , animation            = animation_
           , audio                = audio_
           , document             = document_

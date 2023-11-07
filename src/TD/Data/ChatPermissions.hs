@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 
 data ChatPermissions
   = ChatPermissions -- ^ Describes actions that a user is allowed to take in a chat
-    { can_send_basic_messages   :: Maybe Bool -- ^ True, if the user can send text messages, contacts, invoices, locations, and venues
+    { can_send_basic_messages   :: Maybe Bool -- ^ True, if the user can send text messages, contacts, giveaways, invoices, locations, and venues
     , can_send_audios           :: Maybe Bool -- ^ True, if the user can send music files
     , can_send_documents        :: Maybe Bool -- ^ True, if the user can send documents
     , can_send_photos           :: Maybe Bool -- ^ True, if the user can send photos

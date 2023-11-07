@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
 -- | Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message. Returns 'TD.Data.Message.Message'
@@ -15,7 +15,7 @@ data AddLocalMessage
   = AddLocalMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat
     , sender_id             :: Maybe MessageSender.MessageSender             -- ^ Identifier of the sender of the message
-    , reply_to              :: Maybe MessageReplyTo.MessageReplyTo           -- ^ Identifier of the replied message or story; pass null if none
+    , reply_to              :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , disable_notification  :: Maybe Bool                                    -- ^ Pass true to disable notification for the message
     , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be added
     }

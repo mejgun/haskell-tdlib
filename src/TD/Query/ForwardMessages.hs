@@ -14,11 +14,10 @@ data ForwardMessages
     { chat_id           :: Maybe Int                                   -- ^ Identifier of the chat to which to forward messages
     , message_thread_id :: Maybe Int                                   -- ^ If not 0, a message thread identifier in which the message will be sent; for forum threads only
     , from_chat_id      :: Maybe Int                                   -- ^ Identifier of the chat from which to forward messages
-    , message_ids       :: Maybe [Int]                                 -- ^ Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+    , message_ids       :: Maybe [Int]                                 -- ^ Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
     , options           :: Maybe MessageSendOptions.MessageSendOptions -- ^ Options to be used to send the messages; pass null to use default options
     , send_copy         :: Maybe Bool                                  -- ^ Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     , remove_caption    :: Maybe Bool                                  -- ^ Pass true to remove media captions of message copies. Ignored if send_copy is false
-    , only_preview      :: Maybe Bool                                  -- ^ Pass true to get fake messages instead of actually forwarding them
     }
   deriving (Eq, Show)
 
@@ -32,7 +31,6 @@ instance I.ShortShow ForwardMessages where
       , options           = options_
       , send_copy         = send_copy_
       , remove_caption    = remove_caption_
-      , only_preview      = only_preview_
       }
         = "ForwardMessages"
           ++ I.cc
@@ -43,7 +41,6 @@ instance I.ShortShow ForwardMessages where
           , "options"           `I.p` options_
           , "send_copy"         `I.p` send_copy_
           , "remove_caption"    `I.p` remove_caption_
-          , "only_preview"      `I.p` only_preview_
           ]
 
 instance AT.ToJSON ForwardMessages where
@@ -56,7 +53,6 @@ instance AT.ToJSON ForwardMessages where
       , options           = options_
       , send_copy         = send_copy_
       , remove_caption    = remove_caption_
-      , only_preview      = only_preview_
       }
         = A.object
           [ "@type"             A..= AT.String "forwardMessages"
@@ -67,7 +63,6 @@ instance AT.ToJSON ForwardMessages where
           , "options"           A..= options_
           , "send_copy"         A..= send_copy_
           , "remove_caption"    A..= remove_caption_
-          , "only_preview"      A..= only_preview_
           ]
 
 defaultForwardMessages :: ForwardMessages
@@ -80,6 +75,5 @@ defaultForwardMessages =
     , options           = Nothing
     , send_copy         = Nothing
     , remove_caption    = Nothing
-    , only_preview      = Nothing
     }
 

@@ -39,7 +39,7 @@ data InternalLinkType
     , administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected administrator rights for the bot; may be null
     }
   | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the app
-  | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and canBoostChat to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
+  | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
     }
   | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
@@ -86,6 +86,9 @@ data InternalLinkType
     }
   | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
+    }
+  | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
+    { code :: Maybe T.Text -- ^ The Telegram Premium gift code
     }
   | InternalLinkTypePrivacyAndSecuritySettings -- ^ The link is a link to the privacy and security section of the app settings
   | InternalLinkTypeProxy -- ^ The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
@@ -306,6 +309,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "referrer" `I.p` referrer_
         ]
+  shortShow InternalLinkTypePremiumGiftCode
+    { code = code_
+    }
+      = "InternalLinkTypePremiumGiftCode"
+        ++ I.cc
+        [ "code" `I.p` code_
+        ]
   shortShow InternalLinkTypePrivacyAndSecuritySettings
       = "InternalLinkTypePrivacyAndSecuritySettings"
   shortShow InternalLinkTypeProxy
@@ -443,6 +453,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
       "internalLinkTypePhoneNumberConfirmation"               -> parseInternalLinkTypePhoneNumberConfirmation v
       "internalLinkTypePremiumFeatures"                       -> parseInternalLinkTypePremiumFeatures v
+      "internalLinkTypePremiumGiftCode"                       -> parseInternalLinkTypePremiumGiftCode v
       "internalLinkTypePrivacyAndSecuritySettings"            -> pure InternalLinkTypePrivacyAndSecuritySettings
       "internalLinkTypeProxy"                                 -> parseInternalLinkTypeProxy v
       "internalLinkTypePublicChat"                            -> parseInternalLinkTypePublicChat v
@@ -600,6 +611,12 @@ instance AT.FromJSON InternalLinkType where
         referrer_ <- o A..:?  "referrer"
         pure $ InternalLinkTypePremiumFeatures
           { referrer = referrer_
+          }
+      parseInternalLinkTypePremiumGiftCode :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypePremiumGiftCode = A.withObject "InternalLinkTypePremiumGiftCode" $ \o -> do
+        code_ <- o A..:?  "code"
+        pure $ InternalLinkTypePremiumGiftCode
+          { code = code_
           }
       parseInternalLinkTypeProxy :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeProxy = A.withObject "InternalLinkTypeProxy" $ \o -> do
@@ -867,6 +884,13 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"    A..= AT.String "internalLinkTypePremiumFeatures"
         , "referrer" A..= referrer_
+        ]
+  toJSON InternalLinkTypePremiumGiftCode
+    { code = code_
+    }
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypePremiumGiftCode"
+        , "code"  A..= code_
         ]
   toJSON InternalLinkTypePrivacyAndSecuritySettings
       = A.object

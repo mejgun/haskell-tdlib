@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.3.0
+version:        2.0.4.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      TD.Data.AccentColor
       TD.Data.AccountTtl
       TD.Data.AddedReaction
       TD.Data.AddedReactions
@@ -72,7 +73,6 @@ library
       TD.Data.CallServer
       TD.Data.CallServerType
       TD.Data.CallState
-      TD.Data.CanBoostChatResult
       TD.Data.CanSendStoryResult
       TD.Data.CanTransferOwnershipResult
       TD.Data.Chat
@@ -87,6 +87,9 @@ library
       TD.Data.ChatBoost
       TD.Data.ChatBoostLink
       TD.Data.ChatBoostLinkInfo
+      TD.Data.ChatBoostSlot
+      TD.Data.ChatBoostSlots
+      TD.Data.ChatBoostSource
       TD.Data.ChatBoostStatus
       TD.Data.ChatEvent
       TD.Data.ChatEventAction
@@ -185,6 +188,7 @@ library
       TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
+      TD.Data.FoundPosition
       TD.Data.FoundPositions
       TD.Data.FoundWebApp
       TD.Data.Game
@@ -217,6 +221,7 @@ library
       TD.Data.InputInlineQueryResult
       TD.Data.InputInvoice
       TD.Data.InputMessageContent
+      TD.Data.InputMessageReplyTo
       TD.Data.InputPassportElement
       TD.Data.InputPassportElementError
       TD.Data.InputPassportElementErrorSource
@@ -239,6 +244,7 @@ library
       TD.Data.LanguagePackString
       TD.Data.LanguagePackStrings
       TD.Data.LanguagePackStringValue
+      TD.Data.LinkPreviewOptions
       TD.Data.LocalFile
       TD.Data.LocalizationTargetInfo
       TD.Data.Location
@@ -257,11 +263,11 @@ library
       TD.Data.MessageExtendedMedia
       TD.Data.MessageFileType
       TD.Data.MessageForwardInfo
-      TD.Data.MessageForwardOrigin
       TD.Data.MessageImportInfo
       TD.Data.MessageInteractionInfo
       TD.Data.MessageLink
       TD.Data.MessageLinkInfo
+      TD.Data.MessageOrigin
       TD.Data.MessagePosition
       TD.Data.MessagePositions
       TD.Data.MessageReaction
@@ -330,6 +336,12 @@ library
       TD.Data.PremiumFeature
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
+      TD.Data.PremiumGiftCodeInfo
+      TD.Data.PremiumGiftCodePaymentOption
+      TD.Data.PremiumGiftCodePaymentOptions
+      TD.Data.PremiumGiveawayInfo
+      TD.Data.PremiumGiveawayParameters
+      TD.Data.PremiumGiveawayParticipantStatus
       TD.Data.PremiumLimit
       TD.Data.PremiumLimitType
       TD.Data.PremiumPaymentOption
@@ -337,6 +349,7 @@ library
       TD.Data.PremiumState
       TD.Data.PremiumStatePaymentOption
       TD.Data.PremiumStoryFeature
+      TD.Data.PrepaidPremiumGiveaway
       TD.Data.ProfilePhoto
       TD.Data.Proxies
       TD.Data.Proxy
@@ -402,6 +415,7 @@ library
       TD.Data.SupergroupFullInfo
       TD.Data.SupergroupMembersFilter
       TD.Data.TargetChat
+      TD.Data.TelegramPaymentPurpose
       TD.Data.TemporaryPasswordState
       TD.Data.TermsOfService
       TD.Data.TestBytes
@@ -483,12 +497,12 @@ library
       TD.Query.AnswerPreCheckoutQuery
       TD.Query.AnswerShippingQuery
       TD.Query.AnswerWebAppQuery
+      TD.Query.ApplyPremiumGiftCode
       TD.Query.AssignAppStoreTransaction
       TD.Query.AssignGooglePlayTransaction
       TD.Query.BanChatMember
       TD.Query.BlockMessageSenderFromReplies
       TD.Query.BoostChat
-      TD.Query.CanBoostChat
       TD.Query.CanBotSendMessages
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
@@ -514,6 +528,7 @@ library
       TD.Query.CheckPasswordRecoveryCode
       TD.Query.CheckPhoneNumberConfirmationCode
       TD.Query.CheckPhoneNumberVerificationCode
+      TD.Query.CheckPremiumGiftCode
       TD.Query.CheckRecoveryEmailAddressCode
       TD.Query.CheckStickerSetName
       TD.Query.CleanFileName
@@ -618,6 +633,7 @@ library
       TD.Query.GetAuthorizationState
       TD.Query.GetAutoDownloadSettingsPresets
       TD.Query.GetAutosaveSettings
+      TD.Query.GetAvailableChatBoostSlots
       TD.Query.GetBackgrounds
       TD.Query.GetBackgroundUrl
       TD.Query.GetBankCardInfo
@@ -679,6 +695,7 @@ library
       TD.Query.GetCustomEmojiStickers
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
+      TD.Query.GetDefaultBackgroundCustomEmojiStickers
       TD.Query.GetDefaultChatPhotoCustomEmojiStickers
       TD.Query.GetDefaultEmojiStatuses
       TD.Query.GetDefaultMessageAutoDeleteTime
@@ -754,6 +771,8 @@ library
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
+      TD.Query.GetPremiumGiftCodePaymentOptions
+      TD.Query.GetPremiumGiveawayInfo
       TD.Query.GetPremiumLimit
       TD.Query.GetPremiumState
       TD.Query.GetPremiumStickerExamples
@@ -801,6 +820,7 @@ library
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUser
+      TD.Query.GetUserChatBoosts
       TD.Query.GetUserFullInfo
       TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
@@ -819,6 +839,7 @@ library
       TD.Query.JoinChat
       TD.Query.JoinChatByInviteLink
       TD.Query.JoinGroupCall
+      TD.Query.LaunchPrepaidPremiumGiveaway
       TD.Query.LeaveChat
       TD.Query.LeaveGroupCall
       TD.Query.LoadActiveStories
@@ -917,6 +938,7 @@ library
       TD.Query.SearchOutgoingDocumentMessages
       TD.Query.SearchPublicChat
       TD.Query.SearchPublicChats
+      TD.Query.SearchQuote
       TD.Query.SearchRecentlyFoundChats
       TD.Query.SearchSecretMessages
       TD.Query.SearchStickers
@@ -945,6 +967,7 @@ library
       TD.Query.SendStory
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
+      TD.Query.SetAccentColor
       TD.Query.SetAccountTtl
       TD.Query.SetAlarm
       TD.Query.SetArchiveChatListSettings
@@ -959,6 +982,7 @@ library
       TD.Query.SetBotName
       TD.Query.SetBotProfilePhoto
       TD.Query.SetBotUpdatesStatus
+      TD.Query.SetChatAccentColor
       TD.Query.SetChatActiveStoriesList
       TD.Query.SetChatAvailableReactions
       TD.Query.SetChatBackground

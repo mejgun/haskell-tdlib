@@ -4,16 +4,16 @@ module TD.Data.MessageForwardInfo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.MessageForwardOrigin as MessageForwardOrigin
+import qualified TD.Data.MessageOrigin as MessageOrigin
 import qualified Data.Text as T
 
 data MessageForwardInfo
   = MessageForwardInfo -- ^ Contains information about a forwarded message
-    { origin                           :: Maybe MessageForwardOrigin.MessageForwardOrigin -- ^ Origin of a forwarded message
-    , date                             :: Maybe Int                                       -- ^ Point in time (Unix timestamp) when the message was originally sent
-    , public_service_announcement_type :: Maybe T.Text                                    -- ^ The type of a public service announcement for the forwarded message
-    , from_chat_id                     :: Maybe Int                                       -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown
-    , from_message_id                  :: Maybe Int                                       -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown
+    { origin                           :: Maybe MessageOrigin.MessageOrigin -- ^ Origin of the forwarded message
+    , date                             :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the message was originally sent
+    , public_service_announcement_type :: Maybe T.Text                      -- ^ The type of a public service announcement for the forwarded message
+    , from_chat_id                     :: Maybe Int                         -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown
+    , from_message_id                  :: Maybe Int                         -- ^ For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown
     }
   deriving (Eq, Show)
 

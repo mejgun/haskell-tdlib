@@ -16,7 +16,6 @@ data AttachmentMenuBot
     , supports_bot_chats           :: Maybe Bool                                          -- ^ True, if the bot supports opening from attachment menu in private chats with other bots
     , supports_group_chats         :: Maybe Bool                                          -- ^ True, if the bot supports opening from attachment menu in basic group and supergroup chats
     , supports_channel_chats       :: Maybe Bool                                          -- ^ True, if the bot supports opening from attachment menu in channel chats
-    , supports_settings            :: Maybe Bool                                          -- ^ True, if the bot supports "settings_button_pressed" event
     , request_write_access         :: Maybe Bool                                          -- ^ True, if the user must be asked for the permission to send messages to the bot
     , is_added                     :: Maybe Bool                                          -- ^ True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
     , show_in_attachment_menu      :: Maybe Bool                                          -- ^ True, if the bot must be shown in the attachment menu
@@ -45,7 +44,6 @@ instance I.ShortShow AttachmentMenuBot where
     , supports_bot_chats           = supports_bot_chats_
     , supports_group_chats         = supports_group_chats_
     , supports_channel_chats       = supports_channel_chats_
-    , supports_settings            = supports_settings_
     , request_write_access         = request_write_access_
     , is_added                     = is_added_
     , show_in_attachment_menu      = show_in_attachment_menu_
@@ -72,7 +70,6 @@ instance I.ShortShow AttachmentMenuBot where
         , "supports_bot_chats"           `I.p` supports_bot_chats_
         , "supports_group_chats"         `I.p` supports_group_chats_
         , "supports_channel_chats"       `I.p` supports_channel_chats_
-        , "supports_settings"            `I.p` supports_settings_
         , "request_write_access"         `I.p` request_write_access_
         , "is_added"                     `I.p` is_added_
         , "show_in_attachment_menu"      `I.p` show_in_attachment_menu_
@@ -109,7 +106,6 @@ instance AT.FromJSON AttachmentMenuBot where
         supports_bot_chats_           <- o A..:?  "supports_bot_chats"
         supports_group_chats_         <- o A..:?  "supports_group_chats"
         supports_channel_chats_       <- o A..:?  "supports_channel_chats"
-        supports_settings_            <- o A..:?  "supports_settings"
         request_write_access_         <- o A..:?  "request_write_access"
         is_added_                     <- o A..:?  "is_added"
         show_in_attachment_menu_      <- o A..:?  "show_in_attachment_menu"
@@ -134,7 +130,6 @@ instance AT.FromJSON AttachmentMenuBot where
           , supports_bot_chats           = supports_bot_chats_
           , supports_group_chats         = supports_group_chats_
           , supports_channel_chats       = supports_channel_chats_
-          , supports_settings            = supports_settings_
           , request_write_access         = request_write_access_
           , is_added                     = is_added_
           , show_in_attachment_menu      = show_in_attachment_menu_

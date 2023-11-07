@@ -8,18 +8,18 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ThemeParameters as ThemeParameters
-import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 
 -- | Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once. Returns 'TD.Data.WebAppInfo.WebAppInfo'
 data OpenWebApp
   = OpenWebApp
-    { chat_id           :: Maybe Int                             -- ^ Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    , bot_user_id       :: Maybe Int                             -- ^ Identifier of the bot, providing the Web App
-    , url               :: Maybe T.Text                          -- ^ The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
-    , theme             :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred Web App theme; pass null to use the default theme
-    , application_name  :: Maybe T.Text                          -- ^ Short name of the application; 0-64 English letters, digits, and underscores
-    , message_thread_id :: Maybe Int                             -- ^ If not 0, a message thread identifier in which the message will be sent
-    , reply_to          :: Maybe MessageReplyTo.MessageReplyTo   -- ^ Identifier of the replied message or story for the message sent by the Web App; pass null if none
+    { chat_id           :: Maybe Int                                     -- ^ Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+    , bot_user_id       :: Maybe Int                                     -- ^ Identifier of the bot, providing the Web App
+    , url               :: Maybe T.Text                                  -- ^ The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+    , theme             :: Maybe ThemeParameters.ThemeParameters         -- ^ Preferred Web App theme; pass null to use the default theme
+    , application_name  :: Maybe T.Text                                  -- ^ Short name of the application; 0-64 English letters, digits, and underscores
+    , message_thread_id :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , reply_to          :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied in the message sent by the Web App; pass null if none
     }
   deriving (Eq, Show)
 

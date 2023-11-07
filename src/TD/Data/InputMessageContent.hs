@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputThumbnail as InputThumbnail
 import qualified Data.Text as T
@@ -20,9 +21,9 @@ import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 -- | The content of a message to send
 data InputMessageContent
   = InputMessageText -- ^ A text message
-    { text                     :: Maybe FormattedText.FormattedText -- ^ Formatted text to be sent; 1-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
-    , disable_web_page_preview :: Maybe Bool                        -- ^ True, if rich web page previews for URLs in the message text must be disabled
-    , clear_draft              :: Maybe Bool                        -- ^ True, if a chat message draft must be deleted
+    { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; pass null to use default link preview options
+    , clear_draft          :: Maybe Bool                                  -- ^ True, if a chat message draft must be deleted
     }
   | InputMessageAnimation -- ^ An animation message (GIF-style).
     { animation              :: Maybe InputFile.InputFile           -- ^ Animation file to be sent
@@ -138,7 +139,7 @@ data InputMessageContent
     }
   | InputMessageForwarded -- ^ A forwarded message
     { from_chat_id  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
-    , message_id    :: Maybe Int                                   -- ^ Identifier of the message to forward
+    , message_id    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if message.can_be_forwarded
     , in_game_share :: Maybe Bool                                  -- ^ True, if a game message is being shared from a launched game; applies only to game messages
     , copy_options  :: Maybe MessageCopyOptions.MessageCopyOptions -- ^ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     }
@@ -146,15 +147,15 @@ data InputMessageContent
 
 instance I.ShortShow InputMessageContent where
   shortShow InputMessageText
-    { text                     = text_
-    , disable_web_page_preview = disable_web_page_preview_
-    , clear_draft              = clear_draft_
+    { text                 = text_
+    , link_preview_options = link_preview_options_
+    , clear_draft          = clear_draft_
     }
       = "InputMessageText"
         ++ I.cc
-        [ "text"                     `I.p` text_
-        , "disable_web_page_preview" `I.p` disable_web_page_preview_
-        , "clear_draft"              `I.p` clear_draft_
+        [ "text"                 `I.p` text_
+        , "link_preview_options" `I.p` link_preview_options_
+        , "clear_draft"          `I.p` clear_draft_
         ]
   shortShow InputMessageAnimation
     { animation              = animation_
@@ -438,13 +439,13 @@ instance AT.FromJSON InputMessageContent where
     where
       parseInputMessageText :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageText = A.withObject "InputMessageText" $ \o -> do
-        text_                     <- o A..:?  "text"
-        disable_web_page_preview_ <- o A..:?  "disable_web_page_preview"
-        clear_draft_              <- o A..:?  "clear_draft"
+        text_                 <- o A..:?  "text"
+        link_preview_options_ <- o A..:?  "link_preview_options"
+        clear_draft_          <- o A..:?  "clear_draft"
         pure $ InputMessageText
-          { text                     = text_
-          , disable_web_page_preview = disable_web_page_preview_
-          , clear_draft              = clear_draft_
+          { text                 = text_
+          , link_preview_options = link_preview_options_
+          , clear_draft          = clear_draft_
           }
       parseInputMessageAnimation :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageAnimation = A.withObject "InputMessageAnimation" $ \o -> do
@@ -686,15 +687,15 @@ instance AT.FromJSON InputMessageContent where
 
 instance AT.ToJSON InputMessageContent where
   toJSON InputMessageText
-    { text                     = text_
-    , disable_web_page_preview = disable_web_page_preview_
-    , clear_draft              = clear_draft_
+    { text                 = text_
+    , link_preview_options = link_preview_options_
+    , clear_draft          = clear_draft_
     }
       = A.object
-        [ "@type"                    A..= AT.String "inputMessageText"
-        , "text"                     A..= text_
-        , "disable_web_page_preview" A..= disable_web_page_preview_
-        , "clear_draft"              A..= clear_draft_
+        [ "@type"                A..= AT.String "inputMessageText"
+        , "text"                 A..= text_
+        , "link_preview_options" A..= link_preview_options_
+        , "clear_draft"          A..= clear_draft_
         ]
   toJSON InputMessageAnimation
     { animation              = animation_

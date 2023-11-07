@@ -24,7 +24,6 @@ import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
-import qualified TD.Data.CanBoostChatResult as CanBoostChatResult
 import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResult
 import qualified TD.Data.Chat as Chat
@@ -32,6 +31,7 @@ import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
 import qualified TD.Data.ChatBoostLink as ChatBoostLink
 import qualified TD.Data.ChatBoostLinkInfo as ChatBoostLinkInfo
+import qualified TD.Data.ChatBoostSlots as ChatBoostSlots
 import qualified TD.Data.ChatBoostStatus as ChatBoostStatus
 import qualified TD.Data.ChatEvents as ChatEvents
 import qualified TD.Data.ChatFolder as ChatFolder
@@ -79,6 +79,7 @@ import qualified TD.Data.FoundChatBoosts as FoundChatBoosts
 import qualified TD.Data.FoundChatMessages as FoundChatMessages
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
+import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
@@ -127,6 +128,9 @@ import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
 import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
+import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
+import qualified TD.Data.PremiumGiftCodePaymentOptions as PremiumGiftCodePaymentOptions
+import qualified TD.Data.PremiumGiveawayInfo as PremiumGiveawayInfo
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.Proxies as Proxies
@@ -201,7 +205,6 @@ data GeneralResult
     | BotMenuButton                      BotMenuButton.BotMenuButton
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
-    | CanBoostChatResult                 CanBoostChatResult.CanBoostChatResult
     | CanSendStoryResult                 CanSendStoryResult.CanSendStoryResult
     | CanTransferOwnershipResult         CanTransferOwnershipResult.CanTransferOwnershipResult
     | Chat                               Chat.Chat
@@ -209,6 +212,7 @@ data GeneralResult
     | ChatAdministrators                 ChatAdministrators.ChatAdministrators
     | ChatBoostLink                      ChatBoostLink.ChatBoostLink
     | ChatBoostLinkInfo                  ChatBoostLinkInfo.ChatBoostLinkInfo
+    | ChatBoostSlots                     ChatBoostSlots.ChatBoostSlots
     | ChatBoostStatus                    ChatBoostStatus.ChatBoostStatus
     | ChatEvents                         ChatEvents.ChatEvents
     | ChatFolder                         ChatFolder.ChatFolder
@@ -256,6 +260,7 @@ data GeneralResult
     | FoundChatMessages                  FoundChatMessages.FoundChatMessages
     | FoundFileDownloads                 FoundFileDownloads.FoundFileDownloads
     | FoundMessages                      FoundMessages.FoundMessages
+    | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
@@ -304,6 +309,9 @@ data GeneralResult
     | PaymentResult                      PaymentResult.PaymentResult
     | PhoneNumberInfo                    PhoneNumberInfo.PhoneNumberInfo
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
+    | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
+    | PremiumGiftCodePaymentOptions      PremiumGiftCodePaymentOptions.PremiumGiftCodePaymentOptions
+    | PremiumGiveawayInfo                PremiumGiveawayInfo.PremiumGiveawayInfo
     | PremiumLimit                       PremiumLimit.PremiumLimit
     | PremiumState                       PremiumState.PremiumState
     | Proxies                            Proxies.Proxies
@@ -399,8 +407,6 @@ instance I.ShortShow GeneralResult where
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
     = "CallbackQueryAnswer" <> " (" <> I.shortShow v <> ")"
-  shortShow (CanBoostChatResult v)
-    = "CanBoostChatResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanSendStoryResult v)
     = "CanSendStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanTransferOwnershipResult v)
@@ -415,6 +421,8 @@ instance I.ShortShow GeneralResult where
     = "ChatBoostLink" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostLinkInfo v)
     = "ChatBoostLinkInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostSlots v)
+    = "ChatBoostSlots" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostStatus v)
     = "ChatBoostStatus" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatEvents v)
@@ -509,6 +517,8 @@ instance I.ShortShow GeneralResult where
     = "FoundFileDownloads" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundMessages v)
     = "FoundMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundPosition v)
+    = "FoundPosition" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundPositions v)
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
@@ -605,6 +615,12 @@ instance I.ShortShow GeneralResult where
     = "PhoneNumberInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumFeatures v)
     = "PremiumFeatures" <> " (" <> I.shortShow v <> ")"
+  shortShow (PremiumGiftCodeInfo v)
+    = "PremiumGiftCodeInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (PremiumGiftCodePaymentOptions v)
+    = "PremiumGiftCodePaymentOptions" <> " (" <> I.shortShow v <> ")"
+  shortShow (PremiumGiveawayInfo v)
+    = "PremiumGiveawayInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumLimit v)
     = "PremiumLimit" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumState v)
@@ -732,7 +748,6 @@ instance T.FromJSON GeneralResult where
     <|> ( BotMenuButton                       <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
-    <|> ( CanBoostChatResult                  <$> parseJSON v )
     <|> ( CanSendStoryResult                  <$> parseJSON v )
     <|> ( CanTransferOwnershipResult          <$> parseJSON v )
     <|> ( Chat                                <$> parseJSON v )
@@ -740,6 +755,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ChatAdministrators                  <$> parseJSON v )
     <|> ( ChatBoostLink                       <$> parseJSON v )
     <|> ( ChatBoostLinkInfo                   <$> parseJSON v )
+    <|> ( ChatBoostSlots                      <$> parseJSON v )
     <|> ( ChatBoostStatus                     <$> parseJSON v )
     <|> ( ChatEvents                          <$> parseJSON v )
     <|> ( ChatFolder                          <$> parseJSON v )
@@ -787,6 +803,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundChatMessages                   <$> parseJSON v )
     <|> ( FoundFileDownloads                  <$> parseJSON v )
     <|> ( FoundMessages                       <$> parseJSON v )
+    <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
@@ -835,6 +852,9 @@ instance T.FromJSON GeneralResult where
     <|> ( PaymentResult                       <$> parseJSON v )
     <|> ( PhoneNumberInfo                     <$> parseJSON v )
     <|> ( PremiumFeatures                     <$> parseJSON v )
+    <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )
+    <|> ( PremiumGiftCodePaymentOptions       <$> parseJSON v )
+    <|> ( PremiumGiveawayInfo                 <$> parseJSON v )
     <|> ( PremiumLimit                        <$> parseJSON v )
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( Proxies                             <$> parseJSON v )

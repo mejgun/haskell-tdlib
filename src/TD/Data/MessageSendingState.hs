@@ -12,10 +12,12 @@ data MessageSendingState
     { sending_id :: Maybe Int -- ^ Non-persistent message sending identifier, specified by the application
     }
   | MessageSendingStateFailed -- ^ The message failed to be sent
-    { _error              :: Maybe Error.Error -- ^ The cause of the message sending failure
-    , can_retry           :: Maybe Bool        -- ^ True, if the message can be re-sent
-    , need_another_sender :: Maybe Bool        -- ^ True, if the message can be re-sent only on behalf of a different sender
-    , retry_after         :: Maybe Double      -- ^ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
+    { _error                   :: Maybe Error.Error -- ^ The cause of the message sending failure
+    , can_retry                :: Maybe Bool        -- ^ True, if the message can be re-sent
+    , need_another_sender      :: Maybe Bool        -- ^ True, if the message can be re-sent only on behalf of a different sender
+    , need_another_reply_quote :: Maybe Bool        -- ^ True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message
+    , need_drop_reply          :: Maybe Bool        -- ^ True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages
+    , retry_after              :: Maybe Double      -- ^ Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     }
   deriving (Eq, Show)
 
@@ -28,17 +30,21 @@ instance I.ShortShow MessageSendingState where
         [ "sending_id" `I.p` sending_id_
         ]
   shortShow MessageSendingStateFailed
-    { _error              = _error_
-    , can_retry           = can_retry_
-    , need_another_sender = need_another_sender_
-    , retry_after         = retry_after_
+    { _error                   = _error_
+    , can_retry                = can_retry_
+    , need_another_sender      = need_another_sender_
+    , need_another_reply_quote = need_another_reply_quote_
+    , need_drop_reply          = need_drop_reply_
+    , retry_after              = retry_after_
     }
       = "MessageSendingStateFailed"
         ++ I.cc
-        [ "_error"              `I.p` _error_
-        , "can_retry"           `I.p` can_retry_
-        , "need_another_sender" `I.p` need_another_sender_
-        , "retry_after"         `I.p` retry_after_
+        [ "_error"                   `I.p` _error_
+        , "can_retry"                `I.p` can_retry_
+        , "need_another_sender"      `I.p` need_another_sender_
+        , "need_another_reply_quote" `I.p` need_another_reply_quote_
+        , "need_drop_reply"          `I.p` need_drop_reply_
+        , "retry_after"              `I.p` retry_after_
         ]
 
 instance AT.FromJSON MessageSendingState where
@@ -59,15 +65,19 @@ instance AT.FromJSON MessageSendingState where
           }
       parseMessageSendingStateFailed :: A.Value -> AT.Parser MessageSendingState
       parseMessageSendingStateFailed = A.withObject "MessageSendingStateFailed" $ \o -> do
-        _error_              <- o A..:?  "error"
-        can_retry_           <- o A..:?  "can_retry"
-        need_another_sender_ <- o A..:?  "need_another_sender"
-        retry_after_         <- o A..:?  "retry_after"
+        _error_                   <- o A..:?  "error"
+        can_retry_                <- o A..:?  "can_retry"
+        need_another_sender_      <- o A..:?  "need_another_sender"
+        need_another_reply_quote_ <- o A..:?  "need_another_reply_quote"
+        need_drop_reply_          <- o A..:?  "need_drop_reply"
+        retry_after_              <- o A..:?  "retry_after"
         pure $ MessageSendingStateFailed
-          { _error              = _error_
-          , can_retry           = can_retry_
-          , need_another_sender = need_another_sender_
-          , retry_after         = retry_after_
+          { _error                   = _error_
+          , can_retry                = can_retry_
+          , need_another_sender      = need_another_sender_
+          , need_another_reply_quote = need_another_reply_quote_
+          , need_drop_reply          = need_drop_reply_
+          , retry_after              = retry_after_
           }
   parseJSON _ = mempty
 

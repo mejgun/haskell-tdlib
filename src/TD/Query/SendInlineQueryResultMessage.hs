@@ -6,20 +6,20 @@ module TD.Query.SendInlineQueryResultMessage
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified Data.Text as T
 
 -- | Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message. Returns 'TD.Data.Message.Message'
 data SendInlineQueryResultMessage
   = SendInlineQueryResultMessage
-    { chat_id           :: Maybe Int                                   -- ^ Target chat
-    , message_thread_id :: Maybe Int                                   -- ^ If not 0, a message thread identifier in which the message will be sent
-    , reply_to          :: Maybe MessageReplyTo.MessageReplyTo         -- ^ Identifier of the replied message or story; pass null if none
-    , options           :: Maybe MessageSendOptions.MessageSendOptions -- ^ Options to be used to send the message; pass null to use default options
-    , query_id          :: Maybe Int                                   -- ^ Identifier of the inline query
-    , result_id         :: Maybe T.Text                                -- ^ Identifier of the inline query result
-    , hide_via_bot      :: Maybe Bool                                  -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+    { chat_id           :: Maybe Int                                     -- ^ Target chat
+    , message_thread_id :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , reply_to          :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
+    , options           :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
+    , query_id          :: Maybe Int                                     -- ^ Identifier of the inline query
+    , result_id         :: Maybe T.Text                                  -- ^ Identifier of the inline query result
+    , hide_via_bot      :: Maybe Bool                                    -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
     }
   deriving (Eq, Show)
 
