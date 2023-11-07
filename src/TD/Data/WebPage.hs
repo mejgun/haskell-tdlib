@@ -30,7 +30,7 @@ data WebPage
     , embed_height         :: Maybe Int                         -- ^ Height of the embedded preview
     , duration             :: Maybe Int                         -- ^ Duration of the content, in seconds
     , author               :: Maybe T.Text                      -- ^ Author of the content
-    , has_large_media      :: Maybe Bool                        -- ^ True, if the preview has large media and its appearance can be changed
+    , has_large_media      :: Maybe Bool                        -- ^ True, if size of media in the preview can be changed
     , show_large_media     :: Maybe Bool                        -- ^ True, if large media preview must be shown
     , skip_confirmation    :: Maybe Bool                        -- ^ True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
     , show_above_text      :: Maybe Bool                        -- ^ True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
