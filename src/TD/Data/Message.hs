@@ -28,7 +28,7 @@ data Message
     , is_pinned                      :: Maybe Bool                                            -- ^ True, if the message is pinned
     , can_be_edited                  :: Maybe Bool                                            -- ^ True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
     , can_be_forwarded               :: Maybe Bool                                            -- ^ True, if the message can be forwarded
-    , can_be_replied_in_another_chat :: Maybe Bool                                            -- ^ True, if the message can be replied in another chat
+    , can_be_replied_in_another_chat :: Maybe Bool                                            -- ^ True, if the message can be replied in another chat or topic
     , can_be_saved                   :: Maybe Bool                                            -- ^ True, if content of the message can be saved locally or copied
     , can_be_deleted_only_for_self   :: Maybe Bool                                            -- ^ True, if the message can be deleted only for the current user while other users will continue to see it
     , can_be_deleted_for_all_users   :: Maybe Bool                                            -- ^ True, if the message can be deleted for all users
