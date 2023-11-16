@@ -9,7 +9,7 @@ import qualified TD.Data.CallState as CallState
 data Call
   = Call -- ^ Describes a call
     { _id         :: Maybe Int                 -- ^ Call identifier, not persistent
-    , user_id     :: Maybe Int                 -- ^ Peer user identifier
+    , user_id     :: Maybe Int                 -- ^ User identifier of the other call participant
     , is_outgoing :: Maybe Bool                -- ^ True, if the call is outgoing
     , is_video    :: Maybe Bool                -- ^ True, if the call is a video call
     , state       :: Maybe CallState.CallState -- ^ Call state

@@ -12,7 +12,7 @@ data GroupCall
     { _id                              :: Maybe Int                                             -- ^ Group call identifier
     , title                            :: Maybe T.Text                                          -- ^ Group call title
     , scheduled_start_date             :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 if it is already active or was ended
-    , enabled_start_notification       :: Maybe Bool                                            -- ^ True, if the group call is scheduled and the current user will receive a notification when the group call will start
+    , enabled_start_notification       :: Maybe Bool                                            -- ^ True, if the group call is scheduled and the current user will receive a notification when the group call starts
     , is_active                        :: Maybe Bool                                            -- ^ True, if the call is active
     , is_rtmp_stream                   :: Maybe Bool                                            -- ^ True, if the chat is an RTMP stream instead of an ordinary video chat
     , is_joined                        :: Maybe Bool                                            -- ^ True, if the call is joined

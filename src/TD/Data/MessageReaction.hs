@@ -12,7 +12,7 @@ data MessageReaction
     { _type             :: Maybe ReactionType.ReactionType     -- ^ Type of the reaction
     , total_count       :: Maybe Int                           -- ^ Number of times the reaction was added
     , is_chosen         :: Maybe Bool                          -- ^ True, if the reaction is chosen by the current user
-    , used_sender_id    :: Maybe MessageSender.MessageSender   -- ^ Identifier of the message sender used by the current user to add the reaction; null if unknown or the reaction isn't chosen
+    , used_sender_id    :: Maybe MessageSender.MessageSender   -- ^ Identifier of the message sender used by the current user to add the reaction; may be null if unknown or the reaction isn't chosen
     , recent_sender_ids :: Maybe [MessageSender.MessageSender] -- ^ Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats
     }
   deriving (Eq, Show)

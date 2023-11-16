@@ -19,7 +19,7 @@ data ChatType
     }
   | ChatTypeSecret -- ^ A secret chat with a user
     { secret_chat_id :: Maybe Int -- ^ Secret chat identifier
-    , user_id        :: Maybe Int -- ^ User identifier of the secret chat peer
+    , user_id        :: Maybe Int -- ^ User identifier of the other user in the secret chat
     }
   deriving (Eq, Show)
 

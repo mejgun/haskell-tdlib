@@ -8,7 +8,7 @@ import qualified TD.Data.MessageSender as MessageSender
 
 data ChatMessageSender
   = ChatMessageSender -- ^ Represents a message sender, which can be used to send messages in a chat
-    { sender        :: Maybe MessageSender.MessageSender -- ^ Available message senders
+    { sender        :: Maybe MessageSender.MessageSender -- ^ The message sender
     , needs_premium :: Maybe Bool                        -- ^ True, if Telegram Premium is needed to use the message sender
     }
   deriving (Eq, Show)

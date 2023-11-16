@@ -10,7 +10,7 @@ data MessageSchedulingState
   = MessageSchedulingStateSendAtDate -- ^ The message will be sent at the specified date
     { send_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
     }
-  | MessageSchedulingStateSendWhenOnline -- ^ The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+  | MessageSchedulingStateSendWhenOnline -- ^ The message will be sent when the other user is online. Applicable to private chats only and when the exact online status of the other user is known
   deriving (Eq, Show)
 
 instance I.ShortShow MessageSchedulingState where

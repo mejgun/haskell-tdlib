@@ -19,7 +19,7 @@ data CallState
     }
   | CallStateExchangingKeys -- ^ The call has been answered and encryption keys are being exchanged
   | CallStateReady -- ^ The call is ready to use
-    { protocol       :: Maybe CallProtocol.CallProtocol -- ^ Call protocols supported by the peer
+    { protocol       :: Maybe CallProtocol.CallProtocol -- ^ Call protocols supported by the other call participant
     , servers        :: Maybe [CallServer.CallServer]   -- ^ List of available call servers
     , config         :: Maybe T.Text                    -- ^ A JSON-encoded call config
     , encryption_key :: Maybe BS.ByteString             -- ^ Call encryption key

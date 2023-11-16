@@ -15,7 +15,7 @@ data ChatActionBar
   | ChatActionBarInviteMembers -- ^ The chat is a recently created group chat to which new members can be invited
   | ChatActionBarReportAddBlock -- ^ The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     { can_unarchive :: Maybe Bool -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
-    , distance      :: Maybe Int  -- ^ If non-negative, the current user was found by the peer through searchChatsNearby and this is the distance between the users
+    , distance      :: Maybe Int  -- ^ If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users
     }
   | ChatActionBarAddContact -- ^ The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
   | ChatActionBarSharePhoneNumber -- ^ The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber

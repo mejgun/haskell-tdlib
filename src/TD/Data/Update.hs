@@ -92,7 +92,7 @@ data Update
   | UpdateNewMessage -- ^ A new message was received; can also be an outgoing message
     { message :: Maybe Message.Message -- ^ The new message
     }
-  | UpdateMessageSendAcknowledged -- ^ A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
+  | UpdateMessageSendAcknowledged -- ^ A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully. This update is sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
     { chat_id    :: Maybe Int -- ^ The chat identifier of the sent message
     , message_id :: Maybe Int -- ^ A temporary message identifier
     }
@@ -162,7 +162,7 @@ data Update
     }
   | UpdateChatBackgroundCustomEmoji -- ^ A chat's custom emoji for reply background has changed
     { chat_id                    :: Maybe Int -- ^ Chat identifier
-    , background_custom_emoji_id :: Maybe Int -- ^ The new tdentifier of a custom emoji to be shown on the reply header background
+    , background_custom_emoji_id :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the reply header background; 0 if none
     }
   | UpdateChatPermissions -- ^ Chat permissions was changed
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
@@ -267,7 +267,7 @@ data Update
     { chat_folders            :: Maybe [ChatFolderInfo.ChatFolderInfo] -- ^ The new list of chat folders
     , main_chat_list_position :: Maybe Int                             -- ^ Position of the main chat list among chat folders, 0-based
     }
-  | UpdateChatOnlineMemberCount -- ^ The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
+  | UpdateChatOnlineMemberCount -- ^ The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     { chat_id             :: Maybe Int -- ^ Identifier of the chat
     , online_member_count :: Maybe Int -- ^ New number of online members in the chat, or 0 if unknown
     }

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only. Returns 'TD.Data.Ok.Ok'
+-- | Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only. Returns 'TD.Data.Ok.Ok'
 data ToggleGroupCallEnabledStartNotification
   = ToggleGroupCallEnabledStartNotification
     { group_call_id              :: Maybe Int  -- ^ Group call identifier
