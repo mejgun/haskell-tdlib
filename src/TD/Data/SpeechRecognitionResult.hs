@@ -16,7 +16,7 @@ data SpeechRecognitionResult
     { text :: Maybe T.Text -- ^ Recognized text
     }
   | SpeechRecognitionResultError -- ^ The speech recognition failed
-    { _error :: Maybe Error.Error -- ^ Recognition error
+    { _error :: Maybe Error.Error -- ^ Recognition error. An error with a message "MSG_VOICE_TOO_LONG" is returned when media duration is too big to be recognized
     }
   deriving (Eq, Show)
 
