@@ -7,10 +7,10 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes the current state of the connection to Telegram servers
 data ConnectionState
-  = ConnectionStateWaitingForNetwork -- ^ Currently waiting for the network to become available. Use setNetworkType to change the available network type
-  | ConnectionStateConnectingToProxy -- ^ Currently establishing a connection with a proxy server
-  | ConnectionStateConnecting -- ^ Currently establishing a connection to the Telegram servers
-  | ConnectionStateUpdating -- ^ Downloading data received while the application was offline
+  = ConnectionStateWaitingForNetwork -- ^ Waiting for the network to become available. Use setNetworkType to change the available network type
+  | ConnectionStateConnectingToProxy -- ^ Establishing a connection with a proxy server
+  | ConnectionStateConnecting -- ^ Establishing a connection to the Telegram servers
+  | ConnectionStateUpdating -- ^ Downloading data supposed to be received while the application was offline
   | ConnectionStateReady -- ^ There is a working connection to the Telegram servers
   deriving (Eq, Show)
 

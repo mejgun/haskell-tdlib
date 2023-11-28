@@ -42,7 +42,7 @@ data MessageContent
   = MessageText -- ^ A text message
     { text                 :: Maybe FormattedText.FormattedText           -- ^ Text of the message
     , web_page             :: Maybe WebPage.WebPage                       -- ^ A link preview attached to the message; may be null
-    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which was used for generation of the link preview; may be null if default options were used
+    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which were used for generation of the link preview; may be null if default options were used
     }
   | MessageAnimation -- ^ An animation message (GIF-style).
     { animation   :: Maybe Animation.Animation         -- ^ The animation description

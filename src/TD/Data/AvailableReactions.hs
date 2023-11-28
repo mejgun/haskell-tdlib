@@ -11,7 +11,7 @@ data AvailableReactions
     { top_reactions      :: Maybe [AvailableReaction.AvailableReaction] -- ^ List of reactions to be shown at the top
     , recent_reactions   :: Maybe [AvailableReaction.AvailableReaction] -- ^ List of recently used reactions
     , popular_reactions  :: Maybe [AvailableReaction.AvailableReaction] -- ^ List of popular reactions
-    , allow_custom_emoji :: Maybe Bool                                  -- ^ True, if custom emoji reactions could be added by Telegram Premium subscribers
+    , allow_custom_emoji :: Maybe Bool                                  -- ^ True, if any custom emoji reaction can be added by Telegram Premium subscribers
     }
   deriving (Eq, Show)
 

@@ -293,7 +293,7 @@ data Update
     , added_notifications           :: Maybe [Notification.Notification]                 -- ^ List of added group notifications, sorted by notification identifier
     , removed_notification_ids      :: Maybe [Int]                                       -- ^ Identifiers of removed group notifications, sorted by notification identifier
     }
-  | UpdateActiveNotifications -- ^ Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
+  | UpdateActiveNotifications -- ^ Contains active notifications that were shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
     { groups :: Maybe [NotificationGroup.NotificationGroup] -- ^ Lists of active notification groups
     }
   | UpdateHavePendingNotifications -- ^ Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications

@@ -9,21 +9,21 @@ import qualified TD.Lib.Internal as I
 
 data ChatNotificationSettings
   = ChatNotificationSettings -- ^ Contains information about notification settings for a chat or a forum topic
-    { use_default_mute_for                             :: Maybe Bool -- ^ If true, mute_for is ignored and the value for the relevant type of chat or the forum chat is used instead
+    { use_default_mute_for                             :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of mute_for
     , mute_for                                         :: Maybe Int  -- ^ Time left before notifications will be unmuted, in seconds
     , use_default_sound                                :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
     , sound_id                                         :: Maybe Int  -- ^ Identifier of the notification sound to be played for messages; 0 if sound is disabled
-    , use_default_show_preview                         :: Maybe Bool -- ^ If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
+    , use_default_show_preview                         :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of show_preview
     , show_preview                                     :: Maybe Bool -- ^ True, if message content must be displayed in notifications
-    , use_default_mute_stories                         :: Maybe Bool -- ^ If true, mute_stories is ignored and the value for the relevant type of chat is used instead
+    , use_default_mute_stories                         :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of mute_stories
     , mute_stories                                     :: Maybe Bool -- ^ True, if story notifications are disabled for the chat
     , use_default_story_sound                          :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of story_sound_id
     , story_sound_id                                   :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
-    , use_default_show_story_sender                    :: Maybe Bool -- ^ If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
+    , use_default_show_story_sender                    :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of show_story_sender
     , show_story_sender                                :: Maybe Bool -- ^ True, if the sender of stories must be displayed in notifications
-    , use_default_disable_pinned_message_notifications :: Maybe Bool -- ^ If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
+    , use_default_disable_pinned_message_notifications :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications
     , disable_pinned_message_notifications             :: Maybe Bool -- ^ If true, notifications for incoming pinned messages will be created as for an ordinary unread message
-    , use_default_disable_mention_notifications        :: Maybe Bool -- ^ If true, disable_mention_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
+    , use_default_disable_mention_notifications        :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of disable_mention_notifications
     , disable_mention_notifications                    :: Maybe Bool -- ^ If true, notifications for messages with mentions will be created as for an ordinary unread message
     }
   deriving (Eq, Show)

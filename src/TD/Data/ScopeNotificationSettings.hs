@@ -12,8 +12,8 @@ data ScopeNotificationSettings
     { mute_for                             :: Maybe Int  -- ^ Time left before notifications will be unmuted, in seconds
     , sound_id                             :: Maybe Int  -- ^ Identifier of the notification sound to be played; 0 if sound is disabled
     , show_preview                         :: Maybe Bool -- ^ True, if message content must be displayed in notifications
-    , use_default_mute_stories             :: Maybe Bool -- ^ If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
-    , mute_stories                         :: Maybe Bool -- ^ True, if story notifications are disabled for the chat
+    , use_default_mute_stories             :: Maybe Bool -- ^ If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
+    , mute_stories                         :: Maybe Bool -- ^ True, if story notifications are disabled
     , story_sound_id                       :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
     , show_story_sender                    :: Maybe Bool -- ^ True, if the sender of stories must be displayed in notifications
     , disable_pinned_message_notifications :: Maybe Bool -- ^ True, if notifications for incoming pinned messages will be created as for an ordinary unread message
