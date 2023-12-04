@@ -24,7 +24,8 @@ data PremiumFeature
   | PremiumFeatureRealTimeChatTranslation -- ^ Allowed to translate chat messages real-time
   | PremiumFeatureUpgradedStories -- ^ Allowed to use many additional features for stories
   | PremiumFeatureChatBoost -- ^ The ability to boost chats
-  | PremiumFeatureAccentColor -- ^ The ability to choose accent color
+  | PremiumFeatureAccentColor -- ^ The ability to choose accent color for replies and user profile
+  | PremiumFeatureBackgroundForBoth -- ^ The ability to set private chat background for both users
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -64,6 +65,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureChatBoost"
   shortShow PremiumFeatureAccentColor
       = "PremiumFeatureAccentColor"
+  shortShow PremiumFeatureBackgroundForBoth
+      = "PremiumFeatureBackgroundForBoth"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -88,6 +91,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureUpgradedStories"         -> pure PremiumFeatureUpgradedStories
       "premiumFeatureChatBoost"               -> pure PremiumFeatureChatBoost
       "premiumFeatureAccentColor"             -> pure PremiumFeatureAccentColor
+      "premiumFeatureBackgroundForBoth"       -> pure PremiumFeatureBackgroundForBoth
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -164,5 +168,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureAccentColor
       = A.object
         [ "@type" A..= AT.String "premiumFeatureAccentColor"
+        ]
+  toJSON PremiumFeatureBackgroundForBoth
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureBackgroundForBoth"
         ]
 

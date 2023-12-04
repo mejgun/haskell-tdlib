@@ -9,16 +9,19 @@ import qualified TD.Data.StatisticalGraph as StatisticalGraph
 data MessageStatistics
   = MessageStatistics -- ^ A detailed statistics about a message
     { message_interaction_graph :: Maybe StatisticalGraph.StatisticalGraph -- ^ A graph containing number of message views and shares
+    , message_reaction_graph    :: Maybe StatisticalGraph.StatisticalGraph -- ^ A graph containing number of message reactions
     }
   deriving (Eq, Show)
 
 instance I.ShortShow MessageStatistics where
   shortShow MessageStatistics
     { message_interaction_graph = message_interaction_graph_
+    , message_reaction_graph    = message_reaction_graph_
     }
       = "MessageStatistics"
         ++ I.cc
         [ "message_interaction_graph" `I.p` message_interaction_graph_
+        , "message_reaction_graph"    `I.p` message_reaction_graph_
         ]
 
 instance AT.FromJSON MessageStatistics where
@@ -33,8 +36,10 @@ instance AT.FromJSON MessageStatistics where
       parseMessageStatistics :: A.Value -> AT.Parser MessageStatistics
       parseMessageStatistics = A.withObject "MessageStatistics" $ \o -> do
         message_interaction_graph_ <- o A..:?  "message_interaction_graph"
+        message_reaction_graph_    <- o A..:?  "message_reaction_graph"
         pure $ MessageStatistics
           { message_interaction_graph = message_interaction_graph_
+          , message_reaction_graph    = message_reaction_graph_
           }
   parseJSON _ = mempty
 

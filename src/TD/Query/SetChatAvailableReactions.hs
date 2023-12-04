@@ -12,7 +12,7 @@ import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 data SetChatAvailableReactions
   = SetChatAvailableReactions
     { chat_id             :: Maybe Int                                           -- ^ Identifier of the chat
-    , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All emoji reactions must be active
+    , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All explicitly specified emoji reactions must be active. Up to the chat's boost level custom emoji reactions can be explicitly specified
     }
   deriving (Eq, Show)
 

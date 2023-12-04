@@ -4,7 +4,7 @@ module TD.Data.MessageReplyTo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.TextQuote as TextQuote
 import qualified TD.Data.MessageOrigin as MessageOrigin
 import qualified TD.Data.MessageContent as MessageContent
 
@@ -13,8 +13,7 @@ data MessageReplyTo
   = MessageReplyToMessage -- ^ Describes a message replied by a given message
     { chat_id          :: Maybe Int                           -- ^ The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
     , message_id       :: Maybe Int                           -- ^ The identifier of the message; may be 0 if the replied message is in unknown chat
-    , quote            :: Maybe FormattedText.FormattedText   -- ^ Manually or automatically chosen quote from the replied message; may be null if none. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the quote
-    , is_quote_manual  :: Maybe Bool                          -- ^ True, if the quote was manually chosen by the message sender
+    , quote            :: Maybe TextQuote.TextQuote           -- ^ Chosen quote from the replied message; may be null if none
     , origin           :: Maybe MessageOrigin.MessageOrigin   -- ^ Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat
     , origin_send_date :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     , content          :: Maybe MessageContent.MessageContent -- ^ Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation, messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
@@ -30,7 +29,6 @@ instance I.ShortShow MessageReplyTo where
     { chat_id          = chat_id_
     , message_id       = message_id_
     , quote            = quote_
-    , is_quote_manual  = is_quote_manual_
     , origin           = origin_
     , origin_send_date = origin_send_date_
     , content          = content_
@@ -40,7 +38,6 @@ instance I.ShortShow MessageReplyTo where
         [ "chat_id"          `I.p` chat_id_
         , "message_id"       `I.p` message_id_
         , "quote"            `I.p` quote_
-        , "is_quote_manual"  `I.p` is_quote_manual_
         , "origin"           `I.p` origin_
         , "origin_send_date" `I.p` origin_send_date_
         , "content"          `I.p` content_
@@ -70,7 +67,6 @@ instance AT.FromJSON MessageReplyTo where
         chat_id_          <- o A..:?  "chat_id"
         message_id_       <- o A..:?  "message_id"
         quote_            <- o A..:?  "quote"
-        is_quote_manual_  <- o A..:?  "is_quote_manual"
         origin_           <- o A..:?  "origin"
         origin_send_date_ <- o A..:?  "origin_send_date"
         content_          <- o A..:?  "content"
@@ -78,7 +74,6 @@ instance AT.FromJSON MessageReplyTo where
           { chat_id          = chat_id_
           , message_id       = message_id_
           , quote            = quote_
-          , is_quote_manual  = is_quote_manual_
           , origin           = origin_
           , origin_send_date = origin_send_date_
           , content          = content_

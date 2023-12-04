@@ -9,13 +9,14 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputBackground as InputBackground
 import qualified TD.Data.BackgroundType as BackgroundType
 
--- | Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users. Returns 'TD.Data.Ok.Ok'
+-- | Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users. Returns 'TD.Data.Ok.Ok'
 data SetChatBackground
   = SetChatBackground
     { chat_id            :: Maybe Int                             -- ^ Chat identifier
-    , background         :: Maybe InputBackground.InputBackground -- ^ The input background to use; pass null to create a new filled background or to remove the current background
-    , _type              :: Maybe BackgroundType.BackgroundType   -- ^ Background type; pass null to remove the current background
+    , background         :: Maybe InputBackground.InputBackground -- ^ The input background to use; pass null to create a new filled background
+    , _type              :: Maybe BackgroundType.BackgroundType   -- ^ Background type; pass null to use default background type for the chosen background
     , dark_theme_dimming :: Maybe Int                             -- ^ Dimming of the background in dark themes, as a percentage; 0-100
+    , only_for_self      :: Maybe Bool                            -- ^ Pass true to set background only for self; pass false to set background for both chat users. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
     }
   deriving (Eq, Show)
 
@@ -26,6 +27,7 @@ instance I.ShortShow SetChatBackground where
       , background         = background_
       , _type              = _type_
       , dark_theme_dimming = dark_theme_dimming_
+      , only_for_self      = only_for_self_
       }
         = "SetChatBackground"
           ++ I.cc
@@ -33,6 +35,7 @@ instance I.ShortShow SetChatBackground where
           , "background"         `I.p` background_
           , "_type"              `I.p` _type_
           , "dark_theme_dimming" `I.p` dark_theme_dimming_
+          , "only_for_self"      `I.p` only_for_self_
           ]
 
 instance AT.ToJSON SetChatBackground where
@@ -42,6 +45,7 @@ instance AT.ToJSON SetChatBackground where
       , background         = background_
       , _type              = _type_
       , dark_theme_dimming = dark_theme_dimming_
+      , only_for_self      = only_for_self_
       }
         = A.object
           [ "@type"              A..= AT.String "setChatBackground"
@@ -49,6 +53,7 @@ instance AT.ToJSON SetChatBackground where
           , "background"         A..= background_
           , "type"               A..= _type_
           , "dark_theme_dimming" A..= dark_theme_dimming_
+          , "only_for_self"      A..= only_for_self_
           ]
 
 defaultSetChatBackground :: SetChatBackground
@@ -58,5 +63,6 @@ defaultSetChatBackground =
     , background         = Nothing
     , _type              = Nothing
     , dark_theme_dimming = Nothing
+    , only_for_self      = Nothing
     }
 

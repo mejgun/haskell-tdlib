@@ -14,6 +14,7 @@ data SponsoredMessage
     , is_recommended  :: Maybe Bool                          -- ^ True, if the message needs to be labeled as "recommended" instead of "sponsored"
     , content         :: Maybe MessageContent.MessageContent -- ^ Content of the message. Currently, can be only of the type messageText
     , sponsor         :: Maybe MessageSponsor.MessageSponsor -- ^ Information about the sponsor of the message
+    , button_text     :: Maybe T.Text                        -- ^ If non-empty, text for the message action button
     , additional_info :: Maybe T.Text                        -- ^ If non-empty, additional information about the sponsored message to be shown along with the message
     }
   deriving (Eq, Show)
@@ -24,6 +25,7 @@ instance I.ShortShow SponsoredMessage where
     , is_recommended  = is_recommended_
     , content         = content_
     , sponsor         = sponsor_
+    , button_text     = button_text_
     , additional_info = additional_info_
     }
       = "SponsoredMessage"
@@ -32,6 +34,7 @@ instance I.ShortShow SponsoredMessage where
         , "is_recommended"  `I.p` is_recommended_
         , "content"         `I.p` content_
         , "sponsor"         `I.p` sponsor_
+        , "button_text"     `I.p` button_text_
         , "additional_info" `I.p` additional_info_
         ]
 
@@ -50,12 +53,14 @@ instance AT.FromJSON SponsoredMessage where
         is_recommended_  <- o A..:?  "is_recommended"
         content_         <- o A..:?  "content"
         sponsor_         <- o A..:?  "sponsor"
+        button_text_     <- o A..:?  "button_text"
         additional_info_ <- o A..:?  "additional_info"
         pure $ SponsoredMessage
           { message_id      = message_id_
           , is_recommended  = is_recommended_
           , content         = content_
           , sponsor         = sponsor_
+          , button_text     = button_text_
           , additional_info = additional_info_
           }
   parseJSON _ = mempty

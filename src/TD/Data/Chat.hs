@@ -36,6 +36,7 @@ data Chat
     , has_protected_content        :: Maybe Bool                                              -- ^ True, if chat content can't be saved locally, forwarded, or copied
     , is_translatable              :: Maybe Bool                                              -- ^ True, if translation of all messages in the chat must be suggested to the user
     , is_marked_as_unread          :: Maybe Bool                                              -- ^ True, if the chat is marked as unread
+    , view_as_topics               :: Maybe Bool                                              -- ^ True, if the chat is a forum supergroup that must be shown in the "View as topics" mode
     , has_scheduled_messages       :: Maybe Bool                                              -- ^ True, if the chat has scheduled messages
     , can_be_deleted_only_for_self :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
     , can_be_deleted_for_all_users :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted for all users
@@ -76,6 +77,7 @@ instance I.ShortShow Chat where
     , has_protected_content        = has_protected_content_
     , is_translatable              = is_translatable_
     , is_marked_as_unread          = is_marked_as_unread_
+    , view_as_topics               = view_as_topics_
     , has_scheduled_messages       = has_scheduled_messages_
     , can_be_deleted_only_for_self = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users = can_be_deleted_for_all_users_
@@ -114,6 +116,7 @@ instance I.ShortShow Chat where
         , "has_protected_content"        `I.p` has_protected_content_
         , "is_translatable"              `I.p` is_translatable_
         , "is_marked_as_unread"          `I.p` is_marked_as_unread_
+        , "view_as_topics"               `I.p` view_as_topics_
         , "has_scheduled_messages"       `I.p` has_scheduled_messages_
         , "can_be_deleted_only_for_self" `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users" `I.p` can_be_deleted_for_all_users_
@@ -162,6 +165,7 @@ instance AT.FromJSON Chat where
         has_protected_content_        <- o A..:?                       "has_protected_content"
         is_translatable_              <- o A..:?                       "is_translatable"
         is_marked_as_unread_          <- o A..:?                       "is_marked_as_unread"
+        view_as_topics_               <- o A..:?                       "view_as_topics"
         has_scheduled_messages_       <- o A..:?                       "has_scheduled_messages"
         can_be_deleted_only_for_self_ <- o A..:?                       "can_be_deleted_only_for_self"
         can_be_deleted_for_all_users_ <- o A..:?                       "can_be_deleted_for_all_users"
@@ -198,6 +202,7 @@ instance AT.FromJSON Chat where
           , has_protected_content        = has_protected_content_
           , is_translatable              = is_translatable_
           , is_marked_as_unread          = is_marked_as_unread_
+          , view_as_topics               = view_as_topics_
           , has_scheduled_messages       = has_scheduled_messages_
           , can_be_deleted_only_for_self = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users = can_be_deleted_for_all_users_

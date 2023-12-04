@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.12.0
+version:        2.0.13.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -134,9 +134,10 @@ library
       TD.Data.ChatSource
       TD.Data.ChatStatistics
       TD.Data.ChatStatisticsAdministratorActionsInfo
+      TD.Data.ChatStatisticsInteractionInfo
       TD.Data.ChatStatisticsInviterInfo
-      TD.Data.ChatStatisticsMessageInteractionInfo
       TD.Data.ChatStatisticsMessageSenderInfo
+      TD.Data.ChatStatisticsObjectType
       TD.Data.ChatTheme
       TD.Data.ChatType
       TD.Data.CheckChatUsernameResult
@@ -231,6 +232,7 @@ library
       TD.Data.InputStoryAreas
       TD.Data.InputStoryAreaType
       TD.Data.InputStoryContent
+      TD.Data.InputTextQuote
       TD.Data.InputThumbnail
       TD.Data.InternalLinkType
       TD.Data.InviteLinkChatType
@@ -350,6 +352,8 @@ library
       TD.Data.PremiumStatePaymentOption
       TD.Data.PremiumStoryFeature
       TD.Data.PrepaidPremiumGiveaway
+      TD.Data.ProfileAccentColor
+      TD.Data.ProfileAccentColors
       TD.Data.ProfilePhoto
       TD.Data.Proxies
       TD.Data.Proxy
@@ -403,10 +407,16 @@ library
       TD.Data.StoryAreaPosition
       TD.Data.StoryAreaType
       TD.Data.StoryContent
+      TD.Data.StoryFullId
       TD.Data.StoryInfo
       TD.Data.StoryInteractionInfo
       TD.Data.StoryList
+      TD.Data.StoryOrigin
       TD.Data.StoryPrivacySettings
+      TD.Data.StoryPublicForward
+      TD.Data.StoryPublicForwards
+      TD.Data.StoryRepostInfo
+      TD.Data.StoryStatistics
       TD.Data.StoryVideo
       TD.Data.StoryViewer
       TD.Data.StoryViewers
@@ -430,6 +440,7 @@ library
       TD.Data.TextEntity
       TD.Data.TextEntityType
       TD.Data.TextParseMode
+      TD.Data.TextQuote
       TD.Data.ThemeParameters
       TD.Data.ThemeSettings
       TD.Data.Thumbnail
@@ -569,6 +580,7 @@ library
       TD.Query.DeleteAllCallMessages
       TD.Query.DeleteAllRevokedChatInviteLinks
       TD.Query.DeleteChat
+      TD.Query.DeleteChatBackground
       TD.Query.DeleteChatFolder
       TD.Query.DeleteChatFolderInviteLink
       TD.Query.DeleteChatHistory
@@ -679,6 +691,8 @@ library
       TD.Query.GetChats
       TD.Query.GetChatScheduledMessages
       TD.Query.GetChatsForChatFolderInviteLink
+      TD.Query.GetChatSimilarChatCount
+      TD.Query.GetChatSimilarChats
       TD.Query.GetChatSparseMessagePositions
       TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
@@ -804,6 +818,8 @@ library
       TD.Query.GetStory
       TD.Query.GetStoryAvailableReactions
       TD.Query.GetStoryNotificationSettingsExceptions
+      TD.Query.GetStoryPublicForwards
+      TD.Query.GetStoryStatistics
       TD.Query.GetStoryViewers
       TD.Query.GetSuggestedFileName
       TD.Query.GetSuggestedStickerSetName
@@ -1035,6 +1051,7 @@ library
       TD.Query.SetPinnedChats
       TD.Query.SetPinnedForumTopics
       TD.Query.SetPollAnswer
+      TD.Query.SetProfileAccentColor
       TD.Query.SetProfilePhoto
       TD.Query.SetRecoveryEmailAddress
       TD.Query.SetScopeNotificationSettings
@@ -1086,6 +1103,7 @@ library
       TD.Query.ToggleChatIsMarkedAsUnread
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleChatIsTranslatable
+      TD.Query.ToggleChatViewAsTopics
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed
       TD.Query.ToggleForumTopicIsPinned

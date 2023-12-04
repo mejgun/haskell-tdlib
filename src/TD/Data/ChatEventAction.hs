@@ -78,7 +78,7 @@ data ChatEventAction
     { old_message_auto_delete_time :: Maybe Int -- ^ Previous value of message_auto_delete_time
     , new_message_auto_delete_time :: Maybe Int -- ^ New value of message_auto_delete_time
     }
-  | ChatEventPermissionsChanged -- ^ The chat permissions was changed
+  | ChatEventPermissionsChanged -- ^ The chat permissions were changed
     { old_permissions :: Maybe ChatPermissions.ChatPermissions -- ^ Previous chat permissions
     , new_permissions :: Maybe ChatPermissions.ChatPermissions -- ^ New chat permissions
     }

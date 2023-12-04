@@ -12,7 +12,7 @@ data StoryViewers
     { total_count          :: Maybe Int                       -- ^ Approximate total number of story viewers found
     , total_reaction_count :: Maybe Int                       -- ^ Approximate total number of reactions set by found story viewers
     , viewers              :: Maybe [StoryViewer.StoryViewer] -- ^ List of story viewers
-    , next_offset          :: Maybe T.Text                    -- ^ The offset for the next request. If empty, there are no more results
+    , next_offset          :: Maybe T.Text                    -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 

@@ -62,6 +62,7 @@ import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Background as Background
 import qualified TD.Data.ChatTheme as ChatTheme
 import qualified TD.Data.AccentColor as AccentColor
+import qualified TD.Data.ProfileAccentColor as ProfileAccentColor
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
 import qualified TD.Data.TermsOfService as TermsOfService
@@ -164,7 +165,7 @@ data Update
     { chat_id                    :: Maybe Int -- ^ Chat identifier
     , background_custom_emoji_id :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the reply header background; 0 if none
     }
-  | UpdateChatPermissions -- ^ Chat permissions was changed
+  | UpdateChatPermissions -- ^ Chat permissions were changed
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
     , permissions :: Maybe ChatPermissions.ChatPermissions -- ^ The new chat permissions
     }
@@ -254,6 +255,10 @@ data Update
   | UpdateChatIsMarkedAsUnread -- ^ A chat was marked as unread or was read
     { chat_id             :: Maybe Int  -- ^ Chat identifier
     , is_marked_as_unread :: Maybe Bool -- ^ New value of is_marked_as_unread
+    }
+  | UpdateChatViewAsTopics -- ^ A chat default appearance has changed
+    { chat_id        :: Maybe Int  -- ^ Chat identifier
+    , view_as_topics :: Maybe Bool -- ^ New value of view_as_topics
     }
   | UpdateChatBlockList -- ^ A chat was blocked or unblocked
     { chat_id    :: Maybe Int                 -- ^ Chat identifier
@@ -458,7 +463,7 @@ data Update
   | UpdateSavedAnimations -- ^ The list of saved animations was updated
     { animation_ids :: Maybe [Int] -- ^ The new list of file identifiers of saved animations
     }
-  | UpdateSavedNotificationSounds -- ^ The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+  | UpdateSavedNotificationSounds -- ^ The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
     { notification_sound_ids :: Maybe [Int] -- ^ The new list of identifiers of saved notification sounds
     }
   | UpdateSelectedBackground -- ^ The selected background has changed
@@ -471,6 +476,10 @@ data Update
   | UpdateAccentColors -- ^ The list of supported accent colors has changed
     { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
     , available_accent_color_ids :: Maybe [Int]                     -- ^ The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    }
+  | UpdateProfileAccentColors -- ^ The list of supported accent colors for user profiles has changed
+    { _colors                    :: Maybe [ProfileAccentColor.ProfileAccentColor] -- ^ Information about supported colors
+    , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor. The colors must be shown in the specififed order
     }
   | UpdateLanguagePackStrings -- ^ Some language pack strings have been updated
     { localization_target :: Maybe T.Text                                  -- ^ Localization target to which the language pack belongs
@@ -501,6 +510,12 @@ data Update
     }
   | UpdateDefaultReactionType -- ^ The type of default reaction has changed
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ The new type of the default reaction
+    }
+  | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
+    { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription
+    , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
+    , left_count         :: Maybe Int -- ^ Number of left speech recognition attempts this week
+    , next_reset_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
     }
   | UpdateDiceEmojis -- ^ The list of supported dice emojis has changed
     { emojis :: Maybe [T.Text] -- ^ The new list of supported dice emojis
@@ -590,7 +605,7 @@ data Update
   | UpdateChatMember -- ^ User rights changed in a chat; for bots only
     { chat_id                     :: Maybe Int                           -- ^ Chat identifier
     , actor_user_id               :: Maybe Int                           -- ^ Identifier of the user, changing the rights
-    , date                        :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the user rights was changed
+    , date                        :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the user rights were changed
     , invite_link                 :: Maybe ChatInviteLink.ChatInviteLink -- ^ If user has joined the chat using an invite link, the invite link; may be null
     , via_chat_folder_invite_link :: Maybe Bool                          -- ^ True, if the user has joined the chat using an invite link for a chat folder
     , old_chat_member             :: Maybe ChatMember.ChatMember         -- ^ Previous chat member
@@ -986,6 +1001,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "chat_id"             `I.p` chat_id_
         , "is_marked_as_unread" `I.p` is_marked_as_unread_
+        ]
+  shortShow UpdateChatViewAsTopics
+    { chat_id        = chat_id_
+    , view_as_topics = view_as_topics_
+    }
+      = "UpdateChatViewAsTopics"
+        ++ I.cc
+        [ "chat_id"        `I.p` chat_id_
+        , "view_as_topics" `I.p` view_as_topics_
         ]
   shortShow UpdateChatBlockList
     { chat_id    = chat_id_
@@ -1474,6 +1498,15 @@ instance I.ShortShow Update where
         [ "colors"                     `I.p` colors_
         , "available_accent_color_ids" `I.p` available_accent_color_ids_
         ]
+  shortShow UpdateProfileAccentColors
+    { _colors                    = _colors_
+    , available_accent_color_ids = available_accent_color_ids_
+    }
+      = "UpdateProfileAccentColors"
+        ++ I.cc
+        [ "_colors"                    `I.p` _colors_
+        , "available_accent_color_ids" `I.p` available_accent_color_ids_
+        ]
   shortShow UpdateLanguagePackStrings
     { localization_target = localization_target_
     , language_pack_id    = language_pack_id_
@@ -1542,6 +1575,19 @@ instance I.ShortShow Update where
       = "UpdateDefaultReactionType"
         ++ I.cc
         [ "reaction_type" `I.p` reaction_type_
+        ]
+  shortShow UpdateSpeechRecognitionTrial
+    { max_media_duration = max_media_duration_
+    , weekly_count       = weekly_count_
+    , left_count         = left_count_
+    , next_reset_date    = next_reset_date_
+    }
+      = "UpdateSpeechRecognitionTrial"
+        ++ I.cc
+        [ "max_media_duration" `I.p` max_media_duration_
+        , "weekly_count"       `I.p` weekly_count_
+        , "left_count"         `I.p` left_count_
+        , "next_reset_date"    `I.p` next_reset_date_
         ]
   shortShow UpdateDiceEmojis
     { emojis = emojis_
@@ -1816,6 +1862,7 @@ instance AT.FromJSON Update where
       "updateChatHasProtectedContent"        -> parseUpdateChatHasProtectedContent v
       "updateChatIsTranslatable"             -> parseUpdateChatIsTranslatable v
       "updateChatIsMarkedAsUnread"           -> parseUpdateChatIsMarkedAsUnread v
+      "updateChatViewAsTopics"               -> parseUpdateChatViewAsTopics v
       "updateChatBlockList"                  -> parseUpdateChatBlockList v
       "updateChatHasScheduledMessages"       -> parseUpdateChatHasScheduledMessages v
       "updateChatFolders"                    -> parseUpdateChatFolders v
@@ -1869,6 +1916,7 @@ instance AT.FromJSON Update where
       "updateSelectedBackground"             -> parseUpdateSelectedBackground v
       "updateChatThemes"                     -> parseUpdateChatThemes v
       "updateAccentColors"                   -> parseUpdateAccentColors v
+      "updateProfileAccentColors"            -> parseUpdateProfileAccentColors v
       "updateLanguagePackStrings"            -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                -> parseUpdateConnectionState v
       "updateTermsOfService"                 -> parseUpdateTermsOfService v
@@ -1878,6 +1926,7 @@ instance AT.FromJSON Update where
       "updateWebAppMessageSent"              -> parseUpdateWebAppMessageSent v
       "updateActiveEmojiReactions"           -> parseUpdateActiveEmojiReactions v
       "updateDefaultReactionType"            -> parseUpdateDefaultReactionType v
+      "updateSpeechRecognitionTrial"         -> parseUpdateSpeechRecognitionTrial v
       "updateDiceEmojis"                     -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"      -> parseUpdateAnimationSearchParameters v
@@ -2237,6 +2286,14 @@ instance AT.FromJSON Update where
         pure $ UpdateChatIsMarkedAsUnread
           { chat_id             = chat_id_
           , is_marked_as_unread = is_marked_as_unread_
+          }
+      parseUpdateChatViewAsTopics :: A.Value -> AT.Parser Update
+      parseUpdateChatViewAsTopics = A.withObject "UpdateChatViewAsTopics" $ \o -> do
+        chat_id_        <- o A..:?  "chat_id"
+        view_as_topics_ <- o A..:?  "view_as_topics"
+        pure $ UpdateChatViewAsTopics
+          { chat_id        = chat_id_
+          , view_as_topics = view_as_topics_
           }
       parseUpdateChatBlockList :: A.Value -> AT.Parser Update
       parseUpdateChatBlockList = A.withObject "UpdateChatBlockList" $ \o -> do
@@ -2672,6 +2729,14 @@ instance AT.FromJSON Update where
           { colors                     = colors_
           , available_accent_color_ids = available_accent_color_ids_
           }
+      parseUpdateProfileAccentColors :: A.Value -> AT.Parser Update
+      parseUpdateProfileAccentColors = A.withObject "UpdateProfileAccentColors" $ \o -> do
+        _colors_                    <- o A..:?  "colors"
+        available_accent_color_ids_ <- o A..:?  "available_accent_color_ids"
+        pure $ UpdateProfileAccentColors
+          { _colors                    = _colors_
+          , available_accent_color_ids = available_accent_color_ids_
+          }
       parseUpdateLanguagePackStrings :: A.Value -> AT.Parser Update
       parseUpdateLanguagePackStrings = A.withObject "UpdateLanguagePackStrings" $ \o -> do
         localization_target_ <- o A..:?  "localization_target"
@@ -2731,6 +2796,18 @@ instance AT.FromJSON Update where
         reaction_type_ <- o A..:?  "reaction_type"
         pure $ UpdateDefaultReactionType
           { reaction_type = reaction_type_
+          }
+      parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
+      parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do
+        max_media_duration_ <- o A..:?  "max_media_duration"
+        weekly_count_       <- o A..:?  "weekly_count"
+        left_count_         <- o A..:?  "left_count"
+        next_reset_date_    <- o A..:?  "next_reset_date"
+        pure $ UpdateSpeechRecognitionTrial
+          { max_media_duration = max_media_duration_
+          , weekly_count       = weekly_count_
+          , left_count         = left_count_
+          , next_reset_date    = next_reset_date_
           }
       parseUpdateDiceEmojis :: A.Value -> AT.Parser Update
       parseUpdateDiceEmojis = A.withObject "UpdateDiceEmojis" $ \o -> do

@@ -11,7 +11,7 @@ data FoundChatBoosts
   = FoundChatBoosts -- ^ Contains a list of boosts applied to a chat
     { total_count :: Maybe Int                   -- ^ Total number of boosts applied to the chat
     , boosts      :: Maybe [ChatBoost.ChatBoost] -- ^ List of boosts
-    , next_offset :: Maybe T.Text                -- ^ The offset for the next request. If empty, there are no more results
+    , next_offset :: Maybe T.Text                -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 

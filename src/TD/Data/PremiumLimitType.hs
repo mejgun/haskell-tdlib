@@ -24,6 +24,7 @@ data PremiumLimitType
   | PremiumLimitTypeMonthlySentStoryCount -- ^ The maximum number of stories sent per month
   | PremiumLimitTypeStoryCaptionLength -- ^ The maximum length of captions of sent stories
   | PremiumLimitTypeStorySuggestedReactionAreaCount -- ^ The maximum number of suggested reaction areas on a story
+  | PremiumLimitTypeSimilarChatCount -- ^ The maximum number of received similar chats
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumLimitType where
@@ -61,6 +62,8 @@ instance I.ShortShow PremiumLimitType where
       = "PremiumLimitTypeStoryCaptionLength"
   shortShow PremiumLimitTypeStorySuggestedReactionAreaCount
       = "PremiumLimitTypeStorySuggestedReactionAreaCount"
+  shortShow PremiumLimitTypeSimilarChatCount
+      = "PremiumLimitTypeSimilarChatCount"
 
 instance AT.FromJSON PremiumLimitType where
   parseJSON (AT.Object obj) = do
@@ -84,6 +87,7 @@ instance AT.FromJSON PremiumLimitType where
       "premiumLimitTypeMonthlySentStoryCount"           -> pure PremiumLimitTypeMonthlySentStoryCount
       "premiumLimitTypeStoryCaptionLength"              -> pure PremiumLimitTypeStoryCaptionLength
       "premiumLimitTypeStorySuggestedReactionAreaCount" -> pure PremiumLimitTypeStorySuggestedReactionAreaCount
+      "premiumLimitTypeSimilarChatCount"                -> pure PremiumLimitTypeSimilarChatCount
       _                                                 -> mempty
     
   parseJSON _ = mempty
@@ -156,5 +160,9 @@ instance AT.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypeStorySuggestedReactionAreaCount
       = A.object
         [ "@type" A..= AT.String "premiumLimitTypeStorySuggestedReactionAreaCount"
+        ]
+  toJSON PremiumLimitTypeSimilarChatCount
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeSimilarChatCount"
         ]
 

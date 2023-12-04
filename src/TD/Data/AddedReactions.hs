@@ -11,7 +11,7 @@ data AddedReactions
   = AddedReactions -- ^ Represents a list of reactions added to a message
     { total_count :: Maybe Int                           -- ^ The total number of found reactions
     , reactions   :: Maybe [AddedReaction.AddedReaction] -- ^ The list of added reactions
-    , next_offset :: Maybe T.Text                        -- ^ The offset for the next request. If empty, there are no more results
+    , next_offset :: Maybe T.Text                        -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 

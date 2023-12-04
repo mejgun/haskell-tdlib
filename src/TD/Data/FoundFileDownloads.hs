@@ -12,7 +12,7 @@ data FoundFileDownloads
   = FoundFileDownloads -- ^ Contains a list of downloaded files, found by a search
     { total_counts :: Maybe DownloadedFileCounts.DownloadedFileCounts -- ^ Total number of suitable files, ignoring offset
     , files        :: Maybe [FileDownload.FileDownload]               -- ^ The list of files
-    , next_offset  :: Maybe T.Text                                    -- ^ The offset for the next request. If empty, there are no more results
+    , next_offset  :: Maybe T.Text                                    -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 

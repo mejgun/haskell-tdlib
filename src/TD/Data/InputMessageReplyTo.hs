@@ -4,14 +4,14 @@ module TD.Data.InputMessageReplyTo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.InputTextQuote as InputTextQuote
 
 -- | Contains information about the message or the story to be replied
 data InputMessageReplyTo
   = InputMessageReplyToMessage -- ^ Describes a message to be replied
-    { chat_id    :: Maybe Int                         -- ^ The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
-    , message_id :: Maybe Int                         -- ^ The identifier of the message to be replied in the same or the specified chat
-    , quote      :: Maybe FormattedText.FormattedText -- ^ Manually chosen quote from the message to be replied; pass null if none; 0-getOption("message_reply_quote_length_max") characters. Must always be null for replies in secret chats. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed to be kept and must be kept in the quote
+    { chat_id    :: Maybe Int                           -- ^ The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    , message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the same or the specified chat
+    , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat

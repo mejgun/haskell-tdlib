@@ -188,6 +188,7 @@ data MessageContent
   | MessageChatSetBackground -- ^ A new background was set in the chat
     { old_background_message_id :: Maybe Int                           -- ^ Identifier of the message with a previously set same background; 0 if none. Can be an identifier of a deleted message
     , background                :: Maybe ChatBackground.ChatBackground -- ^ The new background
+    , only_for_self             :: Maybe Bool                          -- ^ True, if the background was set only for self
     }
   | MessageChatSetTheme -- ^ A theme in the chat has been changed
     { theme_name :: Maybe T.Text -- ^ If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
@@ -265,6 +266,11 @@ data MessageContent
     , winner_count :: Maybe Int                                                 -- ^ Number of users which will receive Telegram Premium subscription gift codes
     , month_count  :: Maybe Int                                                 -- ^ Number of month the Telegram Premium subscription will be active after code activation
     , sticker      :: Maybe Sticker.Sticker                                     -- ^ A sticker to be shown in the message; may be null if unknown
+    }
+  | MessagePremiumGiveawayCompleted -- ^ A Telegram Premium giveaway has been completed for the chat
+    { giveaway_message_id   :: Maybe Int -- ^ Identifier of the message with the giveaway, can be an identifier of a deleted message
+    , winner_count          :: Maybe Int -- ^ Number of winners in the giveaway
+    , unclaimed_prize_count :: Maybe Int -- ^ Number of undistributed prizes
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUserShared -- ^ The current user shared a user, which was requested by the bot
@@ -628,11 +634,13 @@ instance I.ShortShow MessageContent where
   shortShow MessageChatSetBackground
     { old_background_message_id = old_background_message_id_
     , background                = background_
+    , only_for_self             = only_for_self_
     }
       = "MessageChatSetBackground"
         ++ I.cc
         [ "old_background_message_id" `I.p` old_background_message_id_
         , "background"                `I.p` background_
+        , "only_for_self"             `I.p` only_for_self_
         ]
   shortShow MessageChatSetTheme
     { theme_name = theme_name_
@@ -802,6 +810,17 @@ instance I.ShortShow MessageContent where
         , "month_count"  `I.p` month_count_
         , "sticker"      `I.p` sticker_
         ]
+  shortShow MessagePremiumGiveawayCompleted
+    { giveaway_message_id   = giveaway_message_id_
+    , winner_count          = winner_count_
+    , unclaimed_prize_count = unclaimed_prize_count_
+    }
+      = "MessagePremiumGiveawayCompleted"
+        ++ I.cc
+        [ "giveaway_message_id"   `I.p` giveaway_message_id_
+        , "winner_count"          `I.p` winner_count_
+        , "unclaimed_prize_count" `I.p` unclaimed_prize_count_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUserShared
@@ -934,6 +953,7 @@ instance AT.FromJSON MessageContent where
       "messagePremiumGiftCode"              -> parseMessagePremiumGiftCode v
       "messagePremiumGiveawayCreated"       -> pure MessagePremiumGiveawayCreated
       "messagePremiumGiveaway"              -> parseMessagePremiumGiveaway v
+      "messagePremiumGiveawayCompleted"     -> parseMessagePremiumGiveawayCompleted v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUserShared"                   -> parseMessageUserShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1231,9 +1251,11 @@ instance AT.FromJSON MessageContent where
       parseMessageChatSetBackground = A.withObject "MessageChatSetBackground" $ \o -> do
         old_background_message_id_ <- o A..:?  "old_background_message_id"
         background_                <- o A..:?  "background"
+        only_for_self_             <- o A..:?  "only_for_self"
         pure $ MessageChatSetBackground
           { old_background_message_id = old_background_message_id_
           , background                = background_
+          , only_for_self             = only_for_self_
           }
       parseMessageChatSetTheme :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetTheme = A.withObject "MessageChatSetTheme" $ \o -> do
@@ -1386,6 +1408,16 @@ instance AT.FromJSON MessageContent where
           , winner_count = winner_count_
           , month_count  = month_count_
           , sticker      = sticker_
+          }
+      parseMessagePremiumGiveawayCompleted :: A.Value -> AT.Parser MessageContent
+      parseMessagePremiumGiveawayCompleted = A.withObject "MessagePremiumGiveawayCompleted" $ \o -> do
+        giveaway_message_id_   <- o A..:?  "giveaway_message_id"
+        winner_count_          <- o A..:?  "winner_count"
+        unclaimed_prize_count_ <- o A..:?  "unclaimed_prize_count"
+        pure $ MessagePremiumGiveawayCompleted
+          { giveaway_message_id   = giveaway_message_id_
+          , winner_count          = winner_count_
+          , unclaimed_prize_count = unclaimed_prize_count_
           }
       parseMessageUserShared :: A.Value -> AT.Parser MessageContent
       parseMessageUserShared = A.withObject "MessageUserShared" $ \o -> do

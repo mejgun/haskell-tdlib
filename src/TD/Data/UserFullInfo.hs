@@ -23,6 +23,7 @@ data UserFullInfo
     , has_restricted_voice_and_video_note_messages :: Maybe Bool                                        -- ^ True, if voice and video notes can't be sent or forwarded to the user
     , has_pinned_stories                           :: Maybe Bool                                        -- ^ True, if the user has pinned stories
     , need_phone_number_privacy_exception          :: Maybe Bool                                        -- ^ True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
+    , set_chat_background                          :: Maybe Bool                                        -- ^ True, if the user set chat background for both chat users and it wasn't reverted yet
     , bio                                          :: Maybe FormattedText.FormattedText                 -- ^ A short user bio; may be null for bots
     , premium_gift_options                         :: Maybe [PremiumPaymentOption.PremiumPaymentOption] -- ^ The list of available options for gifting Telegram Premium to the user
     , group_in_common_count                        :: Maybe Int                                         -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
@@ -43,6 +44,7 @@ instance I.ShortShow UserFullInfo where
     , has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_
     , has_pinned_stories                           = has_pinned_stories_
     , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
+    , set_chat_background                          = set_chat_background_
     , bio                                          = bio_
     , premium_gift_options                         = premium_gift_options_
     , group_in_common_count                        = group_in_common_count_
@@ -61,6 +63,7 @@ instance I.ShortShow UserFullInfo where
         , "has_restricted_voice_and_video_note_messages" `I.p` has_restricted_voice_and_video_note_messages_
         , "has_pinned_stories"                           `I.p` has_pinned_stories_
         , "need_phone_number_privacy_exception"          `I.p` need_phone_number_privacy_exception_
+        , "set_chat_background"                          `I.p` set_chat_background_
         , "bio"                                          `I.p` bio_
         , "premium_gift_options"                         `I.p` premium_gift_options_
         , "group_in_common_count"                        `I.p` group_in_common_count_
@@ -89,6 +92,7 @@ instance AT.FromJSON UserFullInfo where
         has_restricted_voice_and_video_note_messages_ <- o A..:?  "has_restricted_voice_and_video_note_messages"
         has_pinned_stories_                           <- o A..:?  "has_pinned_stories"
         need_phone_number_privacy_exception_          <- o A..:?  "need_phone_number_privacy_exception"
+        set_chat_background_                          <- o A..:?  "set_chat_background"
         bio_                                          <- o A..:?  "bio"
         premium_gift_options_                         <- o A..:?  "premium_gift_options"
         group_in_common_count_                        <- o A..:?  "group_in_common_count"
@@ -105,6 +109,7 @@ instance AT.FromJSON UserFullInfo where
           , has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_
           , has_pinned_stories                           = has_pinned_stories_
           , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
+          , set_chat_background                          = set_chat_background_
           , bio                                          = bio_
           , premium_gift_options                         = premium_gift_options_
           , group_in_common_count                        = group_in_common_count_

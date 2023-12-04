@@ -8,13 +8,13 @@ import qualified Data.Text as T
 
 -- | Contains information about a file with messages exported from another app
 data MessageFileType
-  = MessageFileTypePrivate -- ^ The messages was exported from a private chat
+  = MessageFileTypePrivate -- ^ The messages were exported from a private chat
     { name :: Maybe T.Text -- ^ Name of the other party; may be empty if unrecognized
     }
-  | MessageFileTypeGroup -- ^ The messages was exported from a group chat
+  | MessageFileTypeGroup -- ^ The messages were exported from a group chat
     { title :: Maybe T.Text -- ^ Title of the group chat; may be empty if unrecognized
     }
-  | MessageFileTypeUnknown -- ^ The messages was exported from a chat of unknown type
+  | MessageFileTypeUnknown -- ^ The messages were exported from a chat of unknown type
   deriving (Eq, Show)
 
 instance I.ShortShow MessageFileType where

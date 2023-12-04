@@ -13,6 +13,10 @@ data MessageSponsorType
     { bot_user_id :: Maybe Int                               -- ^ User identifier of the bot
     , link        :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked
     }
+  | MessageSponsorTypeWebApp -- ^ The sponsor is a web app
+    { web_app_title :: Maybe T.Text                            -- ^ Web App title
+    , link          :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked
+    }
   | MessageSponsorTypePublicChannel -- ^ The sponsor is a public channel chat
     { chat_id :: Maybe Int                               -- ^ Sponsor chat identifier
     , link    :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead
@@ -36,6 +40,15 @@ instance I.ShortShow MessageSponsorType where
         ++ I.cc
         [ "bot_user_id" `I.p` bot_user_id_
         , "link"        `I.p` link_
+        ]
+  shortShow MessageSponsorTypeWebApp
+    { web_app_title = web_app_title_
+    , link          = link_
+    }
+      = "MessageSponsorTypeWebApp"
+        ++ I.cc
+        [ "web_app_title" `I.p` web_app_title_
+        , "link"          `I.p` link_
         ]
   shortShow MessageSponsorTypePublicChannel
     { chat_id = chat_id_
@@ -71,6 +84,7 @@ instance AT.FromJSON MessageSponsorType where
 
     case t of
       "messageSponsorTypeBot"            -> parseMessageSponsorTypeBot v
+      "messageSponsorTypeWebApp"         -> parseMessageSponsorTypeWebApp v
       "messageSponsorTypePublicChannel"  -> parseMessageSponsorTypePublicChannel v
       "messageSponsorTypePrivateChannel" -> parseMessageSponsorTypePrivateChannel v
       "messageSponsorTypeWebsite"        -> parseMessageSponsorTypeWebsite v
@@ -84,6 +98,14 @@ instance AT.FromJSON MessageSponsorType where
         pure $ MessageSponsorTypeBot
           { bot_user_id = bot_user_id_
           , link        = link_
+          }
+      parseMessageSponsorTypeWebApp :: A.Value -> AT.Parser MessageSponsorType
+      parseMessageSponsorTypeWebApp = A.withObject "MessageSponsorTypeWebApp" $ \o -> do
+        web_app_title_ <- o A..:?  "web_app_title"
+        link_          <- o A..:?  "link"
+        pure $ MessageSponsorTypeWebApp
+          { web_app_title = web_app_title_
+          , link          = link_
           }
       parseMessageSponsorTypePublicChannel :: A.Value -> AT.Parser MessageSponsorType
       parseMessageSponsorTypePublicChannel = A.withObject "MessageSponsorTypePublicChannel" $ \o -> do

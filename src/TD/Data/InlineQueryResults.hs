@@ -13,7 +13,7 @@ data InlineQueryResults
     { inline_query_id :: Maybe Int                                               -- ^ Unique identifier of the inline query
     , button          :: Maybe InlineQueryResultsButton.InlineQueryResultsButton -- ^ Button to be shown above inline query results; may be null
     , results         :: Maybe [InlineQueryResult.InlineQueryResult]             -- ^ Results of the query
-    , next_offset     :: Maybe T.Text                                            -- ^ The offset for the next request. If empty, there are no more results
+    , next_offset     :: Maybe T.Text                                            -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 

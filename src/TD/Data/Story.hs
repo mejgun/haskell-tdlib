@@ -4,6 +4,7 @@ module TD.Data.Story
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.StoryRepostInfo as StoryRepostInfo
 import qualified TD.Data.StoryInteractionInfo as StoryInteractionInfo
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
@@ -26,8 +27,10 @@ data Story
     , can_be_forwarded         :: Maybe Bool                                      -- ^ True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
     , can_be_replied           :: Maybe Bool                                      -- ^ True, if the story can be replied in the chat with the story sender
     , can_toggle_is_pinned     :: Maybe Bool                                      -- ^ True, if the story's is_pinned value can be changed
+    , can_get_statistics       :: Maybe Bool                                      -- ^ True, if the story statistics are available through getStoryStatistics
     , can_get_viewers          :: Maybe Bool                                      -- ^ True, if users viewed the story can be received through getStoryViewers
     , has_expired_viewers      :: Maybe Bool                                      -- ^ True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+    , repost_info              :: Maybe StoryRepostInfo.StoryRepostInfo           -- ^ Information about the original story; may be null if the story wasn't reposted
     , interaction_info         :: Maybe StoryInteractionInfo.StoryInteractionInfo -- ^ Information about interactions with the story; may be null if the story isn't owned or there were no interactions
     , chosen_reaction_type     :: Maybe ReactionType.ReactionType                 -- ^ Type of the chosen reaction; may be null if none
     , privacy_settings         :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ Privacy rules affecting story visibility; may be approximate for non-owned stories
@@ -52,8 +55,10 @@ instance I.ShortShow Story where
     , can_be_forwarded         = can_be_forwarded_
     , can_be_replied           = can_be_replied_
     , can_toggle_is_pinned     = can_toggle_is_pinned_
+    , can_get_statistics       = can_get_statistics_
     , can_get_viewers          = can_get_viewers_
     , has_expired_viewers      = has_expired_viewers_
+    , repost_info              = repost_info_
     , interaction_info         = interaction_info_
     , chosen_reaction_type     = chosen_reaction_type_
     , privacy_settings         = privacy_settings_
@@ -76,8 +81,10 @@ instance I.ShortShow Story where
         , "can_be_forwarded"         `I.p` can_be_forwarded_
         , "can_be_replied"           `I.p` can_be_replied_
         , "can_toggle_is_pinned"     `I.p` can_toggle_is_pinned_
+        , "can_get_statistics"       `I.p` can_get_statistics_
         , "can_get_viewers"          `I.p` can_get_viewers_
         , "has_expired_viewers"      `I.p` has_expired_viewers_
+        , "repost_info"              `I.p` repost_info_
         , "interaction_info"         `I.p` interaction_info_
         , "chosen_reaction_type"     `I.p` chosen_reaction_type_
         , "privacy_settings"         `I.p` privacy_settings_
@@ -110,8 +117,10 @@ instance AT.FromJSON Story where
         can_be_forwarded_         <- o A..:?  "can_be_forwarded"
         can_be_replied_           <- o A..:?  "can_be_replied"
         can_toggle_is_pinned_     <- o A..:?  "can_toggle_is_pinned"
+        can_get_statistics_       <- o A..:?  "can_get_statistics"
         can_get_viewers_          <- o A..:?  "can_get_viewers"
         has_expired_viewers_      <- o A..:?  "has_expired_viewers"
+        repost_info_              <- o A..:?  "repost_info"
         interaction_info_         <- o A..:?  "interaction_info"
         chosen_reaction_type_     <- o A..:?  "chosen_reaction_type"
         privacy_settings_         <- o A..:?  "privacy_settings"
@@ -132,8 +141,10 @@ instance AT.FromJSON Story where
           , can_be_forwarded         = can_be_forwarded_
           , can_be_replied           = can_be_replied_
           , can_toggle_is_pinned     = can_toggle_is_pinned_
+          , can_get_statistics       = can_get_statistics_
           , can_get_viewers          = can_get_viewers_
           , has_expired_viewers      = has_expired_viewers_
+          , repost_info              = repost_info_
           , interaction_info         = interaction_info_
           , chosen_reaction_type     = chosen_reaction_type_
           , privacy_settings         = privacy_settings_

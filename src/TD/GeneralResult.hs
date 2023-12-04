@@ -156,6 +156,8 @@ import qualified TD.Data.StorageStatistics as StorageStatistics
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
 import qualified TD.Data.Stories as Stories
 import qualified TD.Data.Story as Story
+import qualified TD.Data.StoryPublicForwards as StoryPublicForwards
+import qualified TD.Data.StoryStatistics as StoryStatistics
 import qualified TD.Data.StoryViewers as StoryViewers
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
@@ -337,6 +339,8 @@ data GeneralResult
     | StorageStatisticsFast              StorageStatisticsFast.StorageStatisticsFast
     | Stories                            Stories.Stories
     | Story                              Story.Story
+    | StoryPublicForwards                StoryPublicForwards.StoryPublicForwards
+    | StoryStatistics                    StoryStatistics.StoryStatistics
     | StoryViewers                       StoryViewers.StoryViewers
     | Supergroup                         Supergroup.Supergroup
     | SupergroupFullInfo                 SupergroupFullInfo.SupergroupFullInfo
@@ -671,6 +675,10 @@ instance I.ShortShow GeneralResult where
     = "Stories" <> " (" <> I.shortShow v <> ")"
   shortShow (Story v)
     = "Story" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryPublicForwards v)
+    = "StoryPublicForwards" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryStatistics v)
+    = "StoryStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (StoryViewers v)
     = "StoryViewers" <> " (" <> I.shortShow v <> ")"
   shortShow (Supergroup v)
@@ -880,6 +888,8 @@ instance T.FromJSON GeneralResult where
     <|> ( StorageStatisticsFast               <$> parseJSON v )
     <|> ( Stories                             <$> parseJSON v )
     <|> ( Story                               <$> parseJSON v )
+    <|> ( StoryPublicForwards                 <$> parseJSON v )
+    <|> ( StoryStatistics                     <$> parseJSON v )
     <|> ( StoryViewers                        <$> parseJSON v )
     <|> ( Supergroup                          <$> parseJSON v )
     <|> ( SupergroupFullInfo                  <$> parseJSON v )
