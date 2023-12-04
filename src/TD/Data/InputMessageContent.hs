@@ -46,7 +46,7 @@ data InputMessageContent
   | InputMessageDocument -- ^ A document message (general file)
     { document                       :: Maybe InputFile.InputFile           -- ^ Document to be sent
     , thumbnail                      :: Maybe InputThumbnail.InputThumbnail -- ^ Document thumbnail; pass null to skip thumbnail uploading
-    , disable_content_type_detection :: Maybe Bool                          -- ^ True, if automatic file type detection is disabled and the document must be sent as a file. Always true for files sent to secret chats
+    , disable_content_type_detection :: Maybe Bool                          -- ^ Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats
     , caption                        :: Maybe FormattedText.FormattedText   -- ^ Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePhoto -- ^ A photo message

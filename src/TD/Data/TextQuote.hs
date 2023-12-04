@@ -9,7 +9,7 @@ import qualified TD.Data.FormattedText as FormattedText
 data TextQuote
   = TextQuote -- ^ Describes manually or automatically chosen quote from another message
     { text      :: Maybe FormattedText.FormattedText -- ^ Text of the quote. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities can be present in the text
-    , position  :: Maybe Int                         -- ^ Approximate quote position in the original message in UTF-16 code units
+    , position  :: Maybe Int                         -- ^ Approximate quote position in the original message in UTF-16 code units as specified by the message sender
     , is_manual :: Maybe Bool                        -- ^ True, if the quote was manually chosen by the message sender
     }
   deriving (Eq, Show)
