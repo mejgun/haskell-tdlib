@@ -253,7 +253,7 @@ data MessageContent
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
-    { creator_id       :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code
+    { creator_id       :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown
     , is_from_giveaway :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
     , is_unclaimed     :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
     , month_count      :: Maybe Int                         -- ^ Number of month the Telegram Premium subscription will be active after code activation
@@ -268,7 +268,7 @@ data MessageContent
     , sticker      :: Maybe Sticker.Sticker                                     -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiveawayCompleted -- ^ A Telegram Premium giveaway has been completed for the chat
-    { giveaway_message_id   :: Maybe Int -- ^ Identifier of the message with the giveaway, can be an identifier of a deleted message
+    { giveaway_message_id   :: Maybe Int -- ^ Identifier of the message with the giveaway; can be 0 if the message was deleted
     , winner_count          :: Maybe Int -- ^ Number of winners in the giveaway
     , unclaimed_prize_count :: Maybe Int -- ^ Number of undistributed prizes
     }
