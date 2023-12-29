@@ -10,6 +10,7 @@ import qualified Data.Text as T
 data PaymentProvider
   = PaymentProviderSmartGlocal -- ^ Smart Glocal payment provider
     { public_token :: Maybe T.Text -- ^ Public payment token
+    , tokenize_url :: Maybe T.Text -- ^ URL for sending card tokenization requests
     }
   | PaymentProviderStripe -- ^ Stripe payment provider
     { publishable_key      :: Maybe T.Text -- ^ Stripe API publishable key
@@ -25,10 +26,12 @@ data PaymentProvider
 instance I.ShortShow PaymentProvider where
   shortShow PaymentProviderSmartGlocal
     { public_token = public_token_
+    , tokenize_url = tokenize_url_
     }
       = "PaymentProviderSmartGlocal"
         ++ I.cc
         [ "public_token" `I.p` public_token_
+        , "tokenize_url" `I.p` tokenize_url_
         ]
   shortShow PaymentProviderStripe
     { publishable_key      = publishable_key_
@@ -65,8 +68,10 @@ instance AT.FromJSON PaymentProvider where
       parsePaymentProviderSmartGlocal :: A.Value -> AT.Parser PaymentProvider
       parsePaymentProviderSmartGlocal = A.withObject "PaymentProviderSmartGlocal" $ \o -> do
         public_token_ <- o A..:?  "public_token"
+        tokenize_url_ <- o A..:?  "tokenize_url"
         pure $ PaymentProviderSmartGlocal
           { public_token = public_token_
+          , tokenize_url = tokenize_url_
           }
       parsePaymentProviderStripe :: A.Value -> AT.Parser PaymentProvider
       parsePaymentProviderStripe = A.withObject "PaymentProviderStripe" $ \o -> do

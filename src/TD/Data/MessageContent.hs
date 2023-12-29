@@ -248,34 +248,51 @@ data MessageContent
     , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
     , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
     , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
-    , cryptocurrency_amount :: Maybe Int             -- ^ The paid amount, in the smallest units of the cryptocurrency
-    , month_count           :: Maybe Int             -- ^ Number of month the Telegram Premium subscription will be active
+    , cryptocurrency_amount :: Maybe Int             -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if none
+    , month_count           :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
-    { creator_id       :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown
-    , is_from_giveaway :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
-    , is_unclaimed     :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
-    , month_count      :: Maybe Int                         -- ^ Number of month the Telegram Premium subscription will be active after code activation
-    , sticker          :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
-    , code             :: Maybe T.Text                      -- ^ The gift code
+    { creator_id            :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown
+    , is_from_giveaway      :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
+    , is_unclaimed          :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
+    , currency              :: Maybe T.Text                      -- ^ Currency for the paid amount; empty if unknown
+    , amount                :: Maybe Int                         -- ^ The paid amount, in the smallest units of the currency; 0 if unknown
+    , cryptocurrency        :: Maybe T.Text                      -- ^ Cryptocurrency used to pay for the gift; may be empty if none or unknown
+    , cryptocurrency_amount :: Maybe Int                         -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if unknown
+    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation
+    , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
+    , code                  :: Maybe T.Text                      -- ^ The gift code
     }
   | MessagePremiumGiveawayCreated -- ^ A Telegram Premium giveaway was created for the chat
   | MessagePremiumGiveaway -- ^ A Telegram Premium giveaway
     { parameters   :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
     , winner_count :: Maybe Int                                                 -- ^ Number of users which will receive Telegram Premium subscription gift codes
-    , month_count  :: Maybe Int                                                 -- ^ Number of month the Telegram Premium subscription will be active after code activation
+    , month_count  :: Maybe Int                                                 -- ^ Number of months the Telegram Premium subscription will be active after code activation
     , sticker      :: Maybe Sticker.Sticker                                     -- ^ A sticker to be shown in the message; may be null if unknown
     }
-  | MessagePremiumGiveawayCompleted -- ^ A Telegram Premium giveaway has been completed for the chat
+  | MessagePremiumGiveawayCompleted -- ^ A Telegram Premium giveaway without public winners has been completed for the chat
     { giveaway_message_id   :: Maybe Int -- ^ Identifier of the message with the giveaway; can be 0 if the message was deleted
     , winner_count          :: Maybe Int -- ^ Number of winners in the giveaway
     , unclaimed_prize_count :: Maybe Int -- ^ Number of undistributed prizes
     }
+  | MessagePremiumGiveawayWinners -- ^ A Telegram Premium giveaway with public winners has been completed for the chat
+    { boosted_chat_id               :: Maybe Int    -- ^ Identifier of the channel chat, which was automatically boosted by the winners of the giveaway for duration of the Premium subscription
+    , giveaway_message_id           :: Maybe Int    -- ^ Identifier of the message with the giveaway in the boosted chat
+    , additional_chat_count         :: Maybe Int    -- ^ Number of other chats that participated in the giveaway
+    , actual_winners_selection_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    , only_new_members              :: Maybe Bool   -- ^ True, if only new members of the chats were eligible for the giveaway
+    , was_refunded                  :: Maybe Bool   -- ^ True, if the giveaway was canceled and was fully refunded
+    , month_count                   :: Maybe Int    -- ^ Number of months the Telegram Premium subscription will be active after code activation
+    , prize_description             :: Maybe T.Text -- ^ Additional description of the giveaway prize
+    , winner_count                  :: Maybe Int    -- ^ Total number of winners in the giveaway
+    , winner_user_ids               :: Maybe [Int]  -- ^ Up to 100 user identifiers of the winners of the giveaway
+    , unclaimed_prize_count         :: Maybe Int    -- ^ Number of undistributed prizes
+    }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
-  | MessageUserShared -- ^ The current user shared a user, which was requested by the bot
-    { user_id   :: Maybe Int -- ^ Identifier of the shared user
-    , button_id :: Maybe Int -- ^ Identifier of the keyboard button with the request
+  | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
+    { user_ids  :: Maybe [Int] -- ^ Identifier of the shared users
+    , button_id :: Maybe Int   -- ^ Identifier of the keyboard button with the request
     }
   | MessageChatShared -- ^ The current user shared a chat, which was requested by the bot
     { chat_id   :: Maybe Int -- ^ Identifier of the shared chat
@@ -779,21 +796,29 @@ instance I.ShortShow MessageContent where
         , "sticker"               `I.p` sticker_
         ]
   shortShow MessagePremiumGiftCode
-    { creator_id       = creator_id_
-    , is_from_giveaway = is_from_giveaway_
-    , is_unclaimed     = is_unclaimed_
-    , month_count      = month_count_
-    , sticker          = sticker_
-    , code             = code_
+    { creator_id            = creator_id_
+    , is_from_giveaway      = is_from_giveaway_
+    , is_unclaimed          = is_unclaimed_
+    , currency              = currency_
+    , amount                = amount_
+    , cryptocurrency        = cryptocurrency_
+    , cryptocurrency_amount = cryptocurrency_amount_
+    , month_count           = month_count_
+    , sticker               = sticker_
+    , code                  = code_
     }
       = "MessagePremiumGiftCode"
         ++ I.cc
-        [ "creator_id"       `I.p` creator_id_
-        , "is_from_giveaway" `I.p` is_from_giveaway_
-        , "is_unclaimed"     `I.p` is_unclaimed_
-        , "month_count"      `I.p` month_count_
-        , "sticker"          `I.p` sticker_
-        , "code"             `I.p` code_
+        [ "creator_id"            `I.p` creator_id_
+        , "is_from_giveaway"      `I.p` is_from_giveaway_
+        , "is_unclaimed"          `I.p` is_unclaimed_
+        , "currency"              `I.p` currency_
+        , "amount"                `I.p` amount_
+        , "cryptocurrency"        `I.p` cryptocurrency_
+        , "cryptocurrency_amount" `I.p` cryptocurrency_amount_
+        , "month_count"           `I.p` month_count_
+        , "sticker"               `I.p` sticker_
+        , "code"                  `I.p` code_
         ]
   shortShow MessagePremiumGiveawayCreated
       = "MessagePremiumGiveawayCreated"
@@ -821,15 +846,42 @@ instance I.ShortShow MessageContent where
         , "winner_count"          `I.p` winner_count_
         , "unclaimed_prize_count" `I.p` unclaimed_prize_count_
         ]
+  shortShow MessagePremiumGiveawayWinners
+    { boosted_chat_id               = boosted_chat_id_
+    , giveaway_message_id           = giveaway_message_id_
+    , additional_chat_count         = additional_chat_count_
+    , actual_winners_selection_date = actual_winners_selection_date_
+    , only_new_members              = only_new_members_
+    , was_refunded                  = was_refunded_
+    , month_count                   = month_count_
+    , prize_description             = prize_description_
+    , winner_count                  = winner_count_
+    , winner_user_ids               = winner_user_ids_
+    , unclaimed_prize_count         = unclaimed_prize_count_
+    }
+      = "MessagePremiumGiveawayWinners"
+        ++ I.cc
+        [ "boosted_chat_id"               `I.p` boosted_chat_id_
+        , "giveaway_message_id"           `I.p` giveaway_message_id_
+        , "additional_chat_count"         `I.p` additional_chat_count_
+        , "actual_winners_selection_date" `I.p` actual_winners_selection_date_
+        , "only_new_members"              `I.p` only_new_members_
+        , "was_refunded"                  `I.p` was_refunded_
+        , "month_count"                   `I.p` month_count_
+        , "prize_description"             `I.p` prize_description_
+        , "winner_count"                  `I.p` winner_count_
+        , "winner_user_ids"               `I.p` winner_user_ids_
+        , "unclaimed_prize_count"         `I.p` unclaimed_prize_count_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
-  shortShow MessageUserShared
-    { user_id   = user_id_
+  shortShow MessageUsersShared
+    { user_ids  = user_ids_
     , button_id = button_id_
     }
-      = "MessageUserShared"
+      = "MessageUsersShared"
         ++ I.cc
-        [ "user_id"   `I.p` user_id_
+        [ "user_ids"  `I.p` user_ids_
         , "button_id" `I.p` button_id_
         ]
   shortShow MessageChatShared
@@ -954,8 +1006,9 @@ instance AT.FromJSON MessageContent where
       "messagePremiumGiveawayCreated"       -> pure MessagePremiumGiveawayCreated
       "messagePremiumGiveaway"              -> parseMessagePremiumGiveaway v
       "messagePremiumGiveawayCompleted"     -> parseMessagePremiumGiveawayCompleted v
+      "messagePremiumGiveawayWinners"       -> parseMessagePremiumGiveawayWinners v
       "messageContactRegistered"            -> pure MessageContactRegistered
-      "messageUserShared"                   -> parseMessageUserShared v
+      "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
       "messageBotWriteAccessAllowed"        -> parseMessageBotWriteAccessAllowed v
       "messageWebAppDataSent"               -> parseMessageWebAppDataSent v
@@ -1383,19 +1436,27 @@ instance AT.FromJSON MessageContent where
           }
       parseMessagePremiumGiftCode :: A.Value -> AT.Parser MessageContent
       parseMessagePremiumGiftCode = A.withObject "MessagePremiumGiftCode" $ \o -> do
-        creator_id_       <- o A..:?  "creator_id"
-        is_from_giveaway_ <- o A..:?  "is_from_giveaway"
-        is_unclaimed_     <- o A..:?  "is_unclaimed"
-        month_count_      <- o A..:?  "month_count"
-        sticker_          <- o A..:?  "sticker"
-        code_             <- o A..:?  "code"
+        creator_id_            <- o A..:?                       "creator_id"
+        is_from_giveaway_      <- o A..:?                       "is_from_giveaway"
+        is_unclaimed_          <- o A..:?                       "is_unclaimed"
+        currency_              <- o A..:?                       "currency"
+        amount_                <- o A..:?                       "amount"
+        cryptocurrency_        <- o A..:?                       "cryptocurrency"
+        cryptocurrency_amount_ <- fmap I.readInt64 <$> o A..:?  "cryptocurrency_amount"
+        month_count_           <- o A..:?                       "month_count"
+        sticker_               <- o A..:?                       "sticker"
+        code_                  <- o A..:?                       "code"
         pure $ MessagePremiumGiftCode
-          { creator_id       = creator_id_
-          , is_from_giveaway = is_from_giveaway_
-          , is_unclaimed     = is_unclaimed_
-          , month_count      = month_count_
-          , sticker          = sticker_
-          , code             = code_
+          { creator_id            = creator_id_
+          , is_from_giveaway      = is_from_giveaway_
+          , is_unclaimed          = is_unclaimed_
+          , currency              = currency_
+          , amount                = amount_
+          , cryptocurrency        = cryptocurrency_
+          , cryptocurrency_amount = cryptocurrency_amount_
+          , month_count           = month_count_
+          , sticker               = sticker_
+          , code                  = code_
           }
       parseMessagePremiumGiveaway :: A.Value -> AT.Parser MessageContent
       parseMessagePremiumGiveaway = A.withObject "MessagePremiumGiveaway" $ \o -> do
@@ -1419,12 +1480,38 @@ instance AT.FromJSON MessageContent where
           , winner_count          = winner_count_
           , unclaimed_prize_count = unclaimed_prize_count_
           }
-      parseMessageUserShared :: A.Value -> AT.Parser MessageContent
-      parseMessageUserShared = A.withObject "MessageUserShared" $ \o -> do
-        user_id_   <- o A..:?  "user_id"
+      parseMessagePremiumGiveawayWinners :: A.Value -> AT.Parser MessageContent
+      parseMessagePremiumGiveawayWinners = A.withObject "MessagePremiumGiveawayWinners" $ \o -> do
+        boosted_chat_id_               <- o A..:?  "boosted_chat_id"
+        giveaway_message_id_           <- o A..:?  "giveaway_message_id"
+        additional_chat_count_         <- o A..:?  "additional_chat_count"
+        actual_winners_selection_date_ <- o A..:?  "actual_winners_selection_date"
+        only_new_members_              <- o A..:?  "only_new_members"
+        was_refunded_                  <- o A..:?  "was_refunded"
+        month_count_                   <- o A..:?  "month_count"
+        prize_description_             <- o A..:?  "prize_description"
+        winner_count_                  <- o A..:?  "winner_count"
+        winner_user_ids_               <- o A..:?  "winner_user_ids"
+        unclaimed_prize_count_         <- o A..:?  "unclaimed_prize_count"
+        pure $ MessagePremiumGiveawayWinners
+          { boosted_chat_id               = boosted_chat_id_
+          , giveaway_message_id           = giveaway_message_id_
+          , additional_chat_count         = additional_chat_count_
+          , actual_winners_selection_date = actual_winners_selection_date_
+          , only_new_members              = only_new_members_
+          , was_refunded                  = was_refunded_
+          , month_count                   = month_count_
+          , prize_description             = prize_description_
+          , winner_count                  = winner_count_
+          , winner_user_ids               = winner_user_ids_
+          , unclaimed_prize_count         = unclaimed_prize_count_
+          }
+      parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
+      parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do
+        user_ids_  <- o A..:?  "user_ids"
         button_id_ <- o A..:?  "button_id"
-        pure $ MessageUserShared
-          { user_id   = user_id_
+        pure $ MessageUsersShared
+          { user_ids  = user_ids_
           , button_id = button_id_
           }
       parseMessageChatShared :: A.Value -> AT.Parser MessageContent

@@ -9,7 +9,7 @@ import qualified TD.Data.Background as Background
 data ChatBackground
   = ChatBackground -- ^ Describes a background set for a specific chat
     { background         :: Maybe Background.Background -- ^ The background
-    , dark_theme_dimming :: Maybe Int                   -- ^ Dimming of the background in dark themes, as a percentage; 0-100
+    , dark_theme_dimming :: Maybe Int                   -- ^ Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
     }
   deriving (Eq, Show)
 

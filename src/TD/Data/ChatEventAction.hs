@@ -9,7 +9,9 @@ import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
+import qualified TD.Data.ChatBackground as ChatBackground
 import qualified Data.Text as T
+import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPhoto as ChatPhoto
@@ -62,9 +64,17 @@ data ChatEventAction
     { old_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Previous chat available reactions
     , new_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ New chat available reactions
     }
+  | ChatEventBackgroundChanged -- ^ The chat background was changed
+    { old_background :: Maybe ChatBackground.ChatBackground -- ^ Previous background; may be null if none
+    , new_background :: Maybe ChatBackground.ChatBackground -- ^ New background; may be null if none
+    }
   | ChatEventDescriptionChanged -- ^ The chat description was changed
     { old_description :: Maybe T.Text -- ^ Previous chat description
     , new_description :: Maybe T.Text -- ^ New chat description
+    }
+  | ChatEventEmojiStatusChanged -- ^ The chat emoji status was changed
+    { old_emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ Previous emoji status; may be null if none
+    , new_emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ New emoji status; may be null if none
     }
   | ChatEventLinkedChatChanged -- ^ The linked chat of a supergroup was changed
     { old_linked_chat_id :: Maybe Int -- ^ Previous supergroup linked chat identifier
@@ -106,13 +116,17 @@ data ChatEventAction
     { old_usernames :: Maybe [T.Text] -- ^ Previous list of active usernames
     , new_usernames :: Maybe [T.Text] -- ^ New list of active usernames
     }
-  | ChatEventAccentColorChanged -- ^ The chat accent color was changed
-    { old_accent_color_id :: Maybe Int -- ^ Previous identifier of chat accent color
-    , new_accent_color_id :: Maybe Int -- ^ New identifier of chat accent color
-    }
-  | ChatEventBackgroundCustomEmojiChanged -- ^ The chat's custom emoji for reply background was changed
-    { old_background_custom_emoji_id :: Maybe Int -- ^ Previous identifier of the custom emoji; 0 if none
+  | ChatEventAccentColorChanged -- ^ The chat accent color or background custom emoji were changed
+    { old_accent_color_id            :: Maybe Int -- ^ Previous identifier of chat accent color
+    , old_background_custom_emoji_id :: Maybe Int -- ^ Previous identifier of the custom emoji; 0 if none
+    , new_accent_color_id            :: Maybe Int -- ^ New identifier of chat accent color
     , new_background_custom_emoji_id :: Maybe Int -- ^ New identifier of the custom emoji; 0 if none
+    }
+  | ChatEventProfileAccentColorChanged -- ^ The chat's profile accent color or profile background custom emoji were changed
+    { old_profile_accent_color_id            :: Maybe Int -- ^ Previous identifier of chat's profile accent color; -1 if none
+    , old_profile_background_custom_emoji_id :: Maybe Int -- ^ Previous identifier of the custom emoji; 0 if none
+    , new_profile_accent_color_id            :: Maybe Int -- ^ New identifier of chat's profile accent color; -1 if none
+    , new_profile_background_custom_emoji_id :: Maybe Int -- ^ New identifier of the custom emoji; 0 if none
     }
   | ChatEventHasProtectedContentToggled -- ^ The has_protected_content setting of a channel was toggled
     { has_protected_content :: Maybe Bool -- ^ New value of has_protected_content
@@ -283,6 +297,15 @@ instance I.ShortShow ChatEventAction where
         [ "old_available_reactions" `I.p` old_available_reactions_
         , "new_available_reactions" `I.p` new_available_reactions_
         ]
+  shortShow ChatEventBackgroundChanged
+    { old_background = old_background_
+    , new_background = new_background_
+    }
+      = "ChatEventBackgroundChanged"
+        ++ I.cc
+        [ "old_background" `I.p` old_background_
+        , "new_background" `I.p` new_background_
+        ]
   shortShow ChatEventDescriptionChanged
     { old_description = old_description_
     , new_description = new_description_
@@ -291,6 +314,15 @@ instance I.ShortShow ChatEventAction where
         ++ I.cc
         [ "old_description" `I.p` old_description_
         , "new_description" `I.p` new_description_
+        ]
+  shortShow ChatEventEmojiStatusChanged
+    { old_emoji_status = old_emoji_status_
+    , new_emoji_status = new_emoji_status_
+    }
+      = "ChatEventEmojiStatusChanged"
+        ++ I.cc
+        [ "old_emoji_status" `I.p` old_emoji_status_
+        , "new_emoji_status" `I.p` new_emoji_status_
         ]
   shortShow ChatEventLinkedChatChanged
     { old_linked_chat_id = old_linked_chat_id_
@@ -383,22 +415,30 @@ instance I.ShortShow ChatEventAction where
         , "new_usernames" `I.p` new_usernames_
         ]
   shortShow ChatEventAccentColorChanged
-    { old_accent_color_id = old_accent_color_id_
-    , new_accent_color_id = new_accent_color_id_
+    { old_accent_color_id            = old_accent_color_id_
+    , old_background_custom_emoji_id = old_background_custom_emoji_id_
+    , new_accent_color_id            = new_accent_color_id_
+    , new_background_custom_emoji_id = new_background_custom_emoji_id_
     }
       = "ChatEventAccentColorChanged"
         ++ I.cc
-        [ "old_accent_color_id" `I.p` old_accent_color_id_
-        , "new_accent_color_id" `I.p` new_accent_color_id_
-        ]
-  shortShow ChatEventBackgroundCustomEmojiChanged
-    { old_background_custom_emoji_id = old_background_custom_emoji_id_
-    , new_background_custom_emoji_id = new_background_custom_emoji_id_
-    }
-      = "ChatEventBackgroundCustomEmojiChanged"
-        ++ I.cc
-        [ "old_background_custom_emoji_id" `I.p` old_background_custom_emoji_id_
+        [ "old_accent_color_id"            `I.p` old_accent_color_id_
+        , "old_background_custom_emoji_id" `I.p` old_background_custom_emoji_id_
+        , "new_accent_color_id"            `I.p` new_accent_color_id_
         , "new_background_custom_emoji_id" `I.p` new_background_custom_emoji_id_
+        ]
+  shortShow ChatEventProfileAccentColorChanged
+    { old_profile_accent_color_id            = old_profile_accent_color_id_
+    , old_profile_background_custom_emoji_id = old_profile_background_custom_emoji_id_
+    , new_profile_accent_color_id            = new_profile_accent_color_id_
+    , new_profile_background_custom_emoji_id = new_profile_background_custom_emoji_id_
+    }
+      = "ChatEventProfileAccentColorChanged"
+        ++ I.cc
+        [ "old_profile_accent_color_id"            `I.p` old_profile_accent_color_id_
+        , "old_profile_background_custom_emoji_id" `I.p` old_profile_background_custom_emoji_id_
+        , "new_profile_accent_color_id"            `I.p` new_profile_accent_color_id_
+        , "new_profile_background_custom_emoji_id" `I.p` new_profile_background_custom_emoji_id_
         ]
   shortShow ChatEventHasProtectedContentToggled
     { has_protected_content = has_protected_content_
@@ -569,7 +609,9 @@ instance AT.FromJSON ChatEventAction where
       "chatEventMemberPromoted"                         -> parseChatEventMemberPromoted v
       "chatEventMemberRestricted"                       -> parseChatEventMemberRestricted v
       "chatEventAvailableReactionsChanged"              -> parseChatEventAvailableReactionsChanged v
+      "chatEventBackgroundChanged"                      -> parseChatEventBackgroundChanged v
       "chatEventDescriptionChanged"                     -> parseChatEventDescriptionChanged v
+      "chatEventEmojiStatusChanged"                     -> parseChatEventEmojiStatusChanged v
       "chatEventLinkedChatChanged"                      -> parseChatEventLinkedChatChanged v
       "chatEventLocationChanged"                        -> parseChatEventLocationChanged v
       "chatEventMessageAutoDeleteTimeChanged"           -> parseChatEventMessageAutoDeleteTimeChanged v
@@ -581,7 +623,7 @@ instance AT.FromJSON ChatEventAction where
       "chatEventUsernameChanged"                        -> parseChatEventUsernameChanged v
       "chatEventActiveUsernamesChanged"                 -> parseChatEventActiveUsernamesChanged v
       "chatEventAccentColorChanged"                     -> parseChatEventAccentColorChanged v
-      "chatEventBackgroundCustomEmojiChanged"           -> parseChatEventBackgroundCustomEmojiChanged v
+      "chatEventProfileAccentColorChanged"              -> parseChatEventProfileAccentColorChanged v
       "chatEventHasProtectedContentToggled"             -> parseChatEventHasProtectedContentToggled v
       "chatEventInvitesToggled"                         -> parseChatEventInvitesToggled v
       "chatEventIsAllHistoryAvailableToggled"           -> parseChatEventIsAllHistoryAvailableToggled v
@@ -691,6 +733,14 @@ instance AT.FromJSON ChatEventAction where
           { old_available_reactions = old_available_reactions_
           , new_available_reactions = new_available_reactions_
           }
+      parseChatEventBackgroundChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventBackgroundChanged = A.withObject "ChatEventBackgroundChanged" $ \o -> do
+        old_background_ <- o A..:?  "old_background"
+        new_background_ <- o A..:?  "new_background"
+        pure $ ChatEventBackgroundChanged
+          { old_background = old_background_
+          , new_background = new_background_
+          }
       parseChatEventDescriptionChanged :: A.Value -> AT.Parser ChatEventAction
       parseChatEventDescriptionChanged = A.withObject "ChatEventDescriptionChanged" $ \o -> do
         old_description_ <- o A..:?  "old_description"
@@ -698,6 +748,14 @@ instance AT.FromJSON ChatEventAction where
         pure $ ChatEventDescriptionChanged
           { old_description = old_description_
           , new_description = new_description_
+          }
+      parseChatEventEmojiStatusChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventEmojiStatusChanged = A.withObject "ChatEventEmojiStatusChanged" $ \o -> do
+        old_emoji_status_ <- o A..:?  "old_emoji_status"
+        new_emoji_status_ <- o A..:?  "new_emoji_status"
+        pure $ ChatEventEmojiStatusChanged
+          { old_emoji_status = old_emoji_status_
+          , new_emoji_status = new_emoji_status_
           }
       parseChatEventLinkedChatChanged :: A.Value -> AT.Parser ChatEventAction
       parseChatEventLinkedChatChanged = A.withObject "ChatEventLinkedChatChanged" $ \o -> do
@@ -781,19 +839,27 @@ instance AT.FromJSON ChatEventAction where
           }
       parseChatEventAccentColorChanged :: A.Value -> AT.Parser ChatEventAction
       parseChatEventAccentColorChanged = A.withObject "ChatEventAccentColorChanged" $ \o -> do
-        old_accent_color_id_ <- o A..:?  "old_accent_color_id"
-        new_accent_color_id_ <- o A..:?  "new_accent_color_id"
-        pure $ ChatEventAccentColorChanged
-          { old_accent_color_id = old_accent_color_id_
-          , new_accent_color_id = new_accent_color_id_
-          }
-      parseChatEventBackgroundCustomEmojiChanged :: A.Value -> AT.Parser ChatEventAction
-      parseChatEventBackgroundCustomEmojiChanged = A.withObject "ChatEventBackgroundCustomEmojiChanged" $ \o -> do
+        old_accent_color_id_            <- o A..:?                       "old_accent_color_id"
         old_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "old_background_custom_emoji_id"
+        new_accent_color_id_            <- o A..:?                       "new_accent_color_id"
         new_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "new_background_custom_emoji_id"
-        pure $ ChatEventBackgroundCustomEmojiChanged
-          { old_background_custom_emoji_id = old_background_custom_emoji_id_
+        pure $ ChatEventAccentColorChanged
+          { old_accent_color_id            = old_accent_color_id_
+          , old_background_custom_emoji_id = old_background_custom_emoji_id_
+          , new_accent_color_id            = new_accent_color_id_
           , new_background_custom_emoji_id = new_background_custom_emoji_id_
+          }
+      parseChatEventProfileAccentColorChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventProfileAccentColorChanged = A.withObject "ChatEventProfileAccentColorChanged" $ \o -> do
+        old_profile_accent_color_id_            <- o A..:?                       "old_profile_accent_color_id"
+        old_profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "old_profile_background_custom_emoji_id"
+        new_profile_accent_color_id_            <- o A..:?                       "new_profile_accent_color_id"
+        new_profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "new_profile_background_custom_emoji_id"
+        pure $ ChatEventProfileAccentColorChanged
+          { old_profile_accent_color_id            = old_profile_accent_color_id_
+          , old_profile_background_custom_emoji_id = old_profile_background_custom_emoji_id_
+          , new_profile_accent_color_id            = new_profile_accent_color_id_
+          , new_profile_background_custom_emoji_id = new_profile_background_custom_emoji_id_
           }
       parseChatEventHasProtectedContentToggled :: A.Value -> AT.Parser ChatEventAction
       parseChatEventHasProtectedContentToggled = A.withObject "ChatEventHasProtectedContentToggled" $ \o -> do

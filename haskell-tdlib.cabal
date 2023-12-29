@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.16.0
+version:        2.0.17.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -85,6 +85,8 @@ library
       TD.Data.ChatAvailableReactions
       TD.Data.ChatBackground
       TD.Data.ChatBoost
+      TD.Data.ChatBoostFeatures
+      TD.Data.ChatBoostLevelFeatures
       TD.Data.ChatBoostLink
       TD.Data.ChatBoostLinkInfo
       TD.Data.ChatBoostSlot
@@ -359,6 +361,8 @@ library
       TD.Data.Proxy
       TD.Data.ProxyType
       TD.Data.PublicChatType
+      TD.Data.PublicForward
+      TD.Data.PublicForwards
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
       TD.Data.ReactionType
@@ -409,17 +413,16 @@ library
       TD.Data.StoryContent
       TD.Data.StoryFullId
       TD.Data.StoryInfo
+      TD.Data.StoryInteraction
       TD.Data.StoryInteractionInfo
+      TD.Data.StoryInteractions
+      TD.Data.StoryInteractionType
       TD.Data.StoryList
       TD.Data.StoryOrigin
       TD.Data.StoryPrivacySettings
-      TD.Data.StoryPublicForward
-      TD.Data.StoryPublicForwards
       TD.Data.StoryRepostInfo
       TD.Data.StoryStatistics
       TD.Data.StoryVideo
-      TD.Data.StoryViewer
-      TD.Data.StoryViewers
       TD.Data.SuggestedAction
       TD.Data.Supergroup
       TD.Data.SupergroupFullInfo
@@ -482,7 +485,6 @@ library
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
       TD.Query.ActivateStoryStealthMode
-      TD.Query.AddApplicationChangelog
       TD.Query.AddChatFolderByInviteLink
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
@@ -588,6 +590,7 @@ library
       TD.Query.DeleteChatMessagesBySender
       TD.Query.DeleteChatReplyMarkup
       TD.Query.DeleteCommands
+      TD.Query.DeleteDefaultBackground
       TD.Query.DeleteFile
       TD.Query.DeleteForumTopic
       TD.Query.DeleteLanguagePack
@@ -646,7 +649,6 @@ library
       TD.Query.GetAutoDownloadSettingsPresets
       TD.Query.GetAutosaveSettings
       TD.Query.GetAvailableChatBoostSlots
-      TD.Query.GetBackgrounds
       TD.Query.GetBackgroundUrl
       TD.Query.GetBankCardInfo
       TD.Query.GetBasicGroup
@@ -662,6 +664,8 @@ library
       TD.Query.GetChatAdministrators
       TD.Query.GetChatArchivedStories
       TD.Query.GetChatAvailableMessageSenders
+      TD.Query.GetChatBoostFeatures
+      TD.Query.GetChatBoostLevelFeatures
       TD.Query.GetChatBoostLink
       TD.Query.GetChatBoostLinkInfo
       TD.Query.GetChatBoosts
@@ -696,6 +700,7 @@ library
       TD.Query.GetChatSparseMessagePositions
       TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
+      TD.Query.GetChatStoryInteractions
       TD.Query.GetChatsToSendStories
       TD.Query.GetCloseFriends
       TD.Query.GetCommands
@@ -710,10 +715,12 @@ library
       TD.Query.GetDatabaseStatistics
       TD.Query.GetDeepLinkInfo
       TD.Query.GetDefaultBackgroundCustomEmojiStickers
+      TD.Query.GetDefaultChatEmojiStatuses
       TD.Query.GetDefaultChatPhotoCustomEmojiStickers
       TD.Query.GetDefaultEmojiStatuses
       TD.Query.GetDefaultMessageAutoDeleteTime
       TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
+      TD.Query.GetDisallowedChatEmojiStatuses
       TD.Query.GetEmojiCategories
       TD.Query.GetEmojiReaction
       TD.Query.GetEmojiSuggestionsUrl
@@ -738,6 +745,7 @@ library
       TD.Query.GetInactiveSupergroupChats
       TD.Query.GetInlineGameHighScores
       TD.Query.GetInlineQueryResults
+      TD.Query.GetInstalledBackgrounds
       TD.Query.GetInstalledStickerSets
       TD.Query.GetInternalLink
       TD.Query.GetInternalLinkType
@@ -817,10 +825,10 @@ library
       TD.Query.GetStorageStatisticsFast
       TD.Query.GetStory
       TD.Query.GetStoryAvailableReactions
+      TD.Query.GetStoryInteractions
       TD.Query.GetStoryNotificationSettingsExceptions
       TD.Query.GetStoryPublicForwards
       TD.Query.GetStoryStatistics
-      TD.Query.GetStoryViewers
       TD.Query.GetSuggestedFileName
       TD.Query.GetSuggestedStickerSetName
       TD.Query.GetSuitableDiscussionChats
@@ -831,6 +839,7 @@ library
       TD.Query.GetSupportUser
       TD.Query.GetTemporaryPasswordState
       TD.Query.GetTextEntities
+      TD.Query.GetThemedChatEmojiStatuses
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTopChats
@@ -863,6 +872,7 @@ library
       TD.Query.LoadGroupCallParticipants
       TD.Query.LogOut
       TD.Query.OpenChat
+      TD.Query.OpenChatSimilarChat
       TD.Query.OpenMessageContent
       TD.Query.OpenStory
       TD.Query.OpenWebApp
@@ -889,11 +899,11 @@ library
       TD.Query.RegisterDevice
       TD.Query.RegisterUser
       TD.Query.RemoveAllFilesFromDownloads
-      TD.Query.RemoveBackground
       TD.Query.RemoveChatActionBar
       TD.Query.RemoveContacts
       TD.Query.RemoveFavoriteSticker
       TD.Query.RemoveFileFromDownloads
+      TD.Query.RemoveInstalledBackground
       TD.Query.RemoveMessageReaction
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
@@ -931,7 +941,7 @@ library
       TD.Query.ResendRecoveryEmailAddressCode
       TD.Query.ResetAllNotificationSettings
       TD.Query.ResetAuthenticationEmailAddress
-      TD.Query.ResetBackgrounds
+      TD.Query.ResetInstalledBackgrounds
       TD.Query.ResetNetworkStatistics
       TD.Query.ResetPassword
       TD.Query.RevokeChatInviteLink
@@ -991,7 +1001,6 @@ library
       TD.Query.SetAuthenticationPhoneNumber
       TD.Query.SetAutoDownloadSettings
       TD.Query.SetAutosaveSettings
-      TD.Query.SetBackground
       TD.Query.SetBio
       TD.Query.SetBotInfoDescription
       TD.Query.SetBotInfoShortDescription
@@ -1006,6 +1015,7 @@ library
       TD.Query.SetChatDescription
       TD.Query.SetChatDiscussionGroup
       TD.Query.SetChatDraftMessage
+      TD.Query.SetChatEmojiStatus
       TD.Query.SetChatLocation
       TD.Query.SetChatMemberStatus
       TD.Query.SetChatMessageAutoDeleteTime
@@ -1013,6 +1023,7 @@ library
       TD.Query.SetChatNotificationSettings
       TD.Query.SetChatPermissions
       TD.Query.SetChatPhoto
+      TD.Query.SetChatProfileAccentColor
       TD.Query.SetChatSlowModeDelay
       TD.Query.SetChatTheme
       TD.Query.SetChatTitle
@@ -1022,6 +1033,7 @@ library
       TD.Query.SetCustomLanguagePack
       TD.Query.SetCustomLanguagePackString
       TD.Query.SetDatabaseEncryptionKey
+      TD.Query.SetDefaultBackground
       TD.Query.SetDefaultChannelAdministratorRights
       TD.Query.SetDefaultGroupAdministratorRights
       TD.Query.SetDefaultMessageAutoDeleteTime
@@ -1041,6 +1053,7 @@ library
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
       TD.Query.SetMenuButton
+      TD.Query.SetMessageReactions
       TD.Query.SetMessageSenderBlockList
       TD.Query.SetName
       TD.Query.SetNetworkType
@@ -1073,7 +1086,7 @@ library
       TD.Query.SetVideoChatDefaultParticipant
       TD.Query.ShareChatWithBot
       TD.Query.SharePhoneNumber
-      TD.Query.ShareUserWithBot
+      TD.Query.ShareUsersWithBot
       TD.Query.StartGroupCallRecording
       TD.Query.StartGroupCallScreenSharing
       TD.Query.StartScheduledGroupCall

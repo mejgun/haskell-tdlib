@@ -1,5 +1,5 @@
-module TD.Query.RemoveBackground
-  (RemoveBackground(..)
+module TD.Query.RemoveInstalledBackground
+  (RemoveInstalledBackground(..)
   ) where
 
 import qualified Data.Aeson as A
@@ -7,29 +7,29 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
 -- | Removes background from the list of installed backgrounds. Returns 'TD.Data.Ok.Ok'
-data RemoveBackground
-  = RemoveBackground
+data RemoveInstalledBackground
+  = RemoveInstalledBackground
     { background_id :: Maybe Int -- ^ The background identifier
     }
   deriving (Eq, Show)
 
-instance I.ShortShow RemoveBackground where
+instance I.ShortShow RemoveInstalledBackground where
   shortShow
-    RemoveBackground
+    RemoveInstalledBackground
       { background_id = background_id_
       }
-        = "RemoveBackground"
+        = "RemoveInstalledBackground"
           ++ I.cc
           [ "background_id" `I.p` background_id_
           ]
 
-instance AT.ToJSON RemoveBackground where
+instance AT.ToJSON RemoveInstalledBackground where
   toJSON
-    RemoveBackground
+    RemoveInstalledBackground
       { background_id = background_id_
       }
         = A.object
-          [ "@type"         A..= AT.String "removeBackground"
+          [ "@type"         A..= AT.String "removeInstalledBackground"
           , "background_id" A..= fmap I.writeInt64  background_id_
           ]
 

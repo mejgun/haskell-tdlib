@@ -9,7 +9,7 @@ data PrepaidPremiumGiveaway
   = PrepaidPremiumGiveaway -- ^ Describes a prepaid Telegram Premium giveaway
     { _id          :: Maybe Int -- ^ Unique identifier of the prepaid giveaway
     , winner_count :: Maybe Int -- ^ Number of users which will receive Telegram Premium subscription gift codes
-    , month_count  :: Maybe Int -- ^ Number of month the Telegram Premium subscription will be active after code activation
+    , month_count  :: Maybe Int -- ^ Number of months the Telegram Premium subscription will be active after code activation
     , payment_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the giveaway was paid
     }
   deriving (Eq, Show)

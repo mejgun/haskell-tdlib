@@ -22,6 +22,10 @@ data StoryAreaType
     , is_dark       :: Maybe Bool                      -- ^ True, if reaction has a dark background
     , is_flipped    :: Maybe Bool                      -- ^ True, if reaction corner is flipped
     }
+  | StoryAreaTypeMessage -- ^ An area pointing to a message
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message
+    , message_id :: Maybe Int -- ^ Identifier of the message
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow StoryAreaType where
@@ -52,6 +56,15 @@ instance I.ShortShow StoryAreaType where
         , "is_dark"       `I.p` is_dark_
         , "is_flipped"    `I.p` is_flipped_
         ]
+  shortShow StoryAreaTypeMessage
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    }
+      = "StoryAreaTypeMessage"
+        ++ I.cc
+        [ "chat_id"    `I.p` chat_id_
+        , "message_id" `I.p` message_id_
+        ]
 
 instance AT.FromJSON StoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -61,6 +74,7 @@ instance AT.FromJSON StoryAreaType where
       "storyAreaTypeLocation"          -> parseStoryAreaTypeLocation v
       "storyAreaTypeVenue"             -> parseStoryAreaTypeVenue v
       "storyAreaTypeSuggestedReaction" -> parseStoryAreaTypeSuggestedReaction v
+      "storyAreaTypeMessage"           -> parseStoryAreaTypeMessage v
       _                                -> mempty
     
     where
@@ -87,6 +101,14 @@ instance AT.FromJSON StoryAreaType where
           , total_count   = total_count_
           , is_dark       = is_dark_
           , is_flipped    = is_flipped_
+          }
+      parseStoryAreaTypeMessage :: A.Value -> AT.Parser StoryAreaType
+      parseStoryAreaTypeMessage = A.withObject "StoryAreaTypeMessage" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        pure $ StoryAreaTypeMessage
+          { chat_id    = chat_id_
+          , message_id = message_id_
           }
   parseJSON _ = mempty
 

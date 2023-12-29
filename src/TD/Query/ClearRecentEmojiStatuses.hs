@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Clears the list of recently used emoji statuses. Returns 'TD.Data.Ok.Ok'
+-- | Clears the list of recently used emoji statuses for self status. Returns 'TD.Data.Ok.Ok'
 data ClearRecentEmojiStatuses
   = ClearRecentEmojiStatuses
   deriving (Eq, Show)

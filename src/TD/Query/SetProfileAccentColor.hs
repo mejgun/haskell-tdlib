@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data SetProfileAccentColor
   = SetProfileAccentColor
     { profile_accent_color_id            :: Maybe Int -- ^ Identifier of the accent color to use for profile; pass -1 if none
-    , profile_background_custom_emoji_id :: Maybe Int -- ^ Identifier of a custom emoji to be shown in the on the user's profile photo background; 0 if none
+    , profile_background_custom_emoji_id :: Maybe Int -- ^ Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none
     }
   deriving (Eq, Show)
 

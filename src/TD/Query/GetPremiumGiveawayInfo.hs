@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data GetPremiumGiveawayInfo
   = GetPremiumGiveawayInfo
     { chat_id    :: Maybe Int -- ^ Identifier of the channel chat which started the giveaway
-    , message_id :: Maybe Int -- ^ Identifier of the giveaway message in the chat
+    , message_id :: Maybe Int -- ^ Identifier of the giveaway or a giveaway winners message in the chat
     }
   deriving (Eq, Show)
 

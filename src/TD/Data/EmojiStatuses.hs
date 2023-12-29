@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
 data EmojiStatuses
-  = EmojiStatuses -- ^ Contains a list of custom emoji identifiers, which can be set as emoji statuses
+  = EmojiStatuses -- ^ Contains a list of custom emoji identifiers for emoji statuses
     { custom_emoji_ids :: Maybe [Int] -- ^ The list of custom emoji identifiers
     }
   deriving (Eq, Show)

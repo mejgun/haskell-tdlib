@@ -11,7 +11,7 @@ data PremiumGiftCodePaymentOption
     { currency               :: Maybe T.Text -- ^ ISO 4217 currency code for Telegram Premium gift code payment
     , amount                 :: Maybe Int    -- ^ The amount to pay, in the smallest units of the currency
     , user_count             :: Maybe Int    -- ^ Number of users which will be able to activate the gift codes
-    , month_count            :: Maybe Int    -- ^ Number of month the Telegram Premium subscription will be active
+    , month_count            :: Maybe Int    -- ^ Number of months the Telegram Premium subscription will be active
     , store_product_id       :: Maybe T.Text -- ^ Identifier of the store product associated with the option; may be empty if none
     , store_product_quantity :: Maybe Int    -- ^ Number of times the store product must be paid
     }

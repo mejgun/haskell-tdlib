@@ -26,6 +26,10 @@ data InputStoryAreaType
     , is_dark       :: Maybe Bool                      -- ^ True, if reaction has a dark background
     , is_flipped    :: Maybe Bool                      -- ^ True, if reaction corner is flipped
     }
+  | InputStoryAreaTypeMessage -- ^ An area pointing to a message
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
+    , message_id :: Maybe Int -- ^ Identifier of the message. Only successfully sent non-scheduled messages can be specified
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow InputStoryAreaType where
@@ -65,6 +69,15 @@ instance I.ShortShow InputStoryAreaType where
         , "is_dark"       `I.p` is_dark_
         , "is_flipped"    `I.p` is_flipped_
         ]
+  shortShow InputStoryAreaTypeMessage
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    }
+      = "InputStoryAreaTypeMessage"
+        ++ I.cc
+        [ "chat_id"    `I.p` chat_id_
+        , "message_id" `I.p` message_id_
+        ]
 
 instance AT.FromJSON InputStoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -75,6 +88,7 @@ instance AT.FromJSON InputStoryAreaType where
       "inputStoryAreaTypeFoundVenue"        -> parseInputStoryAreaTypeFoundVenue v
       "inputStoryAreaTypePreviousVenue"     -> parseInputStoryAreaTypePreviousVenue v
       "inputStoryAreaTypeSuggestedReaction" -> parseInputStoryAreaTypeSuggestedReaction v
+      "inputStoryAreaTypeMessage"           -> parseInputStoryAreaTypeMessage v
       _                                     -> mempty
     
     where
@@ -109,6 +123,14 @@ instance AT.FromJSON InputStoryAreaType where
           { reaction_type = reaction_type_
           , is_dark       = is_dark_
           , is_flipped    = is_flipped_
+          }
+      parseInputStoryAreaTypeMessage :: A.Value -> AT.Parser InputStoryAreaType
+      parseInputStoryAreaTypeMessage = A.withObject "InputStoryAreaTypeMessage" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        pure $ InputStoryAreaTypeMessage
+          { chat_id    = chat_id_
+          , message_id = message_id_
           }
   parseJSON _ = mempty
 
@@ -148,5 +170,14 @@ instance AT.ToJSON InputStoryAreaType where
         , "reaction_type" A..= reaction_type_
         , "is_dark"       A..= is_dark_
         , "is_flipped"    A..= is_flipped_
+        ]
+  toJSON InputStoryAreaTypeMessage
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "inputStoryAreaTypeMessage"
+        , "chat_id"    A..= chat_id_
+        , "message_id" A..= message_id_
         ]
 

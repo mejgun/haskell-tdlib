@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib. Returns 'TD.Data.StoryPublicForwards.StoryPublicForwards'
+-- | Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib. Returns 'TD.Data.PublicForwards.PublicForwards'
 data GetStoryPublicForwards
   = GetStoryPublicForwards
     { story_sender_chat_id :: Maybe Int    -- ^ The identifier of the sender of the story

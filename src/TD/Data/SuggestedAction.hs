@@ -20,6 +20,7 @@ data SuggestedAction
   | SuggestedActionUpgradePremium -- ^ Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
   | SuggestedActionRestorePremium -- ^ Suggests the user to restore a recently expired Premium subscription
   | SuggestedActionSubscribeToAnnualPremium -- ^ Suggests the user to subscribe to the Premium subscription with annual payments
+  | SuggestedActionGiftPremiumForChristmas -- ^ Suggests the user to gift Telegram Premium to friends for Christmas
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -51,6 +52,8 @@ instance I.ShortShow SuggestedAction where
       = "SuggestedActionRestorePremium"
   shortShow SuggestedActionSubscribeToAnnualPremium
       = "SuggestedActionSubscribeToAnnualPremium"
+  shortShow SuggestedActionGiftPremiumForChristmas
+      = "SuggestedActionGiftPremiumForChristmas"
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -66,6 +69,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionUpgradePremium"               -> pure SuggestedActionUpgradePremium
       "suggestedActionRestorePremium"               -> pure SuggestedActionRestorePremium
       "suggestedActionSubscribeToAnnualPremium"     -> pure SuggestedActionSubscribeToAnnualPremium
+      "suggestedActionGiftPremiumForChristmas"      -> pure SuggestedActionGiftPremiumForChristmas
       _                                             -> mempty
     
     where
@@ -125,5 +129,9 @@ instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionSubscribeToAnnualPremium
       = A.object
         [ "@type" A..= AT.String "suggestedActionSubscribeToAnnualPremium"
+        ]
+  toJSON SuggestedActionGiftPremiumForChristmas
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionGiftPremiumForChristmas"
         ]
 

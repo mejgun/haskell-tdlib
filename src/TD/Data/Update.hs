@@ -19,6 +19,7 @@ import qualified TD.Data.ChatPosition as ChatPosition
 import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.DraftMessage as DraftMessage
+import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
@@ -84,6 +85,7 @@ import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatJoinRequest as ChatJoinRequest
 import qualified TD.Data.ChatBoost as ChatBoost
+import qualified TD.Data.MessageReaction as MessageReaction
 
 -- | Contains notifications about data changes
 data Update
@@ -157,13 +159,12 @@ data Update
     { chat_id :: Maybe Int                         -- ^ Chat identifier
     , photo   :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ The new chat photo; may be null
     }
-  | UpdateChatAccentColor -- ^ A chat accent color has changed
-    { chat_id         :: Maybe Int -- ^ Chat identifier
-    , accent_color_id :: Maybe Int -- ^ The new chat accent color identifier
-    }
-  | UpdateChatBackgroundCustomEmoji -- ^ A chat's custom emoji for reply background has changed
-    { chat_id                    :: Maybe Int -- ^ Chat identifier
-    , background_custom_emoji_id :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the reply header background; 0 if none
+  | UpdateChatAccentColors -- ^ Chat accent colors have changed
+    { chat_id                            :: Maybe Int -- ^ Chat identifier
+    , accent_color_id                    :: Maybe Int -- ^ The new chat accent color identifier
+    , background_custom_emoji_id         :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
+    , profile_accent_color_id            :: Maybe Int -- ^ The new chat profile accent color identifier; -1 if none
+    , profile_background_custom_emoji_id :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the profile background; 0 if none
     }
   | UpdateChatPermissions -- ^ Chat permissions were changed
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
@@ -199,6 +200,10 @@ data Update
     { chat_id       :: Maybe Int                         -- ^ Chat identifier
     , draft_message :: Maybe DraftMessage.DraftMessage   -- ^ The new draft message; may be null
     , positions     :: Maybe [ChatPosition.ChatPosition] -- ^ The new chat positions in the chat lists
+    }
+  | UpdateChatEmojiStatus -- ^ Chat emoji status has changed
+    { chat_id      :: Maybe Int                     -- ^ Chat identifier
+    , emoji_status :: Maybe EmojiStatus.EmojiStatus -- ^ The new chat emoji status; may be null
     }
   | UpdateChatMessageSender -- ^ The message sender that is selected to send messages in a chat has changed
     { chat_id           :: Maybe Int                         -- ^ Chat identifier
@@ -466,9 +471,9 @@ data Update
   | UpdateSavedNotificationSounds -- ^ The list of saved notification sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
     { notification_sound_ids :: Maybe [Int] -- ^ The new list of identifiers of saved notification sounds
     }
-  | UpdateSelectedBackground -- ^ The selected background has changed
-    { for_dark_theme :: Maybe Bool                  -- ^ True, if background for dark theme has changed
-    , _background    :: Maybe Background.Background -- ^ The new selected background; may be null
+  | UpdateDefaultBackground -- ^ The default background has changed
+    { for_dark_theme :: Maybe Bool                  -- ^ True, if default background for dark theme has changed
+    , _background    :: Maybe Background.Background -- ^ The new default background; may be null
     }
   | UpdateChatThemes -- ^ The list of available chat themes has changed
     { chat_themes :: Maybe [ChatTheme.ChatTheme] -- ^ The new list of chat themes
@@ -479,7 +484,7 @@ data Update
     }
   | UpdateProfileAccentColors -- ^ The list of supported accent colors for user profiles has changed
     { _colors                    :: Maybe [ProfileAccentColor.ProfileAccentColor] -- ^ Information about supported colors
-    , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor. The colors must be shown in the specififed order
+    , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
     }
   | UpdateLanguagePackStrings -- ^ Some language pack strings have been updated
     { localization_target :: Maybe T.Text                                  -- ^ Localization target to which the language pack belongs
@@ -620,6 +625,20 @@ data Update
   | UpdateChatBoost -- ^ A chat boost has changed; for bots only
     { chat_id :: Maybe Int                 -- ^ Chat identifier
     , boost   :: Maybe ChatBoost.ChatBoost -- ^ New information about the boost
+    }
+  | UpdateMessageReaction -- ^ User changed its reactions on a message with public reactions; for bots only
+    { chat_id            :: Maybe Int                         -- ^ Chat identifier
+    , message_id         :: Maybe Int                         -- ^ Message identifier
+    , actor_id           :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that changed reactions
+    , date               :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the reactions were changed
+    , old_reaction_types :: Maybe [ReactionType.ReactionType] -- ^ Old list of chosen reactions
+    , new_reaction_types :: Maybe [ReactionType.ReactionType] -- ^ New list of chosen reactions
+    }
+  | UpdateMessageReactions -- ^ Reactions added to a message with anonymous reactions have changed; for bots only
+    { chat_id    :: Maybe Int                               -- ^ Chat identifier
+    , message_id :: Maybe Int                               -- ^ Message identifier
+    , date       :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the reactions were changed
+    , reactions  :: Maybe [MessageReaction.MessageReaction] -- ^ The list of reactions added to the message
     }
   deriving (Eq, Show)
 
@@ -780,23 +799,20 @@ instance I.ShortShow Update where
         [ "chat_id" `I.p` chat_id_
         , "photo"   `I.p` photo_
         ]
-  shortShow UpdateChatAccentColor
-    { chat_id         = chat_id_
-    , accent_color_id = accent_color_id_
+  shortShow UpdateChatAccentColors
+    { chat_id                            = chat_id_
+    , accent_color_id                    = accent_color_id_
+    , background_custom_emoji_id         = background_custom_emoji_id_
+    , profile_accent_color_id            = profile_accent_color_id_
+    , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
     }
-      = "UpdateChatAccentColor"
+      = "UpdateChatAccentColors"
         ++ I.cc
-        [ "chat_id"         `I.p` chat_id_
-        , "accent_color_id" `I.p` accent_color_id_
-        ]
-  shortShow UpdateChatBackgroundCustomEmoji
-    { chat_id                    = chat_id_
-    , background_custom_emoji_id = background_custom_emoji_id_
-    }
-      = "UpdateChatBackgroundCustomEmoji"
-        ++ I.cc
-        [ "chat_id"                    `I.p` chat_id_
-        , "background_custom_emoji_id" `I.p` background_custom_emoji_id_
+        [ "chat_id"                            `I.p` chat_id_
+        , "accent_color_id"                    `I.p` accent_color_id_
+        , "background_custom_emoji_id"         `I.p` background_custom_emoji_id_
+        , "profile_accent_color_id"            `I.p` profile_accent_color_id_
+        , "profile_background_custom_emoji_id" `I.p` profile_background_custom_emoji_id_
         ]
   shortShow UpdateChatPermissions
     { chat_id     = chat_id_
@@ -875,6 +891,15 @@ instance I.ShortShow Update where
         [ "chat_id"       `I.p` chat_id_
         , "draft_message" `I.p` draft_message_
         , "positions"     `I.p` positions_
+        ]
+  shortShow UpdateChatEmojiStatus
+    { chat_id      = chat_id_
+    , emoji_status = emoji_status_
+    }
+      = "UpdateChatEmojiStatus"
+        ++ I.cc
+        [ "chat_id"      `I.p` chat_id_
+        , "emoji_status" `I.p` emoji_status_
         ]
   shortShow UpdateChatMessageSender
     { chat_id           = chat_id_
@@ -1473,11 +1498,11 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "notification_sound_ids" `I.p` notification_sound_ids_
         ]
-  shortShow UpdateSelectedBackground
+  shortShow UpdateDefaultBackground
     { for_dark_theme = for_dark_theme_
     , _background    = _background_
     }
-      = "UpdateSelectedBackground"
+      = "UpdateDefaultBackground"
         ++ I.cc
         [ "for_dark_theme" `I.p` for_dark_theme_
         , "_background"    `I.p` _background_
@@ -1816,6 +1841,36 @@ instance I.ShortShow Update where
         [ "chat_id" `I.p` chat_id_
         , "boost"   `I.p` boost_
         ]
+  shortShow UpdateMessageReaction
+    { chat_id            = chat_id_
+    , message_id         = message_id_
+    , actor_id           = actor_id_
+    , date               = date_
+    , old_reaction_types = old_reaction_types_
+    , new_reaction_types = new_reaction_types_
+    }
+      = "UpdateMessageReaction"
+        ++ I.cc
+        [ "chat_id"            `I.p` chat_id_
+        , "message_id"         `I.p` message_id_
+        , "actor_id"           `I.p` actor_id_
+        , "date"               `I.p` date_
+        , "old_reaction_types" `I.p` old_reaction_types_
+        , "new_reaction_types" `I.p` new_reaction_types_
+        ]
+  shortShow UpdateMessageReactions
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    , date       = date_
+    , reactions  = reactions_
+    }
+      = "UpdateMessageReactions"
+        ++ I.cc
+        [ "chat_id"    `I.p` chat_id_
+        , "message_id" `I.p` message_id_
+        , "date"       `I.p` date_
+        , "reactions"  `I.p` reactions_
+        ]
 
 instance AT.FromJSON Update where
   parseJSON v@(AT.Object obj) = do
@@ -1838,8 +1893,7 @@ instance AT.FromJSON Update where
       "updateNewChat"                        -> parseUpdateNewChat v
       "updateChatTitle"                      -> parseUpdateChatTitle v
       "updateChatPhoto"                      -> parseUpdateChatPhoto v
-      "updateChatAccentColor"                -> parseUpdateChatAccentColor v
-      "updateChatBackgroundCustomEmoji"      -> parseUpdateChatBackgroundCustomEmoji v
+      "updateChatAccentColors"               -> parseUpdateChatAccentColors v
       "updateChatPermissions"                -> parseUpdateChatPermissions v
       "updateChatLastMessage"                -> parseUpdateChatLastMessage v
       "updateChatPosition"                   -> parseUpdateChatPosition v
@@ -1848,6 +1902,7 @@ instance AT.FromJSON Update where
       "updateChatActionBar"                  -> parseUpdateChatActionBar v
       "updateChatAvailableReactions"         -> parseUpdateChatAvailableReactions v
       "updateChatDraftMessage"               -> parseUpdateChatDraftMessage v
+      "updateChatEmojiStatus"                -> parseUpdateChatEmojiStatus v
       "updateChatMessageSender"              -> parseUpdateChatMessageSender v
       "updateChatMessageAutoDeleteTime"      -> parseUpdateChatMessageAutoDeleteTime v
       "updateChatNotificationSettings"       -> parseUpdateChatNotificationSettings v
@@ -1913,7 +1968,7 @@ instance AT.FromJSON Update where
       "updateFavoriteStickers"               -> parseUpdateFavoriteStickers v
       "updateSavedAnimations"                -> parseUpdateSavedAnimations v
       "updateSavedNotificationSounds"        -> parseUpdateSavedNotificationSounds v
-      "updateSelectedBackground"             -> parseUpdateSelectedBackground v
+      "updateDefaultBackground"              -> parseUpdateDefaultBackground v
       "updateChatThemes"                     -> parseUpdateChatThemes v
       "updateAccentColors"                   -> parseUpdateAccentColors v
       "updateProfileAccentColors"            -> parseUpdateProfileAccentColors v
@@ -1946,6 +2001,8 @@ instance AT.FromJSON Update where
       "updateChatMember"                     -> parseUpdateChatMember v
       "updateNewChatJoinRequest"             -> parseUpdateNewChatJoinRequest v
       "updateChatBoost"                      -> parseUpdateChatBoost v
+      "updateMessageReaction"                -> parseUpdateMessageReaction v
+      "updateMessageReactions"               -> parseUpdateMessageReactions v
       _                                      -> mempty
     
     where
@@ -2089,21 +2146,19 @@ instance AT.FromJSON Update where
           { chat_id = chat_id_
           , photo   = photo_
           }
-      parseUpdateChatAccentColor :: A.Value -> AT.Parser Update
-      parseUpdateChatAccentColor = A.withObject "UpdateChatAccentColor" $ \o -> do
-        chat_id_         <- o A..:?  "chat_id"
-        accent_color_id_ <- o A..:?  "accent_color_id"
-        pure $ UpdateChatAccentColor
-          { chat_id         = chat_id_
-          , accent_color_id = accent_color_id_
-          }
-      parseUpdateChatBackgroundCustomEmoji :: A.Value -> AT.Parser Update
-      parseUpdateChatBackgroundCustomEmoji = A.withObject "UpdateChatBackgroundCustomEmoji" $ \o -> do
-        chat_id_                    <- o A..:?                       "chat_id"
-        background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
-        pure $ UpdateChatBackgroundCustomEmoji
-          { chat_id                    = chat_id_
-          , background_custom_emoji_id = background_custom_emoji_id_
+      parseUpdateChatAccentColors :: A.Value -> AT.Parser Update
+      parseUpdateChatAccentColors = A.withObject "UpdateChatAccentColors" $ \o -> do
+        chat_id_                            <- o A..:?                       "chat_id"
+        accent_color_id_                    <- o A..:?                       "accent_color_id"
+        background_custom_emoji_id_         <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        profile_accent_color_id_            <- o A..:?                       "profile_accent_color_id"
+        profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "profile_background_custom_emoji_id"
+        pure $ UpdateChatAccentColors
+          { chat_id                            = chat_id_
+          , accent_color_id                    = accent_color_id_
+          , background_custom_emoji_id         = background_custom_emoji_id_
+          , profile_accent_color_id            = profile_accent_color_id_
+          , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
           }
       parseUpdateChatPermissions :: A.Value -> AT.Parser Update
       parseUpdateChatPermissions = A.withObject "UpdateChatPermissions" $ \o -> do
@@ -2174,6 +2229,14 @@ instance AT.FromJSON Update where
           { chat_id       = chat_id_
           , draft_message = draft_message_
           , positions     = positions_
+          }
+      parseUpdateChatEmojiStatus :: A.Value -> AT.Parser Update
+      parseUpdateChatEmojiStatus = A.withObject "UpdateChatEmojiStatus" $ \o -> do
+        chat_id_      <- o A..:?  "chat_id"
+        emoji_status_ <- o A..:?  "emoji_status"
+        pure $ UpdateChatEmojiStatus
+          { chat_id      = chat_id_
+          , emoji_status = emoji_status_
           }
       parseUpdateChatMessageSender :: A.Value -> AT.Parser Update
       parseUpdateChatMessageSender = A.withObject "UpdateChatMessageSender" $ \o -> do
@@ -2707,11 +2770,11 @@ instance AT.FromJSON Update where
         pure $ UpdateSavedNotificationSounds
           { notification_sound_ids = notification_sound_ids_
           }
-      parseUpdateSelectedBackground :: A.Value -> AT.Parser Update
-      parseUpdateSelectedBackground = A.withObject "UpdateSelectedBackground" $ \o -> do
+      parseUpdateDefaultBackground :: A.Value -> AT.Parser Update
+      parseUpdateDefaultBackground = A.withObject "UpdateDefaultBackground" $ \o -> do
         for_dark_theme_ <- o A..:?  "for_dark_theme"
         _background_    <- o A..:?  "background"
-        pure $ UpdateSelectedBackground
+        pure $ UpdateDefaultBackground
           { for_dark_theme = for_dark_theme_
           , _background    = _background_
           }
@@ -3016,6 +3079,34 @@ instance AT.FromJSON Update where
         pure $ UpdateChatBoost
           { chat_id = chat_id_
           , boost   = boost_
+          }
+      parseUpdateMessageReaction :: A.Value -> AT.Parser Update
+      parseUpdateMessageReaction = A.withObject "UpdateMessageReaction" $ \o -> do
+        chat_id_            <- o A..:?  "chat_id"
+        message_id_         <- o A..:?  "message_id"
+        actor_id_           <- o A..:?  "actor_id"
+        date_               <- o A..:?  "date"
+        old_reaction_types_ <- o A..:?  "old_reaction_types"
+        new_reaction_types_ <- o A..:?  "new_reaction_types"
+        pure $ UpdateMessageReaction
+          { chat_id            = chat_id_
+          , message_id         = message_id_
+          , actor_id           = actor_id_
+          , date               = date_
+          , old_reaction_types = old_reaction_types_
+          , new_reaction_types = new_reaction_types_
+          }
+      parseUpdateMessageReactions :: A.Value -> AT.Parser Update
+      parseUpdateMessageReactions = A.withObject "UpdateMessageReactions" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        date_       <- o A..:?  "date"
+        reactions_  <- o A..:?  "reactions"
+        pure $ UpdateMessageReactions
+          { chat_id    = chat_id_
+          , message_id = message_id_
+          , date       = date_
+          , reactions  = reactions_
           }
   parseJSON _ = mempty
 

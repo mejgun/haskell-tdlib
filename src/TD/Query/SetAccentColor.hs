@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data SetAccentColor
   = SetAccentColor
     { accent_color_id            :: Maybe Int -- ^ Identifier of the accent color to use
-    , background_custom_emoji_id :: Maybe Int -- ^ Identifier of a custom emoji to be shown on the reply header background; 0 if none
+    , background_custom_emoji_id :: Maybe Int -- ^ Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
     }
   deriving (Eq, Show)
 

@@ -13,7 +13,7 @@ import qualified TD.Data.BackgroundType as BackgroundType
 data GetBackgroundUrl
   = GetBackgroundUrl
     { name  :: Maybe T.Text                        -- ^ Background name
-    , _type :: Maybe BackgroundType.BackgroundType -- ^ Background type
+    , _type :: Maybe BackgroundType.BackgroundType -- ^ Background type; backgroundTypeChatTheme isn't supported
     }
   deriving (Eq, Show)
 

@@ -14,7 +14,7 @@ data Background
     , is_default :: Maybe Bool                          -- ^ True, if this is one of default backgrounds
     , is_dark    :: Maybe Bool                          -- ^ True, if the background is dark and is recommended to be used with dark theme
     , name       :: Maybe T.Text                        -- ^ Unique background name
-    , document   :: Maybe Document.Document             -- ^ Document with the background; may be null. Null only for filled backgrounds
+    , document   :: Maybe Document.Document             -- ^ Document with the background; may be null. Null only for filled and chat theme backgrounds
     , _type      :: Maybe BackgroundType.BackgroundType -- ^ Type of the background
     }
   deriving (Eq, Show)

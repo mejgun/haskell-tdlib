@@ -12,7 +12,7 @@ data PremiumPaymentOption
     { currency            :: Maybe T.Text                            -- ^ ISO 4217 currency code for Telegram Premium subscription payment
     , amount              :: Maybe Int                               -- ^ The amount to pay, in the smallest units of the currency
     , discount_percentage :: Maybe Int                               -- ^ The discount associated with this option, as a percentage
-    , month_count         :: Maybe Int                               -- ^ Number of month the Telegram Premium subscription will be active
+    , month_count         :: Maybe Int                               -- ^ Number of months the Telegram Premium subscription will be active
     , store_product_id    :: Maybe T.Text                            -- ^ Identifier of the store product associated with the option
     , payment_link        :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened for buying Telegram Premium to the user if store payment isn't possible; may be null if direct payment isn't available
     }

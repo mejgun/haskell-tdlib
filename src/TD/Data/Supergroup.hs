@@ -14,7 +14,8 @@ data Supergroup
     , usernames                 :: Maybe Usernames.Usernames               -- ^ Usernames of the supergroup or channel; may be null
     , date                      :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
     , status                    :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ Status of the current user in the supergroup or channel; custom title will always be empty
-    , member_count              :: Maybe Int                               -- ^ Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or for public chats in which where sent messages and posted stories from storyPublicForwards, or for public chats in which where sent messages from getMessagePublicForwards response
+    , member_count              :: Maybe Int                               -- ^ Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or for public chats in which where sent messages and posted stories from publicForwards, or for public chats in which where sent messages from getMessagePublicForwards response
+    , boost_level               :: Maybe Int                               -- ^ Approximate boost level for the chat
     , has_linked_chat           :: Maybe Bool                              -- ^ True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     , has_location              :: Maybe Bool                              -- ^ True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     , sign_messages             :: Maybe Bool                              -- ^ True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
@@ -40,6 +41,7 @@ instance I.ShortShow Supergroup where
     , date                      = date_
     , status                    = status_
     , member_count              = member_count_
+    , boost_level               = boost_level_
     , has_linked_chat           = has_linked_chat_
     , has_location              = has_location_
     , sign_messages             = sign_messages_
@@ -63,6 +65,7 @@ instance I.ShortShow Supergroup where
         , "date"                      `I.p` date_
         , "status"                    `I.p` status_
         , "member_count"              `I.p` member_count_
+        , "boost_level"               `I.p` boost_level_
         , "has_linked_chat"           `I.p` has_linked_chat_
         , "has_location"              `I.p` has_location_
         , "sign_messages"             `I.p` sign_messages_
@@ -96,6 +99,7 @@ instance AT.FromJSON Supergroup where
         date_                      <- o A..:?  "date"
         status_                    <- o A..:?  "status"
         member_count_              <- o A..:?  "member_count"
+        boost_level_               <- o A..:?  "boost_level"
         has_linked_chat_           <- o A..:?  "has_linked_chat"
         has_location_              <- o A..:?  "has_location"
         sign_messages_             <- o A..:?  "sign_messages"
@@ -117,6 +121,7 @@ instance AT.FromJSON Supergroup where
           , date                      = date_
           , status                    = status_
           , member_count              = member_count_
+          , boost_level               = boost_level_
           , has_linked_chat           = has_linked_chat_
           , has_location              = has_location_
           , sign_messages             = sign_messages_

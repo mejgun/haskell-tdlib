@@ -87,6 +87,9 @@ data InternalLinkType
   | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
+  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+    { referrer :: Maybe T.Text -- ^ Referrer specified in the link
+    }
   | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     { code :: Maybe T.Text -- ^ The Telegram Premium gift code
     }
@@ -309,6 +312,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "referrer" `I.p` referrer_
         ]
+  shortShow InternalLinkTypePremiumGift
+    { referrer = referrer_
+    }
+      = "InternalLinkTypePremiumGift"
+        ++ I.cc
+        [ "referrer" `I.p` referrer_
+        ]
   shortShow InternalLinkTypePremiumGiftCode
     { code = code_
     }
@@ -453,6 +463,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
       "internalLinkTypePhoneNumberConfirmation"               -> parseInternalLinkTypePhoneNumberConfirmation v
       "internalLinkTypePremiumFeatures"                       -> parseInternalLinkTypePremiumFeatures v
+      "internalLinkTypePremiumGift"                           -> parseInternalLinkTypePremiumGift v
       "internalLinkTypePremiumGiftCode"                       -> parseInternalLinkTypePremiumGiftCode v
       "internalLinkTypePrivacyAndSecuritySettings"            -> pure InternalLinkTypePrivacyAndSecuritySettings
       "internalLinkTypeProxy"                                 -> parseInternalLinkTypeProxy v
@@ -610,6 +621,12 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypePremiumFeatures = A.withObject "InternalLinkTypePremiumFeatures" $ \o -> do
         referrer_ <- o A..:?  "referrer"
         pure $ InternalLinkTypePremiumFeatures
+          { referrer = referrer_
+          }
+      parseInternalLinkTypePremiumGift :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypePremiumGift = A.withObject "InternalLinkTypePremiumGift" $ \o -> do
+        referrer_ <- o A..:?  "referrer"
+        pure $ InternalLinkTypePremiumGift
           { referrer = referrer_
           }
       parseInternalLinkTypePremiumGiftCode :: A.Value -> AT.Parser InternalLinkType
@@ -883,6 +900,13 @@ instance AT.ToJSON InternalLinkType where
     }
       = A.object
         [ "@type"    A..= AT.String "internalLinkTypePremiumFeatures"
+        , "referrer" A..= referrer_
+        ]
+  toJSON InternalLinkTypePremiumGift
+    { referrer = referrer_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "internalLinkTypePremiumGift"
         , "referrer" A..= referrer_
         ]
   toJSON InternalLinkTypePremiumGiftCode

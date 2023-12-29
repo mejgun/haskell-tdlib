@@ -29,6 +29,8 @@ import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResul
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
+import qualified TD.Data.ChatBoostFeatures as ChatBoostFeatures
+import qualified TD.Data.ChatBoostLevelFeatures as ChatBoostLevelFeatures
 import qualified TD.Data.ChatBoostLink as ChatBoostLink
 import qualified TD.Data.ChatBoostLinkInfo as ChatBoostLinkInfo
 import qualified TD.Data.ChatBoostSlots as ChatBoostSlots
@@ -135,6 +137,7 @@ import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
+import qualified TD.Data.PublicForwards as PublicForwards
 import qualified TD.Data.PushReceiverId as PushReceiverId
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
@@ -156,9 +159,8 @@ import qualified TD.Data.StorageStatistics as StorageStatistics
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
 import qualified TD.Data.Stories as Stories
 import qualified TD.Data.Story as Story
-import qualified TD.Data.StoryPublicForwards as StoryPublicForwards
+import qualified TD.Data.StoryInteractions as StoryInteractions
 import qualified TD.Data.StoryStatistics as StoryStatistics
-import qualified TD.Data.StoryViewers as StoryViewers
 import qualified TD.Data.Supergroup as Supergroup
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
 import qualified TD.Data.TMeUrls as TMeUrls
@@ -212,6 +214,8 @@ data GeneralResult
     | Chat                               Chat.Chat
     | ChatActiveStories                  ChatActiveStories.ChatActiveStories
     | ChatAdministrators                 ChatAdministrators.ChatAdministrators
+    | ChatBoostFeatures                  ChatBoostFeatures.ChatBoostFeatures
+    | ChatBoostLevelFeatures             ChatBoostLevelFeatures.ChatBoostLevelFeatures
     | ChatBoostLink                      ChatBoostLink.ChatBoostLink
     | ChatBoostLinkInfo                  ChatBoostLinkInfo.ChatBoostLinkInfo
     | ChatBoostSlots                     ChatBoostSlots.ChatBoostSlots
@@ -318,6 +322,7 @@ data GeneralResult
     | PremiumState                       PremiumState.PremiumState
     | Proxies                            Proxies.Proxies
     | Proxy                              Proxy.Proxy
+    | PublicForwards                     PublicForwards.PublicForwards
     | PushReceiverId                     PushReceiverId.PushReceiverId
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
@@ -339,9 +344,8 @@ data GeneralResult
     | StorageStatisticsFast              StorageStatisticsFast.StorageStatisticsFast
     | Stories                            Stories.Stories
     | Story                              Story.Story
-    | StoryPublicForwards                StoryPublicForwards.StoryPublicForwards
+    | StoryInteractions                  StoryInteractions.StoryInteractions
     | StoryStatistics                    StoryStatistics.StoryStatistics
-    | StoryViewers                       StoryViewers.StoryViewers
     | Supergroup                         Supergroup.Supergroup
     | SupergroupFullInfo                 SupergroupFullInfo.SupergroupFullInfo
     | TMeUrls                            TMeUrls.TMeUrls
@@ -421,6 +425,10 @@ instance I.ShortShow GeneralResult where
     = "ChatActiveStories" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatAdministrators v)
     = "ChatAdministrators" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostFeatures v)
+    = "ChatBoostFeatures" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatBoostLevelFeatures v)
+    = "ChatBoostLevelFeatures" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostLink v)
     = "ChatBoostLink" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostLinkInfo v)
@@ -633,6 +641,8 @@ instance I.ShortShow GeneralResult where
     = "Proxies" <> " (" <> I.shortShow v <> ")"
   shortShow (Proxy v)
     = "Proxy" <> " (" <> I.shortShow v <> ")"
+  shortShow (PublicForwards v)
+    = "PublicForwards" <> " (" <> I.shortShow v <> ")"
   shortShow (PushReceiverId v)
     = "PushReceiverId" <> " (" <> I.shortShow v <> ")"
   shortShow (RecommendedChatFolders v)
@@ -675,12 +685,10 @@ instance I.ShortShow GeneralResult where
     = "Stories" <> " (" <> I.shortShow v <> ")"
   shortShow (Story v)
     = "Story" <> " (" <> I.shortShow v <> ")"
-  shortShow (StoryPublicForwards v)
-    = "StoryPublicForwards" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryInteractions v)
+    = "StoryInteractions" <> " (" <> I.shortShow v <> ")"
   shortShow (StoryStatistics v)
     = "StoryStatistics" <> " (" <> I.shortShow v <> ")"
-  shortShow (StoryViewers v)
-    = "StoryViewers" <> " (" <> I.shortShow v <> ")"
   shortShow (Supergroup v)
     = "Supergroup" <> " (" <> I.shortShow v <> ")"
   shortShow (SupergroupFullInfo v)
@@ -761,6 +769,8 @@ instance T.FromJSON GeneralResult where
     <|> ( Chat                                <$> parseJSON v )
     <|> ( ChatActiveStories                   <$> parseJSON v )
     <|> ( ChatAdministrators                  <$> parseJSON v )
+    <|> ( ChatBoostFeatures                   <$> parseJSON v )
+    <|> ( ChatBoostLevelFeatures              <$> parseJSON v )
     <|> ( ChatBoostLink                       <$> parseJSON v )
     <|> ( ChatBoostLinkInfo                   <$> parseJSON v )
     <|> ( ChatBoostSlots                      <$> parseJSON v )
@@ -867,6 +877,7 @@ instance T.FromJSON GeneralResult where
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( Proxies                             <$> parseJSON v )
     <|> ( Proxy                               <$> parseJSON v )
+    <|> ( PublicForwards                      <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
@@ -888,9 +899,8 @@ instance T.FromJSON GeneralResult where
     <|> ( StorageStatisticsFast               <$> parseJSON v )
     <|> ( Stories                             <$> parseJSON v )
     <|> ( Story                               <$> parseJSON v )
-    <|> ( StoryPublicForwards                 <$> parseJSON v )
+    <|> ( StoryInteractions                   <$> parseJSON v )
     <|> ( StoryStatistics                     <$> parseJSON v )
-    <|> ( StoryViewers                        <$> parseJSON v )
     <|> ( Supergroup                          <$> parseJSON v )
     <|> ( SupergroupFullInfo                  <$> parseJSON v )
     <|> ( TMeUrls                             <$> parseJSON v )

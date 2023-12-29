@@ -14,14 +14,14 @@ data TelegramPaymentPurpose
     , currency        :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
-    , month_count     :: Maybe Int    -- ^ Number of month the Telegram Premium subscription will be active for the users
+    , month_count     :: Maybe Int    -- ^ Number of months the Telegram Premium subscription will be active for the users
     }
   | TelegramPaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
     { parameters   :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
     , currency     :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
     , amount       :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency
     , winner_count :: Maybe Int                                                 -- ^ Number of users which will be able to activate the gift codes
-    , month_count  :: Maybe Int                                                 -- ^ Number of month the Telegram Premium subscription will be active for the users
+    , month_count  :: Maybe Int                                                 -- ^ Number of months the Telegram Premium subscription will be active for the users
     }
   deriving (Eq, Show)
 

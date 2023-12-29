@@ -21,7 +21,7 @@ data User
     , status                             :: Maybe UserStatus.UserStatus     -- ^ Current online status of the user
     , profile_photo                      :: Maybe ProfilePhoto.ProfilePhoto -- ^ Profile photo of the user; may be null
     , accent_color_id                    :: Maybe Int                       -- ^ Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only
-    , background_custom_emoji_id         :: Maybe Int                       -- ^ Identifier of a custom emoji to be shown on the reply header background; 0 if none. For Telegram Premium users only
+    , background_custom_emoji_id         :: Maybe Int                       -- ^ Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only
     , profile_accent_color_id            :: Maybe Int                       -- ^ Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only
     , profile_background_custom_emoji_id :: Maybe Int                       -- ^ Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none. For Telegram Premium users only
     , emoji_status                       :: Maybe EmojiStatus.EmojiStatus   -- ^ Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only

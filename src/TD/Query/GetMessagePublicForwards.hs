@@ -8,13 +8,13 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib. Returns 'TD.Data.FoundMessages.FoundMessages'
+-- | Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib. Returns 'TD.Data.PublicForwards.PublicForwards'
 data GetMessagePublicForwards
   = GetMessagePublicForwards
     { chat_id    :: Maybe Int    -- ^ Chat identifier of the message
     , message_id :: Maybe Int    -- ^ Message identifier
     , offset     :: Maybe T.Text -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-    , limit      :: Maybe Int    -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    , limit      :: Maybe Int    -- ^ The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
     }
   deriving (Eq, Show)
 

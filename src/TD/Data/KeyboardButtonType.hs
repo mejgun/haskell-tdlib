@@ -16,12 +16,13 @@ data KeyboardButtonType
     { force_regular :: Maybe Bool -- ^ If true, only regular polls must be allowed to create
     , force_quiz    :: Maybe Bool -- ^ If true, only polls in quiz mode must be allowed to create
     }
-  | KeyboardButtonTypeRequestUser -- ^ A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
+  | KeyboardButtonTypeRequestUsers -- ^ A button that requests users to be shared by the current user; available only in private chats. Use the method shareUsersWithBot to complete the request
     { _id                      :: Maybe Int  -- ^ Unique button identifier
-    , restrict_user_is_bot     :: Maybe Bool -- ^ True, if the shared user must or must not be a bot
-    , user_is_bot              :: Maybe Bool -- ^ True, if the shared user must be a bot; otherwise, the shared user must no be a bot. Ignored if restrict_user_is_bot is false
-    , restrict_user_is_premium :: Maybe Bool -- ^ True, if the shared user must or must not be a Telegram Premium user
-    , user_is_premium          :: Maybe Bool -- ^ True, if the shared user must be a Telegram Premium user; otherwise, the shared user must no be a Telegram Premium user. Ignored if restrict_user_is_premium is false
+    , restrict_user_is_bot     :: Maybe Bool -- ^ True, if the shared users must or must not be bots
+    , user_is_bot              :: Maybe Bool -- ^ True, if the shared users must be bots; otherwise, the shared users must not be bots. Ignored if restrict_user_is_bot is false
+    , restrict_user_is_premium :: Maybe Bool -- ^ True, if the shared users must or must not be Telegram Premium users
+    , user_is_premium          :: Maybe Bool -- ^ True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false
+    , max_quantity             :: Maybe Int  -- ^ The maximum number of users to share
     }
   | KeyboardButtonTypeRequestChat -- ^ A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
     { _id                        :: Maybe Int                                             -- ^ Unique button identifier
@@ -56,20 +57,22 @@ instance I.ShortShow KeyboardButtonType where
         [ "force_regular" `I.p` force_regular_
         , "force_quiz"    `I.p` force_quiz_
         ]
-  shortShow KeyboardButtonTypeRequestUser
+  shortShow KeyboardButtonTypeRequestUsers
     { _id                      = _id_
     , restrict_user_is_bot     = restrict_user_is_bot_
     , user_is_bot              = user_is_bot_
     , restrict_user_is_premium = restrict_user_is_premium_
     , user_is_premium          = user_is_premium_
+    , max_quantity             = max_quantity_
     }
-      = "KeyboardButtonTypeRequestUser"
+      = "KeyboardButtonTypeRequestUsers"
         ++ I.cc
         [ "_id"                      `I.p` _id_
         , "restrict_user_is_bot"     `I.p` restrict_user_is_bot_
         , "user_is_bot"              `I.p` user_is_bot_
         , "restrict_user_is_premium" `I.p` restrict_user_is_premium_
         , "user_is_premium"          `I.p` user_is_premium_
+        , "max_quantity"             `I.p` max_quantity_
         ]
   shortShow KeyboardButtonTypeRequestChat
     { _id                        = _id_
@@ -113,7 +116,7 @@ instance AT.FromJSON KeyboardButtonType where
       "keyboardButtonTypeRequestPhoneNumber" -> pure KeyboardButtonTypeRequestPhoneNumber
       "keyboardButtonTypeRequestLocation"    -> pure KeyboardButtonTypeRequestLocation
       "keyboardButtonTypeRequestPoll"        -> parseKeyboardButtonTypeRequestPoll v
-      "keyboardButtonTypeRequestUser"        -> parseKeyboardButtonTypeRequestUser v
+      "keyboardButtonTypeRequestUsers"       -> parseKeyboardButtonTypeRequestUsers v
       "keyboardButtonTypeRequestChat"        -> parseKeyboardButtonTypeRequestChat v
       "keyboardButtonTypeWebApp"             -> parseKeyboardButtonTypeWebApp v
       _                                      -> mempty
@@ -127,19 +130,21 @@ instance AT.FromJSON KeyboardButtonType where
           { force_regular = force_regular_
           , force_quiz    = force_quiz_
           }
-      parseKeyboardButtonTypeRequestUser :: A.Value -> AT.Parser KeyboardButtonType
-      parseKeyboardButtonTypeRequestUser = A.withObject "KeyboardButtonTypeRequestUser" $ \o -> do
+      parseKeyboardButtonTypeRequestUsers :: A.Value -> AT.Parser KeyboardButtonType
+      parseKeyboardButtonTypeRequestUsers = A.withObject "KeyboardButtonTypeRequestUsers" $ \o -> do
         _id_                      <- o A..:?  "id"
         restrict_user_is_bot_     <- o A..:?  "restrict_user_is_bot"
         user_is_bot_              <- o A..:?  "user_is_bot"
         restrict_user_is_premium_ <- o A..:?  "restrict_user_is_premium"
         user_is_premium_          <- o A..:?  "user_is_premium"
-        pure $ KeyboardButtonTypeRequestUser
+        max_quantity_             <- o A..:?  "max_quantity"
+        pure $ KeyboardButtonTypeRequestUsers
           { _id                      = _id_
           , restrict_user_is_bot     = restrict_user_is_bot_
           , user_is_bot              = user_is_bot_
           , restrict_user_is_premium = restrict_user_is_premium_
           , user_is_premium          = user_is_premium_
+          , max_quantity             = max_quantity_
           }
       parseKeyboardButtonTypeRequestChat :: A.Value -> AT.Parser KeyboardButtonType
       parseKeyboardButtonTypeRequestChat = A.withObject "KeyboardButtonTypeRequestChat" $ \o -> do
@@ -195,20 +200,22 @@ instance AT.ToJSON KeyboardButtonType where
         , "force_regular" A..= force_regular_
         , "force_quiz"    A..= force_quiz_
         ]
-  toJSON KeyboardButtonTypeRequestUser
+  toJSON KeyboardButtonTypeRequestUsers
     { _id                      = _id_
     , restrict_user_is_bot     = restrict_user_is_bot_
     , user_is_bot              = user_is_bot_
     , restrict_user_is_premium = restrict_user_is_premium_
     , user_is_premium          = user_is_premium_
+    , max_quantity             = max_quantity_
     }
       = A.object
-        [ "@type"                    A..= AT.String "keyboardButtonTypeRequestUser"
+        [ "@type"                    A..= AT.String "keyboardButtonTypeRequestUsers"
         , "id"                       A..= _id_
         , "restrict_user_is_bot"     A..= restrict_user_is_bot_
         , "user_is_bot"              A..= user_is_bot_
         , "restrict_user_is_premium" A..= restrict_user_is_premium_
         , "user_is_premium"          A..= user_is_premium_
+        , "max_quantity"             A..= max_quantity_
         ]
   toJSON KeyboardButtonTypeRequestChat
     { _id                        = _id_
