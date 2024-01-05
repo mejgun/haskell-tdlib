@@ -11,7 +11,7 @@ import qualified TD.Data.StoryInteractionType as StoryInteractionType
 data StoryInteraction
   = StoryInteraction -- ^ Represents interaction with a story
     { actor_id         :: Maybe MessageSender.MessageSender               -- ^ Identifier of the user or chat that made the interaction
-    , interaction_date :: Maybe Int                                       -- ^ Approximate point in time (Unix timestamp) when the interaction happenned
+    , interaction_date :: Maybe Int                                       -- ^ Approximate point in time (Unix timestamp) when the interaction happened
     , block_list       :: Maybe BlockList.BlockList                       -- ^ Block list to which the actor is added; may be null if none or for chat stories
     , _type            :: Maybe StoryInteractionType.StoryInteractionType -- ^ Type of the interaction
     }
