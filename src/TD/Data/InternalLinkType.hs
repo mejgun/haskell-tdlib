@@ -12,7 +12,7 @@ import qualified TD.Data.ProxyType as ProxyType
 
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
-  = InternalLinkTypeActiveSessions -- ^ The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
+  = InternalLinkTypeActiveSessions -- ^ The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
   | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
@@ -21,7 +21,7 @@ data InternalLinkType
   | InternalLinkTypeAuthenticationCode -- ^ The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     { code :: Maybe T.Text -- ^ The authentication code
     }
-  | InternalLinkTypeBackground -- ^ The link is a link to a background. Call searchBackground with the given background name to process the link
+  | InternalLinkTypeBackground -- ^ The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
     { background_name :: Maybe T.Text -- ^ Name of the background
     }
   | InternalLinkTypeBotAddToChannel -- ^ The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
@@ -42,11 +42,11 @@ data InternalLinkType
   | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
     }
-  | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+  | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
   | InternalLinkTypeChatFolderSettings -- ^ The link is a link to the folder section of the app settings
-  | InternalLinkTypeChatInvite -- ^ The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+  | InternalLinkTypeChatInvite -- ^ The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
   | InternalLinkTypeDefaultMessageAutoDeleteTimerSettings -- ^ The link is a link to the default message auto-delete timer settings section of the app settings
@@ -55,18 +55,18 @@ data InternalLinkType
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
     }
-  | InternalLinkTypeInstantView -- ^ The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+  | InternalLinkTypeInstantView -- ^ The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
     { url          :: Maybe T.Text -- ^ URL to be passed to getWebPageInstantView
     , fallback_url :: Maybe T.Text -- ^ An URL to open if getWebPageInstantView fails
     }
   | InternalLinkTypeInvoice -- ^ The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
     { invoice_name :: Maybe T.Text -- ^ Name of the invoice
     }
-  | InternalLinkTypeLanguagePack -- ^ The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
+  | InternalLinkTypeLanguagePack -- ^ The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
   | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the app settings
-  | InternalLinkTypeMessage -- ^ The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
+  | InternalLinkTypeMessage -- ^ The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
     { url :: Maybe T.Text -- ^ URL to be passed to getMessageLinkInfo
     }
   | InternalLinkTypeMessageDraft -- ^ The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
@@ -80,14 +80,14 @@ data InternalLinkType
     , nonce        :: Maybe T.Text -- ^ Unique request identifier provided by the service
     , callback_url :: Maybe T.Text -- ^ An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
     }
-  | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
+  | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
     { hash         :: Maybe T.Text -- ^ Hash value from the link
     , phone_number :: Maybe T.Text -- ^ Phone number value from the link
     }
   | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
-  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends
+  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
   | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
@@ -99,21 +99,21 @@ data InternalLinkType
     , port   :: Maybe Int                 -- ^ Proxy server port
     , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
-  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
+  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
     { chat_username :: Maybe T.Text -- ^ Username of the chat
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
   | InternalLinkTypeSettings -- ^ The link is a link to application settings
-  | InternalLinkTypeSideMenuBot -- ^ The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+  | InternalLinkTypeSideMenuBot -- ^ The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
     { bot_username :: Maybe T.Text -- ^ Username of the bot
     , url          :: Maybe T.Text -- ^ URL to be passed to getWebAppUrl
     }
-  | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
+  | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
     , expect_custom_emoji :: Maybe Bool   -- ^ True, if the sticker set is expected to contain custom emoji
     }
-  | InternalLinkTypeStory -- ^ The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+  | InternalLinkTypeStory -- ^ The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     { story_sender_username :: Maybe T.Text -- ^ Username of the sender of the story
     , story_id              :: Maybe Int    -- ^ Story identifier
     }
@@ -125,10 +125,10 @@ data InternalLinkType
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
   | InternalLinkTypeUnsupportedProxy -- ^ The link is a link to an unsupported proxy. An alert can be shown to the user
-  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
     { phone_number :: Maybe T.Text -- ^ Phone number of the user
     }
-  | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+  | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     { token :: Maybe T.Text -- ^ The token
     }
   | InternalLinkTypeVideoChat -- ^ The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
