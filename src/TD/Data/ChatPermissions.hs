@@ -22,7 +22,7 @@ data ChatPermissions
     , can_change_info           :: Maybe Bool -- ^ True, if the user can change the chat title, photo, and other settings
     , can_invite_users          :: Maybe Bool -- ^ True, if the user can invite new users to the chat
     , can_pin_messages          :: Maybe Bool -- ^ True, if the user can pin messages
-    , can_manage_topics         :: Maybe Bool -- ^ True, if the user can manage topics
+    , can_create_topics         :: Maybe Bool -- ^ True, if the user can create topics
     }
   deriving (Eq, Show)
 
@@ -41,7 +41,7 @@ instance I.ShortShow ChatPermissions where
     , can_change_info           = can_change_info_
     , can_invite_users          = can_invite_users_
     , can_pin_messages          = can_pin_messages_
-    , can_manage_topics         = can_manage_topics_
+    , can_create_topics         = can_create_topics_
     }
       = "ChatPermissions"
         ++ I.cc
@@ -58,7 +58,7 @@ instance I.ShortShow ChatPermissions where
         , "can_change_info"           `I.p` can_change_info_
         , "can_invite_users"          `I.p` can_invite_users_
         , "can_pin_messages"          `I.p` can_pin_messages_
-        , "can_manage_topics"         `I.p` can_manage_topics_
+        , "can_create_topics"         `I.p` can_create_topics_
         ]
 
 instance AT.FromJSON ChatPermissions where
@@ -85,7 +85,7 @@ instance AT.FromJSON ChatPermissions where
         can_change_info_           <- o A..:?  "can_change_info"
         can_invite_users_          <- o A..:?  "can_invite_users"
         can_pin_messages_          <- o A..:?  "can_pin_messages"
-        can_manage_topics_         <- o A..:?  "can_manage_topics"
+        can_create_topics_         <- o A..:?  "can_create_topics"
         pure $ ChatPermissions
           { can_send_basic_messages   = can_send_basic_messages_
           , can_send_audios           = can_send_audios_
@@ -100,7 +100,7 @@ instance AT.FromJSON ChatPermissions where
           , can_change_info           = can_change_info_
           , can_invite_users          = can_invite_users_
           , can_pin_messages          = can_pin_messages_
-          , can_manage_topics         = can_manage_topics_
+          , can_create_topics         = can_create_topics_
           }
   parseJSON _ = mempty
 
@@ -119,7 +119,7 @@ instance AT.ToJSON ChatPermissions where
     , can_change_info           = can_change_info_
     , can_invite_users          = can_invite_users_
     , can_pin_messages          = can_pin_messages_
-    , can_manage_topics         = can_manage_topics_
+    , can_create_topics         = can_create_topics_
     }
       = A.object
         [ "@type"                     A..= AT.String "chatPermissions"
@@ -136,7 +136,7 @@ instance AT.ToJSON ChatPermissions where
         , "can_change_info"           A..= can_change_info_
         , "can_invite_users"          A..= can_invite_users_
         , "can_pin_messages"          A..= can_pin_messages_
-        , "can_manage_topics"         A..= can_manage_topics_
+        , "can_create_topics"         A..= can_create_topics_
         ]
 
 defaultChatPermissions :: ChatPermissions
@@ -155,6 +155,6 @@ defaultChatPermissions =
     , can_change_info           = Nothing
     , can_invite_users          = Nothing
     , can_pin_messages          = Nothing
-    , can_manage_topics         = Nothing
+    , can_create_topics         = Nothing
     }
 

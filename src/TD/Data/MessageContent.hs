@@ -64,7 +64,6 @@ data MessageContent
     , has_spoiler :: Maybe Bool                        -- ^ True, if the photo preview must be covered by a spoiler animation
     , is_secret   :: Maybe Bool                        -- ^ True, if the photo must be blurred and must be shown only while tapped
     }
-  | MessageExpiredPhoto -- ^ A self-destructed photo message
   | MessageSticker -- ^ A sticker message
     { sticker    :: Maybe Sticker.Sticker -- ^ The sticker description
     , is_premium :: Maybe Bool            -- ^ True, if premium animation of the sticker must be played
@@ -75,7 +74,6 @@ data MessageContent
     , has_spoiler :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
     , is_secret   :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
     }
-  | MessageExpiredVideo -- ^ A self-destructed video message
   | MessageVideoNote -- ^ A video note message
     { video_note :: Maybe VideoNote.VideoNote -- ^ The video note description
     , is_viewed  :: Maybe Bool                -- ^ True, if at least one of the recipients has viewed the video note
@@ -86,6 +84,10 @@ data MessageContent
     , caption     :: Maybe FormattedText.FormattedText -- ^ Voice note caption
     , is_listened :: Maybe Bool                        -- ^ True, if at least one of the recipients has listened to the voice note
     }
+  | MessageExpiredPhoto -- ^ A self-destructed photo message
+  | MessageExpiredVideo -- ^ A self-destructed video message
+  | MessageExpiredVideoNote -- ^ A self-destructed video note message
+  | MessageExpiredVoiceNote -- ^ A self-destructed voice note message
   | MessageLocation -- ^ A message with a location
     { location               :: Maybe Location.Location -- ^ The location description
     , live_period            :: Maybe Int               -- ^ Time relative to the message send date, for which the location can be updated, in seconds
@@ -379,8 +381,6 @@ instance I.ShortShow MessageContent where
         , "has_spoiler" `I.p` has_spoiler_
         , "is_secret"   `I.p` is_secret_
         ]
-  shortShow MessageExpiredPhoto
-      = "MessageExpiredPhoto"
   shortShow MessageSticker
     { sticker    = sticker_
     , is_premium = is_premium_
@@ -403,8 +403,6 @@ instance I.ShortShow MessageContent where
         , "has_spoiler" `I.p` has_spoiler_
         , "is_secret"   `I.p` is_secret_
         ]
-  shortShow MessageExpiredVideo
-      = "MessageExpiredVideo"
   shortShow MessageVideoNote
     { video_note = video_note_
     , is_viewed  = is_viewed_
@@ -427,6 +425,14 @@ instance I.ShortShow MessageContent where
         , "caption"     `I.p` caption_
         , "is_listened" `I.p` is_listened_
         ]
+  shortShow MessageExpiredPhoto
+      = "MessageExpiredPhoto"
+  shortShow MessageExpiredVideo
+      = "MessageExpiredVideo"
+  shortShow MessageExpiredVideoNote
+      = "MessageExpiredVideoNote"
+  shortShow MessageExpiredVoiceNote
+      = "MessageExpiredVoiceNote"
   shortShow MessageLocation
     { location               = location_
     , live_period            = live_period_
@@ -956,12 +962,14 @@ instance AT.FromJSON MessageContent where
       "messageAudio"                        -> parseMessageAudio v
       "messageDocument"                     -> parseMessageDocument v
       "messagePhoto"                        -> parseMessagePhoto v
-      "messageExpiredPhoto"                 -> pure MessageExpiredPhoto
       "messageSticker"                      -> parseMessageSticker v
       "messageVideo"                        -> parseMessageVideo v
-      "messageExpiredVideo"                 -> pure MessageExpiredVideo
       "messageVideoNote"                    -> parseMessageVideoNote v
       "messageVoiceNote"                    -> parseMessageVoiceNote v
+      "messageExpiredPhoto"                 -> pure MessageExpiredPhoto
+      "messageExpiredVideo"                 -> pure MessageExpiredVideo
+      "messageExpiredVideoNote"             -> pure MessageExpiredVideoNote
+      "messageExpiredVoiceNote"             -> pure MessageExpiredVoiceNote
       "messageLocation"                     -> parseMessageLocation v
       "messageVenue"                        -> parseMessageVenue v
       "messageContact"                      -> parseMessageContact v

@@ -71,6 +71,7 @@ import qualified TD.Data.ChatNearby as ChatNearby
 import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
+import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
@@ -281,6 +282,7 @@ data Update
     { chat_id             :: Maybe Int -- ^ Identifier of the chat
     , online_member_count :: Maybe Int -- ^ New number of online members in the chat, or 0 if unknown
     }
+  | UpdatePinnedSavedMessagesTopics -- ^ The list of pinned Saved Messages topics has changed. The app can call getPinnedSavedMessagesTopics to get the new list
   | UpdateForumTopicInfo -- ^ Basic information about a topic in a forum chat was changed
     { chat_id :: Maybe Int                           -- ^ Chat identifier
     , info    :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ New information about the topic
@@ -515,6 +517,9 @@ data Update
     }
   | UpdateDefaultReactionType -- ^ The type of default reaction has changed
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ The new type of the default reaction
+    }
+  | UpdateSavedMessagesTags -- ^ Used Saved Messages tags have changed
+    { tags :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new used tags
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription
@@ -1072,6 +1077,8 @@ instance I.ShortShow Update where
         [ "chat_id"             `I.p` chat_id_
         , "online_member_count" `I.p` online_member_count_
         ]
+  shortShow UpdatePinnedSavedMessagesTopics
+      = "UpdatePinnedSavedMessagesTopics"
   shortShow UpdateForumTopicInfo
     { chat_id = chat_id_
     , info    = info_
@@ -1601,6 +1608,13 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "reaction_type" `I.p` reaction_type_
         ]
+  shortShow UpdateSavedMessagesTags
+    { tags = tags_
+    }
+      = "UpdateSavedMessagesTags"
+        ++ I.cc
+        [ "tags" `I.p` tags_
+        ]
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
     , weekly_count       = weekly_count_
@@ -1922,6 +1936,7 @@ instance AT.FromJSON Update where
       "updateChatHasScheduledMessages"       -> parseUpdateChatHasScheduledMessages v
       "updateChatFolders"                    -> parseUpdateChatFolders v
       "updateChatOnlineMemberCount"          -> parseUpdateChatOnlineMemberCount v
+      "updatePinnedSavedMessagesTopics"      -> pure UpdatePinnedSavedMessagesTopics
       "updateForumTopicInfo"                 -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings"      -> parseUpdateScopeNotificationSettings v
       "updateNotification"                   -> parseUpdateNotification v
@@ -1981,6 +1996,7 @@ instance AT.FromJSON Update where
       "updateWebAppMessageSent"              -> parseUpdateWebAppMessageSent v
       "updateActiveEmojiReactions"           -> parseUpdateActiveEmojiReactions v
       "updateDefaultReactionType"            -> parseUpdateDefaultReactionType v
+      "updateSavedMessagesTags"              -> parseUpdateSavedMessagesTags v
       "updateSpeechRecognitionTrial"         -> parseUpdateSpeechRecognitionTrial v
       "updateDiceEmojis"                     -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
@@ -2859,6 +2875,12 @@ instance AT.FromJSON Update where
         reaction_type_ <- o A..:?  "reaction_type"
         pure $ UpdateDefaultReactionType
           { reaction_type = reaction_type_
+          }
+      parseUpdateSavedMessagesTags :: A.Value -> AT.Parser Update
+      parseUpdateSavedMessagesTags = A.withObject "UpdateSavedMessagesTags" $ \o -> do
+        tags_ <- o A..:?  "tags"
+        pure $ UpdateSavedMessagesTags
+          { tags = tags_
           }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
       parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do

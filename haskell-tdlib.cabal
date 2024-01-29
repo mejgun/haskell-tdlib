@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.19.0
+version:        2.0.20.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -73,6 +73,7 @@ library
       TD.Data.CallServer
       TD.Data.CallServerType
       TD.Data.CallState
+      TD.Data.CanSendMessageToUserResult
       TD.Data.CanSendStoryResult
       TD.Data.CanTransferOwnershipResult
       TD.Data.Chat
@@ -169,6 +170,8 @@ library
       TD.Data.EmojiCategories
       TD.Data.EmojiCategory
       TD.Data.EmojiCategoryType
+      TD.Data.EmojiKeyword
+      TD.Data.EmojiKeywords
       TD.Data.EmojiReaction
       TD.Data.Emojis
       TD.Data.EmojiStatus
@@ -187,12 +190,15 @@ library
       TD.Data.ForumTopicIcon
       TD.Data.ForumTopicInfo
       TD.Data.ForumTopics
+      TD.Data.ForwardSource
       TD.Data.FoundChatBoosts
       TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
       TD.Data.FoundMessages
       TD.Data.FoundPosition
       TD.Data.FoundPositions
+      TD.Data.FoundSavedMessagesTopic
+      TD.Data.FoundSavedMessagesTopics
       TD.Data.FoundWebApp
       TD.Data.Game
       TD.Data.GameHighScore
@@ -275,6 +281,8 @@ library
       TD.Data.MessagePosition
       TD.Data.MessagePositions
       TD.Data.MessageReaction
+      TD.Data.MessageReactions
+      TD.Data.MessageReadDate
       TD.Data.MessageReplyInfo
       TD.Data.MessageReplyTo
       TD.Data.Messages
@@ -295,6 +303,7 @@ library
       TD.Data.NetworkStatistics
       TD.Data.NetworkStatisticsEntry
       TD.Data.NetworkType
+      TD.Data.NewChatPrivacySettings
       TD.Data.Notification
       TD.Data.NotificationGroup
       TD.Data.NotificationGroupType
@@ -366,6 +375,8 @@ library
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
       TD.Data.ReactionType
+      TD.Data.ReactionUnavailabilityReason
+      TD.Data.ReadDatePrivacySettings
       TD.Data.RecommendedChatFolder
       TD.Data.RecommendedChatFolders
       TD.Data.RecoveryEmailAddress
@@ -376,6 +387,9 @@ library
       TD.Data.RichText
       TD.Data.RtmpUrl
       TD.Data.SavedCredentials
+      TD.Data.SavedMessagesTag
+      TD.Data.SavedMessagesTags
+      TD.Data.SavedMessagesTopic
       TD.Data.ScopeAutosaveSettings
       TD.Data.ScopeNotificationSettings
       TD.Data.SearchMessagesFilter
@@ -520,7 +534,9 @@ library
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
       TD.Query.CancelPreliminaryUploadFile
+      TD.Query.CancelRecoveryEmailAddressVerification
       TD.Query.CanPurchasePremium
+      TD.Query.CanSendMessageToUser
       TD.Query.CanSendStory
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
@@ -599,6 +615,8 @@ library
       TD.Query.DeleteProfilePhoto
       TD.Query.DeleteRevokedChatInviteLink
       TD.Query.DeleteSavedCredentials
+      TD.Query.DeleteSavedMessagesTopicHistory
+      TD.Query.DeleteSavedMessagesTopicMessagesByDate
       TD.Query.DeleteSavedOrderInfo
       TD.Query.DeleteStickerSet
       TD.Query.DeleteStory
@@ -708,6 +726,7 @@ library
       TD.Query.GetContacts
       TD.Query.GetCountries
       TD.Query.GetCountryCode
+      TD.Query.GetCountryFlagEmoji
       TD.Query.GetCreatedPublicChats
       TD.Query.GetCurrentState
       TD.Query.GetCustomEmojiReactionAnimations
@@ -751,6 +770,7 @@ library
       TD.Query.GetInternalLinkType
       TD.Query.GetJsonString
       TD.Query.GetJsonValue
+      TD.Query.GetKeywordEmojis
       TD.Query.GetLanguagePackInfo
       TD.Query.GetLanguagePackString
       TD.Query.GetLanguagePackStrings
@@ -775,12 +795,14 @@ library
       TD.Query.GetMessageLinkInfo
       TD.Query.GetMessageLocally
       TD.Query.GetMessagePublicForwards
+      TD.Query.GetMessageReadDate
       TD.Query.GetMessages
       TD.Query.GetMessageStatistics
       TD.Query.GetMessageThread
       TD.Query.GetMessageThreadHistory
       TD.Query.GetMessageViewers
       TD.Query.GetNetworkStatistics
+      TD.Query.GetNewChatPrivacySettings
       TD.Query.GetOption
       TD.Query.GetPassportAuthorizationForm
       TD.Query.GetPassportAuthorizationFormAvailableElements
@@ -790,6 +812,7 @@ library
       TD.Query.GetPaymentReceipt
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
+      TD.Query.GetPinnedSavedMessagesTopics
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
@@ -802,6 +825,7 @@ library
       TD.Query.GetProxies
       TD.Query.GetProxyLink
       TD.Query.GetPushReceiverId
+      TD.Query.GetReadDatePrivacySettings
       TD.Query.GetRecentEmojiStatuses
       TD.Query.GetRecentInlineBots
       TD.Query.GetRecentlyOpenedChats
@@ -812,6 +836,10 @@ library
       TD.Query.GetRemoteFile
       TD.Query.GetRepliedMessage
       TD.Query.GetSavedAnimations
+      TD.Query.GetSavedMessagesTags
+      TD.Query.GetSavedMessagesTopicHistory
+      TD.Query.GetSavedMessagesTopicMessageByDate
+      TD.Query.GetSavedMessagesTopics
       TD.Query.GetSavedNotificationSound
       TD.Query.GetSavedNotificationSounds
       TD.Query.GetSavedOrderInfo
@@ -966,6 +994,7 @@ library
       TD.Query.SearchPublicChats
       TD.Query.SearchQuote
       TD.Query.SearchRecentlyFoundChats
+      TD.Query.SearchSavedMessages
       TD.Query.SearchSecretMessages
       TD.Query.SearchStickers
       TD.Query.SearchStickerSet
@@ -1057,16 +1086,20 @@ library
       TD.Query.SetMessageSenderBlockList
       TD.Query.SetName
       TD.Query.SetNetworkType
+      TD.Query.SetNewChatPrivacySettings
       TD.Query.SetOption
       TD.Query.SetPassportElement
       TD.Query.SetPassportElementErrors
       TD.Query.SetPassword
       TD.Query.SetPinnedChats
       TD.Query.SetPinnedForumTopics
+      TD.Query.SetPinnedSavedMessagesTopics
       TD.Query.SetPollAnswer
       TD.Query.SetProfileAccentColor
       TD.Query.SetProfilePhoto
+      TD.Query.SetReadDatePrivacySettings
       TD.Query.SetRecoveryEmailAddress
+      TD.Query.SetSavedMessagesTagLabel
       TD.Query.SetScopeNotificationSettings
       TD.Query.SetStickerEmojis
       TD.Query.SetStickerKeywords
@@ -1128,6 +1161,7 @@ library
       TD.Query.ToggleGroupCallParticipantIsHandRaised
       TD.Query.ToggleGroupCallParticipantIsMuted
       TD.Query.ToggleGroupCallScreenSharingIsPaused
+      TD.Query.ToggleSavedMessagesTopicIsPinned
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
       TD.Query.ToggleStoryIsPinned

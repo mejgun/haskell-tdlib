@@ -8,14 +8,14 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message. Returns 'TD.Data.Ok.Ok'
+-- | Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message. Returns 'TD.Data.Ok.Ok'
 data AddMessageReaction
   = AddMessageReaction
     { chat_id                 :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
     , message_id              :: Maybe Int                       -- ^ Identifier of the message
     , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to add
     , is_big                  :: Maybe Bool                      -- ^ Pass true if the reaction is added with a big animation
-    , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions
+    , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     }
   deriving (Eq, Show)
 

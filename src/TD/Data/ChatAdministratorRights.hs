@@ -17,7 +17,7 @@ data ChatAdministratorRights
     , can_invite_users       :: Maybe Bool -- ^ True, if the administrator can invite new users to the chat
     , can_restrict_members   :: Maybe Bool -- ^ True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels
     , can_pin_messages       :: Maybe Bool -- ^ True, if the administrator can pin messages; applicable to basic groups and supergroups only
-    , can_manage_topics      :: Maybe Bool -- ^ True, if the administrator can manage topics; applicable to forum supergroups only
+    , can_manage_topics      :: Maybe Bool -- ^ True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
     , can_promote_members    :: Maybe Bool -- ^ True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     , can_manage_video_chats :: Maybe Bool -- ^ True, if the administrator can manage video chats
     , can_post_stories       :: Maybe Bool -- ^ True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only

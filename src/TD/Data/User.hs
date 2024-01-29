@@ -36,6 +36,7 @@ data User
     , is_fake                            :: Maybe Bool                      -- ^ True, if many users reported this user as a fake account
     , has_active_stories                 :: Maybe Bool                      -- ^ True, if the user has non-expired stories available to the current user
     , has_unread_active_stories          :: Maybe Bool                      -- ^ True, if the user has unread non-expired stories available to the current user
+    , restricts_new_chats                :: Maybe Bool                      -- ^ True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
     , have_access                        :: Maybe Bool                      -- ^ If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
     , _type                              :: Maybe UserType.UserType         -- ^ Type of the user
     , language_code                      :: Maybe T.Text                    -- ^ IETF language tag of the user's language; only available to bots
@@ -68,6 +69,7 @@ instance I.ShortShow User where
     , is_fake                            = is_fake_
     , has_active_stories                 = has_active_stories_
     , has_unread_active_stories          = has_unread_active_stories_
+    , restricts_new_chats                = restricts_new_chats_
     , have_access                        = have_access_
     , _type                              = _type_
     , language_code                      = language_code_
@@ -98,6 +100,7 @@ instance I.ShortShow User where
         , "is_fake"                            `I.p` is_fake_
         , "has_active_stories"                 `I.p` has_active_stories_
         , "has_unread_active_stories"          `I.p` has_unread_active_stories_
+        , "restricts_new_chats"                `I.p` restricts_new_chats_
         , "have_access"                        `I.p` have_access_
         , "_type"                              `I.p` _type_
         , "language_code"                      `I.p` language_code_
@@ -138,6 +141,7 @@ instance AT.FromJSON User where
         is_fake_                            <- o A..:?                       "is_fake"
         has_active_stories_                 <- o A..:?                       "has_active_stories"
         has_unread_active_stories_          <- o A..:?                       "has_unread_active_stories"
+        restricts_new_chats_                <- o A..:?                       "restricts_new_chats"
         have_access_                        <- o A..:?                       "have_access"
         _type_                              <- o A..:?                       "type"
         language_code_                      <- o A..:?                       "language_code"
@@ -166,6 +170,7 @@ instance AT.FromJSON User where
           , is_fake                            = is_fake_
           , has_active_stories                 = has_active_stories_
           , has_unread_active_stories          = has_unread_active_stories_
+          , restricts_new_chats                = restricts_new_chats_
           , have_access                        = have_access_
           , _type                              = _type_
           , language_code                      = language_code_

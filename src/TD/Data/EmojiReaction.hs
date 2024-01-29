@@ -8,7 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.Sticker as Sticker
 
 data EmojiReaction
-  = EmojiReaction -- ^ Contains information about a emoji reaction
+  = EmojiReaction -- ^ Contains information about an emoji reaction
     { emoji              :: Maybe T.Text          -- ^ Text representation of the reaction
     , title              :: Maybe T.Text          -- ^ Reaction title
     , is_active          :: Maybe Bool            -- ^ True, if the reaction can be added to new messages and enabled in chats

@@ -79,16 +79,18 @@ data InputMessageContent
     , has_spoiler            :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageVideoNote -- ^ A video note message
-    { video_note :: Maybe InputFile.InputFile           -- ^ Video note to be sent
-    , thumbnail  :: Maybe InputThumbnail.InputThumbnail -- ^ Video thumbnail; pass null to skip thumbnail uploading
-    , duration   :: Maybe Int                           -- ^ Duration of the video, in seconds
-    , _length    :: Maybe Int                           -- ^ Video width and height; must be positive and not greater than 640
+    { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent
+    , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
+    , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds
+    , _length            :: Maybe Int                                             -- ^ Video width and height; must be positive and not greater than 640
+    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; pass null if none; private chats only
     }
   | InputMessageVoiceNote -- ^ A voice note message
-    { voice_note :: Maybe InputFile.InputFile         -- ^ Voice note to be sent
-    , duration   :: Maybe Int                         -- ^ Duration of the voice note, in seconds
-    , waveform   :: Maybe BS.ByteString               -- ^ Waveform representation of the voice note in 5-bit format
-    , caption    :: Maybe FormattedText.FormattedText -- ^ Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    { voice_note         :: Maybe InputFile.InputFile                             -- ^ Voice note to be sent
+    , duration           :: Maybe Int                                             -- ^ Duration of the voice note, in seconds
+    , waveform           :: Maybe BS.ByteString                                   -- ^ Waveform representation of the voice note in 5-bit format
+    , caption            :: Maybe FormattedText.FormattedText                     -- ^ Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Voice note self-destruct type; pass null if none; private chats only
     }
   | InputMessageLocation -- ^ A message with a location
     { location               :: Maybe Location.Location -- ^ Location to be sent
@@ -270,30 +272,34 @@ instance I.ShortShow InputMessageContent where
         , "has_spoiler"            `I.p` has_spoiler_
         ]
   shortShow InputMessageVideoNote
-    { video_note = video_note_
-    , thumbnail  = thumbnail_
-    , duration   = duration_
-    , _length    = _length_
+    { video_note         = video_note_
+    , thumbnail          = thumbnail_
+    , duration           = duration_
+    , _length            = _length_
+    , self_destruct_type = self_destruct_type_
     }
       = "InputMessageVideoNote"
         ++ I.cc
-        [ "video_note" `I.p` video_note_
-        , "thumbnail"  `I.p` thumbnail_
-        , "duration"   `I.p` duration_
-        , "_length"    `I.p` _length_
+        [ "video_note"         `I.p` video_note_
+        , "thumbnail"          `I.p` thumbnail_
+        , "duration"           `I.p` duration_
+        , "_length"            `I.p` _length_
+        , "self_destruct_type" `I.p` self_destruct_type_
         ]
   shortShow InputMessageVoiceNote
-    { voice_note = voice_note_
-    , duration   = duration_
-    , waveform   = waveform_
-    , caption    = caption_
+    { voice_note         = voice_note_
+    , duration           = duration_
+    , waveform           = waveform_
+    , caption            = caption_
+    , self_destruct_type = self_destruct_type_
     }
       = "InputMessageVoiceNote"
         ++ I.cc
-        [ "voice_note" `I.p` voice_note_
-        , "duration"   `I.p` duration_
-        , "waveform"   `I.p` waveform_
-        , "caption"    `I.p` caption_
+        [ "voice_note"         `I.p` voice_note_
+        , "duration"           `I.p` duration_
+        , "waveform"           `I.p` waveform_
+        , "caption"            `I.p` caption_
+        , "self_destruct_type" `I.p` self_destruct_type_
         ]
   shortShow InputMessageLocation
     { location               = location_
@@ -555,27 +561,31 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageVideoNote :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
-        video_note_ <- o A..:?  "video_note"
-        thumbnail_  <- o A..:?  "thumbnail"
-        duration_   <- o A..:?  "duration"
-        _length_    <- o A..:?  "length"
+        video_note_         <- o A..:?  "video_note"
+        thumbnail_          <- o A..:?  "thumbnail"
+        duration_           <- o A..:?  "duration"
+        _length_            <- o A..:?  "length"
+        self_destruct_type_ <- o A..:?  "self_destruct_type"
         pure $ InputMessageVideoNote
-          { video_note = video_note_
-          , thumbnail  = thumbnail_
-          , duration   = duration_
-          , _length    = _length_
+          { video_note         = video_note_
+          , thumbnail          = thumbnail_
+          , duration           = duration_
+          , _length            = _length_
+          , self_destruct_type = self_destruct_type_
           }
       parseInputMessageVoiceNote :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVoiceNote = A.withObject "InputMessageVoiceNote" $ \o -> do
-        voice_note_ <- o A..:?                       "voice_note"
-        duration_   <- o A..:?                       "duration"
-        waveform_   <- fmap I.readBytes <$> o A..:?  "waveform"
-        caption_    <- o A..:?                       "caption"
+        voice_note_         <- o A..:?                       "voice_note"
+        duration_           <- o A..:?                       "duration"
+        waveform_           <- fmap I.readBytes <$> o A..:?  "waveform"
+        caption_            <- o A..:?                       "caption"
+        self_destruct_type_ <- o A..:?                       "self_destruct_type"
         pure $ InputMessageVoiceNote
-          { voice_note = voice_note_
-          , duration   = duration_
-          , waveform   = waveform_
-          , caption    = caption_
+          { voice_note         = voice_note_
+          , duration           = duration_
+          , waveform           = waveform_
+          , caption            = caption_
+          , self_destruct_type = self_destruct_type_
           }
       parseInputMessageLocation :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageLocation = A.withObject "InputMessageLocation" $ \o -> do
@@ -810,30 +820,34 @@ instance AT.ToJSON InputMessageContent where
         , "has_spoiler"            A..= has_spoiler_
         ]
   toJSON InputMessageVideoNote
-    { video_note = video_note_
-    , thumbnail  = thumbnail_
-    , duration   = duration_
-    , _length    = _length_
+    { video_note         = video_note_
+    , thumbnail          = thumbnail_
+    , duration           = duration_
+    , _length            = _length_
+    , self_destruct_type = self_destruct_type_
     }
       = A.object
-        [ "@type"      A..= AT.String "inputMessageVideoNote"
-        , "video_note" A..= video_note_
-        , "thumbnail"  A..= thumbnail_
-        , "duration"   A..= duration_
-        , "length"     A..= _length_
+        [ "@type"              A..= AT.String "inputMessageVideoNote"
+        , "video_note"         A..= video_note_
+        , "thumbnail"          A..= thumbnail_
+        , "duration"           A..= duration_
+        , "length"             A..= _length_
+        , "self_destruct_type" A..= self_destruct_type_
         ]
   toJSON InputMessageVoiceNote
-    { voice_note = voice_note_
-    , duration   = duration_
-    , waveform   = waveform_
-    , caption    = caption_
+    { voice_note         = voice_note_
+    , duration           = duration_
+    , waveform           = waveform_
+    , caption            = caption_
+    , self_destruct_type = self_destruct_type_
     }
       = A.object
-        [ "@type"      A..= AT.String "inputMessageVoiceNote"
-        , "voice_note" A..= voice_note_
-        , "duration"   A..= duration_
-        , "waveform"   A..= fmap I.writeBytes  waveform_
-        , "caption"    A..= caption_
+        [ "@type"              A..= AT.String "inputMessageVoiceNote"
+        , "voice_note"         A..= voice_note_
+        , "duration"           A..= duration_
+        , "waveform"           A..= fmap I.writeBytes  waveform_
+        , "caption"            A..= caption_
+        , "self_destruct_type" A..= self_destruct_type_
         ]
   toJSON InputMessageLocation
     { location               = location_

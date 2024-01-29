@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 
--- | Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup. Returns 'TD.Data.ForumTopicInfo.ForumTopicInfo'
+-- | Creates a topic in a forum supergroup chat; requires can_manage_topics or can_create_topics rights in the supergroup. Returns 'TD.Data.ForumTopicInfo.ForumTopicInfo'
 data CreateForumTopic
   = CreateForumTopic
     { chat_id :: Maybe Int                           -- ^ Identifier of the chat

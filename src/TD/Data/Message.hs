@@ -12,6 +12,7 @@ import qualified TD.Data.MessageImportInfo as MessageImportInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.SavedMessagesTopic as SavedMessagesTopic
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
@@ -35,6 +36,7 @@ data Message
     , can_get_added_reactions        :: Maybe Bool                                            -- ^ True, if the list of added reactions is available through getMessageAddedReactions
     , can_get_statistics             :: Maybe Bool                                            -- ^ True, if the message statistics are available through getMessageStatistics
     , can_get_message_thread         :: Maybe Bool                                            -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
+    , can_get_read_date              :: Maybe Bool                                            -- ^ True, if read date of the message can be received through getMessageReadDate
     , can_get_viewers                :: Maybe Bool                                            -- ^ True, if chat members already viewed the message can be received through getMessageViewers
     , can_get_media_timestamp_links  :: Maybe Bool                                            -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
     , can_report_reactions           :: Maybe Bool                                            -- ^ True, if reactions on the message can be reported through reportMessageReactions
@@ -50,6 +52,7 @@ data Message
     , unread_reactions               :: Maybe [UnreadReaction.UnreadReaction]                 -- ^ Information about unread reactions added to the message
     , reply_to                       :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
     , message_thread_id              :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
+    , saved_messages_topic           :: Maybe SavedMessagesTopic.SavedMessagesTopic           -- ^ Information about topic of the message in the Saved Messages chat; may be null for messages not from Saved Messages
     , self_destruct_type             :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in               :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in                 :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
@@ -80,6 +83,7 @@ instance I.ShortShow Message where
     , can_get_added_reactions        = can_get_added_reactions_
     , can_get_statistics             = can_get_statistics_
     , can_get_message_thread         = can_get_message_thread_
+    , can_get_read_date              = can_get_read_date_
     , can_get_viewers                = can_get_viewers_
     , can_get_media_timestamp_links  = can_get_media_timestamp_links_
     , can_report_reactions           = can_report_reactions_
@@ -95,6 +99,7 @@ instance I.ShortShow Message where
     , unread_reactions               = unread_reactions_
     , reply_to                       = reply_to_
     , message_thread_id              = message_thread_id_
+    , saved_messages_topic           = saved_messages_topic_
     , self_destruct_type             = self_destruct_type_
     , self_destruct_in               = self_destruct_in_
     , auto_delete_in                 = auto_delete_in_
@@ -123,6 +128,7 @@ instance I.ShortShow Message where
         , "can_get_added_reactions"        `I.p` can_get_added_reactions_
         , "can_get_statistics"             `I.p` can_get_statistics_
         , "can_get_message_thread"         `I.p` can_get_message_thread_
+        , "can_get_read_date"              `I.p` can_get_read_date_
         , "can_get_viewers"                `I.p` can_get_viewers_
         , "can_get_media_timestamp_links"  `I.p` can_get_media_timestamp_links_
         , "can_report_reactions"           `I.p` can_report_reactions_
@@ -138,6 +144,7 @@ instance I.ShortShow Message where
         , "unread_reactions"               `I.p` unread_reactions_
         , "reply_to"                       `I.p` reply_to_
         , "message_thread_id"              `I.p` message_thread_id_
+        , "saved_messages_topic"           `I.p` saved_messages_topic_
         , "self_destruct_type"             `I.p` self_destruct_type_
         , "self_destruct_in"               `I.p` self_destruct_in_
         , "auto_delete_in"                 `I.p` auto_delete_in_
@@ -176,6 +183,7 @@ instance AT.FromJSON Message where
         can_get_added_reactions_        <- o A..:?                       "can_get_added_reactions"
         can_get_statistics_             <- o A..:?                       "can_get_statistics"
         can_get_message_thread_         <- o A..:?                       "can_get_message_thread"
+        can_get_read_date_              <- o A..:?                       "can_get_read_date"
         can_get_viewers_                <- o A..:?                       "can_get_viewers"
         can_get_media_timestamp_links_  <- o A..:?                       "can_get_media_timestamp_links"
         can_report_reactions_           <- o A..:?                       "can_report_reactions"
@@ -191,6 +199,7 @@ instance AT.FromJSON Message where
         unread_reactions_               <- o A..:?                       "unread_reactions"
         reply_to_                       <- o A..:?                       "reply_to"
         message_thread_id_              <- o A..:?                       "message_thread_id"
+        saved_messages_topic_           <- o A..:?                       "saved_messages_topic"
         self_destruct_type_             <- o A..:?                       "self_destruct_type"
         self_destruct_in_               <- o A..:?                       "self_destruct_in"
         auto_delete_in_                 <- o A..:?                       "auto_delete_in"
@@ -217,6 +226,7 @@ instance AT.FromJSON Message where
           , can_get_added_reactions        = can_get_added_reactions_
           , can_get_statistics             = can_get_statistics_
           , can_get_message_thread         = can_get_message_thread_
+          , can_get_read_date              = can_get_read_date_
           , can_get_viewers                = can_get_viewers_
           , can_get_media_timestamp_links  = can_get_media_timestamp_links_
           , can_report_reactions           = can_report_reactions_
@@ -232,6 +242,7 @@ instance AT.FromJSON Message where
           , unread_reactions               = unread_reactions_
           , reply_to                       = reply_to_
           , message_thread_id              = message_thread_id_
+          , saved_messages_topic           = saved_messages_topic_
           , self_destruct_type             = self_destruct_type_
           , self_destruct_in               = self_destruct_in_
           , auto_delete_in                 = auto_delete_in_

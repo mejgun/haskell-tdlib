@@ -24,6 +24,7 @@ import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
+import qualified TD.Data.CanSendMessageToUserResult as CanSendMessageToUserResult
 import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResult
 import qualified TD.Data.Chat as Chat
@@ -66,6 +67,7 @@ import qualified TD.Data.DatabaseStatistics as DatabaseStatistics
 import qualified TD.Data.DeepLinkInfo as DeepLinkInfo
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified TD.Data.EmojiCategories as EmojiCategories
+import qualified TD.Data.EmojiKeywords as EmojiKeywords
 import qualified TD.Data.EmojiReaction as EmojiReaction
 import qualified TD.Data.EmojiStatuses as EmojiStatuses
 import qualified TD.Data.Emojis as Emojis
@@ -83,6 +85,7 @@ import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
+import qualified TD.Data.FoundSavedMessagesTopics as FoundSavedMessagesTopics
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GroupCall as GroupCall
@@ -109,12 +112,14 @@ import qualified TD.Data.MessageFileType as MessageFileType
 import qualified TD.Data.MessageLink as MessageLink
 import qualified TD.Data.MessageLinkInfo as MessageLinkInfo
 import qualified TD.Data.MessagePositions as MessagePositions
+import qualified TD.Data.MessageReadDate as MessageReadDate
 import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
 import qualified TD.Data.MessageViewers as MessageViewers
 import qualified TD.Data.Messages as Messages
 import qualified TD.Data.NetworkStatistics as NetworkStatistics
+import qualified TD.Data.NewChatPrivacySettings as NewChatPrivacySettings
 import qualified TD.Data.NotificationSound as NotificationSound
 import qualified TD.Data.NotificationSounds as NotificationSounds
 import qualified TD.Data.Ok as Ok
@@ -139,10 +144,12 @@ import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.PublicForwards as PublicForwards
 import qualified TD.Data.PushReceiverId as PushReceiverId
+import qualified TD.Data.ReadDatePrivacySettings as ReadDatePrivacySettings
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RtmpUrl as RtmpUrl
+import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.Seconds as Seconds
 import qualified TD.Data.SecretChat as SecretChat
@@ -209,6 +216,7 @@ data GeneralResult
     | BotMenuButton                      BotMenuButton.BotMenuButton
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
+    | CanSendMessageToUserResult         CanSendMessageToUserResult.CanSendMessageToUserResult
     | CanSendStoryResult                 CanSendStoryResult.CanSendStoryResult
     | CanTransferOwnershipResult         CanTransferOwnershipResult.CanTransferOwnershipResult
     | Chat                               Chat.Chat
@@ -251,6 +259,7 @@ data GeneralResult
     | DeepLinkInfo                       DeepLinkInfo.DeepLinkInfo
     | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
     | EmojiCategories                    EmojiCategories.EmojiCategories
+    | EmojiKeywords                      EmojiKeywords.EmojiKeywords
     | EmojiReaction                      EmojiReaction.EmojiReaction
     | EmojiStatuses                      EmojiStatuses.EmojiStatuses
     | Emojis                             Emojis.Emojis
@@ -268,6 +277,7 @@ data GeneralResult
     | FoundMessages                      FoundMessages.FoundMessages
     | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
+    | FoundSavedMessagesTopics           FoundSavedMessagesTopics.FoundSavedMessagesTopics
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GroupCall                          GroupCall.GroupCall
@@ -294,12 +304,14 @@ data GeneralResult
     | MessageLink                        MessageLink.MessageLink
     | MessageLinkInfo                    MessageLinkInfo.MessageLinkInfo
     | MessagePositions                   MessagePositions.MessagePositions
+    | MessageReadDate                    MessageReadDate.MessageReadDate
     | MessageSenders                     MessageSenders.MessageSenders
     | MessageStatistics                  MessageStatistics.MessageStatistics
     | MessageThreadInfo                  MessageThreadInfo.MessageThreadInfo
     | MessageViewers                     MessageViewers.MessageViewers
     | Messages                           Messages.Messages
     | NetworkStatistics                  NetworkStatistics.NetworkStatistics
+    | NewChatPrivacySettings             NewChatPrivacySettings.NewChatPrivacySettings
     | NotificationSound                  NotificationSound.NotificationSound
     | NotificationSounds                 NotificationSounds.NotificationSounds
     | Ok                                 Ok.Ok
@@ -324,10 +336,12 @@ data GeneralResult
     | Proxy                              Proxy.Proxy
     | PublicForwards                     PublicForwards.PublicForwards
     | PushReceiverId                     PushReceiverId.PushReceiverId
+    | ReadDatePrivacySettings            ReadDatePrivacySettings.ReadDatePrivacySettings
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
     | ResetPasswordResult                ResetPasswordResult.ResetPasswordResult
     | RtmpUrl                            RtmpUrl.RtmpUrl
+    | SavedMessagesTags                  SavedMessagesTags.SavedMessagesTags
     | ScopeNotificationSettings          ScopeNotificationSettings.ScopeNotificationSettings
     | Seconds                            Seconds.Seconds
     | SecretChat                         SecretChat.SecretChat
@@ -415,6 +429,8 @@ instance I.ShortShow GeneralResult where
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
     = "CallbackQueryAnswer" <> " (" <> I.shortShow v <> ")"
+  shortShow (CanSendMessageToUserResult v)
+    = "CanSendMessageToUserResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanSendStoryResult v)
     = "CanSendStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanTransferOwnershipResult v)
@@ -499,6 +515,8 @@ instance I.ShortShow GeneralResult where
     = "EmailAddressAuthenticationCodeInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiCategories v)
     = "EmojiCategories" <> " (" <> I.shortShow v <> ")"
+  shortShow (EmojiKeywords v)
+    = "EmojiKeywords" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiReaction v)
     = "EmojiReaction" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiStatuses v)
@@ -533,6 +551,8 @@ instance I.ShortShow GeneralResult where
     = "FoundPosition" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundPositions v)
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundSavedMessagesTopics v)
+    = "FoundSavedMessagesTopics" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
@@ -585,6 +605,8 @@ instance I.ShortShow GeneralResult where
     = "MessageLinkInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (MessagePositions v)
     = "MessagePositions" <> " (" <> I.shortShow v <> ")"
+  shortShow (MessageReadDate v)
+    = "MessageReadDate" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageSenders v)
     = "MessageSenders" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageStatistics v)
@@ -597,6 +619,8 @@ instance I.ShortShow GeneralResult where
     = "Messages" <> " (" <> I.shortShow v <> ")"
   shortShow (NetworkStatistics v)
     = "NetworkStatistics" <> " (" <> I.shortShow v <> ")"
+  shortShow (NewChatPrivacySettings v)
+    = "NewChatPrivacySettings" <> " (" <> I.shortShow v <> ")"
   shortShow (NotificationSound v)
     = "NotificationSound" <> " (" <> I.shortShow v <> ")"
   shortShow (NotificationSounds v)
@@ -645,6 +669,8 @@ instance I.ShortShow GeneralResult where
     = "PublicForwards" <> " (" <> I.shortShow v <> ")"
   shortShow (PushReceiverId v)
     = "PushReceiverId" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReadDatePrivacySettings v)
+    = "ReadDatePrivacySettings" <> " (" <> I.shortShow v <> ")"
   shortShow (RecommendedChatFolders v)
     = "RecommendedChatFolders" <> " (" <> I.shortShow v <> ")"
   shortShow (RecoveryEmailAddress v)
@@ -653,6 +679,8 @@ instance I.ShortShow GeneralResult where
     = "ResetPasswordResult" <> " (" <> I.shortShow v <> ")"
   shortShow (RtmpUrl v)
     = "RtmpUrl" <> " (" <> I.shortShow v <> ")"
+  shortShow (SavedMessagesTags v)
+    = "SavedMessagesTags" <> " (" <> I.shortShow v <> ")"
   shortShow (ScopeNotificationSettings v)
     = "ScopeNotificationSettings" <> " (" <> I.shortShow v <> ")"
   shortShow (Seconds v)
@@ -764,6 +792,7 @@ instance T.FromJSON GeneralResult where
     <|> ( BotMenuButton                       <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
+    <|> ( CanSendMessageToUserResult          <$> parseJSON v )
     <|> ( CanSendStoryResult                  <$> parseJSON v )
     <|> ( CanTransferOwnershipResult          <$> parseJSON v )
     <|> ( Chat                                <$> parseJSON v )
@@ -806,6 +835,7 @@ instance T.FromJSON GeneralResult where
     <|> ( DeepLinkInfo                        <$> parseJSON v )
     <|> ( EmailAddressAuthenticationCodeInfo  <$> parseJSON v )
     <|> ( EmojiCategories                     <$> parseJSON v )
+    <|> ( EmojiKeywords                       <$> parseJSON v )
     <|> ( EmojiReaction                       <$> parseJSON v )
     <|> ( EmojiStatuses                       <$> parseJSON v )
     <|> ( Emojis                              <$> parseJSON v )
@@ -823,6 +853,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundMessages                       <$> parseJSON v )
     <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
+    <|> ( FoundSavedMessagesTopics            <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -849,12 +880,14 @@ instance T.FromJSON GeneralResult where
     <|> ( MessageLink                         <$> parseJSON v )
     <|> ( MessageLinkInfo                     <$> parseJSON v )
     <|> ( MessagePositions                    <$> parseJSON v )
+    <|> ( MessageReadDate                     <$> parseJSON v )
     <|> ( MessageSenders                      <$> parseJSON v )
     <|> ( MessageStatistics                   <$> parseJSON v )
     <|> ( MessageThreadInfo                   <$> parseJSON v )
     <|> ( MessageViewers                      <$> parseJSON v )
     <|> ( Messages                            <$> parseJSON v )
     <|> ( NetworkStatistics                   <$> parseJSON v )
+    <|> ( NewChatPrivacySettings              <$> parseJSON v )
     <|> ( NotificationSound                   <$> parseJSON v )
     <|> ( NotificationSounds                  <$> parseJSON v )
     <|> ( Ok                                  <$> parseJSON v )
@@ -879,10 +912,12 @@ instance T.FromJSON GeneralResult where
     <|> ( Proxy                               <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )
+    <|> ( ReadDatePrivacySettings             <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
     <|> ( ResetPasswordResult                 <$> parseJSON v )
     <|> ( RtmpUrl                             <$> parseJSON v )
+    <|> ( SavedMessagesTags                   <$> parseJSON v )
     <|> ( ScopeNotificationSettings           <$> parseJSON v )
     <|> ( Seconds                             <$> parseJSON v )
     <|> ( SecretChat                          <$> parseJSON v )

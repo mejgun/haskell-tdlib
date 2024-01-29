@@ -5,14 +5,14 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageReplyInfo as MessageReplyInfo
-import qualified TD.Data.MessageReaction as MessageReaction
+import qualified TD.Data.MessageReactions as MessageReactions
 
 data MessageInteractionInfo
   = MessageInteractionInfo -- ^ Contains information about interactions with a message
     { view_count    :: Maybe Int                               -- ^ Number of times the message was viewed
     , forward_count :: Maybe Int                               -- ^ Number of times the message was forwarded
     , reply_info    :: Maybe MessageReplyInfo.MessageReplyInfo -- ^ Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
-    , reactions     :: Maybe [MessageReaction.MessageReaction] -- ^ The list of reactions added to the message
+    , reactions     :: Maybe MessageReactions.MessageReactions -- ^ The list of reactions or tags added to the message; may be null
     }
   deriving (Eq, Show)
 
