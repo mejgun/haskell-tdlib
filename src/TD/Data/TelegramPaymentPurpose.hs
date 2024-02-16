@@ -10,13 +10,13 @@ import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
 -- | Describes a purpose of a payment toward Telegram
 data TelegramPaymentPurpose
   = TelegramPaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
-    { boosted_chat_id :: Maybe Int    -- ^ Identifier of the channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    { boosted_chat_id :: Maybe Int    -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
     , currency        :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
     , month_count     :: Maybe Int    -- ^ Number of months the Telegram Premium subscription will be active for the users
     }
-  | TelegramPaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+  | TelegramPaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway
     { parameters   :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
     , currency     :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
     , amount       :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency

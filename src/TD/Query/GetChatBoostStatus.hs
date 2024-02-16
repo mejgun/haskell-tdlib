@@ -6,10 +6,10 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the current boost status for a channel chat. Returns 'TD.Data.ChatBoostStatus.ChatBoostStatus'
+-- | Returns the current boost status for a supergroup or a channel chat. Returns 'TD.Data.ChatBoostStatus.ChatBoostStatus'
 data GetChatBoostStatus
   = GetChatBoostStatus
-    { chat_id :: Maybe Int -- ^ Identifier of the channel chat
+    { chat_id :: Maybe Int -- ^ Identifier of the chat
     }
   deriving (Eq, Show)
 

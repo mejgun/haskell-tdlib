@@ -27,6 +27,7 @@ import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
+import qualified TD.Data.SavedMessagesTopic as SavedMessagesTopic
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
@@ -199,7 +200,7 @@ data Update
     }
   | UpdateChatDraftMessage -- ^ A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     { chat_id       :: Maybe Int                         -- ^ Chat identifier
-    , draft_message :: Maybe DraftMessage.DraftMessage   -- ^ The new draft message; may be null
+    , draft_message :: Maybe DraftMessage.DraftMessage   -- ^ The new draft message; may be null if none
     , positions     :: Maybe [ChatPosition.ChatPosition] -- ^ The new chat positions in the chat lists
     }
   | UpdateChatEmojiStatus -- ^ Chat emoji status has changed
@@ -282,7 +283,12 @@ data Update
     { chat_id             :: Maybe Int -- ^ Identifier of the chat
     , online_member_count :: Maybe Int -- ^ New number of online members in the chat, or 0 if unknown
     }
-  | UpdatePinnedSavedMessagesTopics -- ^ The list of pinned Saved Messages topics has changed. The app can call getPinnedSavedMessagesTopics to get the new list
+  | UpdateSavedMessagesTopic -- ^ Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
+    { topic :: Maybe SavedMessagesTopic.SavedMessagesTopic -- ^ New data about the topic
+    }
+  | UpdateSavedMessagesTopicCount -- ^ Number of Saved Messages topics has changed
+    { topic_count :: Maybe Int -- ^ Approximate total number of Saved Messages topics
+    }
   | UpdateForumTopicInfo -- ^ Basic information about a topic in a forum chat was changed
     { chat_id :: Maybe Int                           -- ^ Chat identifier
     , info    :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ New information about the topic
@@ -320,7 +326,7 @@ data Update
     }
   | UpdateChatAction -- ^ A message sender activity in the chat has changed
     { chat_id           :: Maybe Int                         -- ^ Chat identifier
-    , message_thread_id :: Maybe Int                         -- ^ If not 0, a message thread identifier in which the action was performed
+    , message_thread_id :: Maybe Int                         -- ^ If not 0, the message thread identifier in which the action was performed
     , sender_id         :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender performing the action
     , action            :: Maybe ChatAction.ChatAction       -- ^ The action
     }
@@ -518,8 +524,9 @@ data Update
   | UpdateDefaultReactionType -- ^ The type of default reaction has changed
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ The new type of the default reaction
     }
-  | UpdateSavedMessagesTags -- ^ Used Saved Messages tags have changed
-    { tags :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new used tags
+  | UpdateSavedMessagesTags -- ^ Tags used in Saved Messages or a Saved Messages topic have changed
+    { saved_messages_topic_id :: Maybe Int                                 -- ^ Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
+    , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription
@@ -1077,8 +1084,20 @@ instance I.ShortShow Update where
         [ "chat_id"             `I.p` chat_id_
         , "online_member_count" `I.p` online_member_count_
         ]
-  shortShow UpdatePinnedSavedMessagesTopics
-      = "UpdatePinnedSavedMessagesTopics"
+  shortShow UpdateSavedMessagesTopic
+    { topic = topic_
+    }
+      = "UpdateSavedMessagesTopic"
+        ++ I.cc
+        [ "topic" `I.p` topic_
+        ]
+  shortShow UpdateSavedMessagesTopicCount
+    { topic_count = topic_count_
+    }
+      = "UpdateSavedMessagesTopicCount"
+        ++ I.cc
+        [ "topic_count" `I.p` topic_count_
+        ]
   shortShow UpdateForumTopicInfo
     { chat_id = chat_id_
     , info    = info_
@@ -1609,11 +1628,13 @@ instance I.ShortShow Update where
         [ "reaction_type" `I.p` reaction_type_
         ]
   shortShow UpdateSavedMessagesTags
-    { tags = tags_
+    { saved_messages_topic_id = saved_messages_topic_id_
+    , tags                    = tags_
     }
       = "UpdateSavedMessagesTags"
         ++ I.cc
-        [ "tags" `I.p` tags_
+        [ "saved_messages_topic_id" `I.p` saved_messages_topic_id_
+        , "tags"                    `I.p` tags_
         ]
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
@@ -1936,7 +1957,8 @@ instance AT.FromJSON Update where
       "updateChatHasScheduledMessages"       -> parseUpdateChatHasScheduledMessages v
       "updateChatFolders"                    -> parseUpdateChatFolders v
       "updateChatOnlineMemberCount"          -> parseUpdateChatOnlineMemberCount v
-      "updatePinnedSavedMessagesTopics"      -> pure UpdatePinnedSavedMessagesTopics
+      "updateSavedMessagesTopic"             -> parseUpdateSavedMessagesTopic v
+      "updateSavedMessagesTopicCount"        -> parseUpdateSavedMessagesTopicCount v
       "updateForumTopicInfo"                 -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings"      -> parseUpdateScopeNotificationSettings v
       "updateNotification"                   -> parseUpdateNotification v
@@ -2405,6 +2427,18 @@ instance AT.FromJSON Update where
         pure $ UpdateChatOnlineMemberCount
           { chat_id             = chat_id_
           , online_member_count = online_member_count_
+          }
+      parseUpdateSavedMessagesTopic :: A.Value -> AT.Parser Update
+      parseUpdateSavedMessagesTopic = A.withObject "UpdateSavedMessagesTopic" $ \o -> do
+        topic_ <- o A..:?  "topic"
+        pure $ UpdateSavedMessagesTopic
+          { topic = topic_
+          }
+      parseUpdateSavedMessagesTopicCount :: A.Value -> AT.Parser Update
+      parseUpdateSavedMessagesTopicCount = A.withObject "UpdateSavedMessagesTopicCount" $ \o -> do
+        topic_count_ <- o A..:?  "topic_count"
+        pure $ UpdateSavedMessagesTopicCount
+          { topic_count = topic_count_
           }
       parseUpdateForumTopicInfo :: A.Value -> AT.Parser Update
       parseUpdateForumTopicInfo = A.withObject "UpdateForumTopicInfo" $ \o -> do
@@ -2878,9 +2912,11 @@ instance AT.FromJSON Update where
           }
       parseUpdateSavedMessagesTags :: A.Value -> AT.Parser Update
       parseUpdateSavedMessagesTags = A.withObject "UpdateSavedMessagesTags" $ \o -> do
-        tags_ <- o A..:?  "tags"
+        saved_messages_topic_id_ <- o A..:?  "saved_messages_topic_id"
+        tags_                    <- o A..:?  "tags"
         pure $ UpdateSavedMessagesTags
-          { tags = tags_
+          { saved_messages_topic_id = saved_messages_topic_id_
+          , tags                    = tags_
           }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
       parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do

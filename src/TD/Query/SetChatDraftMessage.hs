@@ -12,8 +12,8 @@ import qualified TD.Data.DraftMessage as DraftMessage
 data SetChatDraftMessage
   = SetChatDraftMessage
     { chat_id           :: Maybe Int                       -- ^ Chat identifier
-    , message_thread_id :: Maybe Int                       -- ^ If not 0, a message thread identifier in which the draft was changed
-    , draft_message     :: Maybe DraftMessage.DraftMessage -- ^ New draft message; pass null to remove the draft
+    , message_thread_id :: Maybe Int                       -- ^ If not 0, the message thread identifier in which the draft was changed
+    , draft_message     :: Maybe DraftMessage.DraftMessage -- ^ New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
     }
   deriving (Eq, Show)
 

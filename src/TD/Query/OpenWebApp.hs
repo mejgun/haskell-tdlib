@@ -18,7 +18,7 @@ data OpenWebApp
     , url               :: Maybe T.Text                                  -- ^ The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     , theme             :: Maybe ThemeParameters.ThemeParameters         -- ^ Preferred Web App theme; pass null to use the default theme
     , application_name  :: Maybe T.Text                                  -- ^ Short name of the application; 0-64 English letters, digits, and underscores
-    , message_thread_id :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , message_thread_id :: Maybe Int                                     -- ^ If not 0, the message thread identifier in which the message will be sent
     , reply_to          :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied in the message sent by the Web App; pass null if none
     }
   deriving (Eq, Show)

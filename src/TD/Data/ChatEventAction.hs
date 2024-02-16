@@ -104,6 +104,10 @@ data ChatEventAction
     { old_sticker_set_id :: Maybe Int -- ^ Previous identifier of the chat sticker set; 0 if none
     , new_sticker_set_id :: Maybe Int -- ^ New identifier of the chat sticker set; 0 if none
     }
+  | ChatEventCustomEmojiStickerSetChanged -- ^ The supergroup sticker set with allowed custom emoji was changed
+    { old_sticker_set_id :: Maybe Int -- ^ Previous identifier of the chat sticker set; 0 if none
+    , new_sticker_set_id :: Maybe Int -- ^ New identifier of the chat sticker set; 0 if none
+    }
   | ChatEventTitleChanged -- ^ The chat title was changed
     { old_title :: Maybe T.Text -- ^ Previous chat title
     , new_title :: Maybe T.Text -- ^ New chat title
@@ -387,6 +391,15 @@ instance I.ShortShow ChatEventAction where
         [ "old_sticker_set_id" `I.p` old_sticker_set_id_
         , "new_sticker_set_id" `I.p` new_sticker_set_id_
         ]
+  shortShow ChatEventCustomEmojiStickerSetChanged
+    { old_sticker_set_id = old_sticker_set_id_
+    , new_sticker_set_id = new_sticker_set_id_
+    }
+      = "ChatEventCustomEmojiStickerSetChanged"
+        ++ I.cc
+        [ "old_sticker_set_id" `I.p` old_sticker_set_id_
+        , "new_sticker_set_id" `I.p` new_sticker_set_id_
+        ]
   shortShow ChatEventTitleChanged
     { old_title = old_title_
     , new_title = new_title_
@@ -619,6 +632,7 @@ instance AT.FromJSON ChatEventAction where
       "chatEventPhotoChanged"                           -> parseChatEventPhotoChanged v
       "chatEventSlowModeDelayChanged"                   -> parseChatEventSlowModeDelayChanged v
       "chatEventStickerSetChanged"                      -> parseChatEventStickerSetChanged v
+      "chatEventCustomEmojiStickerSetChanged"           -> parseChatEventCustomEmojiStickerSetChanged v
       "chatEventTitleChanged"                           -> parseChatEventTitleChanged v
       "chatEventUsernameChanged"                        -> parseChatEventUsernameChanged v
       "chatEventActiveUsernamesChanged"                 -> parseChatEventActiveUsernamesChanged v
@@ -810,6 +824,14 @@ instance AT.FromJSON ChatEventAction where
         old_sticker_set_id_ <- fmap I.readInt64 <$> o A..:?  "old_sticker_set_id"
         new_sticker_set_id_ <- fmap I.readInt64 <$> o A..:?  "new_sticker_set_id"
         pure $ ChatEventStickerSetChanged
+          { old_sticker_set_id = old_sticker_set_id_
+          , new_sticker_set_id = new_sticker_set_id_
+          }
+      parseChatEventCustomEmojiStickerSetChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventCustomEmojiStickerSetChanged = A.withObject "ChatEventCustomEmojiStickerSetChanged" $ \o -> do
+        old_sticker_set_id_ <- fmap I.readInt64 <$> o A..:?  "old_sticker_set_id"
+        new_sticker_set_id_ <- fmap I.readInt64 <$> o A..:?  "new_sticker_set_id"
+        pure $ ChatEventCustomEmojiStickerSetChanged
           { old_sticker_set_id = old_sticker_set_id_
           , new_sticker_set_id = new_sticker_set_id_
           }

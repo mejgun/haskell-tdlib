@@ -12,7 +12,7 @@ import qualified TD.Data.ChatAction as ChatAction
 data SendChatAction
   = SendChatAction
     { chat_id           :: Maybe Int                   -- ^ Chat identifier
-    , message_thread_id :: Maybe Int                   -- ^ If not 0, a message thread identifier in which the action was performed
+    , message_thread_id :: Maybe Int                   -- ^ If not 0, the message thread identifier in which the action was performed
     , action            :: Maybe ChatAction.ChatAction -- ^ The action description; pass null to cancel the currently active action
     }
   deriving (Eq, Show)

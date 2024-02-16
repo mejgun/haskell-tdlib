@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup. Returns 'TD.Data.Ok.Ok'
+-- | Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup. Returns 'TD.Data.Ok.Ok'
 data UnpinAllMessageThreadMessages
   = UnpinAllMessageThreadMessages
     { chat_id           :: Maybe Int -- ^ Identifier of the chat

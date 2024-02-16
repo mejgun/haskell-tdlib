@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
 
--- | Launches a prepaid Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels. Returns 'TD.Data.Ok.Ok'
+-- | Launches a prepaid Telegram Premium giveaway. Returns 'TD.Data.Ok.Ok'
 data LaunchPrepaidPremiumGiveaway
   = LaunchPrepaidPremiumGiveaway
     { giveaway_id :: Maybe Int                                                 -- ^ Unique identifier of the prepaid giveaway

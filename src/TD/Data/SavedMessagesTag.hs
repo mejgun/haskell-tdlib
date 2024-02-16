@@ -8,9 +8,9 @@ import qualified TD.Data.ReactionType as ReactionType
 import qualified Data.Text as T
 
 data SavedMessagesTag
-  = SavedMessagesTag -- ^ Represents a tag used in Saved Messages
+  = SavedMessagesTag -- ^ Represents a tag used in Saved Messages or a Saved Messages topic
     { tag   :: Maybe ReactionType.ReactionType -- ^ The tag
-    , label :: Maybe T.Text                    -- ^ Label of the tag; 0-12 characters
+    , label :: Maybe T.Text                    -- ^ Label of the tag; 0-12 characters. Always empty if the tag is returned for a Saved Messages topic
     , count :: Maybe Int                       -- ^ Number of times the tag was used; may be 0 if the tag has non-empty label
     }
   deriving (Eq, Show)

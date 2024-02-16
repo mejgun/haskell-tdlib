@@ -30,8 +30,11 @@ data SupergroupFullInfo
     , can_toggle_aggressive_anti_spam  :: Maybe Bool                          -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     , is_all_history_available         :: Maybe Bool                          -- ^ True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     , has_aggressive_anti_spam_enabled :: Maybe Bool                          -- ^ True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
-    , has_pinned_stories               :: Maybe Bool                          -- ^ True, if the channel has pinned stories
-    , sticker_set_id                   :: Maybe Int                           -- ^ Identifier of the supergroup sticker set; 0 if none
+    , has_pinned_stories               :: Maybe Bool                          -- ^ True, if the supergroup or channel has pinned stories
+    , my_boost_count                   :: Maybe Int                           -- ^ Number of times the current user boosted the supergroup or channel
+    , unrestrict_boost_count           :: Maybe Int                           -- ^ Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
+    , sticker_set_id                   :: Maybe Int                           -- ^ Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
+    , custom_emoji_sticker_set_id      :: Maybe Int                           -- ^ Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
     , location                         :: Maybe ChatLocation.ChatLocation     -- ^ Location to which the supergroup is connected; may be null if none
     , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     , bot_commands                     :: Maybe [BotCommands.BotCommands]     -- ^ List of commands of bots in the group
@@ -61,7 +64,10 @@ instance I.ShortShow SupergroupFullInfo where
     , is_all_history_available         = is_all_history_available_
     , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
     , has_pinned_stories               = has_pinned_stories_
+    , my_boost_count                   = my_boost_count_
+    , unrestrict_boost_count           = unrestrict_boost_count_
     , sticker_set_id                   = sticker_set_id_
+    , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
     , location                         = location_
     , invite_link                      = invite_link_
     , bot_commands                     = bot_commands_
@@ -89,7 +95,10 @@ instance I.ShortShow SupergroupFullInfo where
         , "is_all_history_available"         `I.p` is_all_history_available_
         , "has_aggressive_anti_spam_enabled" `I.p` has_aggressive_anti_spam_enabled_
         , "has_pinned_stories"               `I.p` has_pinned_stories_
+        , "my_boost_count"                   `I.p` my_boost_count_
+        , "unrestrict_boost_count"           `I.p` unrestrict_boost_count_
         , "sticker_set_id"                   `I.p` sticker_set_id_
+        , "custom_emoji_sticker_set_id"      `I.p` custom_emoji_sticker_set_id_
         , "location"                         `I.p` location_
         , "invite_link"                      `I.p` invite_link_
         , "bot_commands"                     `I.p` bot_commands_
@@ -127,7 +136,10 @@ instance AT.FromJSON SupergroupFullInfo where
         is_all_history_available_         <- o A..:?                       "is_all_history_available"
         has_aggressive_anti_spam_enabled_ <- o A..:?                       "has_aggressive_anti_spam_enabled"
         has_pinned_stories_               <- o A..:?                       "has_pinned_stories"
+        my_boost_count_                   <- o A..:?                       "my_boost_count"
+        unrestrict_boost_count_           <- o A..:?                       "unrestrict_boost_count"
         sticker_set_id_                   <- fmap I.readInt64 <$> o A..:?  "sticker_set_id"
+        custom_emoji_sticker_set_id_      <- fmap I.readInt64 <$> o A..:?  "custom_emoji_sticker_set_id"
         location_                         <- o A..:?                       "location"
         invite_link_                      <- o A..:?                       "invite_link"
         bot_commands_                     <- o A..:?                       "bot_commands"
@@ -153,7 +165,10 @@ instance AT.FromJSON SupergroupFullInfo where
           , is_all_history_available         = is_all_history_available_
           , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
           , has_pinned_stories               = has_pinned_stories_
+          , my_boost_count                   = my_boost_count_
+          , unrestrict_boost_count           = unrestrict_boost_count_
           , sticker_set_id                   = sticker_set_id_
+          , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
           , location                         = location_
           , invite_link                      = invite_link_
           , bot_commands                     = bot_commands_

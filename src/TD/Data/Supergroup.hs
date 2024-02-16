@@ -29,8 +29,8 @@ data Supergroup
     , restriction_reason        :: Maybe T.Text                            -- ^ If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     , is_scam                   :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a scam
     , is_fake                   :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a fake account
-    , has_active_stories        :: Maybe Bool                              -- ^ True, if the channel has non-expired stories available to the current user
-    , has_unread_active_stories :: Maybe Bool                              -- ^ True, if the channel has unread non-expired stories available to the current user
+    , has_active_stories        :: Maybe Bool                              -- ^ True, if the supergroup or channel has non-expired stories available to the current user
+    , has_unread_active_stories :: Maybe Bool                              -- ^ True, if the supergroup or channel has unread non-expired stories available to the current user
     }
   deriving (Eq, Show)
 

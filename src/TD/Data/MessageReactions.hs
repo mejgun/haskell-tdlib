@@ -9,7 +9,7 @@ import qualified TD.Data.MessageReaction as MessageReaction
 data MessageReactions
   = MessageReactions -- ^ Contains a list of reactions added to a message
     { reactions :: Maybe [MessageReaction.MessageReaction] -- ^ List of added reactions
-    , are_tags  :: Maybe Bool                              -- ^ True, if the reactions are tags and Telegram Premium users can filter messages by them; currently, always false
+    , are_tags  :: Maybe Bool                              -- ^ True, if the reactions are tags and Telegram Premium users can filter messages by them
     }
   deriving (Eq, Show)
 

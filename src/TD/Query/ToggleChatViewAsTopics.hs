@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the view_as_topics setting of a forum chat. Returns 'TD.Data.Ok.Ok'
+-- | Changes the view_as_topics setting of a forum chat or Saved Messages. Returns 'TD.Data.Ok.Ok'
 data ToggleChatViewAsTopics
   = ToggleChatViewAsTopics
     { chat_id        :: Maybe Int  -- ^ Chat identifier

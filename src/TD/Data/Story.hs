@@ -4,6 +4,7 @@ module TD.Data.Story
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.StoryRepostInfo as StoryRepostInfo
 import qualified TD.Data.StoryInteractionInfo as StoryInteractionInfo
 import qualified TD.Data.ReactionType as ReactionType
@@ -16,6 +17,7 @@ data Story
   = Story -- ^ Represents a story
     { _id                      :: Maybe Int                                       -- ^ Unique story identifier among stories of the given sender
     , sender_chat_id           :: Maybe Int                                       -- ^ Identifier of the chat that posted the story
+    , sender_id                :: Maybe MessageSender.MessageSender               -- ^ Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id
     , date                     :: Maybe Int                                       -- ^ Point in time (Unix timestamp) when the story was published
     , is_being_sent            :: Maybe Bool                                      -- ^ True, if the story is being sent by the current user
     , is_being_edited          :: Maybe Bool                                      -- ^ True, if the story is being edited by the current user
@@ -44,6 +46,7 @@ instance I.ShortShow Story where
   shortShow Story
     { _id                      = _id_
     , sender_chat_id           = sender_chat_id_
+    , sender_id                = sender_id_
     , date                     = date_
     , is_being_sent            = is_being_sent_
     , is_being_edited          = is_being_edited_
@@ -70,6 +73,7 @@ instance I.ShortShow Story where
         ++ I.cc
         [ "_id"                      `I.p` _id_
         , "sender_chat_id"           `I.p` sender_chat_id_
+        , "sender_id"                `I.p` sender_id_
         , "date"                     `I.p` date_
         , "is_being_sent"            `I.p` is_being_sent_
         , "is_being_edited"          `I.p` is_being_edited_
@@ -106,6 +110,7 @@ instance AT.FromJSON Story where
       parseStory = A.withObject "Story" $ \o -> do
         _id_                      <- o A..:?  "id"
         sender_chat_id_           <- o A..:?  "sender_chat_id"
+        sender_id_                <- o A..:?  "sender_id"
         date_                     <- o A..:?  "date"
         is_being_sent_            <- o A..:?  "is_being_sent"
         is_being_edited_          <- o A..:?  "is_being_edited"
@@ -130,6 +135,7 @@ instance AT.FromJSON Story where
         pure $ Story
           { _id                      = _id_
           , sender_chat_id           = sender_chat_id_
+          , sender_id                = sender_id_
           , date                     = date_
           , is_being_sent            = is_being_sent_
           , is_being_edited          = is_being_edited_

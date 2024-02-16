@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 
--- | Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
+-- | Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right. Returns 'TD.Data.Ok.Ok'
 data SetChatAvailableReactions
   = SetChatAvailableReactions
     { chat_id             :: Maybe Int                                           -- ^ Identifier of the chat
-    , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All explicitly specified emoji reactions must be active. Up to the chat's boost level custom emoji reactions can be explicitly specified
+    , available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
     }
   deriving (Eq, Show)
 

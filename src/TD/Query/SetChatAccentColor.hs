@@ -7,11 +7,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes accent color and background custom emoji of a chat. Requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
+-- | Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right. Returns 'TD.Data.Ok.Ok'
 data SetChatAccentColor
   = SetChatAccentColor
     { chat_id                    :: Maybe Int -- ^ Chat identifier
-    , accent_color_id            :: Maybe Int -- ^ Identifier of the accent color to use. The chat must have at least accentColor.min_chat_boost_level boost level to pass the corresponding color
+    , accent_color_id            :: Maybe Int -- ^ Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
     , background_custom_emoji_id :: Maybe Int -- ^ Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set
     }
   deriving (Eq, Show)

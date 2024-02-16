@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.20.0
+version:        2.0.21.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -197,8 +197,6 @@ library
       TD.Data.FoundMessages
       TD.Data.FoundPosition
       TD.Data.FoundPositions
-      TD.Data.FoundSavedMessagesTopic
-      TD.Data.FoundSavedMessagesTopics
       TD.Data.FoundWebApp
       TD.Data.Game
       TD.Data.GameHighScore
@@ -390,6 +388,7 @@ library
       TD.Data.SavedMessagesTag
       TD.Data.SavedMessagesTags
       TD.Data.SavedMessagesTopic
+      TD.Data.SavedMessagesTopicType
       TD.Data.ScopeAutosaveSettings
       TD.Data.ScopeNotificationSettings
       TD.Data.SearchMessagesFilter
@@ -812,7 +811,6 @@ library
       TD.Query.GetPaymentReceipt
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
-      TD.Query.GetPinnedSavedMessagesTopics
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
@@ -839,7 +837,6 @@ library
       TD.Query.GetSavedMessagesTags
       TD.Query.GetSavedMessagesTopicHistory
       TD.Query.GetSavedMessagesTopicMessageByDate
-      TD.Query.GetSavedMessagesTopics
       TD.Query.GetSavedNotificationSound
       TD.Query.GetSavedNotificationSounds
       TD.Query.GetSavedOrderInfo
@@ -898,6 +895,7 @@ library
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
       TD.Query.LoadGroupCallParticipants
+      TD.Query.LoadSavedMessagesTopics
       TD.Query.LogOut
       TD.Query.OpenChat
       TD.Query.OpenChatSimilarChat
@@ -1109,7 +1107,9 @@ library
       TD.Query.SetStickerSetTitle
       TD.Query.SetStoryPrivacySettings
       TD.Query.SetStoryReaction
+      TD.Query.SetSupergroupCustomEmojiStickerSet
       TD.Query.SetSupergroupStickerSet
+      TD.Query.SetSupergroupUnrestrictBoostCount
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
       TD.Query.SetUsername

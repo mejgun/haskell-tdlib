@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first. Returns 'TD.Data.Ok.Ok'
+-- | Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first. Returns 'TD.Data.Ok.Ok'
 data BanChatMember
   = BanChatMember
     { chat_id           :: Maybe Int                         -- ^ Chat identifier

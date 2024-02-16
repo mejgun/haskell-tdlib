@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 data CanSendStoryResult
   = CanSendStoryResultOk -- ^ A story can be sent
   | CanSendStoryResultPremiumNeeded -- ^ The user must subscribe to Telegram Premium to be able to post stories
-  | CanSendStoryResultBoostNeeded -- ^ The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+  | CanSendStoryResultBoostNeeded -- ^ The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
   | CanSendStoryResultActiveStoryLimitExceeded -- ^ The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
   | CanSendStoryResultWeeklyLimitExceeded -- ^ The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
     { retry_after :: Maybe Int -- ^ Time left before the user can send the next story

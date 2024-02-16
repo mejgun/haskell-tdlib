@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 -- | Returns available options for Telegram Premium gift code or giveaway creation. Returns 'TD.Data.PremiumGiftCodePaymentOptions.PremiumGiftCodePaymentOptions'
 data GetPremiumGiftCodePaymentOptions
   = GetPremiumGiftCodePaymentOptions
-    { boosted_chat_id :: Maybe Int -- ^ Identifier of the channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
+    { boosted_chat_id :: Maybe Int -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
     }
   deriving (Eq, Show)
 

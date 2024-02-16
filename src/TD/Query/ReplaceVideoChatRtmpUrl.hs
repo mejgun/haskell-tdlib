@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Replaces the current RTMP URL for streaming to the chat; requires creator privileges. Returns 'TD.Data.RtmpUrl.RtmpUrl'
+-- | Replaces the current RTMP URL for streaming to the chat; requires owner privileges. Returns 'TD.Data.RtmpUrl.RtmpUrl'
 data ReplaceVideoChatRtmpUrl
   = ReplaceVideoChatRtmpUrl
     { chat_id :: Maybe Int -- ^ Chat identifier

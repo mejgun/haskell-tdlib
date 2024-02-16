@@ -14,7 +14,7 @@ import qualified Data.Text as T
 data SendInlineQueryResultMessage
   = SendInlineQueryResultMessage
     { chat_id           :: Maybe Int                                     -- ^ Target chat
-    , message_thread_id :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , message_thread_id :: Maybe Int                                     -- ^ If not 0, the message thread identifier in which the message will be sent
     , reply_to          :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , options           :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
     , query_id          :: Maybe Int                                     -- ^ Identifier of the inline query

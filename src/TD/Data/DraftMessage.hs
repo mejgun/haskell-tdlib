@@ -13,7 +13,7 @@ data DraftMessage
   = DraftMessage -- ^ Contains information about a message draft
     { reply_to           :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none
     , date               :: Maybe Int                                     -- ^ Point in time (Unix timestamp) when the draft was created
-    , input_message_text :: Maybe InputMessageContent.InputMessageContent -- ^ Content of the message draft; must be of the type inputMessageText
+    , input_message_text :: Maybe InputMessageContent.InputMessageContent -- ^ Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
     }
   deriving (Eq, Show)
 

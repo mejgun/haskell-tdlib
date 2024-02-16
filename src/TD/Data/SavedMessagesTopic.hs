@@ -4,27 +4,38 @@ module TD.Data.SavedMessagesTopic
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.SavedMessagesTopicType as SavedMessagesTopicType
+import qualified TD.Data.Message as Message
+import qualified TD.Data.DraftMessage as DraftMessage
 
--- | Contains information about a Saved Messages topic
 data SavedMessagesTopic
-  = SavedMessagesTopicMyNotes -- ^ Topic containing messages sent by the current user of forwarded from an unknown chat
-  | SavedMessagesTopicAuthorHidden -- ^ Topic containing messages forwarded from a user with hidden privacy
-  | SavedMessagesTopicSavedFromChat -- ^ Topic containing messages forwarded from a specific chat
-    { chat_id :: Maybe Int -- ^ Identifier of the chat
+  = SavedMessagesTopic -- ^ Contains information about a Saved Messages topic
+    { _id           :: Maybe Int                                           -- ^ Unique topic identifier
+    , _type         :: Maybe SavedMessagesTopicType.SavedMessagesTopicType -- ^ Type of the topic
+    , is_pinned     :: Maybe Bool                                          -- ^ True, if the topic is pinned
+    , order         :: Maybe Int                                           -- ^ A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+    , last_message  :: Maybe Message.Message                               -- ^ Last message in the topic; may be null if none or unknown
+    , draft_message :: Maybe DraftMessage.DraftMessage                     -- ^ A draft of a message in the topic; may be null if none
     }
   deriving (Eq, Show)
 
 instance I.ShortShow SavedMessagesTopic where
-  shortShow SavedMessagesTopicMyNotes
-      = "SavedMessagesTopicMyNotes"
-  shortShow SavedMessagesTopicAuthorHidden
-      = "SavedMessagesTopicAuthorHidden"
-  shortShow SavedMessagesTopicSavedFromChat
-    { chat_id = chat_id_
+  shortShow SavedMessagesTopic
+    { _id           = _id_
+    , _type         = _type_
+    , is_pinned     = is_pinned_
+    , order         = order_
+    , last_message  = last_message_
+    , draft_message = draft_message_
     }
-      = "SavedMessagesTopicSavedFromChat"
+      = "SavedMessagesTopic"
         ++ I.cc
-        [ "chat_id" `I.p` chat_id_
+        [ "_id"           `I.p` _id_
+        , "_type"         `I.p` _type_
+        , "is_pinned"     `I.p` is_pinned_
+        , "order"         `I.p` order_
+        , "last_message"  `I.p` last_message_
+        , "draft_message" `I.p` draft_message_
         ]
 
 instance AT.FromJSON SavedMessagesTopic where
@@ -32,34 +43,25 @@ instance AT.FromJSON SavedMessagesTopic where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "savedMessagesTopicMyNotes"       -> pure SavedMessagesTopicMyNotes
-      "savedMessagesTopicAuthorHidden"  -> pure SavedMessagesTopicAuthorHidden
-      "savedMessagesTopicSavedFromChat" -> parseSavedMessagesTopicSavedFromChat v
-      _                                 -> mempty
+      "savedMessagesTopic" -> parseSavedMessagesTopic v
+      _                    -> mempty
     
     where
-      parseSavedMessagesTopicSavedFromChat :: A.Value -> AT.Parser SavedMessagesTopic
-      parseSavedMessagesTopicSavedFromChat = A.withObject "SavedMessagesTopicSavedFromChat" $ \o -> do
-        chat_id_ <- o A..:?  "chat_id"
-        pure $ SavedMessagesTopicSavedFromChat
-          { chat_id = chat_id_
+      parseSavedMessagesTopic :: A.Value -> AT.Parser SavedMessagesTopic
+      parseSavedMessagesTopic = A.withObject "SavedMessagesTopic" $ \o -> do
+        _id_           <- o A..:?                       "id"
+        _type_         <- o A..:?                       "type"
+        is_pinned_     <- o A..:?                       "is_pinned"
+        order_         <- fmap I.readInt64 <$> o A..:?  "order"
+        last_message_  <- o A..:?                       "last_message"
+        draft_message_ <- o A..:?                       "draft_message"
+        pure $ SavedMessagesTopic
+          { _id           = _id_
+          , _type         = _type_
+          , is_pinned     = is_pinned_
+          , order         = order_
+          , last_message  = last_message_
+          , draft_message = draft_message_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON SavedMessagesTopic where
-  toJSON SavedMessagesTopicMyNotes
-      = A.object
-        [ "@type" A..= AT.String "savedMessagesTopicMyNotes"
-        ]
-  toJSON SavedMessagesTopicAuthorHidden
-      = A.object
-        [ "@type" A..= AT.String "savedMessagesTopicAuthorHidden"
-        ]
-  toJSON SavedMessagesTopicSavedFromChat
-    { chat_id = chat_id_
-    }
-      = A.object
-        [ "@type"   A..= AT.String "savedMessagesTopicSavedFromChat"
-        , "chat_id" A..= chat_id_
-        ]
 

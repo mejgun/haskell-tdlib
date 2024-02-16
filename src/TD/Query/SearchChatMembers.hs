@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.ChatMembersFilter as ChatMembersFilter
 
--- | Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels. Returns 'TD.Data.ChatMembers.ChatMembers'
+-- | Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel. Returns 'TD.Data.ChatMembers.ChatMembers'
 data SearchChatMembers
   = SearchChatMembers
     { chat_id :: Maybe Int                                 -- ^ Chat identifier

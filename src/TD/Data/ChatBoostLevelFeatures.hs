@@ -18,6 +18,8 @@ data ChatBoostLevelFeatures
     , can_set_emoji_status                    :: Maybe Bool -- ^ True, if emoji status can be set
     , chat_theme_background_count             :: Maybe Int  -- ^ Number of chat theme backgrounds that can be set as chat background
     , can_set_custom_background               :: Maybe Bool -- ^ True, if custom background can be set in the chat for all users
+    , can_set_custom_emoji_sticker_set        :: Maybe Bool -- ^ True, if custom emoji sticker set can be set for the chat
+    , can_recognize_speech                    :: Maybe Bool -- ^ True, if speech recognition can be used for video note and voice note messages by all users
     }
   deriving (Eq, Show)
 
@@ -34,6 +36,8 @@ instance I.ShortShow ChatBoostLevelFeatures where
     , can_set_emoji_status                    = can_set_emoji_status_
     , chat_theme_background_count             = chat_theme_background_count_
     , can_set_custom_background               = can_set_custom_background_
+    , can_set_custom_emoji_sticker_set        = can_set_custom_emoji_sticker_set_
+    , can_recognize_speech                    = can_recognize_speech_
     }
       = "ChatBoostLevelFeatures"
         ++ I.cc
@@ -48,6 +52,8 @@ instance I.ShortShow ChatBoostLevelFeatures where
         , "can_set_emoji_status"                    `I.p` can_set_emoji_status_
         , "chat_theme_background_count"             `I.p` chat_theme_background_count_
         , "can_set_custom_background"               `I.p` can_set_custom_background_
+        , "can_set_custom_emoji_sticker_set"        `I.p` can_set_custom_emoji_sticker_set_
+        , "can_recognize_speech"                    `I.p` can_recognize_speech_
         ]
 
 instance AT.FromJSON ChatBoostLevelFeatures where
@@ -72,6 +78,8 @@ instance AT.FromJSON ChatBoostLevelFeatures where
         can_set_emoji_status_                    <- o A..:?  "can_set_emoji_status"
         chat_theme_background_count_             <- o A..:?  "chat_theme_background_count"
         can_set_custom_background_               <- o A..:?  "can_set_custom_background"
+        can_set_custom_emoji_sticker_set_        <- o A..:?  "can_set_custom_emoji_sticker_set"
+        can_recognize_speech_                    <- o A..:?  "can_recognize_speech"
         pure $ ChatBoostLevelFeatures
           { level                                   = level_
           , story_per_day_count                     = story_per_day_count_
@@ -84,6 +92,8 @@ instance AT.FromJSON ChatBoostLevelFeatures where
           , can_set_emoji_status                    = can_set_emoji_status_
           , chat_theme_background_count             = chat_theme_background_count_
           , can_set_custom_background               = can_set_custom_background_
+          , can_set_custom_emoji_sticker_set        = can_set_custom_emoji_sticker_set_
+          , can_recognize_speech                    = can_recognize_speech_
           }
   parseJSON _ = mempty
 

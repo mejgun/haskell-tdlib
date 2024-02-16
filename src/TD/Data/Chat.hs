@@ -39,7 +39,7 @@ data Chat
     , has_protected_content              :: Maybe Bool                                              -- ^ True, if chat content can't be saved locally, forwarded, or copied
     , is_translatable                    :: Maybe Bool                                              -- ^ True, if translation of all messages in the chat must be suggested to the user
     , is_marked_as_unread                :: Maybe Bool                                              -- ^ True, if the chat is marked as unread
-    , view_as_topics                     :: Maybe Bool                                              -- ^ True, if the chat is a forum supergroup that must be shown in the "View as topics" mode
+    , view_as_topics                     :: Maybe Bool                                              -- ^ True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats"
     , has_scheduled_messages             :: Maybe Bool                                              -- ^ True, if the chat has scheduled messages
     , can_be_deleted_only_for_self       :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
     , can_be_deleted_for_all_users       :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted for all users

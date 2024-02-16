@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns 'TD.Data.Ok.Ok'
+-- | Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns 'TD.Data.Ok.Ok'
 data AddChatMembers
   = AddChatMembers
     { chat_id  :: Maybe Int   -- ^ Chat identifier

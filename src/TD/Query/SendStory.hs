@@ -12,14 +12,14 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 import qualified TD.Data.StoryFullId as StoryFullId
 
--- | Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story. Returns 'TD.Data.Story.Story'
+-- | Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story. Returns 'TD.Data.Story.Story'
 data SendStory
   = SendStory
     { chat_id            :: Maybe Int                                       -- ^ Identifier of the chat that will post the story
     , content            :: Maybe InputStoryContent.InputStoryContent       -- ^ Content of the story
     , areas              :: Maybe InputStoryAreas.InputStoryAreas           -- ^ Clickable rectangle areas to be shown on the story media; pass null if none
     , caption            :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters
-    , privacy_settings   :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story
+    , privacy_settings   :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story; ignored for stories sent to supergroup and channel chats
     , active_period      :: Maybe Int                                       -- ^ Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     , from_story_full_id :: Maybe StoryFullId.StoryFullId                   -- ^ Full identifier of the original story, which content was used to create the story
     , is_pinned          :: Maybe Bool                                      -- ^ Pass true to keep the story accessible after expiration

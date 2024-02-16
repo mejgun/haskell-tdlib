@@ -16,7 +16,7 @@ data UserPrivacySetting
   | UserPrivacySettingAllowCalls -- ^ A privacy setting for managing whether the user can be called
   | UserPrivacySettingAllowPeerToPeerCalls -- ^ A privacy setting for managing whether peer-to-peer connections can be used for calls
   | UserPrivacySettingAllowFindingByPhoneNumber -- ^ A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
-  | UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages -- ^ A privacy setting for managing whether the user can receive voice and video messages in private chats
+  | UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages -- ^ A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
   deriving (Eq, Show)
 
 instance I.ShortShow UserPrivacySetting where

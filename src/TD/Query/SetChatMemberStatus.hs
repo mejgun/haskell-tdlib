@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 
--- | Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed. Returns 'TD.Data.Ok.Ok'
+-- | Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed. Returns 'TD.Data.Ok.Ok'
 data SetChatMemberStatus
   = SetChatMemberStatus
     { chat_id   :: Maybe Int                               -- ^ Chat identifier

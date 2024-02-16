@@ -85,7 +85,6 @@ import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
-import qualified TD.Data.FoundSavedMessagesTopics as FoundSavedMessagesTopics
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GroupCall as GroupCall
@@ -277,7 +276,6 @@ data GeneralResult
     | FoundMessages                      FoundMessages.FoundMessages
     | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
-    | FoundSavedMessagesTopics           FoundSavedMessagesTopics.FoundSavedMessagesTopics
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GroupCall                          GroupCall.GroupCall
@@ -551,8 +549,6 @@ instance I.ShortShow GeneralResult where
     = "FoundPosition" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundPositions v)
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
-  shortShow (FoundSavedMessagesTopics v)
-    = "FoundSavedMessagesTopics" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
@@ -853,7 +849,6 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundMessages                       <$> parseJSON v )
     <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
-    <|> ( FoundSavedMessagesTopics            <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )

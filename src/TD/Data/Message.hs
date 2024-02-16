@@ -12,7 +12,6 @@ import qualified TD.Data.MessageImportInfo as MessageImportInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
-import qualified TD.Data.SavedMessagesTopic as SavedMessagesTopic
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
@@ -52,11 +51,12 @@ data Message
     , unread_reactions               :: Maybe [UnreadReaction.UnreadReaction]                 -- ^ Information about unread reactions added to the message
     , reply_to                       :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
     , message_thread_id              :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
-    , saved_messages_topic           :: Maybe SavedMessagesTopic.SavedMessagesTopic           -- ^ Information about topic of the message in the Saved Messages chat; may be null for messages not from Saved Messages
+    , saved_messages_topic_id        :: Maybe Int                                             -- ^ Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
     , self_destruct_type             :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in               :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in                 :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     , via_bot_user_id                :: Maybe Int                                             -- ^ If non-zero, the user identifier of the bot through which this message was sent
+    , sender_boost_count             :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     , author_signature               :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
     , media_album_id                 :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
     , restriction_reason             :: Maybe T.Text                                          -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
@@ -99,11 +99,12 @@ instance I.ShortShow Message where
     , unread_reactions               = unread_reactions_
     , reply_to                       = reply_to_
     , message_thread_id              = message_thread_id_
-    , saved_messages_topic           = saved_messages_topic_
+    , saved_messages_topic_id        = saved_messages_topic_id_
     , self_destruct_type             = self_destruct_type_
     , self_destruct_in               = self_destruct_in_
     , auto_delete_in                 = auto_delete_in_
     , via_bot_user_id                = via_bot_user_id_
+    , sender_boost_count             = sender_boost_count_
     , author_signature               = author_signature_
     , media_album_id                 = media_album_id_
     , restriction_reason             = restriction_reason_
@@ -144,11 +145,12 @@ instance I.ShortShow Message where
         , "unread_reactions"               `I.p` unread_reactions_
         , "reply_to"                       `I.p` reply_to_
         , "message_thread_id"              `I.p` message_thread_id_
-        , "saved_messages_topic"           `I.p` saved_messages_topic_
+        , "saved_messages_topic_id"        `I.p` saved_messages_topic_id_
         , "self_destruct_type"             `I.p` self_destruct_type_
         , "self_destruct_in"               `I.p` self_destruct_in_
         , "auto_delete_in"                 `I.p` auto_delete_in_
         , "via_bot_user_id"                `I.p` via_bot_user_id_
+        , "sender_boost_count"             `I.p` sender_boost_count_
         , "author_signature"               `I.p` author_signature_
         , "media_album_id"                 `I.p` media_album_id_
         , "restriction_reason"             `I.p` restriction_reason_
@@ -199,11 +201,12 @@ instance AT.FromJSON Message where
         unread_reactions_               <- o A..:?                       "unread_reactions"
         reply_to_                       <- o A..:?                       "reply_to"
         message_thread_id_              <- o A..:?                       "message_thread_id"
-        saved_messages_topic_           <- o A..:?                       "saved_messages_topic"
+        saved_messages_topic_id_        <- o A..:?                       "saved_messages_topic_id"
         self_destruct_type_             <- o A..:?                       "self_destruct_type"
         self_destruct_in_               <- o A..:?                       "self_destruct_in"
         auto_delete_in_                 <- o A..:?                       "auto_delete_in"
         via_bot_user_id_                <- o A..:?                       "via_bot_user_id"
+        sender_boost_count_             <- o A..:?                       "sender_boost_count"
         author_signature_               <- o A..:?                       "author_signature"
         media_album_id_                 <- fmap I.readInt64 <$> o A..:?  "media_album_id"
         restriction_reason_             <- o A..:?                       "restriction_reason"
@@ -242,11 +245,12 @@ instance AT.FromJSON Message where
           , unread_reactions               = unread_reactions_
           , reply_to                       = reply_to_
           , message_thread_id              = message_thread_id_
-          , saved_messages_topic           = saved_messages_topic_
+          , saved_messages_topic_id        = saved_messages_topic_id_
           , self_destruct_type             = self_destruct_type_
           , self_destruct_in               = self_destruct_in_
           , auto_delete_in                 = auto_delete_in_
           , via_bot_user_id                = via_bot_user_id_
+          , sender_boost_count             = sender_boost_count_
           , author_signature               = author_signature_
           , media_album_id                 = media_album_id_
           , restriction_reason             = restriction_reason_

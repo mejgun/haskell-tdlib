@@ -13,7 +13,7 @@ data AvailableReactions
     , recent_reactions      :: Maybe [AvailableReaction.AvailableReaction]                     -- ^ List of recently used reactions
     , popular_reactions     :: Maybe [AvailableReaction.AvailableReaction]                     -- ^ List of popular reactions
     , allow_custom_emoji    :: Maybe Bool                                                      -- ^ True, if any custom emoji reaction can be added by Telegram Premium subscribers
-    , are_tags              :: Maybe Bool                                                      -- ^ True, if the reactions will be tags and the message can be found by them; currently, always false
+    , are_tags              :: Maybe Bool                                                      -- ^ True, if the reactions will be tags and the message can be found by them
     , unavailability_reason :: Maybe ReactionUnavailabilityReason.ReactionUnavailabilityReason -- ^ The reason why the current user can't add reactions to the message, despite some other users can; may be null if none
     }
   deriving (Eq, Show)

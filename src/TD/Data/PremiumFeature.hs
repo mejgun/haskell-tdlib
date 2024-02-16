@@ -26,6 +26,9 @@ data PremiumFeature
   | PremiumFeatureChatBoost -- ^ The ability to boost chats
   | PremiumFeatureAccentColor -- ^ The ability to choose accent color for replies and user profile
   | PremiumFeatureBackgroundForBoth -- ^ The ability to set private chat background for both users
+  | PremiumFeatureSavedMessagesTags -- ^ The ability to use tags in Saved Messages
+  | PremiumFeatureMessagePrivacy -- ^ The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
+  | PremiumFeatureLastSeenTimes -- ^ The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -67,6 +70,12 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureAccentColor"
   shortShow PremiumFeatureBackgroundForBoth
       = "PremiumFeatureBackgroundForBoth"
+  shortShow PremiumFeatureSavedMessagesTags
+      = "PremiumFeatureSavedMessagesTags"
+  shortShow PremiumFeatureMessagePrivacy
+      = "PremiumFeatureMessagePrivacy"
+  shortShow PremiumFeatureLastSeenTimes
+      = "PremiumFeatureLastSeenTimes"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -92,6 +101,9 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureChatBoost"               -> pure PremiumFeatureChatBoost
       "premiumFeatureAccentColor"             -> pure PremiumFeatureAccentColor
       "premiumFeatureBackgroundForBoth"       -> pure PremiumFeatureBackgroundForBoth
+      "premiumFeatureSavedMessagesTags"       -> pure PremiumFeatureSavedMessagesTags
+      "premiumFeatureMessagePrivacy"          -> pure PremiumFeatureMessagePrivacy
+      "premiumFeatureLastSeenTimes"           -> pure PremiumFeatureLastSeenTimes
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -172,5 +184,17 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureBackgroundForBoth
       = A.object
         [ "@type" A..= AT.String "premiumFeatureBackgroundForBoth"
+        ]
+  toJSON PremiumFeatureSavedMessagesTags
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureSavedMessagesTags"
+        ]
+  toJSON PremiumFeatureMessagePrivacy
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureMessagePrivacy"
+        ]
+  toJSON PremiumFeatureLastSeenTimes
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureLastSeenTimes"
         ]
 

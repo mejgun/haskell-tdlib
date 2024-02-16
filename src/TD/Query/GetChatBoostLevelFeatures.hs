@@ -1,5 +1,6 @@
 module TD.Query.GetChatBoostLevelFeatures
   (GetChatBoostLevelFeatures(..)
+  , defaultGetChatBoostLevelFeatures
   ) where
 
 import qualified Data.Aeson as A
@@ -9,27 +10,39 @@ import qualified TD.Lib.Internal as I
 -- | Returns list of features available on the specific chat boost level; this is an offline request. Returns 'TD.Data.ChatBoostLevelFeatures.ChatBoostLevelFeatures'
 data GetChatBoostLevelFeatures
   = GetChatBoostLevelFeatures
-    { level :: Maybe Int -- ^ Chat boost level
+    { is_channel :: Maybe Bool -- ^ Pass true to get the list of features for channels; pass false to get the list of features for supergroups
+    , level      :: Maybe Int  -- ^ Chat boost level
     }
   deriving (Eq, Show)
 
 instance I.ShortShow GetChatBoostLevelFeatures where
   shortShow
     GetChatBoostLevelFeatures
-      { level = level_
+      { is_channel = is_channel_
+      , level      = level_
       }
         = "GetChatBoostLevelFeatures"
           ++ I.cc
-          [ "level" `I.p` level_
+          [ "is_channel" `I.p` is_channel_
+          , "level"      `I.p` level_
           ]
 
 instance AT.ToJSON GetChatBoostLevelFeatures where
   toJSON
     GetChatBoostLevelFeatures
-      { level = level_
+      { is_channel = is_channel_
+      , level      = level_
       }
         = A.object
-          [ "@type" A..= AT.String "getChatBoostLevelFeatures"
-          , "level" A..= level_
+          [ "@type"      A..= AT.String "getChatBoostLevelFeatures"
+          , "is_channel" A..= is_channel_
+          , "level"      A..= level_
           ]
+
+defaultGetChatBoostLevelFeatures :: GetChatBoostLevelFeatures
+defaultGetChatBoostLevelFeatures =
+  GetChatBoostLevelFeatures
+    { is_channel = Nothing
+    , level      = Nothing
+    }
 

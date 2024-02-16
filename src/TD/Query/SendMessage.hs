@@ -15,7 +15,7 @@ import qualified TD.Data.InputMessageContent as InputMessageContent
 data SendMessage
   = SendMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat
-    , message_thread_id     :: Maybe Int                                     -- ^ If not 0, a message thread identifier in which the message will be sent
+    , message_thread_id     :: Maybe Int                                     -- ^ If not 0, the message thread identifier in which the message will be sent
     , reply_to              :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , options               :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only

@@ -22,7 +22,7 @@ import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 data InputMessageContent
   = InputMessageText -- ^ A text message
     { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
-    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; pass null to use default link preview options
+    , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     , clear_draft          :: Maybe Bool                                  -- ^ True, if a chat message draft must be deleted
     }
   | InputMessageAnimation -- ^ An animation message (GIF-style).
@@ -80,17 +80,17 @@ data InputMessageContent
     }
   | InputMessageVideoNote -- ^ A video note message
     { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent
-    , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
+    , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
     , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds
     , _length            :: Maybe Int                                             -- ^ Video width and height; must be positive and not greater than 640
-    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; pass null if none; private chats only
+    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; may be null if none; pass null if none; private chats only
     }
   | InputMessageVoiceNote -- ^ A voice note message
     { voice_note         :: Maybe InputFile.InputFile                             -- ^ Voice note to be sent
     , duration           :: Maybe Int                                             -- ^ Duration of the voice note, in seconds
     , waveform           :: Maybe BS.ByteString                                   -- ^ Waveform representation of the voice note in 5-bit format
-    , caption            :: Maybe FormattedText.FormattedText                     -- ^ Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Voice note self-destruct type; pass null if none; private chats only
+    , caption            :: Maybe FormattedText.FormattedText                     -- ^ Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Voice note self-destruct type; may be null if none; pass null if none; private chats only
     }
   | InputMessageLocation -- ^ A message with a location
     { location               :: Maybe Location.Location -- ^ Location to be sent

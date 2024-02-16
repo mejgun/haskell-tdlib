@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Adds a new member to a chat. Members can't be added to private or secret chats. Returns 'TD.Data.Ok.Ok'
+-- | Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns 'TD.Data.Ok.Ok'
 data AddChatMember
   = AddChatMember
     { chat_id       :: Maybe Int -- ^ Chat identifier

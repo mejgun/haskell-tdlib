@@ -199,6 +199,9 @@ data MessageContent
     { message_auto_delete_time :: Maybe Int -- ^ New value auto-delete or self-destruct time, in seconds; 0 if disabled
     , from_user_id             :: Maybe Int -- ^ If not 0, a user identifier, which default setting was automatically applied
     }
+  | MessageChatBoost -- ^ The chat was boosted by the sender of the message
+    { boost_count :: Maybe Int -- ^ Number of times the chat was boosted
+    }
   | MessageForumTopicCreated -- ^ A forum topic has been created
     { name :: Maybe T.Text                        -- ^ Name of the topic
     , icon :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
@@ -681,6 +684,13 @@ instance I.ShortShow MessageContent where
         [ "message_auto_delete_time" `I.p` message_auto_delete_time_
         , "from_user_id"             `I.p` from_user_id_
         ]
+  shortShow MessageChatBoost
+    { boost_count = boost_count_
+    }
+      = "MessageChatBoost"
+        ++ I.cc
+        [ "boost_count" `I.p` boost_count_
+        ]
   shortShow MessageForumTopicCreated
     { name = name_
     , icon = icon_
@@ -1000,6 +1010,7 @@ instance AT.FromJSON MessageContent where
       "messageChatSetBackground"            -> parseMessageChatSetBackground v
       "messageChatSetTheme"                 -> parseMessageChatSetTheme v
       "messageChatSetMessageAutoDeleteTime" -> parseMessageChatSetMessageAutoDeleteTime v
+      "messageChatBoost"                    -> parseMessageChatBoost v
       "messageForumTopicCreated"            -> parseMessageForumTopicCreated v
       "messageForumTopicEdited"             -> parseMessageForumTopicEdited v
       "messageForumTopicIsClosedToggled"    -> parseMessageForumTopicIsClosedToggled v
@@ -1331,6 +1342,12 @@ instance AT.FromJSON MessageContent where
         pure $ MessageChatSetMessageAutoDeleteTime
           { message_auto_delete_time = message_auto_delete_time_
           , from_user_id             = from_user_id_
+          }
+      parseMessageChatBoost :: A.Value -> AT.Parser MessageContent
+      parseMessageChatBoost = A.withObject "MessageChatBoost" $ \o -> do
+        boost_count_ <- o A..:?  "boost_count"
+        pure $ MessageChatBoost
+          { boost_count = boost_count_
           }
       parseMessageForumTopicCreated :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicCreated = A.withObject "MessageForumTopicCreated" $ \o -> do

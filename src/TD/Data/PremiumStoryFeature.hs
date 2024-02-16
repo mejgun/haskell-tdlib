@@ -7,12 +7,13 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes a story feature available to Premium users
 data PremiumStoryFeature
-  = PremiumStoryFeaturePriorityOrder -- ^ User stories are displayed before stories of non-premium contacts and channels
+  = PremiumStoryFeaturePriorityOrder -- ^ Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
   | PremiumStoryFeatureStealthMode -- ^ The ability to hide the fact that the user viewed other's stories
   | PremiumStoryFeaturePermanentViewsHistory -- ^ The ability to check who opened the current user's stories after they expire
   | PremiumStoryFeatureCustomExpirationDuration -- ^ The ability to set custom expiration duration for stories
   | PremiumStoryFeatureSaveStories -- ^ The ability to save other's unprotected stories
   | PremiumStoryFeatureLinksAndFormatting -- ^ The ability to use links and formatting in story caption
+  | PremiumStoryFeatureVideoQuality -- ^ The ability to choose better quality for viewed stories
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumStoryFeature where
@@ -28,6 +29,8 @@ instance I.ShortShow PremiumStoryFeature where
       = "PremiumStoryFeatureSaveStories"
   shortShow PremiumStoryFeatureLinksAndFormatting
       = "PremiumStoryFeatureLinksAndFormatting"
+  shortShow PremiumStoryFeatureVideoQuality
+      = "PremiumStoryFeatureVideoQuality"
 
 instance AT.FromJSON PremiumStoryFeature where
   parseJSON (AT.Object obj) = do
@@ -40,6 +43,7 @@ instance AT.FromJSON PremiumStoryFeature where
       "premiumStoryFeatureCustomExpirationDuration" -> pure PremiumStoryFeatureCustomExpirationDuration
       "premiumStoryFeatureSaveStories"              -> pure PremiumStoryFeatureSaveStories
       "premiumStoryFeatureLinksAndFormatting"       -> pure PremiumStoryFeatureLinksAndFormatting
+      "premiumStoryFeatureVideoQuality"             -> pure PremiumStoryFeatureVideoQuality
       _                                             -> mempty
     
   parseJSON _ = mempty
@@ -68,5 +72,9 @@ instance AT.ToJSON PremiumStoryFeature where
   toJSON PremiumStoryFeatureLinksAndFormatting
       = A.object
         [ "@type" A..= AT.String "premiumStoryFeatureLinksAndFormatting"
+        ]
+  toJSON PremiumStoryFeatureVideoQuality
+      = A.object
+        [ "@type" A..= AT.String "premiumStoryFeatureVideoQuality"
         ]
 

@@ -14,7 +14,7 @@ import qualified TD.Data.InputMessageContent as InputMessageContent
 data SendMessageAlbum
   = SendMessageAlbum
     { chat_id                :: Maybe Int                                       -- ^ Target chat
-    , message_thread_id      :: Maybe Int                                       -- ^ If not 0, a message thread identifier in which the messages will be sent
+    , message_thread_id      :: Maybe Int                                       -- ^ If not 0, the message thread identifier in which the messages will be sent
     , reply_to               :: Maybe InputMessageReplyTo.InputMessageReplyTo   -- ^ Information about the message or story to be replied; pass null if none
     , options                :: Maybe MessageSendOptions.MessageSendOptions     -- ^ Options to be used to send the messages; pass null to use default options
     , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album

@@ -14,7 +14,7 @@ data InputMessageReplyTo
     , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied
-    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat
+    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat and channel stories can't be replied
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
   deriving (Eq, Show)
