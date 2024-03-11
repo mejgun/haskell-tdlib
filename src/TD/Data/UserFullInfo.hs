@@ -8,6 +8,7 @@ import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.PremiumPaymentOption as PremiumPaymentOption
+import qualified TD.Data.BusinessInfo as BusinessInfo
 import qualified TD.Data.BotInfo as BotInfo
 
 data UserFullInfo
@@ -27,6 +28,7 @@ data UserFullInfo
     , bio                                          :: Maybe FormattedText.FormattedText                 -- ^ A short user bio; may be null for bots
     , premium_gift_options                         :: Maybe [PremiumPaymentOption.PremiumPaymentOption] -- ^ The list of available options for gifting Telegram Premium to the user
     , group_in_common_count                        :: Maybe Int                                         -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
+    , business_info                                :: Maybe BusinessInfo.BusinessInfo                   -- ^ Information about business settings for Telegram Business accounts; may be null if none
     , bot_info                                     :: Maybe BotInfo.BotInfo                             -- ^ For bots, information about the bot; may be null if the user isn't a bot
     }
   deriving (Eq, Show)
@@ -48,6 +50,7 @@ instance I.ShortShow UserFullInfo where
     , bio                                          = bio_
     , premium_gift_options                         = premium_gift_options_
     , group_in_common_count                        = group_in_common_count_
+    , business_info                                = business_info_
     , bot_info                                     = bot_info_
     }
       = "UserFullInfo"
@@ -67,6 +70,7 @@ instance I.ShortShow UserFullInfo where
         , "bio"                                          `I.p` bio_
         , "premium_gift_options"                         `I.p` premium_gift_options_
         , "group_in_common_count"                        `I.p` group_in_common_count_
+        , "business_info"                                `I.p` business_info_
         , "bot_info"                                     `I.p` bot_info_
         ]
 
@@ -96,6 +100,7 @@ instance AT.FromJSON UserFullInfo where
         bio_                                          <- o A..:?  "bio"
         premium_gift_options_                         <- o A..:?  "premium_gift_options"
         group_in_common_count_                        <- o A..:?  "group_in_common_count"
+        business_info_                                <- o A..:?  "business_info"
         bot_info_                                     <- o A..:?  "bot_info"
         pure $ UserFullInfo
           { personal_photo                               = personal_photo_
@@ -113,6 +118,7 @@ instance AT.FromJSON UserFullInfo where
           , bio                                          = bio_
           , premium_gift_options                         = premium_gift_options_
           , group_in_common_count                        = group_in_common_count_
+          , business_info                                = business_info_
           , bot_info                                     = bot_info_
           }
   parseJSON _ = mempty

@@ -10,6 +10,7 @@ import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.Message as Message
 import qualified TD.Data.ChatPosition as ChatPosition
+import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
@@ -34,6 +35,7 @@ data Chat
     , permissions                        :: Maybe ChatPermissions.ChatPermissions                   -- ^ Actions that non-administrator chat members are allowed to take in the chat
     , last_message                       :: Maybe Message.Message                                   -- ^ Last message in the chat; may be null if none or unknown
     , positions                          :: Maybe [ChatPosition.ChatPosition]                       -- ^ Positions of the chat in chat lists
+    , chat_lists                         :: Maybe [ChatList.ChatList]                               -- ^ Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list
     , message_sender_id                  :: Maybe MessageSender.MessageSender                       -- ^ Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
     , block_list                         :: Maybe BlockList.BlockList                               -- ^ Block list to which the chat is added; may be null if none
     , has_protected_content              :: Maybe Bool                                              -- ^ True, if chat content can't be saved locally, forwarded, or copied
@@ -78,6 +80,7 @@ instance I.ShortShow Chat where
     , permissions                        = permissions_
     , last_message                       = last_message_
     , positions                          = positions_
+    , chat_lists                         = chat_lists_
     , message_sender_id                  = message_sender_id_
     , block_list                         = block_list_
     , has_protected_content              = has_protected_content_
@@ -120,6 +123,7 @@ instance I.ShortShow Chat where
         , "permissions"                        `I.p` permissions_
         , "last_message"                       `I.p` last_message_
         , "positions"                          `I.p` positions_
+        , "chat_lists"                         `I.p` chat_lists_
         , "message_sender_id"                  `I.p` message_sender_id_
         , "block_list"                         `I.p` block_list_
         , "has_protected_content"              `I.p` has_protected_content_
@@ -172,6 +176,7 @@ instance AT.FromJSON Chat where
         permissions_                        <- o A..:?                       "permissions"
         last_message_                       <- o A..:?                       "last_message"
         positions_                          <- o A..:?                       "positions"
+        chat_lists_                         <- o A..:?                       "chat_lists"
         message_sender_id_                  <- o A..:?                       "message_sender_id"
         block_list_                         <- o A..:?                       "block_list"
         has_protected_content_              <- o A..:?                       "has_protected_content"
@@ -212,6 +217,7 @@ instance AT.FromJSON Chat where
           , permissions                        = permissions_
           , last_message                       = last_message_
           , positions                          = positions_
+          , chat_lists                         = chat_lists_
           , message_sender_id                  = message_sender_id_
           , block_list                         = block_list_
           , has_protected_content              = has_protected_content_

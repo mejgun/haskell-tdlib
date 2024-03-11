@@ -22,6 +22,7 @@ import qualified TD.Data.BasicGroup as BasicGroup
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
+import qualified TD.Data.BusinessConnectedBot as BusinessConnectedBot
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
 import qualified TD.Data.CanSendMessageToUserResult as CanSendMessageToUserResult
@@ -180,6 +181,7 @@ import qualified TD.Data.TestVectorString as TestVectorString
 import qualified TD.Data.TestVectorStringObject as TestVectorStringObject
 import qualified TD.Data.Text as Text
 import qualified TD.Data.TextEntities as TextEntities
+import qualified TD.Data.TimeZones as TimeZones
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
@@ -213,6 +215,7 @@ data GeneralResult
     | BasicGroupFullInfo                 BasicGroupFullInfo.BasicGroupFullInfo
     | BotCommands                        BotCommands.BotCommands
     | BotMenuButton                      BotMenuButton.BotMenuButton
+    | BusinessConnectedBot               BusinessConnectedBot.BusinessConnectedBot
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
     | CanSendMessageToUserResult         CanSendMessageToUserResult.CanSendMessageToUserResult
@@ -371,6 +374,7 @@ data GeneralResult
     | TestVectorStringObject             TestVectorStringObject.TestVectorStringObject
     | Text                               Text.Text
     | TextEntities                       TextEntities.TextEntities
+    | TimeZones                          TimeZones.TimeZones
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
     | Updates                            Updates.Updates
@@ -423,6 +427,8 @@ instance I.ShortShow GeneralResult where
     = "BotCommands" <> " (" <> I.shortShow v <> ")"
   shortShow (BotMenuButton v)
     = "BotMenuButton" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessConnectedBot v)
+    = "BusinessConnectedBot" <> " (" <> I.shortShow v <> ")"
   shortShow (CallId v)
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
@@ -739,6 +745,8 @@ instance I.ShortShow GeneralResult where
     = "Text" <> " (" <> I.shortShow v <> ")"
   shortShow (TextEntities v)
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
+  shortShow (TimeZones v)
+    = "TimeZones" <> " (" <> I.shortShow v <> ")"
   shortShow (TrendingStickerSets v)
     = "TrendingStickerSets" <> " (" <> I.shortShow v <> ")"
   shortShow (Update v)
@@ -786,6 +794,7 @@ instance T.FromJSON GeneralResult where
     <|> ( BasicGroupFullInfo                  <$> parseJSON v )
     <|> ( BotCommands                         <$> parseJSON v )
     <|> ( BotMenuButton                       <$> parseJSON v )
+    <|> ( BusinessConnectedBot                <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
     <|> ( CanSendMessageToUserResult          <$> parseJSON v )
@@ -944,6 +953,7 @@ instance T.FromJSON GeneralResult where
     <|> ( TestVectorStringObject              <$> parseJSON v )
     <|> ( Text                                <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
+    <|> ( TimeZones                           <$> parseJSON v )
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )

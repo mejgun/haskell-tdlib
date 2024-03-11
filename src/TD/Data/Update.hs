@@ -16,6 +16,7 @@ import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPosition as ChatPosition
+import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.DraftMessage as DraftMessage
@@ -28,6 +29,8 @@ import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
 import qualified TD.Data.SavedMessagesTopic as SavedMessagesTopic
+import qualified TD.Data.QuickReplyShortcut as QuickReplyShortcut
+import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
@@ -52,7 +55,6 @@ import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
 import qualified Data.ByteString as BS
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
-import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.Story as Story
 import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
@@ -181,6 +183,14 @@ data Update
     { chat_id  :: Maybe Int                       -- ^ Chat identifier
     , position :: Maybe ChatPosition.ChatPosition -- ^ New chat position. If new order is 0, then the chat needs to be removed from the list
     }
+  | UpdateChatAddedToList -- ^ A chat was added to a chat list
+    { chat_id   :: Maybe Int               -- ^ Chat identifier
+    , chat_list :: Maybe ChatList.ChatList -- ^ The chat list to which the chat was added
+    }
+  | UpdateChatRemovedFromList -- ^ A chat was removed from a chat list
+    { chat_id   :: Maybe Int               -- ^ Chat identifier
+    , chat_list :: Maybe ChatList.ChatList -- ^ The chat list from which the chat was removed
+    }
   | UpdateChatReadInbox -- ^ Incoming messages were read or the number of unread messages has been changed
     { chat_id                    :: Maybe Int -- ^ Chat identifier
     , last_read_inbox_message_id :: Maybe Int -- ^ Identifier of the last read incoming message
@@ -278,6 +288,7 @@ data Update
   | UpdateChatFolders -- ^ The list of chat folders or a chat folder has changed
     { chat_folders            :: Maybe [ChatFolderInfo.ChatFolderInfo] -- ^ The new list of chat folders
     , main_chat_list_position :: Maybe Int                             -- ^ Position of the main chat list among chat folders, 0-based
+    , are_tags_enabled        :: Maybe Bool                            -- ^ True, if folder tags are enabled
     }
   | UpdateChatOnlineMemberCount -- ^ The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it is sent just after the number of online users has changed
     { chat_id             :: Maybe Int -- ^ Identifier of the chat
@@ -288,6 +299,19 @@ data Update
     }
   | UpdateSavedMessagesTopicCount -- ^ Number of Saved Messages topics has changed
     { topic_count :: Maybe Int -- ^ Approximate total number of Saved Messages topics
+    }
+  | UpdateQuickReplyShortcut -- ^ Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
+    { shortcut :: Maybe QuickReplyShortcut.QuickReplyShortcut -- ^ New data about the shortcut
+    }
+  | UpdateQuickReplyShortcutDeleted -- ^ A quick reply shortcut and all its messages were deleted
+    { shortcut_id :: Maybe Int -- ^ The identifier of the deleted shortcut
+    }
+  | UpdateQuickReplyShortcuts -- ^ The list of quick reply shortcuts has changed
+    { shortcut_ids :: Maybe [Int] -- ^ The new list of identifiers of quick reply shortcuts
+    }
+  | UpdateQuickReplyShortcutMessages -- ^ The list of quick reply shortcut messages has changed
+    { shortcut_id :: Maybe Int                                   -- ^ The identifier of the shortcut
+    , messages    :: Maybe [QuickReplyMessage.QuickReplyMessage] -- ^ The new list of quick reply messages for the shortcut in order from the first to the last sent
     }
   | UpdateForumTopicInfo -- ^ Basic information about a topic in a forum chat was changed
     { chat_id :: Maybe Int                           -- ^ Chat identifier
@@ -855,6 +879,24 @@ instance I.ShortShow Update where
         [ "chat_id"  `I.p` chat_id_
         , "position" `I.p` position_
         ]
+  shortShow UpdateChatAddedToList
+    { chat_id   = chat_id_
+    , chat_list = chat_list_
+    }
+      = "UpdateChatAddedToList"
+        ++ I.cc
+        [ "chat_id"   `I.p` chat_id_
+        , "chat_list" `I.p` chat_list_
+        ]
+  shortShow UpdateChatRemovedFromList
+    { chat_id   = chat_id_
+    , chat_list = chat_list_
+    }
+      = "UpdateChatRemovedFromList"
+        ++ I.cc
+        [ "chat_id"   `I.p` chat_id_
+        , "chat_list" `I.p` chat_list_
+        ]
   shortShow UpdateChatReadInbox
     { chat_id                    = chat_id_
     , last_read_inbox_message_id = last_read_inbox_message_id_
@@ -1069,11 +1111,13 @@ instance I.ShortShow Update where
   shortShow UpdateChatFolders
     { chat_folders            = chat_folders_
     , main_chat_list_position = main_chat_list_position_
+    , are_tags_enabled        = are_tags_enabled_
     }
       = "UpdateChatFolders"
         ++ I.cc
         [ "chat_folders"            `I.p` chat_folders_
         , "main_chat_list_position" `I.p` main_chat_list_position_
+        , "are_tags_enabled"        `I.p` are_tags_enabled_
         ]
   shortShow UpdateChatOnlineMemberCount
     { chat_id             = chat_id_
@@ -1097,6 +1141,36 @@ instance I.ShortShow Update where
       = "UpdateSavedMessagesTopicCount"
         ++ I.cc
         [ "topic_count" `I.p` topic_count_
+        ]
+  shortShow UpdateQuickReplyShortcut
+    { shortcut = shortcut_
+    }
+      = "UpdateQuickReplyShortcut"
+        ++ I.cc
+        [ "shortcut" `I.p` shortcut_
+        ]
+  shortShow UpdateQuickReplyShortcutDeleted
+    { shortcut_id = shortcut_id_
+    }
+      = "UpdateQuickReplyShortcutDeleted"
+        ++ I.cc
+        [ "shortcut_id" `I.p` shortcut_id_
+        ]
+  shortShow UpdateQuickReplyShortcuts
+    { shortcut_ids = shortcut_ids_
+    }
+      = "UpdateQuickReplyShortcuts"
+        ++ I.cc
+        [ "shortcut_ids" `I.p` shortcut_ids_
+        ]
+  shortShow UpdateQuickReplyShortcutMessages
+    { shortcut_id = shortcut_id_
+    , messages    = messages_
+    }
+      = "UpdateQuickReplyShortcutMessages"
+        ++ I.cc
+        [ "shortcut_id" `I.p` shortcut_id_
+        , "messages"    `I.p` messages_
         ]
   shortShow UpdateForumTopicInfo
     { chat_id = chat_id_
@@ -1932,6 +2006,8 @@ instance AT.FromJSON Update where
       "updateChatPermissions"                -> parseUpdateChatPermissions v
       "updateChatLastMessage"                -> parseUpdateChatLastMessage v
       "updateChatPosition"                   -> parseUpdateChatPosition v
+      "updateChatAddedToList"                -> parseUpdateChatAddedToList v
+      "updateChatRemovedFromList"            -> parseUpdateChatRemovedFromList v
       "updateChatReadInbox"                  -> parseUpdateChatReadInbox v
       "updateChatReadOutbox"                 -> parseUpdateChatReadOutbox v
       "updateChatActionBar"                  -> parseUpdateChatActionBar v
@@ -1959,6 +2035,10 @@ instance AT.FromJSON Update where
       "updateChatOnlineMemberCount"          -> parseUpdateChatOnlineMemberCount v
       "updateSavedMessagesTopic"             -> parseUpdateSavedMessagesTopic v
       "updateSavedMessagesTopicCount"        -> parseUpdateSavedMessagesTopicCount v
+      "updateQuickReplyShortcut"             -> parseUpdateQuickReplyShortcut v
+      "updateQuickReplyShortcutDeleted"      -> parseUpdateQuickReplyShortcutDeleted v
+      "updateQuickReplyShortcuts"            -> parseUpdateQuickReplyShortcuts v
+      "updateQuickReplyShortcutMessages"     -> parseUpdateQuickReplyShortcutMessages v
       "updateForumTopicInfo"                 -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings"      -> parseUpdateScopeNotificationSettings v
       "updateNotification"                   -> parseUpdateNotification v
@@ -2224,6 +2304,22 @@ instance AT.FromJSON Update where
           { chat_id  = chat_id_
           , position = position_
           }
+      parseUpdateChatAddedToList :: A.Value -> AT.Parser Update
+      parseUpdateChatAddedToList = A.withObject "UpdateChatAddedToList" $ \o -> do
+        chat_id_   <- o A..:?  "chat_id"
+        chat_list_ <- o A..:?  "chat_list"
+        pure $ UpdateChatAddedToList
+          { chat_id   = chat_id_
+          , chat_list = chat_list_
+          }
+      parseUpdateChatRemovedFromList :: A.Value -> AT.Parser Update
+      parseUpdateChatRemovedFromList = A.withObject "UpdateChatRemovedFromList" $ \o -> do
+        chat_id_   <- o A..:?  "chat_id"
+        chat_list_ <- o A..:?  "chat_list"
+        pure $ UpdateChatRemovedFromList
+          { chat_id   = chat_id_
+          , chat_list = chat_list_
+          }
       parseUpdateChatReadInbox :: A.Value -> AT.Parser Update
       parseUpdateChatReadInbox = A.withObject "UpdateChatReadInbox" $ \o -> do
         chat_id_                    <- o A..:?  "chat_id"
@@ -2416,9 +2512,11 @@ instance AT.FromJSON Update where
       parseUpdateChatFolders = A.withObject "UpdateChatFolders" $ \o -> do
         chat_folders_            <- o A..:?  "chat_folders"
         main_chat_list_position_ <- o A..:?  "main_chat_list_position"
+        are_tags_enabled_        <- o A..:?  "are_tags_enabled"
         pure $ UpdateChatFolders
           { chat_folders            = chat_folders_
           , main_chat_list_position = main_chat_list_position_
+          , are_tags_enabled        = are_tags_enabled_
           }
       parseUpdateChatOnlineMemberCount :: A.Value -> AT.Parser Update
       parseUpdateChatOnlineMemberCount = A.withObject "UpdateChatOnlineMemberCount" $ \o -> do
@@ -2439,6 +2537,32 @@ instance AT.FromJSON Update where
         topic_count_ <- o A..:?  "topic_count"
         pure $ UpdateSavedMessagesTopicCount
           { topic_count = topic_count_
+          }
+      parseUpdateQuickReplyShortcut :: A.Value -> AT.Parser Update
+      parseUpdateQuickReplyShortcut = A.withObject "UpdateQuickReplyShortcut" $ \o -> do
+        shortcut_ <- o A..:?  "shortcut"
+        pure $ UpdateQuickReplyShortcut
+          { shortcut = shortcut_
+          }
+      parseUpdateQuickReplyShortcutDeleted :: A.Value -> AT.Parser Update
+      parseUpdateQuickReplyShortcutDeleted = A.withObject "UpdateQuickReplyShortcutDeleted" $ \o -> do
+        shortcut_id_ <- o A..:?  "shortcut_id"
+        pure $ UpdateQuickReplyShortcutDeleted
+          { shortcut_id = shortcut_id_
+          }
+      parseUpdateQuickReplyShortcuts :: A.Value -> AT.Parser Update
+      parseUpdateQuickReplyShortcuts = A.withObject "UpdateQuickReplyShortcuts" $ \o -> do
+        shortcut_ids_ <- o A..:?  "shortcut_ids"
+        pure $ UpdateQuickReplyShortcuts
+          { shortcut_ids = shortcut_ids_
+          }
+      parseUpdateQuickReplyShortcutMessages :: A.Value -> AT.Parser Update
+      parseUpdateQuickReplyShortcutMessages = A.withObject "UpdateQuickReplyShortcutMessages" $ \o -> do
+        shortcut_id_ <- o A..:?  "shortcut_id"
+        messages_    <- o A..:?  "messages"
+        pure $ UpdateQuickReplyShortcutMessages
+          { shortcut_id = shortcut_id_
+          , messages    = messages_
           }
       parseUpdateForumTopicInfo :: A.Value -> AT.Parser Update
       parseUpdateForumTopicInfo = A.withObject "UpdateForumTopicInfo" $ \o -> do

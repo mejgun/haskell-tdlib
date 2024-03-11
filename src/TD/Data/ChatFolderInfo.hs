@@ -12,6 +12,7 @@ data ChatFolderInfo
     { _id                 :: Maybe Int                           -- ^ Unique chat folder identifier
     , title               :: Maybe T.Text                        -- ^ The title of the folder; 1-12 characters without line feeds
     , icon                :: Maybe ChatFolderIcon.ChatFolderIcon -- ^ The chosen or default icon for the chat folder
+    , color_id            :: Maybe Int                           -- ^ The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled
     , is_shareable        :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
     , has_my_invite_links :: Maybe Bool                          -- ^ True, if the chat folder has invite links created by the current user
     }
@@ -22,6 +23,7 @@ instance I.ShortShow ChatFolderInfo where
     { _id                 = _id_
     , title               = title_
     , icon                = icon_
+    , color_id            = color_id_
     , is_shareable        = is_shareable_
     , has_my_invite_links = has_my_invite_links_
     }
@@ -30,6 +32,7 @@ instance I.ShortShow ChatFolderInfo where
         [ "_id"                 `I.p` _id_
         , "title"               `I.p` title_
         , "icon"                `I.p` icon_
+        , "color_id"            `I.p` color_id_
         , "is_shareable"        `I.p` is_shareable_
         , "has_my_invite_links" `I.p` has_my_invite_links_
         ]
@@ -48,12 +51,14 @@ instance AT.FromJSON ChatFolderInfo where
         _id_                 <- o A..:?  "id"
         title_               <- o A..:?  "title"
         icon_                <- o A..:?  "icon"
+        color_id_            <- o A..:?  "color_id"
         is_shareable_        <- o A..:?  "is_shareable"
         has_my_invite_links_ <- o A..:?  "has_my_invite_links"
         pure $ ChatFolderInfo
           { _id                 = _id_
           , title               = title_
           , icon                = icon_
+          , color_id            = color_id_
           , is_shareable        = is_shareable_
           , has_my_invite_links = has_my_invite_links_
           }

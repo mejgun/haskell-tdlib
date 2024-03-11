@@ -1,0 +1,58 @@
+module TD.Data.BusinessInfo
+  (BusinessInfo(..)) where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.BusinessLocation as BusinessLocation
+import qualified TD.Data.BusinessOpeningHours as BusinessOpeningHours
+import qualified TD.Data.BusinessGreetingMessageSettings as BusinessGreetingMessageSettings
+import qualified TD.Data.BusinessAwayMessageSettings as BusinessAwayMessageSettings
+
+data BusinessInfo
+  = BusinessInfo -- ^ Contains information about a Telegram Business account
+    { location                  :: Maybe BusinessLocation.BusinessLocation                               -- ^ Location of the business; may be null if none
+    , opening_hours             :: Maybe BusinessOpeningHours.BusinessOpeningHours                       -- ^ Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
+    , greeting_message_settings :: Maybe BusinessGreetingMessageSettings.BusinessGreetingMessageSettings -- ^ The greeting message; may be null if none or the Business account is not of the current user
+    , away_message_settings     :: Maybe BusinessAwayMessageSettings.BusinessAwayMessageSettings         -- ^ The away message; may be null if none or the Business account is not of the current user
+    }
+  deriving (Eq, Show)
+
+instance I.ShortShow BusinessInfo where
+  shortShow BusinessInfo
+    { location                  = location_
+    , opening_hours             = opening_hours_
+    , greeting_message_settings = greeting_message_settings_
+    , away_message_settings     = away_message_settings_
+    }
+      = "BusinessInfo"
+        ++ I.cc
+        [ "location"                  `I.p` location_
+        , "opening_hours"             `I.p` opening_hours_
+        , "greeting_message_settings" `I.p` greeting_message_settings_
+        , "away_message_settings"     `I.p` away_message_settings_
+        ]
+
+instance AT.FromJSON BusinessInfo where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "businessInfo" -> parseBusinessInfo v
+      _              -> mempty
+    
+    where
+      parseBusinessInfo :: A.Value -> AT.Parser BusinessInfo
+      parseBusinessInfo = A.withObject "BusinessInfo" $ \o -> do
+        location_                  <- o A..:?  "location"
+        opening_hours_             <- o A..:?  "opening_hours"
+        greeting_message_settings_ <- o A..:?  "greeting_message_settings"
+        away_message_settings_     <- o A..:?  "away_message_settings"
+        pure $ BusinessInfo
+          { location                  = location_
+          , opening_hours             = opening_hours_
+          , greeting_message_settings = greeting_message_settings_
+          , away_message_settings     = away_message_settings_
+          }
+  parseJSON _ = mempty
+

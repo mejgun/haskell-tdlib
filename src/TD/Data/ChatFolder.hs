@@ -13,6 +13,7 @@ data ChatFolder
   = ChatFolder -- ^ Represents a folder for user chats
     { title                :: Maybe T.Text                        -- ^ The title of the folder; 1-12 characters without line feeds
     , icon                 :: Maybe ChatFolderIcon.ChatFolderIcon -- ^ The chosen icon for the chat folder; may be null. If null, use getChatFolderDefaultIconName to get default icon name for the folder
+    , color_id             :: Maybe Int                           -- ^ The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled
     , is_shareable         :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
     , pinned_chat_ids      :: Maybe [Int]                         -- ^ The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
     , included_chat_ids    :: Maybe [Int]                         -- ^ The chat identifiers of always included chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
@@ -32,6 +33,7 @@ instance I.ShortShow ChatFolder where
   shortShow ChatFolder
     { title                = title_
     , icon                 = icon_
+    , color_id             = color_id_
     , is_shareable         = is_shareable_
     , pinned_chat_ids      = pinned_chat_ids_
     , included_chat_ids    = included_chat_ids_
@@ -49,6 +51,7 @@ instance I.ShortShow ChatFolder where
         ++ I.cc
         [ "title"                `I.p` title_
         , "icon"                 `I.p` icon_
+        , "color_id"             `I.p` color_id_
         , "is_shareable"         `I.p` is_shareable_
         , "pinned_chat_ids"      `I.p` pinned_chat_ids_
         , "included_chat_ids"    `I.p` included_chat_ids_
@@ -76,6 +79,7 @@ instance AT.FromJSON ChatFolder where
       parseChatFolder = A.withObject "ChatFolder" $ \o -> do
         title_                <- o A..:?  "title"
         icon_                 <- o A..:?  "icon"
+        color_id_             <- o A..:?  "color_id"
         is_shareable_         <- o A..:?  "is_shareable"
         pinned_chat_ids_      <- o A..:?  "pinned_chat_ids"
         included_chat_ids_    <- o A..:?  "included_chat_ids"
@@ -91,6 +95,7 @@ instance AT.FromJSON ChatFolder where
         pure $ ChatFolder
           { title                = title_
           , icon                 = icon_
+          , color_id             = color_id_
           , is_shareable         = is_shareable_
           , pinned_chat_ids      = pinned_chat_ids_
           , included_chat_ids    = included_chat_ids_
@@ -110,6 +115,7 @@ instance AT.ToJSON ChatFolder where
   toJSON ChatFolder
     { title                = title_
     , icon                 = icon_
+    , color_id             = color_id_
     , is_shareable         = is_shareable_
     , pinned_chat_ids      = pinned_chat_ids_
     , included_chat_ids    = included_chat_ids_
@@ -127,6 +133,7 @@ instance AT.ToJSON ChatFolder where
         [ "@type"                A..= AT.String "chatFolder"
         , "title"                A..= title_
         , "icon"                 A..= icon_
+        , "color_id"             A..= color_id_
         , "is_shareable"         A..= is_shareable_
         , "pinned_chat_ids"      A..= pinned_chat_ids_
         , "included_chat_ids"    A..= included_chat_ids_
@@ -146,6 +153,7 @@ defaultChatFolder =
   ChatFolder
     { title                = Nothing
     , icon                 = Nothing
+    , color_id             = Nothing
     , is_shareable         = Nothing
     , pinned_chat_ids      = Nothing
     , included_chat_ids    = Nothing

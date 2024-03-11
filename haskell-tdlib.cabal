@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.21.0
+version:        2.0.22.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -63,6 +63,15 @@ library
       TD.Data.BotInfo
       TD.Data.BotMenuButton
       TD.Data.BotWriteAccessAllowReason
+      TD.Data.BusinessAwayMessageSchedule
+      TD.Data.BusinessAwayMessageSettings
+      TD.Data.BusinessConnectedBot
+      TD.Data.BusinessGreetingMessageSettings
+      TD.Data.BusinessInfo
+      TD.Data.BusinessLocation
+      TD.Data.BusinessOpeningHours
+      TD.Data.BusinessOpeningHoursInterval
+      TD.Data.BusinessRecipients
       TD.Data.Call
       TD.Data.CallbackQueryAnswer
       TD.Data.CallbackQueryPayload
@@ -372,6 +381,8 @@ library
       TD.Data.PublicForwards
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
+      TD.Data.QuickReplyMessage
+      TD.Data.QuickReplyShortcut
       TD.Data.ReactionType
       TD.Data.ReactionUnavailabilityReason
       TD.Data.ReadDatePrivacySettings
@@ -461,6 +472,8 @@ library
       TD.Data.ThemeSettings
       TD.Data.Thumbnail
       TD.Data.ThumbnailFormat
+      TD.Data.TimeZone
+      TD.Data.TimeZones
       TD.Data.TMeUrl
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
@@ -557,6 +570,7 @@ library
       TD.Query.CheckPhoneNumberConfirmationCode
       TD.Query.CheckPhoneNumberVerificationCode
       TD.Query.CheckPremiumGiftCode
+      TD.Query.CheckQuickReplyShortcutName
       TD.Query.CheckRecoveryEmailAddressCode
       TD.Query.CheckStickerSetName
       TD.Query.CleanFileName
@@ -596,6 +610,7 @@ library
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
       TD.Query.DeleteAllRevokedChatInviteLinks
+      TD.Query.DeleteBusinessConnectedBot
       TD.Query.DeleteChat
       TD.Query.DeleteChatBackground
       TD.Query.DeleteChatFolder
@@ -612,6 +627,8 @@ library
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
       TD.Query.DeleteProfilePhoto
+      TD.Query.DeleteQuickReplyShortcut
+      TD.Query.DeleteQuickReplyShortcutMessages
       TD.Query.DeleteRevokedChatInviteLink
       TD.Query.DeleteSavedCredentials
       TD.Query.DeleteSavedMessagesTopicHistory
@@ -674,6 +691,7 @@ library
       TD.Query.GetBotInfoDescription
       TD.Query.GetBotInfoShortDescription
       TD.Query.GetBotName
+      TD.Query.GetBusinessConnectedBot
       TD.Query.GetCallbackQueryAnswer
       TD.Query.GetCallbackQueryMessage
       TD.Query.GetChat
@@ -867,6 +885,7 @@ library
       TD.Query.GetThemedChatEmojiStatuses
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
+      TD.Query.GetTimeZones
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUser
@@ -895,6 +914,8 @@ library
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
       TD.Query.LoadGroupCallParticipants
+      TD.Query.LoadQuickReplyShortcutMessages
+      TD.Query.LoadQuickReplyShortcuts
       TD.Query.LoadSavedMessagesTopics
       TD.Query.LogOut
       TD.Query.OpenChat
@@ -945,6 +966,7 @@ library
       TD.Query.ReorderBotActiveUsernames
       TD.Query.ReorderChatFolders
       TD.Query.ReorderInstalledStickerSets
+      TD.Query.ReorderQuickReplyShortcuts
       TD.Query.ReorderSupergroupActiveUsernames
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceVideoChatRtmpUrl
@@ -1017,6 +1039,7 @@ library
       TD.Query.SendPaymentForm
       TD.Query.SendPhoneNumberConfirmationCode
       TD.Query.SendPhoneNumberVerificationCode
+      TD.Query.SendQuickReplyShortcutMessages
       TD.Query.SendStory
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
@@ -1034,6 +1057,11 @@ library
       TD.Query.SetBotName
       TD.Query.SetBotProfilePhoto
       TD.Query.SetBotUpdatesStatus
+      TD.Query.SetBusinessAwayMessageSettings
+      TD.Query.SetBusinessConnectedBot
+      TD.Query.SetBusinessGreetingMessageSettings
+      TD.Query.SetBusinessLocation
+      TD.Query.SetBusinessOpeningHours
       TD.Query.SetChatAccentColor
       TD.Query.SetChatActiveStoriesList
       TD.Query.SetChatAvailableReactions
@@ -1095,6 +1123,7 @@ library
       TD.Query.SetPollAnswer
       TD.Query.SetProfileAccentColor
       TD.Query.SetProfilePhoto
+      TD.Query.SetQuickReplyShortcutName
       TD.Query.SetReadDatePrivacySettings
       TD.Query.SetRecoveryEmailAddress
       TD.Query.SetSavedMessagesTagLabel
@@ -1145,6 +1174,7 @@ library
       TD.Query.ToggleBotIsAddedToAttachmentMenu
       TD.Query.ToggleBotUsernameIsActive
       TD.Query.ToggleChatDefaultDisableNotification
+      TD.Query.ToggleChatFolderTags
       TD.Query.ToggleChatHasProtectedContent
       TD.Query.ToggleChatIsMarkedAsUnread
       TD.Query.ToggleChatIsPinned
