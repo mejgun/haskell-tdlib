@@ -10,6 +10,7 @@ import qualified TD.Lib.Internal as I
 data BusinessRecipients
   = BusinessRecipients -- ^ Describes private chats chosen for automatic interaction with a business
     { chat_ids              :: Maybe [Int] -- ^ Identifiers of selected private chats
+    , excluded_chat_ids     :: Maybe [Int] -- ^ Identifiers of private chats that are always excluded; for businessConnectedBot only
     , select_existing_chats :: Maybe Bool  -- ^ True, if all existing private chats are selected
     , select_new_chats      :: Maybe Bool  -- ^ True, if all new private chats are selected
     , select_contacts       :: Maybe Bool  -- ^ True, if all private chats with contacts are selected
@@ -21,6 +22,7 @@ data BusinessRecipients
 instance I.ShortShow BusinessRecipients where
   shortShow BusinessRecipients
     { chat_ids              = chat_ids_
+    , excluded_chat_ids     = excluded_chat_ids_
     , select_existing_chats = select_existing_chats_
     , select_new_chats      = select_new_chats_
     , select_contacts       = select_contacts_
@@ -30,6 +32,7 @@ instance I.ShortShow BusinessRecipients where
       = "BusinessRecipients"
         ++ I.cc
         [ "chat_ids"              `I.p` chat_ids_
+        , "excluded_chat_ids"     `I.p` excluded_chat_ids_
         , "select_existing_chats" `I.p` select_existing_chats_
         , "select_new_chats"      `I.p` select_new_chats_
         , "select_contacts"       `I.p` select_contacts_
@@ -49,6 +52,7 @@ instance AT.FromJSON BusinessRecipients where
       parseBusinessRecipients :: A.Value -> AT.Parser BusinessRecipients
       parseBusinessRecipients = A.withObject "BusinessRecipients" $ \o -> do
         chat_ids_              <- o A..:?  "chat_ids"
+        excluded_chat_ids_     <- o A..:?  "excluded_chat_ids"
         select_existing_chats_ <- o A..:?  "select_existing_chats"
         select_new_chats_      <- o A..:?  "select_new_chats"
         select_contacts_       <- o A..:?  "select_contacts"
@@ -56,6 +60,7 @@ instance AT.FromJSON BusinessRecipients where
         exclude_selected_      <- o A..:?  "exclude_selected"
         pure $ BusinessRecipients
           { chat_ids              = chat_ids_
+          , excluded_chat_ids     = excluded_chat_ids_
           , select_existing_chats = select_existing_chats_
           , select_new_chats      = select_new_chats_
           , select_contacts       = select_contacts_
@@ -67,6 +72,7 @@ instance AT.FromJSON BusinessRecipients where
 instance AT.ToJSON BusinessRecipients where
   toJSON BusinessRecipients
     { chat_ids              = chat_ids_
+    , excluded_chat_ids     = excluded_chat_ids_
     , select_existing_chats = select_existing_chats_
     , select_new_chats      = select_new_chats_
     , select_contacts       = select_contacts_
@@ -76,6 +82,7 @@ instance AT.ToJSON BusinessRecipients where
       = A.object
         [ "@type"                 A..= AT.String "businessRecipients"
         , "chat_ids"              A..= chat_ids_
+        , "excluded_chat_ids"     A..= excluded_chat_ids_
         , "select_existing_chats" A..= select_existing_chats_
         , "select_new_chats"      A..= select_new_chats_
         , "select_contacts"       A..= select_contacts_
@@ -87,6 +94,7 @@ defaultBusinessRecipients :: BusinessRecipients
 defaultBusinessRecipients =
   BusinessRecipients
     { chat_ids              = Nothing
+    , excluded_chat_ids     = Nothing
     , select_existing_chats = Nothing
     , select_new_chats      = Nothing
     , select_contacts       = Nothing

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.NewChatPrivacySettings as NewChatPrivacySettings
 
--- | Changes privacy settings for new chat creation; for Telegram Premium users only. Returns 'TD.Data.Ok.Ok'
+-- | Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings"). Returns 'TD.Data.Ok.Ok'
 data SetNewChatPrivacySettings
   = SetNewChatPrivacySettings
     { settings :: Maybe NewChatPrivacySettings.NewChatPrivacySettings -- ^ New settings

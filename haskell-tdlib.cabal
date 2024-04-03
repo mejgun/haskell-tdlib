@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.22.0
+version:        2.0.24.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -56,6 +56,7 @@ library
       TD.Data.BankCardInfo
       TD.Data.BasicGroup
       TD.Data.BasicGroupFullInfo
+      TD.Data.Birthdate
       TD.Data.BlockList
       TD.Data.BotCommand
       TD.Data.BotCommands
@@ -66,9 +67,16 @@ library
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
       TD.Data.BusinessConnectedBot
+      TD.Data.BusinessConnection
+      TD.Data.BusinessFeature
+      TD.Data.BusinessFeaturePromotionAnimation
+      TD.Data.BusinessFeatures
       TD.Data.BusinessGreetingMessageSettings
       TD.Data.BusinessInfo
+      TD.Data.BusinessIntro
       TD.Data.BusinessLocation
+      TD.Data.BusinessMessage
+      TD.Data.BusinessMessages
       TD.Data.BusinessOpeningHours
       TD.Data.BusinessOpeningHoursInterval
       TD.Data.BusinessRecipients
@@ -154,7 +162,10 @@ library
       TD.Data.ChatType
       TD.Data.CheckChatUsernameResult
       TD.Data.CheckStickerSetNameResult
+      TD.Data.CloseBirthdayUser
       TD.Data.ClosedVectorPath
+      TD.Data.CollectibleItemInfo
+      TD.Data.CollectibleItemType
       TD.Data.ConnectedWebsite
       TD.Data.ConnectedWebsites
       TD.Data.ConnectionState
@@ -230,6 +241,7 @@ library
       TD.Data.InlineQueryResultsButton
       TD.Data.InlineQueryResultsButtonType
       TD.Data.InputBackground
+      TD.Data.InputBusinessIntro
       TD.Data.InputChatPhoto
       TD.Data.InputCredentials
       TD.Data.InputFile
@@ -391,6 +403,8 @@ library
       TD.Data.RecoveryEmailAddress
       TD.Data.RemoteFile
       TD.Data.ReplyMarkup
+      TD.Data.ReportChatSponsoredMessageOption
+      TD.Data.ReportChatSponsoredMessageResult
       TD.Data.ReportReason
       TD.Data.ResetPasswordResult
       TD.Data.RichText
@@ -410,6 +424,8 @@ library
       TD.Data.Session
       TD.Data.Sessions
       TD.Data.SessionType
+      TD.Data.SharedChat
+      TD.Data.SharedUser
       TD.Data.ShippingOption
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
@@ -692,6 +708,8 @@ library
       TD.Query.GetBotInfoShortDescription
       TD.Query.GetBotName
       TD.Query.GetBusinessConnectedBot
+      TD.Query.GetBusinessConnection
+      TD.Query.GetBusinessFeatures
       TD.Query.GetCallbackQueryAnswer
       TD.Query.GetCallbackQueryMessage
       TD.Query.GetChat
@@ -738,6 +756,7 @@ library
       TD.Query.GetChatStoryInteractions
       TD.Query.GetChatsToSendStories
       TD.Query.GetCloseFriends
+      TD.Query.GetCollectibleItemInfo
       TD.Query.GetCommands
       TD.Query.GetConnectedWebsites
       TD.Query.GetContacts
@@ -821,6 +840,7 @@ library
       TD.Query.GetNetworkStatistics
       TD.Query.GetNewChatPrivacySettings
       TD.Query.GetOption
+      TD.Query.GetOwnedStickerSets
       TD.Query.GetPassportAuthorizationForm
       TD.Query.GetPassportAuthorizationFormAvailableElements
       TD.Query.GetPassportElement
@@ -875,6 +895,7 @@ library
       TD.Query.GetSuggestedFileName
       TD.Query.GetSuggestedStickerSetName
       TD.Query.GetSuitableDiscussionChats
+      TD.Query.GetSuitablePersonalChats
       TD.Query.GetSupergroup
       TD.Query.GetSupergroupFullInfo
       TD.Query.GetSupergroupMembers
@@ -969,9 +990,11 @@ library
       TD.Query.ReorderQuickReplyShortcuts
       TD.Query.ReorderSupergroupActiveUsernames
       TD.Query.ReplacePrimaryChatInviteLink
+      TD.Query.ReplaceStickerInSet
       TD.Query.ReplaceVideoChatRtmpUrl
       TD.Query.ReportChat
       TD.Query.ReportChatPhoto
+      TD.Query.ReportChatSponsoredMessage
       TD.Query.ReportMessageReactions
       TD.Query.ReportStory
       TD.Query.ReportSupergroupAntiSpamFalsePositive
@@ -1025,6 +1048,8 @@ library
       TD.Query.SearchWebApp
       TD.Query.SendAuthenticationFirebaseSms
       TD.Query.SendBotStartMessage
+      TD.Query.SendBusinessMessage
+      TD.Query.SendBusinessMessageAlbum
       TD.Query.SendCallDebugInformation
       TD.Query.SendCallLog
       TD.Query.SendCallRating
@@ -1052,6 +1077,7 @@ library
       TD.Query.SetAutoDownloadSettings
       TD.Query.SetAutosaveSettings
       TD.Query.SetBio
+      TD.Query.SetBirthdate
       TD.Query.SetBotInfoDescription
       TD.Query.SetBotInfoShortDescription
       TD.Query.SetBotName
@@ -1060,6 +1086,7 @@ library
       TD.Query.SetBusinessAwayMessageSettings
       TD.Query.SetBusinessConnectedBot
       TD.Query.SetBusinessGreetingMessageSettings
+      TD.Query.SetBusinessIntro
       TD.Query.SetBusinessLocation
       TD.Query.SetBusinessOpeningHours
       TD.Query.SetChatAccentColor
@@ -1117,6 +1144,7 @@ library
       TD.Query.SetPassportElement
       TD.Query.SetPassportElementErrors
       TD.Query.SetPassword
+      TD.Query.SetPersonalChat
       TD.Query.SetPinnedChats
       TD.Query.SetPinnedForumTopics
       TD.Query.SetPinnedSavedMessagesTopics

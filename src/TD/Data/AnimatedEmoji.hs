@@ -9,7 +9,7 @@ import qualified TD.Data.File as File
 
 data AnimatedEmoji
   = AnimatedEmoji -- ^ Describes an animated or custom representation of an emoji
-    { sticker          :: Maybe Sticker.Sticker -- ^ Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, it can have arbitrary format different from stickerFormatTgs
+    { sticker          :: Maybe Sticker.Sticker -- ^ Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, then it can have arbitrary format
     , sticker_width    :: Maybe Int             -- ^ Expected width of the sticker, which can be used if the sticker is null
     , sticker_height   :: Maybe Int             -- ^ Expected height of the sticker, which can be used if the sticker is null
     , fitzpatrick_type :: Maybe Int             -- ^ Emoji modifier fitzpatrick type; 0-6; 0 if none

@@ -23,6 +23,10 @@ import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.BusinessConnectedBot as BusinessConnectedBot
+import qualified TD.Data.BusinessConnection as BusinessConnection
+import qualified TD.Data.BusinessFeatures as BusinessFeatures
+import qualified TD.Data.BusinessMessage as BusinessMessage
+import qualified TD.Data.BusinessMessages as BusinessMessages
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
 import qualified TD.Data.CanSendMessageToUserResult as CanSendMessageToUserResult
@@ -60,6 +64,7 @@ import qualified TD.Data.Chats as Chats
 import qualified TD.Data.ChatsNearby as ChatsNearby
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
+import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
@@ -147,6 +152,7 @@ import qualified TD.Data.PushReceiverId as PushReceiverId
 import qualified TD.Data.ReadDatePrivacySettings as ReadDatePrivacySettings
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
+import qualified TD.Data.ReportChatSponsoredMessageResult as ReportChatSponsoredMessageResult
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RtmpUrl as RtmpUrl
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
@@ -216,6 +222,10 @@ data GeneralResult
     | BotCommands                        BotCommands.BotCommands
     | BotMenuButton                      BotMenuButton.BotMenuButton
     | BusinessConnectedBot               BusinessConnectedBot.BusinessConnectedBot
+    | BusinessConnection                 BusinessConnection.BusinessConnection
+    | BusinessFeatures                   BusinessFeatures.BusinessFeatures
+    | BusinessMessage                    BusinessMessage.BusinessMessage
+    | BusinessMessages                   BusinessMessages.BusinessMessages
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
     | CanSendMessageToUserResult         CanSendMessageToUserResult.CanSendMessageToUserResult
@@ -253,6 +263,7 @@ data GeneralResult
     | ChatsNearby                        ChatsNearby.ChatsNearby
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
+    | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
     | Count                              Count.Count
     | Countries                          Countries.Countries
@@ -340,6 +351,7 @@ data GeneralResult
     | ReadDatePrivacySettings            ReadDatePrivacySettings.ReadDatePrivacySettings
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
+    | ReportChatSponsoredMessageResult   ReportChatSponsoredMessageResult.ReportChatSponsoredMessageResult
     | ResetPasswordResult                ResetPasswordResult.ResetPasswordResult
     | RtmpUrl                            RtmpUrl.RtmpUrl
     | SavedMessagesTags                  SavedMessagesTags.SavedMessagesTags
@@ -429,6 +441,14 @@ instance I.ShortShow GeneralResult where
     = "BotMenuButton" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessConnectedBot v)
     = "BusinessConnectedBot" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessConnection v)
+    = "BusinessConnection" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessFeatures v)
+    = "BusinessFeatures" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessMessage v)
+    = "BusinessMessage" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessMessages v)
+    = "BusinessMessages" <> " (" <> I.shortShow v <> ")"
   shortShow (CallId v)
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
@@ -503,6 +523,8 @@ instance I.ShortShow GeneralResult where
     = "CheckChatUsernameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CheckStickerSetNameResult v)
     = "CheckStickerSetNameResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (CollectibleItemInfo v)
+    = "CollectibleItemInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedWebsites v)
     = "ConnectedWebsites" <> " (" <> I.shortShow v <> ")"
   shortShow (Count v)
@@ -677,6 +699,8 @@ instance I.ShortShow GeneralResult where
     = "RecommendedChatFolders" <> " (" <> I.shortShow v <> ")"
   shortShow (RecoveryEmailAddress v)
     = "RecoveryEmailAddress" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReportChatSponsoredMessageResult v)
+    = "ReportChatSponsoredMessageResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ResetPasswordResult v)
     = "ResetPasswordResult" <> " (" <> I.shortShow v <> ")"
   shortShow (RtmpUrl v)
@@ -795,6 +819,10 @@ instance T.FromJSON GeneralResult where
     <|> ( BotCommands                         <$> parseJSON v )
     <|> ( BotMenuButton                       <$> parseJSON v )
     <|> ( BusinessConnectedBot                <$> parseJSON v )
+    <|> ( BusinessConnection                  <$> parseJSON v )
+    <|> ( BusinessFeatures                    <$> parseJSON v )
+    <|> ( BusinessMessage                     <$> parseJSON v )
+    <|> ( BusinessMessages                    <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
     <|> ( CanSendMessageToUserResult          <$> parseJSON v )
@@ -832,6 +860,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ChatsNearby                         <$> parseJSON v )
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
+    <|> ( CollectibleItemInfo                 <$> parseJSON v )
     <|> ( ConnectedWebsites                   <$> parseJSON v )
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
@@ -919,6 +948,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ReadDatePrivacySettings             <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
+    <|> ( ReportChatSponsoredMessageResult    <$> parseJSON v )
     <|> ( ResetPasswordResult                 <$> parseJSON v )
     <|> ( RtmpUrl                             <$> parseJSON v )
     <|> ( SavedMessagesTags                   <$> parseJSON v )

@@ -74,7 +74,7 @@ data InternalLinkType
     , contains_link :: Maybe Bool                        -- ^ True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     }
   | InternalLinkTypePassportDataRequest -- ^ The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
-    { bot_user_id  :: Maybe Int    -- ^ User identifier of the service's bot
+    { bot_user_id  :: Maybe Int    -- ^ User identifier of the service's bot; the corresponding user may be unknown yet
     , scope        :: Maybe T.Text -- ^ Telegram Passport element types requested by the service
     , public_key   :: Maybe T.Text -- ^ Service's public key
     , nonce        :: Maybe T.Text -- ^ Unique request identifier provided by the service

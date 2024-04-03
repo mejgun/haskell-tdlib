@@ -14,7 +14,7 @@ data MessageExtendedMedia
   = MessageExtendedMediaPreview -- ^ The media is hidden until the invoice is paid
     { width         :: Maybe Int                         -- ^ Media width; 0 if unknown
     , height        :: Maybe Int                         -- ^ Media height; 0 if unknown
-    , duration      :: Maybe Int                         -- ^ Media duration; 0 if unknown
+    , duration      :: Maybe Int                         -- ^ Media duration, in seconds; 0 if unknown
     , minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ Media minithumbnail; may be null
     , caption       :: Maybe FormattedText.FormattedText -- ^ Media caption
     }

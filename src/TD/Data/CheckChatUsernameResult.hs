@@ -10,7 +10,7 @@ data CheckChatUsernameResult
   = CheckChatUsernameResultOk -- ^ The username can be set
   | CheckChatUsernameResultUsernameInvalid -- ^ The username is invalid
   | CheckChatUsernameResultUsernameOccupied -- ^ The username is occupied
-  | CheckChatUsernameResultUsernamePurchasable -- ^ The username can be purchased at fragment.com
+  | CheckChatUsernameResultUsernamePurchasable -- ^ The username can be purchased at https://fragment.com. Information about the username can be received using getCollectibleItemInfo
   | CheckChatUsernameResultPublicChatsTooMany -- ^ The user has too many chats with username, one of them must be made private first
   | CheckChatUsernameResultPublicGroupsUnavailable -- ^ The user can't be a member of a public supergroup
   deriving (Eq, Show)

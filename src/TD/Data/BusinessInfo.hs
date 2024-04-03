@@ -8,6 +8,7 @@ import qualified TD.Data.BusinessLocation as BusinessLocation
 import qualified TD.Data.BusinessOpeningHours as BusinessOpeningHours
 import qualified TD.Data.BusinessGreetingMessageSettings as BusinessGreetingMessageSettings
 import qualified TD.Data.BusinessAwayMessageSettings as BusinessAwayMessageSettings
+import qualified TD.Data.BusinessIntro as BusinessIntro
 
 data BusinessInfo
   = BusinessInfo -- ^ Contains information about a Telegram Business account
@@ -15,6 +16,7 @@ data BusinessInfo
     , opening_hours             :: Maybe BusinessOpeningHours.BusinessOpeningHours                       -- ^ Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
     , greeting_message_settings :: Maybe BusinessGreetingMessageSettings.BusinessGreetingMessageSettings -- ^ The greeting message; may be null if none or the Business account is not of the current user
     , away_message_settings     :: Maybe BusinessAwayMessageSettings.BusinessAwayMessageSettings         -- ^ The away message; may be null if none or the Business account is not of the current user
+    , intro                     :: Maybe BusinessIntro.BusinessIntro                                     -- ^ Information about intro of the business; may be null if none
     }
   deriving (Eq, Show)
 
@@ -24,6 +26,7 @@ instance I.ShortShow BusinessInfo where
     , opening_hours             = opening_hours_
     , greeting_message_settings = greeting_message_settings_
     , away_message_settings     = away_message_settings_
+    , intro                     = intro_
     }
       = "BusinessInfo"
         ++ I.cc
@@ -31,6 +34,7 @@ instance I.ShortShow BusinessInfo where
         , "opening_hours"             `I.p` opening_hours_
         , "greeting_message_settings" `I.p` greeting_message_settings_
         , "away_message_settings"     `I.p` away_message_settings_
+        , "intro"                     `I.p` intro_
         ]
 
 instance AT.FromJSON BusinessInfo where
@@ -48,11 +52,13 @@ instance AT.FromJSON BusinessInfo where
         opening_hours_             <- o A..:?  "opening_hours"
         greeting_message_settings_ <- o A..:?  "greeting_message_settings"
         away_message_settings_     <- o A..:?  "away_message_settings"
+        intro_                     <- o A..:?  "intro"
         pure $ BusinessInfo
           { location                  = location_
           , opening_hours             = opening_hours_
           , greeting_message_settings = greeting_message_settings_
           , away_message_settings     = away_message_settings_
+          , intro                     = intro_
           }
   parseJSON _ = mempty
 

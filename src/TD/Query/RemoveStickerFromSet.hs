@@ -7,10 +7,10 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
--- | Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot. Returns 'TD.Data.Ok.Ok'
+-- | Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user. Returns 'TD.Data.Ok.Ok'
 data RemoveStickerFromSet
   = RemoveStickerFromSet
-    { sticker :: Maybe InputFile.InputFile -- ^ Sticker
+    { sticker :: Maybe InputFile.InputFile -- ^ Sticker to remove from the set
     }
   deriving (Eq, Show)
 

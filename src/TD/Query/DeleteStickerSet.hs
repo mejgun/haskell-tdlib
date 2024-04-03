@@ -7,10 +7,10 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Deleted a sticker set; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Completely deletes a sticker set. Returns 'TD.Data.Ok.Ok'
 data DeleteStickerSet
   = DeleteStickerSet
-    { name :: Maybe T.Text -- ^ Sticker set name
+    { name :: Maybe T.Text -- ^ Sticker set name. The sticker set must be owned by the current user
     }
   deriving (Eq, Show)
 

@@ -32,6 +32,8 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
+import qualified TD.Data.SharedUser as SharedUser
+import qualified TD.Data.SharedChat as SharedChat
 import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
 import qualified TD.Data.PassportElementType as PassportElementType
 import qualified TD.Data.EncryptedPassportElement as EncryptedPassportElement
@@ -296,12 +298,12 @@ data MessageContent
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
-    { user_ids  :: Maybe [Int] -- ^ Identifier of the shared users
-    , button_id :: Maybe Int   -- ^ Identifier of the keyboard button with the request
+    { users     :: Maybe [SharedUser.SharedUser] -- ^ The shared users
+    , button_id :: Maybe Int                     -- ^ Identifier of the keyboard button with the request
     }
   | MessageChatShared -- ^ The current user shared a chat, which was requested by the bot
-    { chat_id   :: Maybe Int -- ^ Identifier of the shared chat
-    , button_id :: Maybe Int -- ^ Identifier of the keyboard button with the request
+    { chat      :: Maybe SharedChat.SharedChat -- ^ The shared chat
+    , button_id :: Maybe Int                   -- ^ Identifier of the keyboard button with the request
     }
   | MessageBotWriteAccessAllowed -- ^ The user allowed the bot to send messages
     { reason :: Maybe BotWriteAccessAllowReason.BotWriteAccessAllowReason -- ^ The reason why the bot was allowed to write messages
@@ -892,21 +894,21 @@ instance I.ShortShow MessageContent where
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUsersShared
-    { user_ids  = user_ids_
+    { users     = users_
     , button_id = button_id_
     }
       = "MessageUsersShared"
         ++ I.cc
-        [ "user_ids"  `I.p` user_ids_
+        [ "users"     `I.p` users_
         , "button_id" `I.p` button_id_
         ]
   shortShow MessageChatShared
-    { chat_id   = chat_id_
+    { chat      = chat_
     , button_id = button_id_
     }
       = "MessageChatShared"
         ++ I.cc
-        [ "chat_id"   `I.p` chat_id_
+        [ "chat"      `I.p` chat_
         , "button_id" `I.p` button_id_
         ]
   shortShow MessageBotWriteAccessAllowed
@@ -1533,18 +1535,18 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do
-        user_ids_  <- o A..:?  "user_ids"
+        users_     <- o A..:?  "users"
         button_id_ <- o A..:?  "button_id"
         pure $ MessageUsersShared
-          { user_ids  = user_ids_
+          { users     = users_
           , button_id = button_id_
           }
       parseMessageChatShared :: A.Value -> AT.Parser MessageContent
       parseMessageChatShared = A.withObject "MessageChatShared" $ \o -> do
-        chat_id_   <- o A..:?  "chat_id"
+        chat_      <- o A..:?  "chat"
         button_id_ <- o A..:?  "button_id"
         pure $ MessageChatShared
-          { chat_id   = chat_id_
+          { chat      = chat_
           , button_id = button_id_
           }
       parseMessageBotWriteAccessAllowed :: A.Value -> AT.Parser MessageContent

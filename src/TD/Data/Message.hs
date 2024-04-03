@@ -26,6 +26,7 @@ data Message
     , scheduling_state               :: Maybe MessageSchedulingState.MessageSchedulingState   -- ^ The scheduling state of the message; may be null if the message isn't scheduled
     , is_outgoing                    :: Maybe Bool                                            -- ^ True, if the message is outgoing
     , is_pinned                      :: Maybe Bool                                            -- ^ True, if the message is pinned
+    , is_from_offline                :: Maybe Bool                                            -- ^ True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
     , can_be_edited                  :: Maybe Bool                                            -- ^ True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
     , can_be_forwarded               :: Maybe Bool                                            -- ^ True, if the message can be forwarded
     , can_be_replied_in_another_chat :: Maybe Bool                                            -- ^ True, if the message can be replied in another chat or topic
@@ -55,7 +56,8 @@ data Message
     , self_destruct_type             :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in               :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in                 :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
-    , via_bot_user_id                :: Maybe Int                                             -- ^ If non-zero, the user identifier of the bot through which this message was sent
+    , via_bot_user_id                :: Maybe Int                                             -- ^ If non-zero, the user identifier of the inline bot through which this message was sent
+    , sender_business_bot_user_id    :: Maybe Int                                             -- ^ If non-zero, the user identifier of the business bot that sent this message
     , sender_boost_count             :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     , author_signature               :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
     , media_album_id                 :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
@@ -74,6 +76,7 @@ instance I.ShortShow Message where
     , scheduling_state               = scheduling_state_
     , is_outgoing                    = is_outgoing_
     , is_pinned                      = is_pinned_
+    , is_from_offline                = is_from_offline_
     , can_be_edited                  = can_be_edited_
     , can_be_forwarded               = can_be_forwarded_
     , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
@@ -104,6 +107,7 @@ instance I.ShortShow Message where
     , self_destruct_in               = self_destruct_in_
     , auto_delete_in                 = auto_delete_in_
     , via_bot_user_id                = via_bot_user_id_
+    , sender_business_bot_user_id    = sender_business_bot_user_id_
     , sender_boost_count             = sender_boost_count_
     , author_signature               = author_signature_
     , media_album_id                 = media_album_id_
@@ -120,6 +124,7 @@ instance I.ShortShow Message where
         , "scheduling_state"               `I.p` scheduling_state_
         , "is_outgoing"                    `I.p` is_outgoing_
         , "is_pinned"                      `I.p` is_pinned_
+        , "is_from_offline"                `I.p` is_from_offline_
         , "can_be_edited"                  `I.p` can_be_edited_
         , "can_be_forwarded"               `I.p` can_be_forwarded_
         , "can_be_replied_in_another_chat" `I.p` can_be_replied_in_another_chat_
@@ -150,6 +155,7 @@ instance I.ShortShow Message where
         , "self_destruct_in"               `I.p` self_destruct_in_
         , "auto_delete_in"                 `I.p` auto_delete_in_
         , "via_bot_user_id"                `I.p` via_bot_user_id_
+        , "sender_business_bot_user_id"    `I.p` sender_business_bot_user_id_
         , "sender_boost_count"             `I.p` sender_boost_count_
         , "author_signature"               `I.p` author_signature_
         , "media_album_id"                 `I.p` media_album_id_
@@ -176,6 +182,7 @@ instance AT.FromJSON Message where
         scheduling_state_               <- o A..:?                       "scheduling_state"
         is_outgoing_                    <- o A..:?                       "is_outgoing"
         is_pinned_                      <- o A..:?                       "is_pinned"
+        is_from_offline_                <- o A..:?                       "is_from_offline"
         can_be_edited_                  <- o A..:?                       "can_be_edited"
         can_be_forwarded_               <- o A..:?                       "can_be_forwarded"
         can_be_replied_in_another_chat_ <- o A..:?                       "can_be_replied_in_another_chat"
@@ -206,6 +213,7 @@ instance AT.FromJSON Message where
         self_destruct_in_               <- o A..:?                       "self_destruct_in"
         auto_delete_in_                 <- o A..:?                       "auto_delete_in"
         via_bot_user_id_                <- o A..:?                       "via_bot_user_id"
+        sender_business_bot_user_id_    <- o A..:?                       "sender_business_bot_user_id"
         sender_boost_count_             <- o A..:?                       "sender_boost_count"
         author_signature_               <- o A..:?                       "author_signature"
         media_album_id_                 <- fmap I.readInt64 <$> o A..:?  "media_album_id"
@@ -220,6 +228,7 @@ instance AT.FromJSON Message where
           , scheduling_state               = scheduling_state_
           , is_outgoing                    = is_outgoing_
           , is_pinned                      = is_pinned_
+          , is_from_offline                = is_from_offline_
           , can_be_edited                  = can_be_edited_
           , can_be_forwarded               = can_be_forwarded_
           , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
@@ -250,6 +259,7 @@ instance AT.FromJSON Message where
           , self_destruct_in               = self_destruct_in_
           , auto_delete_in                 = auto_delete_in_
           , via_bot_user_id                = via_bot_user_id_
+          , sender_business_bot_user_id    = sender_business_bot_user_id_
           , sender_boost_count             = sender_boost_count_
           , author_signature               = author_signature_
           , media_album_id                 = media_album_id_

@@ -12,6 +12,7 @@ data UserPrivacySetting
   | UserPrivacySettingShowLinkInForwardedMessages -- ^ A privacy setting for managing whether a link to the user's account is included in forwarded messages
   | UserPrivacySettingShowPhoneNumber -- ^ A privacy setting for managing whether the user's phone number is visible
   | UserPrivacySettingShowBio -- ^ A privacy setting for managing whether the user's bio is visible
+  | UserPrivacySettingShowBirthdate -- ^ A privacy setting for managing whether the user's birthdate is visible
   | UserPrivacySettingAllowChatInvites -- ^ A privacy setting for managing whether the user can be invited to chats
   | UserPrivacySettingAllowCalls -- ^ A privacy setting for managing whether the user can be called
   | UserPrivacySettingAllowPeerToPeerCalls -- ^ A privacy setting for managing whether peer-to-peer connections can be used for calls
@@ -30,6 +31,8 @@ instance I.ShortShow UserPrivacySetting where
       = "UserPrivacySettingShowPhoneNumber"
   shortShow UserPrivacySettingShowBio
       = "UserPrivacySettingShowBio"
+  shortShow UserPrivacySettingShowBirthdate
+      = "UserPrivacySettingShowBirthdate"
   shortShow UserPrivacySettingAllowChatInvites
       = "UserPrivacySettingAllowChatInvites"
   shortShow UserPrivacySettingAllowCalls
@@ -51,6 +54,7 @@ instance AT.FromJSON UserPrivacySetting where
       "userPrivacySettingShowLinkInForwardedMessages"           -> pure UserPrivacySettingShowLinkInForwardedMessages
       "userPrivacySettingShowPhoneNumber"                       -> pure UserPrivacySettingShowPhoneNumber
       "userPrivacySettingShowBio"                               -> pure UserPrivacySettingShowBio
+      "userPrivacySettingShowBirthdate"                         -> pure UserPrivacySettingShowBirthdate
       "userPrivacySettingAllowChatInvites"                      -> pure UserPrivacySettingAllowChatInvites
       "userPrivacySettingAllowCalls"                            -> pure UserPrivacySettingAllowCalls
       "userPrivacySettingAllowPeerToPeerCalls"                  -> pure UserPrivacySettingAllowPeerToPeerCalls
@@ -80,6 +84,10 @@ instance AT.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingShowBio
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingShowBio"
+        ]
+  toJSON UserPrivacySettingShowBirthdate
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingShowBirthdate"
         ]
   toJSON UserPrivacySettingAllowChatInvites
       = A.object

@@ -8,10 +8,10 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets a sticker set title; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Sets a sticker set title. Returns 'TD.Data.Ok.Ok'
 data SetStickerSetTitle
   = SetStickerSetTitle
-    { name  :: Maybe T.Text -- ^ Sticker set name
+    { name  :: Maybe T.Text -- ^ Sticker set name. The sticker set must be owned by the current user
     , title :: Maybe T.Text -- ^ New sticker set title
     }
   deriving (Eq, Show)

@@ -12,7 +12,7 @@ import qualified TD.Data.StickerType as StickerType
 data GetArchivedStickerSets
   = GetArchivedStickerSets
     { sticker_type          :: Maybe StickerType.StickerType -- ^ Type of the sticker sets to return
-    , offset_sticker_set_id :: Maybe Int                     -- ^ Identifier of the sticker set from which to return the result
+    , offset_sticker_set_id :: Maybe Int                     -- ^ Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
     , limit                 :: Maybe Int                     -- ^ The maximum number of sticker sets to return; up to 100
     }
   deriving (Eq, Show)

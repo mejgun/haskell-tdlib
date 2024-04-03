@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
--- | Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot. Returns 'TD.Data.Ok.Ok'
+-- | Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user. Returns 'TD.Data.Ok.Ok'
 data SetStickerPositionInSet
   = SetStickerPositionInSet
     { sticker  :: Maybe InputFile.InputFile -- ^ Sticker

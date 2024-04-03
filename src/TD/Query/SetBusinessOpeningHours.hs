@@ -10,7 +10,7 @@ import qualified TD.Data.BusinessOpeningHours as BusinessOpeningHours
 -- | Changes the business opening hours of the current user. Requires Telegram Business subscription. Returns 'TD.Data.Ok.Ok'
 data SetBusinessOpeningHours
   = SetBusinessOpeningHours
-    { opening_hours :: Maybe BusinessOpeningHours.BusinessOpeningHours -- ^ The new opening hours of the business; pass null to remove the opening hours
+    { opening_hours :: Maybe BusinessOpeningHours.BusinessOpeningHours -- ^ The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified
     }
   deriving (Eq, Show)
 

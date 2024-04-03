@@ -10,7 +10,7 @@ data Usernames
   = Usernames -- ^ Describes usernames assigned to a user, a supergroup, or a channel
     { active_usernames   :: Maybe [T.Text] -- ^ List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames or reorderSupergroupActiveUsernames
     , disabled_usernames :: Maybe [T.Text] -- ^ List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
-    , editable_username  :: Maybe T.Text   -- ^ The active username, which can be changed with setUsername or setSupergroupUsername
+    , editable_username  :: Maybe T.Text   -- ^ The active username, which can be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo
     }
   deriving (Eq, Show)
 

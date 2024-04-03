@@ -7,7 +7,6 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.ClosedVectorPath as ClosedVectorPath
-import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.Sticker as Sticker
 
@@ -18,10 +17,10 @@ data StickerSetInfo
     , name                            :: Maybe T.Text                              -- ^ Name of the sticker set
     , thumbnail                       :: Maybe Thumbnail.Thumbnail                 -- ^ Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
     , thumbnail_outline               :: Maybe [ClosedVectorPath.ClosedVectorPath] -- ^ Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
+    , is_owned                        :: Maybe Bool                                -- ^ True, if the sticker set is owned by the current user
     , is_installed                    :: Maybe Bool                                -- ^ True, if the sticker set has been installed by the current user
     , is_archived                     :: Maybe Bool                                -- ^ True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
     , is_official                     :: Maybe Bool                                -- ^ True, if the sticker set is official
-    , sticker_format                  :: Maybe StickerFormat.StickerFormat         -- ^ Format of the stickers in the set
     , sticker_type                    :: Maybe StickerType.StickerType             -- ^ Type of the stickers in the set
     , needs_repainting                :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
     , is_allowed_as_chat_emoji_status :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
@@ -38,10 +37,10 @@ instance I.ShortShow StickerSetInfo where
     , name                            = name_
     , thumbnail                       = thumbnail_
     , thumbnail_outline               = thumbnail_outline_
+    , is_owned                        = is_owned_
     , is_installed                    = is_installed_
     , is_archived                     = is_archived_
     , is_official                     = is_official_
-    , sticker_format                  = sticker_format_
     , sticker_type                    = sticker_type_
     , needs_repainting                = needs_repainting_
     , is_allowed_as_chat_emoji_status = is_allowed_as_chat_emoji_status_
@@ -56,10 +55,10 @@ instance I.ShortShow StickerSetInfo where
         , "name"                            `I.p` name_
         , "thumbnail"                       `I.p` thumbnail_
         , "thumbnail_outline"               `I.p` thumbnail_outline_
+        , "is_owned"                        `I.p` is_owned_
         , "is_installed"                    `I.p` is_installed_
         , "is_archived"                     `I.p` is_archived_
         , "is_official"                     `I.p` is_official_
-        , "sticker_format"                  `I.p` sticker_format_
         , "sticker_type"                    `I.p` sticker_type_
         , "needs_repainting"                `I.p` needs_repainting_
         , "is_allowed_as_chat_emoji_status" `I.p` is_allowed_as_chat_emoji_status_
@@ -84,10 +83,10 @@ instance AT.FromJSON StickerSetInfo where
         name_                            <- o A..:?                       "name"
         thumbnail_                       <- o A..:?                       "thumbnail"
         thumbnail_outline_               <- o A..:?                       "thumbnail_outline"
+        is_owned_                        <- o A..:?                       "is_owned"
         is_installed_                    <- o A..:?                       "is_installed"
         is_archived_                     <- o A..:?                       "is_archived"
         is_official_                     <- o A..:?                       "is_official"
-        sticker_format_                  <- o A..:?                       "sticker_format"
         sticker_type_                    <- o A..:?                       "sticker_type"
         needs_repainting_                <- o A..:?                       "needs_repainting"
         is_allowed_as_chat_emoji_status_ <- o A..:?                       "is_allowed_as_chat_emoji_status"
@@ -100,10 +99,10 @@ instance AT.FromJSON StickerSetInfo where
           , name                            = name_
           , thumbnail                       = thumbnail_
           , thumbnail_outline               = thumbnail_outline_
+          , is_owned                        = is_owned_
           , is_installed                    = is_installed_
           , is_archived                     = is_archived_
           , is_official                     = is_official_
-          , sticker_format                  = sticker_format_
           , sticker_type                    = sticker_type_
           , needs_repainting                = needs_repainting_
           , is_allowed_as_chat_emoji_status = is_allowed_as_chat_emoji_status_

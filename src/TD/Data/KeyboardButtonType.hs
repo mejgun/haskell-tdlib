@@ -23,6 +23,9 @@ data KeyboardButtonType
     , restrict_user_is_premium :: Maybe Bool -- ^ True, if the shared users must or must not be Telegram Premium users
     , user_is_premium          :: Maybe Bool -- ^ True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false
     , max_quantity             :: Maybe Int  -- ^ The maximum number of users to share
+    , request_name             :: Maybe Bool -- ^ Pass true to request name of the users; bots only
+    , request_username         :: Maybe Bool -- ^ Pass true to request username of the users; bots only
+    , request_photo            :: Maybe Bool -- ^ Pass true to request photo of the users; bots only
     }
   | KeyboardButtonTypeRequestChat -- ^ A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
     { _id                        :: Maybe Int                                             -- ^ Unique button identifier
@@ -35,6 +38,9 @@ data KeyboardButtonType
     , user_administrator_rights  :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected user administrator rights in the chat; may be null if they aren't restricted
     , bot_administrator_rights   :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected bot administrator rights in the chat; may be null if they aren't restricted
     , bot_is_member              :: Maybe Bool                                            -- ^ True, if the bot must be a member of the chat; for basic group and supergroup chats only
+    , request_title              :: Maybe Bool                                            -- ^ Pass true to request title of the chat; bots only
+    , request_username           :: Maybe Bool                                            -- ^ Pass true to request username of the chat; bots only
+    , request_photo              :: Maybe Bool                                            -- ^ Pass true to request photo of the chat; bots only
     }
   | KeyboardButtonTypeWebApp -- ^ A button that opens a Web App by calling getWebAppUrl
     { url :: Maybe T.Text -- ^ An HTTP URL to pass to getWebAppUrl
@@ -64,6 +70,9 @@ instance I.ShortShow KeyboardButtonType where
     , restrict_user_is_premium = restrict_user_is_premium_
     , user_is_premium          = user_is_premium_
     , max_quantity             = max_quantity_
+    , request_name             = request_name_
+    , request_username         = request_username_
+    , request_photo            = request_photo_
     }
       = "KeyboardButtonTypeRequestUsers"
         ++ I.cc
@@ -73,6 +82,9 @@ instance I.ShortShow KeyboardButtonType where
         , "restrict_user_is_premium" `I.p` restrict_user_is_premium_
         , "user_is_premium"          `I.p` user_is_premium_
         , "max_quantity"             `I.p` max_quantity_
+        , "request_name"             `I.p` request_name_
+        , "request_username"         `I.p` request_username_
+        , "request_photo"            `I.p` request_photo_
         ]
   shortShow KeyboardButtonTypeRequestChat
     { _id                        = _id_
@@ -85,6 +97,9 @@ instance I.ShortShow KeyboardButtonType where
     , user_administrator_rights  = user_administrator_rights_
     , bot_administrator_rights   = bot_administrator_rights_
     , bot_is_member              = bot_is_member_
+    , request_title              = request_title_
+    , request_username           = request_username_
+    , request_photo              = request_photo_
     }
       = "KeyboardButtonTypeRequestChat"
         ++ I.cc
@@ -98,6 +113,9 @@ instance I.ShortShow KeyboardButtonType where
         , "user_administrator_rights"  `I.p` user_administrator_rights_
         , "bot_administrator_rights"   `I.p` bot_administrator_rights_
         , "bot_is_member"              `I.p` bot_is_member_
+        , "request_title"              `I.p` request_title_
+        , "request_username"           `I.p` request_username_
+        , "request_photo"              `I.p` request_photo_
         ]
   shortShow KeyboardButtonTypeWebApp
     { url = url_
@@ -138,6 +156,9 @@ instance AT.FromJSON KeyboardButtonType where
         restrict_user_is_premium_ <- o A..:?  "restrict_user_is_premium"
         user_is_premium_          <- o A..:?  "user_is_premium"
         max_quantity_             <- o A..:?  "max_quantity"
+        request_name_             <- o A..:?  "request_name"
+        request_username_         <- o A..:?  "request_username"
+        request_photo_            <- o A..:?  "request_photo"
         pure $ KeyboardButtonTypeRequestUsers
           { _id                      = _id_
           , restrict_user_is_bot     = restrict_user_is_bot_
@@ -145,6 +166,9 @@ instance AT.FromJSON KeyboardButtonType where
           , restrict_user_is_premium = restrict_user_is_premium_
           , user_is_premium          = user_is_premium_
           , max_quantity             = max_quantity_
+          , request_name             = request_name_
+          , request_username         = request_username_
+          , request_photo            = request_photo_
           }
       parseKeyboardButtonTypeRequestChat :: A.Value -> AT.Parser KeyboardButtonType
       parseKeyboardButtonTypeRequestChat = A.withObject "KeyboardButtonTypeRequestChat" $ \o -> do
@@ -158,6 +182,9 @@ instance AT.FromJSON KeyboardButtonType where
         user_administrator_rights_  <- o A..:?  "user_administrator_rights"
         bot_administrator_rights_   <- o A..:?  "bot_administrator_rights"
         bot_is_member_              <- o A..:?  "bot_is_member"
+        request_title_              <- o A..:?  "request_title"
+        request_username_           <- o A..:?  "request_username"
+        request_photo_              <- o A..:?  "request_photo"
         pure $ KeyboardButtonTypeRequestChat
           { _id                        = _id_
           , chat_is_channel            = chat_is_channel_
@@ -169,6 +196,9 @@ instance AT.FromJSON KeyboardButtonType where
           , user_administrator_rights  = user_administrator_rights_
           , bot_administrator_rights   = bot_administrator_rights_
           , bot_is_member              = bot_is_member_
+          , request_title              = request_title_
+          , request_username           = request_username_
+          , request_photo              = request_photo_
           }
       parseKeyboardButtonTypeWebApp :: A.Value -> AT.Parser KeyboardButtonType
       parseKeyboardButtonTypeWebApp = A.withObject "KeyboardButtonTypeWebApp" $ \o -> do
@@ -207,6 +237,9 @@ instance AT.ToJSON KeyboardButtonType where
     , restrict_user_is_premium = restrict_user_is_premium_
     , user_is_premium          = user_is_premium_
     , max_quantity             = max_quantity_
+    , request_name             = request_name_
+    , request_username         = request_username_
+    , request_photo            = request_photo_
     }
       = A.object
         [ "@type"                    A..= AT.String "keyboardButtonTypeRequestUsers"
@@ -216,6 +249,9 @@ instance AT.ToJSON KeyboardButtonType where
         , "restrict_user_is_premium" A..= restrict_user_is_premium_
         , "user_is_premium"          A..= user_is_premium_
         , "max_quantity"             A..= max_quantity_
+        , "request_name"             A..= request_name_
+        , "request_username"         A..= request_username_
+        , "request_photo"            A..= request_photo_
         ]
   toJSON KeyboardButtonTypeRequestChat
     { _id                        = _id_
@@ -228,6 +264,9 @@ instance AT.ToJSON KeyboardButtonType where
     , user_administrator_rights  = user_administrator_rights_
     , bot_administrator_rights   = bot_administrator_rights_
     , bot_is_member              = bot_is_member_
+    , request_title              = request_title_
+    , request_username           = request_username_
+    , request_photo              = request_photo_
     }
       = A.object
         [ "@type"                      A..= AT.String "keyboardButtonTypeRequestChat"
@@ -241,6 +280,9 @@ instance AT.ToJSON KeyboardButtonType where
         , "user_administrator_rights"  A..= user_administrator_rights_
         , "bot_administrator_rights"   A..= bot_administrator_rights_
         , "bot_is_member"              A..= bot_is_member_
+        , "request_title"              A..= request_title_
+        , "request_username"           A..= request_username_
+        , "request_photo"              A..= request_photo_
         ]
   toJSON KeyboardButtonTypeWebApp
     { url = url_

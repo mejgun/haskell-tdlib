@@ -9,11 +9,11 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.InputSticker as InputSticker
 
--- | Adds a new sticker to a set; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Adds a new sticker to a set. Returns 'TD.Data.Ok.Ok'
 data AddStickerToSet
   = AddStickerToSet
-    { user_id :: Maybe Int                       -- ^ Sticker set owner
-    , name    :: Maybe T.Text                    -- ^ Sticker set name
+    { user_id :: Maybe Int                       -- ^ Sticker set owner; ignored for regular users
+    , name    :: Maybe T.Text                    -- ^ Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
     , sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to add to the set
     }
   deriving (Eq, Show)

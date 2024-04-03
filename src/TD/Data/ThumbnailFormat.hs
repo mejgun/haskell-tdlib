@@ -11,9 +11,9 @@ data ThumbnailFormat
   | ThumbnailFormatGif -- ^ The thumbnail is in static GIF format. It will be used only for some bot inline query results
   | ThumbnailFormatMpeg4 -- ^ The thumbnail is in MPEG4 format. It will be used only for some animations and videos
   | ThumbnailFormatPng -- ^ The thumbnail is in PNG format. It will be used only for background patterns
-  | ThumbnailFormatTgs -- ^ The thumbnail is in TGS format. It will be used only for TGS sticker sets
-  | ThumbnailFormatWebm -- ^ The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
-  | ThumbnailFormatWebp -- ^ The thumbnail is in WEBP format. It will be used only for some stickers
+  | ThumbnailFormatTgs -- ^ The thumbnail is in TGS format. It will be used only for sticker sets
+  | ThumbnailFormatWebm -- ^ The thumbnail is in WEBM format. It will be used only for sticker sets
+  | ThumbnailFormatWebp -- ^ The thumbnail is in WEBP format. It will be used only for some stickers and sticker sets
   deriving (Eq, Show)
 
 instance I.ShortShow ThumbnailFormat where

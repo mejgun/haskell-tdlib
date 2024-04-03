@@ -81,7 +81,7 @@ data InputMessageContent
   | InputMessageVideoNote -- ^ A video note message
     { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent
     , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
-    , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds
+    , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds; 0-60
     , _length            :: Maybe Int                                             -- ^ Video width and height; must be positive and not greater than 640
     , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; may be null if none; pass null if none; private chats only
     }

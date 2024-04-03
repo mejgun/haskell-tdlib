@@ -17,7 +17,7 @@ data PremiumFeature
   | PremiumFeatureCustomEmoji -- ^ Allowed to use custom emoji stickers in message texts and captions
   | PremiumFeatureAdvancedChatManagement -- ^ Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
   | PremiumFeatureProfileBadge -- ^ A badge in the user's profile
-  | PremiumFeatureEmojiStatus -- ^ An emoji status shown along with the user's name
+  | PremiumFeatureEmojiStatus -- ^ The ability to show an emoji status along with the user's name
   | PremiumFeatureAnimatedProfilePhoto -- ^ Profile photo animation on message and chat screens
   | PremiumFeatureForumTopicIcon -- ^ The ability to set a custom emoji as a forum topic icon
   | PremiumFeatureAppIcons -- ^ Allowed to set a premium application icons
@@ -29,6 +29,7 @@ data PremiumFeature
   | PremiumFeatureSavedMessagesTags -- ^ The ability to use tags in Saved Messages
   | PremiumFeatureMessagePrivacy -- ^ The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
   | PremiumFeatureLastSeenTimes -- ^ The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
+  | PremiumFeatureBusiness -- ^ The ability to use Business features
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -76,6 +77,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureMessagePrivacy"
   shortShow PremiumFeatureLastSeenTimes
       = "PremiumFeatureLastSeenTimes"
+  shortShow PremiumFeatureBusiness
+      = "PremiumFeatureBusiness"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -104,6 +107,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureSavedMessagesTags"       -> pure PremiumFeatureSavedMessagesTags
       "premiumFeatureMessagePrivacy"          -> pure PremiumFeatureMessagePrivacy
       "premiumFeatureLastSeenTimes"           -> pure PremiumFeatureLastSeenTimes
+      "premiumFeatureBusiness"                -> pure PremiumFeatureBusiness
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -196,5 +200,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureLastSeenTimes
       = A.object
         [ "@type" A..= AT.String "premiumFeatureLastSeenTimes"
+        ]
+  toJSON PremiumFeatureBusiness
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureBusiness"
         ]
 

@@ -9,6 +9,7 @@ import qualified TD.Lib.Internal as I
 data UserPrivacySettingRule
   = UserPrivacySettingRuleAllowAll -- ^ A rule to allow all users to do something
   | UserPrivacySettingRuleAllowContacts -- ^ A rule to allow all contacts of the user to do something
+  | UserPrivacySettingRuleAllowPremiumUsers -- ^ A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
   | UserPrivacySettingRuleAllowUsers -- ^ A rule to allow certain specified users to do something
     { user_ids :: Maybe [Int] -- ^ The user identifiers, total number of users in all rules must not exceed 1000
     }
@@ -30,6 +31,8 @@ instance I.ShortShow UserPrivacySettingRule where
       = "UserPrivacySettingRuleAllowAll"
   shortShow UserPrivacySettingRuleAllowContacts
       = "UserPrivacySettingRuleAllowContacts"
+  shortShow UserPrivacySettingRuleAllowPremiumUsers
+      = "UserPrivacySettingRuleAllowPremiumUsers"
   shortShow UserPrivacySettingRuleAllowUsers
     { user_ids = user_ids_
     }
@@ -70,6 +73,7 @@ instance AT.FromJSON UserPrivacySettingRule where
     case t of
       "userPrivacySettingRuleAllowAll"            -> pure UserPrivacySettingRuleAllowAll
       "userPrivacySettingRuleAllowContacts"       -> pure UserPrivacySettingRuleAllowContacts
+      "userPrivacySettingRuleAllowPremiumUsers"   -> pure UserPrivacySettingRuleAllowPremiumUsers
       "userPrivacySettingRuleAllowUsers"          -> parseUserPrivacySettingRuleAllowUsers v
       "userPrivacySettingRuleAllowChatMembers"    -> parseUserPrivacySettingRuleAllowChatMembers v
       "userPrivacySettingRuleRestrictAll"         -> pure UserPrivacySettingRuleRestrictAll
@@ -113,6 +117,10 @@ instance AT.ToJSON UserPrivacySettingRule where
   toJSON UserPrivacySettingRuleAllowContacts
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingRuleAllowContacts"
+        ]
+  toJSON UserPrivacySettingRuleAllowPremiumUsers
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingRuleAllowPremiumUsers"
         ]
   toJSON UserPrivacySettingRuleAllowUsers
     { user_ids = user_ids_

@@ -77,8 +77,11 @@ import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
+import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
 import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
 import qualified TD.Data.ScopeAutosaveSettings as ScopeAutosaveSettings
+import qualified TD.Data.BusinessConnection as BusinessConnection
+import qualified TD.Data.BusinessMessage as BusinessMessage
 import qualified TD.Data.Location as Location
 import qualified TD.Data.ChatType as ChatType
 import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
@@ -553,7 +556,7 @@ data Update
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
-    { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription
+    { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
     , left_count         :: Maybe Int -- ^ Number of left speech recognition attempts this week
     , next_reset_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
@@ -574,6 +577,9 @@ data Update
     { added_actions   :: Maybe [SuggestedAction.SuggestedAction] -- ^ Added suggested actions
     , removed_actions :: Maybe [SuggestedAction.SuggestedAction] -- ^ Removed suggested actions
     }
+  | UpdateContactCloseBirthdays -- ^ The list of contacts that had birthdays recently or will have birthday soon has changed
+    { close_birthday_users :: Maybe [CloseBirthdayUser.CloseBirthdayUser] -- ^ List of contact users with close birthday
+    }
   | UpdateAddChatMembersPrivacyForbidden -- ^ Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
     { chat_id  :: Maybe Int   -- ^ Chat identifier
     , user_ids :: Maybe [Int] -- ^ Identifiers of users, which weren't added because of their privacy settings
@@ -581,6 +587,22 @@ data Update
   | UpdateAutosaveSettings -- ^ Autosave settings for some type of chats were updated
     { _scope   :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Type of chats for which autosave settings were updated
     , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ The new autosave settings; may be null if the settings are reset to default
+    }
+  | UpdateBusinessConnection -- ^ A business connection has changed; for bots only
+    { connection :: Maybe BusinessConnection.BusinessConnection -- ^ New data about the connection
+    }
+  | UpdateNewBusinessMessage -- ^ A new message was added to a business account; for bots only
+    { connection_id :: Maybe T.Text                          -- ^ Unique identifier of the business connection
+    , _message      :: Maybe BusinessMessage.BusinessMessage -- ^ The new message
+    }
+  | UpdateBusinessMessageEdited -- ^ A message in a business account was edited; for bots only
+    { connection_id :: Maybe T.Text                          -- ^ Unique identifier of the business connection
+    , _message      :: Maybe BusinessMessage.BusinessMessage -- ^ The edited message
+    }
+  | UpdateBusinessMessagesDeleted -- ^ Messages in a business account were deleted; for bots only
+    { connection_id :: Maybe T.Text -- ^ Unique identifier of the business connection
+    , chat_id       :: Maybe Int    -- ^ Identifier of a chat in the business account in which messages were deleted
+    , message_ids   :: Maybe [Int]  -- ^ Unique message identifiers of the deleted messages
     }
   | UpdateNewInlineQuery -- ^ A new incoming inline query; for bots only
     { _id            :: Maybe Int               -- ^ Unique query identifier
@@ -1759,6 +1781,13 @@ instance I.ShortShow Update where
         [ "added_actions"   `I.p` added_actions_
         , "removed_actions" `I.p` removed_actions_
         ]
+  shortShow UpdateContactCloseBirthdays
+    { close_birthday_users = close_birthday_users_
+    }
+      = "UpdateContactCloseBirthdays"
+        ++ I.cc
+        [ "close_birthday_users" `I.p` close_birthday_users_
+        ]
   shortShow UpdateAddChatMembersPrivacyForbidden
     { chat_id  = chat_id_
     , user_ids = user_ids_
@@ -1776,6 +1805,42 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "_scope"   `I.p` _scope_
         , "settings" `I.p` settings_
+        ]
+  shortShow UpdateBusinessConnection
+    { connection = connection_
+    }
+      = "UpdateBusinessConnection"
+        ++ I.cc
+        [ "connection" `I.p` connection_
+        ]
+  shortShow UpdateNewBusinessMessage
+    { connection_id = connection_id_
+    , _message      = _message_
+    }
+      = "UpdateNewBusinessMessage"
+        ++ I.cc
+        [ "connection_id" `I.p` connection_id_
+        , "_message"      `I.p` _message_
+        ]
+  shortShow UpdateBusinessMessageEdited
+    { connection_id = connection_id_
+    , _message      = _message_
+    }
+      = "UpdateBusinessMessageEdited"
+        ++ I.cc
+        [ "connection_id" `I.p` connection_id_
+        , "_message"      `I.p` _message_
+        ]
+  shortShow UpdateBusinessMessagesDeleted
+    { connection_id = connection_id_
+    , chat_id       = chat_id_
+    , message_ids   = message_ids_
+    }
+      = "UpdateBusinessMessagesDeleted"
+        ++ I.cc
+        [ "connection_id" `I.p` connection_id_
+        , "chat_id"       `I.p` chat_id_
+        , "message_ids"   `I.p` message_ids_
         ]
   shortShow UpdateNewInlineQuery
     { _id            = _id_
@@ -2104,8 +2169,13 @@ instance AT.FromJSON Update where
       "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"      -> parseUpdateAnimationSearchParameters v
       "updateSuggestedActions"               -> parseUpdateSuggestedActions v
+      "updateContactCloseBirthdays"          -> parseUpdateContactCloseBirthdays v
       "updateAddChatMembersPrivacyForbidden" -> parseUpdateAddChatMembersPrivacyForbidden v
       "updateAutosaveSettings"               -> parseUpdateAutosaveSettings v
+      "updateBusinessConnection"             -> parseUpdateBusinessConnection v
+      "updateNewBusinessMessage"             -> parseUpdateNewBusinessMessage v
+      "updateBusinessMessageEdited"          -> parseUpdateBusinessMessageEdited v
+      "updateBusinessMessagesDeleted"        -> parseUpdateBusinessMessagesDeleted v
       "updateNewInlineQuery"                 -> parseUpdateNewInlineQuery v
       "updateNewChosenInlineResult"          -> parseUpdateNewChosenInlineResult v
       "updateNewCallbackQuery"               -> parseUpdateNewCallbackQuery v
@@ -3086,6 +3156,12 @@ instance AT.FromJSON Update where
           { added_actions   = added_actions_
           , removed_actions = removed_actions_
           }
+      parseUpdateContactCloseBirthdays :: A.Value -> AT.Parser Update
+      parseUpdateContactCloseBirthdays = A.withObject "UpdateContactCloseBirthdays" $ \o -> do
+        close_birthday_users_ <- o A..:?  "close_birthday_users"
+        pure $ UpdateContactCloseBirthdays
+          { close_birthday_users = close_birthday_users_
+          }
       parseUpdateAddChatMembersPrivacyForbidden :: A.Value -> AT.Parser Update
       parseUpdateAddChatMembersPrivacyForbidden = A.withObject "UpdateAddChatMembersPrivacyForbidden" $ \o -> do
         chat_id_  <- o A..:?  "chat_id"
@@ -3101,6 +3177,38 @@ instance AT.FromJSON Update where
         pure $ UpdateAutosaveSettings
           { _scope   = _scope_
           , settings = settings_
+          }
+      parseUpdateBusinessConnection :: A.Value -> AT.Parser Update
+      parseUpdateBusinessConnection = A.withObject "UpdateBusinessConnection" $ \o -> do
+        connection_ <- o A..:?  "connection"
+        pure $ UpdateBusinessConnection
+          { connection = connection_
+          }
+      parseUpdateNewBusinessMessage :: A.Value -> AT.Parser Update
+      parseUpdateNewBusinessMessage = A.withObject "UpdateNewBusinessMessage" $ \o -> do
+        connection_id_ <- o A..:?  "connection_id"
+        _message_      <- o A..:?  "message"
+        pure $ UpdateNewBusinessMessage
+          { connection_id = connection_id_
+          , _message      = _message_
+          }
+      parseUpdateBusinessMessageEdited :: A.Value -> AT.Parser Update
+      parseUpdateBusinessMessageEdited = A.withObject "UpdateBusinessMessageEdited" $ \o -> do
+        connection_id_ <- o A..:?  "connection_id"
+        _message_      <- o A..:?  "message"
+        pure $ UpdateBusinessMessageEdited
+          { connection_id = connection_id_
+          , _message      = _message_
+          }
+      parseUpdateBusinessMessagesDeleted :: A.Value -> AT.Parser Update
+      parseUpdateBusinessMessagesDeleted = A.withObject "UpdateBusinessMessagesDeleted" $ \o -> do
+        connection_id_ <- o A..:?  "connection_id"
+        chat_id_       <- o A..:?  "chat_id"
+        message_ids_   <- o A..:?  "message_ids"
+        pure $ UpdateBusinessMessagesDeleted
+          { connection_id = connection_id_
+          , chat_id       = chat_id_
+          , message_ids   = message_ids_
           }
       parseUpdateNewInlineQuery :: A.Value -> AT.Parser Update
       parseUpdateNewInlineQuery = A.withObject "UpdateNewInlineQuery" $ \o -> do
