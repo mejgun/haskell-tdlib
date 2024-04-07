@@ -17,6 +17,8 @@ import Data.Aeson.Key qualified as K
 import Data.Aeson.KeyMap qualified as KM
 import Data.ByteString qualified as B
 import Data.ByteString.Lazy qualified as BL
+import Data.Hashable qualified as H
+import Data.List (intercalate)
 import Data.Text qualified as T
 import Data.Time.Clock.System qualified as Time
 import Foreign (Ptr, nullPtr)
@@ -61,11 +63,12 @@ sendWExtra c d = do
         _ -> error $ "error. not object: " <> show (A.encode dd)
 
     getUnixTime :: IO String
-    getUnixTime =
-      let s = show . Time.systemSeconds <$> Time.getSystemTime
-          ns = show . Time.systemNanoseconds <$> Time.getSystemTime
-          str = (++) <$> s <*> ns
-       in str
+    getUnixTime = do
+      t <- Time.getSystemTime
+      let s = Time.systemSeconds t
+          ns = Time.systemNanoseconds t
+          h = H.hash $ A.encode d
+      pure $ intercalate "." [show s, show ns, show h]
 
 receive :: Client -> IO (Maybe (GeneralResult, Maybe Extra))
 receive c = dec $ c_receive c 1.0
