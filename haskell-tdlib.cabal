@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.24.0
+version:        2.0.25.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -1273,13 +1273,20 @@ executable haskell-tdlib-exe
   hs-source-dirs:
       app
   default-extensions:
+      OverloadedStrings
       DuplicateRecordFields
       NoFieldSelectors
-      OverloadedStrings
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wno-partial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -W -Wall -Werror
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , base64-bytestring
+    , bytestring
+    , containers
     , haskell-tdlib
+    , text
+    , time
+    , unordered-containers
   default-language: GHC2021
 
 test-suite haskell-tdlib-test
@@ -1289,8 +1296,17 @@ test-suite haskell-tdlib-test
       Paths_haskell_tdlib
   hs-source-dirs:
       test
+  default-extensions:
+      OverloadedStrings
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wno-partial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , base64-bytestring
+    , bytestring
+    , containers
     , haskell-tdlib
+    , text
+    , time
+    , unordered-containers
   default-language: GHC2021

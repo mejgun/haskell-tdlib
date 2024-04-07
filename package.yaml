@@ -1,5 +1,5 @@
 name:                haskell-tdlib
-version:             2.0.24.0
+version:             2.0.25.0
 github:              "mejgun/haskell-tdlib"
 license:             BSD3
 author:              "Author name here"
@@ -19,8 +19,21 @@ extra-source-files:
 # common to point users to the README.md file.
 description:         Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 
+
+language: GHC2021
+
 dependencies:
 - base >= 4.7 && < 5
+- aeson
+- bytestring
+- time
+- unordered-containers
+- text
+- containers
+- base64-bytestring
+
+default-extensions:
+- OverloadedStrings
 
 ghc-options:
 - -Wall
@@ -34,23 +47,11 @@ ghc-options:
 - -Wredundant-constraints
 
 library:
-  language:    GHC2021
   source-dirs: src
   extra-libraries: tdjson
-  dependencies:
-  - aeson
-  - bytestring
-  - time
-  - unordered-containers
-  - text
-  - containers
-  - base64-bytestring
-  default-extensions:
-  - OverloadedStrings
 
 executables:
   haskell-tdlib-exe:
-    language:    GHC2021
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -65,11 +66,9 @@ executables:
     default-extensions:
     - DuplicateRecordFields
     - NoFieldSelectors
-    - OverloadedStrings
 
 tests:
   haskell-tdlib-test:
-    language:    GHC2021
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
