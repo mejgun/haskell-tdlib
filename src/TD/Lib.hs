@@ -20,10 +20,11 @@ import Data.ByteString.Lazy qualified as BL
 import Data.Hashable qualified as H
 import Data.List (intercalate)
 import Data.Text qualified as T
+import Data.Text.Lazy qualified as TL
+import Data.Text.Lazy.Encoding qualified as TL
 import Data.Time.Clock.System qualified as Time
 import Foreign (Ptr, nullPtr)
 import Foreign.C.String (CString)
-import Foreign.C.Types ()
 import TD.GeneralResult (GeneralResult)
 import TD.Lib.Internal (Extra (..), ShortShow (shortShow))
 
@@ -43,31 +44,31 @@ create :: IO Client
 create = c_create
 
 send :: (A.ToJSON a) => Client -> a -> IO ()
-send c d = B.useAsCString enc (c_send c)
+send client json = B.useAsCString (enc json) (c_send client)
   where
-    enc = BL.toStrict (A.encode d)
+    enc = BL.toStrict . A.encode
 
 sendWExtra :: (A.ToJSON a) => Client -> a -> IO Extra
-sendWExtra c d = do
-  extra <- getUnixTime
-  B.useAsCString (enc extra) (c_send c)
+sendWExtra client json = do
+  extra <- makeExtra
+  send client (addExtra extra)
   pure $ Extra extra
   where
-    enc :: String -> B.ByteString
-    enc xtr = BL.toStrict $ A.encode (addExtra d xtr)
+    addExtra :: String -> KM.KeyMap A.Value
+    addExtra extra =
+      case A.toJSON json of
+        A.Object t ->
+          KM.insert (K.fromString "@extra") (A.String (T.pack extra)) t
+        _ ->
+          let enc = TL.unpack . TL.decodeUtf8 . A.encode
+           in error $ "error. not object: " <> enc extra
 
-    addExtra :: (A.ToJSON a) => a -> String -> KM.KeyMap A.Value
-    addExtra dd s =
-      case A.toJSON dd of
-        A.Object t -> KM.insert (K.fromString "@extra") (A.String (T.pack s)) t
-        _ -> error $ "error. not object: " <> show (A.encode dd)
-
-    getUnixTime :: IO String
-    getUnixTime = do
+    makeExtra :: IO String
+    makeExtra = do
       t <- Time.getSystemTime
       let s = Time.systemSeconds t
           ns = Time.systemNanoseconds t
-          h = H.hash $ A.encode d
+          h = H.hash $ A.encode json
       pure $ intercalate "." [show s, show ns, show h]
 
 receive :: Client -> IO (Maybe (GeneralResult, Maybe Extra))
