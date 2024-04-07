@@ -14,12 +14,16 @@ import Data.Aeson qualified as A
 import Data.Aeson.Types qualified as AT
 import Data.ByteString qualified as BS
 import Data.ByteString.Base64 qualified as B64
+import Data.Hashable (Hashable)
 import Data.List (intercalate)
 import Data.Text qualified as T
 import Data.Text.Encoding qualified as TE
+import GHC.Generics (Generic)
 
 newtype Extra = Extra String
-  deriving (Eq)
+  deriving (Eq, Generic)
+
+instance Hashable Extra
 
 instance AT.FromJSON Extra where
   parseJSON (AT.Object obj) = Extra <$> obj A..: "@extra"
