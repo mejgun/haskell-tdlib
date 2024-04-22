@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib that a chat was opened from the list of similar chats. The method is independent from openChat and closeChat methods. Returns 'TD.Data.Ok.Ok'
+-- | Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods. Returns 'TD.Data.Ok.Ok'
 data OpenChatSimilarChat
   = OpenChatSimilarChat
     { chat_id        :: Maybe Int -- ^ Identifier of the original chat, which similar chats were requested

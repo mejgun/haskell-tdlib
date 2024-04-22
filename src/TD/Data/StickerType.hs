@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes type of a sticker
+-- | Describes type of sticker
 data StickerType
   = StickerTypeRegular -- ^ The sticker is a regular sticker
   | StickerTypeMask -- ^ The sticker is a mask in WEBP format to be placed on photos or videos

@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes type of a limit, increased for Premium users
+-- | Describes type of limit, increased for Premium users
 data PremiumLimitType
   = PremiumLimitTypeSupergroupCount -- ^ The maximum number of joined supergroups and channels
   | PremiumLimitTypePinnedChatCount -- ^ The maximum number of pinned chats in the main chat list

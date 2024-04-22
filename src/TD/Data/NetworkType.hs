@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Represents the type of a network
+-- | Represents the type of network
 data NetworkType
   = NetworkTypeNone -- ^ The network is not available
   | NetworkTypeMobile -- ^ A mobile network

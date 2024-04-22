@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes type of an object, for which statistics are provided
+-- | Describes type of object, for which statistics are provided
 data ChatStatisticsObjectType
   = ChatStatisticsObjectTypeMessage -- ^ Describes a message sent in the chat
     { message_id :: Maybe Int -- ^ Message identifier

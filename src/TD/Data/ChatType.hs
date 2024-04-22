@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes the type of a chat
+-- | Describes the type of chat
 data ChatType
   = ChatTypePrivate -- ^ An ordinary chat with a user
     { user_id :: Maybe Int -- ^ User identifier

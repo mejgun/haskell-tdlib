@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes the type of a chat to which points an invite link
+-- | Describes the type of chat to which points an invite link
 data InviteLinkChatType
   = InviteLinkChatTypeBasicGroup -- ^ The link is an invite link for a basic group
   | InviteLinkChatTypeSupergroup -- ^ The link is an invite link for a supergroup

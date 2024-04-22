@@ -13,9 +13,9 @@ data QuickReplyMessage
     { _id                 :: Maybe Int                                     -- ^ Unique message identifier among all quick replies
     , sending_state       :: Maybe MessageSendingState.MessageSendingState -- ^ The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     , can_be_edited       :: Maybe Bool                                    -- ^ True, if the message can be edited
-    , reply_to_message_id :: Maybe Int                                     -- ^ Information about the identifier of the quick reply message to which the message replies
+    , reply_to_message_id :: Maybe Int                                     -- ^ The identifier of the quick reply message to which the message replies; 0 if none
     , via_bot_user_id     :: Maybe Int                                     -- ^ If non-zero, the user identifier of the bot through which this message was sent
-    , media_album_id      :: Maybe Int                                     -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+    , media_album_id      :: Maybe Int                                     -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     , content             :: Maybe MessageContent.MessageContent           -- ^ Content of the message
     , reply_markup        :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Inline keyboard reply markup for the message; may be null if none
     }

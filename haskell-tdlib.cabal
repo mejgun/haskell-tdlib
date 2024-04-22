@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.28.0
+version:        2.0.29.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -66,6 +66,10 @@ library
       TD.Data.BotWriteAccessAllowReason
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
+      TD.Data.BusinessBotManageBar
+      TD.Data.BusinessChatLink
+      TD.Data.BusinessChatLinkInfo
+      TD.Data.BusinessChatLinks
       TD.Data.BusinessConnectedBot
       TD.Data.BusinessConnection
       TD.Data.BusinessFeature
@@ -73,13 +77,13 @@ library
       TD.Data.BusinessFeatures
       TD.Data.BusinessGreetingMessageSettings
       TD.Data.BusinessInfo
-      TD.Data.BusinessIntro
       TD.Data.BusinessLocation
       TD.Data.BusinessMessage
       TD.Data.BusinessMessages
       TD.Data.BusinessOpeningHours
       TD.Data.BusinessOpeningHoursInterval
       TD.Data.BusinessRecipients
+      TD.Data.BusinessStartPage
       TD.Data.Call
       TD.Data.CallbackQueryAnswer
       TD.Data.CallbackQueryPayload
@@ -149,6 +153,11 @@ library
       TD.Data.ChatPhotoSticker
       TD.Data.ChatPhotoStickerType
       TD.Data.ChatPosition
+      TD.Data.ChatRevenueStatistics
+      TD.Data.ChatRevenueTransaction
+      TD.Data.ChatRevenueTransactions
+      TD.Data.ChatRevenueTransactionType
+      TD.Data.ChatRevenueWithdrawalState
       TD.Data.Chats
       TD.Data.ChatsNearby
       TD.Data.ChatSource
@@ -173,6 +182,7 @@ library
       TD.Data.Count
       TD.Data.Countries
       TD.Data.CountryInfo
+      TD.Data.CreatedBasicGroupChat
       TD.Data.CustomRequestResult
       TD.Data.DatabaseStatistics
       TD.Data.Date
@@ -199,6 +209,8 @@ library
       TD.Data.EncryptedCredentials
       TD.Data.EncryptedPassportElement
       TD.Data.Error
+      TD.Data.FailedToAddMember
+      TD.Data.FailedToAddMembers
       TD.Data.File
       TD.Data.FileDownload
       TD.Data.FileDownloadedPrefixSize
@@ -241,7 +253,8 @@ library
       TD.Data.InlineQueryResultsButton
       TD.Data.InlineQueryResultsButtonType
       TD.Data.InputBackground
-      TD.Data.InputBusinessIntro
+      TD.Data.InputBusinessChatLink
+      TD.Data.InputBusinessStartPage
       TD.Data.InputChatPhoto
       TD.Data.InputCredentials
       TD.Data.InputFile
@@ -358,6 +371,7 @@ library
       TD.Data.PersonalDetails
       TD.Data.PersonalDocument
       TD.Data.PhoneNumberAuthenticationSettings
+      TD.Data.PhoneNumberCodeType
       TD.Data.PhoneNumberInfo
       TD.Data.Photo
       TD.Data.PhotoSize
@@ -394,6 +408,7 @@ library
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
       TD.Data.QuickReplyMessage
+      TD.Data.QuickReplyMessages
       TD.Data.QuickReplyShortcut
       TD.Data.ReactionType
       TD.Data.ReactionUnavailabilityReason
@@ -540,6 +555,8 @@ library
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
       TD.Query.AddProxy
+      TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
+      TD.Query.AddQuickReplyShortcutMessage
       TD.Query.AddRecentlyFoundChat
       TD.Query.AddRecentSticker
       TD.Query.AddSavedAnimation
@@ -568,14 +585,12 @@ library
       TD.Query.CanSendStory
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
-      TD.Query.ChangePhoneNumber
       TD.Query.ChangeStickerSet
       TD.Query.CheckAuthenticationBotToken
       TD.Query.CheckAuthenticationCode
       TD.Query.CheckAuthenticationEmailCode
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
-      TD.Query.CheckChangePhoneNumberCode
       TD.Query.CheckChatFolderInviteLink
       TD.Query.CheckChatInviteLink
       TD.Query.CheckChatUsername
@@ -583,8 +598,7 @@ library
       TD.Query.CheckEmailAddressVerificationCode
       TD.Query.CheckLoginEmailAddressCode
       TD.Query.CheckPasswordRecoveryCode
-      TD.Query.CheckPhoneNumberConfirmationCode
-      TD.Query.CheckPhoneNumberVerificationCode
+      TD.Query.CheckPhoneNumberCode
       TD.Query.CheckPremiumGiftCode
       TD.Query.CheckQuickReplyShortcutName
       TD.Query.CheckRecoveryEmailAddressCode
@@ -608,6 +622,7 @@ library
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
       TD.Query.CreateBasicGroupChat
+      TD.Query.CreateBusinessChatLink
       TD.Query.CreateCall
       TD.Query.CreateChatFolder
       TD.Query.CreateChatFolderInviteLink
@@ -626,6 +641,7 @@ library
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
       TD.Query.DeleteAllRevokedChatInviteLinks
+      TD.Query.DeleteBusinessChatLink
       TD.Query.DeleteBusinessConnectedBot
       TD.Query.DeleteChat
       TD.Query.DeleteChatBackground
@@ -659,6 +675,7 @@ library
       TD.Query.DisconnectAllWebsites
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
+      TD.Query.EditBusinessChatLink
       TD.Query.EditChatFolder
       TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
@@ -676,6 +693,7 @@ library
       TD.Query.EditMessageSchedulingState
       TD.Query.EditMessageText
       TD.Query.EditProxy
+      TD.Query.EditQuickReplyMessage
       TD.Query.EditStory
       TD.Query.EnableProxy
       TD.Query.EndGroupCall
@@ -707,6 +725,8 @@ library
       TD.Query.GetBotInfoDescription
       TD.Query.GetBotInfoShortDescription
       TD.Query.GetBotName
+      TD.Query.GetBusinessChatLinkInfo
+      TD.Query.GetBusinessChatLinks
       TD.Query.GetBusinessConnectedBot
       TD.Query.GetBusinessConnection
       TD.Query.GetBusinessFeatures
@@ -745,6 +765,9 @@ library
       TD.Query.GetChatNotificationSettingsExceptions
       TD.Query.GetChatPinnedMessage
       TD.Query.GetChatPinnedStories
+      TD.Query.GetChatRevenueStatistics
+      TD.Query.GetChatRevenueTransactions
+      TD.Query.GetChatRevenueWithdrawalUrl
       TD.Query.GetChats
       TD.Query.GetChatScheduledMessages
       TD.Query.GetChatsForChatFolderInviteLink
@@ -791,6 +814,7 @@ library
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
+      TD.Query.GetGreetingStickers
       TD.Query.GetGroupCall
       TD.Query.GetGroupCallInviteLink
       TD.Query.GetGroupCallStreams
@@ -960,6 +984,7 @@ library
       TD.Query.ReadAllMessageThreadMentions
       TD.Query.ReadAllMessageThreadReactions
       TD.Query.ReadChatList
+      TD.Query.ReaddQuickReplyShortcutMessages
       TD.Query.ReadFilePart
       TD.Query.RecognizeSpeech
       TD.Query.RecoverAuthenticationPassword
@@ -967,6 +992,7 @@ library
       TD.Query.RegisterDevice
       TD.Query.RegisterUser
       TD.Query.RemoveAllFilesFromDownloads
+      TD.Query.RemoveBusinessConnectedBotFromChat
       TD.Query.RemoveChatActionBar
       TD.Query.RemoveContacts
       TD.Query.RemoveFavoriteSticker
@@ -1003,12 +1029,10 @@ library
       TD.Query.RequestPasswordRecovery
       TD.Query.RequestQrCodeAuthentication
       TD.Query.ResendAuthenticationCode
-      TD.Query.ResendChangePhoneNumberCode
       TD.Query.ResendEmailAddressVerificationCode
       TD.Query.ResendLoginEmailAddressCode
       TD.Query.ResendMessages
-      TD.Query.ResendPhoneNumberConfirmationCode
-      TD.Query.ResendPhoneNumberVerificationCode
+      TD.Query.ResendPhoneNumberCode
       TD.Query.ResendRecoveryEmailAddressCode
       TD.Query.ResetAllNotificationSettings
       TD.Query.ResetAuthenticationEmailAddress
@@ -1062,8 +1086,8 @@ library
       TD.Query.SendMessageAlbum
       TD.Query.SendPassportAuthorizationForm
       TD.Query.SendPaymentForm
-      TD.Query.SendPhoneNumberConfirmationCode
-      TD.Query.SendPhoneNumberVerificationCode
+      TD.Query.SendPhoneNumberCode
+      TD.Query.SendPhoneNumberFirebaseSms
       TD.Query.SendQuickReplyShortcutMessages
       TD.Query.SendStory
       TD.Query.SendWebAppCustomRequest
@@ -1086,9 +1110,9 @@ library
       TD.Query.SetBusinessAwayMessageSettings
       TD.Query.SetBusinessConnectedBot
       TD.Query.SetBusinessGreetingMessageSettings
-      TD.Query.SetBusinessIntro
       TD.Query.SetBusinessLocation
       TD.Query.SetBusinessOpeningHours
+      TD.Query.SetBusinessStartPage
       TD.Query.SetChatAccentColor
       TD.Query.SetChatActiveStoriesList
       TD.Query.SetChatAvailableReactions
@@ -1201,6 +1225,7 @@ library
       TD.Query.ToggleAllDownloadsArePaused
       TD.Query.ToggleBotIsAddedToAttachmentMenu
       TD.Query.ToggleBotUsernameIsActive
+      TD.Query.ToggleBusinessConnectedBotChatIsPaused
       TD.Query.ToggleChatDefaultDisableNotification
       TD.Query.ToggleChatFolderTags
       TD.Query.ToggleChatHasProtectedContent
@@ -1223,6 +1248,7 @@ library
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
       TD.Query.ToggleStoryIsPinned
+      TD.Query.ToggleSupergroupCanHaveSponsoredMessages
       TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled
       TD.Query.ToggleSupergroupHasHiddenMembers
       TD.Query.ToggleSupergroupIsAllHistoryAvailable

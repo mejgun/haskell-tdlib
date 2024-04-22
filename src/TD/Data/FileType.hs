@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Represents the type of a file
+-- | Represents the type of file
 data FileType
   = FileTypeNone -- ^ The data is not a file
   | FileTypeAnimation -- ^ The file is an animation

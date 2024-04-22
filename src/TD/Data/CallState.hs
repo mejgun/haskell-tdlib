@@ -19,12 +19,13 @@ data CallState
     }
   | CallStateExchangingKeys -- ^ The call has been answered and encryption keys are being exchanged
   | CallStateReady -- ^ The call is ready to use
-    { protocol       :: Maybe CallProtocol.CallProtocol -- ^ Call protocols supported by the other call participant
-    , servers        :: Maybe [CallServer.CallServer]   -- ^ List of available call servers
-    , config         :: Maybe T.Text                    -- ^ A JSON-encoded call config
-    , encryption_key :: Maybe BS.ByteString             -- ^ Call encryption key
-    , emojis         :: Maybe [T.Text]                  -- ^ Encryption key emojis fingerprint
-    , allow_p2p      :: Maybe Bool                      -- ^ True, if peer-to-peer connection is allowed by users privacy settings
+    { protocol          :: Maybe CallProtocol.CallProtocol -- ^ Call protocols supported by the other call participant
+    , servers           :: Maybe [CallServer.CallServer]   -- ^ List of available call servers
+    , config            :: Maybe T.Text                    -- ^ A JSON-encoded call config
+    , encryption_key    :: Maybe BS.ByteString             -- ^ Call encryption key
+    , emojis            :: Maybe [T.Text]                  -- ^ Encryption key emojis fingerprint
+    , allow_p2p         :: Maybe Bool                      -- ^ True, if peer-to-peer connection is allowed by users privacy settings
+    , custom_parameters :: Maybe T.Text                    -- ^ Custom JSON-encoded call parameters to be passed to tgcalls
     }
   | CallStateHangingUp -- ^ The call is hanging up after discardCall has been called
   | CallStateDiscarded -- ^ The call has ended successfully
@@ -51,21 +52,23 @@ instance I.ShortShow CallState where
   shortShow CallStateExchangingKeys
       = "CallStateExchangingKeys"
   shortShow CallStateReady
-    { protocol       = protocol_
-    , servers        = servers_
-    , config         = config_
-    , encryption_key = encryption_key_
-    , emojis         = emojis_
-    , allow_p2p      = allow_p2p_
+    { protocol          = protocol_
+    , servers           = servers_
+    , config            = config_
+    , encryption_key    = encryption_key_
+    , emojis            = emojis_
+    , allow_p2p         = allow_p2p_
+    , custom_parameters = custom_parameters_
     }
       = "CallStateReady"
         ++ I.cc
-        [ "protocol"       `I.p` protocol_
-        , "servers"        `I.p` servers_
-        , "config"         `I.p` config_
-        , "encryption_key" `I.p` encryption_key_
-        , "emojis"         `I.p` emojis_
-        , "allow_p2p"      `I.p` allow_p2p_
+        [ "protocol"          `I.p` protocol_
+        , "servers"           `I.p` servers_
+        , "config"            `I.p` config_
+        , "encryption_key"    `I.p` encryption_key_
+        , "emojis"            `I.p` emojis_
+        , "allow_p2p"         `I.p` allow_p2p_
+        , "custom_parameters" `I.p` custom_parameters_
         ]
   shortShow CallStateHangingUp
       = "CallStateHangingUp"
@@ -114,19 +117,21 @@ instance AT.FromJSON CallState where
           }
       parseCallStateReady :: A.Value -> AT.Parser CallState
       parseCallStateReady = A.withObject "CallStateReady" $ \o -> do
-        protocol_       <- o A..:?                       "protocol"
-        servers_        <- o A..:?                       "servers"
-        config_         <- o A..:?                       "config"
-        encryption_key_ <- fmap I.readBytes <$> o A..:?  "encryption_key"
-        emojis_         <- o A..:?                       "emojis"
-        allow_p2p_      <- o A..:?                       "allow_p2p"
+        protocol_          <- o A..:?                       "protocol"
+        servers_           <- o A..:?                       "servers"
+        config_            <- o A..:?                       "config"
+        encryption_key_    <- fmap I.readBytes <$> o A..:?  "encryption_key"
+        emojis_            <- o A..:?                       "emojis"
+        allow_p2p_         <- o A..:?                       "allow_p2p"
+        custom_parameters_ <- o A..:?                       "custom_parameters"
         pure $ CallStateReady
-          { protocol       = protocol_
-          , servers        = servers_
-          , config         = config_
-          , encryption_key = encryption_key_
-          , emojis         = emojis_
-          , allow_p2p      = allow_p2p_
+          { protocol          = protocol_
+          , servers           = servers_
+          , config            = config_
+          , encryption_key    = encryption_key_
+          , emojis            = emojis_
+          , allow_p2p         = allow_p2p_
+          , custom_parameters = custom_parameters_
           }
       parseCallStateDiscarded :: A.Value -> AT.Parser CallState
       parseCallStateDiscarded = A.withObject "CallStateDiscarded" $ \o -> do

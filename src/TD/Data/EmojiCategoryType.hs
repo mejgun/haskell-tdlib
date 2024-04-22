@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes type of an emoji category
+-- | Describes type of emoji category
 data EmojiCategoryType
   = EmojiCategoryTypeDefault -- ^ The category must be used by default
   | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection

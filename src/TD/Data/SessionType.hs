@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Represents the type of a session
+-- | Represents the type of session
 data SessionType
   = SessionTypeAndroid -- ^ The session is running on an Android device
   | SessionTypeApple -- ^ The session is running on a generic Apple device

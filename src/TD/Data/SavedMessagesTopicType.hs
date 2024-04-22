@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes type of a Saved Messages topic
+-- | Describes type of Saved Messages topic
 data SavedMessagesTopicType
   = SavedMessagesTopicTypeMyNotes -- ^ Topic containing messages sent by the current user of forwarded from an unknown chat
   | SavedMessagesTopicTypeAuthorHidden -- ^ Topic containing messages forwarded from a user with hidden privacy

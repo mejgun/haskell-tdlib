@@ -22,6 +22,9 @@ import qualified TD.Data.BasicGroup as BasicGroup
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMenuButton as BotMenuButton
+import qualified TD.Data.BusinessChatLink as BusinessChatLink
+import qualified TD.Data.BusinessChatLinkInfo as BusinessChatLinkInfo
+import qualified TD.Data.BusinessChatLinks as BusinessChatLinks
 import qualified TD.Data.BusinessConnectedBot as BusinessConnectedBot
 import qualified TD.Data.BusinessConnection as BusinessConnection
 import qualified TD.Data.BusinessFeatures as BusinessFeatures
@@ -59,6 +62,8 @@ import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatMembers as ChatMembers
 import qualified TD.Data.ChatMessageSenders as ChatMessageSenders
 import qualified TD.Data.ChatPhotos as ChatPhotos
+import qualified TD.Data.ChatRevenueStatistics as ChatRevenueStatistics
+import qualified TD.Data.ChatRevenueTransactions as ChatRevenueTransactions
 import qualified TD.Data.ChatStatistics as ChatStatistics
 import qualified TD.Data.Chats as Chats
 import qualified TD.Data.ChatsNearby as ChatsNearby
@@ -68,6 +73,7 @@ import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
+import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
 import qualified TD.Data.CustomRequestResult as CustomRequestResult
 import qualified TD.Data.DatabaseStatistics as DatabaseStatistics
 import qualified TD.Data.DeepLinkInfo as DeepLinkInfo
@@ -78,6 +84,7 @@ import qualified TD.Data.EmojiReaction as EmojiReaction
 import qualified TD.Data.EmojiStatuses as EmojiStatuses
 import qualified TD.Data.Emojis as Emojis
 import qualified TD.Data.Error as Error
+import qualified TD.Data.FailedToAddMembers as FailedToAddMembers
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
 import qualified TD.Data.FilePart as FilePart
@@ -149,6 +156,8 @@ import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.PublicForwards as PublicForwards
 import qualified TD.Data.PushReceiverId as PushReceiverId
+import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
+import qualified TD.Data.QuickReplyMessages as QuickReplyMessages
 import qualified TD.Data.ReadDatePrivacySettings as ReadDatePrivacySettings
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
@@ -221,6 +230,9 @@ data GeneralResult
     | BasicGroupFullInfo                 BasicGroupFullInfo.BasicGroupFullInfo
     | BotCommands                        BotCommands.BotCommands
     | BotMenuButton                      BotMenuButton.BotMenuButton
+    | BusinessChatLink                   BusinessChatLink.BusinessChatLink
+    | BusinessChatLinkInfo               BusinessChatLinkInfo.BusinessChatLinkInfo
+    | BusinessChatLinks                  BusinessChatLinks.BusinessChatLinks
     | BusinessConnectedBot               BusinessConnectedBot.BusinessConnectedBot
     | BusinessConnection                 BusinessConnection.BusinessConnection
     | BusinessFeatures                   BusinessFeatures.BusinessFeatures
@@ -258,6 +270,8 @@ data GeneralResult
     | ChatMembers                        ChatMembers.ChatMembers
     | ChatMessageSenders                 ChatMessageSenders.ChatMessageSenders
     | ChatPhotos                         ChatPhotos.ChatPhotos
+    | ChatRevenueStatistics              ChatRevenueStatistics.ChatRevenueStatistics
+    | ChatRevenueTransactions            ChatRevenueTransactions.ChatRevenueTransactions
     | ChatStatistics                     ChatStatistics.ChatStatistics
     | Chats                              Chats.Chats
     | ChatsNearby                        ChatsNearby.ChatsNearby
@@ -267,6 +281,7 @@ data GeneralResult
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
     | Count                              Count.Count
     | Countries                          Countries.Countries
+    | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
     | CustomRequestResult                CustomRequestResult.CustomRequestResult
     | DatabaseStatistics                 DatabaseStatistics.DatabaseStatistics
     | DeepLinkInfo                       DeepLinkInfo.DeepLinkInfo
@@ -277,6 +292,7 @@ data GeneralResult
     | EmojiStatuses                      EmojiStatuses.EmojiStatuses
     | Emojis                             Emojis.Emojis
     | Error                              Error.Error
+    | FailedToAddMembers                 FailedToAddMembers.FailedToAddMembers
     | File                               File.File
     | FileDownloadedPrefixSize           FileDownloadedPrefixSize.FileDownloadedPrefixSize
     | FilePart                           FilePart.FilePart
@@ -348,6 +364,8 @@ data GeneralResult
     | Proxy                              Proxy.Proxy
     | PublicForwards                     PublicForwards.PublicForwards
     | PushReceiverId                     PushReceiverId.PushReceiverId
+    | QuickReplyMessage                  QuickReplyMessage.QuickReplyMessage
+    | QuickReplyMessages                 QuickReplyMessages.QuickReplyMessages
     | ReadDatePrivacySettings            ReadDatePrivacySettings.ReadDatePrivacySettings
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
@@ -439,6 +457,12 @@ instance I.ShortShow GeneralResult where
     = "BotCommands" <> " (" <> I.shortShow v <> ")"
   shortShow (BotMenuButton v)
     = "BotMenuButton" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessChatLink v)
+    = "BusinessChatLink" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessChatLinkInfo v)
+    = "BusinessChatLinkInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessChatLinks v)
+    = "BusinessChatLinks" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessConnectedBot v)
     = "BusinessConnectedBot" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessConnection v)
@@ -513,6 +537,10 @@ instance I.ShortShow GeneralResult where
     = "ChatMessageSenders" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatPhotos v)
     = "ChatPhotos" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatRevenueStatistics v)
+    = "ChatRevenueStatistics" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatRevenueTransactions v)
+    = "ChatRevenueTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatStatistics v)
     = "ChatStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (Chats v)
@@ -531,6 +559,8 @@ instance I.ShortShow GeneralResult where
     = "Count" <> " (" <> I.shortShow v <> ")"
   shortShow (Countries v)
     = "Countries" <> " (" <> I.shortShow v <> ")"
+  shortShow (CreatedBasicGroupChat v)
+    = "CreatedBasicGroupChat" <> " (" <> I.shortShow v <> ")"
   shortShow (CustomRequestResult v)
     = "CustomRequestResult" <> " (" <> I.shortShow v <> ")"
   shortShow (DatabaseStatistics v)
@@ -551,6 +581,8 @@ instance I.ShortShow GeneralResult where
     = "Emojis" <> " (" <> I.shortShow v <> ")"
   shortShow (Error v)
     = "Error" <> " (" <> I.shortShow v <> ")"
+  shortShow (FailedToAddMembers v)
+    = "FailedToAddMembers" <> " (" <> I.shortShow v <> ")"
   shortShow (File v)
     = "File" <> " (" <> I.shortShow v <> ")"
   shortShow (FileDownloadedPrefixSize v)
@@ -693,6 +725,10 @@ instance I.ShortShow GeneralResult where
     = "PublicForwards" <> " (" <> I.shortShow v <> ")"
   shortShow (PushReceiverId v)
     = "PushReceiverId" <> " (" <> I.shortShow v <> ")"
+  shortShow (QuickReplyMessage v)
+    = "QuickReplyMessage" <> " (" <> I.shortShow v <> ")"
+  shortShow (QuickReplyMessages v)
+    = "QuickReplyMessages" <> " (" <> I.shortShow v <> ")"
   shortShow (ReadDatePrivacySettings v)
     = "ReadDatePrivacySettings" <> " (" <> I.shortShow v <> ")"
   shortShow (RecommendedChatFolders v)
@@ -818,6 +854,9 @@ instance T.FromJSON GeneralResult where
     <|> ( BasicGroupFullInfo                  <$> parseJSON v )
     <|> ( BotCommands                         <$> parseJSON v )
     <|> ( BotMenuButton                       <$> parseJSON v )
+    <|> ( BusinessChatLink                    <$> parseJSON v )
+    <|> ( BusinessChatLinkInfo                <$> parseJSON v )
+    <|> ( BusinessChatLinks                   <$> parseJSON v )
     <|> ( BusinessConnectedBot                <$> parseJSON v )
     <|> ( BusinessConnection                  <$> parseJSON v )
     <|> ( BusinessFeatures                    <$> parseJSON v )
@@ -855,6 +894,8 @@ instance T.FromJSON GeneralResult where
     <|> ( ChatMembers                         <$> parseJSON v )
     <|> ( ChatMessageSenders                  <$> parseJSON v )
     <|> ( ChatPhotos                          <$> parseJSON v )
+    <|> ( ChatRevenueStatistics               <$> parseJSON v )
+    <|> ( ChatRevenueTransactions             <$> parseJSON v )
     <|> ( ChatStatistics                      <$> parseJSON v )
     <|> ( Chats                               <$> parseJSON v )
     <|> ( ChatsNearby                         <$> parseJSON v )
@@ -864,6 +905,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ConnectedWebsites                   <$> parseJSON v )
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
+    <|> ( CreatedBasicGroupChat               <$> parseJSON v )
     <|> ( CustomRequestResult                 <$> parseJSON v )
     <|> ( DatabaseStatistics                  <$> parseJSON v )
     <|> ( DeepLinkInfo                        <$> parseJSON v )
@@ -874,6 +916,7 @@ instance T.FromJSON GeneralResult where
     <|> ( EmojiStatuses                       <$> parseJSON v )
     <|> ( Emojis                              <$> parseJSON v )
     <|> ( Error                               <$> parseJSON v )
+    <|> ( FailedToAddMembers                  <$> parseJSON v )
     <|> ( File                                <$> parseJSON v )
     <|> ( FileDownloadedPrefixSize            <$> parseJSON v )
     <|> ( FilePart                            <$> parseJSON v )
@@ -945,6 +988,8 @@ instance T.FromJSON GeneralResult where
     <|> ( Proxy                               <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )
+    <|> ( QuickReplyMessage                   <$> parseJSON v )
+    <|> ( QuickReplyMessages                  <$> parseJSON v )
     <|> ( ReadDatePrivacySettings             <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )

@@ -8,7 +8,7 @@ import qualified TD.Data.Location as Location
 import qualified Data.Text as T
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Describes type of a clickable rectangle area on a story media to be added
+-- | Describes type of clickable rectangle area on a story media to be added
 data InputStoryAreaType
   = InputStoryAreaTypeLocation -- ^ An area pointing to a location
     { location :: Maybe Location.Location -- ^ The location

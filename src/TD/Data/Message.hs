@@ -60,7 +60,7 @@ data Message
     , sender_business_bot_user_id    :: Maybe Int                                             -- ^ If non-zero, the user identifier of the business bot that sent this message
     , sender_boost_count             :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     , author_signature               :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
-    , media_album_id                 :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+    , media_album_id                 :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     , restriction_reason             :: Maybe T.Text                                          -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     , content                        :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
     , reply_markup                   :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none

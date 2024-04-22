@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes the exact type of a problem with a call
+-- | Describes the exact type of problem with a call
 data CallProblem
   = CallProblemEcho -- ^ The user heard their own voice
   | CallProblemNoise -- ^ The user heard background noise

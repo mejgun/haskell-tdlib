@@ -18,6 +18,7 @@ import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.BusinessBotManageBar as BusinessBotManageBar
 import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
 import qualified TD.Data.DraftMessage as DraftMessage
@@ -59,6 +60,7 @@ data Chat
     , background                         :: Maybe ChatBackground.ChatBackground                     -- ^ Background set for the chat; may be null if none
     , theme_name                         :: Maybe T.Text                                            -- ^ If non-empty, name of a theme, set for the chat
     , action_bar                         :: Maybe ChatActionBar.ChatActionBar                       -- ^ Information about actions which must be possible to do through the chat action bar; may be null if none
+    , business_bot_manage_bar            :: Maybe BusinessBotManageBar.BusinessBotManageBar         -- ^ Information about bar for managing a business bot in the chat; may be null if none
     , video_chat                         :: Maybe VideoChat.VideoChat                               -- ^ Information about video chat of the chat
     , pending_join_requests              :: Maybe ChatJoinRequestsInfo.ChatJoinRequestsInfo         -- ^ Information about pending join requests; may be null if none
     , reply_markup_message_id            :: Maybe Int                                               -- ^ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
@@ -104,6 +106,7 @@ instance I.ShortShow Chat where
     , background                         = background_
     , theme_name                         = theme_name_
     , action_bar                         = action_bar_
+    , business_bot_manage_bar            = business_bot_manage_bar_
     , video_chat                         = video_chat_
     , pending_join_requests              = pending_join_requests_
     , reply_markup_message_id            = reply_markup_message_id_
@@ -147,6 +150,7 @@ instance I.ShortShow Chat where
         , "background"                         `I.p` background_
         , "theme_name"                         `I.p` theme_name_
         , "action_bar"                         `I.p` action_bar_
+        , "business_bot_manage_bar"            `I.p` business_bot_manage_bar_
         , "video_chat"                         `I.p` video_chat_
         , "pending_join_requests"              `I.p` pending_join_requests_
         , "reply_markup_message_id"            `I.p` reply_markup_message_id_
@@ -200,6 +204,7 @@ instance AT.FromJSON Chat where
         background_                         <- o A..:?                       "background"
         theme_name_                         <- o A..:?                       "theme_name"
         action_bar_                         <- o A..:?                       "action_bar"
+        business_bot_manage_bar_            <- o A..:?                       "business_bot_manage_bar"
         video_chat_                         <- o A..:?                       "video_chat"
         pending_join_requests_              <- o A..:?                       "pending_join_requests"
         reply_markup_message_id_            <- o A..:?                       "reply_markup_message_id"
@@ -241,6 +246,7 @@ instance AT.FromJSON Chat where
           , background                         = background_
           , theme_name                         = theme_name_
           , action_bar                         = action_bar_
+          , business_bot_manage_bar            = business_bot_manage_bar_
           , video_chat                         = video_chat_
           , pending_join_requests              = pending_join_requests_
           , reply_markup_message_id            = reply_markup_message_id_

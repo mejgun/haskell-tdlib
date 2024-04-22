@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.BackgroundFill as BackgroundFill
 import qualified Data.Text as T
 
--- | Describes the type of a background
+-- | Describes the type of background
 data BackgroundType
   = BackgroundTypeWallpaper -- ^ A wallpaper in JPEG format
     { is_blurred :: Maybe Bool -- ^ True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12

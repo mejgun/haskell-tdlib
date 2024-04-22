@@ -20,6 +20,7 @@ data ChatBoostLevelFeatures
     , can_set_custom_background               :: Maybe Bool -- ^ True, if custom background can be set in the chat for all users
     , can_set_custom_emoji_sticker_set        :: Maybe Bool -- ^ True, if custom emoji sticker set can be set for the chat
     , can_recognize_speech                    :: Maybe Bool -- ^ True, if speech recognition can be used for video note and voice note messages by all users
+    , can_disable_sponsored_messages          :: Maybe Bool -- ^ True, if sponsored messages can be disabled in the chat
     }
   deriving (Eq, Show)
 
@@ -38,6 +39,7 @@ instance I.ShortShow ChatBoostLevelFeatures where
     , can_set_custom_background               = can_set_custom_background_
     , can_set_custom_emoji_sticker_set        = can_set_custom_emoji_sticker_set_
     , can_recognize_speech                    = can_recognize_speech_
+    , can_disable_sponsored_messages          = can_disable_sponsored_messages_
     }
       = "ChatBoostLevelFeatures"
         ++ I.cc
@@ -54,6 +56,7 @@ instance I.ShortShow ChatBoostLevelFeatures where
         , "can_set_custom_background"               `I.p` can_set_custom_background_
         , "can_set_custom_emoji_sticker_set"        `I.p` can_set_custom_emoji_sticker_set_
         , "can_recognize_speech"                    `I.p` can_recognize_speech_
+        , "can_disable_sponsored_messages"          `I.p` can_disable_sponsored_messages_
         ]
 
 instance AT.FromJSON ChatBoostLevelFeatures where
@@ -80,6 +83,7 @@ instance AT.FromJSON ChatBoostLevelFeatures where
         can_set_custom_background_               <- o A..:?  "can_set_custom_background"
         can_set_custom_emoji_sticker_set_        <- o A..:?  "can_set_custom_emoji_sticker_set"
         can_recognize_speech_                    <- o A..:?  "can_recognize_speech"
+        can_disable_sponsored_messages_          <- o A..:?  "can_disable_sponsored_messages"
         pure $ ChatBoostLevelFeatures
           { level                                   = level_
           , story_per_day_count                     = story_per_day_count_
@@ -94,6 +98,7 @@ instance AT.FromJSON ChatBoostLevelFeatures where
           , can_set_custom_background               = can_set_custom_background_
           , can_set_custom_emoji_sticker_set        = can_set_custom_emoji_sticker_set_
           , can_recognize_speech                    = can_recognize_speech_
+          , can_disable_sponsored_messages          = can_disable_sponsored_messages_
           }
   parseJSON _ = mempty
 

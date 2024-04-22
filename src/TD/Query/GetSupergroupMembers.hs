@@ -14,7 +14,7 @@ data GetSupergroupMembers
     { supergroup_id :: Maybe Int                                             -- ^ Identifier of the supergroup or channel
     , _filter       :: Maybe SupergroupMembersFilter.SupergroupMembersFilter -- ^ The type of users to return; pass null to use supergroupMembersFilterRecent
     , offset        :: Maybe Int                                             -- ^ Number of users to skip
-    , limit         :: Maybe Int                                             -- ^ The maximum number of users be returned; up to 200
+    , limit         :: Maybe Int                                             -- ^ The maximum number of users to be returned; up to 200
     }
   deriving (Eq, Show)
 

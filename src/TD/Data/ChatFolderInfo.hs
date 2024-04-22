@@ -12,7 +12,7 @@ data ChatFolderInfo
     { _id                 :: Maybe Int                           -- ^ Unique chat folder identifier
     , title               :: Maybe T.Text                        -- ^ The title of the folder; 1-12 characters without line feeds
     , icon                :: Maybe ChatFolderIcon.ChatFolderIcon -- ^ The chosen or default icon for the chat folder
-    , color_id            :: Maybe Int                           -- ^ The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled
+    , color_id            :: Maybe Int                           -- ^ The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled
     , is_shareable        :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
     , has_my_invite_links :: Maybe Bool                          -- ^ True, if the chat folder has invite links created by the current user
     }

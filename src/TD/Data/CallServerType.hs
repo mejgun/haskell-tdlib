@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 import qualified Data.Text as T
 
--- | Describes the type of a call server
+-- | Describes the type of call server
 data CallServerType
   = CallServerTypeTelegramReflector -- ^ A Telegram call reflector
     { peer_tag :: Maybe BS.ByteString -- ^ A peer tag to be used with the reflector

@@ -18,6 +18,7 @@ import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPosition as ChatPosition
 import qualified TD.Data.ChatList as ChatList
 import qualified TD.Data.ChatActionBar as ChatActionBar
+import qualified TD.Data.BusinessBotManageBar as BusinessBotManageBar
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.DraftMessage as DraftMessage
 import qualified TD.Data.EmojiStatus as EmojiStatus
@@ -206,6 +207,10 @@ data Update
   | UpdateChatActionBar -- ^ The chat action bar was changed
     { chat_id    :: Maybe Int                         -- ^ Chat identifier
     , action_bar :: Maybe ChatActionBar.ChatActionBar -- ^ The new value of the action bar; may be null
+    }
+  | UpdateChatBusinessBotManageBar -- ^ The bar for managing business bot was changed in a chat
+    { chat_id                 :: Maybe Int                                       -- ^ Chat identifier
+    , business_bot_manage_bar :: Maybe BusinessBotManageBar.BusinessBotManageBar -- ^ The new value of the business bot manage bar; may be null
     }
   | UpdateChatAvailableReactions -- ^ The chat available reactions were changed
     { chat_id             :: Maybe Int                                           -- ^ Chat identifier
@@ -577,12 +582,11 @@ data Update
     { added_actions   :: Maybe [SuggestedAction.SuggestedAction] -- ^ Added suggested actions
     , removed_actions :: Maybe [SuggestedAction.SuggestedAction] -- ^ Removed suggested actions
     }
+  | UpdateSpeedLimitNotification -- ^ Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+    { is_upload :: Maybe Bool -- ^ True, if upload speed was limited; false, if download speed was limited
+    }
   | UpdateContactCloseBirthdays -- ^ The list of contacts that had birthdays recently or will have birthday soon has changed
     { close_birthday_users :: Maybe [CloseBirthdayUser.CloseBirthdayUser] -- ^ List of contact users with close birthday
-    }
-  | UpdateAddChatMembersPrivacyForbidden -- ^ Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
-    { chat_id  :: Maybe Int   -- ^ Chat identifier
-    , user_ids :: Maybe [Int] -- ^ Identifiers of users, which weren't added because of their privacy settings
     }
   | UpdateAutosaveSettings -- ^ Autosave settings for some type of chats were updated
     { _scope   :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Type of chats for which autosave settings were updated
@@ -947,6 +951,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "chat_id"    `I.p` chat_id_
         , "action_bar" `I.p` action_bar_
+        ]
+  shortShow UpdateChatBusinessBotManageBar
+    { chat_id                 = chat_id_
+    , business_bot_manage_bar = business_bot_manage_bar_
+    }
+      = "UpdateChatBusinessBotManageBar"
+        ++ I.cc
+        [ "chat_id"                 `I.p` chat_id_
+        , "business_bot_manage_bar" `I.p` business_bot_manage_bar_
         ]
   shortShow UpdateChatAvailableReactions
     { chat_id             = chat_id_
@@ -1781,21 +1794,19 @@ instance I.ShortShow Update where
         [ "added_actions"   `I.p` added_actions_
         , "removed_actions" `I.p` removed_actions_
         ]
+  shortShow UpdateSpeedLimitNotification
+    { is_upload = is_upload_
+    }
+      = "UpdateSpeedLimitNotification"
+        ++ I.cc
+        [ "is_upload" `I.p` is_upload_
+        ]
   shortShow UpdateContactCloseBirthdays
     { close_birthday_users = close_birthday_users_
     }
       = "UpdateContactCloseBirthdays"
         ++ I.cc
         [ "close_birthday_users" `I.p` close_birthday_users_
-        ]
-  shortShow UpdateAddChatMembersPrivacyForbidden
-    { chat_id  = chat_id_
-    , user_ids = user_ids_
-    }
-      = "UpdateAddChatMembersPrivacyForbidden"
-        ++ I.cc
-        [ "chat_id"  `I.p` chat_id_
-        , "user_ids" `I.p` user_ids_
         ]
   shortShow UpdateAutosaveSettings
     { _scope   = _scope_
@@ -2076,6 +2087,7 @@ instance AT.FromJSON Update where
       "updateChatReadInbox"                  -> parseUpdateChatReadInbox v
       "updateChatReadOutbox"                 -> parseUpdateChatReadOutbox v
       "updateChatActionBar"                  -> parseUpdateChatActionBar v
+      "updateChatBusinessBotManageBar"       -> parseUpdateChatBusinessBotManageBar v
       "updateChatAvailableReactions"         -> parseUpdateChatAvailableReactions v
       "updateChatDraftMessage"               -> parseUpdateChatDraftMessage v
       "updateChatEmojiStatus"                -> parseUpdateChatEmojiStatus v
@@ -2169,8 +2181,8 @@ instance AT.FromJSON Update where
       "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"      -> parseUpdateAnimationSearchParameters v
       "updateSuggestedActions"               -> parseUpdateSuggestedActions v
+      "updateSpeedLimitNotification"         -> parseUpdateSpeedLimitNotification v
       "updateContactCloseBirthdays"          -> parseUpdateContactCloseBirthdays v
-      "updateAddChatMembersPrivacyForbidden" -> parseUpdateAddChatMembersPrivacyForbidden v
       "updateAutosaveSettings"               -> parseUpdateAutosaveSettings v
       "updateBusinessConnection"             -> parseUpdateBusinessConnection v
       "updateNewBusinessMessage"             -> parseUpdateNewBusinessMessage v
@@ -2415,6 +2427,14 @@ instance AT.FromJSON Update where
         pure $ UpdateChatActionBar
           { chat_id    = chat_id_
           , action_bar = action_bar_
+          }
+      parseUpdateChatBusinessBotManageBar :: A.Value -> AT.Parser Update
+      parseUpdateChatBusinessBotManageBar = A.withObject "UpdateChatBusinessBotManageBar" $ \o -> do
+        chat_id_                 <- o A..:?  "chat_id"
+        business_bot_manage_bar_ <- o A..:?  "business_bot_manage_bar"
+        pure $ UpdateChatBusinessBotManageBar
+          { chat_id                 = chat_id_
+          , business_bot_manage_bar = business_bot_manage_bar_
           }
       parseUpdateChatAvailableReactions :: A.Value -> AT.Parser Update
       parseUpdateChatAvailableReactions = A.withObject "UpdateChatAvailableReactions" $ \o -> do
@@ -3156,19 +3176,17 @@ instance AT.FromJSON Update where
           { added_actions   = added_actions_
           , removed_actions = removed_actions_
           }
+      parseUpdateSpeedLimitNotification :: A.Value -> AT.Parser Update
+      parseUpdateSpeedLimitNotification = A.withObject "UpdateSpeedLimitNotification" $ \o -> do
+        is_upload_ <- o A..:?  "is_upload"
+        pure $ UpdateSpeedLimitNotification
+          { is_upload = is_upload_
+          }
       parseUpdateContactCloseBirthdays :: A.Value -> AT.Parser Update
       parseUpdateContactCloseBirthdays = A.withObject "UpdateContactCloseBirthdays" $ \o -> do
         close_birthday_users_ <- o A..:?  "close_birthday_users"
         pure $ UpdateContactCloseBirthdays
           { close_birthday_users = close_birthday_users_
-          }
-      parseUpdateAddChatMembersPrivacyForbidden :: A.Value -> AT.Parser Update
-      parseUpdateAddChatMembersPrivacyForbidden = A.withObject "UpdateAddChatMembersPrivacyForbidden" $ \o -> do
-        chat_id_  <- o A..:?  "chat_id"
-        user_ids_ <- o A..:?  "user_ids"
-        pure $ UpdateAddChatMembersPrivacyForbidden
-          { chat_id  = chat_id_
-          , user_ids = user_ids_
           }
       parseUpdateAutosaveSettings :: A.Value -> AT.Parser Update
       parseUpdateAutosaveSettings = A.withObject "UpdateAutosaveSettings" $ \o -> do

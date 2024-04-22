@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Represents the type of a user. The following types are possible: regular users, deleted users and bots
+-- | Represents the type of user. The following types are possible: regular users, deleted users and bots
 data UserType
   = UserTypeRegular -- ^ A regular user
   | UserTypeDeleted -- ^ A deleted user or deleted bot. No information on the user besides the user identifier is available. It is not possible to perform any active actions on this type of user

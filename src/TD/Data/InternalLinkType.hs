@@ -38,6 +38,9 @@ data InternalLinkType
     , start_parameter      :: Maybe T.Text                                          -- ^ The parameter to be passed to sendBotStartMessage
     , administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected administrator rights for the bot; may be null
     }
+  | InternalLinkTypeBusinessChat -- ^ The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
+    { link_name :: Maybe T.Text -- ^ Name of the link
+    }
   | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the app
   | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
@@ -80,7 +83,7 @@ data InternalLinkType
     , nonce        :: Maybe T.Text -- ^ Unique request identifier provided by the service
     , callback_url :: Maybe T.Text -- ^ An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
     }
-  | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
+  | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     { hash         :: Maybe T.Text -- ^ Hash value from the link
     , phone_number :: Maybe T.Text -- ^ Phone number value from the link
     }
@@ -99,8 +102,9 @@ data InternalLinkType
     , port   :: Maybe Int                 -- ^ Proxy server port
     , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
-  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
+  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
     { chat_username :: Maybe T.Text -- ^ Username of the chat
+    , draft_text    :: Maybe T.Text -- ^ Draft text for message to send in the chat
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
@@ -125,8 +129,9 @@ data InternalLinkType
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
   | InternalLinkTypeUnsupportedProxy -- ^ The link is a link to an unsupported proxy. An alert can be shown to the user
-  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
+  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
     { phone_number :: Maybe T.Text -- ^ Phone number of the user
+    , draft_text   :: Maybe T.Text -- ^ Draft text for message to send in the chat
     }
   | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     { token :: Maybe T.Text -- ^ The token
@@ -201,6 +206,13 @@ instance I.ShortShow InternalLinkType where
         [ "bot_username"         `I.p` bot_username_
         , "start_parameter"      `I.p` start_parameter_
         , "administrator_rights" `I.p` administrator_rights_
+        ]
+  shortShow InternalLinkTypeBusinessChat
+    { link_name = link_name_
+    }
+      = "InternalLinkTypeBusinessChat"
+        ++ I.cc
+        [ "link_name" `I.p` link_name_
         ]
   shortShow InternalLinkTypeChangePhoneNumber
       = "InternalLinkTypeChangePhoneNumber"
@@ -341,10 +353,12 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypePublicChat
     { chat_username = chat_username_
+    , draft_text    = draft_text_
     }
       = "InternalLinkTypePublicChat"
         ++ I.cc
         [ "chat_username" `I.p` chat_username_
+        , "draft_text"    `I.p` draft_text_
         ]
   shortShow InternalLinkTypeQrCodeAuthentication
       = "InternalLinkTypeQrCodeAuthentication"
@@ -399,10 +413,12 @@ instance I.ShortShow InternalLinkType where
       = "InternalLinkTypeUnsupportedProxy"
   shortShow InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
+    , draft_text   = draft_text_
     }
       = "InternalLinkTypeUserPhoneNumber"
         ++ I.cc
         [ "phone_number" `I.p` phone_number_
+        , "draft_text"   `I.p` draft_text_
         ]
   shortShow InternalLinkTypeUserToken
     { token = token_
@@ -446,6 +462,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeBotAddToChannel"                       -> parseInternalLinkTypeBotAddToChannel v
       "internalLinkTypeBotStart"                              -> parseInternalLinkTypeBotStart v
       "internalLinkTypeBotStartInGroup"                       -> parseInternalLinkTypeBotStartInGroup v
+      "internalLinkTypeBusinessChat"                          -> parseInternalLinkTypeBusinessChat v
       "internalLinkTypeChangePhoneNumber"                     -> pure InternalLinkTypeChangePhoneNumber
       "internalLinkTypeChatBoost"                             -> parseInternalLinkTypeChatBoost v
       "internalLinkTypeChatFolderInvite"                      -> parseInternalLinkTypeChatFolderInvite v
@@ -534,6 +551,12 @@ instance AT.FromJSON InternalLinkType where
           { bot_username         = bot_username_
           , start_parameter      = start_parameter_
           , administrator_rights = administrator_rights_
+          }
+      parseInternalLinkTypeBusinessChat :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeBusinessChat = A.withObject "InternalLinkTypeBusinessChat" $ \o -> do
+        link_name_ <- o A..:?  "link_name"
+        pure $ InternalLinkTypeBusinessChat
+          { link_name = link_name_
           }
       parseInternalLinkTypeChatBoost :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeChatBoost = A.withObject "InternalLinkTypeChatBoost" $ \o -> do
@@ -648,8 +671,10 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypePublicChat :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypePublicChat = A.withObject "InternalLinkTypePublicChat" $ \o -> do
         chat_username_ <- o A..:?  "chat_username"
+        draft_text_    <- o A..:?  "draft_text"
         pure $ InternalLinkTypePublicChat
           { chat_username = chat_username_
+          , draft_text    = draft_text_
           }
       parseInternalLinkTypeSideMenuBot :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeSideMenuBot = A.withObject "InternalLinkTypeSideMenuBot" $ \o -> do
@@ -690,8 +715,10 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypeUserPhoneNumber :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
         phone_number_ <- o A..:?  "phone_number"
+        draft_text_   <- o A..:?  "draft_text"
         pure $ InternalLinkTypeUserPhoneNumber
           { phone_number = phone_number_
+          , draft_text   = draft_text_
           }
       parseInternalLinkTypeUserToken :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserToken = A.withObject "InternalLinkTypeUserToken" $ \o -> do
@@ -781,6 +808,13 @@ instance AT.ToJSON InternalLinkType where
         , "bot_username"         A..= bot_username_
         , "start_parameter"      A..= start_parameter_
         , "administrator_rights" A..= administrator_rights_
+        ]
+  toJSON InternalLinkTypeBusinessChat
+    { link_name = link_name_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "internalLinkTypeBusinessChat"
+        , "link_name" A..= link_name_
         ]
   toJSON InternalLinkTypeChangePhoneNumber
       = A.object
@@ -933,10 +967,12 @@ instance AT.ToJSON InternalLinkType where
         ]
   toJSON InternalLinkTypePublicChat
     { chat_username = chat_username_
+    , draft_text    = draft_text_
     }
       = A.object
         [ "@type"         A..= AT.String "internalLinkTypePublicChat"
         , "chat_username" A..= chat_username_
+        , "draft_text"    A..= draft_text_
         ]
   toJSON InternalLinkTypeQrCodeAuthentication
       = A.object
@@ -1001,10 +1037,12 @@ instance AT.ToJSON InternalLinkType where
         ]
   toJSON InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
+    , draft_text   = draft_text_
     }
       = A.object
         [ "@type"        A..= AT.String "internalLinkTypeUserPhoneNumber"
         , "phone_number" A..= phone_number_
+        , "draft_text"   A..= draft_text_
         ]
   toJSON InternalLinkTypeUserToken
     { token = token_

@@ -13,7 +13,7 @@ data BusinessFeature
   | BusinessFeatureGreetingMessage -- ^ The ability to set up a greeting message
   | BusinessFeatureAwayMessage -- ^ The ability to set up an away message
   | BusinessFeatureAccountLinks -- ^ The ability to create links to the business account with predefined message text
-  | BusinessFeatureIntro -- ^ The ability to customize intro
+  | BusinessFeatureStartPage -- ^ The ability to customize start page
   | BusinessFeatureBots -- ^ The ability to connect a bot to the account
   | BusinessFeatureEmojiStatus -- ^ The ability to show an emoji status along with the business name
   | BusinessFeatureChatFolderTags -- ^ The ability to display folder names for each chat in the chat list
@@ -33,8 +33,8 @@ instance I.ShortShow BusinessFeature where
       = "BusinessFeatureAwayMessage"
   shortShow BusinessFeatureAccountLinks
       = "BusinessFeatureAccountLinks"
-  shortShow BusinessFeatureIntro
-      = "BusinessFeatureIntro"
+  shortShow BusinessFeatureStartPage
+      = "BusinessFeatureStartPage"
   shortShow BusinessFeatureBots
       = "BusinessFeatureBots"
   shortShow BusinessFeatureEmojiStatus
@@ -55,7 +55,7 @@ instance AT.FromJSON BusinessFeature where
       "businessFeatureGreetingMessage" -> pure BusinessFeatureGreetingMessage
       "businessFeatureAwayMessage"     -> pure BusinessFeatureAwayMessage
       "businessFeatureAccountLinks"    -> pure BusinessFeatureAccountLinks
-      "businessFeatureIntro"           -> pure BusinessFeatureIntro
+      "businessFeatureStartPage"       -> pure BusinessFeatureStartPage
       "businessFeatureBots"            -> pure BusinessFeatureBots
       "businessFeatureEmojiStatus"     -> pure BusinessFeatureEmojiStatus
       "businessFeatureChatFolderTags"  -> pure BusinessFeatureChatFolderTags
@@ -89,9 +89,9 @@ instance AT.ToJSON BusinessFeature where
       = A.object
         [ "@type" A..= AT.String "businessFeatureAccountLinks"
         ]
-  toJSON BusinessFeatureIntro
+  toJSON BusinessFeatureStartPage
       = A.object
-        [ "@type" A..= AT.String "businessFeatureIntro"
+        [ "@type" A..= AT.String "businessFeatureStartPage"
         ]
   toJSON BusinessFeatureBots
       = A.object

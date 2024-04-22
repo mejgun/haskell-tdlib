@@ -152,7 +152,7 @@ data MessageContent
   | MessageVideoChatEnded -- ^ A message with information about an ended video chat
     { duration :: Maybe Int -- ^ Call duration, in seconds
     }
-  | MessageInviteVideoChatParticipants -- ^ A message with information about an invite to a video chat
+  | MessageInviteVideoChatParticipants -- ^ A message with information about an invitation to a video chat
     { group_call_id :: Maybe Int   -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
     , user_ids      :: Maybe [Int] -- ^ Invited user identifiers
     }
