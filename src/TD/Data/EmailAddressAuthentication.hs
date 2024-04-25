@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Contains authentication data for a email address
+-- | Contains authentication data for an email address
 data EmailAddressAuthentication
   = EmailAddressAuthenticationCode -- ^ An authentication code delivered to a user's email address
     { code :: Maybe T.Text -- ^ The code
