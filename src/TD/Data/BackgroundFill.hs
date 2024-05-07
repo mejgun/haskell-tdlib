@@ -16,7 +16,7 @@ data BackgroundFill
     , rotation_angle :: Maybe Int -- ^ Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
     }
   | BackgroundFillFreeformGradient -- ^ Describes a freeform gradient fill of a background
-    { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradients in the RGB24 format
+    { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradient in the RGB24 format
     }
   deriving (Eq, Show)
 

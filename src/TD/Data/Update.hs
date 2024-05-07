@@ -35,6 +35,7 @@ import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
+import qualified TD.Data.ReactionNotificationSettings as ReactionNotificationSettings
 import qualified TD.Data.Notification as Notification
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified TD.Data.NotificationGroup as NotificationGroup
@@ -329,6 +330,9 @@ data Update
     { scope                  :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which notification settings were updated
     , _notification_settings :: Maybe ScopeNotificationSettings.ScopeNotificationSettings -- ^ The new notification settings
     }
+  | UpdateReactionNotificationSettings -- ^ Notification settings for reactions were updated
+    { __notification_settings :: Maybe ReactionNotificationSettings.ReactionNotificationSettings -- ^ The new notification settings
+    }
   | UpdateNotification -- ^ A notification was changed
     { notification_group_id :: Maybe Int                       -- ^ Unique notification group identifier
     , notification          :: Maybe Notification.Notification -- ^ Changed notification
@@ -560,6 +564,7 @@ data Update
     { saved_messages_topic_id :: Maybe Int                                 -- ^ Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
+  | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
@@ -674,6 +679,7 @@ data Update
     , actor_user_id               :: Maybe Int                           -- ^ Identifier of the user, changing the rights
     , date                        :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the user rights were changed
     , invite_link                 :: Maybe ChatInviteLink.ChatInviteLink -- ^ If user has joined the chat using an invite link, the invite link; may be null
+    , via_join_request            :: Maybe Bool                          -- ^ True, if the user has joined the chat after sending a join request and being approved by an administrator
     , via_chat_folder_invite_link :: Maybe Bool                          -- ^ True, if the user has joined the chat using an invite link for a chat folder
     , old_chat_member             :: Maybe ChatMember.ChatMember         -- ^ Previous chat member
     , new_chat_member             :: Maybe ChatMember.ChatMember         -- ^ New chat member
@@ -1225,6 +1231,13 @@ instance I.ShortShow Update where
         [ "scope"                  `I.p` scope_
         , "_notification_settings" `I.p` _notification_settings_
         ]
+  shortShow UpdateReactionNotificationSettings
+    { __notification_settings = __notification_settings_
+    }
+      = "UpdateReactionNotificationSettings"
+        ++ I.cc
+        [ "__notification_settings" `I.p` __notification_settings_
+        ]
   shortShow UpdateNotification
     { notification_group_id = notification_group_id_
     , notification          = notification_
@@ -1745,6 +1758,8 @@ instance I.ShortShow Update where
         [ "saved_messages_topic_id" `I.p` saved_messages_topic_id_
         , "tags"                    `I.p` tags_
         ]
+  shortShow UpdateChatRevenueAmount
+      = "UpdateChatRevenueAmount"
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
     , weekly_count       = weekly_count_
@@ -1990,6 +2005,7 @@ instance I.ShortShow Update where
     , actor_user_id               = actor_user_id_
     , date                        = date_
     , invite_link                 = invite_link_
+    , via_join_request            = via_join_request_
     , via_chat_folder_invite_link = via_chat_folder_invite_link_
     , old_chat_member             = old_chat_member_
     , new_chat_member             = new_chat_member_
@@ -2000,6 +2016,7 @@ instance I.ShortShow Update where
         , "actor_user_id"               `I.p` actor_user_id_
         , "date"                        `I.p` date_
         , "invite_link"                 `I.p` invite_link_
+        , "via_join_request"            `I.p` via_join_request_
         , "via_chat_folder_invite_link" `I.p` via_chat_folder_invite_link_
         , "old_chat_member"             `I.p` old_chat_member_
         , "new_chat_member"             `I.p` new_chat_member_
@@ -2118,6 +2135,7 @@ instance AT.FromJSON Update where
       "updateQuickReplyShortcutMessages"     -> parseUpdateQuickReplyShortcutMessages v
       "updateForumTopicInfo"                 -> parseUpdateForumTopicInfo v
       "updateScopeNotificationSettings"      -> parseUpdateScopeNotificationSettings v
+      "updateReactionNotificationSettings"   -> parseUpdateReactionNotificationSettings v
       "updateNotification"                   -> parseUpdateNotification v
       "updateNotificationGroup"              -> parseUpdateNotificationGroup v
       "updateActiveNotifications"            -> parseUpdateActiveNotifications v
@@ -2176,6 +2194,7 @@ instance AT.FromJSON Update where
       "updateActiveEmojiReactions"           -> parseUpdateActiveEmojiReactions v
       "updateDefaultReactionType"            -> parseUpdateDefaultReactionType v
       "updateSavedMessagesTags"              -> parseUpdateSavedMessagesTags v
+      "updateChatRevenueAmount"              -> pure UpdateChatRevenueAmount
       "updateSpeechRecognitionTrial"         -> parseUpdateSpeechRecognitionTrial v
       "updateDiceEmojis"                     -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
@@ -2669,6 +2688,12 @@ instance AT.FromJSON Update where
         pure $ UpdateScopeNotificationSettings
           { scope                  = scope_
           , _notification_settings = _notification_settings_
+          }
+      parseUpdateReactionNotificationSettings :: A.Value -> AT.Parser Update
+      parseUpdateReactionNotificationSettings = A.withObject "UpdateReactionNotificationSettings" $ \o -> do
+        __notification_settings_ <- o A..:?  "notification_settings"
+        pure $ UpdateReactionNotificationSettings
+          { __notification_settings = __notification_settings_
           }
       parseUpdateNotification :: A.Value -> AT.Parser Update
       parseUpdateNotification = A.withObject "UpdateNotification" $ \o -> do
@@ -3356,6 +3381,7 @@ instance AT.FromJSON Update where
         actor_user_id_               <- o A..:?  "actor_user_id"
         date_                        <- o A..:?  "date"
         invite_link_                 <- o A..:?  "invite_link"
+        via_join_request_            <- o A..:?  "via_join_request"
         via_chat_folder_invite_link_ <- o A..:?  "via_chat_folder_invite_link"
         old_chat_member_             <- o A..:?  "old_chat_member"
         new_chat_member_             <- o A..:?  "new_chat_member"
@@ -3364,6 +3390,7 @@ instance AT.FromJSON Update where
           , actor_user_id               = actor_user_id_
           , date                        = date_
           , invite_link                 = invite_link_
+          , via_join_request            = via_join_request_
           , via_chat_folder_invite_link = via_chat_folder_invite_link_
           , old_chat_member             = old_chat_member_
           , new_chat_member             = new_chat_member_

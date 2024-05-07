@@ -4,7 +4,7 @@ module TD.Data.Poll
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.PollOption as PollOption
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.PollType as PollType
@@ -12,7 +12,7 @@ import qualified TD.Data.PollType as PollType
 data Poll
   = Poll -- ^ Describes a poll
     { _id               :: Maybe Int                           -- ^ Unique poll identifier
-    , question          :: Maybe T.Text                        -- ^ Poll question; 1-300 characters
+    , question          :: Maybe FormattedText.FormattedText   -- ^ Poll question; 1-300 characters. Only custom emoji entities are allowed
     , options           :: Maybe [PollOption.PollOption]       -- ^ List of poll answer options
     , total_voter_count :: Maybe Int                           -- ^ Total number of voters, participating in the poll
     , recent_voter_ids  :: Maybe [MessageSender.MessageSender] -- ^ Identifiers of recent voters, if the poll is non-anonymous

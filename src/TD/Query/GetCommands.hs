@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.BotCommandScope as BotCommandScope
 import qualified Data.Text as T
 
--- | Returns list of commands supported by the bot for the given user scope and language; for bots only. Returns 'TD.Data.BotCommands.BotCommands'
+-- | Returns the list of commands supported by the bot for the given user scope and language; for bots only. Returns 'TD.Data.BotCommands.BotCommands'
 data GetCommands
   = GetCommands
     { scope         :: Maybe BotCommandScope.BotCommandScope -- ^ The scope to which the commands are relevant; pass null to get commands in the default bot command scope

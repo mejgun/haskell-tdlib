@@ -23,7 +23,8 @@ data UserFullInfo
     , has_private_calls                            :: Maybe Bool                                        -- ^ True, if the user can't be called due to their privacy settings
     , has_private_forwards                         :: Maybe Bool                                        -- ^ True, if the user can't be linked in forwarded messages due to their privacy settings
     , has_restricted_voice_and_video_note_messages :: Maybe Bool                                        -- ^ True, if voice and video notes can't be sent or forwarded to the user
-    , has_pinned_stories                           :: Maybe Bool                                        -- ^ True, if the user has pinned stories
+    , has_posted_to_profile_stories                :: Maybe Bool                                        -- ^ True, if the user has posted to profile stories
+    , has_sponsored_messages_enabled               :: Maybe Bool                                        -- ^ True, if the user always enabled sponsored messages; known only for the current user
     , need_phone_number_privacy_exception          :: Maybe Bool                                        -- ^ True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     , set_chat_background                          :: Maybe Bool                                        -- ^ True, if the user set chat background for both chat users and it wasn't reverted yet
     , bio                                          :: Maybe FormattedText.FormattedText                 -- ^ A short user bio; may be null for bots
@@ -47,7 +48,8 @@ instance I.ShortShow UserFullInfo where
     , has_private_calls                            = has_private_calls_
     , has_private_forwards                         = has_private_forwards_
     , has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_
-    , has_pinned_stories                           = has_pinned_stories_
+    , has_posted_to_profile_stories                = has_posted_to_profile_stories_
+    , has_sponsored_messages_enabled               = has_sponsored_messages_enabled_
     , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
     , set_chat_background                          = set_chat_background_
     , bio                                          = bio_
@@ -69,7 +71,8 @@ instance I.ShortShow UserFullInfo where
         , "has_private_calls"                            `I.p` has_private_calls_
         , "has_private_forwards"                         `I.p` has_private_forwards_
         , "has_restricted_voice_and_video_note_messages" `I.p` has_restricted_voice_and_video_note_messages_
-        , "has_pinned_stories"                           `I.p` has_pinned_stories_
+        , "has_posted_to_profile_stories"                `I.p` has_posted_to_profile_stories_
+        , "has_sponsored_messages_enabled"               `I.p` has_sponsored_messages_enabled_
         , "need_phone_number_privacy_exception"          `I.p` need_phone_number_privacy_exception_
         , "set_chat_background"                          `I.p` set_chat_background_
         , "bio"                                          `I.p` bio_
@@ -101,7 +104,8 @@ instance AT.FromJSON UserFullInfo where
         has_private_calls_                            <- o A..:?  "has_private_calls"
         has_private_forwards_                         <- o A..:?  "has_private_forwards"
         has_restricted_voice_and_video_note_messages_ <- o A..:?  "has_restricted_voice_and_video_note_messages"
-        has_pinned_stories_                           <- o A..:?  "has_pinned_stories"
+        has_posted_to_profile_stories_                <- o A..:?  "has_posted_to_profile_stories"
+        has_sponsored_messages_enabled_               <- o A..:?  "has_sponsored_messages_enabled"
         need_phone_number_privacy_exception_          <- o A..:?  "need_phone_number_privacy_exception"
         set_chat_background_                          <- o A..:?  "set_chat_background"
         bio_                                          <- o A..:?  "bio"
@@ -121,7 +125,8 @@ instance AT.FromJSON UserFullInfo where
           , has_private_calls                            = has_private_calls_
           , has_private_forwards                         = has_private_forwards_
           , has_restricted_voice_and_video_note_messages = has_restricted_voice_and_video_note_messages_
-          , has_pinned_stories                           = has_pinned_stories_
+          , has_posted_to_profile_stories                = has_posted_to_profile_stories_
+          , has_sponsored_messages_enabled               = has_sponsored_messages_enabled_
           , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
           , set_chat_background                          = set_chat_background_
           , bio                                          = bio_

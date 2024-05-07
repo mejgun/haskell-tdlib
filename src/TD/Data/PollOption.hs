@@ -4,15 +4,15 @@ module TD.Data.PollOption
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 
 data PollOption
   = PollOption -- ^ Describes one answer option of a poll
-    { text            :: Maybe T.Text -- ^ Option text; 1-100 characters
-    , voter_count     :: Maybe Int    -- ^ Number of voters for this option, available only for closed or voted polls
-    , vote_percentage :: Maybe Int    -- ^ The percentage of votes for this option; 0-100
-    , is_chosen       :: Maybe Bool   -- ^ True, if the option was chosen by the user
-    , is_being_chosen :: Maybe Bool   -- ^ True, if the option is being chosen by a pending setPollAnswer request
+    { text            :: Maybe FormattedText.FormattedText -- ^ Option text; 1-100 characters. Only custom emoji entities are allowed
+    , voter_count     :: Maybe Int                         -- ^ Number of voters for this option, available only for closed or voted polls
+    , vote_percentage :: Maybe Int                         -- ^ The percentage of votes for this option; 0-100
+    , is_chosen       :: Maybe Bool                        -- ^ True, if the option was chosen by the user
+    , is_being_chosen :: Maybe Bool                        -- ^ True, if the option is being chosen by a pending setPollAnswer request
     }
   deriving (Eq, Show)
 

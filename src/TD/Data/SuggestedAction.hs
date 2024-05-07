@@ -4,6 +4,7 @@ module TD.Data.SuggestedAction
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Describes an action suggested to the current user
 data SuggestedAction
@@ -22,6 +23,9 @@ data SuggestedAction
   | SuggestedActionSubscribeToAnnualPremium -- ^ Suggests the user to subscribe to the Premium subscription with annual payments
   | SuggestedActionGiftPremiumForChristmas -- ^ Suggests the user to gift Telegram Premium to friends for Christmas
   | SuggestedActionSetBirthdate -- ^ Suggests the user to set birthdate
+  | SuggestedActionExtendPremium -- ^ Suggests the user to extend their expiring Telegram Premium subscription
+    { manage_premium_subscription_url :: Maybe T.Text -- ^ A URL for managing Telegram Premium subscription
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -57,6 +61,13 @@ instance I.ShortShow SuggestedAction where
       = "SuggestedActionGiftPremiumForChristmas"
   shortShow SuggestedActionSetBirthdate
       = "SuggestedActionSetBirthdate"
+  shortShow SuggestedActionExtendPremium
+    { manage_premium_subscription_url = manage_premium_subscription_url_
+    }
+      = "SuggestedActionExtendPremium"
+        ++ I.cc
+        [ "manage_premium_subscription_url" `I.p` manage_premium_subscription_url_
+        ]
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -74,6 +85,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionSubscribeToAnnualPremium"     -> pure SuggestedActionSubscribeToAnnualPremium
       "suggestedActionGiftPremiumForChristmas"      -> pure SuggestedActionGiftPremiumForChristmas
       "suggestedActionSetBirthdate"                 -> pure SuggestedActionSetBirthdate
+      "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
       _                                             -> mempty
     
     where
@@ -88,6 +100,12 @@ instance AT.FromJSON SuggestedAction where
         authorization_delay_ <- o A..:?  "authorization_delay"
         pure $ SuggestedActionSetPassword
           { authorization_delay = authorization_delay_
+          }
+      parseSuggestedActionExtendPremium :: A.Value -> AT.Parser SuggestedAction
+      parseSuggestedActionExtendPremium = A.withObject "SuggestedActionExtendPremium" $ \o -> do
+        manage_premium_subscription_url_ <- o A..:?  "manage_premium_subscription_url"
+        pure $ SuggestedActionExtendPremium
+          { manage_premium_subscription_url = manage_premium_subscription_url_
           }
   parseJSON _ = mempty
 
@@ -141,5 +159,12 @@ instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionSetBirthdate
       = A.object
         [ "@type" A..= AT.String "suggestedActionSetBirthdate"
+        ]
+  toJSON SuggestedActionExtendPremium
+    { manage_premium_subscription_url = manage_premium_subscription_url_
+    }
+      = A.object
+        [ "@type"                           A..= AT.String "suggestedActionExtendPremium"
+        , "manage_premium_subscription_url" A..= manage_premium_subscription_url_
         ]
 

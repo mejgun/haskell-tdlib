@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned. Returns 'TD.Data.Stickers.Stickers'
+-- | Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned. Returns 'TD.Data.Stickers.Stickers'
 data GetCustomEmojiStickers
   = GetCustomEmojiStickers
     { custom_emoji_ids :: Maybe [Int] -- ^ Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously

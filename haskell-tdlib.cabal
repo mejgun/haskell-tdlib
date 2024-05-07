@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.30.0
+version:        2.0.31.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -153,6 +153,7 @@ library
       TD.Data.ChatPhotoSticker
       TD.Data.ChatPhotoStickerType
       TD.Data.ChatPosition
+      TD.Data.ChatRevenueAmount
       TD.Data.ChatRevenueStatistics
       TD.Data.ChatRevenueTransaction
       TD.Data.ChatRevenueTransactions
@@ -199,6 +200,7 @@ library
       TD.Data.EmailAddressResetState
       TD.Data.EmojiCategories
       TD.Data.EmojiCategory
+      TD.Data.EmojiCategorySource
       TD.Data.EmojiCategoryType
       TD.Data.EmojiKeyword
       TD.Data.EmojiKeywords
@@ -326,7 +328,6 @@ library
       TD.Data.MessageSendOptions
       TD.Data.MessageSource
       TD.Data.MessageSponsor
-      TD.Data.MessageSponsorType
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
       TD.Data.MessageViewer
@@ -410,6 +411,8 @@ library
       TD.Data.QuickReplyMessage
       TD.Data.QuickReplyMessages
       TD.Data.QuickReplyShortcut
+      TD.Data.ReactionNotificationSettings
+      TD.Data.ReactionNotificationSource
       TD.Data.ReactionType
       TD.Data.ReactionUnavailabilityReason
       TD.Data.ReadDatePrivacySettings
@@ -557,6 +560,7 @@ library
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
       TD.Query.AddQuickReplyShortcutMessage
+      TD.Query.AddQuickReplyShortcutMessageAlbum
       TD.Query.AddRecentlyFoundChat
       TD.Query.AddRecentSticker
       TD.Query.AddSavedAnimation
@@ -764,7 +768,7 @@ library
       TD.Query.GetChatMessagePosition
       TD.Query.GetChatNotificationSettingsExceptions
       TD.Query.GetChatPinnedMessage
-      TD.Query.GetChatPinnedStories
+      TD.Query.GetChatPostedToChatPageStories
       TD.Query.GetChatRevenueStatistics
       TD.Query.GetChatRevenueTransactions
       TD.Query.GetChatRevenueWithdrawalUrl
@@ -892,6 +896,7 @@ library
       TD.Query.GetRecentlyVisitedTMeUrls
       TD.Query.GetRecentStickers
       TD.Query.GetRecommendedChatFolders
+      TD.Query.GetRecommendedChats
       TD.Query.GetRecoveryEmailAddress
       TD.Query.GetRemoteFile
       TD.Query.GetRepliedMessage
@@ -946,6 +951,7 @@ library
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
       TD.Query.GetWebPagePreview
+      TD.Query.HideContactCloseBirthdays
       TD.Query.HideSuggestedAction
       TD.Query.ImportContacts
       TD.Query.ImportMessages
@@ -1018,10 +1024,12 @@ library
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceStickerInSet
       TD.Query.ReplaceVideoChatRtmpUrl
+      TD.Query.ReportAuthenticationCodeMissing
       TD.Query.ReportChat
       TD.Query.ReportChatPhoto
       TD.Query.ReportChatSponsoredMessage
       TD.Query.ReportMessageReactions
+      TD.Query.ReportPhoneNumberCodeMissing
       TD.Query.ReportStory
       TD.Query.ReportSupergroupAntiSpamFalsePositive
       TD.Query.ReportSupergroupSpam
@@ -1129,6 +1137,7 @@ library
       TD.Query.SetChatNotificationSettings
       TD.Query.SetChatPermissions
       TD.Query.SetChatPhoto
+      TD.Query.SetChatPinnedStories
       TD.Query.SetChatProfileAccentColor
       TD.Query.SetChatSlowModeDelay
       TD.Query.SetChatTheme
@@ -1176,6 +1185,7 @@ library
       TD.Query.SetProfileAccentColor
       TD.Query.SetProfilePhoto
       TD.Query.SetQuickReplyShortcutName
+      TD.Query.SetReactionNotificationSettings
       TD.Query.SetReadDatePrivacySettings
       TD.Query.SetRecoveryEmailAddress
       TD.Query.SetSavedMessagesTagLabel
@@ -1244,10 +1254,11 @@ library
       TD.Query.ToggleGroupCallParticipantIsHandRaised
       TD.Query.ToggleGroupCallParticipantIsMuted
       TD.Query.ToggleGroupCallScreenSharingIsPaused
+      TD.Query.ToggleHasSponsoredMessagesEnabled
       TD.Query.ToggleSavedMessagesTopicIsPinned
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats
-      TD.Query.ToggleStoryIsPinned
+      TD.Query.ToggleStoryIsPostedToChatPage
       TD.Query.ToggleSupergroupCanHaveSponsoredMessages
       TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled
       TD.Query.ToggleSupergroupHasHiddenMembers

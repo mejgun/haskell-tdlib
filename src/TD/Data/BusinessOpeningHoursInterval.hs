@@ -9,8 +9,8 @@ import qualified TD.Lib.Internal as I
 
 data BusinessOpeningHoursInterval
   = BusinessOpeningHoursInterval -- ^ Describes an interval of time when the business is open
-    { start_minute :: Maybe Int -- ^ The first minute of the interval since start of the week; 0-7*24*60
-    , end_minute   :: Maybe Int -- ^ The first minute after the end of the interval since start of the week; 1-8*24*60
+    { start_minute :: Maybe Int -- ^ The minute's sequence number in a week, starting on Monday, marking the start of the time interval during which the business is open; 0-7*24*60
+    , end_minute   :: Maybe Int -- ^ The minute's sequence number in a week, starting on Monday, marking the end of the time interval during which the business is open; 1-8*24*60
     }
   deriving (Eq, Show)
 

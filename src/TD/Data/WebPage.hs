@@ -43,6 +43,7 @@ data WebPage
     , voice_note           :: Maybe VoiceNote.VoiceNote         -- ^ Preview of the content as a voice note, if available; may be null
     , story_sender_chat_id :: Maybe Int                         -- ^ The identifier of the sender of the previewed story; 0 if none
     , story_id             :: Maybe Int                         -- ^ The identifier of the previewed story; 0 if none
+    , stickers             :: Maybe [Sticker.Sticker]           -- ^ Up to 4 stickers from the sticker set available via the link
     , instant_view_version :: Maybe Int                         -- ^ Version of web page instant view (currently, can be 1 or 2); 0 if none
     }
   deriving (Eq, Show)
@@ -75,6 +76,7 @@ instance I.ShortShow WebPage where
     , voice_note           = voice_note_
     , story_sender_chat_id = story_sender_chat_id_
     , story_id             = story_id_
+    , stickers             = stickers_
     , instant_view_version = instant_view_version_
     }
       = "WebPage"
@@ -105,6 +107,7 @@ instance I.ShortShow WebPage where
         , "voice_note"           `I.p` voice_note_
         , "story_sender_chat_id" `I.p` story_sender_chat_id_
         , "story_id"             `I.p` story_id_
+        , "stickers"             `I.p` stickers_
         , "instant_view_version" `I.p` instant_view_version_
         ]
 
@@ -145,6 +148,7 @@ instance AT.FromJSON WebPage where
         voice_note_           <- o A..:?  "voice_note"
         story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
         story_id_             <- o A..:?  "story_id"
+        stickers_             <- o A..:?  "stickers"
         instant_view_version_ <- o A..:?  "instant_view_version"
         pure $ WebPage
           { url                  = url_
@@ -173,6 +177,7 @@ instance AT.FromJSON WebPage where
           , voice_note           = voice_note_
           , story_sender_chat_id = story_sender_chat_id_
           , story_id             = story_id_
+          , stickers             = stickers_
           , instant_view_version = instant_view_version_
           }
   parseJSON _ = mempty

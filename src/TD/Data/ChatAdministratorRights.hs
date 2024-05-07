@@ -21,7 +21,7 @@ data ChatAdministratorRights
     , can_promote_members    :: Maybe Bool -- ^ True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     , can_manage_video_chats :: Maybe Bool -- ^ True, if the administrator can manage video chats
     , can_post_stories       :: Maybe Bool -- ^ True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only
-    , can_edit_stories       :: Maybe Bool -- ^ True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to supergroups and channels only
+    , can_edit_stories       :: Maybe Bool -- ^ True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access story archive; applicable to supergroups and channels only
     , can_delete_stories     :: Maybe Bool -- ^ True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only
     , is_anonymous           :: Maybe Bool -- ^ True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     }

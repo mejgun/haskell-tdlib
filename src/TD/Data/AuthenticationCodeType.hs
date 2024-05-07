@@ -9,13 +9,19 @@ import qualified Data.ByteString as BS
 
 -- | Provides information about the method by which an authentication code is delivered to the user
 data AuthenticationCodeType
-  = AuthenticationCodeTypeTelegramMessage -- ^ An authentication code is delivered via a private Telegram message, which can be viewed from another active session
+  = AuthenticationCodeTypeTelegramMessage -- ^ A digit-only authentication code is delivered via a private Telegram message, which can be viewed from another active session
     { _length :: Maybe Int -- ^ Length of the code
     }
-  | AuthenticationCodeTypeSms -- ^ An authentication code is delivered via an SMS message to the specified phone number; applications may not receive this type of code
+  | AuthenticationCodeTypeSms -- ^ A digit-only authentication code is delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
     { _length :: Maybe Int -- ^ Length of the code
     }
-  | AuthenticationCodeTypeCall -- ^ An authentication code is delivered via a phone call to the specified phone number
+  | AuthenticationCodeTypeSmsWord -- ^ An authentication code is a word delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    { first_letter :: Maybe T.Text -- ^ The first letters of the word if known
+    }
+  | AuthenticationCodeTypeSmsPhrase -- ^ An authentication code is a phrase from multiple words delivered via an SMS message to the specified phone number; non-official applications may not receive this type of code
+    { first_word :: Maybe T.Text -- ^ The first word of the phrase if known
+    }
+  | AuthenticationCodeTypeCall -- ^ A digit-only authentication code is delivered via a phone call to the specified phone number
     { _length :: Maybe Int -- ^ Length of the code
     }
   | AuthenticationCodeTypeFlashCall -- ^ An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number that calls is the code that must be entered automatically
@@ -25,15 +31,15 @@ data AuthenticationCodeType
     { phone_number_prefix :: Maybe T.Text -- ^ Prefix of the phone number from which the call will be made
     , _length             :: Maybe Int    -- ^ Number of digits in the code, excluding the prefix
     }
-  | AuthenticationCodeTypeFragment -- ^ An authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
+  | AuthenticationCodeTypeFragment -- ^ A digit-only authentication code is delivered to https://fragment.com. The user must be logged in there via a wallet owning the phone number's NFT
     { url     :: Maybe T.Text -- ^ URL to open to receive the code
     , _length :: Maybe Int    -- ^ Length of the code
     }
-  | AuthenticationCodeTypeFirebaseAndroid -- ^ An authentication code is delivered via Firebase Authentication to the official Android application
+  | AuthenticationCodeTypeFirebaseAndroid -- ^ A digit-only authentication code is delivered via Firebase Authentication to the official Android application
     { nonce   :: Maybe BS.ByteString -- ^ Nonce to pass to the SafetyNet Attestation API
     , _length :: Maybe Int           -- ^ Length of the code
     }
-  | AuthenticationCodeTypeFirebaseIos -- ^ An authentication code is delivered via Firebase Authentication to the official iOS application
+  | AuthenticationCodeTypeFirebaseIos -- ^ A digit-only authentication code is delivered via Firebase Authentication to the official iOS application
     { receipt      :: Maybe T.Text -- ^ Receipt of successful application token validation to compare with receipt from push notification
     , push_timeout :: Maybe Int    -- ^ Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
     , _length      :: Maybe Int    -- ^ Length of the code
@@ -54,6 +60,20 @@ instance I.ShortShow AuthenticationCodeType where
       = "AuthenticationCodeTypeSms"
         ++ I.cc
         [ "_length" `I.p` _length_
+        ]
+  shortShow AuthenticationCodeTypeSmsWord
+    { first_letter = first_letter_
+    }
+      = "AuthenticationCodeTypeSmsWord"
+        ++ I.cc
+        [ "first_letter" `I.p` first_letter_
+        ]
+  shortShow AuthenticationCodeTypeSmsPhrase
+    { first_word = first_word_
+    }
+      = "AuthenticationCodeTypeSmsPhrase"
+        ++ I.cc
+        [ "first_word" `I.p` first_word_
         ]
   shortShow AuthenticationCodeTypeCall
     { _length = _length_
@@ -115,6 +135,8 @@ instance AT.FromJSON AuthenticationCodeType where
     case t of
       "authenticationCodeTypeTelegramMessage" -> parseAuthenticationCodeTypeTelegramMessage v
       "authenticationCodeTypeSms"             -> parseAuthenticationCodeTypeSms v
+      "authenticationCodeTypeSmsWord"         -> parseAuthenticationCodeTypeSmsWord v
+      "authenticationCodeTypeSmsPhrase"       -> parseAuthenticationCodeTypeSmsPhrase v
       "authenticationCodeTypeCall"            -> parseAuthenticationCodeTypeCall v
       "authenticationCodeTypeFlashCall"       -> parseAuthenticationCodeTypeFlashCall v
       "authenticationCodeTypeMissedCall"      -> parseAuthenticationCodeTypeMissedCall v
@@ -135,6 +157,18 @@ instance AT.FromJSON AuthenticationCodeType where
         _length_ <- o A..:?  "length"
         pure $ AuthenticationCodeTypeSms
           { _length = _length_
+          }
+      parseAuthenticationCodeTypeSmsWord :: A.Value -> AT.Parser AuthenticationCodeType
+      parseAuthenticationCodeTypeSmsWord = A.withObject "AuthenticationCodeTypeSmsWord" $ \o -> do
+        first_letter_ <- o A..:?  "first_letter"
+        pure $ AuthenticationCodeTypeSmsWord
+          { first_letter = first_letter_
+          }
+      parseAuthenticationCodeTypeSmsPhrase :: A.Value -> AT.Parser AuthenticationCodeType
+      parseAuthenticationCodeTypeSmsPhrase = A.withObject "AuthenticationCodeTypeSmsPhrase" $ \o -> do
+        first_word_ <- o A..:?  "first_word"
+        pure $ AuthenticationCodeTypeSmsPhrase
+          { first_word = first_word_
           }
       parseAuthenticationCodeTypeCall :: A.Value -> AT.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeCall = A.withObject "AuthenticationCodeTypeCall" $ \o -> do

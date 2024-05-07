@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used. Returns 'TD.Data.NotificationSounds.NotificationSounds'
+-- | Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used. Returns 'TD.Data.NotificationSounds.NotificationSounds'
 data GetSavedNotificationSounds
   = GetSavedNotificationSounds
   deriving (Eq, Show)

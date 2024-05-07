@@ -86,7 +86,7 @@ data InputMessageContent
     , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; may be null if none; pass null if none; private chats only
     }
   | InputMessageVoiceNote -- ^ A voice note message
-    { voice_note         :: Maybe InputFile.InputFile                             -- ^ Voice note to be sent
+    { voice_note         :: Maybe InputFile.InputFile                             -- ^ Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio
     , duration           :: Maybe Int                                             -- ^ Duration of the voice note, in seconds
     , waveform           :: Maybe BS.ByteString                                   -- ^ Waveform representation of the voice note in 5-bit format
     , caption            :: Maybe FormattedText.FormattedText                     -- ^ Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
@@ -94,7 +94,7 @@ data InputMessageContent
     }
   | InputMessageLocation -- ^ A message with a location
     { location               :: Maybe Location.Location -- ^ Location to be sent
-    , live_period            :: Maybe Int               -- ^ Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
+    , live_period            :: Maybe Int               -- ^ Period for which the location can be updated, in seconds; must be between 60 and 86400 for a temporary live location, 0x7FFFFFFF for permanent live location, and 0 otherwise
     , heading                :: Maybe Int               -- ^ For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     , proximity_alert_radius :: Maybe Int               -- ^ For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
     }
@@ -127,13 +127,13 @@ data InputMessageContent
     , extended_media_content :: Maybe InputMessageContent -- ^ The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
     }
   | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
-    { question     :: Maybe T.Text            -- ^ Poll question; 1-255 characters (up to 300 characters for bots)
-    , options      :: Maybe [T.Text]          -- ^ List of poll answer options, 2-10 strings 1-100 characters each
-    , is_anonymous :: Maybe Bool              -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
-    , _type        :: Maybe PollType.PollType -- ^ Type of the poll
-    , open_period  :: Maybe Int               -- ^ Amount of time the poll will be active after creation, in seconds; for bots only
-    , close_date   :: Maybe Int               -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
-    , is_closed    :: Maybe Bool              -- ^ True, if the poll needs to be sent already closed; for bots only
+    { question     :: Maybe FormattedText.FormattedText   -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
+    , options      :: Maybe [FormattedText.FormattedText] -- ^ List of poll answer options, 2-10 strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
+    , is_anonymous :: Maybe Bool                          -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
+    , _type        :: Maybe PollType.PollType             -- ^ Type of the poll
+    , open_period  :: Maybe Int                           -- ^ Amount of time the poll will be active after creation, in seconds; for bots only
+    , close_date   :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
+    , is_closed    :: Maybe Bool                          -- ^ True, if the poll needs to be sent already closed; for bots only
     }
   | InputMessageStory -- ^ A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
     { story_sender_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story

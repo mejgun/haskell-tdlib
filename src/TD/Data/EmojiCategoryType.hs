@@ -7,7 +7,8 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes type of emoji category
 data EmojiCategoryType
-  = EmojiCategoryTypeDefault -- ^ The category must be used by default
+  = EmojiCategoryTypeDefault -- ^ The category must be used by default (e.g., for custom emoji or animation search)
+  | EmojiCategoryTypeRegularStickers -- ^ The category must be used by default for regular sticker selection. It may contain greeting emoji category and Premium stickers
   | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection
   | EmojiCategoryTypeChatPhoto -- ^ The category must be used for chat photo emoji selection
   deriving (Eq, Show)
@@ -15,6 +16,8 @@ data EmojiCategoryType
 instance I.ShortShow EmojiCategoryType where
   shortShow EmojiCategoryTypeDefault
       = "EmojiCategoryTypeDefault"
+  shortShow EmojiCategoryTypeRegularStickers
+      = "EmojiCategoryTypeRegularStickers"
   shortShow EmojiCategoryTypeEmojiStatus
       = "EmojiCategoryTypeEmojiStatus"
   shortShow EmojiCategoryTypeChatPhoto
@@ -25,10 +28,11 @@ instance AT.FromJSON EmojiCategoryType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "emojiCategoryTypeDefault"     -> pure EmojiCategoryTypeDefault
-      "emojiCategoryTypeEmojiStatus" -> pure EmojiCategoryTypeEmojiStatus
-      "emojiCategoryTypeChatPhoto"   -> pure EmojiCategoryTypeChatPhoto
-      _                              -> mempty
+      "emojiCategoryTypeDefault"         -> pure EmojiCategoryTypeDefault
+      "emojiCategoryTypeRegularStickers" -> pure EmojiCategoryTypeRegularStickers
+      "emojiCategoryTypeEmojiStatus"     -> pure EmojiCategoryTypeEmojiStatus
+      "emojiCategoryTypeChatPhoto"       -> pure EmojiCategoryTypeChatPhoto
+      _                                  -> mempty
     
   parseJSON _ = mempty
 
@@ -36,6 +40,10 @@ instance AT.ToJSON EmojiCategoryType where
   toJSON EmojiCategoryTypeDefault
       = A.object
         [ "@type" A..= AT.String "emojiCategoryTypeDefault"
+        ]
+  toJSON EmojiCategoryTypeRegularStickers
+      = A.object
+        [ "@type" A..= AT.String "emojiCategoryTypeRegularStickers"
         ]
   toJSON EmojiCategoryTypeEmojiStatus
       = A.object

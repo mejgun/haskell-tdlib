@@ -10,10 +10,10 @@ import qualified TD.Data.SpeechRecognitionResult as SpeechRecognitionResult
 import qualified TD.Data.File as File
 
 data VoiceNote
-  = VoiceNote -- ^ Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
+  = VoiceNote -- ^ Describes a voice note
     { duration                  :: Maybe Int                                             -- ^ Duration of the voice note, in seconds; as defined by the sender
     , waveform                  :: Maybe BS.ByteString                                   -- ^ A waveform representation of the voice note in 5-bit format
-    , mime_type                 :: Maybe T.Text                                          -- ^ MIME type of the file; as defined by the sender
+    , mime_type                 :: Maybe T.Text                                          -- ^ MIME type of the file; as defined by the sender. Usually, one of "audio/ogg" for Opus in an OGG container, "audio/mpeg" for an MP3 audio, or "audio/mp4" for an M4A audio
     , speech_recognition_result :: Maybe SpeechRecognitionResult.SpeechRecognitionResult -- ^ Result of speech recognition in the voice note; may be null
     , voice                     :: Maybe File.File                                       -- ^ File containing the voice note
     }
