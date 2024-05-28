@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.32.0
+version:        2.0.33.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -211,6 +211,7 @@ library
       TD.Data.EncryptedCredentials
       TD.Data.EncryptedPassportElement
       TD.Data.Error
+      TD.Data.FactCheck
       TD.Data.FailedToAddMember
       TD.Data.FailedToAddMembers
       TD.Data.File
@@ -304,6 +305,8 @@ library
       TD.Data.MessageCalendarDay
       TD.Data.MessageContent
       TD.Data.MessageCopyOptions
+      TD.Data.MessageEffect
+      TD.Data.MessageEffectType
       TD.Data.MessageExtendedMedia
       TD.Data.MessageFileType
       TD.Data.MessageForwardInfo
@@ -365,9 +368,11 @@ library
       TD.Data.PassportSuitableElement
       TD.Data.PasswordState
       TD.Data.PaymentForm
+      TD.Data.PaymentFormType
       TD.Data.PaymentOption
       TD.Data.PaymentProvider
       TD.Data.PaymentReceipt
+      TD.Data.PaymentReceiptType
       TD.Data.PaymentResult
       TD.Data.PersonalDetails
       TD.Data.PersonalDocument
@@ -397,6 +402,7 @@ library
       TD.Data.PremiumStatePaymentOption
       TD.Data.PremiumStoryFeature
       TD.Data.PrepaidPremiumGiveaway
+      TD.Data.ProductInfo
       TD.Data.ProfileAccentColor
       TD.Data.ProfileAccentColors
       TD.Data.ProfilePhoto
@@ -424,6 +430,7 @@ library
       TD.Data.ReportChatSponsoredMessageOption
       TD.Data.ReportChatSponsoredMessageResult
       TD.Data.ReportReason
+      TD.Data.ResendCodeReason
       TD.Data.ResetPasswordResult
       TD.Data.RichText
       TD.Data.RtmpUrl
@@ -448,6 +455,12 @@ library
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
       TD.Data.SponsoredMessages
+      TD.Data.StarPaymentOption
+      TD.Data.StarPaymentOptions
+      TD.Data.StarTransaction
+      TD.Data.StarTransactionDirection
+      TD.Data.StarTransactions
+      TD.Data.StarTransactionSource
       TD.Data.StatisticalGraph
       TD.Data.StatisticalValue
       TD.Data.Sticker
@@ -584,7 +597,7 @@ library
       TD.Query.CancelPasswordReset
       TD.Query.CancelPreliminaryUploadFile
       TD.Query.CancelRecoveryEmailAddressVerification
-      TD.Query.CanPurchasePremium
+      TD.Query.CanPurchaseFromStore
       TD.Query.CanSendMessageToUser
       TD.Query.CanSendStory
       TD.Query.CanTransferOwnership
@@ -615,6 +628,7 @@ library
       TD.Query.ClearRecentlyFoundChats
       TD.Query.ClearRecentReactions
       TD.Query.ClearRecentStickers
+      TD.Query.ClearSearchedForHashtags
       TD.Query.ClickAnimatedEmojiMessage
       TD.Query.ClickChatSponsoredMessage
       TD.Query.ClickPremiumSubscriptionButton
@@ -852,6 +866,7 @@ library
       TD.Query.GetMessage
       TD.Query.GetMessageAddedReactions
       TD.Query.GetMessageAvailableReactions
+      TD.Query.GetMessageEffect
       TD.Query.GetMessageEmbeddingCode
       TD.Query.GetMessageFileType
       TD.Query.GetMessageImportConfirmationText
@@ -908,7 +923,10 @@ library
       TD.Query.GetSavedNotificationSounds
       TD.Query.GetSavedOrderInfo
       TD.Query.GetScopeNotificationSettings
+      TD.Query.GetSearchedForHashtags
       TD.Query.GetSecretChat
+      TD.Query.GetStarPaymentOptions
+      TD.Query.GetStarTransactions
       TD.Query.GetStatisticalGraph
       TD.Query.GetStickerEmojis
       TD.Query.GetStickers
@@ -995,6 +1013,7 @@ library
       TD.Query.RecognizeSpeech
       TD.Query.RecoverAuthenticationPassword
       TD.Query.RecoverPassword
+      TD.Query.RefundStarPayment
       TD.Query.RegisterDevice
       TD.Query.RegisterUser
       TD.Query.RemoveAllFilesFromDownloads
@@ -1013,6 +1032,7 @@ library
       TD.Query.RemoveRecentSticker
       TD.Query.RemoveSavedAnimation
       TD.Query.RemoveSavedNotificationSound
+      TD.Query.RemoveSearchedForHashtag
       TD.Query.RemoveStickerFromSet
       TD.Query.RemoveTopChat
       TD.Query.ReorderActiveUsernames
@@ -1067,6 +1087,7 @@ library
       TD.Query.SearchOutgoingDocumentMessages
       TD.Query.SearchPublicChat
       TD.Query.SearchPublicChats
+      TD.Query.SearchPublicHashtagMessages
       TD.Query.SearchQuote
       TD.Query.SearchRecentlyFoundChats
       TD.Query.SearchSavedMessages
@@ -1103,6 +1124,7 @@ library
       TD.Query.SetAccentColor
       TD.Query.SetAccountTtl
       TD.Query.SetAlarm
+      TD.Query.SetApplicationVerificationToken
       TD.Query.SetArchiveChatListSettings
       TD.Query.SetAuthenticationEmailAddress
       TD.Query.SetAuthenticationPhoneNumber
@@ -1168,6 +1190,7 @@ library
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
       TD.Query.SetMenuButton
+      TD.Query.SetMessageFactCheck
       TD.Query.SetMessageReactions
       TD.Query.SetMessageSenderBlockList
       TD.Query.SetName

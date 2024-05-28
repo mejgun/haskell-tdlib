@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Returns 'TD.Data.Message.Message'
+-- | Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true. Returns 'TD.Data.Message.Message'
 data EditMessageText
   = EditMessageText
     { chat_id               :: Maybe Int                                     -- ^ The chat the message belongs to

@@ -120,6 +120,7 @@ import qualified TD.Data.LoginUrlInfo as LoginUrlInfo
 import qualified TD.Data.Message as Message
 import qualified TD.Data.MessageAutoDeleteTime as MessageAutoDeleteTime
 import qualified TD.Data.MessageCalendar as MessageCalendar
+import qualified TD.Data.MessageEffect as MessageEffect
 import qualified TD.Data.MessageFileType as MessageFileType
 import qualified TD.Data.MessageLink as MessageLink
 import qualified TD.Data.MessageLinkInfo as MessageLinkInfo
@@ -172,6 +173,8 @@ import qualified TD.Data.SentWebAppMessage as SentWebAppMessage
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
+import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
+import qualified TD.Data.StarTransactions as StarTransactions
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerSet as StickerSet
@@ -328,6 +331,7 @@ data GeneralResult
     | Message                            Message.Message
     | MessageAutoDeleteTime              MessageAutoDeleteTime.MessageAutoDeleteTime
     | MessageCalendar                    MessageCalendar.MessageCalendar
+    | MessageEffect                      MessageEffect.MessageEffect
     | MessageFileType                    MessageFileType.MessageFileType
     | MessageLink                        MessageLink.MessageLink
     | MessageLinkInfo                    MessageLinkInfo.MessageLinkInfo
@@ -380,6 +384,8 @@ data GeneralResult
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
+    | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
+    | StarTransactions                   StarTransactions.StarTransactions
     | StatisticalGraph                   StatisticalGraph.StatisticalGraph
     | Sticker                            Sticker.Sticker
     | StickerSet                         StickerSet.StickerSet
@@ -653,6 +659,8 @@ instance I.ShortShow GeneralResult where
     = "MessageAutoDeleteTime" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageCalendar v)
     = "MessageCalendar" <> " (" <> I.shortShow v <> ")"
+  shortShow (MessageEffect v)
+    = "MessageEffect" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageFileType v)
     = "MessageFileType" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageLink v)
@@ -757,6 +765,10 @@ instance I.ShortShow GeneralResult where
     = "Sessions" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarPaymentOptions v)
+    = "StarPaymentOptions" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarTransactions v)
+    = "StarTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (StatisticalGraph v)
     = "StatisticalGraph" <> " (" <> I.shortShow v <> ")"
   shortShow (Sticker v)
@@ -952,6 +964,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Message                             <$> parseJSON v )
     <|> ( MessageAutoDeleteTime               <$> parseJSON v )
     <|> ( MessageCalendar                     <$> parseJSON v )
+    <|> ( MessageEffect                       <$> parseJSON v )
     <|> ( MessageFileType                     <$> parseJSON v )
     <|> ( MessageLink                         <$> parseJSON v )
     <|> ( MessageLinkInfo                     <$> parseJSON v )
@@ -1004,6 +1017,8 @@ instance T.FromJSON GeneralResult where
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
+    <|> ( StarPaymentOptions                  <$> parseJSON v )
+    <|> ( StarTransactions                    <$> parseJSON v )
     <|> ( StatisticalGraph                    <$> parseJSON v )
     <|> ( Sticker                             <$> parseJSON v )
     <|> ( StickerSet                          <$> parseJSON v )

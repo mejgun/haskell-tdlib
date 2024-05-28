@@ -4,64 +4,31 @@ module TD.Data.PaymentForm
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.Invoice as Invoice
-import qualified TD.Data.PaymentProvider as PaymentProvider
-import qualified TD.Data.PaymentOption as PaymentOption
-import qualified TD.Data.OrderInfo as OrderInfo
-import qualified TD.Data.SavedCredentials as SavedCredentials
-import qualified Data.Text as T
-import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.Photo as Photo
+import qualified TD.Data.PaymentFormType as PaymentFormType
+import qualified TD.Data.ProductInfo as ProductInfo
 
 data PaymentForm
   = PaymentForm -- ^ Contains information about an invoice payment form
-    { _id                        :: Maybe Int                                 -- ^ The payment form identifier
-    , invoice                    :: Maybe Invoice.Invoice                     -- ^ Full information about the invoice
-    , seller_bot_user_id         :: Maybe Int                                 -- ^ User identifier of the seller bot
-    , payment_provider_user_id   :: Maybe Int                                 -- ^ User identifier of the payment provider bot
-    , payment_provider           :: Maybe PaymentProvider.PaymentProvider     -- ^ Information about the payment provider
-    , additional_payment_options :: Maybe [PaymentOption.PaymentOption]       -- ^ The list of additional payment options
-    , saved_order_info           :: Maybe OrderInfo.OrderInfo                 -- ^ Saved server-side order information; may be null
-    , saved_credentials          :: Maybe [SavedCredentials.SavedCredentials] -- ^ The list of saved payment credentials
-    , can_save_credentials       :: Maybe Bool                                -- ^ True, if the user can choose to save credentials
-    , need_password              :: Maybe Bool                                -- ^ True, if the user will be able to save credentials, if sets up a 2-step verification password
-    , product_title              :: Maybe T.Text                              -- ^ Product title
-    , product_description        :: Maybe FormattedText.FormattedText         -- ^ Product description
-    , product_photo              :: Maybe Photo.Photo                         -- ^ Product photo; may be null
+    { _id                :: Maybe Int                             -- ^ The payment form identifier
+    , _type              :: Maybe PaymentFormType.PaymentFormType -- ^ Type of the payment form
+    , seller_bot_user_id :: Maybe Int                             -- ^ User identifier of the seller bot
+    , product_info       :: Maybe ProductInfo.ProductInfo         -- ^ Information about the product
     }
   deriving (Eq, Show)
 
 instance I.ShortShow PaymentForm where
   shortShow PaymentForm
-    { _id                        = _id_
-    , invoice                    = invoice_
-    , seller_bot_user_id         = seller_bot_user_id_
-    , payment_provider_user_id   = payment_provider_user_id_
-    , payment_provider           = payment_provider_
-    , additional_payment_options = additional_payment_options_
-    , saved_order_info           = saved_order_info_
-    , saved_credentials          = saved_credentials_
-    , can_save_credentials       = can_save_credentials_
-    , need_password              = need_password_
-    , product_title              = product_title_
-    , product_description        = product_description_
-    , product_photo              = product_photo_
+    { _id                = _id_
+    , _type              = _type_
+    , seller_bot_user_id = seller_bot_user_id_
+    , product_info       = product_info_
     }
       = "PaymentForm"
         ++ I.cc
-        [ "_id"                        `I.p` _id_
-        , "invoice"                    `I.p` invoice_
-        , "seller_bot_user_id"         `I.p` seller_bot_user_id_
-        , "payment_provider_user_id"   `I.p` payment_provider_user_id_
-        , "payment_provider"           `I.p` payment_provider_
-        , "additional_payment_options" `I.p` additional_payment_options_
-        , "saved_order_info"           `I.p` saved_order_info_
-        , "saved_credentials"          `I.p` saved_credentials_
-        , "can_save_credentials"       `I.p` can_save_credentials_
-        , "need_password"              `I.p` need_password_
-        , "product_title"              `I.p` product_title_
-        , "product_description"        `I.p` product_description_
-        , "product_photo"              `I.p` product_photo_
+        [ "_id"                `I.p` _id_
+        , "_type"              `I.p` _type_
+        , "seller_bot_user_id" `I.p` seller_bot_user_id_
+        , "product_info"       `I.p` product_info_
         ]
 
 instance AT.FromJSON PaymentForm where
@@ -75,33 +42,15 @@ instance AT.FromJSON PaymentForm where
     where
       parsePaymentForm :: A.Value -> AT.Parser PaymentForm
       parsePaymentForm = A.withObject "PaymentForm" $ \o -> do
-        _id_                        <- fmap I.readInt64 <$> o A..:?  "id"
-        invoice_                    <- o A..:?                       "invoice"
-        seller_bot_user_id_         <- o A..:?                       "seller_bot_user_id"
-        payment_provider_user_id_   <- o A..:?                       "payment_provider_user_id"
-        payment_provider_           <- o A..:?                       "payment_provider"
-        additional_payment_options_ <- o A..:?                       "additional_payment_options"
-        saved_order_info_           <- o A..:?                       "saved_order_info"
-        saved_credentials_          <- o A..:?                       "saved_credentials"
-        can_save_credentials_       <- o A..:?                       "can_save_credentials"
-        need_password_              <- o A..:?                       "need_password"
-        product_title_              <- o A..:?                       "product_title"
-        product_description_        <- o A..:?                       "product_description"
-        product_photo_              <- o A..:?                       "product_photo"
+        _id_                <- fmap I.readInt64 <$> o A..:?  "id"
+        _type_              <- o A..:?                       "type"
+        seller_bot_user_id_ <- o A..:?                       "seller_bot_user_id"
+        product_info_       <- o A..:?                       "product_info"
         pure $ PaymentForm
-          { _id                        = _id_
-          , invoice                    = invoice_
-          , seller_bot_user_id         = seller_bot_user_id_
-          , payment_provider_user_id   = payment_provider_user_id_
-          , payment_provider           = payment_provider_
-          , additional_payment_options = additional_payment_options_
-          , saved_order_info           = saved_order_info_
-          , saved_credentials          = saved_credentials_
-          , can_save_credentials       = can_save_credentials_
-          , need_password              = need_password_
-          , product_title              = product_title_
-          , product_description        = product_description_
-          , product_photo              = product_photo_
+          { _id                = _id_
+          , _type              = _type_
+          , seller_bot_user_id = seller_bot_user_id_
+          , product_info       = product_info_
           }
   parseJSON _ = mempty
 

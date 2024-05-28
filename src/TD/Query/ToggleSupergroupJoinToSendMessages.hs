@@ -10,7 +10,7 @@ import qualified TD.Lib.Internal as I
 -- | Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupJoinToSendMessages
   = ToggleSupergroupJoinToSendMessages
-    { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup
+    { supergroup_id         :: Maybe Int  -- ^ Identifier of the supergroup that isn't a broadcast group
     , join_to_send_messages :: Maybe Bool -- ^ New value of join_to_send_messages
     }
   deriving (Eq, Show)

@@ -102,7 +102,7 @@ data InternalLinkType
     , port   :: Maybe Int                 -- ^ Proxy server port
     , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
-  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat, then put the draft text in the input field
+  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     { chat_username :: Maybe T.Text -- ^ Username of the chat
     , draft_text    :: Maybe T.Text -- ^ Draft text for message to send in the chat
     }

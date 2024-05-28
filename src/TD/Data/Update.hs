@@ -11,6 +11,7 @@ import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
+import qualified TD.Data.FactCheck as FactCheck
 import qualified TD.Data.Chat as Chat
 import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
@@ -77,6 +78,7 @@ import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
+import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
@@ -152,6 +154,11 @@ data Update
     , message_id            :: Maybe Int                             -- ^ Message identifier
     , unread_reactions      :: Maybe [UnreadReaction.UnreadReaction] -- ^ The new list of unread reactions
     , unread_reaction_count :: Maybe Int                             -- ^ The new number of messages with unread reactions left in the chat
+    }
+  | UpdateMessageFactCheck -- ^ A fact-check added to a message was changed
+    { chat_id    :: Maybe Int                 -- ^ Chat identifier
+    , message_id :: Maybe Int                 -- ^ Message identifier
+    , fact_check :: Maybe FactCheck.FactCheck -- ^ The new fact-check
     }
   | UpdateMessageLiveLocationViewed -- ^ A message with a live location was viewed. When the update is received, the application is supposed to update the live location
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the live location message
@@ -429,6 +436,10 @@ data Update
     { file_id :: Maybe Int                                       -- ^ File identifier
     , counts  :: Maybe DownloadedFileCounts.DownloadedFileCounts -- ^ New number of being downloaded and recently downloaded files found
     }
+  | UpdateApplicationVerificationRequired -- ^ A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+    { verification_id :: Maybe Int    -- ^ Unique identifier for the verification process
+    , nonce           :: Maybe T.Text -- ^ Unique nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    }
   | UpdateCall -- ^ New call was created or information about a call was updated
     { call :: Maybe Call.Call -- ^ New data about a call
     }
@@ -557,6 +568,10 @@ data Update
   | UpdateActiveEmojiReactions -- ^ The list of active emoji reactions has changed
     { emojis :: Maybe [T.Text] -- ^ The new list of active emoji reactions
     }
+  | UpdateAvailableMessageEffects -- ^ The list of available message effects has changed
+    { reaction_effect_ids :: Maybe [Int] -- ^ The new list of available message effects from emoji reactions
+    , sticker_effect_ids  :: Maybe [Int] -- ^ The new list of available message effects from Premium stickers
+    }
   | UpdateDefaultReactionType -- ^ The type of default reaction has changed
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ The new type of the default reaction
     }
@@ -564,7 +579,13 @@ data Update
     { saved_messages_topic_id :: Maybe Int                                 -- ^ Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
+  | UpdateOwnedStarCount -- ^ The number of Telegram stars owned by the current user has changed
+    { star_count :: Maybe Int -- ^ The new number of Telegram stars owned
+    }
   | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
+    { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
+    , revenue_amount :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ New amount of earned revenue
+    }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
@@ -832,6 +853,17 @@ instance I.ShortShow Update where
         , "message_id"            `I.p` message_id_
         , "unread_reactions"      `I.p` unread_reactions_
         , "unread_reaction_count" `I.p` unread_reaction_count_
+        ]
+  shortShow UpdateMessageFactCheck
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    , fact_check = fact_check_
+    }
+      = "UpdateMessageFactCheck"
+        ++ I.cc
+        [ "chat_id"    `I.p` chat_id_
+        , "message_id" `I.p` message_id_
+        , "fact_check" `I.p` fact_check_
         ]
   shortShow UpdateMessageLiveLocationViewed
     { chat_id    = chat_id_
@@ -1452,6 +1484,15 @@ instance I.ShortShow Update where
         [ "file_id" `I.p` file_id_
         , "counts"  `I.p` counts_
         ]
+  shortShow UpdateApplicationVerificationRequired
+    { verification_id = verification_id_
+    , nonce           = nonce_
+    }
+      = "UpdateApplicationVerificationRequired"
+        ++ I.cc
+        [ "verification_id" `I.p` verification_id_
+        , "nonce"           `I.p` nonce_
+        ]
   shortShow UpdateCall
     { call = call_
     }
@@ -1742,6 +1783,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "emojis" `I.p` emojis_
         ]
+  shortShow UpdateAvailableMessageEffects
+    { reaction_effect_ids = reaction_effect_ids_
+    , sticker_effect_ids  = sticker_effect_ids_
+    }
+      = "UpdateAvailableMessageEffects"
+        ++ I.cc
+        [ "reaction_effect_ids" `I.p` reaction_effect_ids_
+        , "sticker_effect_ids"  `I.p` sticker_effect_ids_
+        ]
   shortShow UpdateDefaultReactionType
     { reaction_type = reaction_type_
     }
@@ -1758,8 +1808,22 @@ instance I.ShortShow Update where
         [ "saved_messages_topic_id" `I.p` saved_messages_topic_id_
         , "tags"                    `I.p` tags_
         ]
+  shortShow UpdateOwnedStarCount
+    { star_count = star_count_
+    }
+      = "UpdateOwnedStarCount"
+        ++ I.cc
+        [ "star_count" `I.p` star_count_
+        ]
   shortShow UpdateChatRevenueAmount
+    { chat_id        = chat_id_
+    , revenue_amount = revenue_amount_
+    }
       = "UpdateChatRevenueAmount"
+        ++ I.cc
+        [ "chat_id"        `I.p` chat_id_
+        , "revenue_amount" `I.p` revenue_amount_
+        ]
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
     , weekly_count       = weekly_count_
@@ -2079,150 +2143,154 @@ instance AT.FromJSON Update where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "updateAuthorizationState"             -> parseUpdateAuthorizationState v
-      "updateNewMessage"                     -> parseUpdateNewMessage v
-      "updateMessageSendAcknowledged"        -> parseUpdateMessageSendAcknowledged v
-      "updateMessageSendSucceeded"           -> parseUpdateMessageSendSucceeded v
-      "updateMessageSendFailed"              -> parseUpdateMessageSendFailed v
-      "updateMessageContent"                 -> parseUpdateMessageContent v
-      "updateMessageEdited"                  -> parseUpdateMessageEdited v
-      "updateMessageIsPinned"                -> parseUpdateMessageIsPinned v
-      "updateMessageInteractionInfo"         -> parseUpdateMessageInteractionInfo v
-      "updateMessageContentOpened"           -> parseUpdateMessageContentOpened v
-      "updateMessageMentionRead"             -> parseUpdateMessageMentionRead v
-      "updateMessageUnreadReactions"         -> parseUpdateMessageUnreadReactions v
-      "updateMessageLiveLocationViewed"      -> parseUpdateMessageLiveLocationViewed v
-      "updateNewChat"                        -> parseUpdateNewChat v
-      "updateChatTitle"                      -> parseUpdateChatTitle v
-      "updateChatPhoto"                      -> parseUpdateChatPhoto v
-      "updateChatAccentColors"               -> parseUpdateChatAccentColors v
-      "updateChatPermissions"                -> parseUpdateChatPermissions v
-      "updateChatLastMessage"                -> parseUpdateChatLastMessage v
-      "updateChatPosition"                   -> parseUpdateChatPosition v
-      "updateChatAddedToList"                -> parseUpdateChatAddedToList v
-      "updateChatRemovedFromList"            -> parseUpdateChatRemovedFromList v
-      "updateChatReadInbox"                  -> parseUpdateChatReadInbox v
-      "updateChatReadOutbox"                 -> parseUpdateChatReadOutbox v
-      "updateChatActionBar"                  -> parseUpdateChatActionBar v
-      "updateChatBusinessBotManageBar"       -> parseUpdateChatBusinessBotManageBar v
-      "updateChatAvailableReactions"         -> parseUpdateChatAvailableReactions v
-      "updateChatDraftMessage"               -> parseUpdateChatDraftMessage v
-      "updateChatEmojiStatus"                -> parseUpdateChatEmojiStatus v
-      "updateChatMessageSender"              -> parseUpdateChatMessageSender v
-      "updateChatMessageAutoDeleteTime"      -> parseUpdateChatMessageAutoDeleteTime v
-      "updateChatNotificationSettings"       -> parseUpdateChatNotificationSettings v
-      "updateChatPendingJoinRequests"        -> parseUpdateChatPendingJoinRequests v
-      "updateChatReplyMarkup"                -> parseUpdateChatReplyMarkup v
-      "updateChatBackground"                 -> parseUpdateChatBackground v
-      "updateChatTheme"                      -> parseUpdateChatTheme v
-      "updateChatUnreadMentionCount"         -> parseUpdateChatUnreadMentionCount v
-      "updateChatUnreadReactionCount"        -> parseUpdateChatUnreadReactionCount v
-      "updateChatVideoChat"                  -> parseUpdateChatVideoChat v
-      "updateChatDefaultDisableNotification" -> parseUpdateChatDefaultDisableNotification v
-      "updateChatHasProtectedContent"        -> parseUpdateChatHasProtectedContent v
-      "updateChatIsTranslatable"             -> parseUpdateChatIsTranslatable v
-      "updateChatIsMarkedAsUnread"           -> parseUpdateChatIsMarkedAsUnread v
-      "updateChatViewAsTopics"               -> parseUpdateChatViewAsTopics v
-      "updateChatBlockList"                  -> parseUpdateChatBlockList v
-      "updateChatHasScheduledMessages"       -> parseUpdateChatHasScheduledMessages v
-      "updateChatFolders"                    -> parseUpdateChatFolders v
-      "updateChatOnlineMemberCount"          -> parseUpdateChatOnlineMemberCount v
-      "updateSavedMessagesTopic"             -> parseUpdateSavedMessagesTopic v
-      "updateSavedMessagesTopicCount"        -> parseUpdateSavedMessagesTopicCount v
-      "updateQuickReplyShortcut"             -> parseUpdateQuickReplyShortcut v
-      "updateQuickReplyShortcutDeleted"      -> parseUpdateQuickReplyShortcutDeleted v
-      "updateQuickReplyShortcuts"            -> parseUpdateQuickReplyShortcuts v
-      "updateQuickReplyShortcutMessages"     -> parseUpdateQuickReplyShortcutMessages v
-      "updateForumTopicInfo"                 -> parseUpdateForumTopicInfo v
-      "updateScopeNotificationSettings"      -> parseUpdateScopeNotificationSettings v
-      "updateReactionNotificationSettings"   -> parseUpdateReactionNotificationSettings v
-      "updateNotification"                   -> parseUpdateNotification v
-      "updateNotificationGroup"              -> parseUpdateNotificationGroup v
-      "updateActiveNotifications"            -> parseUpdateActiveNotifications v
-      "updateHavePendingNotifications"       -> parseUpdateHavePendingNotifications v
-      "updateDeleteMessages"                 -> parseUpdateDeleteMessages v
-      "updateChatAction"                     -> parseUpdateChatAction v
-      "updateUserStatus"                     -> parseUpdateUserStatus v
-      "updateUser"                           -> parseUpdateUser v
-      "updateBasicGroup"                     -> parseUpdateBasicGroup v
-      "updateSupergroup"                     -> parseUpdateSupergroup v
-      "updateSecretChat"                     -> parseUpdateSecretChat v
-      "updateUserFullInfo"                   -> parseUpdateUserFullInfo v
-      "updateBasicGroupFullInfo"             -> parseUpdateBasicGroupFullInfo v
-      "updateSupergroupFullInfo"             -> parseUpdateSupergroupFullInfo v
-      "updateServiceNotification"            -> parseUpdateServiceNotification v
-      "updateFile"                           -> parseUpdateFile v
-      "updateFileGenerationStart"            -> parseUpdateFileGenerationStart v
-      "updateFileGenerationStop"             -> parseUpdateFileGenerationStop v
-      "updateFileDownloads"                  -> parseUpdateFileDownloads v
-      "updateFileAddedToDownloads"           -> parseUpdateFileAddedToDownloads v
-      "updateFileDownload"                   -> parseUpdateFileDownload v
-      "updateFileRemovedFromDownloads"       -> parseUpdateFileRemovedFromDownloads v
-      "updateCall"                           -> parseUpdateCall v
-      "updateGroupCall"                      -> parseUpdateGroupCall v
-      "updateGroupCallParticipant"           -> parseUpdateGroupCallParticipant v
-      "updateNewCallSignalingData"           -> parseUpdateNewCallSignalingData v
-      "updateUserPrivacySettingRules"        -> parseUpdateUserPrivacySettingRules v
-      "updateUnreadMessageCount"             -> parseUpdateUnreadMessageCount v
-      "updateUnreadChatCount"                -> parseUpdateUnreadChatCount v
-      "updateStory"                          -> parseUpdateStory v
-      "updateStoryDeleted"                   -> parseUpdateStoryDeleted v
-      "updateStorySendSucceeded"             -> parseUpdateStorySendSucceeded v
-      "updateStorySendFailed"                -> parseUpdateStorySendFailed v
-      "updateChatActiveStories"              -> parseUpdateChatActiveStories v
-      "updateStoryListChatCount"             -> parseUpdateStoryListChatCount v
-      "updateStoryStealthMode"               -> parseUpdateStoryStealthMode v
-      "updateOption"                         -> parseUpdateOption v
-      "updateStickerSet"                     -> parseUpdateStickerSet v
-      "updateInstalledStickerSets"           -> parseUpdateInstalledStickerSets v
-      "updateTrendingStickerSets"            -> parseUpdateTrendingStickerSets v
-      "updateRecentStickers"                 -> parseUpdateRecentStickers v
-      "updateFavoriteStickers"               -> parseUpdateFavoriteStickers v
-      "updateSavedAnimations"                -> parseUpdateSavedAnimations v
-      "updateSavedNotificationSounds"        -> parseUpdateSavedNotificationSounds v
-      "updateDefaultBackground"              -> parseUpdateDefaultBackground v
-      "updateChatThemes"                     -> parseUpdateChatThemes v
-      "updateAccentColors"                   -> parseUpdateAccentColors v
-      "updateProfileAccentColors"            -> parseUpdateProfileAccentColors v
-      "updateLanguagePackStrings"            -> parseUpdateLanguagePackStrings v
-      "updateConnectionState"                -> parseUpdateConnectionState v
-      "updateTermsOfService"                 -> parseUpdateTermsOfService v
-      "updateUsersNearby"                    -> parseUpdateUsersNearby v
-      "updateUnconfirmedSession"             -> parseUpdateUnconfirmedSession v
-      "updateAttachmentMenuBots"             -> parseUpdateAttachmentMenuBots v
-      "updateWebAppMessageSent"              -> parseUpdateWebAppMessageSent v
-      "updateActiveEmojiReactions"           -> parseUpdateActiveEmojiReactions v
-      "updateDefaultReactionType"            -> parseUpdateDefaultReactionType v
-      "updateSavedMessagesTags"              -> parseUpdateSavedMessagesTags v
-      "updateChatRevenueAmount"              -> pure UpdateChatRevenueAmount
-      "updateSpeechRecognitionTrial"         -> parseUpdateSpeechRecognitionTrial v
-      "updateDiceEmojis"                     -> parseUpdateDiceEmojis v
-      "updateAnimatedEmojiMessageClicked"    -> parseUpdateAnimatedEmojiMessageClicked v
-      "updateAnimationSearchParameters"      -> parseUpdateAnimationSearchParameters v
-      "updateSuggestedActions"               -> parseUpdateSuggestedActions v
-      "updateSpeedLimitNotification"         -> parseUpdateSpeedLimitNotification v
-      "updateContactCloseBirthdays"          -> parseUpdateContactCloseBirthdays v
-      "updateAutosaveSettings"               -> parseUpdateAutosaveSettings v
-      "updateBusinessConnection"             -> parseUpdateBusinessConnection v
-      "updateNewBusinessMessage"             -> parseUpdateNewBusinessMessage v
-      "updateBusinessMessageEdited"          -> parseUpdateBusinessMessageEdited v
-      "updateBusinessMessagesDeleted"        -> parseUpdateBusinessMessagesDeleted v
-      "updateNewInlineQuery"                 -> parseUpdateNewInlineQuery v
-      "updateNewChosenInlineResult"          -> parseUpdateNewChosenInlineResult v
-      "updateNewCallbackQuery"               -> parseUpdateNewCallbackQuery v
-      "updateNewInlineCallbackQuery"         -> parseUpdateNewInlineCallbackQuery v
-      "updateNewShippingQuery"               -> parseUpdateNewShippingQuery v
-      "updateNewPreCheckoutQuery"            -> parseUpdateNewPreCheckoutQuery v
-      "updateNewCustomEvent"                 -> parseUpdateNewCustomEvent v
-      "updateNewCustomQuery"                 -> parseUpdateNewCustomQuery v
-      "updatePoll"                           -> parseUpdatePoll v
-      "updatePollAnswer"                     -> parseUpdatePollAnswer v
-      "updateChatMember"                     -> parseUpdateChatMember v
-      "updateNewChatJoinRequest"             -> parseUpdateNewChatJoinRequest v
-      "updateChatBoost"                      -> parseUpdateChatBoost v
-      "updateMessageReaction"                -> parseUpdateMessageReaction v
-      "updateMessageReactions"               -> parseUpdateMessageReactions v
-      _                                      -> mempty
+      "updateAuthorizationState"              -> parseUpdateAuthorizationState v
+      "updateNewMessage"                      -> parseUpdateNewMessage v
+      "updateMessageSendAcknowledged"         -> parseUpdateMessageSendAcknowledged v
+      "updateMessageSendSucceeded"            -> parseUpdateMessageSendSucceeded v
+      "updateMessageSendFailed"               -> parseUpdateMessageSendFailed v
+      "updateMessageContent"                  -> parseUpdateMessageContent v
+      "updateMessageEdited"                   -> parseUpdateMessageEdited v
+      "updateMessageIsPinned"                 -> parseUpdateMessageIsPinned v
+      "updateMessageInteractionInfo"          -> parseUpdateMessageInteractionInfo v
+      "updateMessageContentOpened"            -> parseUpdateMessageContentOpened v
+      "updateMessageMentionRead"              -> parseUpdateMessageMentionRead v
+      "updateMessageUnreadReactions"          -> parseUpdateMessageUnreadReactions v
+      "updateMessageFactCheck"                -> parseUpdateMessageFactCheck v
+      "updateMessageLiveLocationViewed"       -> parseUpdateMessageLiveLocationViewed v
+      "updateNewChat"                         -> parseUpdateNewChat v
+      "updateChatTitle"                       -> parseUpdateChatTitle v
+      "updateChatPhoto"                       -> parseUpdateChatPhoto v
+      "updateChatAccentColors"                -> parseUpdateChatAccentColors v
+      "updateChatPermissions"                 -> parseUpdateChatPermissions v
+      "updateChatLastMessage"                 -> parseUpdateChatLastMessage v
+      "updateChatPosition"                    -> parseUpdateChatPosition v
+      "updateChatAddedToList"                 -> parseUpdateChatAddedToList v
+      "updateChatRemovedFromList"             -> parseUpdateChatRemovedFromList v
+      "updateChatReadInbox"                   -> parseUpdateChatReadInbox v
+      "updateChatReadOutbox"                  -> parseUpdateChatReadOutbox v
+      "updateChatActionBar"                   -> parseUpdateChatActionBar v
+      "updateChatBusinessBotManageBar"        -> parseUpdateChatBusinessBotManageBar v
+      "updateChatAvailableReactions"          -> parseUpdateChatAvailableReactions v
+      "updateChatDraftMessage"                -> parseUpdateChatDraftMessage v
+      "updateChatEmojiStatus"                 -> parseUpdateChatEmojiStatus v
+      "updateChatMessageSender"               -> parseUpdateChatMessageSender v
+      "updateChatMessageAutoDeleteTime"       -> parseUpdateChatMessageAutoDeleteTime v
+      "updateChatNotificationSettings"        -> parseUpdateChatNotificationSettings v
+      "updateChatPendingJoinRequests"         -> parseUpdateChatPendingJoinRequests v
+      "updateChatReplyMarkup"                 -> parseUpdateChatReplyMarkup v
+      "updateChatBackground"                  -> parseUpdateChatBackground v
+      "updateChatTheme"                       -> parseUpdateChatTheme v
+      "updateChatUnreadMentionCount"          -> parseUpdateChatUnreadMentionCount v
+      "updateChatUnreadReactionCount"         -> parseUpdateChatUnreadReactionCount v
+      "updateChatVideoChat"                   -> parseUpdateChatVideoChat v
+      "updateChatDefaultDisableNotification"  -> parseUpdateChatDefaultDisableNotification v
+      "updateChatHasProtectedContent"         -> parseUpdateChatHasProtectedContent v
+      "updateChatIsTranslatable"              -> parseUpdateChatIsTranslatable v
+      "updateChatIsMarkedAsUnread"            -> parseUpdateChatIsMarkedAsUnread v
+      "updateChatViewAsTopics"                -> parseUpdateChatViewAsTopics v
+      "updateChatBlockList"                   -> parseUpdateChatBlockList v
+      "updateChatHasScheduledMessages"        -> parseUpdateChatHasScheduledMessages v
+      "updateChatFolders"                     -> parseUpdateChatFolders v
+      "updateChatOnlineMemberCount"           -> parseUpdateChatOnlineMemberCount v
+      "updateSavedMessagesTopic"              -> parseUpdateSavedMessagesTopic v
+      "updateSavedMessagesTopicCount"         -> parseUpdateSavedMessagesTopicCount v
+      "updateQuickReplyShortcut"              -> parseUpdateQuickReplyShortcut v
+      "updateQuickReplyShortcutDeleted"       -> parseUpdateQuickReplyShortcutDeleted v
+      "updateQuickReplyShortcuts"             -> parseUpdateQuickReplyShortcuts v
+      "updateQuickReplyShortcutMessages"      -> parseUpdateQuickReplyShortcutMessages v
+      "updateForumTopicInfo"                  -> parseUpdateForumTopicInfo v
+      "updateScopeNotificationSettings"       -> parseUpdateScopeNotificationSettings v
+      "updateReactionNotificationSettings"    -> parseUpdateReactionNotificationSettings v
+      "updateNotification"                    -> parseUpdateNotification v
+      "updateNotificationGroup"               -> parseUpdateNotificationGroup v
+      "updateActiveNotifications"             -> parseUpdateActiveNotifications v
+      "updateHavePendingNotifications"        -> parseUpdateHavePendingNotifications v
+      "updateDeleteMessages"                  -> parseUpdateDeleteMessages v
+      "updateChatAction"                      -> parseUpdateChatAction v
+      "updateUserStatus"                      -> parseUpdateUserStatus v
+      "updateUser"                            -> parseUpdateUser v
+      "updateBasicGroup"                      -> parseUpdateBasicGroup v
+      "updateSupergroup"                      -> parseUpdateSupergroup v
+      "updateSecretChat"                      -> parseUpdateSecretChat v
+      "updateUserFullInfo"                    -> parseUpdateUserFullInfo v
+      "updateBasicGroupFullInfo"              -> parseUpdateBasicGroupFullInfo v
+      "updateSupergroupFullInfo"              -> parseUpdateSupergroupFullInfo v
+      "updateServiceNotification"             -> parseUpdateServiceNotification v
+      "updateFile"                            -> parseUpdateFile v
+      "updateFileGenerationStart"             -> parseUpdateFileGenerationStart v
+      "updateFileGenerationStop"              -> parseUpdateFileGenerationStop v
+      "updateFileDownloads"                   -> parseUpdateFileDownloads v
+      "updateFileAddedToDownloads"            -> parseUpdateFileAddedToDownloads v
+      "updateFileDownload"                    -> parseUpdateFileDownload v
+      "updateFileRemovedFromDownloads"        -> parseUpdateFileRemovedFromDownloads v
+      "updateApplicationVerificationRequired" -> parseUpdateApplicationVerificationRequired v
+      "updateCall"                            -> parseUpdateCall v
+      "updateGroupCall"                       -> parseUpdateGroupCall v
+      "updateGroupCallParticipant"            -> parseUpdateGroupCallParticipant v
+      "updateNewCallSignalingData"            -> parseUpdateNewCallSignalingData v
+      "updateUserPrivacySettingRules"         -> parseUpdateUserPrivacySettingRules v
+      "updateUnreadMessageCount"              -> parseUpdateUnreadMessageCount v
+      "updateUnreadChatCount"                 -> parseUpdateUnreadChatCount v
+      "updateStory"                           -> parseUpdateStory v
+      "updateStoryDeleted"                    -> parseUpdateStoryDeleted v
+      "updateStorySendSucceeded"              -> parseUpdateStorySendSucceeded v
+      "updateStorySendFailed"                 -> parseUpdateStorySendFailed v
+      "updateChatActiveStories"               -> parseUpdateChatActiveStories v
+      "updateStoryListChatCount"              -> parseUpdateStoryListChatCount v
+      "updateStoryStealthMode"                -> parseUpdateStoryStealthMode v
+      "updateOption"                          -> parseUpdateOption v
+      "updateStickerSet"                      -> parseUpdateStickerSet v
+      "updateInstalledStickerSets"            -> parseUpdateInstalledStickerSets v
+      "updateTrendingStickerSets"             -> parseUpdateTrendingStickerSets v
+      "updateRecentStickers"                  -> parseUpdateRecentStickers v
+      "updateFavoriteStickers"                -> parseUpdateFavoriteStickers v
+      "updateSavedAnimations"                 -> parseUpdateSavedAnimations v
+      "updateSavedNotificationSounds"         -> parseUpdateSavedNotificationSounds v
+      "updateDefaultBackground"               -> parseUpdateDefaultBackground v
+      "updateChatThemes"                      -> parseUpdateChatThemes v
+      "updateAccentColors"                    -> parseUpdateAccentColors v
+      "updateProfileAccentColors"             -> parseUpdateProfileAccentColors v
+      "updateLanguagePackStrings"             -> parseUpdateLanguagePackStrings v
+      "updateConnectionState"                 -> parseUpdateConnectionState v
+      "updateTermsOfService"                  -> parseUpdateTermsOfService v
+      "updateUsersNearby"                     -> parseUpdateUsersNearby v
+      "updateUnconfirmedSession"              -> parseUpdateUnconfirmedSession v
+      "updateAttachmentMenuBots"              -> parseUpdateAttachmentMenuBots v
+      "updateWebAppMessageSent"               -> parseUpdateWebAppMessageSent v
+      "updateActiveEmojiReactions"            -> parseUpdateActiveEmojiReactions v
+      "updateAvailableMessageEffects"         -> parseUpdateAvailableMessageEffects v
+      "updateDefaultReactionType"             -> parseUpdateDefaultReactionType v
+      "updateSavedMessagesTags"               -> parseUpdateSavedMessagesTags v
+      "updateOwnedStarCount"                  -> parseUpdateOwnedStarCount v
+      "updateChatRevenueAmount"               -> parseUpdateChatRevenueAmount v
+      "updateSpeechRecognitionTrial"          -> parseUpdateSpeechRecognitionTrial v
+      "updateDiceEmojis"                      -> parseUpdateDiceEmojis v
+      "updateAnimatedEmojiMessageClicked"     -> parseUpdateAnimatedEmojiMessageClicked v
+      "updateAnimationSearchParameters"       -> parseUpdateAnimationSearchParameters v
+      "updateSuggestedActions"                -> parseUpdateSuggestedActions v
+      "updateSpeedLimitNotification"          -> parseUpdateSpeedLimitNotification v
+      "updateContactCloseBirthdays"           -> parseUpdateContactCloseBirthdays v
+      "updateAutosaveSettings"                -> parseUpdateAutosaveSettings v
+      "updateBusinessConnection"              -> parseUpdateBusinessConnection v
+      "updateNewBusinessMessage"              -> parseUpdateNewBusinessMessage v
+      "updateBusinessMessageEdited"           -> parseUpdateBusinessMessageEdited v
+      "updateBusinessMessagesDeleted"         -> parseUpdateBusinessMessagesDeleted v
+      "updateNewInlineQuery"                  -> parseUpdateNewInlineQuery v
+      "updateNewChosenInlineResult"           -> parseUpdateNewChosenInlineResult v
+      "updateNewCallbackQuery"                -> parseUpdateNewCallbackQuery v
+      "updateNewInlineCallbackQuery"          -> parseUpdateNewInlineCallbackQuery v
+      "updateNewShippingQuery"                -> parseUpdateNewShippingQuery v
+      "updateNewPreCheckoutQuery"             -> parseUpdateNewPreCheckoutQuery v
+      "updateNewCustomEvent"                  -> parseUpdateNewCustomEvent v
+      "updateNewCustomQuery"                  -> parseUpdateNewCustomQuery v
+      "updatePoll"                            -> parseUpdatePoll v
+      "updatePollAnswer"                      -> parseUpdatePollAnswer v
+      "updateChatMember"                      -> parseUpdateChatMember v
+      "updateNewChatJoinRequest"              -> parseUpdateNewChatJoinRequest v
+      "updateChatBoost"                       -> parseUpdateChatBoost v
+      "updateMessageReaction"                 -> parseUpdateMessageReaction v
+      "updateMessageReactions"                -> parseUpdateMessageReactions v
+      _                                       -> mempty
     
     where
       parseUpdateAuthorizationState :: A.Value -> AT.Parser Update
@@ -2334,6 +2402,16 @@ instance AT.FromJSON Update where
           , message_id            = message_id_
           , unread_reactions      = unread_reactions_
           , unread_reaction_count = unread_reaction_count_
+          }
+      parseUpdateMessageFactCheck :: A.Value -> AT.Parser Update
+      parseUpdateMessageFactCheck = A.withObject "UpdateMessageFactCheck" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        fact_check_ <- o A..:?  "fact_check"
+        pure $ UpdateMessageFactCheck
+          { chat_id    = chat_id_
+          , message_id = message_id_
+          , fact_check = fact_check_
           }
       parseUpdateMessageLiveLocationViewed :: A.Value -> AT.Parser Update
       parseUpdateMessageLiveLocationViewed = A.withObject "UpdateMessageLiveLocationViewed" $ \o -> do
@@ -2887,6 +2965,14 @@ instance AT.FromJSON Update where
           { file_id = file_id_
           , counts  = counts_
           }
+      parseUpdateApplicationVerificationRequired :: A.Value -> AT.Parser Update
+      parseUpdateApplicationVerificationRequired = A.withObject "UpdateApplicationVerificationRequired" $ \o -> do
+        verification_id_ <- o A..:?  "verification_id"
+        nonce_           <- o A..:?  "nonce"
+        pure $ UpdateApplicationVerificationRequired
+          { verification_id = verification_id_
+          , nonce           = nonce_
+          }
       parseUpdateCall :: A.Value -> AT.Parser Update
       parseUpdateCall = A.withObject "UpdateCall" $ \o -> do
         call_ <- o A..:?  "call"
@@ -3143,6 +3229,14 @@ instance AT.FromJSON Update where
         pure $ UpdateActiveEmojiReactions
           { emojis = emojis_
           }
+      parseUpdateAvailableMessageEffects :: A.Value -> AT.Parser Update
+      parseUpdateAvailableMessageEffects = A.withObject "UpdateAvailableMessageEffects" $ \o -> do
+        reaction_effect_ids_ <- fmap (fmap I.readInt64) <$> o A..:?  "reaction_effect_ids"
+        sticker_effect_ids_  <- fmap (fmap I.readInt64) <$> o A..:?  "sticker_effect_ids"
+        pure $ UpdateAvailableMessageEffects
+          { reaction_effect_ids = reaction_effect_ids_
+          , sticker_effect_ids  = sticker_effect_ids_
+          }
       parseUpdateDefaultReactionType :: A.Value -> AT.Parser Update
       parseUpdateDefaultReactionType = A.withObject "UpdateDefaultReactionType" $ \o -> do
         reaction_type_ <- o A..:?  "reaction_type"
@@ -3156,6 +3250,20 @@ instance AT.FromJSON Update where
         pure $ UpdateSavedMessagesTags
           { saved_messages_topic_id = saved_messages_topic_id_
           , tags                    = tags_
+          }
+      parseUpdateOwnedStarCount :: A.Value -> AT.Parser Update
+      parseUpdateOwnedStarCount = A.withObject "UpdateOwnedStarCount" $ \o -> do
+        star_count_ <- o A..:?  "star_count"
+        pure $ UpdateOwnedStarCount
+          { star_count = star_count_
+          }
+      parseUpdateChatRevenueAmount :: A.Value -> AT.Parser Update
+      parseUpdateChatRevenueAmount = A.withObject "UpdateChatRevenueAmount" $ \o -> do
+        chat_id_        <- o A..:?  "chat_id"
+        revenue_amount_ <- o A..:?  "revenue_amount"
+        pure $ UpdateChatRevenueAmount
+          { chat_id        = chat_id_
+          , revenue_amount = revenue_amount_
           }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
       parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do

@@ -21,19 +21,20 @@ import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 -- | The content of a message to send
 data InputMessageContent
   = InputMessageText -- ^ A text message
-    { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     , clear_draft          :: Maybe Bool                                  -- ^ True, if a chat message draft must be deleted
     }
   | InputMessageAnimation -- ^ An animation message (GIF-style).
-    { animation              :: Maybe InputFile.InputFile           -- ^ Animation file to be sent
-    , thumbnail              :: Maybe InputThumbnail.InputThumbnail -- ^ Animation thumbnail; pass null to skip thumbnail uploading
-    , added_sticker_file_ids :: Maybe [Int]                         -- ^ File identifiers of the stickers added to the animation, if applicable
-    , duration               :: Maybe Int                           -- ^ Duration of the animation, in seconds
-    , width                  :: Maybe Int                           -- ^ Width of the animation; may be replaced by the server
-    , height                 :: Maybe Int                           -- ^ Height of the animation; may be replaced by the server
-    , caption                :: Maybe FormattedText.FormattedText   -- ^ Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , has_spoiler            :: Maybe Bool                          -- ^ True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
+    { animation                :: Maybe InputFile.InputFile           -- ^ Animation file to be sent
+    , thumbnail                :: Maybe InputThumbnail.InputThumbnail -- ^ Animation thumbnail; pass null to skip thumbnail uploading
+    , added_sticker_file_ids   :: Maybe [Int]                         -- ^ File identifiers of the stickers added to the animation, if applicable
+    , duration                 :: Maybe Int                           -- ^ Duration of the animation, in seconds
+    , width                    :: Maybe Int                           -- ^ Width of the animation; may be replaced by the server
+    , height                   :: Maybe Int                           -- ^ Height of the animation; may be replaced by the server
+    , caption                  :: Maybe FormattedText.FormattedText   -- ^ Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                          -- ^ True, if caption must be shown above the animation; otherwise, caption must be shown below the animation; not supported in secret chats
+    , has_spoiler              :: Maybe Bool                          -- ^ True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageAudio -- ^ An audio message
     { audio                 :: Maybe InputFile.InputFile           -- ^ Audio file to be sent
@@ -50,14 +51,15 @@ data InputMessageContent
     , caption                        :: Maybe FormattedText.FormattedText   -- ^ Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePhoto -- ^ A photo message
-    { photo                  :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
-    , thumbnail              :: Maybe InputThumbnail.InputThumbnail                   -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
-    , added_sticker_file_ids :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the photo, if applicable
-    , width                  :: Maybe Int                                             -- ^ Photo width
-    , height                 :: Maybe Int                                             -- ^ Photo height
-    , caption                :: Maybe FormattedText.FormattedText                     -- ^ Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , self_destruct_type     :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Photo self-destruct type; pass null if none; private chats only
-    , has_spoiler            :: Maybe Bool                                            -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
+    { photo                    :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+    , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
+    , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the photo, if applicable
+    , width                    :: Maybe Int                                             -- ^ Photo width
+    , height                   :: Maybe Int                                             -- ^ Photo height
+    , caption                  :: Maybe FormattedText.FormattedText                     -- ^ Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if caption must be shown above the photo; otherwise, caption must be shown below the photo; not supported in secret chats
+    , self_destruct_type       :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Photo self-destruct type; pass null if none; private chats only
+    , has_spoiler              :: Maybe Bool                                            -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageSticker -- ^ A sticker message
     { sticker   :: Maybe InputFile.InputFile           -- ^ Sticker to be sent
@@ -67,16 +69,17 @@ data InputMessageContent
     , emoji     :: Maybe T.Text                        -- ^ Emoji used to choose the sticker
     }
   | InputMessageVideo -- ^ A video message
-    { video                  :: Maybe InputFile.InputFile                             -- ^ Video to be sent
-    , thumbnail              :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
-    , added_sticker_file_ids :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
-    , duration               :: Maybe Int                                             -- ^ Duration of the video, in seconds
-    , width                  :: Maybe Int                                             -- ^ Video width
-    , height                 :: Maybe Int                                             -- ^ Video height
-    , supports_streaming     :: Maybe Bool                                            -- ^ True, if the video is supposed to be streamed
-    , caption                :: Maybe FormattedText.FormattedText                     -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , self_destruct_type     :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video self-destruct type; pass null if none; private chats only
-    , has_spoiler            :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
+    { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent
+    , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
+    , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
+    , duration                 :: Maybe Int                                             -- ^ Duration of the video, in seconds
+    , width                    :: Maybe Int                                             -- ^ Video width
+    , height                   :: Maybe Int                                             -- ^ Video height
+    , supports_streaming       :: Maybe Bool                                            -- ^ True, if the video is supposed to be streamed
+    , caption                  :: Maybe FormattedText.FormattedText                     -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if caption must be shown above the video; otherwise, caption must be shown below the video; not supported in secret chats
+    , self_destruct_type       :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video self-destruct type; pass null if none; private chats only
+    , has_spoiler              :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageVideoNote -- ^ A video note message
     { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent
@@ -121,7 +124,7 @@ data InputMessageContent
     , photo_width            :: Maybe Int                 -- ^ Product photo width
     , photo_height           :: Maybe Int                 -- ^ Product photo height
     , payload                :: Maybe BS.ByteString       -- ^ The invoice payload
-    , provider_token         :: Maybe T.Text              -- ^ Payment provider token
+    , provider_token         :: Maybe T.Text              -- ^ Payment provider token; may be empty for payments in Telegram Stars
     , provider_data          :: Maybe T.Text              -- ^ JSON-encoded data about the invoice, which will be shared with the payment provider
     , start_parameter        :: Maybe T.Text              -- ^ Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
     , extended_media_content :: Maybe InputMessageContent -- ^ The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
@@ -160,25 +163,27 @@ instance I.ShortShow InputMessageContent where
         , "clear_draft"          `I.p` clear_draft_
         ]
   shortShow InputMessageAnimation
-    { animation              = animation_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , duration               = duration_
-    , width                  = width_
-    , height                 = height_
-    , caption                = caption_
-    , has_spoiler            = has_spoiler_
+    { animation                = animation_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , duration                 = duration_
+    , width                    = width_
+    , height                   = height_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , has_spoiler              = has_spoiler_
     }
       = "InputMessageAnimation"
         ++ I.cc
-        [ "animation"              `I.p` animation_
-        , "thumbnail"              `I.p` thumbnail_
-        , "added_sticker_file_ids" `I.p` added_sticker_file_ids_
-        , "duration"               `I.p` duration_
-        , "width"                  `I.p` width_
-        , "height"                 `I.p` height_
-        , "caption"                `I.p` caption_
-        , "has_spoiler"            `I.p` has_spoiler_
+        [ "animation"                `I.p` animation_
+        , "thumbnail"                `I.p` thumbnail_
+        , "added_sticker_file_ids"   `I.p` added_sticker_file_ids_
+        , "duration"                 `I.p` duration_
+        , "width"                    `I.p` width_
+        , "height"                   `I.p` height_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "has_spoiler"              `I.p` has_spoiler_
         ]
   shortShow InputMessageAudio
     { audio                 = audio_
@@ -211,25 +216,27 @@ instance I.ShortShow InputMessageContent where
         , "caption"                        `I.p` caption_
         ]
   shortShow InputMessagePhoto
-    { photo                  = photo_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , width                  = width_
-    , height                 = height_
-    , caption                = caption_
-    , self_destruct_type     = self_destruct_type_
-    , has_spoiler            = has_spoiler_
+    { photo                    = photo_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , width                    = width_
+    , height                   = height_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , self_destruct_type       = self_destruct_type_
+    , has_spoiler              = has_spoiler_
     }
       = "InputMessagePhoto"
         ++ I.cc
-        [ "photo"                  `I.p` photo_
-        , "thumbnail"              `I.p` thumbnail_
-        , "added_sticker_file_ids" `I.p` added_sticker_file_ids_
-        , "width"                  `I.p` width_
-        , "height"                 `I.p` height_
-        , "caption"                `I.p` caption_
-        , "self_destruct_type"     `I.p` self_destruct_type_
-        , "has_spoiler"            `I.p` has_spoiler_
+        [ "photo"                    `I.p` photo_
+        , "thumbnail"                `I.p` thumbnail_
+        , "added_sticker_file_ids"   `I.p` added_sticker_file_ids_
+        , "width"                    `I.p` width_
+        , "height"                   `I.p` height_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "self_destruct_type"       `I.p` self_destruct_type_
+        , "has_spoiler"              `I.p` has_spoiler_
         ]
   shortShow InputMessageSticker
     { sticker   = sticker_
@@ -247,29 +254,31 @@ instance I.ShortShow InputMessageContent where
         , "emoji"     `I.p` emoji_
         ]
   shortShow InputMessageVideo
-    { video                  = video_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , duration               = duration_
-    , width                  = width_
-    , height                 = height_
-    , supports_streaming     = supports_streaming_
-    , caption                = caption_
-    , self_destruct_type     = self_destruct_type_
-    , has_spoiler            = has_spoiler_
+    { video                    = video_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , duration                 = duration_
+    , width                    = width_
+    , height                   = height_
+    , supports_streaming       = supports_streaming_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , self_destruct_type       = self_destruct_type_
+    , has_spoiler              = has_spoiler_
     }
       = "InputMessageVideo"
         ++ I.cc
-        [ "video"                  `I.p` video_
-        , "thumbnail"              `I.p` thumbnail_
-        , "added_sticker_file_ids" `I.p` added_sticker_file_ids_
-        , "duration"               `I.p` duration_
-        , "width"                  `I.p` width_
-        , "height"                 `I.p` height_
-        , "supports_streaming"     `I.p` supports_streaming_
-        , "caption"                `I.p` caption_
-        , "self_destruct_type"     `I.p` self_destruct_type_
-        , "has_spoiler"            `I.p` has_spoiler_
+        [ "video"                    `I.p` video_
+        , "thumbnail"                `I.p` thumbnail_
+        , "added_sticker_file_ids"   `I.p` added_sticker_file_ids_
+        , "duration"                 `I.p` duration_
+        , "width"                    `I.p` width_
+        , "height"                   `I.p` height_
+        , "supports_streaming"       `I.p` supports_streaming_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "self_destruct_type"       `I.p` self_destruct_type_
+        , "has_spoiler"              `I.p` has_spoiler_
         ]
   shortShow InputMessageVideoNote
     { video_note         = video_note_
@@ -455,23 +464,25 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageAnimation :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageAnimation = A.withObject "InputMessageAnimation" $ \o -> do
-        animation_              <- o A..:?  "animation"
-        thumbnail_              <- o A..:?  "thumbnail"
-        added_sticker_file_ids_ <- o A..:?  "added_sticker_file_ids"
-        duration_               <- o A..:?  "duration"
-        width_                  <- o A..:?  "width"
-        height_                 <- o A..:?  "height"
-        caption_                <- o A..:?  "caption"
-        has_spoiler_            <- o A..:?  "has_spoiler"
+        animation_                <- o A..:?  "animation"
+        thumbnail_                <- o A..:?  "thumbnail"
+        added_sticker_file_ids_   <- o A..:?  "added_sticker_file_ids"
+        duration_                 <- o A..:?  "duration"
+        width_                    <- o A..:?  "width"
+        height_                   <- o A..:?  "height"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        has_spoiler_              <- o A..:?  "has_spoiler"
         pure $ InputMessageAnimation
-          { animation              = animation_
-          , thumbnail              = thumbnail_
-          , added_sticker_file_ids = added_sticker_file_ids_
-          , duration               = duration_
-          , width                  = width_
-          , height                 = height_
-          , caption                = caption_
-          , has_spoiler            = has_spoiler_
+          { animation                = animation_
+          , thumbnail                = thumbnail_
+          , added_sticker_file_ids   = added_sticker_file_ids_
+          , duration                 = duration_
+          , width                    = width_
+          , height                   = height_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , has_spoiler              = has_spoiler_
           }
       parseInputMessageAudio :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageAudio = A.withObject "InputMessageAudio" $ \o -> do
@@ -503,23 +514,25 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessagePhoto :: A.Value -> AT.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
-        photo_                  <- o A..:?  "photo"
-        thumbnail_              <- o A..:?  "thumbnail"
-        added_sticker_file_ids_ <- o A..:?  "added_sticker_file_ids"
-        width_                  <- o A..:?  "width"
-        height_                 <- o A..:?  "height"
-        caption_                <- o A..:?  "caption"
-        self_destruct_type_     <- o A..:?  "self_destruct_type"
-        has_spoiler_            <- o A..:?  "has_spoiler"
+        photo_                    <- o A..:?  "photo"
+        thumbnail_                <- o A..:?  "thumbnail"
+        added_sticker_file_ids_   <- o A..:?  "added_sticker_file_ids"
+        width_                    <- o A..:?  "width"
+        height_                   <- o A..:?  "height"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        self_destruct_type_       <- o A..:?  "self_destruct_type"
+        has_spoiler_              <- o A..:?  "has_spoiler"
         pure $ InputMessagePhoto
-          { photo                  = photo_
-          , thumbnail              = thumbnail_
-          , added_sticker_file_ids = added_sticker_file_ids_
-          , width                  = width_
-          , height                 = height_
-          , caption                = caption_
-          , self_destruct_type     = self_destruct_type_
-          , has_spoiler            = has_spoiler_
+          { photo                    = photo_
+          , thumbnail                = thumbnail_
+          , added_sticker_file_ids   = added_sticker_file_ids_
+          , width                    = width_
+          , height                   = height_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , self_destruct_type       = self_destruct_type_
+          , has_spoiler              = has_spoiler_
           }
       parseInputMessageSticker :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
@@ -537,27 +550,29 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageVideo :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
-        video_                  <- o A..:?  "video"
-        thumbnail_              <- o A..:?  "thumbnail"
-        added_sticker_file_ids_ <- o A..:?  "added_sticker_file_ids"
-        duration_               <- o A..:?  "duration"
-        width_                  <- o A..:?  "width"
-        height_                 <- o A..:?  "height"
-        supports_streaming_     <- o A..:?  "supports_streaming"
-        caption_                <- o A..:?  "caption"
-        self_destruct_type_     <- o A..:?  "self_destruct_type"
-        has_spoiler_            <- o A..:?  "has_spoiler"
+        video_                    <- o A..:?  "video"
+        thumbnail_                <- o A..:?  "thumbnail"
+        added_sticker_file_ids_   <- o A..:?  "added_sticker_file_ids"
+        duration_                 <- o A..:?  "duration"
+        width_                    <- o A..:?  "width"
+        height_                   <- o A..:?  "height"
+        supports_streaming_       <- o A..:?  "supports_streaming"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        self_destruct_type_       <- o A..:?  "self_destruct_type"
+        has_spoiler_              <- o A..:?  "has_spoiler"
         pure $ InputMessageVideo
-          { video                  = video_
-          , thumbnail              = thumbnail_
-          , added_sticker_file_ids = added_sticker_file_ids_
-          , duration               = duration_
-          , width                  = width_
-          , height                 = height_
-          , supports_streaming     = supports_streaming_
-          , caption                = caption_
-          , self_destruct_type     = self_destruct_type_
-          , has_spoiler            = has_spoiler_
+          { video                    = video_
+          , thumbnail                = thumbnail_
+          , added_sticker_file_ids   = added_sticker_file_ids_
+          , duration                 = duration_
+          , width                    = width_
+          , height                   = height_
+          , supports_streaming       = supports_streaming_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , self_destruct_type       = self_destruct_type_
+          , has_spoiler              = has_spoiler_
           }
       parseInputMessageVideoNote :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
@@ -708,25 +723,27 @@ instance AT.ToJSON InputMessageContent where
         , "clear_draft"          A..= clear_draft_
         ]
   toJSON InputMessageAnimation
-    { animation              = animation_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , duration               = duration_
-    , width                  = width_
-    , height                 = height_
-    , caption                = caption_
-    , has_spoiler            = has_spoiler_
+    { animation                = animation_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , duration                 = duration_
+    , width                    = width_
+    , height                   = height_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , has_spoiler              = has_spoiler_
     }
       = A.object
-        [ "@type"                  A..= AT.String "inputMessageAnimation"
-        , "animation"              A..= animation_
-        , "thumbnail"              A..= thumbnail_
-        , "added_sticker_file_ids" A..= added_sticker_file_ids_
-        , "duration"               A..= duration_
-        , "width"                  A..= width_
-        , "height"                 A..= height_
-        , "caption"                A..= caption_
-        , "has_spoiler"            A..= has_spoiler_
+        [ "@type"                    A..= AT.String "inputMessageAnimation"
+        , "animation"                A..= animation_
+        , "thumbnail"                A..= thumbnail_
+        , "added_sticker_file_ids"   A..= added_sticker_file_ids_
+        , "duration"                 A..= duration_
+        , "width"                    A..= width_
+        , "height"                   A..= height_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
+        , "has_spoiler"              A..= has_spoiler_
         ]
   toJSON InputMessageAudio
     { audio                 = audio_
@@ -759,25 +776,27 @@ instance AT.ToJSON InputMessageContent where
         , "caption"                        A..= caption_
         ]
   toJSON InputMessagePhoto
-    { photo                  = photo_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , width                  = width_
-    , height                 = height_
-    , caption                = caption_
-    , self_destruct_type     = self_destruct_type_
-    , has_spoiler            = has_spoiler_
+    { photo                    = photo_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , width                    = width_
+    , height                   = height_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , self_destruct_type       = self_destruct_type_
+    , has_spoiler              = has_spoiler_
     }
       = A.object
-        [ "@type"                  A..= AT.String "inputMessagePhoto"
-        , "photo"                  A..= photo_
-        , "thumbnail"              A..= thumbnail_
-        , "added_sticker_file_ids" A..= added_sticker_file_ids_
-        , "width"                  A..= width_
-        , "height"                 A..= height_
-        , "caption"                A..= caption_
-        , "self_destruct_type"     A..= self_destruct_type_
-        , "has_spoiler"            A..= has_spoiler_
+        [ "@type"                    A..= AT.String "inputMessagePhoto"
+        , "photo"                    A..= photo_
+        , "thumbnail"                A..= thumbnail_
+        , "added_sticker_file_ids"   A..= added_sticker_file_ids_
+        , "width"                    A..= width_
+        , "height"                   A..= height_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
+        , "self_destruct_type"       A..= self_destruct_type_
+        , "has_spoiler"              A..= has_spoiler_
         ]
   toJSON InputMessageSticker
     { sticker   = sticker_
@@ -795,29 +814,31 @@ instance AT.ToJSON InputMessageContent where
         , "emoji"     A..= emoji_
         ]
   toJSON InputMessageVideo
-    { video                  = video_
-    , thumbnail              = thumbnail_
-    , added_sticker_file_ids = added_sticker_file_ids_
-    , duration               = duration_
-    , width                  = width_
-    , height                 = height_
-    , supports_streaming     = supports_streaming_
-    , caption                = caption_
-    , self_destruct_type     = self_destruct_type_
-    , has_spoiler            = has_spoiler_
+    { video                    = video_
+    , thumbnail                = thumbnail_
+    , added_sticker_file_ids   = added_sticker_file_ids_
+    , duration                 = duration_
+    , width                    = width_
+    , height                   = height_
+    , supports_streaming       = supports_streaming_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , self_destruct_type       = self_destruct_type_
+    , has_spoiler              = has_spoiler_
     }
       = A.object
-        [ "@type"                  A..= AT.String "inputMessageVideo"
-        , "video"                  A..= video_
-        , "thumbnail"              A..= thumbnail_
-        , "added_sticker_file_ids" A..= added_sticker_file_ids_
-        , "duration"               A..= duration_
-        , "width"                  A..= width_
-        , "height"                 A..= height_
-        , "supports_streaming"     A..= supports_streaming_
-        , "caption"                A..= caption_
-        , "self_destruct_type"     A..= self_destruct_type_
-        , "has_spoiler"            A..= has_spoiler_
+        [ "@type"                    A..= AT.String "inputMessageVideo"
+        , "video"                    A..= video_
+        , "thumbnail"                A..= thumbnail_
+        , "added_sticker_file_ids"   A..= added_sticker_file_ids_
+        , "duration"                 A..= duration_
+        , "width"                    A..= width_
+        , "height"                   A..= height_
+        , "supports_streaming"       A..= supports_streaming_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
+        , "self_destruct_type"       A..= self_destruct_type_
+        , "has_spoiler"              A..= has_spoiler_
         ]
   toJSON InputMessageVideoNote
     { video_note         = video_note_

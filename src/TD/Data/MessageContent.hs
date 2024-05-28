@@ -23,6 +23,7 @@ import qualified Data.Text as T
 import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Poll as Poll
+import qualified TD.Data.ProductInfo as ProductInfo
 import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.ChatPhoto as ChatPhoto
@@ -47,10 +48,11 @@ data MessageContent
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which were used for generation of the link preview; may be null if default options were used
     }
   | MessageAnimation -- ^ An animation message (GIF-style).
-    { animation   :: Maybe Animation.Animation         -- ^ The animation description
-    , caption     :: Maybe FormattedText.FormattedText -- ^ Animation caption
-    , has_spoiler :: Maybe Bool                        -- ^ True, if the animation preview must be covered by a spoiler animation
-    , is_secret   :: Maybe Bool                        -- ^ True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
+    { animation                :: Maybe Animation.Animation         -- ^ The animation description
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Animation caption
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the animation; otherwise, caption must be shown below the animation
+    , has_spoiler              :: Maybe Bool                        -- ^ True, if the animation preview must be covered by a spoiler animation
+    , is_secret                :: Maybe Bool                        -- ^ True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
     }
   | MessageAudio -- ^ An audio message
     { audio   :: Maybe Audio.Audio                 -- ^ The audio description
@@ -61,20 +63,22 @@ data MessageContent
     , caption  :: Maybe FormattedText.FormattedText -- ^ Document caption
     }
   | MessagePhoto -- ^ A photo message
-    { photo       :: Maybe Photo.Photo                 -- ^ The photo
-    , caption     :: Maybe FormattedText.FormattedText -- ^ Photo caption
-    , has_spoiler :: Maybe Bool                        -- ^ True, if the photo preview must be covered by a spoiler animation
-    , is_secret   :: Maybe Bool                        -- ^ True, if the photo must be blurred and must be shown only while tapped
+    { photo                    :: Maybe Photo.Photo                 -- ^ The photo
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Photo caption
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the photo; otherwise, caption must be shown below the photo
+    , has_spoiler              :: Maybe Bool                        -- ^ True, if the photo preview must be covered by a spoiler animation
+    , is_secret                :: Maybe Bool                        -- ^ True, if the photo must be blurred and must be shown only while tapped
     }
   | MessageSticker -- ^ A sticker message
     { sticker    :: Maybe Sticker.Sticker -- ^ The sticker description
     , is_premium :: Maybe Bool            -- ^ True, if premium animation of the sticker must be played
     }
   | MessageVideo -- ^ A video message
-    { video       :: Maybe Video.Video                 -- ^ The video description
-    , caption     :: Maybe FormattedText.FormattedText -- ^ Video caption
-    , has_spoiler :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
-    , is_secret   :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
+    { video                    :: Maybe Video.Video                 -- ^ The video description
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Video caption
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the video; otherwise, caption must be shown below the video
+    , has_spoiler              :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
+    , is_secret                :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
     }
   | MessageVideoNote -- ^ A video note message
     { video_note :: Maybe VideoNote.VideoNote -- ^ The video note description
@@ -126,9 +130,7 @@ data MessageContent
     , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
     }
   | MessageInvoice -- ^ A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
-    { title                 :: Maybe T.Text                                    -- ^ Product title
-    , description           :: Maybe FormattedText.FormattedText
-    , photo                 :: Maybe Photo.Photo                               -- ^ Product photo; may be null
+    { product_info          :: Maybe ProductInfo.ProductInfo                   -- ^ Information about the product
     , currency              :: Maybe T.Text                                    -- ^ Currency for the product price
     , total_amount          :: Maybe Int                                       -- ^ Product total price in the smallest units of the currency
     , start_parameter       :: Maybe T.Text                                    -- ^ Unique invoice bot start_parameter to be passed to getInternalLink
@@ -343,17 +345,19 @@ instance I.ShortShow MessageContent where
         , "link_preview_options" `I.p` link_preview_options_
         ]
   shortShow MessageAnimation
-    { animation   = animation_
-    , caption     = caption_
-    , has_spoiler = has_spoiler_
-    , is_secret   = is_secret_
+    { animation                = animation_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , has_spoiler              = has_spoiler_
+    , is_secret                = is_secret_
     }
       = "MessageAnimation"
         ++ I.cc
-        [ "animation"   `I.p` animation_
-        , "caption"     `I.p` caption_
-        , "has_spoiler" `I.p` has_spoiler_
-        , "is_secret"   `I.p` is_secret_
+        [ "animation"                `I.p` animation_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "has_spoiler"              `I.p` has_spoiler_
+        , "is_secret"                `I.p` is_secret_
         ]
   shortShow MessageAudio
     { audio   = audio_
@@ -374,17 +378,19 @@ instance I.ShortShow MessageContent where
         , "caption"  `I.p` caption_
         ]
   shortShow MessagePhoto
-    { photo       = photo_
-    , caption     = caption_
-    , has_spoiler = has_spoiler_
-    , is_secret   = is_secret_
+    { photo                    = photo_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , has_spoiler              = has_spoiler_
+    , is_secret                = is_secret_
     }
       = "MessagePhoto"
         ++ I.cc
-        [ "photo"       `I.p` photo_
-        , "caption"     `I.p` caption_
-        , "has_spoiler" `I.p` has_spoiler_
-        , "is_secret"   `I.p` is_secret_
+        [ "photo"                    `I.p` photo_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "has_spoiler"              `I.p` has_spoiler_
+        , "is_secret"                `I.p` is_secret_
         ]
   shortShow MessageSticker
     { sticker    = sticker_
@@ -396,17 +402,19 @@ instance I.ShortShow MessageContent where
         , "is_premium" `I.p` is_premium_
         ]
   shortShow MessageVideo
-    { video       = video_
-    , caption     = caption_
-    , has_spoiler = has_spoiler_
-    , is_secret   = is_secret_
+    { video                    = video_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , has_spoiler              = has_spoiler_
+    , is_secret                = is_secret_
     }
       = "MessageVideo"
         ++ I.cc
-        [ "video"       `I.p` video_
-        , "caption"     `I.p` caption_
-        , "has_spoiler" `I.p` has_spoiler_
-        , "is_secret"   `I.p` is_secret_
+        [ "video"                    `I.p` video_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "has_spoiler"              `I.p` has_spoiler_
+        , "is_secret"                `I.p` is_secret_
         ]
   shortShow MessageVideoNote
     { video_note = video_note_
@@ -517,9 +525,7 @@ instance I.ShortShow MessageContent where
         , "via_mention"          `I.p` via_mention_
         ]
   shortShow MessageInvoice
-    { title                 = title_
-    , description           = description_
-    , photo                 = photo_
+    { product_info          = product_info_
     , currency              = currency_
     , total_amount          = total_amount_
     , start_parameter       = start_parameter_
@@ -530,9 +536,7 @@ instance I.ShortShow MessageContent where
     }
       = "MessageInvoice"
         ++ I.cc
-        [ "title"                 `I.p` title_
-        , "description"           `I.p` description_
-        , "photo"                 `I.p` photo_
+        [ "product_info"          `I.p` product_info_
         , "currency"              `I.p` currency_
         , "total_amount"          `I.p` total_amount_
         , "start_parameter"       `I.p` start_parameter_
@@ -1053,15 +1057,17 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageAnimation :: A.Value -> AT.Parser MessageContent
       parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
-        animation_   <- o A..:?  "animation"
-        caption_     <- o A..:?  "caption"
-        has_spoiler_ <- o A..:?  "has_spoiler"
-        is_secret_   <- o A..:?  "is_secret"
+        animation_                <- o A..:?  "animation"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        has_spoiler_              <- o A..:?  "has_spoiler"
+        is_secret_                <- o A..:?  "is_secret"
         pure $ MessageAnimation
-          { animation   = animation_
-          , caption     = caption_
-          , has_spoiler = has_spoiler_
-          , is_secret   = is_secret_
+          { animation                = animation_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , has_spoiler              = has_spoiler_
+          , is_secret                = is_secret_
           }
       parseMessageAudio :: A.Value -> AT.Parser MessageContent
       parseMessageAudio = A.withObject "MessageAudio" $ \o -> do
@@ -1081,15 +1087,17 @@ instance AT.FromJSON MessageContent where
           }
       parseMessagePhoto :: A.Value -> AT.Parser MessageContent
       parseMessagePhoto = A.withObject "MessagePhoto" $ \o -> do
-        photo_       <- o A..:?  "photo"
-        caption_     <- o A..:?  "caption"
-        has_spoiler_ <- o A..:?  "has_spoiler"
-        is_secret_   <- o A..:?  "is_secret"
+        photo_                    <- o A..:?  "photo"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        has_spoiler_              <- o A..:?  "has_spoiler"
+        is_secret_                <- o A..:?  "is_secret"
         pure $ MessagePhoto
-          { photo       = photo_
-          , caption     = caption_
-          , has_spoiler = has_spoiler_
-          , is_secret   = is_secret_
+          { photo                    = photo_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , has_spoiler              = has_spoiler_
+          , is_secret                = is_secret_
           }
       parseMessageSticker :: A.Value -> AT.Parser MessageContent
       parseMessageSticker = A.withObject "MessageSticker" $ \o -> do
@@ -1101,15 +1109,17 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageVideo :: A.Value -> AT.Parser MessageContent
       parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
-        video_       <- o A..:?  "video"
-        caption_     <- o A..:?  "caption"
-        has_spoiler_ <- o A..:?  "has_spoiler"
-        is_secret_   <- o A..:?  "is_secret"
+        video_                    <- o A..:?  "video"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        has_spoiler_              <- o A..:?  "has_spoiler"
+        is_secret_                <- o A..:?  "is_secret"
         pure $ MessageVideo
-          { video       = video_
-          , caption     = caption_
-          , has_spoiler = has_spoiler_
-          , is_secret   = is_secret_
+          { video                    = video_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , has_spoiler              = has_spoiler_
+          , is_secret                = is_secret_
           }
       parseMessageVideoNote :: A.Value -> AT.Parser MessageContent
       parseMessageVideoNote = A.withObject "MessageVideoNote" $ \o -> do
@@ -1203,9 +1213,7 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageInvoice :: A.Value -> AT.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
-        title_                 <- o A..:?  "title"
-        description_           <- o A..:?  "description"
-        photo_                 <- o A..:?  "photo"
+        product_info_          <- o A..:?  "product_info"
         currency_              <- o A..:?  "currency"
         total_amount_          <- o A..:?  "total_amount"
         start_parameter_       <- o A..:?  "start_parameter"
@@ -1214,9 +1222,7 @@ instance AT.FromJSON MessageContent where
         receipt_message_id_    <- o A..:?  "receipt_message_id"
         extended_media_        <- o A..:?  "extended_media"
         pure $ MessageInvoice
-          { title                 = title_
-          , description           = description_
-          , photo                 = photo_
+          { product_info          = product_info_
           , currency              = currency_
           , total_amount          = total_amount_
           , start_parameter       = start_parameter_

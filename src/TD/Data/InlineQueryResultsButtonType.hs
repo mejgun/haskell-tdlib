@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Represents a type of button in results of inline query
+-- | Represents type of button in results of inline query
 data InlineQueryResultsButtonType
   = InlineQueryResultsButtonTypeStartBot -- ^ Describes the button that opens a private chat with the bot and sends a start message to the bot with the given parameter
     { parameter :: Maybe T.Text -- ^ The parameter for the bot start message

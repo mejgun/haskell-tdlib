@@ -18,7 +18,8 @@ data SendBusinessMessageAlbum
     , reply_to               :: Maybe InputMessageReplyTo.InputMessageReplyTo   -- ^ Information about the message to be replied; pass null if none
     , disable_notification   :: Maybe Bool                                      -- ^ Pass true to disable notification for the message
     , protect_content        :: Maybe Bool                                      -- ^ Pass true if the content of the message must be protected from forwarding and saving
-    , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album
+    , effect_id              :: Maybe Int                                       -- ^ Identifier of the effect to apply to the message
+    , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     }
   deriving (Eq, Show)
 
@@ -30,6 +31,7 @@ instance I.ShortShow SendBusinessMessageAlbum where
       , reply_to               = reply_to_
       , disable_notification   = disable_notification_
       , protect_content        = protect_content_
+      , effect_id              = effect_id_
       , input_message_contents = input_message_contents_
       }
         = "SendBusinessMessageAlbum"
@@ -39,6 +41,7 @@ instance I.ShortShow SendBusinessMessageAlbum where
           , "reply_to"               `I.p` reply_to_
           , "disable_notification"   `I.p` disable_notification_
           , "protect_content"        `I.p` protect_content_
+          , "effect_id"              `I.p` effect_id_
           , "input_message_contents" `I.p` input_message_contents_
           ]
 
@@ -50,6 +53,7 @@ instance AT.ToJSON SendBusinessMessageAlbum where
       , reply_to               = reply_to_
       , disable_notification   = disable_notification_
       , protect_content        = protect_content_
+      , effect_id              = effect_id_
       , input_message_contents = input_message_contents_
       }
         = A.object
@@ -59,6 +63,7 @@ instance AT.ToJSON SendBusinessMessageAlbum where
           , "reply_to"               A..= reply_to_
           , "disable_notification"   A..= disable_notification_
           , "protect_content"        A..= protect_content_
+          , "effect_id"              A..= fmap I.writeInt64  effect_id_
           , "input_message_contents" A..= input_message_contents_
           ]
 
@@ -70,6 +75,7 @@ defaultSendBusinessMessageAlbum =
     , reply_to               = Nothing
     , disable_notification   = Nothing
     , protect_content        = Nothing
+    , effect_id              = Nothing
     , input_message_contents = Nothing
     }
 

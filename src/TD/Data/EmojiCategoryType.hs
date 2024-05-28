@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 -- | Describes type of emoji category
 data EmojiCategoryType
   = EmojiCategoryTypeDefault -- ^ The category must be used by default (e.g., for custom emoji or animation search)
-  | EmojiCategoryTypeRegularStickers -- ^ The category must be used by default for regular sticker selection. It may contain greeting emoji category and Premium stickers
+  | EmojiCategoryTypeRegularStickers -- ^ The category must be used by default for regular sticker selection. It may contain greeting emoji category and premium stickers
   | EmojiCategoryTypeEmojiStatus -- ^ The category must be used for emoji status selection
   | EmojiCategoryTypeChatPhoto -- ^ The category must be used for chat photo emoji selection
   deriving (Eq, Show)

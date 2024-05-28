@@ -10,7 +10,7 @@ import qualified TD.Lib.Internal as I
 -- | Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right. Returns 'TD.Data.Ok.Ok'
 data ToggleSupergroupJoinByRequest
   = ToggleSupergroupJoinByRequest
-    { supergroup_id   :: Maybe Int  -- ^ Identifier of the channel
+    { supergroup_id   :: Maybe Int  -- ^ Identifier of the supergroup that isn't a broadcast group
     , join_by_request :: Maybe Bool -- ^ New value of join_by_request
     }
   deriving (Eq, Show)

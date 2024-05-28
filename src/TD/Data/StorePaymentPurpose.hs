@@ -29,6 +29,11 @@ data StorePaymentPurpose
     , currency   :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency
     }
+  | StorePaymentPurposeStars -- ^ The user buying Telegram stars
+    { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
+    , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
+    , star_count :: Maybe Int    -- ^ Number of bought stars
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow StorePaymentPurpose where
@@ -76,6 +81,17 @@ instance I.ShortShow StorePaymentPurpose where
         , "currency"   `I.p` currency_
         , "amount"     `I.p` amount_
         ]
+  shortShow StorePaymentPurposeStars
+    { currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = "StorePaymentPurposeStars"
+        ++ I.cc
+        [ "currency"   `I.p` currency_
+        , "amount"     `I.p` amount_
+        , "star_count" `I.p` star_count_
+        ]
 
 instance AT.FromJSON StorePaymentPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -86,6 +102,7 @@ instance AT.FromJSON StorePaymentPurpose where
       "storePaymentPurposeGiftedPremium"       -> parseStorePaymentPurposeGiftedPremium v
       "storePaymentPurposePremiumGiftCodes"    -> parseStorePaymentPurposePremiumGiftCodes v
       "storePaymentPurposePremiumGiveaway"     -> parseStorePaymentPurposePremiumGiveaway v
+      "storePaymentPurposeStars"               -> parseStorePaymentPurposeStars v
       _                                        -> mempty
     
     where
@@ -128,6 +145,16 @@ instance AT.FromJSON StorePaymentPurpose where
           { parameters = parameters_
           , currency   = currency_
           , amount     = amount_
+          }
+      parseStorePaymentPurposeStars :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposeStars = A.withObject "StorePaymentPurposeStars" $ \o -> do
+        currency_   <- o A..:?  "currency"
+        amount_     <- o A..:?  "amount"
+        star_count_ <- o A..:?  "star_count"
+        pure $ StorePaymentPurposeStars
+          { currency   = currency_
+          , amount     = amount_
+          , star_count = star_count_
           }
   parseJSON _ = mempty
 
@@ -175,5 +202,16 @@ instance AT.ToJSON StorePaymentPurpose where
         , "parameters" A..= parameters_
         , "currency"   A..= currency_
         , "amount"     A..= amount_
+        ]
+  toJSON StorePaymentPurposeStars
+    { currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "storePaymentPurposeStars"
+        , "currency"   A..= currency_
+        , "amount"     A..= amount_
+        , "star_count" A..= star_count_
         ]
 

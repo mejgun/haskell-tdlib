@@ -8,7 +8,7 @@ import qualified Data.Text as T
 
 -- | Describes type of the request for which a code is sent to a phone number
 data PhoneNumberCodeType
-  = PhoneNumberCodeTypeChange -- ^ Checks ownership of a new phone number to change the user's authentication phone number; for official Android and iOS applications only.
+  = PhoneNumberCodeTypeChange -- ^ Checks ownership of a new phone number to change the user's authentication phone number; for official Android and iOS applications only
   | PhoneNumberCodeTypeVerify -- ^ Verifies ownership of a phone number to be added to the user's Telegram Passport
   | PhoneNumberCodeTypeConfirmOwnership -- ^ Confirms ownership of a phone number to prevent account deletion while handling links of the type internalLinkTypePhoneNumberConfirmation
     { hash :: Maybe T.Text -- ^ Hash value from the link

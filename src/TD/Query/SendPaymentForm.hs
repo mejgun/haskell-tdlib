@@ -17,7 +17,7 @@ data SendPaymentForm
     , payment_form_id    :: Maybe Int                               -- ^ Payment form identifier returned by getPaymentForm
     , order_info_id      :: Maybe T.Text                            -- ^ Identifier returned by validateOrderInfo, or an empty string
     , shipping_option_id :: Maybe T.Text                            -- ^ Identifier of a chosen shipping option, if applicable
-    , credentials        :: Maybe InputCredentials.InputCredentials -- ^ The credentials chosen by user for payment
+    , credentials        :: Maybe InputCredentials.InputCredentials -- ^ The credentials chosen by user for payment; pass null for a payment in Telegram stars
     , tip_amount         :: Maybe Int                               -- ^ Chosen by the user amount of tip in the smallest units of the currency
     }
   deriving (Eq, Show)

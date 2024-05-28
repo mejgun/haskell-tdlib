@@ -11,6 +11,7 @@ import qualified TD.Data.MessageForwardInfo as MessageForwardInfo
 import qualified TD.Data.MessageImportInfo as MessageImportInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
+import qualified TD.Data.FactCheck as FactCheck
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
@@ -50,6 +51,7 @@ data Message
     , import_info                    :: Maybe MessageImportInfo.MessageImportInfo             -- ^ Information about the initial message for messages created with importMessages; may be null if the message isn't imported
     , interaction_info               :: Maybe MessageInteractionInfo.MessageInteractionInfo   -- ^ Information about interactions with the message; may be null if none
     , unread_reactions               :: Maybe [UnreadReaction.UnreadReaction]                 -- ^ Information about unread reactions added to the message
+    , fact_check                     :: Maybe FactCheck.FactCheck                             -- ^ Information about fact-check added to the message; may be null if none
     , reply_to                       :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
     , message_thread_id              :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     , saved_messages_topic_id        :: Maybe Int                                             -- ^ Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
@@ -61,6 +63,7 @@ data Message
     , sender_boost_count             :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     , author_signature               :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
     , media_album_id                 :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
+    , effect_id                      :: Maybe Int                                             -- ^ Unique identifier of the effect added to the message; 0 if none
     , restriction_reason             :: Maybe T.Text                                          -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     , content                        :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
     , reply_markup                   :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
@@ -100,6 +103,7 @@ instance I.ShortShow Message where
     , import_info                    = import_info_
     , interaction_info               = interaction_info_
     , unread_reactions               = unread_reactions_
+    , fact_check                     = fact_check_
     , reply_to                       = reply_to_
     , message_thread_id              = message_thread_id_
     , saved_messages_topic_id        = saved_messages_topic_id_
@@ -111,6 +115,7 @@ instance I.ShortShow Message where
     , sender_boost_count             = sender_boost_count_
     , author_signature               = author_signature_
     , media_album_id                 = media_album_id_
+    , effect_id                      = effect_id_
     , restriction_reason             = restriction_reason_
     , content                        = content_
     , reply_markup                   = reply_markup_
@@ -148,6 +153,7 @@ instance I.ShortShow Message where
         , "import_info"                    `I.p` import_info_
         , "interaction_info"               `I.p` interaction_info_
         , "unread_reactions"               `I.p` unread_reactions_
+        , "fact_check"                     `I.p` fact_check_
         , "reply_to"                       `I.p` reply_to_
         , "message_thread_id"              `I.p` message_thread_id_
         , "saved_messages_topic_id"        `I.p` saved_messages_topic_id_
@@ -159,6 +165,7 @@ instance I.ShortShow Message where
         , "sender_boost_count"             `I.p` sender_boost_count_
         , "author_signature"               `I.p` author_signature_
         , "media_album_id"                 `I.p` media_album_id_
+        , "effect_id"                      `I.p` effect_id_
         , "restriction_reason"             `I.p` restriction_reason_
         , "content"                        `I.p` content_
         , "reply_markup"                   `I.p` reply_markup_
@@ -206,6 +213,7 @@ instance AT.FromJSON Message where
         import_info_                    <- o A..:?                       "import_info"
         interaction_info_               <- o A..:?                       "interaction_info"
         unread_reactions_               <- o A..:?                       "unread_reactions"
+        fact_check_                     <- o A..:?                       "fact_check"
         reply_to_                       <- o A..:?                       "reply_to"
         message_thread_id_              <- o A..:?                       "message_thread_id"
         saved_messages_topic_id_        <- o A..:?                       "saved_messages_topic_id"
@@ -217,6 +225,7 @@ instance AT.FromJSON Message where
         sender_boost_count_             <- o A..:?                       "sender_boost_count"
         author_signature_               <- o A..:?                       "author_signature"
         media_album_id_                 <- fmap I.readInt64 <$> o A..:?  "media_album_id"
+        effect_id_                      <- fmap I.readInt64 <$> o A..:?  "effect_id"
         restriction_reason_             <- o A..:?                       "restriction_reason"
         content_                        <- o A..:?                       "content"
         reply_markup_                   <- o A..:?                       "reply_markup"
@@ -252,6 +261,7 @@ instance AT.FromJSON Message where
           , import_info                    = import_info_
           , interaction_info               = interaction_info_
           , unread_reactions               = unread_reactions_
+          , fact_check                     = fact_check_
           , reply_to                       = reply_to_
           , message_thread_id              = message_thread_id_
           , saved_messages_topic_id        = saved_messages_topic_id_
@@ -263,6 +273,7 @@ instance AT.FromJSON Message where
           , sender_boost_count             = sender_boost_count_
           , author_signature               = author_signature_
           , media_album_id                 = media_album_id_
+          , effect_id                      = effect_id_
           , restriction_reason             = restriction_reason_
           , content                        = content_
           , reply_markup                   = reply_markup_

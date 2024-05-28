@@ -10,7 +10,7 @@ import qualified Data.Text as T
 -- | Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos. Returns 'TD.Data.Ok.Ok'
 data SendPhoneNumberFirebaseSms
   = SendPhoneNumberFirebaseSms
-    { token :: Maybe T.Text -- ^ SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+    { token :: Maybe T.Text -- ^ Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
     }
   deriving (Eq, Show)
 

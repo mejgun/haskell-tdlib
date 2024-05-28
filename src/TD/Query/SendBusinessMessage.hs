@@ -19,6 +19,7 @@ data SendBusinessMessage
     , reply_to               :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message to be replied; pass null if none
     , disable_notification   :: Maybe Bool                                    -- ^ Pass true to disable notification for the message
     , protect_content        :: Maybe Bool                                    -- ^ Pass true if the content of the message must be protected from forwarding and saving
+    , effect_id              :: Maybe Int                                     -- ^ Identifier of the effect to apply to the message
     , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none
     , input_message_content  :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent
     }
@@ -32,6 +33,7 @@ instance I.ShortShow SendBusinessMessage where
       , reply_to               = reply_to_
       , disable_notification   = disable_notification_
       , protect_content        = protect_content_
+      , effect_id              = effect_id_
       , reply_markup           = reply_markup_
       , input_message_content  = input_message_content_
       }
@@ -42,6 +44,7 @@ instance I.ShortShow SendBusinessMessage where
           , "reply_to"               `I.p` reply_to_
           , "disable_notification"   `I.p` disable_notification_
           , "protect_content"        `I.p` protect_content_
+          , "effect_id"              `I.p` effect_id_
           , "reply_markup"           `I.p` reply_markup_
           , "input_message_content"  `I.p` input_message_content_
           ]
@@ -54,6 +57,7 @@ instance AT.ToJSON SendBusinessMessage where
       , reply_to               = reply_to_
       , disable_notification   = disable_notification_
       , protect_content        = protect_content_
+      , effect_id              = effect_id_
       , reply_markup           = reply_markup_
       , input_message_content  = input_message_content_
       }
@@ -64,6 +68,7 @@ instance AT.ToJSON SendBusinessMessage where
           , "reply_to"               A..= reply_to_
           , "disable_notification"   A..= disable_notification_
           , "protect_content"        A..= protect_content_
+          , "effect_id"              A..= fmap I.writeInt64  effect_id_
           , "reply_markup"           A..= reply_markup_
           , "input_message_content"  A..= input_message_content_
           ]
@@ -76,6 +81,7 @@ defaultSendBusinessMessage =
     , reply_to               = Nothing
     , disable_notification   = Nothing
     , protect_content        = Nothing
+    , effect_id              = Nothing
     , reply_markup           = Nothing
     , input_message_content  = Nothing
     }

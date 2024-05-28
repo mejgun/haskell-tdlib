@@ -14,7 +14,7 @@ data AddQuickReplyShortcutMessageAlbum
   = AddQuickReplyShortcutMessageAlbum
     { shortcut_name          :: Maybe T.Text                                    -- ^ Name of the target shortcut
     , reply_to_message_id    :: Maybe Int                                       -- ^ Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
-    , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album
+    , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     }
   deriving (Eq, Show)
 

@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Reports that authentication code wasn't delivered via SMS; for official mobile apps only. Works only when the current authorization state is authorizationStateWaitCode. Returns 'TD.Data.Ok.Ok'
+-- | Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode. Returns 'TD.Data.Ok.Ok'
 data ReportAuthenticationCodeMissing
   = ReportAuthenticationCodeMissing
     { mobile_network_code :: Maybe T.Text -- ^ Current mobile network code

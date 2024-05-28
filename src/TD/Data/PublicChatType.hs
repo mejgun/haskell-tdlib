@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes a type of public chats
+-- | Describes type of public chat
 data PublicChatType
   = PublicChatTypeHasUsername -- ^ The chat is public, because it has an active username
   | PublicChatTypeIsLocationBased -- ^ The chat is public, because it is a location-based supergroup
