@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns recently searched for hashtags by their prefix. Returns 'TD.Data.Hashtags.Hashtags'
+-- | Returns recently searched for hashtags or cashtags by their prefix. Returns 'TD.Data.Hashtags.Hashtags'
 data GetSearchedForHashtags
   = GetSearchedForHashtags
-    { prefix :: Maybe T.Text -- ^ Prefix of hashtags to return
-    , limit  :: Maybe Int    -- ^ The maximum number of hashtags to be returned
+    { prefix :: Maybe T.Text -- ^ Prefix of hashtags or cashtags to return
+    , limit  :: Maybe Int    -- ^ The maximum number of items to be returned
     }
   deriving (Eq, Show)
 

@@ -8,10 +8,10 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Searches for public channel posts with the given hashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. Returns 'TD.Data.FoundMessages.FoundMessages'
+-- | Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. Returns 'TD.Data.FoundMessages.FoundMessages'
 data SearchPublicHashtagMessages
   = SearchPublicHashtagMessages
-    { hashtag :: Maybe T.Text -- ^ Hashtag to search for
+    { hashtag :: Maybe T.Text -- ^ Hashtag or cashtag to search for
     , offset  :: Maybe T.Text -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     , limit   :: Maybe Int    -- ^ The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     }
