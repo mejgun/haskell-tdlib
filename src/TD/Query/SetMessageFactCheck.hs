@@ -12,7 +12,7 @@ import qualified TD.Data.FormattedText as FormattedText
 data SetMessageFactCheck
   = SetMessageFactCheck
     { chat_id    :: Maybe Int                         -- ^ The channel chat the message belongs to
-    , message_id :: Maybe Int                         -- ^ Identifier of the message
+    , message_id :: Maybe Int                         -- ^ Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
     , text       :: Maybe FormattedText.FormattedText -- ^ New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
     }
   deriving (Eq, Show)
