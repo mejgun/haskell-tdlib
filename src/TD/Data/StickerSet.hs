@@ -27,7 +27,7 @@ data StickerSet
     , is_allowed_as_chat_emoji_status :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
     , is_viewed                       :: Maybe Bool                                -- ^ True for already viewed trending sticker sets
     , stickers                        :: Maybe [Sticker.Sticker]                   -- ^ List of stickers in this set
-    , emojis                          :: Maybe [Emojis.Emojis]                     -- ^ A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+    , emojis                          :: Maybe [Emojis.Emojis]                     -- ^ A list of emojis corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     }
   deriving (Eq, Show)
 

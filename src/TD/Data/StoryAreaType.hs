@@ -5,13 +5,16 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
+import qualified TD.Data.LocationAddress as LocationAddress
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.ReactionType as ReactionType
+import qualified Data.Text as T
 
 -- | Describes type of clickable rectangle area on a story media
 data StoryAreaType
   = StoryAreaTypeLocation -- ^ An area pointing to a location
-    { location :: Maybe Location.Location -- ^ The location
+    { location :: Maybe Location.Location               -- ^ The location
+    , address  :: Maybe LocationAddress.LocationAddress -- ^ Address of the location; may be null if unknown
     }
   | StoryAreaTypeVenue -- ^ An area pointing to a venue
     { venue :: Maybe Venue.Venue -- ^ Information about the venue
@@ -26,15 +29,20 @@ data StoryAreaType
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
+  | StoryAreaTypeLink -- ^ An area pointing to a HTTP or tg:// link
+    { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the area is clicked
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow StoryAreaType where
   shortShow StoryAreaTypeLocation
     { location = location_
+    , address  = address_
     }
       = "StoryAreaTypeLocation"
         ++ I.cc
         [ "location" `I.p` location_
+        , "address"  `I.p` address_
         ]
   shortShow StoryAreaTypeVenue
     { venue = venue_
@@ -65,6 +73,13 @@ instance I.ShortShow StoryAreaType where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         ]
+  shortShow StoryAreaTypeLink
+    { url = url_
+    }
+      = "StoryAreaTypeLink"
+        ++ I.cc
+        [ "url" `I.p` url_
+        ]
 
 instance AT.FromJSON StoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -75,14 +90,17 @@ instance AT.FromJSON StoryAreaType where
       "storyAreaTypeVenue"             -> parseStoryAreaTypeVenue v
       "storyAreaTypeSuggestedReaction" -> parseStoryAreaTypeSuggestedReaction v
       "storyAreaTypeMessage"           -> parseStoryAreaTypeMessage v
+      "storyAreaTypeLink"              -> parseStoryAreaTypeLink v
       _                                -> mempty
     
     where
       parseStoryAreaTypeLocation :: A.Value -> AT.Parser StoryAreaType
       parseStoryAreaTypeLocation = A.withObject "StoryAreaTypeLocation" $ \o -> do
         location_ <- o A..:?  "location"
+        address_  <- o A..:?  "address"
         pure $ StoryAreaTypeLocation
           { location = location_
+          , address  = address_
           }
       parseStoryAreaTypeVenue :: A.Value -> AT.Parser StoryAreaType
       parseStoryAreaTypeVenue = A.withObject "StoryAreaTypeVenue" $ \o -> do
@@ -109,6 +127,12 @@ instance AT.FromJSON StoryAreaType where
         pure $ StoryAreaTypeMessage
           { chat_id    = chat_id_
           , message_id = message_id_
+          }
+      parseStoryAreaTypeLink :: A.Value -> AT.Parser StoryAreaType
+      parseStoryAreaTypeLink = A.withObject "StoryAreaTypeLink" $ \o -> do
+        url_ <- o A..:?  "url"
+        pure $ StoryAreaTypeLink
+          { url = url_
           }
   parseJSON _ = mempty
 

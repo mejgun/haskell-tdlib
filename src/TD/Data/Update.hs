@@ -79,6 +79,7 @@ import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
+import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
@@ -586,6 +587,10 @@ data Update
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
     , revenue_amount :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ New amount of earned revenue
     }
+  | UpdateStarRevenueStatus -- ^ The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    { owner_id :: Maybe MessageSender.MessageSender         -- ^ Identifier of the owner of the Telegram stars
+    , _status  :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ New Telegram star revenue status
+    }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
@@ -663,6 +668,14 @@ data Update
     , inline_message_id :: Maybe T.Text                                    -- ^ Identifier of the inline message from which the query originated
     , chat_instance     :: Maybe Int                                       -- ^ An identifier uniquely corresponding to the chat a message was sent to
     , payload           :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
+    }
+  | UpdateNewBusinessCallbackQuery -- ^ A new incoming callback query from a business message; for bots only
+    { _id            :: Maybe Int                                       -- ^ Unique query identifier
+    , sender_user_id :: Maybe Int                                       -- ^ Identifier of the user who sent the query
+    , connection_id  :: Maybe T.Text                                    -- ^ Unique identifier of the business connection
+    , _message       :: Maybe BusinessMessage.BusinessMessage           -- ^ The message from the business account from which the query originated
+    , chat_instance  :: Maybe Int                                       -- ^ An identifier uniquely corresponding to the chat a message was sent to
+    , payload        :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
     }
   | UpdateNewShippingQuery -- ^ A new incoming shipping query; for bots only. Only for invoices with flexible price
     { _id              :: Maybe Int             -- ^ Unique query identifier
@@ -1824,6 +1837,15 @@ instance I.ShortShow Update where
         [ "chat_id"        `I.p` chat_id_
         , "revenue_amount" `I.p` revenue_amount_
         ]
+  shortShow UpdateStarRevenueStatus
+    { owner_id = owner_id_
+    , _status  = _status_
+    }
+      = "UpdateStarRevenueStatus"
+        ++ I.cc
+        [ "owner_id" `I.p` owner_id_
+        , "_status"  `I.p` _status_
+        ]
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
     , weekly_count       = weekly_count_
@@ -1995,6 +2017,23 @@ instance I.ShortShow Update where
         , "inline_message_id" `I.p` inline_message_id_
         , "chat_instance"     `I.p` chat_instance_
         , "payload"           `I.p` payload_
+        ]
+  shortShow UpdateNewBusinessCallbackQuery
+    { _id            = _id_
+    , sender_user_id = sender_user_id_
+    , connection_id  = connection_id_
+    , _message       = _message_
+    , chat_instance  = chat_instance_
+    , payload        = payload_
+    }
+      = "UpdateNewBusinessCallbackQuery"
+        ++ I.cc
+        [ "_id"            `I.p` _id_
+        , "sender_user_id" `I.p` sender_user_id_
+        , "connection_id"  `I.p` connection_id_
+        , "_message"       `I.p` _message_
+        , "chat_instance"  `I.p` chat_instance_
+        , "payload"        `I.p` payload_
         ]
   shortShow UpdateNewShippingQuery
     { _id              = _id_
@@ -2263,6 +2302,7 @@ instance AT.FromJSON Update where
       "updateSavedMessagesTags"               -> parseUpdateSavedMessagesTags v
       "updateOwnedStarCount"                  -> parseUpdateOwnedStarCount v
       "updateChatRevenueAmount"               -> parseUpdateChatRevenueAmount v
+      "updateStarRevenueStatus"               -> parseUpdateStarRevenueStatus v
       "updateSpeechRecognitionTrial"          -> parseUpdateSpeechRecognitionTrial v
       "updateDiceEmojis"                      -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"     -> parseUpdateAnimatedEmojiMessageClicked v
@@ -2279,6 +2319,7 @@ instance AT.FromJSON Update where
       "updateNewChosenInlineResult"           -> parseUpdateNewChosenInlineResult v
       "updateNewCallbackQuery"                -> parseUpdateNewCallbackQuery v
       "updateNewInlineCallbackQuery"          -> parseUpdateNewInlineCallbackQuery v
+      "updateNewBusinessCallbackQuery"        -> parseUpdateNewBusinessCallbackQuery v
       "updateNewShippingQuery"                -> parseUpdateNewShippingQuery v
       "updateNewPreCheckoutQuery"             -> parseUpdateNewPreCheckoutQuery v
       "updateNewCustomEvent"                  -> parseUpdateNewCustomEvent v
@@ -3265,6 +3306,14 @@ instance AT.FromJSON Update where
           { chat_id        = chat_id_
           , revenue_amount = revenue_amount_
           }
+      parseUpdateStarRevenueStatus :: A.Value -> AT.Parser Update
+      parseUpdateStarRevenueStatus = A.withObject "UpdateStarRevenueStatus" $ \o -> do
+        owner_id_ <- o A..:?  "owner_id"
+        _status_  <- o A..:?  "status"
+        pure $ UpdateStarRevenueStatus
+          { owner_id = owner_id_
+          , _status  = _status_
+          }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
       parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do
         max_media_duration_ <- o A..:?  "max_media_duration"
@@ -3420,6 +3469,22 @@ instance AT.FromJSON Update where
           , inline_message_id = inline_message_id_
           , chat_instance     = chat_instance_
           , payload           = payload_
+          }
+      parseUpdateNewBusinessCallbackQuery :: A.Value -> AT.Parser Update
+      parseUpdateNewBusinessCallbackQuery = A.withObject "UpdateNewBusinessCallbackQuery" $ \o -> do
+        _id_            <- fmap I.readInt64 <$> o A..:?  "id"
+        sender_user_id_ <- o A..:?                       "sender_user_id"
+        connection_id_  <- o A..:?                       "connection_id"
+        _message_       <- o A..:?                       "message"
+        chat_instance_  <- fmap I.readInt64 <$> o A..:?  "chat_instance"
+        payload_        <- o A..:?                       "payload"
+        pure $ UpdateNewBusinessCallbackQuery
+          { _id            = _id_
+          , sender_user_id = sender_user_id_
+          , connection_id  = connection_id_
+          , _message       = _message_
+          , chat_instance  = chat_instance_
+          , payload        = payload_
           }
       parseUpdateNewShippingQuery :: A.Value -> AT.Parser Update
       parseUpdateNewShippingQuery = A.withObject "UpdateNewShippingQuery" $ \o -> do

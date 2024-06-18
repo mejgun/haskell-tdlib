@@ -7,8 +7,8 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.EmojiKeyword as EmojiKeyword
 
 data EmojiKeywords
-  = EmojiKeywords -- ^ Represents a list of emoji with their keywords
-    { emoji_keywords :: Maybe [EmojiKeyword.EmojiKeyword] -- ^ List of emoji with their keywords
+  = EmojiKeywords -- ^ Represents a list of emojis with their keywords
+    { emoji_keywords :: Maybe [EmojiKeyword.EmojiKeyword] -- ^ List of emojis with their keywords
     }
   deriving (Eq, Show)
 

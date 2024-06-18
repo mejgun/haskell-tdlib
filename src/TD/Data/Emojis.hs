@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data Emojis
-  = Emojis -- ^ Represents a list of emoji
+  = Emojis -- ^ Represents a list of emojis
     { emojis :: Maybe [T.Text] -- ^ List of emojis
     }
   deriving (Eq, Show)

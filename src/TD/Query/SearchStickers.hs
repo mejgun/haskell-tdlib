@@ -13,7 +13,7 @@ import qualified Data.Text as T
 data SearchStickers
   = SearchStickers
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the stickers to return
-    , emojis       :: Maybe T.Text                  -- ^ Space-separated list of emoji to search for; must be non-empty
+    , emojis       :: Maybe T.Text                  -- ^ Space-separated list of emojis to search for; must be non-empty
     , limit        :: Maybe Int                     -- ^ The maximum number of stickers to be returned; 0-100
     }
   deriving (Eq, Show)

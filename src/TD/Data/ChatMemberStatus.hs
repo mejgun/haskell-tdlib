@@ -11,12 +11,12 @@ import qualified TD.Data.ChatPermissions as ChatPermissions
 -- | Provides information about the status of a member in a chat
 data ChatMemberStatus
   = ChatMemberStatusCreator -- ^ The user is the owner of the chat and has all the administrator privileges
-    { custom_title :: Maybe T.Text -- ^ A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only
+    { custom_title :: Maybe T.Text -- ^ A custom title of the owner; 0-16 characters without emoji; applicable to supergroups only
     , is_anonymous :: Maybe Bool   -- ^ True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     , is_member    :: Maybe Bool   -- ^ True, if the user is a member of the chat
     }
   | ChatMemberStatusAdministrator -- ^ The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
-    { custom_title  :: Maybe T.Text                                          -- ^ A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
+    { custom_title  :: Maybe T.Text                                          -- ^ A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only
     , can_be_edited :: Maybe Bool                                            -- ^ True, if the current user can edit the administrator privileges for the called user
     , rights        :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Rights of the administrator
     }

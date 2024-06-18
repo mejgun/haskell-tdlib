@@ -15,7 +15,7 @@ data MessageSendOptions
     , protect_content                        :: Maybe Bool                                          -- ^ Pass true if the content of the message must be protected from forwarding and saving; for bots only
     , update_order_of_installed_sticker_sets :: Maybe Bool                                          -- ^ Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
     , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
-    , effect_id                              :: Maybe Int                                           -- ^ Identifier of the effect to apply to the message; applicable only to sendMessage and sendMessageAlbum in private chats
+    , effect_id                              :: Maybe Int                                           -- ^ Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
     , sending_id                             :: Maybe Int                                           -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     , only_preview                           :: Maybe Bool                                          -- ^ Pass true to get a fake message instead of actually sending them
     }

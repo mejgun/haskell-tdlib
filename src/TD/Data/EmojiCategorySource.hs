@@ -9,7 +9,7 @@ import qualified Data.Text as T
 -- | Describes source of stickers for an emoji category
 data EmojiCategorySource
   = EmojiCategorySourceSearch -- ^ The category contains a list of similar emoji to search for in getStickers and searchStickers for stickers, or getInlineQueryResults with the bot getOption("animation_search_bot_username") for animations
-    { emojis :: Maybe [T.Text] -- ^ List of emojis for search for
+    { emojis :: Maybe [T.Text] -- ^ List of emojis to search for
     }
   | EmojiCategorySourcePremium -- ^ The category contains premium stickers that must be found by getPremiumStickers
   deriving (Eq, Show)

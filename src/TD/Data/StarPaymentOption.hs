@@ -10,7 +10,7 @@ data StarPaymentOption
   = StarPaymentOption -- ^ Describes an option for buying Telegram stars
     { currency         :: Maybe T.Text -- ^ ISO 4217 currency code for the payment
     , amount           :: Maybe Int    -- ^ The amount to pay, in the smallest units of the currency
-    , star_count       :: Maybe Int    -- ^ Number of stars that will be purchased
+    , star_count       :: Maybe Int    -- ^ Number of Telegram stars that will be purchased
     , store_product_id :: Maybe T.Text -- ^ Identifier of the store product associated with the option; may be empty if none
     , is_additional    :: Maybe Bool   -- ^ True, if the option must be shown only in the full list of payment options
     }

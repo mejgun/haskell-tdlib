@@ -98,6 +98,7 @@ import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
+import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GroupCall as GroupCall
@@ -174,6 +175,7 @@ import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
 import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
+import qualified TD.Data.StarRevenueStatistics as StarRevenueStatistics
 import qualified TD.Data.StarTransactions as StarTransactions
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.Sticker as Sticker
@@ -309,6 +311,7 @@ data GeneralResult
     | FoundMessages                      FoundMessages.FoundMessages
     | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
+    | FoundStories                       FoundStories.FoundStories
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GroupCall                          GroupCall.GroupCall
@@ -385,6 +388,7 @@ data GeneralResult
     | Sessions                           Sessions.Sessions
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
     | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
+    | StarRevenueStatistics              StarRevenueStatistics.StarRevenueStatistics
     | StarTransactions                   StarTransactions.StarTransactions
     | StatisticalGraph                   StatisticalGraph.StatisticalGraph
     | Sticker                            Sticker.Sticker
@@ -615,6 +619,8 @@ instance I.ShortShow GeneralResult where
     = "FoundPosition" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundPositions v)
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundStories v)
+    = "FoundStories" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
@@ -767,6 +773,8 @@ instance I.ShortShow GeneralResult where
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
   shortShow (StarPaymentOptions v)
     = "StarPaymentOptions" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarRevenueStatistics v)
+    = "StarRevenueStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (StarTransactions v)
     = "StarTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (StatisticalGraph v)
@@ -942,6 +950,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundMessages                       <$> parseJSON v )
     <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
+    <|> ( FoundStories                        <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -1018,6 +1027,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
     <|> ( StarPaymentOptions                  <$> parseJSON v )
+    <|> ( StarRevenueStatistics               <$> parseJSON v )
     <|> ( StarTransactions                    <$> parseJSON v )
     <|> ( StatisticalGraph                    <$> parseJSON v )
     <|> ( Sticker                             <$> parseJSON v )

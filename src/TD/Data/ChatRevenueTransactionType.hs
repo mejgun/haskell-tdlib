@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
-import qualified TD.Data.ChatRevenueWithdrawalState as ChatRevenueWithdrawalState
+import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
 
 -- | Describes type of transaction for revenue earned from sponsored messages in a chat
 data ChatRevenueTransactionType
@@ -14,9 +14,9 @@ data ChatRevenueTransactionType
     , end_date   :: Maybe Int -- ^ Point in time (Unix timestamp) when the earnings ended
     }
   | ChatRevenueTransactionTypeWithdrawal -- ^ Describes a withdrawal of earnings
-    { withdrawal_date :: Maybe Int                                                   -- ^ Point in time (Unix timestamp) when the earnings withdrawal started
-    , provider        :: Maybe T.Text                                                -- ^ Name of the payment provider
-    , state           :: Maybe ChatRevenueWithdrawalState.ChatRevenueWithdrawalState -- ^ State of the withdrawal
+    { withdrawal_date :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the earnings withdrawal started
+    , provider        :: Maybe T.Text                                        -- ^ Name of the payment provider
+    , state           :: Maybe RevenueWithdrawalState.RevenueWithdrawalState -- ^ State of the withdrawal
     }
   | ChatRevenueTransactionTypeRefund -- ^ Describes a refund for failed withdrawal of earnings
     { refund_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the transaction was refunded

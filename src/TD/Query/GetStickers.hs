@@ -13,7 +13,7 @@ import qualified Data.Text as T
 data GetStickers
   = GetStickers
     { sticker_type :: Maybe StickerType.StickerType -- ^ Type of the stickers to return
-    , query        :: Maybe T.Text                  -- ^ Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    , query        :: Maybe T.Text                  -- ^ Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
     , limit        :: Maybe Int                     -- ^ The maximum number of stickers to be returned
     , chat_id      :: Maybe Int                     -- ^ Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     }

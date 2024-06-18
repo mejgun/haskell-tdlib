@@ -8,10 +8,14 @@ import qualified TD.Data.InputTextQuote as InputTextQuote
 
 -- | Contains information about the message or the story to be replied
 data InputMessageReplyTo
-  = InputMessageReplyToMessage -- ^ Describes a message to be replied
-    { chat_id    :: Maybe Int                           -- ^ The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
-    , message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the same or the specified chat
+  = InputMessageReplyToMessage -- ^ Describes a message to be replied in the same chat and forum topic
+    { message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the same chat and forum topic
     , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
+    }
+  | InputMessageReplyToExternalMessage -- ^ Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+    { chat_id    :: Maybe Int                           -- ^ The identifier of the chat to which the message to be replied belongs
+    , message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the specified chat. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied
     { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat and channel stories can't be replied
@@ -21,11 +25,20 @@ data InputMessageReplyTo
 
 instance I.ShortShow InputMessageReplyTo where
   shortShow InputMessageReplyToMessage
+    { message_id = message_id_
+    , quote      = quote_
+    }
+      = "InputMessageReplyToMessage"
+        ++ I.cc
+        [ "message_id" `I.p` message_id_
+        , "quote"      `I.p` quote_
+        ]
+  shortShow InputMessageReplyToExternalMessage
     { chat_id    = chat_id_
     , message_id = message_id_
     , quote      = quote_
     }
-      = "InputMessageReplyToMessage"
+      = "InputMessageReplyToExternalMessage"
         ++ I.cc
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
@@ -46,17 +59,26 @@ instance AT.FromJSON InputMessageReplyTo where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "inputMessageReplyToMessage" -> parseInputMessageReplyToMessage v
-      "inputMessageReplyToStory"   -> parseInputMessageReplyToStory v
-      _                            -> mempty
+      "inputMessageReplyToMessage"         -> parseInputMessageReplyToMessage v
+      "inputMessageReplyToExternalMessage" -> parseInputMessageReplyToExternalMessage v
+      "inputMessageReplyToStory"           -> parseInputMessageReplyToStory v
+      _                                    -> mempty
     
     where
       parseInputMessageReplyToMessage :: A.Value -> AT.Parser InputMessageReplyTo
       parseInputMessageReplyToMessage = A.withObject "InputMessageReplyToMessage" $ \o -> do
-        chat_id_    <- o A..:?  "chat_id"
         message_id_ <- o A..:?  "message_id"
         quote_      <- o A..:?  "quote"
         pure $ InputMessageReplyToMessage
+          { message_id = message_id_
+          , quote      = quote_
+          }
+      parseInputMessageReplyToExternalMessage :: A.Value -> AT.Parser InputMessageReplyTo
+      parseInputMessageReplyToExternalMessage = A.withObject "InputMessageReplyToExternalMessage" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        quote_      <- o A..:?  "quote"
+        pure $ InputMessageReplyToExternalMessage
           { chat_id    = chat_id_
           , message_id = message_id_
           , quote      = quote_
@@ -73,12 +95,21 @@ instance AT.FromJSON InputMessageReplyTo where
 
 instance AT.ToJSON InputMessageReplyTo where
   toJSON InputMessageReplyToMessage
+    { message_id = message_id_
+    , quote      = quote_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "inputMessageReplyToMessage"
+        , "message_id" A..= message_id_
+        , "quote"      A..= quote_
+        ]
+  toJSON InputMessageReplyToExternalMessage
     { chat_id    = chat_id_
     , message_id = message_id_
     , quote      = quote_
     }
       = A.object
-        [ "@type"      A..= AT.String "inputMessageReplyToMessage"
+        [ "@type"      A..= AT.String "inputMessageReplyToExternalMessage"
         , "chat_id"    A..= chat_id_
         , "message_id" A..= message_id_
         , "quote"      A..= quote_

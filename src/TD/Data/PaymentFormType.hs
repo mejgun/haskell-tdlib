@@ -23,7 +23,7 @@ data PaymentFormType
     , need_password              :: Maybe Bool                                -- ^ True, if the user will be able to save credentials, if sets up a 2-step verification password
     }
   | PaymentFormTypeStars -- ^ The payment form is for a payment in Telegram stars
-    { star_count :: Maybe Int -- ^ Number of stars that will be paid
+    { star_count :: Maybe Int -- ^ Number of Telegram stars that will be paid
     }
   deriving (Eq, Show)
 

@@ -23,7 +23,7 @@ data CallState
     , servers           :: Maybe [CallServer.CallServer]   -- ^ List of available call servers
     , config            :: Maybe T.Text                    -- ^ A JSON-encoded call config
     , encryption_key    :: Maybe BS.ByteString             -- ^ Call encryption key
-    , emojis            :: Maybe [T.Text]                  -- ^ Encryption key emojis fingerprint
+    , emojis            :: Maybe [T.Text]                  -- ^ Encryption key fingerprint represented as 4 emoji
     , allow_p2p         :: Maybe Bool                      -- ^ True, if peer-to-peer connection is allowed by users privacy settings
     , custom_parameters :: Maybe T.Text                    -- ^ Custom JSON-encoded call parameters to be passed to tgcalls
     }

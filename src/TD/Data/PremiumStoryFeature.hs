@@ -12,7 +12,7 @@ data PremiumStoryFeature
   | PremiumStoryFeaturePermanentViewsHistory -- ^ The ability to check who opened the current user's stories after they expire
   | PremiumStoryFeatureCustomExpirationDuration -- ^ The ability to set custom expiration duration for stories
   | PremiumStoryFeatureSaveStories -- ^ The ability to save other's unprotected stories
-  | PremiumStoryFeatureLinksAndFormatting -- ^ The ability to use links and formatting in story caption
+  | PremiumStoryFeatureLinksAndFormatting -- ^ The ability to use links and formatting in story caption, and use inputStoryAreaTypeLink areas
   | PremiumStoryFeatureVideoQuality -- ^ The ability to choose better quality for viewed stories
   deriving (Eq, Show)
 
