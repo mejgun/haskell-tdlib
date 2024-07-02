@@ -9,6 +9,7 @@ import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.InputFile as InputFile
 import qualified TD.Data.InputThumbnail as InputThumbnail
 import qualified Data.Text as T
+import qualified TD.Data.InputPaidMedia as InputPaidMedia
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.ByteString as BS
 import qualified TD.Data.Location as Location
@@ -33,7 +34,7 @@ data InputMessageContent
     , width                    :: Maybe Int                           -- ^ Width of the animation; may be replaced by the server
     , height                   :: Maybe Int                           -- ^ Height of the animation; may be replaced by the server
     , caption                  :: Maybe FormattedText.FormattedText   -- ^ Animation caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , show_caption_above_media :: Maybe Bool                          -- ^ True, if caption must be shown above the animation; otherwise, caption must be shown below the animation; not supported in secret chats
+    , show_caption_above_media :: Maybe Bool                          -- ^ True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation; not supported in secret chats
     , has_spoiler              :: Maybe Bool                          -- ^ True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageAudio -- ^ An audio message
@@ -50,6 +51,12 @@ data InputMessageContent
     , disable_content_type_detection :: Maybe Bool                          -- ^ Pass true to disable automatic file type detection and send the document as a file. Always true for files sent to secret chats
     , caption                        :: Maybe FormattedText.FormattedText   -- ^ Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
+  | InputMessagePaidMedia -- ^ A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
+    { star_count               :: Maybe Int                             -- ^ The number of stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
+    , paid_media               :: Maybe [InputPaidMedia.InputPaidMedia] -- ^ The content of the paid media
+    , caption                  :: Maybe FormattedText.FormattedText     -- ^ Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
+    }
   | InputMessagePhoto -- ^ A photo message
     { photo                    :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
     , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
@@ -57,7 +64,7 @@ data InputMessageContent
     , width                    :: Maybe Int                                             -- ^ Photo width
     , height                   :: Maybe Int                                             -- ^ Photo height
     , caption                  :: Maybe FormattedText.FormattedText                     -- ^ Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if caption must be shown above the photo; otherwise, caption must be shown below the photo; not supported in secret chats
+    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo; not supported in secret chats
     , self_destruct_type       :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Photo self-destruct type; pass null if none; private chats only
     , has_spoiler              :: Maybe Bool                                            -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     }
@@ -77,7 +84,7 @@ data InputMessageContent
     , height                   :: Maybe Int                                             -- ^ Video height
     , supports_streaming       :: Maybe Bool                                            -- ^ True, if the video is supposed to be streamed
     , caption                  :: Maybe FormattedText.FormattedText                     -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if caption must be shown above the video; otherwise, caption must be shown below the video; not supported in secret chats
+    , show_caption_above_media :: Maybe Bool                                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     , self_destruct_type       :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video self-destruct type; pass null if none; private chats only
     , has_spoiler              :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
@@ -116,18 +123,19 @@ data InputMessageContent
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
     }
   | InputMessageInvoice -- ^ A message with an invoice; can be used only by bots
-    { invoice                :: Maybe Invoice.Invoice     -- ^ Invoice
-    , title                  :: Maybe T.Text              -- ^ Product title; 1-32 characters
-    , description            :: Maybe T.Text
-    , photo_url              :: Maybe T.Text              -- ^ Product photo URL; optional
-    , photo_size             :: Maybe Int                 -- ^ Product photo size
-    , photo_width            :: Maybe Int                 -- ^ Product photo width
-    , photo_height           :: Maybe Int                 -- ^ Product photo height
-    , payload                :: Maybe BS.ByteString       -- ^ The invoice payload
-    , provider_token         :: Maybe T.Text              -- ^ Payment provider token; may be empty for payments in Telegram Stars
-    , provider_data          :: Maybe T.Text              -- ^ JSON-encoded data about the invoice, which will be shared with the payment provider
-    , start_parameter        :: Maybe T.Text              -- ^ Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
-    , extended_media_content :: Maybe InputMessageContent -- ^ The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
+    { invoice            :: Maybe Invoice.Invoice               -- ^ Invoice
+    , title              :: Maybe T.Text                        -- ^ Product title; 1-32 characters
+    , description        :: Maybe T.Text
+    , photo_url          :: Maybe T.Text                        -- ^ Product photo URL; optional
+    , photo_size         :: Maybe Int                           -- ^ Product photo size
+    , photo_width        :: Maybe Int                           -- ^ Product photo width
+    , photo_height       :: Maybe Int                           -- ^ Product photo height
+    , payload            :: Maybe BS.ByteString                 -- ^ The invoice payload
+    , provider_token     :: Maybe T.Text                        -- ^ Payment provider token; may be empty for payments in Telegram Stars
+    , provider_data      :: Maybe T.Text                        -- ^ JSON-encoded data about the invoice, which will be shared with the payment provider
+    , start_parameter    :: Maybe T.Text                        -- ^ Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
+    , _paid_media        :: Maybe InputPaidMedia.InputPaidMedia -- ^ The content of paid media attached to the invoice; pass null if none
+    , paid_media_caption :: Maybe FormattedText.FormattedText   -- ^ Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
     { question     :: Maybe FormattedText.FormattedText   -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
@@ -214,6 +222,19 @@ instance I.ShortShow InputMessageContent where
         , "thumbnail"                      `I.p` thumbnail_
         , "disable_content_type_detection" `I.p` disable_content_type_detection_
         , "caption"                        `I.p` caption_
+        ]
+  shortShow InputMessagePaidMedia
+    { star_count               = star_count_
+    , paid_media               = paid_media_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    }
+      = "InputMessagePaidMedia"
+        ++ I.cc
+        [ "star_count"               `I.p` star_count_
+        , "paid_media"               `I.p` paid_media_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
         ]
   shortShow InputMessagePhoto
     { photo                    = photo_
@@ -356,33 +377,35 @@ instance I.ShortShow InputMessageContent where
         , "game_short_name" `I.p` game_short_name_
         ]
   shortShow InputMessageInvoice
-    { invoice                = invoice_
-    , title                  = title_
-    , description            = description_
-    , photo_url              = photo_url_
-    , photo_size             = photo_size_
-    , photo_width            = photo_width_
-    , photo_height           = photo_height_
-    , payload                = payload_
-    , provider_token         = provider_token_
-    , provider_data          = provider_data_
-    , start_parameter        = start_parameter_
-    , extended_media_content = extended_media_content_
+    { invoice            = invoice_
+    , title              = title_
+    , description        = description_
+    , photo_url          = photo_url_
+    , photo_size         = photo_size_
+    , photo_width        = photo_width_
+    , photo_height       = photo_height_
+    , payload            = payload_
+    , provider_token     = provider_token_
+    , provider_data      = provider_data_
+    , start_parameter    = start_parameter_
+    , _paid_media        = _paid_media_
+    , paid_media_caption = paid_media_caption_
     }
       = "InputMessageInvoice"
         ++ I.cc
-        [ "invoice"                `I.p` invoice_
-        , "title"                  `I.p` title_
-        , "description"            `I.p` description_
-        , "photo_url"              `I.p` photo_url_
-        , "photo_size"             `I.p` photo_size_
-        , "photo_width"            `I.p` photo_width_
-        , "photo_height"           `I.p` photo_height_
-        , "payload"                `I.p` payload_
-        , "provider_token"         `I.p` provider_token_
-        , "provider_data"          `I.p` provider_data_
-        , "start_parameter"        `I.p` start_parameter_
-        , "extended_media_content" `I.p` extended_media_content_
+        [ "invoice"            `I.p` invoice_
+        , "title"              `I.p` title_
+        , "description"        `I.p` description_
+        , "photo_url"          `I.p` photo_url_
+        , "photo_size"         `I.p` photo_size_
+        , "photo_width"        `I.p` photo_width_
+        , "photo_height"       `I.p` photo_height_
+        , "payload"            `I.p` payload_
+        , "provider_token"     `I.p` provider_token_
+        , "provider_data"      `I.p` provider_data_
+        , "start_parameter"    `I.p` start_parameter_
+        , "_paid_media"        `I.p` _paid_media_
+        , "paid_media_caption" `I.p` paid_media_caption_
         ]
   shortShow InputMessagePoll
     { question     = question_
@@ -435,6 +458,7 @@ instance AT.FromJSON InputMessageContent where
       "inputMessageAnimation" -> parseInputMessageAnimation v
       "inputMessageAudio"     -> parseInputMessageAudio v
       "inputMessageDocument"  -> parseInputMessageDocument v
+      "inputMessagePaidMedia" -> parseInputMessagePaidMedia v
       "inputMessagePhoto"     -> parseInputMessagePhoto v
       "inputMessageSticker"   -> parseInputMessageSticker v
       "inputMessageVideo"     -> parseInputMessageVideo v
@@ -511,6 +535,18 @@ instance AT.FromJSON InputMessageContent where
           , thumbnail                      = thumbnail_
           , disable_content_type_detection = disable_content_type_detection_
           , caption                        = caption_
+          }
+      parseInputMessagePaidMedia :: A.Value -> AT.Parser InputMessageContent
+      parseInputMessagePaidMedia = A.withObject "InputMessagePaidMedia" $ \o -> do
+        star_count_               <- o A..:?  "star_count"
+        paid_media_               <- o A..:?  "paid_media"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        pure $ InputMessagePaidMedia
+          { star_count               = star_count_
+          , paid_media               = paid_media_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
           }
       parseInputMessagePhoto :: A.Value -> AT.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
@@ -644,31 +680,33 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageInvoice :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageInvoice = A.withObject "InputMessageInvoice" $ \o -> do
-        invoice_                <- o A..:?                       "invoice"
-        title_                  <- o A..:?                       "title"
-        description_            <- o A..:?                       "description"
-        photo_url_              <- o A..:?                       "photo_url"
-        photo_size_             <- o A..:?                       "photo_size"
-        photo_width_            <- o A..:?                       "photo_width"
-        photo_height_           <- o A..:?                       "photo_height"
-        payload_                <- fmap I.readBytes <$> o A..:?  "payload"
-        provider_token_         <- o A..:?                       "provider_token"
-        provider_data_          <- o A..:?                       "provider_data"
-        start_parameter_        <- o A..:?                       "start_parameter"
-        extended_media_content_ <- o A..:?                       "extended_media_content"
+        invoice_            <- o A..:?                       "invoice"
+        title_              <- o A..:?                       "title"
+        description_        <- o A..:?                       "description"
+        photo_url_          <- o A..:?                       "photo_url"
+        photo_size_         <- o A..:?                       "photo_size"
+        photo_width_        <- o A..:?                       "photo_width"
+        photo_height_       <- o A..:?                       "photo_height"
+        payload_            <- fmap I.readBytes <$> o A..:?  "payload"
+        provider_token_     <- o A..:?                       "provider_token"
+        provider_data_      <- o A..:?                       "provider_data"
+        start_parameter_    <- o A..:?                       "start_parameter"
+        _paid_media_        <- o A..:?                       "paid_media"
+        paid_media_caption_ <- o A..:?                       "paid_media_caption"
         pure $ InputMessageInvoice
-          { invoice                = invoice_
-          , title                  = title_
-          , description            = description_
-          , photo_url              = photo_url_
-          , photo_size             = photo_size_
-          , photo_width            = photo_width_
-          , photo_height           = photo_height_
-          , payload                = payload_
-          , provider_token         = provider_token_
-          , provider_data          = provider_data_
-          , start_parameter        = start_parameter_
-          , extended_media_content = extended_media_content_
+          { invoice            = invoice_
+          , title              = title_
+          , description        = description_
+          , photo_url          = photo_url_
+          , photo_size         = photo_size_
+          , photo_width        = photo_width_
+          , photo_height       = photo_height_
+          , payload            = payload_
+          , provider_token     = provider_token_
+          , provider_data      = provider_data_
+          , start_parameter    = start_parameter_
+          , _paid_media        = _paid_media_
+          , paid_media_caption = paid_media_caption_
           }
       parseInputMessagePoll :: A.Value -> AT.Parser InputMessageContent
       parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
@@ -774,6 +812,19 @@ instance AT.ToJSON InputMessageContent where
         , "thumbnail"                      A..= thumbnail_
         , "disable_content_type_detection" A..= disable_content_type_detection_
         , "caption"                        A..= caption_
+        ]
+  toJSON InputMessagePaidMedia
+    { star_count               = star_count_
+    , paid_media               = paid_media_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    }
+      = A.object
+        [ "@type"                    A..= AT.String "inputMessagePaidMedia"
+        , "star_count"               A..= star_count_
+        , "paid_media"               A..= paid_media_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
         ]
   toJSON InputMessagePhoto
     { photo                    = photo_
@@ -916,33 +967,35 @@ instance AT.ToJSON InputMessageContent where
         , "game_short_name" A..= game_short_name_
         ]
   toJSON InputMessageInvoice
-    { invoice                = invoice_
-    , title                  = title_
-    , description            = description_
-    , photo_url              = photo_url_
-    , photo_size             = photo_size_
-    , photo_width            = photo_width_
-    , photo_height           = photo_height_
-    , payload                = payload_
-    , provider_token         = provider_token_
-    , provider_data          = provider_data_
-    , start_parameter        = start_parameter_
-    , extended_media_content = extended_media_content_
+    { invoice            = invoice_
+    , title              = title_
+    , description        = description_
+    , photo_url          = photo_url_
+    , photo_size         = photo_size_
+    , photo_width        = photo_width_
+    , photo_height       = photo_height_
+    , payload            = payload_
+    , provider_token     = provider_token_
+    , provider_data      = provider_data_
+    , start_parameter    = start_parameter_
+    , _paid_media        = _paid_media_
+    , paid_media_caption = paid_media_caption_
     }
       = A.object
-        [ "@type"                  A..= AT.String "inputMessageInvoice"
-        , "invoice"                A..= invoice_
-        , "title"                  A..= title_
-        , "description"            A..= description_
-        , "photo_url"              A..= photo_url_
-        , "photo_size"             A..= photo_size_
-        , "photo_width"            A..= photo_width_
-        , "photo_height"           A..= photo_height_
-        , "payload"                A..= fmap I.writeBytes  payload_
-        , "provider_token"         A..= provider_token_
-        , "provider_data"          A..= provider_data_
-        , "start_parameter"        A..= start_parameter_
-        , "extended_media_content" A..= extended_media_content_
+        [ "@type"              A..= AT.String "inputMessageInvoice"
+        , "invoice"            A..= invoice_
+        , "title"              A..= title_
+        , "description"        A..= description_
+        , "photo_url"          A..= photo_url_
+        , "photo_size"         A..= photo_size_
+        , "photo_width"        A..= photo_width_
+        , "photo_height"       A..= photo_height_
+        , "payload"            A..= fmap I.writeBytes  payload_
+        , "provider_token"     A..= provider_token_
+        , "provider_data"      A..= provider_data_
+        , "start_parameter"    A..= start_parameter_
+        , "paid_media"         A..= _paid_media_
+        , "paid_media_caption" A..= paid_media_caption_
         ]
   toJSON InputMessagePoll
     { question     = question_

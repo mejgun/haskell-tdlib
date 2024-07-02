@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data PremiumGiftCodePaymentOption
-  = PremiumGiftCodePaymentOption -- ^ Describes an option for creating Telegram Premium gift codes
+  = PremiumGiftCodePaymentOption -- ^ Describes an option for creating Telegram Premium gift codes. Use telegramPaymentPurposePremiumGiftCodes for out-of-store payments
     { currency               :: Maybe T.Text -- ^ ISO 4217 currency code for Telegram Premium gift code payment
     , amount                 :: Maybe Int    -- ^ The amount to pay, in the smallest units of the currency
     , user_count             :: Maybe Int    -- ^ Number of users which will be able to activate the gift codes

@@ -11,7 +11,7 @@ import qualified TD.Data.TargetChat as TargetChat
 -- | Describes the type of inline keyboard button
 data InlineKeyboardButtonType
   = InlineKeyboardButtonTypeUrl -- ^ A button that opens a specified URL
-    { url :: Maybe T.Text -- ^ HTTP or tg:// URL to open
+    { url :: Maybe T.Text -- ^ HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button
     }
   | InlineKeyboardButtonTypeLoginUrl -- ^ A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
     { url          :: Maybe T.Text -- ^ An HTTP URL to pass to getLoginUrlInfo

@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data StarPaymentOption
-  = StarPaymentOption -- ^ Describes an option for buying Telegram stars
+  = StarPaymentOption -- ^ Describes an option for buying Telegram stars. Use telegramPaymentPurposeStars for out-of-store payments
     { currency         :: Maybe T.Text -- ^ ISO 4217 currency code for the payment
     , amount           :: Maybe Int    -- ^ The amount to pay, in the smallest units of the currency
     , star_count       :: Maybe Int    -- ^ Number of Telegram stars that will be purchased

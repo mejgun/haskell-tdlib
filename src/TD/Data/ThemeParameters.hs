@@ -13,6 +13,7 @@ data ThemeParameters
     , secondary_background_color :: Maybe Int -- ^ A secondary color for the background in the RGB24 format
     , header_background_color    :: Maybe Int -- ^ A color of the header background in the RGB24 format
     , section_background_color   :: Maybe Int -- ^ A color of the section background in the RGB24 format
+    , section_separator_color    :: Maybe Int -- ^ A color of the section separator in the RGB24 format
     , text_color                 :: Maybe Int -- ^ A color of text in the RGB24 format
     , accent_text_color          :: Maybe Int -- ^ An accent color of the text in the RGB24 format
     , section_header_text_color  :: Maybe Int -- ^ A color of text on the section headers in the RGB24 format
@@ -31,6 +32,7 @@ instance I.ShortShow ThemeParameters where
     , secondary_background_color = secondary_background_color_
     , header_background_color    = header_background_color_
     , section_background_color   = section_background_color_
+    , section_separator_color    = section_separator_color_
     , text_color                 = text_color_
     , accent_text_color          = accent_text_color_
     , section_header_text_color  = section_header_text_color_
@@ -47,6 +49,7 @@ instance I.ShortShow ThemeParameters where
         , "secondary_background_color" `I.p` secondary_background_color_
         , "header_background_color"    `I.p` header_background_color_
         , "section_background_color"   `I.p` section_background_color_
+        , "section_separator_color"    `I.p` section_separator_color_
         , "text_color"                 `I.p` text_color_
         , "accent_text_color"          `I.p` accent_text_color_
         , "section_header_text_color"  `I.p` section_header_text_color_
@@ -73,6 +76,7 @@ instance AT.FromJSON ThemeParameters where
         secondary_background_color_ <- o A..:?  "secondary_background_color"
         header_background_color_    <- o A..:?  "header_background_color"
         section_background_color_   <- o A..:?  "section_background_color"
+        section_separator_color_    <- o A..:?  "section_separator_color"
         text_color_                 <- o A..:?  "text_color"
         accent_text_color_          <- o A..:?  "accent_text_color"
         section_header_text_color_  <- o A..:?  "section_header_text_color"
@@ -87,6 +91,7 @@ instance AT.FromJSON ThemeParameters where
           , secondary_background_color = secondary_background_color_
           , header_background_color    = header_background_color_
           , section_background_color   = section_background_color_
+          , section_separator_color    = section_separator_color_
           , text_color                 = text_color_
           , accent_text_color          = accent_text_color_
           , section_header_text_color  = section_header_text_color_
@@ -105,6 +110,7 @@ instance AT.ToJSON ThemeParameters where
     , secondary_background_color = secondary_background_color_
     , header_background_color    = header_background_color_
     , section_background_color   = section_background_color_
+    , section_separator_color    = section_separator_color_
     , text_color                 = text_color_
     , accent_text_color          = accent_text_color_
     , section_header_text_color  = section_header_text_color_
@@ -121,6 +127,7 @@ instance AT.ToJSON ThemeParameters where
         , "secondary_background_color" A..= secondary_background_color_
         , "header_background_color"    A..= header_background_color_
         , "section_background_color"   A..= section_background_color_
+        , "section_separator_color"    A..= section_separator_color_
         , "text_color"                 A..= text_color_
         , "accent_text_color"          A..= accent_text_color_
         , "section_header_text_color"  A..= section_header_text_color_
@@ -139,6 +146,7 @@ defaultThemeParameters =
     , secondary_background_color = Nothing
     , header_background_color    = Nothing
     , section_background_color   = Nothing
+    , section_separator_color    = Nothing
     , text_color                 = Nothing
     , accent_text_color          = Nothing
     , section_header_text_color  = Nothing

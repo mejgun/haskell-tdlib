@@ -54,6 +54,10 @@ data PushMessageContent
     { is_live   :: Maybe Bool -- ^ True, if the location is live
     , is_pinned :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
     }
+  | PushMessageContentPaidMedia -- ^ A message with paid media
+    { star_count :: Maybe Int  -- ^ Number of stars needed to buy access to the media in the message; 0 for pinned message
+    , is_pinned  :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
+    }
   | PushMessageContentPhoto -- ^ A photo message
     { photo     :: Maybe Photo.Photo -- ^ Message content; may be null
     , caption   :: Maybe T.Text      -- ^ Photo caption
@@ -224,6 +228,15 @@ instance I.ShortShow PushMessageContent where
         ++ I.cc
         [ "is_live"   `I.p` is_live_
         , "is_pinned" `I.p` is_pinned_
+        ]
+  shortShow PushMessageContentPaidMedia
+    { star_count = star_count_
+    , is_pinned  = is_pinned_
+    }
+      = "PushMessageContentPaidMedia"
+        ++ I.cc
+        [ "star_count" `I.p` star_count_
+        , "is_pinned"  `I.p` is_pinned_
         ]
   shortShow PushMessageContentPhoto
     { photo     = photo_
@@ -425,6 +438,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentGameScore"            -> parsePushMessageContentGameScore v
       "pushMessageContentInvoice"              -> parsePushMessageContentInvoice v
       "pushMessageContentLocation"             -> parsePushMessageContentLocation v
+      "pushMessageContentPaidMedia"            -> parsePushMessageContentPaidMedia v
       "pushMessageContentPhoto"                -> parsePushMessageContentPhoto v
       "pushMessageContentPoll"                 -> parsePushMessageContentPoll v
       "pushMessageContentPremiumGiftCode"      -> parsePushMessageContentPremiumGiftCode v
@@ -525,6 +539,14 @@ instance AT.FromJSON PushMessageContent where
         pure $ PushMessageContentLocation
           { is_live   = is_live_
           , is_pinned = is_pinned_
+          }
+      parsePushMessageContentPaidMedia :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentPaidMedia = A.withObject "PushMessageContentPaidMedia" $ \o -> do
+        star_count_ <- o A..:?  "star_count"
+        is_pinned_  <- o A..:?  "is_pinned"
+        pure $ PushMessageContentPaidMedia
+          { star_count = star_count_
+          , is_pinned  = is_pinned_
           }
       parsePushMessageContentPhoto :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentPhoto = A.withObject "PushMessageContentPhoto" $ \o -> do

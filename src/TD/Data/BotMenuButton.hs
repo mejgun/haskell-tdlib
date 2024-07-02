@@ -11,7 +11,7 @@ import qualified Data.Text as T
 data BotMenuButton
   = BotMenuButton -- ^ Describes a button to be shown instead of bot commands menu button
     { text :: Maybe T.Text -- ^ Text of the button
-    , url  :: Maybe T.Text -- ^ URL to be passed to openWebApp
+    , url  :: Maybe T.Text -- ^ URL of a Web App to open when the button is pressed. If the link is of the type internalLinkTypeWebApp, then it must be processed accordingly. Otherwise, the link must be passed to openWebApp
     }
   deriving (Eq, Show)
 

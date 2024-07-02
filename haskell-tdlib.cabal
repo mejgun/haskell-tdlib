@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.36.0
+version:        2.0.37.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -219,6 +219,7 @@ library
       TD.Data.FilePart
       TD.Data.FileType
       TD.Data.FirebaseAuthenticationSettings
+      TD.Data.FirebaseDeviceVerificationParameters
       TD.Data.FormattedText
       TD.Data.ForumTopic
       TD.Data.ForumTopicIcon
@@ -266,6 +267,8 @@ library
       TD.Data.InputInvoice
       TD.Data.InputMessageContent
       TD.Data.InputMessageReplyTo
+      TD.Data.InputPaidMedia
+      TD.Data.InputPaidMediaType
       TD.Data.InputPassportElement
       TD.Data.InputPassportElementError
       TD.Data.InputPassportElementErrorSource
@@ -308,7 +311,6 @@ library
       TD.Data.MessageCopyOptions
       TD.Data.MessageEffect
       TD.Data.MessageEffectType
-      TD.Data.MessageExtendedMedia
       TD.Data.MessageFileType
       TD.Data.MessageForwardInfo
       TD.Data.MessageImportInfo
@@ -358,6 +360,7 @@ library
       TD.Data.PageBlockRelatedArticle
       TD.Data.PageBlockTableCell
       TD.Data.PageBlockVerticalAlignment
+      TD.Data.PaidMedia
       TD.Data.PassportAuthorizationForm
       TD.Data.PassportElement
       TD.Data.PassportElementError
@@ -934,6 +937,7 @@ library
       TD.Query.GetScopeNotificationSettings
       TD.Query.GetSearchedForTags
       TD.Query.GetSecretChat
+      TD.Query.GetStarAdAccountUrl
       TD.Query.GetStarPaymentOptions
       TD.Query.GetStarRevenueStatistics
       TD.Query.GetStarTransactions

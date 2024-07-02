@@ -18,7 +18,7 @@ data EditBusinessMessageCaption
     , message_id               :: Maybe Int                         -- ^ Identifier of the message
     , reply_markup             :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none
     , caption                  :: Maybe FormattedText.FormattedText -- ^ New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters
-    , show_caption_above_media :: Maybe Bool                        -- ^ Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    , show_caption_above_media :: Maybe Bool                        -- ^ Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages
     }
   deriving (Eq, Show)
 

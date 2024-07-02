@@ -9,7 +9,7 @@ import qualified TD.Data.TelegramPaymentPurpose as TelegramPaymentPurpose
 
 -- | Describes an invoice to process
 data InputInvoice
-  = InputInvoiceMessage -- ^ An invoice from a message of the type messageInvoice
+  = InputInvoiceMessage -- ^ An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
     , message_id :: Maybe Int -- ^ Message identifier
     }

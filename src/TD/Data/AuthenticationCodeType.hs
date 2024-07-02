@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
-import qualified Data.ByteString as BS
+import qualified TD.Data.FirebaseDeviceVerificationParameters as FirebaseDeviceVerificationParameters
 
 -- | Provides information about the method by which an authentication code is delivered to the user
 data AuthenticationCodeType
@@ -36,9 +36,8 @@ data AuthenticationCodeType
     , _length :: Maybe Int    -- ^ Length of the code
     }
   | AuthenticationCodeTypeFirebaseAndroid -- ^ A digit-only authentication code is delivered via Firebase Authentication to the official Android application
-    { use_play_integrity :: Maybe Bool          -- ^ True, if Play Integrity API must be used for device verification. Otherwise, SafetyNet Attestation API must be used
-    , nonce              :: Maybe BS.ByteString -- ^ Nonce to pass to the Play Integrity API or the SafetyNet Attestation API
-    , _length            :: Maybe Int           -- ^ Length of the code
+    { device_verification_parameters :: Maybe FirebaseDeviceVerificationParameters.FirebaseDeviceVerificationParameters -- ^ Parameters to be used for device verification
+    , _length                        :: Maybe Int                                                                       -- ^ Length of the code
     }
   | AuthenticationCodeTypeFirebaseIos -- ^ A digit-only authentication code is delivered via Firebase Authentication to the official iOS application
     { receipt      :: Maybe T.Text -- ^ Receipt of successful application token validation to compare with receipt from push notification
@@ -109,15 +108,13 @@ instance I.ShortShow AuthenticationCodeType where
         , "_length" `I.p` _length_
         ]
   shortShow AuthenticationCodeTypeFirebaseAndroid
-    { use_play_integrity = use_play_integrity_
-    , nonce              = nonce_
-    , _length            = _length_
+    { device_verification_parameters = device_verification_parameters_
+    , _length                        = _length_
     }
       = "AuthenticationCodeTypeFirebaseAndroid"
         ++ I.cc
-        [ "use_play_integrity" `I.p` use_play_integrity_
-        , "nonce"              `I.p` nonce_
-        , "_length"            `I.p` _length_
+        [ "device_verification_parameters" `I.p` device_verification_parameters_
+        , "_length"                        `I.p` _length_
         ]
   shortShow AuthenticationCodeTypeFirebaseIos
     { receipt      = receipt_
@@ -203,13 +200,11 @@ instance AT.FromJSON AuthenticationCodeType where
           }
       parseAuthenticationCodeTypeFirebaseAndroid :: A.Value -> AT.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeFirebaseAndroid = A.withObject "AuthenticationCodeTypeFirebaseAndroid" $ \o -> do
-        use_play_integrity_ <- o A..:?                       "use_play_integrity"
-        nonce_              <- fmap I.readBytes <$> o A..:?  "nonce"
-        _length_            <- o A..:?                       "length"
+        device_verification_parameters_ <- o A..:?  "device_verification_parameters"
+        _length_                        <- o A..:?  "length"
         pure $ AuthenticationCodeTypeFirebaseAndroid
-          { use_play_integrity = use_play_integrity_
-          , nonce              = nonce_
-          , _length            = _length_
+          { device_verification_parameters = device_verification_parameters_
+          , _length                        = _length_
           }
       parseAuthenticationCodeTypeFirebaseIos :: A.Value -> AT.Parser AuthenticationCodeType
       parseAuthenticationCodeTypeFirebaseIos = A.withObject "AuthenticationCodeTypeFirebaseIos" $ \o -> do

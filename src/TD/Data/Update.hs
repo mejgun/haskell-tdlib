@@ -438,8 +438,9 @@ data Update
     , counts  :: Maybe DownloadedFileCounts.DownloadedFileCounts -- ^ New number of being downloaded and recently downloaded files found
     }
   | UpdateApplicationVerificationRequired -- ^ A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
-    { verification_id :: Maybe Int    -- ^ Unique identifier for the verification process
-    , nonce           :: Maybe T.Text -- ^ Unique nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    { verification_id      :: Maybe Int    -- ^ Unique identifier for the verification process
+    , nonce                :: Maybe T.Text -- ^ Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    , cloud_project_number :: Maybe Int    -- ^ Cloud project number to pass to the Play Integrity API on Android
     }
   | UpdateCall -- ^ New call was created or information about a call was updated
     { call :: Maybe Call.Call -- ^ New data about a call
@@ -1498,13 +1499,15 @@ instance I.ShortShow Update where
         , "counts"  `I.p` counts_
         ]
   shortShow UpdateApplicationVerificationRequired
-    { verification_id = verification_id_
-    , nonce           = nonce_
+    { verification_id      = verification_id_
+    , nonce                = nonce_
+    , cloud_project_number = cloud_project_number_
     }
       = "UpdateApplicationVerificationRequired"
         ++ I.cc
-        [ "verification_id" `I.p` verification_id_
-        , "nonce"           `I.p` nonce_
+        [ "verification_id"      `I.p` verification_id_
+        , "nonce"                `I.p` nonce_
+        , "cloud_project_number" `I.p` cloud_project_number_
         ]
   shortShow UpdateCall
     { call = call_
@@ -3008,11 +3011,13 @@ instance AT.FromJSON Update where
           }
       parseUpdateApplicationVerificationRequired :: A.Value -> AT.Parser Update
       parseUpdateApplicationVerificationRequired = A.withObject "UpdateApplicationVerificationRequired" $ \o -> do
-        verification_id_ <- o A..:?  "verification_id"
-        nonce_           <- o A..:?  "nonce"
+        verification_id_      <- o A..:?                       "verification_id"
+        nonce_                <- o A..:?                       "nonce"
+        cloud_project_number_ <- fmap I.readInt64 <$> o A..:?  "cloud_project_number"
         pure $ UpdateApplicationVerificationRequired
-          { verification_id = verification_id_
-          , nonce           = nonce_
+          { verification_id      = verification_id_
+          , nonce                = nonce_
+          , cloud_project_number = cloud_project_number_
           }
       parseUpdateCall :: A.Value -> AT.Parser Update
       parseUpdateCall = A.withObject "UpdateCall" $ \o -> do

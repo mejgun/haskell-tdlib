@@ -11,7 +11,7 @@ import qualified TD.Data.MessageSender as MessageSender
 -- | Returns detailed Telegram star revenue statistics. Returns 'TD.Data.StarRevenueStatistics.StarRevenueStatistics'
 data GetStarRevenueStatistics
   = GetStarRevenueStatistics
-    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
     , is_dark  :: Maybe Bool                        -- ^ Pass true if a dark theme is used by the application
     }
   deriving (Eq, Show)

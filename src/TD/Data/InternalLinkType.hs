@@ -33,7 +33,7 @@ data InternalLinkType
     , start_parameter :: Maybe T.Text -- ^ The parameter to be passed to sendBotStartMessage
     , autostart       :: Maybe Bool   -- ^ True, if sendBotStartMessage must be called automatically without showing the START button
     }
-  | InternalLinkTypeBotStartInGroup -- ^ The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
+  | InternalLinkTypeBotStartInGroup -- ^ The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
     { bot_username         :: Maybe T.Text                                          -- ^ Username of the bot
     , start_parameter      :: Maybe T.Text                                          -- ^ The parameter to be passed to sendBotStartMessage
     , administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Expected administrator rights for the bot; may be null
@@ -112,6 +112,7 @@ data InternalLinkType
   | InternalLinkTypeSideMenuBot -- ^ The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
     { bot_username :: Maybe T.Text -- ^ Username of the bot
     , url          :: Maybe T.Text -- ^ URL to be passed to getWebAppUrl
+    , is_compact   :: Maybe Bool   -- ^ True, if the Web App must be opened in a compact mode instead of a full-size mode
     }
   | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
@@ -145,6 +146,7 @@ data InternalLinkType
     { bot_username       :: Maybe T.Text -- ^ Username of the bot that owns the Web App
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
+    , is_compact         :: Maybe Bool   -- ^ True, if the Web App must be opened in a compact mode instead of a full-size mode
     }
   deriving (Eq, Show)
 
@@ -369,11 +371,13 @@ instance I.ShortShow InternalLinkType where
   shortShow InternalLinkTypeSideMenuBot
     { bot_username = bot_username_
     , url          = url_
+    , is_compact   = is_compact_
     }
       = "InternalLinkTypeSideMenuBot"
         ++ I.cc
         [ "bot_username" `I.p` bot_username_
         , "url"          `I.p` url_
+        , "is_compact"   `I.p` is_compact_
         ]
   shortShow InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
@@ -442,12 +446,14 @@ instance I.ShortShow InternalLinkType where
     { bot_username       = bot_username_
     , web_app_short_name = web_app_short_name_
     , start_parameter    = start_parameter_
+    , is_compact         = is_compact_
     }
       = "InternalLinkTypeWebApp"
         ++ I.cc
         [ "bot_username"       `I.p` bot_username_
         , "web_app_short_name" `I.p` web_app_short_name_
         , "start_parameter"    `I.p` start_parameter_
+        , "is_compact"         `I.p` is_compact_
         ]
 
 instance AT.FromJSON InternalLinkType where
@@ -680,9 +686,11 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypeSideMenuBot = A.withObject "InternalLinkTypeSideMenuBot" $ \o -> do
         bot_username_ <- o A..:?  "bot_username"
         url_          <- o A..:?  "url"
+        is_compact_   <- o A..:?  "is_compact"
         pure $ InternalLinkTypeSideMenuBot
           { bot_username = bot_username_
           , url          = url_
+          , is_compact   = is_compact_
           }
       parseInternalLinkTypeStickerSet :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
@@ -741,10 +749,12 @@ instance AT.FromJSON InternalLinkType where
         bot_username_       <- o A..:?  "bot_username"
         web_app_short_name_ <- o A..:?  "web_app_short_name"
         start_parameter_    <- o A..:?  "start_parameter"
+        is_compact_         <- o A..:?  "is_compact"
         pure $ InternalLinkTypeWebApp
           { bot_username       = bot_username_
           , web_app_short_name = web_app_short_name_
           , start_parameter    = start_parameter_
+          , is_compact         = is_compact_
           }
   parseJSON _ = mempty
 
@@ -989,11 +999,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeSideMenuBot
     { bot_username = bot_username_
     , url          = url_
+    , is_compact   = is_compact_
     }
       = A.object
         [ "@type"        A..= AT.String "internalLinkTypeSideMenuBot"
         , "bot_username" A..= bot_username_
         , "url"          A..= url_
+        , "is_compact"   A..= is_compact_
         ]
   toJSON InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
@@ -1066,11 +1078,13 @@ instance AT.ToJSON InternalLinkType where
     { bot_username       = bot_username_
     , web_app_short_name = web_app_short_name_
     , start_parameter    = start_parameter_
+    , is_compact         = is_compact_
     }
       = A.object
         [ "@type"              A..= AT.String "internalLinkTypeWebApp"
         , "bot_username"       A..= bot_username_
         , "web_app_short_name" A..= web_app_short_name_
         , "start_parameter"    A..= start_parameter_
+        , "is_compact"         A..= is_compact_
         ]
 

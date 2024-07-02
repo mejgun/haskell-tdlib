@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue"). Returns 'TD.Data.HttpUrl.HttpUrl'
+-- | Returns a URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue"). Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetChatRevenueWithdrawalUrl
   = GetChatRevenueWithdrawalUrl
     { chat_id  :: Maybe Int    -- ^ Chat identifier

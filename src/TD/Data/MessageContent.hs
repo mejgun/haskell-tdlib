@@ -10,6 +10,7 @@ import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
+import qualified TD.Data.PaidMedia as PaidMedia
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
@@ -24,7 +25,6 @@ import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Poll as Poll
 import qualified TD.Data.ProductInfo as ProductInfo
-import qualified TD.Data.MessageExtendedMedia as MessageExtendedMedia
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatBackground as ChatBackground
@@ -50,7 +50,7 @@ data MessageContent
   | MessageAnimation -- ^ An animation message (GIF-style).
     { animation                :: Maybe Animation.Animation         -- ^ The animation description
     , caption                  :: Maybe FormattedText.FormattedText -- ^ Animation caption
-    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the animation; otherwise, caption must be shown below the animation
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation
     , has_spoiler              :: Maybe Bool                        -- ^ True, if the animation preview must be covered by a spoiler animation
     , is_secret                :: Maybe Bool                        -- ^ True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
     }
@@ -62,10 +62,16 @@ data MessageContent
     { document :: Maybe Document.Document           -- ^ The document description
     , caption  :: Maybe FormattedText.FormattedText -- ^ Document caption
     }
+  | MessagePaidMedia -- ^ A message with paid media
+    { star_count               :: Maybe Int                         -- ^ Number of stars needed to buy access to the media in the message
+    , media                    :: Maybe [PaidMedia.PaidMedia]       -- ^ Information about the media
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Media caption
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the media; otherwise, the caption must be shown below the media
+    }
   | MessagePhoto -- ^ A photo message
     { photo                    :: Maybe Photo.Photo                 -- ^ The photo
     , caption                  :: Maybe FormattedText.FormattedText -- ^ Photo caption
-    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the photo; otherwise, caption must be shown below the photo
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo
     , has_spoiler              :: Maybe Bool                        -- ^ True, if the photo preview must be covered by a spoiler animation
     , is_secret                :: Maybe Bool                        -- ^ True, if the photo must be blurred and must be shown only while tapped
     }
@@ -76,7 +82,7 @@ data MessageContent
   | MessageVideo -- ^ A video message
     { video                    :: Maybe Video.Video                 -- ^ The video description
     , caption                  :: Maybe FormattedText.FormattedText -- ^ Video caption
-    , show_caption_above_media :: Maybe Bool                        -- ^ True, if caption must be shown above the video; otherwise, caption must be shown below the video
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
     , has_spoiler              :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
     , is_secret                :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
     }
@@ -130,14 +136,15 @@ data MessageContent
     , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
     }
   | MessageInvoice -- ^ A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
-    { product_info          :: Maybe ProductInfo.ProductInfo                   -- ^ Information about the product
-    , currency              :: Maybe T.Text                                    -- ^ Currency for the product price
-    , total_amount          :: Maybe Int                                       -- ^ Product total price in the smallest units of the currency
-    , start_parameter       :: Maybe T.Text                                    -- ^ Unique invoice bot start_parameter to be passed to getInternalLink
-    , is_test               :: Maybe Bool                                      -- ^ True, if the invoice is a test invoice
-    , need_shipping_address :: Maybe Bool                                      -- ^ True, if the shipping address must be specified
-    , receipt_message_id    :: Maybe Int                                       -- ^ The identifier of the message with the receipt, after the product has been purchased
-    , extended_media        :: Maybe MessageExtendedMedia.MessageExtendedMedia -- ^ Extended media attached to the invoice; may be null
+    { product_info          :: Maybe ProductInfo.ProductInfo     -- ^ Information about the product
+    , currency              :: Maybe T.Text                      -- ^ Currency for the product price
+    , total_amount          :: Maybe Int                         -- ^ Product total price in the smallest units of the currency
+    , start_parameter       :: Maybe T.Text                      -- ^ Unique invoice bot start_parameter to be passed to getInternalLink
+    , is_test               :: Maybe Bool                        -- ^ True, if the invoice is a test invoice
+    , need_shipping_address :: Maybe Bool                        -- ^ True, if the shipping address must be specified
+    , receipt_message_id    :: Maybe Int                         -- ^ The identifier of the message with the receipt, after the product has been purchased
+    , paid_media            :: Maybe PaidMedia.PaidMedia         -- ^ Extended media attached to the invoice; may be null if none
+    , paid_media_caption    :: Maybe FormattedText.FormattedText -- ^ Extended media caption; may be null if none
     }
   | MessageCall -- ^ A message with information about an ended call
     { is_video       :: Maybe Bool                                -- ^ True, if the call was a video call
@@ -273,7 +280,7 @@ data MessageContent
     , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
     , code                  :: Maybe T.Text                      -- ^ The gift code
     }
-  | MessagePremiumGiveawayCreated -- ^ A Telegram Premium giveaway was created for the chat
+  | MessagePremiumGiveawayCreated -- ^ A Telegram Premium giveaway was created for the chat. Use telegramPaymentPurposePremiumGiveaway or storePaymentPurposePremiumGiveaway to create a giveaway
   | MessagePremiumGiveaway -- ^ A Telegram Premium giveaway
     { parameters   :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
     , winner_count :: Maybe Int                                                 -- ^ Number of users which will receive Telegram Premium subscription gift codes
@@ -376,6 +383,19 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "document" `I.p` document_
         , "caption"  `I.p` caption_
+        ]
+  shortShow MessagePaidMedia
+    { star_count               = star_count_
+    , media                    = media_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    }
+      = "MessagePaidMedia"
+        ++ I.cc
+        [ "star_count"               `I.p` star_count_
+        , "media"                    `I.p` media_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
         ]
   shortShow MessagePhoto
     { photo                    = photo_
@@ -532,7 +552,8 @@ instance I.ShortShow MessageContent where
     , is_test               = is_test_
     , need_shipping_address = need_shipping_address_
     , receipt_message_id    = receipt_message_id_
-    , extended_media        = extended_media_
+    , paid_media            = paid_media_
+    , paid_media_caption    = paid_media_caption_
     }
       = "MessageInvoice"
         ++ I.cc
@@ -543,7 +564,8 @@ instance I.ShortShow MessageContent where
         , "is_test"               `I.p` is_test_
         , "need_shipping_address" `I.p` need_shipping_address_
         , "receipt_message_id"    `I.p` receipt_message_id_
-        , "extended_media"        `I.p` extended_media_
+        , "paid_media"            `I.p` paid_media_
+        , "paid_media_caption"    `I.p` paid_media_caption_
         ]
   shortShow MessageCall
     { is_video       = is_video_
@@ -977,6 +999,7 @@ instance AT.FromJSON MessageContent where
       "messageAnimation"                    -> parseMessageAnimation v
       "messageAudio"                        -> parseMessageAudio v
       "messageDocument"                     -> parseMessageDocument v
+      "messagePaidMedia"                    -> parseMessagePaidMedia v
       "messagePhoto"                        -> parseMessagePhoto v
       "messageSticker"                      -> parseMessageSticker v
       "messageVideo"                        -> parseMessageVideo v
@@ -1084,6 +1107,18 @@ instance AT.FromJSON MessageContent where
         pure $ MessageDocument
           { document = document_
           , caption  = caption_
+          }
+      parseMessagePaidMedia :: A.Value -> AT.Parser MessageContent
+      parseMessagePaidMedia = A.withObject "MessagePaidMedia" $ \o -> do
+        star_count_               <- o A..:?  "star_count"
+        media_                    <- o A..:?  "media"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        pure $ MessagePaidMedia
+          { star_count               = star_count_
+          , media                    = media_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
           }
       parseMessagePhoto :: A.Value -> AT.Parser MessageContent
       parseMessagePhoto = A.withObject "MessagePhoto" $ \o -> do
@@ -1220,7 +1255,8 @@ instance AT.FromJSON MessageContent where
         is_test_               <- o A..:?  "is_test"
         need_shipping_address_ <- o A..:?  "need_shipping_address"
         receipt_message_id_    <- o A..:?  "receipt_message_id"
-        extended_media_        <- o A..:?  "extended_media"
+        paid_media_            <- o A..:?  "paid_media"
+        paid_media_caption_    <- o A..:?  "paid_media_caption"
         pure $ MessageInvoice
           { product_info          = product_info_
           , currency              = currency_
@@ -1229,7 +1265,8 @@ instance AT.FromJSON MessageContent where
           , is_test               = is_test_
           , need_shipping_address = need_shipping_address_
           , receipt_message_id    = receipt_message_id_
-          , extended_media        = extended_media_
+          , paid_media            = paid_media_
+          , paid_media_caption    = paid_media_caption_
           }
       parseMessageCall :: A.Value -> AT.Parser MessageContent
       parseMessageCall = A.withObject "MessageCall" $ \o -> do
