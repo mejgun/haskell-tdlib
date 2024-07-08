@@ -39,7 +39,7 @@ data Message
     , can_get_message_thread         :: Maybe Bool                                            -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     , can_get_read_date              :: Maybe Bool                                            -- ^ True, if read date of the message can be received through getMessageReadDate
     , can_get_viewers                :: Maybe Bool                                            -- ^ True, if chat members already viewed the message can be received through getMessageViewers
-    , can_get_media_timestamp_links  :: Maybe Bool                                            -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
+    , can_get_media_timestamp_links  :: Maybe Bool                                            -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description through getMessageLink
     , can_report_reactions           :: Maybe Bool                                            -- ^ True, if reactions on the message can be reported through reportMessageReactions
     , has_timestamped_media          :: Maybe Bool                                            -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     , is_channel_post                :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts

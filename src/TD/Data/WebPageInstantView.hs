@@ -9,11 +9,11 @@ import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data WebPageInstantView
   = WebPageInstantView -- ^ Describes an instant view page for a web page
-    { page_blocks   :: Maybe [PageBlock.PageBlock]             -- ^ Content of the web page
+    { page_blocks   :: Maybe [PageBlock.PageBlock]             -- ^ Content of the instant view page
     , view_count    :: Maybe Int                               -- ^ Number of the instant view views; 0 if unknown
     , version       :: Maybe Int                               -- ^ Version of the instant view; currently, can be 1 or 2
     , is_rtl        :: Maybe Bool                              -- ^ True, if the instant view must be shown from right to left
-    , is_full       :: Maybe Bool                              -- ^ True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
+    , is_full       :: Maybe Bool                              -- ^ True, if the instant view contains the full page. A network request might be needed to get the full instant view
     , feedback_link :: Maybe InternalLinkType.InternalLinkType -- ^ An internal link to be opened to leave feedback about the instant view
     }
   deriving (Eq, Show)

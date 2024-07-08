@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Returns a URL for a Telegram Ad platform account that can be used to set up advertisments for the chat paid in the owned Telegram stars. Returns 'TD.Data.HttpUrl.HttpUrl'
+-- | Returns a URL for a Telegram Ad platform account that can be used to set up advertisements for the chat paid in the owned Telegram stars. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetStarAdAccountUrl
   = GetStarAdAccountUrl
     { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat

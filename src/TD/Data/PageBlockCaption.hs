@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.RichText as RichText
 
 data PageBlockCaption
-  = PageBlockCaption -- ^ Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+  = PageBlockCaption -- ^ Contains a caption of another block
     { text   :: Maybe RichText.RichText -- ^ Content of the caption
     , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>)
     }

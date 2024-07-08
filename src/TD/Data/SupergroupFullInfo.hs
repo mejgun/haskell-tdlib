@@ -28,6 +28,7 @@ data SupergroupFullInfo
     , can_set_location                 :: Maybe Bool                          -- ^ True, if the supergroup location can be changed
     , can_get_statistics               :: Maybe Bool                          -- ^ True, if the supergroup or channel statistics are available
     , can_get_revenue_statistics       :: Maybe Bool                          -- ^ True, if the supergroup or channel revenue statistics are available
+    , can_get_star_revenue_statistics  :: Maybe Bool                          -- ^ True, if the supergroup or channel Telegram Star revenue statistics are available
     , can_toggle_aggressive_anti_spam  :: Maybe Bool                          -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     , is_all_history_available         :: Maybe Bool                          -- ^ True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     , can_have_sponsored_messages      :: Maybe Bool                          -- ^ True, if the chat can have sponsored messages. The value of this field is only available to the owner of the chat
@@ -64,6 +65,7 @@ instance I.ShortShow SupergroupFullInfo where
     , can_set_location                 = can_set_location_
     , can_get_statistics               = can_get_statistics_
     , can_get_revenue_statistics       = can_get_revenue_statistics_
+    , can_get_star_revenue_statistics  = can_get_star_revenue_statistics_
     , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
     , is_all_history_available         = is_all_history_available_
     , can_have_sponsored_messages      = can_have_sponsored_messages_
@@ -98,6 +100,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "can_set_location"                 `I.p` can_set_location_
         , "can_get_statistics"               `I.p` can_get_statistics_
         , "can_get_revenue_statistics"       `I.p` can_get_revenue_statistics_
+        , "can_get_star_revenue_statistics"  `I.p` can_get_star_revenue_statistics_
         , "can_toggle_aggressive_anti_spam"  `I.p` can_toggle_aggressive_anti_spam_
         , "is_all_history_available"         `I.p` is_all_history_available_
         , "can_have_sponsored_messages"      `I.p` can_have_sponsored_messages_
@@ -142,6 +145,7 @@ instance AT.FromJSON SupergroupFullInfo where
         can_set_location_                 <- o A..:?                       "can_set_location"
         can_get_statistics_               <- o A..:?                       "can_get_statistics"
         can_get_revenue_statistics_       <- o A..:?                       "can_get_revenue_statistics"
+        can_get_star_revenue_statistics_  <- o A..:?                       "can_get_star_revenue_statistics"
         can_toggle_aggressive_anti_spam_  <- o A..:?                       "can_toggle_aggressive_anti_spam"
         is_all_history_available_         <- o A..:?                       "is_all_history_available"
         can_have_sponsored_messages_      <- o A..:?                       "can_have_sponsored_messages"
@@ -174,6 +178,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , can_set_location                 = can_set_location_
           , can_get_statistics               = can_get_statistics_
           , can_get_revenue_statistics       = can_get_revenue_statistics_
+          , can_get_star_revenue_statistics  = can_get_star_revenue_statistics_
           , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
           , is_all_history_available         = is_all_history_available_
           , can_have_sponsored_messages      = can_have_sponsored_messages_

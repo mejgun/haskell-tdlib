@@ -113,6 +113,7 @@ import qualified TD.Data.JsonValue as JsonValue
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
 import qualified TD.Data.LanguagePackStrings as LanguagePackStrings
+import qualified TD.Data.LinkPreview as LinkPreview
 import qualified TD.Data.LocalizationTargetInfo as LocalizationTargetInfo
 import qualified TD.Data.LogStream as LogStream
 import qualified TD.Data.LogTags as LogTags
@@ -213,7 +214,6 @@ import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
 import qualified TD.Data.WebAppInfo as WebAppInfo
-import qualified TD.Data.WebPage as WebPage
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
 
 data GeneralResult
@@ -326,6 +326,7 @@ data GeneralResult
     | LanguagePackInfo                   LanguagePackInfo.LanguagePackInfo
     | LanguagePackStringValue            LanguagePackStringValue.LanguagePackStringValue
     | LanguagePackStrings                LanguagePackStrings.LanguagePackStrings
+    | LinkPreview                        LinkPreview.LinkPreview
     | LocalizationTargetInfo             LocalizationTargetInfo.LocalizationTargetInfo
     | LogStream                          LogStream.LogStream
     | LogTags                            LogTags.LogTags
@@ -426,7 +427,6 @@ data GeneralResult
     | Users                              Users.Users
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
     | WebAppInfo                         WebAppInfo.WebAppInfo
-    | WebPage                            WebPage.WebPage
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
  deriving (Eq, Show)
 
@@ -649,6 +649,8 @@ instance I.ShortShow GeneralResult where
     = "LanguagePackStringValue" <> " (" <> I.shortShow v <> ")"
   shortShow (LanguagePackStrings v)
     = "LanguagePackStrings" <> " (" <> I.shortShow v <> ")"
+  shortShow (LinkPreview v)
+    = "LinkPreview" <> " (" <> I.shortShow v <> ")"
   shortShow (LocalizationTargetInfo v)
     = "LocalizationTargetInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (LogStream v)
@@ -849,8 +851,6 @@ instance I.ShortShow GeneralResult where
     = "ValidatedOrderInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
     = "WebAppInfo" <> " (" <> I.shortShow v <> ")"
-  shortShow (WebPage v)
-    = "WebPage" <> " (" <> I.shortShow v <> ")"
   shortShow (WebPageInstantView v)
     = "WebPageInstantView" <> " (" <> I.shortShow v <> ")"
 
@@ -965,6 +965,7 @@ instance T.FromJSON GeneralResult where
     <|> ( LanguagePackInfo                    <$> parseJSON v )
     <|> ( LanguagePackStringValue             <$> parseJSON v )
     <|> ( LanguagePackStrings                 <$> parseJSON v )
+    <|> ( LinkPreview                         <$> parseJSON v )
     <|> ( LocalizationTargetInfo              <$> parseJSON v )
     <|> ( LogStream                           <$> parseJSON v )
     <|> ( LogTags                             <$> parseJSON v )
@@ -1065,5 +1066,4 @@ instance T.FromJSON GeneralResult where
     <|> ( Users                               <$> parseJSON v )
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
-    <|> ( WebPage                             <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )

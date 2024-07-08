@@ -12,7 +12,7 @@ data MessageLinkInfo
     , chat_id           :: Maybe Int             -- ^ If found, identifier of the chat to which the link points, 0 otherwise
     , message_thread_id :: Maybe Int             -- ^ If found, identifier of the message thread in which to open the message, or a forum topic to open if the message is missing
     , message           :: Maybe Message.Message -- ^ If found, the linked message; may be null
-    , media_timestamp   :: Maybe Int             -- ^ Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
+    , media_timestamp   :: Maybe Int             -- ^ Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its link preview
     , for_album         :: Maybe Bool            -- ^ True, if the whole media album to which the message belongs is linked
     }
   deriving (Eq, Show)

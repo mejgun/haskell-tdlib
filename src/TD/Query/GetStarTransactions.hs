@@ -13,7 +13,7 @@ import qualified Data.Text as T
 -- | Returns the list of Telegram star transactions for the specified owner. Returns 'TD.Data.StarTransactions.StarTransactions'
 data GetStarTransactions
   = GetStarTransactions
-    { owner_id  :: Maybe MessageSender.MessageSender                       -- ^ Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    { owner_id  :: Maybe MessageSender.MessageSender                       -- ^ Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     , direction :: Maybe StarTransactionDirection.StarTransactionDirection -- ^ Direction of the transactions to receive; pass null to get all transactions
     , offset    :: Maybe T.Text                                            -- ^ Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     , limit     :: Maybe Int                                               -- ^ The maximum number of transactions to return

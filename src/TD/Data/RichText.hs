@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.Document as Document
 
--- | Describes a text object inside an instant-view web page
+-- | Describes a formatted text object
 data RichText
   = RichTextPlain -- ^ A plain text
     { text :: Maybe T.Text -- ^ Text
@@ -54,7 +54,7 @@ data RichText
     , width    :: Maybe Int               -- ^ Width of a bounding box in which the image must be shown; 0 if unknown
     , height   :: Maybe Int               -- ^ Height of a bounding box in which the image must be shown; 0 if unknown
     }
-  | RichTextReference -- ^ A reference to a richTexts object on the same web page
+  | RichTextReference -- ^ A reference to a richTexts object on the same page
     { _text       :: Maybe RichText -- ^ The text
     , anchor_name :: Maybe T.Text   -- ^ The name of a richTextAnchor object, which is the first element of the target richTexts object
     , url         :: Maybe T.Text   -- ^ An HTTP URL, opening the reference
@@ -62,7 +62,7 @@ data RichText
   | RichTextAnchor -- ^ An anchor
     { name :: Maybe T.Text -- ^ Anchor name
     }
-  | RichTextAnchorLink -- ^ A link to an anchor on the same web page
+  | RichTextAnchorLink -- ^ A link to an anchor on the same page
     { _text       :: Maybe RichText -- ^ The link text
     , anchor_name :: Maybe T.Text   -- ^ The anchor name. If the name is empty, the link must bring back to top
     , url         :: Maybe T.Text   -- ^ An HTTP URL, opening the anchor

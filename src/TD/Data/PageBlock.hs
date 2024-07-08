@@ -18,7 +18,7 @@ import qualified TD.Data.PageBlockTableCell as PageBlockTableCell
 import qualified TD.Data.PageBlockRelatedArticle as PageBlockRelatedArticle
 import qualified TD.Data.Location as Location
 
--- | Describes a block of an instant view web page
+-- | Describes a block of an instant view for a web page
 data PageBlock
   = PageBlockTitle -- ^ The title of a page
     { title :: Maybe RichText.RichText -- ^ Title
@@ -92,7 +92,7 @@ data PageBlock
     { cover :: Maybe PageBlock -- ^ Cover
     }
   | PageBlockEmbedded -- ^ An embedded web page
-    { url             :: Maybe T.Text                            -- ^ Web page URL, if available
+    { url             :: Maybe T.Text                            -- ^ URL of the embedded page, if available
     , html            :: Maybe T.Text                            -- ^ HTML-markup of the embedded page
     , poster_photo    :: Maybe Photo.Photo                       -- ^ Poster photo, if available; may be null
     , width           :: Maybe Int                               -- ^ Block width; 0 if unknown
@@ -102,7 +102,7 @@ data PageBlock
     , allow_scrolling :: Maybe Bool                              -- ^ True, if scrolling needs to be allowed
     }
   | PageBlockEmbeddedPost -- ^ An embedded post
-    { url          :: Maybe T.Text                            -- ^ Web page URL
+    { url          :: Maybe T.Text                            -- ^ URL of the embedded post
     , _author      :: Maybe T.Text                            -- ^ Post author
     , author_photo :: Maybe Photo.Photo                       -- ^ Post author photo; may be null
     , date         :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the post was created; 0 if unknown

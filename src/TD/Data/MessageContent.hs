@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.WebPage as WebPage
+import qualified TD.Data.LinkPreview as LinkPreview
 import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
@@ -44,7 +44,7 @@ import qualified TD.Data.EncryptedCredentials as EncryptedCredentials
 data MessageContent
   = MessageText -- ^ A text message
     { text                 :: Maybe FormattedText.FormattedText           -- ^ Text of the message
-    , web_page             :: Maybe WebPage.WebPage                       -- ^ A link preview attached to the message; may be null
+    , link_preview         :: Maybe LinkPreview.LinkPreview               -- ^ A link preview attached to the message; may be null
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which were used for generation of the link preview; may be null if default options were used
     }
   | MessageAnimation -- ^ An animation message (GIF-style).
@@ -259,6 +259,14 @@ data MessageContent
     , telegram_payment_charge_id :: Maybe T.Text              -- ^ Telegram payment identifier
     , provider_payment_charge_id :: Maybe T.Text              -- ^ Provider payment identifier
     }
+  | MessagePaymentRefunded -- ^ A payment has been refunded
+    { owner_id                   :: Maybe MessageSender.MessageSender -- ^ Identifier of the previous owner of the Telegram stars that refunds them
+    , currency                   :: Maybe T.Text                      -- ^ Currency for the price of the product
+    , total_amount               :: Maybe Int                         -- ^ Total price for the product, in the smallest units of the currency
+    , invoice_payload            :: Maybe BS.ByteString               -- ^ Invoice payload; only for bots
+    , telegram_payment_charge_id :: Maybe T.Text                      -- ^ Telegram payment identifier
+    , provider_payment_charge_id :: Maybe T.Text                      -- ^ Provider payment identifier
+    }
   | MessageGiftedPremium -- ^ Telegram Premium was gifted to the user
     { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
     , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
@@ -342,13 +350,13 @@ data MessageContent
 instance I.ShortShow MessageContent where
   shortShow MessageText
     { text                 = text_
-    , web_page             = web_page_
+    , link_preview         = link_preview_
     , link_preview_options = link_preview_options_
     }
       = "MessageText"
         ++ I.cc
         [ "text"                 `I.p` text_
-        , "web_page"             `I.p` web_page_
+        , "link_preview"         `I.p` link_preview_
         , "link_preview_options" `I.p` link_preview_options_
         ]
   shortShow MessageAnimation
@@ -820,6 +828,23 @@ instance I.ShortShow MessageContent where
         , "telegram_payment_charge_id" `I.p` telegram_payment_charge_id_
         , "provider_payment_charge_id" `I.p` provider_payment_charge_id_
         ]
+  shortShow MessagePaymentRefunded
+    { owner_id                   = owner_id_
+    , currency                   = currency_
+    , total_amount               = total_amount_
+    , invoice_payload            = invoice_payload_
+    , telegram_payment_charge_id = telegram_payment_charge_id_
+    , provider_payment_charge_id = provider_payment_charge_id_
+    }
+      = "MessagePaymentRefunded"
+        ++ I.cc
+        [ "owner_id"                   `I.p` owner_id_
+        , "currency"                   `I.p` currency_
+        , "total_amount"               `I.p` total_amount_
+        , "invoice_payload"            `I.p` invoice_payload_
+        , "telegram_payment_charge_id" `I.p` telegram_payment_charge_id_
+        , "provider_payment_charge_id" `I.p` provider_payment_charge_id_
+        ]
   shortShow MessageGiftedPremium
     { gifter_user_id        = gifter_user_id_
     , currency              = currency_
@@ -1049,6 +1074,7 @@ instance AT.FromJSON MessageContent where
       "messageGameScore"                    -> parseMessageGameScore v
       "messagePaymentSuccessful"            -> parseMessagePaymentSuccessful v
       "messagePaymentSuccessfulBot"         -> parseMessagePaymentSuccessfulBot v
+      "messagePaymentRefunded"              -> parseMessagePaymentRefunded v
       "messageGiftedPremium"                -> parseMessageGiftedPremium v
       "messagePremiumGiftCode"              -> parseMessagePremiumGiftCode v
       "messagePremiumGiveawayCreated"       -> pure MessagePremiumGiveawayCreated
@@ -1071,11 +1097,11 @@ instance AT.FromJSON MessageContent where
       parseMessageText :: A.Value -> AT.Parser MessageContent
       parseMessageText = A.withObject "MessageText" $ \o -> do
         text_                 <- o A..:?  "text"
-        web_page_             <- o A..:?  "web_page"
+        link_preview_         <- o A..:?  "link_preview"
         link_preview_options_ <- o A..:?  "link_preview_options"
         pure $ MessageText
           { text                 = text_
-          , web_page             = web_page_
+          , link_preview         = link_preview_
           , link_preview_options = link_preview_options_
           }
       parseMessageAnimation :: A.Value -> AT.Parser MessageContent
@@ -1483,6 +1509,22 @@ instance AT.FromJSON MessageContent where
           , invoice_payload            = invoice_payload_
           , shipping_option_id         = shipping_option_id_
           , order_info                 = order_info_
+          , telegram_payment_charge_id = telegram_payment_charge_id_
+          , provider_payment_charge_id = provider_payment_charge_id_
+          }
+      parseMessagePaymentRefunded :: A.Value -> AT.Parser MessageContent
+      parseMessagePaymentRefunded = A.withObject "MessagePaymentRefunded" $ \o -> do
+        owner_id_                   <- o A..:?                       "owner_id"
+        currency_                   <- o A..:?                       "currency"
+        total_amount_               <- o A..:?                       "total_amount"
+        invoice_payload_            <- fmap I.readBytes <$> o A..:?  "invoice_payload"
+        telegram_payment_charge_id_ <- o A..:?                       "telegram_payment_charge_id"
+        provider_payment_charge_id_ <- o A..:?                       "provider_payment_charge_id"
+        pure $ MessagePaymentRefunded
+          { owner_id                   = owner_id_
+          , currency                   = currency_
+          , total_amount               = total_amount_
+          , invoice_payload            = invoice_payload_
           , telegram_payment_charge_id = telegram_payment_charge_id_
           , provider_payment_charge_id = provider_payment_charge_id_
           }

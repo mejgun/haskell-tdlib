@@ -122,7 +122,7 @@ data InternalLinkType
     { story_sender_username :: Maybe T.Text -- ^ Username of the sender of the story
     , story_id              :: Maybe Int    -- ^ Story identifier
     }
-  | InternalLinkTypeTheme -- ^ The link is a link to a theme. TDLib has no theme support yet
+  | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
     }
   | InternalLinkTypeThemeSettings -- ^ The link is a link to the theme section of the app settings

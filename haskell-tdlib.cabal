@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.37.0
+version:        2.0.38.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -292,7 +292,10 @@ library
       TD.Data.LanguagePackString
       TD.Data.LanguagePackStrings
       TD.Data.LanguagePackStringValue
+      TD.Data.LinkPreview
+      TD.Data.LinkPreviewAlbumMedia
       TD.Data.LinkPreviewOptions
+      TD.Data.LinkPreviewType
       TD.Data.LocalFile
       TD.Data.LocalizationTargetInfo
       TD.Data.Location
@@ -557,7 +560,6 @@ library
       TD.Data.VoiceNote
       TD.Data.WebApp
       TD.Data.WebAppInfo
-      TD.Data.WebPage
       TD.Data.WebPageInstantView
       TD.GeneralResult
       TD.Lib
@@ -864,6 +866,7 @@ library
       TD.Query.GetLanguagePackInfo
       TD.Query.GetLanguagePackString
       TD.Query.GetLanguagePackStrings
+      TD.Query.GetLinkPreview
       TD.Query.GetLocalizationTargetInfo
       TD.Query.GetLoginUrl
       TD.Query.GetLoginUrlInfo
@@ -983,7 +986,6 @@ library
       TD.Query.GetWebAppLinkUrl
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
-      TD.Query.GetWebPagePreview
       TD.Query.HideContactCloseBirthdays
       TD.Query.HideSuggestedAction
       TD.Query.ImportContacts
