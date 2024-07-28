@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 -- | Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns 'TD.Data.CanSendStoryResult.CanSendStoryResult'
 data CanSendStory
   = CanSendStory
-    { chat_id :: Maybe Int -- ^ Chat identifier
+    { chat_id :: Maybe Int -- ^ Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     }
   deriving (Eq, Show)
 
