@@ -13,7 +13,7 @@ import qualified TD.Data.ProxyType as ProxyType
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
   = InternalLinkTypeActiveSessions -- ^ The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
-  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
     , url          :: Maybe T.Text                -- ^ URL to be passed to openWebApp
@@ -69,6 +69,11 @@ data InternalLinkType
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
   | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the app settings
+  | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+    { bot_username    :: Maybe T.Text -- ^ Username of the bot
+    , start_parameter :: Maybe T.Text -- ^ Start parameter to be passed to getMainWebApp
+    , is_compact      :: Maybe Bool   -- ^ True, if the Web App must be opened in the compact mode instead of the full-size mode
+    }
   | InternalLinkTypeMessage -- ^ The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
     { url :: Maybe T.Text -- ^ URL to be passed to getMessageLinkInfo
     }
@@ -105,15 +110,11 @@ data InternalLinkType
   | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     { chat_username :: Maybe T.Text -- ^ Username of the chat
     , draft_text    :: Maybe T.Text -- ^ Draft text for message to send in the chat
+    , open_profile  :: Maybe Bool   -- ^ True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
   | InternalLinkTypeSettings -- ^ The link is a link to application settings
-  | InternalLinkTypeSideMenuBot -- ^ The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
-    { bot_username :: Maybe T.Text -- ^ Username of the bot
-    , url          :: Maybe T.Text -- ^ URL to be passed to getWebAppUrl
-    , is_compact   :: Maybe Bool   -- ^ True, if the Web App must be opened in a compact mode instead of a full-size mode
-    }
   | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
     , expect_custom_emoji :: Maybe Bool   -- ^ True, if the sticker set is expected to contain custom emoji
@@ -130,9 +131,10 @@ data InternalLinkType
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
   | InternalLinkTypeUnsupportedProxy -- ^ The link is a link to an unsupported proxy. An alert can be shown to the user
-  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
+  | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
     { phone_number :: Maybe T.Text -- ^ Phone number of the user
     , draft_text   :: Maybe T.Text -- ^ Draft text for message to send in the chat
+    , open_profile :: Maybe Bool   -- ^ True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
     }
   | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     { token :: Maybe T.Text -- ^ The token
@@ -142,11 +144,11 @@ data InternalLinkType
     , invite_hash    :: Maybe T.Text -- ^ If non-empty, invite hash to be used to join the video chat without being muted by administrators
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
     }
-  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     { bot_username       :: Maybe T.Text -- ^ Username of the bot that owns the Web App
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
-    , is_compact         :: Maybe Bool   -- ^ True, if the Web App must be opened in a compact mode instead of a full-size mode
+    , is_compact         :: Maybe Bool   -- ^ True, if the Web App must be opened in the compact mode instead of the full-size mode
     }
   deriving (Eq, Show)
 
@@ -279,6 +281,17 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeLanguageSettings
       = "InternalLinkTypeLanguageSettings"
+  shortShow InternalLinkTypeMainWebApp
+    { bot_username    = bot_username_
+    , start_parameter = start_parameter_
+    , is_compact      = is_compact_
+    }
+      = "InternalLinkTypeMainWebApp"
+        ++ I.cc
+        [ "bot_username"    `I.p` bot_username_
+        , "start_parameter" `I.p` start_parameter_
+        , "is_compact"      `I.p` is_compact_
+        ]
   shortShow InternalLinkTypeMessage
     { url = url_
     }
@@ -356,11 +369,13 @@ instance I.ShortShow InternalLinkType where
   shortShow InternalLinkTypePublicChat
     { chat_username = chat_username_
     , draft_text    = draft_text_
+    , open_profile  = open_profile_
     }
       = "InternalLinkTypePublicChat"
         ++ I.cc
         [ "chat_username" `I.p` chat_username_
         , "draft_text"    `I.p` draft_text_
+        , "open_profile"  `I.p` open_profile_
         ]
   shortShow InternalLinkTypeQrCodeAuthentication
       = "InternalLinkTypeQrCodeAuthentication"
@@ -368,17 +383,6 @@ instance I.ShortShow InternalLinkType where
       = "InternalLinkTypeRestorePurchases"
   shortShow InternalLinkTypeSettings
       = "InternalLinkTypeSettings"
-  shortShow InternalLinkTypeSideMenuBot
-    { bot_username = bot_username_
-    , url          = url_
-    , is_compact   = is_compact_
-    }
-      = "InternalLinkTypeSideMenuBot"
-        ++ I.cc
-        [ "bot_username" `I.p` bot_username_
-        , "url"          `I.p` url_
-        , "is_compact"   `I.p` is_compact_
-        ]
   shortShow InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
     , expect_custom_emoji = expect_custom_emoji_
@@ -418,11 +422,13 @@ instance I.ShortShow InternalLinkType where
   shortShow InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
     , draft_text   = draft_text_
+    , open_profile = open_profile_
     }
       = "InternalLinkTypeUserPhoneNumber"
         ++ I.cc
         [ "phone_number" `I.p` phone_number_
         , "draft_text"   `I.p` draft_text_
+        , "open_profile" `I.p` open_profile_
         ]
   shortShow InternalLinkTypeUserToken
     { token = token_
@@ -481,6 +487,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeInvoice"                               -> parseInternalLinkTypeInvoice v
       "internalLinkTypeLanguagePack"                          -> parseInternalLinkTypeLanguagePack v
       "internalLinkTypeLanguageSettings"                      -> pure InternalLinkTypeLanguageSettings
+      "internalLinkTypeMainWebApp"                            -> parseInternalLinkTypeMainWebApp v
       "internalLinkTypeMessage"                               -> parseInternalLinkTypeMessage v
       "internalLinkTypeMessageDraft"                          -> parseInternalLinkTypeMessageDraft v
       "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
@@ -494,7 +501,6 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeQrCodeAuthentication"                  -> pure InternalLinkTypeQrCodeAuthentication
       "internalLinkTypeRestorePurchases"                      -> pure InternalLinkTypeRestorePurchases
       "internalLinkTypeSettings"                              -> pure InternalLinkTypeSettings
-      "internalLinkTypeSideMenuBot"                           -> parseInternalLinkTypeSideMenuBot v
       "internalLinkTypeStickerSet"                            -> parseInternalLinkTypeStickerSet v
       "internalLinkTypeStory"                                 -> parseInternalLinkTypeStory v
       "internalLinkTypeTheme"                                 -> parseInternalLinkTypeTheme v
@@ -610,6 +616,16 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeLanguagePack
           { language_pack_id = language_pack_id_
           }
+      parseInternalLinkTypeMainWebApp :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeMainWebApp = A.withObject "InternalLinkTypeMainWebApp" $ \o -> do
+        bot_username_    <- o A..:?  "bot_username"
+        start_parameter_ <- o A..:?  "start_parameter"
+        is_compact_      <- o A..:?  "is_compact"
+        pure $ InternalLinkTypeMainWebApp
+          { bot_username    = bot_username_
+          , start_parameter = start_parameter_
+          , is_compact      = is_compact_
+          }
       parseInternalLinkTypeMessage :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeMessage = A.withObject "InternalLinkTypeMessage" $ \o -> do
         url_ <- o A..:?  "url"
@@ -678,19 +694,11 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypePublicChat = A.withObject "InternalLinkTypePublicChat" $ \o -> do
         chat_username_ <- o A..:?  "chat_username"
         draft_text_    <- o A..:?  "draft_text"
+        open_profile_  <- o A..:?  "open_profile"
         pure $ InternalLinkTypePublicChat
           { chat_username = chat_username_
           , draft_text    = draft_text_
-          }
-      parseInternalLinkTypeSideMenuBot :: A.Value -> AT.Parser InternalLinkType
-      parseInternalLinkTypeSideMenuBot = A.withObject "InternalLinkTypeSideMenuBot" $ \o -> do
-        bot_username_ <- o A..:?  "bot_username"
-        url_          <- o A..:?  "url"
-        is_compact_   <- o A..:?  "is_compact"
-        pure $ InternalLinkTypeSideMenuBot
-          { bot_username = bot_username_
-          , url          = url_
-          , is_compact   = is_compact_
+          , open_profile  = open_profile_
           }
       parseInternalLinkTypeStickerSet :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
@@ -724,9 +732,11 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
         phone_number_ <- o A..:?  "phone_number"
         draft_text_   <- o A..:?  "draft_text"
+        open_profile_ <- o A..:?  "open_profile"
         pure $ InternalLinkTypeUserPhoneNumber
           { phone_number = phone_number_
           , draft_text   = draft_text_
+          , open_profile = open_profile_
           }
       parseInternalLinkTypeUserToken :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserToken = A.withObject "InternalLinkTypeUserToken" $ \o -> do
@@ -899,6 +909,17 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeLanguageSettings"
         ]
+  toJSON InternalLinkTypeMainWebApp
+    { bot_username    = bot_username_
+    , start_parameter = start_parameter_
+    , is_compact      = is_compact_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "internalLinkTypeMainWebApp"
+        , "bot_username"    A..= bot_username_
+        , "start_parameter" A..= start_parameter_
+        , "is_compact"      A..= is_compact_
+        ]
   toJSON InternalLinkTypeMessage
     { url = url_
     }
@@ -978,11 +999,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypePublicChat
     { chat_username = chat_username_
     , draft_text    = draft_text_
+    , open_profile  = open_profile_
     }
       = A.object
         [ "@type"         A..= AT.String "internalLinkTypePublicChat"
         , "chat_username" A..= chat_username_
         , "draft_text"    A..= draft_text_
+        , "open_profile"  A..= open_profile_
         ]
   toJSON InternalLinkTypeQrCodeAuthentication
       = A.object
@@ -995,17 +1018,6 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeSettings
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeSettings"
-        ]
-  toJSON InternalLinkTypeSideMenuBot
-    { bot_username = bot_username_
-    , url          = url_
-    , is_compact   = is_compact_
-    }
-      = A.object
-        [ "@type"        A..= AT.String "internalLinkTypeSideMenuBot"
-        , "bot_username" A..= bot_username_
-        , "url"          A..= url_
-        , "is_compact"   A..= is_compact_
         ]
   toJSON InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
@@ -1050,11 +1062,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
     , draft_text   = draft_text_
+    , open_profile = open_profile_
     }
       = A.object
         [ "@type"        A..= AT.String "internalLinkTypeUserPhoneNumber"
         , "phone_number" A..= phone_number_
         , "draft_text"   A..= draft_text_
+        , "open_profile" A..= open_profile_
         ]
   toJSON InternalLinkTypeUserToken
     { token = token_

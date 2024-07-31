@@ -7,11 +7,11 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Recognizes speech in a video note or a voice note message. The message must be successfully sent, must not be scheduled, and must be from a non-secret chat. Returns 'TD.Data.Ok.Ok'
+-- | Recognizes speech in a video note or a voice note message. Returns 'TD.Data.Ok.Ok'
 data RecognizeSpeech
   = RecognizeSpeech
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
-    , message_id :: Maybe Int -- ^ Identifier of the message
+    , message_id :: Maybe Int -- ^ Identifier of the message. Use messageProperties.can_recognize_speech to check whether the message is suitable
     }
   deriving (Eq, Show)
 

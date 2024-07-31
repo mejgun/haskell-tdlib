@@ -14,7 +14,7 @@ data ForwardMessages
     { chat_id           :: Maybe Int                                   -- ^ Identifier of the chat to which to forward messages
     , message_thread_id :: Maybe Int                                   -- ^ If not 0, the message thread identifier in which the message will be sent; for forum threads only
     , from_chat_id      :: Maybe Int                                   -- ^ Identifier of the chat from which to forward messages
-    , message_ids       :: Maybe [Int]                                 -- ^ Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
+    , message_ids       :: Maybe [Int]                                 -- ^ Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if messageProperties.can_be_forwarded
     , options           :: Maybe MessageSendOptions.MessageSendOptions -- ^ Options to be used to send the messages; pass null to use default options
     , send_copy         :: Maybe Bool                                  -- ^ Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     , remove_caption    :: Maybe Bool                                  -- ^ Pass true to remove media captions of message copies. Ignored if send_copy is false

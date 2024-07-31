@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read. Returns 'TD.Data.MessageReadDate.MessageReadDate'
+-- | Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true. Returns 'TD.Data.MessageReadDate.MessageReadDate'
 data GetMessageReadDate
   = GetMessageReadDate
     { chat_id    :: Maybe Int -- ^ Chat identifier

@@ -12,7 +12,7 @@ import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
 data GetCallbackQueryAnswer
   = GetCallbackQueryAnswer
     { chat_id    :: Maybe Int                                       -- ^ Identifier of the chat with the message
-    , message_id :: Maybe Int                                       -- ^ Identifier of the message from which the query originated
+    , message_id :: Maybe Int                                       -- ^ Identifier of the message from which the query originated. The message must not be scheduled
     , payload    :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
     }
   deriving (Eq, Show)

@@ -9,11 +9,11 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Data.Text as T
 
--- | Returns a URL for Telegram star withdrawal. Returns 'TD.Data.HttpUrl.HttpUrl'
+-- | Returns a URL for Telegram Star withdrawal. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetStarWithdrawalUrl
   = GetStarWithdrawalUrl
-    { owner_id   :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of an owned channel chat
-    , star_count :: Maybe Int                         -- ^ The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    { owner_id   :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+    , star_count :: Maybe Int                         -- ^ The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
     , password   :: Maybe T.Text                      -- ^ The 2-step verification password of the current user
     }
   deriving (Eq, Show)

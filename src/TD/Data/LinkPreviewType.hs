@@ -58,17 +58,29 @@ data LinkPreviewType
     { document :: Maybe Document.Document -- ^ The document description
     , author   :: Maybe T.Text            -- ^ Author of the document
     }
+  | LinkPreviewTypeEmbeddedAnimationPlayer -- ^ The link is a link to an animation player
+    { url       :: Maybe T.Text      -- ^ URL of the external animation player
+    , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the animation; may be null if unknown
+    , duration  :: Maybe Int         -- ^ Duration of the animation, in seconds
+    , author    :: Maybe T.Text      -- ^ Author of the animation
+    , width     :: Maybe Int         -- ^ Expected width of the embedded player
+    , height    :: Maybe Int         -- ^ Expected height of the embedded player
+    }
   | LinkPreviewTypeEmbeddedAudioPlayer -- ^ The link is a link to an audio player
-    { url      :: Maybe T.Text -- ^ URL of the external audio player
-    , duration :: Maybe Int    -- ^ Duration of the audio, in seconds
-    , author   :: Maybe T.Text -- ^ Author of the audio
+    { url       :: Maybe T.Text      -- ^ URL of the external audio player
+    , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the audio; may be null if unknown
+    , duration  :: Maybe Int         -- ^ Duration of the audio, in seconds
+    , author    :: Maybe T.Text      -- ^ Author of the audio
+    , width     :: Maybe Int         -- ^ Expected width of the embedded player
+    , height    :: Maybe Int         -- ^ Expected height of the embedded player
     }
   | LinkPreviewTypeEmbeddedVideoPlayer -- ^ The link is a link to a video player
-    { url      :: Maybe T.Text -- ^ URL of the external video player
-    , duration :: Maybe Int    -- ^ Duration of the video, in seconds
-    , author   :: Maybe T.Text -- ^ Author of the video
-    , width    :: Maybe Int    -- ^ Expected width of the preview
-    , height   :: Maybe Int    -- ^ Expected height of the preview
+    { url       :: Maybe T.Text      -- ^ URL of the external video player
+    , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the video; may be null if unknown
+    , duration  :: Maybe Int         -- ^ Duration of the video, in seconds
+    , author    :: Maybe T.Text      -- ^ Author of the video
+    , width     :: Maybe Int         -- ^ Expected width of the embedded player
+    , height    :: Maybe Int         -- ^ Expected height of the embedded player
     }
   | LinkPreviewTypeInvoice -- ^ The link is a link to an invoice
   | LinkPreviewTypeMessage -- ^ The link is a link to a text or a poll Telegram message
@@ -210,31 +222,56 @@ instance I.ShortShow LinkPreviewType where
         [ "document" `I.p` document_
         , "author"   `I.p` author_
         ]
+  shortShow LinkPreviewTypeEmbeddedAnimationPlayer
+    { url       = url_
+    , thumbnail = thumbnail_
+    , duration  = duration_
+    , author    = author_
+    , width     = width_
+    , height    = height_
+    }
+      = "LinkPreviewTypeEmbeddedAnimationPlayer"
+        ++ I.cc
+        [ "url"       `I.p` url_
+        , "thumbnail" `I.p` thumbnail_
+        , "duration"  `I.p` duration_
+        , "author"    `I.p` author_
+        , "width"     `I.p` width_
+        , "height"    `I.p` height_
+        ]
   shortShow LinkPreviewTypeEmbeddedAudioPlayer
-    { url      = url_
-    , duration = duration_
-    , author   = author_
+    { url       = url_
+    , thumbnail = thumbnail_
+    , duration  = duration_
+    , author    = author_
+    , width     = width_
+    , height    = height_
     }
       = "LinkPreviewTypeEmbeddedAudioPlayer"
         ++ I.cc
-        [ "url"      `I.p` url_
-        , "duration" `I.p` duration_
-        , "author"   `I.p` author_
+        [ "url"       `I.p` url_
+        , "thumbnail" `I.p` thumbnail_
+        , "duration"  `I.p` duration_
+        , "author"    `I.p` author_
+        , "width"     `I.p` width_
+        , "height"    `I.p` height_
         ]
   shortShow LinkPreviewTypeEmbeddedVideoPlayer
-    { url      = url_
-    , duration = duration_
-    , author   = author_
-    , width    = width_
-    , height   = height_
+    { url       = url_
+    , thumbnail = thumbnail_
+    , duration  = duration_
+    , author    = author_
+    , width     = width_
+    , height    = height_
     }
       = "LinkPreviewTypeEmbeddedVideoPlayer"
         ++ I.cc
-        [ "url"      `I.p` url_
-        , "duration" `I.p` duration_
-        , "author"   `I.p` author_
-        , "width"    `I.p` width_
-        , "height"   `I.p` height_
+        [ "url"       `I.p` url_
+        , "thumbnail" `I.p` thumbnail_
+        , "duration"  `I.p` duration_
+        , "author"    `I.p` author_
+        , "width"     `I.p` width_
+        , "height"    `I.p` height_
         ]
   shortShow LinkPreviewTypeInvoice
       = "LinkPreviewTypeInvoice"
@@ -358,35 +395,36 @@ instance AT.FromJSON LinkPreviewType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "linkPreviewTypeAlbum"               -> parseLinkPreviewTypeAlbum v
-      "linkPreviewTypeAnimation"           -> parseLinkPreviewTypeAnimation v
-      "linkPreviewTypeApp"                 -> parseLinkPreviewTypeApp v
-      "linkPreviewTypeArticle"             -> parseLinkPreviewTypeArticle v
-      "linkPreviewTypeAudio"               -> parseLinkPreviewTypeAudio v
-      "linkPreviewTypeBackground"          -> parseLinkPreviewTypeBackground v
-      "linkPreviewTypeChannelBoost"        -> parseLinkPreviewTypeChannelBoost v
-      "linkPreviewTypeChat"                -> parseLinkPreviewTypeChat v
-      "linkPreviewTypeDocument"            -> parseLinkPreviewTypeDocument v
-      "linkPreviewTypeEmbeddedAudioPlayer" -> parseLinkPreviewTypeEmbeddedAudioPlayer v
-      "linkPreviewTypeEmbeddedVideoPlayer" -> parseLinkPreviewTypeEmbeddedVideoPlayer v
-      "linkPreviewTypeInvoice"             -> pure LinkPreviewTypeInvoice
-      "linkPreviewTypeMessage"             -> pure LinkPreviewTypeMessage
-      "linkPreviewTypePhoto"               -> parseLinkPreviewTypePhoto v
-      "linkPreviewTypePremiumGiftCode"     -> pure LinkPreviewTypePremiumGiftCode
-      "linkPreviewTypeShareableChatFolder" -> pure LinkPreviewTypeShareableChatFolder
-      "linkPreviewTypeSticker"             -> parseLinkPreviewTypeSticker v
-      "linkPreviewTypeStickerSet"          -> parseLinkPreviewTypeStickerSet v
-      "linkPreviewTypeStory"               -> parseLinkPreviewTypeStory v
-      "linkPreviewTypeSupergroupBoost"     -> parseLinkPreviewTypeSupergroupBoost v
-      "linkPreviewTypeTheme"               -> parseLinkPreviewTypeTheme v
-      "linkPreviewTypeUnsupported"         -> pure LinkPreviewTypeUnsupported
-      "linkPreviewTypeUser"                -> parseLinkPreviewTypeUser v
-      "linkPreviewTypeVideo"               -> parseLinkPreviewTypeVideo v
-      "linkPreviewTypeVideoChat"           -> parseLinkPreviewTypeVideoChat v
-      "linkPreviewTypeVideoNote"           -> parseLinkPreviewTypeVideoNote v
-      "linkPreviewTypeVoiceNote"           -> parseLinkPreviewTypeVoiceNote v
-      "linkPreviewTypeWebApp"              -> parseLinkPreviewTypeWebApp v
-      _                                    -> mempty
+      "linkPreviewTypeAlbum"                   -> parseLinkPreviewTypeAlbum v
+      "linkPreviewTypeAnimation"               -> parseLinkPreviewTypeAnimation v
+      "linkPreviewTypeApp"                     -> parseLinkPreviewTypeApp v
+      "linkPreviewTypeArticle"                 -> parseLinkPreviewTypeArticle v
+      "linkPreviewTypeAudio"                   -> parseLinkPreviewTypeAudio v
+      "linkPreviewTypeBackground"              -> parseLinkPreviewTypeBackground v
+      "linkPreviewTypeChannelBoost"            -> parseLinkPreviewTypeChannelBoost v
+      "linkPreviewTypeChat"                    -> parseLinkPreviewTypeChat v
+      "linkPreviewTypeDocument"                -> parseLinkPreviewTypeDocument v
+      "linkPreviewTypeEmbeddedAnimationPlayer" -> parseLinkPreviewTypeEmbeddedAnimationPlayer v
+      "linkPreviewTypeEmbeddedAudioPlayer"     -> parseLinkPreviewTypeEmbeddedAudioPlayer v
+      "linkPreviewTypeEmbeddedVideoPlayer"     -> parseLinkPreviewTypeEmbeddedVideoPlayer v
+      "linkPreviewTypeInvoice"                 -> pure LinkPreviewTypeInvoice
+      "linkPreviewTypeMessage"                 -> pure LinkPreviewTypeMessage
+      "linkPreviewTypePhoto"                   -> parseLinkPreviewTypePhoto v
+      "linkPreviewTypePremiumGiftCode"         -> pure LinkPreviewTypePremiumGiftCode
+      "linkPreviewTypeShareableChatFolder"     -> pure LinkPreviewTypeShareableChatFolder
+      "linkPreviewTypeSticker"                 -> parseLinkPreviewTypeSticker v
+      "linkPreviewTypeStickerSet"              -> parseLinkPreviewTypeStickerSet v
+      "linkPreviewTypeStory"                   -> parseLinkPreviewTypeStory v
+      "linkPreviewTypeSupergroupBoost"         -> parseLinkPreviewTypeSupergroupBoost v
+      "linkPreviewTypeTheme"                   -> parseLinkPreviewTypeTheme v
+      "linkPreviewTypeUnsupported"             -> pure LinkPreviewTypeUnsupported
+      "linkPreviewTypeUser"                    -> parseLinkPreviewTypeUser v
+      "linkPreviewTypeVideo"                   -> parseLinkPreviewTypeVideo v
+      "linkPreviewTypeVideoChat"               -> parseLinkPreviewTypeVideoChat v
+      "linkPreviewTypeVideoNote"               -> parseLinkPreviewTypeVideoNote v
+      "linkPreviewTypeVoiceNote"               -> parseLinkPreviewTypeVoiceNote v
+      "linkPreviewTypeWebApp"                  -> parseLinkPreviewTypeWebApp v
+      _                                        -> mempty
     
     where
       parseLinkPreviewTypeAlbum :: A.Value -> AT.Parser LinkPreviewType
@@ -465,29 +503,53 @@ instance AT.FromJSON LinkPreviewType where
           { document = document_
           , author   = author_
           }
+      parseLinkPreviewTypeEmbeddedAnimationPlayer :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeEmbeddedAnimationPlayer = A.withObject "LinkPreviewTypeEmbeddedAnimationPlayer" $ \o -> do
+        url_       <- o A..:?  "url"
+        thumbnail_ <- o A..:?  "thumbnail"
+        duration_  <- o A..:?  "duration"
+        author_    <- o A..:?  "author"
+        width_     <- o A..:?  "width"
+        height_    <- o A..:?  "height"
+        pure $ LinkPreviewTypeEmbeddedAnimationPlayer
+          { url       = url_
+          , thumbnail = thumbnail_
+          , duration  = duration_
+          , author    = author_
+          , width     = width_
+          , height    = height_
+          }
       parseLinkPreviewTypeEmbeddedAudioPlayer :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeEmbeddedAudioPlayer = A.withObject "LinkPreviewTypeEmbeddedAudioPlayer" $ \o -> do
-        url_      <- o A..:?  "url"
-        duration_ <- o A..:?  "duration"
-        author_   <- o A..:?  "author"
+        url_       <- o A..:?  "url"
+        thumbnail_ <- o A..:?  "thumbnail"
+        duration_  <- o A..:?  "duration"
+        author_    <- o A..:?  "author"
+        width_     <- o A..:?  "width"
+        height_    <- o A..:?  "height"
         pure $ LinkPreviewTypeEmbeddedAudioPlayer
-          { url      = url_
-          , duration = duration_
-          , author   = author_
+          { url       = url_
+          , thumbnail = thumbnail_
+          , duration  = duration_
+          , author    = author_
+          , width     = width_
+          , height    = height_
           }
       parseLinkPreviewTypeEmbeddedVideoPlayer :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeEmbeddedVideoPlayer = A.withObject "LinkPreviewTypeEmbeddedVideoPlayer" $ \o -> do
-        url_      <- o A..:?  "url"
-        duration_ <- o A..:?  "duration"
-        author_   <- o A..:?  "author"
-        width_    <- o A..:?  "width"
-        height_   <- o A..:?  "height"
+        url_       <- o A..:?  "url"
+        thumbnail_ <- o A..:?  "thumbnail"
+        duration_  <- o A..:?  "duration"
+        author_    <- o A..:?  "author"
+        width_     <- o A..:?  "width"
+        height_    <- o A..:?  "height"
         pure $ LinkPreviewTypeEmbeddedVideoPlayer
-          { url      = url_
-          , duration = duration_
-          , author   = author_
-          , width    = width_
-          , height   = height_
+          { url       = url_
+          , thumbnail = thumbnail_
+          , duration  = duration_
+          , author    = author_
+          , width     = width_
+          , height    = height_
           }
       parseLinkPreviewTypePhoto :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypePhoto = A.withObject "LinkPreviewTypePhoto" $ \o -> do

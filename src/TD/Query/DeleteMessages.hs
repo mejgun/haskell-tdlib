@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data DeleteMessages
   = DeleteMessages
     { chat_id     :: Maybe Int   -- ^ Chat identifier
-    , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to be deleted
+    , message_ids :: Maybe [Int] -- ^ Identifiers of the messages to be deleted. Use messageProperties.can_be_deleted_only_for_self and messageProperties.can_be_deleted_for_all_users to get suitable messages
     , revoke      :: Maybe Bool  -- ^ Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
     }
   deriving (Eq, Show)

@@ -63,7 +63,7 @@ data MessageContent
     , caption  :: Maybe FormattedText.FormattedText -- ^ Document caption
     }
   | MessagePaidMedia -- ^ A message with paid media
-    { star_count               :: Maybe Int                         -- ^ Number of stars needed to buy access to the media in the message
+    { star_count               :: Maybe Int                         -- ^ Number of Telegram Stars needed to buy access to the media in the message
     , media                    :: Maybe [PaidMedia.PaidMedia]       -- ^ Information about the media
     , caption                  :: Maybe FormattedText.FormattedText -- ^ Media caption
     , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the media; otherwise, the caption must be shown below the media
@@ -260,15 +260,16 @@ data MessageContent
     , provider_payment_charge_id :: Maybe T.Text              -- ^ Provider payment identifier
     }
   | MessagePaymentRefunded -- ^ A payment has been refunded
-    { owner_id                   :: Maybe MessageSender.MessageSender -- ^ Identifier of the previous owner of the Telegram stars that refunds them
+    { owner_id                   :: Maybe MessageSender.MessageSender -- ^ Identifier of the previous owner of the Telegram Stars that refunds them
     , currency                   :: Maybe T.Text                      -- ^ Currency for the price of the product
     , total_amount               :: Maybe Int                         -- ^ Total price for the product, in the smallest units of the currency
     , invoice_payload            :: Maybe BS.ByteString               -- ^ Invoice payload; only for bots
     , telegram_payment_charge_id :: Maybe T.Text                      -- ^ Telegram payment identifier
     , provider_payment_charge_id :: Maybe T.Text                      -- ^ Provider payment identifier
     }
-  | MessageGiftedPremium -- ^ Telegram Premium was gifted to the user
-    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+  | MessageGiftedPremium -- ^ Telegram Premium was gifted to a user
+    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id      :: Maybe Int             -- ^ The identifier of a user that received Telegram Premium; 0 if the gift is incoming
     , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
     , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
     , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
@@ -312,6 +313,17 @@ data MessageContent
     , winner_count                  :: Maybe Int    -- ^ Total number of winners in the giveaway
     , winner_user_ids               :: Maybe [Int]  -- ^ Up to 100 user identifiers of the winners of the giveaway
     , unclaimed_prize_count         :: Maybe Int    -- ^ Number of undistributed prizes
+    }
+  | MessageGiftedStars -- ^ Telegram Stars were gifted to a user
+    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id      :: Maybe Int             -- ^ The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+    , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
+    , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
+    , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
+    , cryptocurrency_amount :: Maybe Int             -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if none
+    , star_count            :: Maybe Int             -- ^ Number of Telegram Stars that were gifted
+    , transaction_id        :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars purchase; for receiver only
+    , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
@@ -847,6 +859,7 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessageGiftedPremium
     { gifter_user_id        = gifter_user_id_
+    , receiver_user_id      = receiver_user_id_
     , currency              = currency_
     , amount                = amount_
     , cryptocurrency        = cryptocurrency_
@@ -857,6 +870,7 @@ instance I.ShortShow MessageContent where
       = "MessageGiftedPremium"
         ++ I.cc
         [ "gifter_user_id"        `I.p` gifter_user_id_
+        , "receiver_user_id"      `I.p` receiver_user_id_
         , "currency"              `I.p` currency_
         , "amount"                `I.p` amount_
         , "cryptocurrency"        `I.p` cryptocurrency_
@@ -941,6 +955,29 @@ instance I.ShortShow MessageContent where
         , "winner_count"                  `I.p` winner_count_
         , "winner_user_ids"               `I.p` winner_user_ids_
         , "unclaimed_prize_count"         `I.p` unclaimed_prize_count_
+        ]
+  shortShow MessageGiftedStars
+    { gifter_user_id        = gifter_user_id_
+    , receiver_user_id      = receiver_user_id_
+    , currency              = currency_
+    , amount                = amount_
+    , cryptocurrency        = cryptocurrency_
+    , cryptocurrency_amount = cryptocurrency_amount_
+    , star_count            = star_count_
+    , transaction_id        = transaction_id_
+    , sticker               = sticker_
+    }
+      = "MessageGiftedStars"
+        ++ I.cc
+        [ "gifter_user_id"        `I.p` gifter_user_id_
+        , "receiver_user_id"      `I.p` receiver_user_id_
+        , "currency"              `I.p` currency_
+        , "amount"                `I.p` amount_
+        , "cryptocurrency"        `I.p` cryptocurrency_
+        , "cryptocurrency_amount" `I.p` cryptocurrency_amount_
+        , "star_count"            `I.p` star_count_
+        , "transaction_id"        `I.p` transaction_id_
+        , "sticker"               `I.p` sticker_
         ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
@@ -1081,6 +1118,7 @@ instance AT.FromJSON MessageContent where
       "messagePremiumGiveaway"              -> parseMessagePremiumGiveaway v
       "messagePremiumGiveawayCompleted"     -> parseMessagePremiumGiveawayCompleted v
       "messagePremiumGiveawayWinners"       -> parseMessagePremiumGiveawayWinners v
+      "messageGiftedStars"                  -> parseMessageGiftedStars v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1531,6 +1569,7 @@ instance AT.FromJSON MessageContent where
       parseMessageGiftedPremium :: A.Value -> AT.Parser MessageContent
       parseMessageGiftedPremium = A.withObject "MessageGiftedPremium" $ \o -> do
         gifter_user_id_        <- o A..:?                       "gifter_user_id"
+        receiver_user_id_      <- o A..:?                       "receiver_user_id"
         currency_              <- o A..:?                       "currency"
         amount_                <- o A..:?                       "amount"
         cryptocurrency_        <- o A..:?                       "cryptocurrency"
@@ -1539,6 +1578,7 @@ instance AT.FromJSON MessageContent where
         sticker_               <- o A..:?                       "sticker"
         pure $ MessageGiftedPremium
           { gifter_user_id        = gifter_user_id_
+          , receiver_user_id      = receiver_user_id_
           , currency              = currency_
           , amount                = amount_
           , cryptocurrency        = cryptocurrency_
@@ -1617,6 +1657,28 @@ instance AT.FromJSON MessageContent where
           , winner_count                  = winner_count_
           , winner_user_ids               = winner_user_ids_
           , unclaimed_prize_count         = unclaimed_prize_count_
+          }
+      parseMessageGiftedStars :: A.Value -> AT.Parser MessageContent
+      parseMessageGiftedStars = A.withObject "MessageGiftedStars" $ \o -> do
+        gifter_user_id_        <- o A..:?                       "gifter_user_id"
+        receiver_user_id_      <- o A..:?                       "receiver_user_id"
+        currency_              <- o A..:?                       "currency"
+        amount_                <- o A..:?                       "amount"
+        cryptocurrency_        <- o A..:?                       "cryptocurrency"
+        cryptocurrency_amount_ <- fmap I.readInt64 <$> o A..:?  "cryptocurrency_amount"
+        star_count_            <- o A..:?                       "star_count"
+        transaction_id_        <- o A..:?                       "transaction_id"
+        sticker_               <- o A..:?                       "sticker"
+        pure $ MessageGiftedStars
+          { gifter_user_id        = gifter_user_id_
+          , receiver_user_id      = receiver_user_id_
+          , currency              = currency_
+          , amount                = amount_
+          , cryptocurrency        = cryptocurrency_
+          , cryptocurrency_amount = cryptocurrency_amount_
+          , star_count            = star_count_
+          , transaction_id        = transaction_id_
+          , sticker               = sticker_
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do

@@ -13,7 +13,7 @@ data MessageSendingState
     }
   | MessageSendingStateFailed -- ^ The message failed to be sent
     { _error                   :: Maybe Error.Error -- ^ The cause of the message sending failure
-    , can_retry                :: Maybe Bool        -- ^ True, if the message can be re-sent
+    , can_retry                :: Maybe Bool        -- ^ True, if the message can be re-sent using resendMessages or readdQuickReplyShortcutMessages
     , need_another_sender      :: Maybe Bool        -- ^ True, if the message can be re-sent only on behalf of a different sender
     , need_another_reply_quote :: Maybe Bool        -- ^ True, if the message can be re-sent only if another quote is chosen in the message that is replied by the given message
     , need_drop_reply          :: Maybe Bool        -- ^ True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages

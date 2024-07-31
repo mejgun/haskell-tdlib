@@ -9,11 +9,11 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.Location as Location
 
--- | Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true. Returns 'TD.Data.Message.Message'
+-- | Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Returns 'TD.Data.Message.Message'
 data EditMessageLiveLocation
   = EditMessageLiveLocation
     { chat_id                :: Maybe Int                     -- ^ The chat the message belongs to
-    , message_id             :: Maybe Int                     -- ^ Identifier of the message
+    , message_id             :: Maybe Int                     -- ^ Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none; for bots only
     , location               :: Maybe Location.Location       -- ^ New location content of the message; pass null to stop sharing the live location
     , live_period            :: Maybe Int                     -- ^ New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period

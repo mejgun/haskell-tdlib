@@ -13,7 +13,7 @@ import qualified Data.Text as T
 data ReportChat
   = ReportChat
     { chat_id     :: Maybe Int                       -- ^ Chat identifier
-    , message_ids :: Maybe [Int]                     -- ^ Identifiers of reported messages; may be empty to report the whole chat
+    , message_ids :: Maybe [Int]                     -- ^ Identifiers of reported messages; may be empty to report the whole chat. Use messageProperties.can_be_reported to check whether the message can be reported
     , reason      :: Maybe ReportReason.ReportReason -- ^ The reason for reporting the chat
     , text        :: Maybe T.Text                    -- ^ Additional report details; 0-1024 characters
     }

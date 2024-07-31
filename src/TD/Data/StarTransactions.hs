@@ -8,9 +8,9 @@ import qualified TD.Data.StarTransaction as StarTransaction
 import qualified Data.Text as T
 
 data StarTransactions
-  = StarTransactions -- ^ Represents a list of Telegram star transactions
-    { star_count   :: Maybe Int                               -- ^ The amount of owned Telegram stars
-    , transactions :: Maybe [StarTransaction.StarTransaction] -- ^ List of transactions with Telegram stars
+  = StarTransactions -- ^ Represents a list of Telegram Star transactions
+    { star_count   :: Maybe Int                               -- ^ The amount of owned Telegram Stars
+    , transactions :: Maybe [StarTransaction.StarTransaction] -- ^ List of transactions with Telegram Stars
     , next_offset  :: Maybe T.Text                            -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)

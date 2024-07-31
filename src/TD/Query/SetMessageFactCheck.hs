@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
--- | Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true. Returns 'TD.Data.Ok.Ok'
+-- | Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true. Returns 'TD.Data.Ok.Ok'
 data SetMessageFactCheck
   = SetMessageFactCheck
     { chat_id    :: Maybe Int                         -- ^ The channel chat the message belongs to
-    , message_id :: Maybe Int                         -- ^ Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    , message_id :: Maybe Int                         -- ^ Identifier of the message
     , text       :: Maybe FormattedText.FormattedText -- ^ New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported
     }
   deriving (Eq, Show)

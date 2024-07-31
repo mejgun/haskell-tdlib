@@ -21,6 +21,9 @@ import qualified TD.Data.BankCardInfo as BankCardInfo
 import qualified TD.Data.BasicGroup as BasicGroup
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
 import qualified TD.Data.BotCommands as BotCommands
+import qualified TD.Data.BotMediaPreview as BotMediaPreview
+import qualified TD.Data.BotMediaPreviewInfo as BotMediaPreviewInfo
+import qualified TD.Data.BotMediaPreviews as BotMediaPreviews
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.BusinessChatLink as BusinessChatLink
 import qualified TD.Data.BusinessChatLinkInfo as BusinessChatLinkInfo
@@ -74,6 +77,7 @@ import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
 import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
+import qualified TD.Data.CurrentWeather as CurrentWeather
 import qualified TD.Data.CustomRequestResult as CustomRequestResult
 import qualified TD.Data.DatabaseStatistics as DatabaseStatistics
 import qualified TD.Data.DeepLinkInfo as DeepLinkInfo
@@ -99,6 +103,7 @@ import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
 import qualified TD.Data.FoundStories as FoundStories
+import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GroupCall as GroupCall
@@ -119,6 +124,7 @@ import qualified TD.Data.LogStream as LogStream
 import qualified TD.Data.LogTags as LogTags
 import qualified TD.Data.LogVerbosityLevel as LogVerbosityLevel
 import qualified TD.Data.LoginUrlInfo as LoginUrlInfo
+import qualified TD.Data.MainWebApp as MainWebApp
 import qualified TD.Data.Message as Message
 import qualified TD.Data.MessageAutoDeleteTime as MessageAutoDeleteTime
 import qualified TD.Data.MessageCalendar as MessageCalendar
@@ -127,6 +133,7 @@ import qualified TD.Data.MessageFileType as MessageFileType
 import qualified TD.Data.MessageLink as MessageLink
 import qualified TD.Data.MessageLinkInfo as MessageLinkInfo
 import qualified TD.Data.MessagePositions as MessagePositions
+import qualified TD.Data.MessageProperties as MessageProperties
 import qualified TD.Data.MessageReadDate as MessageReadDate
 import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageStatistics as MessageStatistics
@@ -234,6 +241,9 @@ data GeneralResult
     | BasicGroup                         BasicGroup.BasicGroup
     | BasicGroupFullInfo                 BasicGroupFullInfo.BasicGroupFullInfo
     | BotCommands                        BotCommands.BotCommands
+    | BotMediaPreview                    BotMediaPreview.BotMediaPreview
+    | BotMediaPreviewInfo                BotMediaPreviewInfo.BotMediaPreviewInfo
+    | BotMediaPreviews                   BotMediaPreviews.BotMediaPreviews
     | BotMenuButton                      BotMenuButton.BotMenuButton
     | BusinessChatLink                   BusinessChatLink.BusinessChatLink
     | BusinessChatLinkInfo               BusinessChatLinkInfo.BusinessChatLinkInfo
@@ -287,6 +297,7 @@ data GeneralResult
     | Count                              Count.Count
     | Countries                          Countries.Countries
     | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
+    | CurrentWeather                     CurrentWeather.CurrentWeather
     | CustomRequestResult                CustomRequestResult.CustomRequestResult
     | DatabaseStatistics                 DatabaseStatistics.DatabaseStatistics
     | DeepLinkInfo                       DeepLinkInfo.DeepLinkInfo
@@ -312,6 +323,7 @@ data GeneralResult
     | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
     | FoundStories                       FoundStories.FoundStories
+    | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GroupCall                          GroupCall.GroupCall
@@ -332,6 +344,7 @@ data GeneralResult
     | LogTags                            LogTags.LogTags
     | LogVerbosityLevel                  LogVerbosityLevel.LogVerbosityLevel
     | LoginUrlInfo                       LoginUrlInfo.LoginUrlInfo
+    | MainWebApp                         MainWebApp.MainWebApp
     | Message                            Message.Message
     | MessageAutoDeleteTime              MessageAutoDeleteTime.MessageAutoDeleteTime
     | MessageCalendar                    MessageCalendar.MessageCalendar
@@ -340,6 +353,7 @@ data GeneralResult
     | MessageLink                        MessageLink.MessageLink
     | MessageLinkInfo                    MessageLinkInfo.MessageLinkInfo
     | MessagePositions                   MessagePositions.MessagePositions
+    | MessageProperties                  MessageProperties.MessageProperties
     | MessageReadDate                    MessageReadDate.MessageReadDate
     | MessageSenders                     MessageSenders.MessageSenders
     | MessageStatistics                  MessageStatistics.MessageStatistics
@@ -465,6 +479,12 @@ instance I.ShortShow GeneralResult where
     = "BasicGroupFullInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (BotCommands v)
     = "BotCommands" <> " (" <> I.shortShow v <> ")"
+  shortShow (BotMediaPreview v)
+    = "BotMediaPreview" <> " (" <> I.shortShow v <> ")"
+  shortShow (BotMediaPreviewInfo v)
+    = "BotMediaPreviewInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (BotMediaPreviews v)
+    = "BotMediaPreviews" <> " (" <> I.shortShow v <> ")"
   shortShow (BotMenuButton v)
     = "BotMenuButton" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessChatLink v)
@@ -571,6 +591,8 @@ instance I.ShortShow GeneralResult where
     = "Countries" <> " (" <> I.shortShow v <> ")"
   shortShow (CreatedBasicGroupChat v)
     = "CreatedBasicGroupChat" <> " (" <> I.shortShow v <> ")"
+  shortShow (CurrentWeather v)
+    = "CurrentWeather" <> " (" <> I.shortShow v <> ")"
   shortShow (CustomRequestResult v)
     = "CustomRequestResult" <> " (" <> I.shortShow v <> ")"
   shortShow (DatabaseStatistics v)
@@ -621,6 +643,8 @@ instance I.ShortShow GeneralResult where
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundStories v)
     = "FoundStories" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundUsers v)
+    = "FoundUsers" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundWebApp v)
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
@@ -661,6 +685,8 @@ instance I.ShortShow GeneralResult where
     = "LogVerbosityLevel" <> " (" <> I.shortShow v <> ")"
   shortShow (LoginUrlInfo v)
     = "LoginUrlInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (MainWebApp v)
+    = "MainWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (Message v)
     = "Message" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageAutoDeleteTime v)
@@ -677,6 +703,8 @@ instance I.ShortShow GeneralResult where
     = "MessageLinkInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (MessagePositions v)
     = "MessagePositions" <> " (" <> I.shortShow v <> ")"
+  shortShow (MessageProperties v)
+    = "MessageProperties" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageReadDate v)
     = "MessageReadDate" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageSenders v)
@@ -873,6 +901,9 @@ instance T.FromJSON GeneralResult where
     <|> ( BasicGroup                          <$> parseJSON v )
     <|> ( BasicGroupFullInfo                  <$> parseJSON v )
     <|> ( BotCommands                         <$> parseJSON v )
+    <|> ( BotMediaPreview                     <$> parseJSON v )
+    <|> ( BotMediaPreviewInfo                 <$> parseJSON v )
+    <|> ( BotMediaPreviews                    <$> parseJSON v )
     <|> ( BotMenuButton                       <$> parseJSON v )
     <|> ( BusinessChatLink                    <$> parseJSON v )
     <|> ( BusinessChatLinkInfo                <$> parseJSON v )
@@ -926,6 +957,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
     <|> ( CreatedBasicGroupChat               <$> parseJSON v )
+    <|> ( CurrentWeather                      <$> parseJSON v )
     <|> ( CustomRequestResult                 <$> parseJSON v )
     <|> ( DatabaseStatistics                  <$> parseJSON v )
     <|> ( DeepLinkInfo                        <$> parseJSON v )
@@ -951,6 +983,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
     <|> ( FoundStories                        <$> parseJSON v )
+    <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -971,6 +1004,7 @@ instance T.FromJSON GeneralResult where
     <|> ( LogTags                             <$> parseJSON v )
     <|> ( LogVerbosityLevel                   <$> parseJSON v )
     <|> ( LoginUrlInfo                        <$> parseJSON v )
+    <|> ( MainWebApp                          <$> parseJSON v )
     <|> ( Message                             <$> parseJSON v )
     <|> ( MessageAutoDeleteTime               <$> parseJSON v )
     <|> ( MessageCalendar                     <$> parseJSON v )
@@ -979,6 +1013,7 @@ instance T.FromJSON GeneralResult where
     <|> ( MessageLink                         <$> parseJSON v )
     <|> ( MessageLinkInfo                     <$> parseJSON v )
     <|> ( MessagePositions                    <$> parseJSON v )
+    <|> ( MessageProperties                   <$> parseJSON v )
     <|> ( MessageReadDate                     <$> parseJSON v )
     <|> ( MessageSenders                      <$> parseJSON v )
     <|> ( MessageStatistics                   <$> parseJSON v )

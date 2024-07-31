@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.39.0
+version:        2.0.40.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -62,6 +62,9 @@ library
       TD.Data.BotCommands
       TD.Data.BotCommandScope
       TD.Data.BotInfo
+      TD.Data.BotMediaPreview
+      TD.Data.BotMediaPreviewInfo
+      TD.Data.BotMediaPreviews
       TD.Data.BotMenuButton
       TD.Data.BotWriteAccessAllowReason
       TD.Data.BusinessAwayMessageSchedule
@@ -183,6 +186,7 @@ library
       TD.Data.Countries
       TD.Data.CountryInfo
       TD.Data.CreatedBasicGroupChat
+      TD.Data.CurrentWeather
       TD.Data.CustomRequestResult
       TD.Data.DatabaseStatistics
       TD.Data.Date
@@ -233,6 +237,7 @@ library
       TD.Data.FoundPosition
       TD.Data.FoundPositions
       TD.Data.FoundStories
+      TD.Data.FoundUsers
       TD.Data.FoundWebApp
       TD.Data.Game
       TD.Data.GameHighScore
@@ -304,6 +309,7 @@ library
       TD.Data.LogStream
       TD.Data.LogTags
       TD.Data.LogVerbosityLevel
+      TD.Data.MainWebApp
       TD.Data.MaskPoint
       TD.Data.MaskPosition
       TD.Data.Message
@@ -323,6 +329,7 @@ library
       TD.Data.MessageOrigin
       TD.Data.MessagePosition
       TD.Data.MessagePositions
+      TD.Data.MessageProperties
       TD.Data.MessageReaction
       TD.Data.MessageReactions
       TD.Data.MessageReadDate
@@ -567,6 +574,7 @@ library
       TD.Query.AcceptCall
       TD.Query.AcceptTermsOfService
       TD.Query.ActivateStoryStealthMode
+      TD.Query.AddBotMediaPreview
       TD.Query.AddChatFolderByInviteLink
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
@@ -668,6 +676,7 @@ library
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
       TD.Query.DeleteAllRevokedChatInviteLinks
+      TD.Query.DeleteBotMediaPreviews
       TD.Query.DeleteBusinessChatLink
       TD.Query.DeleteBusinessConnectedBot
       TD.Query.DeleteChat
@@ -702,6 +711,7 @@ library
       TD.Query.DisconnectAllWebsites
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
+      TD.Query.EditBotMediaPreview
       TD.Query.EditBusinessChatLink
       TD.Query.EditBusinessMessageCaption
       TD.Query.EditBusinessMessageLiveLocation
@@ -727,6 +737,7 @@ library
       TD.Query.EditProxy
       TD.Query.EditQuickReplyMessage
       TD.Query.EditStory
+      TD.Query.EditStoryCover
       TD.Query.EnableProxy
       TD.Query.EndGroupCall
       TD.Query.EndGroupCallRecording
@@ -756,6 +767,8 @@ library
       TD.Query.GetBlockedMessageSenders
       TD.Query.GetBotInfoDescription
       TD.Query.GetBotInfoShortDescription
+      TD.Query.GetBotMediaPreviewInfo
+      TD.Query.GetBotMediaPreviews
       TD.Query.GetBotName
       TD.Query.GetBusinessChatLinkInfo
       TD.Query.GetBusinessChatLinks
@@ -820,6 +833,7 @@ library
       TD.Query.GetCountryFlagEmoji
       TD.Query.GetCreatedPublicChats
       TD.Query.GetCurrentState
+      TD.Query.GetCurrentWeather
       TD.Query.GetCustomEmojiReactionAnimations
       TD.Query.GetCustomEmojiStickers
       TD.Query.GetDatabaseStatistics
@@ -874,6 +888,7 @@ library
       TD.Query.GetLogTags
       TD.Query.GetLogTagVerbosityLevel
       TD.Query.GetLogVerbosityLevel
+      TD.Query.GetMainWebApp
       TD.Query.GetMapThumbnailFile
       TD.Query.GetMarkdownText
       TD.Query.GetMe
@@ -888,6 +903,7 @@ library
       TD.Query.GetMessageLink
       TD.Query.GetMessageLinkInfo
       TD.Query.GetMessageLocally
+      TD.Query.GetMessageProperties
       TD.Query.GetMessagePublicForwards
       TD.Query.GetMessageReadDate
       TD.Query.GetMessages
@@ -908,6 +924,7 @@ library
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
       TD.Query.GetPollVoters
+      TD.Query.GetPopularWebAppBots
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
       TD.Query.GetPremiumGiftCodePaymentOptions
@@ -941,6 +958,7 @@ library
       TD.Query.GetSearchedForTags
       TD.Query.GetSecretChat
       TD.Query.GetStarAdAccountUrl
+      TD.Query.GetStarGiftPaymentOptions
       TD.Query.GetStarPaymentOptions
       TD.Query.GetStarRevenueStatistics
       TD.Query.GetStarTransactions
@@ -1054,6 +1072,7 @@ library
       TD.Query.RemoveTopChat
       TD.Query.ReorderActiveUsernames
       TD.Query.ReorderBotActiveUsernames
+      TD.Query.ReorderBotMediaPreviews
       TD.Query.ReorderChatFolders
       TD.Query.ReorderInstalledStickerSets
       TD.Query.ReorderQuickReplyShortcuts
@@ -1161,6 +1180,7 @@ library
       TD.Query.SetBusinessConnectedBot
       TD.Query.SetBusinessGreetingMessageSettings
       TD.Query.SetBusinessLocation
+      TD.Query.SetBusinessMessageIsPinned
       TD.Query.SetBusinessOpeningHours
       TD.Query.SetBusinessStartPage
       TD.Query.SetChatAccentColor

@@ -17,7 +17,7 @@ data GetWebAppLinkUrl
     , web_app_short_name :: Maybe T.Text                          -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text                          -- ^ Start parameter from internalLinkTypeWebApp
     , theme              :: Maybe ThemeParameters.ThemeParameters -- ^ Preferred Web App theme; pass null to use the default theme
-    , application_name   :: Maybe T.Text                          -- ^ Short name of the application; 0-64 English letters, digits, and underscores
+    , application_name   :: Maybe T.Text                          -- ^ Short name of the current application; 0-64 English letters, digits, and underscores
     , allow_write_access :: Maybe Bool                            -- ^ Pass true if the current user allowed the bot to send them messages
     }
   deriving (Eq, Show)

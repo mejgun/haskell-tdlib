@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data ReportSupergroupAntiSpamFalsePositive
   = ReportSupergroupAntiSpamFalsePositive
     { supergroup_id :: Maybe Int -- ^ Supergroup identifier
-    , message_id    :: Maybe Int -- ^ Identifier of the erroneously deleted message
+    , message_id    :: Maybe Int -- ^ Identifier of the erroneously deleted message from chatEventMessageDeleted
     }
   deriving (Eq, Show)
 

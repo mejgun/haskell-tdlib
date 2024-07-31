@@ -9,12 +9,12 @@ import qualified TD.Data.InputTextQuote as InputTextQuote
 -- | Contains information about the message or the story to be replied
 data InputMessageReplyTo
   = InputMessageReplyToMessage -- ^ Describes a message to be replied in the same chat and forum topic
-    { message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the same chat and forum topic
+    { message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
     , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
     }
   | InputMessageReplyToExternalMessage -- ^ Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
     { chat_id    :: Maybe Int                           -- ^ The identifier of the chat to which the message to be replied belongs
-    , message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the specified chat. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    , message_id :: Maybe Int                           -- ^ The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied

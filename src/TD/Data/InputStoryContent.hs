@@ -16,6 +16,7 @@ data InputStoryContent
     { video                  :: Maybe InputFile.InputFile -- ^ Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
     , added_sticker_file_ids :: Maybe [Int]               -- ^ File identifiers of the stickers added to the video, if applicable
     , duration               :: Maybe Double              -- ^ Precise duration of the video, in seconds; 0-60
+    , cover_frame_timestamp  :: Maybe Double              -- ^ Timestamp of the frame, which will be used as video thumbnail
     , is_animation           :: Maybe Bool                -- ^ True, if the video has no sound
     }
   deriving (Eq, Show)
@@ -34,6 +35,7 @@ instance I.ShortShow InputStoryContent where
     { video                  = video_
     , added_sticker_file_ids = added_sticker_file_ids_
     , duration               = duration_
+    , cover_frame_timestamp  = cover_frame_timestamp_
     , is_animation           = is_animation_
     }
       = "InputStoryContentVideo"
@@ -41,6 +43,7 @@ instance I.ShortShow InputStoryContent where
         [ "video"                  `I.p` video_
         , "added_sticker_file_ids" `I.p` added_sticker_file_ids_
         , "duration"               `I.p` duration_
+        , "cover_frame_timestamp"  `I.p` cover_frame_timestamp_
         , "is_animation"           `I.p` is_animation_
         ]
 
@@ -67,11 +70,13 @@ instance AT.FromJSON InputStoryContent where
         video_                  <- o A..:?  "video"
         added_sticker_file_ids_ <- o A..:?  "added_sticker_file_ids"
         duration_               <- o A..:?  "duration"
+        cover_frame_timestamp_  <- o A..:?  "cover_frame_timestamp"
         is_animation_           <- o A..:?  "is_animation"
         pure $ InputStoryContentVideo
           { video                  = video_
           , added_sticker_file_ids = added_sticker_file_ids_
           , duration               = duration_
+          , cover_frame_timestamp  = cover_frame_timestamp_
           , is_animation           = is_animation_
           }
   parseJSON _ = mempty
@@ -90,6 +95,7 @@ instance AT.ToJSON InputStoryContent where
     { video                  = video_
     , added_sticker_file_ids = added_sticker_file_ids_
     , duration               = duration_
+    , cover_frame_timestamp  = cover_frame_timestamp_
     , is_animation           = is_animation_
     }
       = A.object
@@ -97,6 +103,7 @@ instance AT.ToJSON InputStoryContent where
         , "video"                  A..= video_
         , "added_sticker_file_ids" A..= added_sticker_file_ids_
         , "duration"               A..= duration_
+        , "cover_frame_timestamp"  A..= cover_frame_timestamp_
         , "is_animation"           A..= is_animation_
         ]
 

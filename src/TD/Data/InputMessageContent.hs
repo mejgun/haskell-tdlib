@@ -52,7 +52,7 @@ data InputMessageContent
     , caption                        :: Maybe FormattedText.FormattedText   -- ^ Document caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePaidMedia -- ^ A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
-    { star_count               :: Maybe Int                             -- ^ The number of stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
+    { star_count               :: Maybe Int                             -- ^ The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
     , paid_media               :: Maybe [InputPaidMedia.InputPaidMedia] -- ^ The content of the paid media
     , caption                  :: Maybe FormattedText.FormattedText     -- ^ Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     , show_caption_above_media :: Maybe Bool                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
@@ -152,7 +152,7 @@ data InputMessageContent
     }
   | InputMessageForwarded -- ^ A forwarded message
     { from_chat_id  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
-    , message_id    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if message.can_be_forwarded
+    , message_id    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
     , in_game_share :: Maybe Bool                                  -- ^ True, if a game message is being shared from a launched game; applies only to game messages
     , copy_options  :: Maybe MessageCopyOptions.MessageCopyOptions -- ^ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     }

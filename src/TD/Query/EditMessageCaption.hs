@@ -9,11 +9,11 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.FormattedText as FormattedText
 
--- | Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true. Returns 'TD.Data.Message.Message'
+-- | Edits the message content caption. Returns the edited message after the edit is completed on the server side. Returns 'TD.Data.Message.Message'
 data EditMessageCaption
   = EditMessageCaption
     { chat_id                  :: Maybe Int                         -- ^ The chat the message belongs to
-    , message_id               :: Maybe Int                         -- ^ Identifier of the message
+    , message_id               :: Maybe Int                         -- ^ Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     , reply_markup             :: Maybe ReplyMarkup.ReplyMarkup     -- ^ The new message reply markup; pass null if none; for bots only
     , caption                  :: Maybe FormattedText.FormattedText -- ^ New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption
     , show_caption_above_media :: Maybe Bool                        -- ^ Pass true to show the caption above the media; otherwise, the caption will be shown below the media. Can be true only for animation, photo, and video messages

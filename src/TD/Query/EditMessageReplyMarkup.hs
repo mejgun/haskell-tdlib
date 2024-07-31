@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
--- | Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true. Returns 'TD.Data.Message.Message'
+-- | Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Returns 'TD.Data.Message.Message'
 data EditMessageReplyMarkup
   = EditMessageReplyMarkup
     { chat_id      :: Maybe Int                     -- ^ The chat the message belongs to
-    , message_id   :: Maybe Int                     -- ^ Identifier of the message
+    , message_id   :: Maybe Int                     -- ^ Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     , reply_markup :: Maybe ReplyMarkup.ReplyMarkup -- ^ The new message reply markup; pass null if none
     }
   deriving (Eq, Show)

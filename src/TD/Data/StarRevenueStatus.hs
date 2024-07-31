@@ -6,11 +6,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
 data StarRevenueStatus
-  = StarRevenueStatus -- ^ Contains information about Telegram stars earned by a bot or a chat
-    { total_count        :: Maybe Int  -- ^ Total number of the stars earned
-    , current_count      :: Maybe Int  -- ^ The number of Telegram stars that aren't withdrawn yet
-    , available_count    :: Maybe Int  -- ^ The number of Telegram stars that are available for withdrawal
-    , withdrawal_enabled :: Maybe Bool -- ^ True, if Telegram stars can be withdrawn now or later
+  = StarRevenueStatus -- ^ Contains information about Telegram Stars earned by a bot or a chat
+    { total_count        :: Maybe Int  -- ^ Total number of Telegram Stars earned
+    , current_count      :: Maybe Int  -- ^ The number of Telegram Stars that aren't withdrawn yet
+    , available_count    :: Maybe Int  -- ^ The number of Telegram Stars that are available for withdrawal
+    , withdrawal_enabled :: Maybe Bool -- ^ True, if Telegram Stars can be withdrawn now or later
     , next_withdrawal_in :: Maybe Int  -- ^ Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
     }
   deriving (Eq, Show)

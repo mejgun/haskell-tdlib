@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a message thread. Can be used only if message.can_get_message_thread == true. Returns 'TD.Data.MessageThreadInfo.MessageThreadInfo'
+-- | Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true. Returns 'TD.Data.MessageThreadInfo.MessageThreadInfo'
 data GetMessageThread
   = GetMessageThread
     { chat_id    :: Maybe Int -- ^ Chat identifier

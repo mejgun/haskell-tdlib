@@ -12,7 +12,7 @@ import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 data EditMessageSchedulingState
   = EditMessageSchedulingState
     { chat_id          :: Maybe Int                                           -- ^ The chat the message belongs to
-    , message_id       :: Maybe Int                                           -- ^ Identifier of the message
+    , message_id       :: Maybe Int                                           -- ^ Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
     , scheduling_state :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ The new message scheduling state; pass null to send the message immediately
     }
   deriving (Eq, Show)

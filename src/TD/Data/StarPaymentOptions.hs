@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StarPaymentOption as StarPaymentOption
 
 data StarPaymentOptions
-  = StarPaymentOptions -- ^ Contains a list of options for buying Telegram stars
+  = StarPaymentOptions -- ^ Contains a list of options for buying Telegram Stars
     { options :: Maybe [StarPaymentOption.StarPaymentOption] -- ^ The list of options
     }
   deriving (Eq, Show)

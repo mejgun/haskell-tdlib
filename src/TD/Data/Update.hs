@@ -581,16 +581,16 @@ data Update
     { saved_messages_topic_id :: Maybe Int                                 -- ^ Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
-  | UpdateOwnedStarCount -- ^ The number of Telegram stars owned by the current user has changed
-    { star_count :: Maybe Int -- ^ The new number of Telegram stars owned
+  | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
+    { star_count :: Maybe Int -- ^ The new number of Telegram Stars owned
     }
   | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
     , revenue_amount :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ New amount of earned revenue
     }
-  | UpdateStarRevenueStatus -- ^ The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
-    { owner_id :: Maybe MessageSender.MessageSender         -- ^ Identifier of the owner of the Telegram stars
-    , _status  :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ New Telegram star revenue status
+  | UpdateStarRevenueStatus -- ^ The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    { owner_id :: Maybe MessageSender.MessageSender         -- ^ Identifier of the owner of the Telegram Stars
+    , _status  :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ New Telegram Star revenue status
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds

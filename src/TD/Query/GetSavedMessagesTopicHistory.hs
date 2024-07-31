@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). Returns 'TD.Data.Messages.Messages'
+-- | Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). Returns 'TD.Data.Messages.Messages'
 data GetSavedMessagesTopicHistory
   = GetSavedMessagesTopicHistory
     { saved_messages_topic_id :: Maybe Int -- ^ Identifier of Saved Messages topic which messages will be fetched

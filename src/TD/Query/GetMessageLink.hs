@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request. Returns 'TD.Data.MessageLink.MessageLink'
+-- | Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request. Returns 'TD.Data.MessageLink.MessageLink'
 data GetMessageLink
   = GetMessageLink
     { chat_id           :: Maybe Int  -- ^ Identifier of the chat to which the message belongs

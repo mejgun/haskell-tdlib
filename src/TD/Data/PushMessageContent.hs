@@ -55,7 +55,7 @@ data PushMessageContent
     , is_pinned :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentPaidMedia -- ^ A message with paid media
-    { star_count :: Maybe Int  -- ^ Number of stars needed to buy access to the media in the message; 0 for pinned message
+    { star_count :: Maybe Int  -- ^ Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message
     , is_pinned  :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentPhoto -- ^ A photo message

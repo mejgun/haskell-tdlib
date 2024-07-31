@@ -22,6 +22,7 @@ data BotInfo
     , commands                             :: Maybe [BotCommand.BotCommand]                         -- ^ List of the bot commands
     , default_group_administrator_rights   :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; may be null
     , default_channel_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to channels; may be null
+    , has_media_previews                   :: Maybe Bool                                            -- ^ True, if the bot has media previews
     , edit_commands_link                   :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot commands; may be null
     , edit_description_link                :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit bot description; may be null
     , edit_description_media_link          :: Maybe InternalLinkType.InternalLinkType               -- ^ The internal link, which can be used to edit the photo or animation shown in the chat with the bot if the chat is empty; may be null
@@ -39,6 +40,7 @@ instance I.ShortShow BotInfo where
     , commands                             = commands_
     , default_group_administrator_rights   = default_group_administrator_rights_
     , default_channel_administrator_rights = default_channel_administrator_rights_
+    , has_media_previews                   = has_media_previews_
     , edit_commands_link                   = edit_commands_link_
     , edit_description_link                = edit_description_link_
     , edit_description_media_link          = edit_description_media_link_
@@ -54,6 +56,7 @@ instance I.ShortShow BotInfo where
         , "commands"                             `I.p` commands_
         , "default_group_administrator_rights"   `I.p` default_group_administrator_rights_
         , "default_channel_administrator_rights" `I.p` default_channel_administrator_rights_
+        , "has_media_previews"                   `I.p` has_media_previews_
         , "edit_commands_link"                   `I.p` edit_commands_link_
         , "edit_description_link"                `I.p` edit_description_link_
         , "edit_description_media_link"          `I.p` edit_description_media_link_
@@ -79,6 +82,7 @@ instance AT.FromJSON BotInfo where
         commands_                             <- o A..:?  "commands"
         default_group_administrator_rights_   <- o A..:?  "default_group_administrator_rights"
         default_channel_administrator_rights_ <- o A..:?  "default_channel_administrator_rights"
+        has_media_previews_                   <- o A..:?  "has_media_previews"
         edit_commands_link_                   <- o A..:?  "edit_commands_link"
         edit_description_link_                <- o A..:?  "edit_description_link"
         edit_description_media_link_          <- o A..:?  "edit_description_media_link"
@@ -92,6 +96,7 @@ instance AT.FromJSON BotInfo where
           , commands                             = commands_
           , default_group_administrator_rights   = default_group_administrator_rights_
           , default_channel_administrator_rights = default_channel_administrator_rights_
+          , has_media_previews                   = has_media_previews_
           , edit_commands_link                   = edit_commands_link_
           , edit_description_link                = edit_description_link_
           , edit_description_media_link          = edit_description_media_link_

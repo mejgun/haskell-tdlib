@@ -14,7 +14,7 @@ data StorePaymentPurpose
     , is_upgrade :: Maybe Bool -- ^ Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
     }
   | StorePaymentPurposeGiftedPremium -- ^ The user gifting Telegram Premium to another user
-    { user_id  :: Maybe Int    -- ^ Identifier of the user to which Premium was gifted
+    { user_id  :: Maybe Int    -- ^ Identifier of the user to which Telegram Premium is gifted
     , currency :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount   :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     }
@@ -29,10 +29,16 @@ data StorePaymentPurpose
     , currency   :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency
     }
-  | StorePaymentPurposeStars -- ^ The user buying Telegram stars
+  | StorePaymentPurposeStars -- ^ The user buying Telegram Stars
     { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
-    , star_count :: Maybe Int    -- ^ Number of bought stars
+    , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
+    }
+  | StorePaymentPurposeGiftedStars -- ^ The user buying Telegram Stars for other users
+    { user_id    :: Maybe Int    -- ^ Identifier of the user to which Telegram Stars are gifted
+    , currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
+    , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
+    , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
     }
   deriving (Eq, Show)
 
@@ -92,6 +98,19 @@ instance I.ShortShow StorePaymentPurpose where
         , "amount"     `I.p` amount_
         , "star_count" `I.p` star_count_
         ]
+  shortShow StorePaymentPurposeGiftedStars
+    { user_id    = user_id_
+    , currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = "StorePaymentPurposeGiftedStars"
+        ++ I.cc
+        [ "user_id"    `I.p` user_id_
+        , "currency"   `I.p` currency_
+        , "amount"     `I.p` amount_
+        , "star_count" `I.p` star_count_
+        ]
 
 instance AT.FromJSON StorePaymentPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -103,6 +122,7 @@ instance AT.FromJSON StorePaymentPurpose where
       "storePaymentPurposePremiumGiftCodes"    -> parseStorePaymentPurposePremiumGiftCodes v
       "storePaymentPurposePremiumGiveaway"     -> parseStorePaymentPurposePremiumGiveaway v
       "storePaymentPurposeStars"               -> parseStorePaymentPurposeStars v
+      "storePaymentPurposeGiftedStars"         -> parseStorePaymentPurposeGiftedStars v
       _                                        -> mempty
     
     where
@@ -153,6 +173,18 @@ instance AT.FromJSON StorePaymentPurpose where
         star_count_ <- o A..:?  "star_count"
         pure $ StorePaymentPurposeStars
           { currency   = currency_
+          , amount     = amount_
+          , star_count = star_count_
+          }
+      parseStorePaymentPurposeGiftedStars :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposeGiftedStars = A.withObject "StorePaymentPurposeGiftedStars" $ \o -> do
+        user_id_    <- o A..:?  "user_id"
+        currency_   <- o A..:?  "currency"
+        amount_     <- o A..:?  "amount"
+        star_count_ <- o A..:?  "star_count"
+        pure $ StorePaymentPurposeGiftedStars
+          { user_id    = user_id_
+          , currency   = currency_
           , amount     = amount_
           , star_count = star_count_
           }
@@ -210,6 +242,19 @@ instance AT.ToJSON StorePaymentPurpose where
     }
       = A.object
         [ "@type"      A..= AT.String "storePaymentPurposeStars"
+        , "currency"   A..= currency_
+        , "amount"     A..= amount_
+        , "star_count" A..= star_count_
+        ]
+  toJSON StorePaymentPurposeGiftedStars
+    { user_id    = user_id_
+    , currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "storePaymentPurposeGiftedStars"
+        , "user_id"    A..= user_id_
         , "currency"   A..= currency_
         , "amount"     A..= amount_
         , "star_count" A..= star_count_

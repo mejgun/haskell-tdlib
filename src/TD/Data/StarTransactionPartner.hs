@@ -8,8 +8,9 @@ import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified Data.ByteString as BS
 import qualified TD.Data.PaidMedia as PaidMedia
+import qualified TD.Data.Sticker as Sticker
 
--- | Describes source or recipient of a transaction with Telegram stars
+-- | Describes source or recipient of a transaction with Telegram Stars
 data StarTransactionPartner
   = StarTransactionPartnerTelegram -- ^ The transaction is a transaction with Telegram through a bot
   | StarTransactionPartnerAppStore -- ^ The transaction is a transaction with App Store
@@ -19,7 +20,7 @@ data StarTransactionPartner
     }
   | StarTransactionPartnerTelegramAds -- ^ The transaction is a transaction with Telegram Ad platform
   | StarTransactionPartnerBot -- ^ The transaction is a transaction with a bot
-    { bot_user_id     :: Maybe Int                     -- ^ Identifier of the bot
+    { user_id         :: Maybe Int                     -- ^ Identifier of the bot for the user, or the user for the bot
     , product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product; may be null if not applicable
     , invoice_payload :: Maybe BS.ByteString           -- ^ Invoice payload; for bots only
     }
@@ -27,6 +28,10 @@ data StarTransactionPartner
     { chat_id               :: Maybe Int                   -- ^ Identifier of the chat
     , paid_media_message_id :: Maybe Int                   -- ^ Identifier of the corresponding message with paid media; can be an identifier of a deleted message
     , media                 :: Maybe [PaidMedia.PaidMedia] -- ^ Information about the bought media
+    }
+  | StarTransactionPartnerUser -- ^ The transaction is a gift of Telegram Stars from another user
+    { user_id :: Maybe Int             -- ^ Identifier of the user; 0 if the gift was anonymous
+    , sticker :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
     }
   | StarTransactionPartnerUnsupported -- ^ The transaction is a transaction with unknown partner
   deriving (Eq, Show)
@@ -48,13 +53,13 @@ instance I.ShortShow StarTransactionPartner where
   shortShow StarTransactionPartnerTelegramAds
       = "StarTransactionPartnerTelegramAds"
   shortShow StarTransactionPartnerBot
-    { bot_user_id     = bot_user_id_
+    { user_id         = user_id_
     , product_info    = product_info_
     , invoice_payload = invoice_payload_
     }
       = "StarTransactionPartnerBot"
         ++ I.cc
-        [ "bot_user_id"     `I.p` bot_user_id_
+        [ "user_id"         `I.p` user_id_
         , "product_info"    `I.p` product_info_
         , "invoice_payload" `I.p` invoice_payload_
         ]
@@ -68,6 +73,15 @@ instance I.ShortShow StarTransactionPartner where
         [ "chat_id"               `I.p` chat_id_
         , "paid_media_message_id" `I.p` paid_media_message_id_
         , "media"                 `I.p` media_
+        ]
+  shortShow StarTransactionPartnerUser
+    { user_id = user_id_
+    , sticker = sticker_
+    }
+      = "StarTransactionPartnerUser"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        , "sticker" `I.p` sticker_
         ]
   shortShow StarTransactionPartnerUnsupported
       = "StarTransactionPartnerUnsupported"
@@ -84,6 +98,7 @@ instance AT.FromJSON StarTransactionPartner where
       "starTransactionPartnerTelegramAds" -> pure StarTransactionPartnerTelegramAds
       "starTransactionPartnerBot"         -> parseStarTransactionPartnerBot v
       "starTransactionPartnerChannel"     -> parseStarTransactionPartnerChannel v
+      "starTransactionPartnerUser"        -> parseStarTransactionPartnerUser v
       "starTransactionPartnerUnsupported" -> pure StarTransactionPartnerUnsupported
       _                                   -> mempty
     
@@ -96,11 +111,11 @@ instance AT.FromJSON StarTransactionPartner where
           }
       parseStarTransactionPartnerBot :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerBot = A.withObject "StarTransactionPartnerBot" $ \o -> do
-        bot_user_id_     <- o A..:?                       "bot_user_id"
+        user_id_         <- o A..:?                       "user_id"
         product_info_    <- o A..:?                       "product_info"
         invoice_payload_ <- fmap I.readBytes <$> o A..:?  "invoice_payload"
         pure $ StarTransactionPartnerBot
-          { bot_user_id     = bot_user_id_
+          { user_id         = user_id_
           , product_info    = product_info_
           , invoice_payload = invoice_payload_
           }
@@ -113,6 +128,14 @@ instance AT.FromJSON StarTransactionPartner where
           { chat_id               = chat_id_
           , paid_media_message_id = paid_media_message_id_
           , media                 = media_
+          }
+      parseStarTransactionPartnerUser :: A.Value -> AT.Parser StarTransactionPartner
+      parseStarTransactionPartnerUser = A.withObject "StarTransactionPartnerUser" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        sticker_ <- o A..:?  "sticker"
+        pure $ StarTransactionPartnerUser
+          { user_id = user_id_
+          , sticker = sticker_
           }
   parseJSON _ = mempty
 

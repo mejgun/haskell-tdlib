@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns available options for Telegram stars purchase. Returns 'TD.Data.StarPaymentOptions.StarPaymentOptions'
+-- | Returns available options for Telegram Stars purchase. Returns 'TD.Data.StarPaymentOptions.StarPaymentOptions'
 data GetStarPaymentOptions
   = GetStarPaymentOptions
   deriving (Eq, Show)

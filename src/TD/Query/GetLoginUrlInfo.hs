@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data GetLoginUrlInfo
   = GetLoginUrlInfo
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message with the button
-    , message_id :: Maybe Int -- ^ Message identifier of the message with the button
+    , message_id :: Maybe Int -- ^ Message identifier of the message with the button. The message must not be scheduled
     , button_id  :: Maybe Int -- ^ Button identifier
     }
   deriving (Eq, Show)

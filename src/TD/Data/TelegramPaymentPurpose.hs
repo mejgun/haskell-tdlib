@@ -23,10 +23,16 @@ data TelegramPaymentPurpose
     , winner_count :: Maybe Int                                                 -- ^ Number of users which will be able to activate the gift codes
     , month_count  :: Maybe Int                                                 -- ^ Number of months the Telegram Premium subscription will be active for the users
     }
-  | TelegramPaymentPurposeStars -- ^ The user buying Telegram stars
+  | TelegramPaymentPurposeStars -- ^ The user buying Telegram Stars
     { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
-    , star_count :: Maybe Int    -- ^ Number of bought stars
+    , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
+    }
+  | TelegramPaymentPurposeGiftedStars -- ^ The user buying Telegram Stars for other users
+    { user_id    :: Maybe Int    -- ^ Identifier of the user to which Telegram Stars are gifted
+    , currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
+    , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
+    , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
     }
   deriving (Eq, Show)
 
@@ -72,6 +78,19 @@ instance I.ShortShow TelegramPaymentPurpose where
         , "amount"     `I.p` amount_
         , "star_count" `I.p` star_count_
         ]
+  shortShow TelegramPaymentPurposeGiftedStars
+    { user_id    = user_id_
+    , currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = "TelegramPaymentPurposeGiftedStars"
+        ++ I.cc
+        [ "user_id"    `I.p` user_id_
+        , "currency"   `I.p` currency_
+        , "amount"     `I.p` amount_
+        , "star_count" `I.p` star_count_
+        ]
 
 instance AT.FromJSON TelegramPaymentPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -81,6 +100,7 @@ instance AT.FromJSON TelegramPaymentPurpose where
       "telegramPaymentPurposePremiumGiftCodes" -> parseTelegramPaymentPurposePremiumGiftCodes v
       "telegramPaymentPurposePremiumGiveaway"  -> parseTelegramPaymentPurposePremiumGiveaway v
       "telegramPaymentPurposeStars"            -> parseTelegramPaymentPurposeStars v
+      "telegramPaymentPurposeGiftedStars"      -> parseTelegramPaymentPurposeGiftedStars v
       _                                        -> mempty
     
     where
@@ -119,6 +139,18 @@ instance AT.FromJSON TelegramPaymentPurpose where
         star_count_ <- o A..:?  "star_count"
         pure $ TelegramPaymentPurposeStars
           { currency   = currency_
+          , amount     = amount_
+          , star_count = star_count_
+          }
+      parseTelegramPaymentPurposeGiftedStars :: A.Value -> AT.Parser TelegramPaymentPurpose
+      parseTelegramPaymentPurposeGiftedStars = A.withObject "TelegramPaymentPurposeGiftedStars" $ \o -> do
+        user_id_    <- o A..:?  "user_id"
+        currency_   <- o A..:?  "currency"
+        amount_     <- o A..:?  "amount"
+        star_count_ <- o A..:?  "star_count"
+        pure $ TelegramPaymentPurposeGiftedStars
+          { user_id    = user_id_
+          , currency   = currency_
           , amount     = amount_
           , star_count = star_count_
           }
@@ -162,6 +194,19 @@ instance AT.ToJSON TelegramPaymentPurpose where
     }
       = A.object
         [ "@type"      A..= AT.String "telegramPaymentPurposeStars"
+        , "currency"   A..= currency_
+        , "amount"     A..= amount_
+        , "star_count" A..= star_count_
+        ]
+  toJSON TelegramPaymentPurposeGiftedStars
+    { user_id    = user_id_
+    , currency   = currency_
+    , amount     = amount_
+    , star_count = star_count_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "telegramPaymentPurposeGiftedStars"
+        , "user_id"    A..= user_id_
         , "currency"   A..= currency_
         , "amount"     A..= amount_
         , "star_count" A..= star_count_

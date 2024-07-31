@@ -5,10 +5,10 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes direction of a transaction with Telegram stars
+-- | Describes direction of a transaction with Telegram Stars
 data StarTransactionDirection
-  = StarTransactionDirectionIncoming -- ^ The transaction is incoming and increases the number of owned Telegram stars
-  | StarTransactionDirectionOutgoing -- ^ The transaction is outgoing and decreases the number of owned Telegram stars
+  = StarTransactionDirectionIncoming -- ^ The transaction is incoming and increases the number of owned Telegram Stars
+  | StarTransactionDirectionOutgoing -- ^ The transaction is outgoing and decreases the number of owned Telegram Stars
   deriving (Eq, Show)
 
 instance I.ShortShow StarTransactionDirection where

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel. Returns 'TD.Data.Ok.Ok'
+-- | Pins a message in a chat. A message can be pinned only if messageProperties.can_be_pinned. Returns 'TD.Data.Ok.Ok'
 data PinChatMessage
   = PinChatMessage
     { chat_id              :: Maybe Int  -- ^ Identifier of the chat

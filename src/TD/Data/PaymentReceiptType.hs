@@ -19,8 +19,8 @@ data PaymentReceiptType
     , credentials_title        :: Maybe T.Text                        -- ^ Title of the saved credentials chosen by the buyer
     , tip_amount               :: Maybe Int                           -- ^ The amount of tip chosen by the buyer in the smallest units of the currency
     }
-  | PaymentReceiptTypeStars -- ^ The payment was done using Telegram stars
-    { star_count     :: Maybe Int    -- ^ Number of Telegram stars that were paid
+  | PaymentReceiptTypeStars -- ^ The payment was done using Telegram Stars
+    { star_count     :: Maybe Int    -- ^ Number of Telegram Stars that were paid
     , transaction_id :: Maybe T.Text -- ^ Unique identifier of the transaction that can be used to dispute it
     }
   deriving (Eq, Show)

@@ -9,7 +9,7 @@ import qualified TD.Data.LocationAddress as LocationAddress
 import qualified Data.Text as T
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Describes type of clickable rectangle area on a story media to be added
+-- | Describes type of clickable area on a story media to be added
 data InputStoryAreaType
   = InputStoryAreaTypeLocation -- ^ An area pointing to a location
     { location :: Maybe Location.Location               -- ^ The location
@@ -30,10 +30,15 @@ data InputStoryAreaType
     }
   | InputStoryAreaTypeMessage -- ^ An area pointing to a message
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
-    , message_id :: Maybe Int -- ^ Identifier of the message. Only successfully sent non-scheduled messages can be specified
+    , message_id :: Maybe Int -- ^ Identifier of the message. Use messageProperties.can_be_shared_in_story to check whether the message is suitable
     }
   | InputStoryAreaTypeLink -- ^ An area pointing to a HTTP or tg:// link
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the area is clicked
+    }
+  | InputStoryAreaTypeWeather -- ^ An area with information about weather
+    { temperature      :: Maybe Double -- ^ Temperature, in degree Celsius
+    , emoji            :: Maybe T.Text -- ^ Emoji representing the weather
+    , background_color :: Maybe Int    -- ^ A color of the area background in the ARGB format
     }
   deriving (Eq, Show)
 
@@ -92,6 +97,17 @@ instance I.ShortShow InputStoryAreaType where
         ++ I.cc
         [ "url" `I.p` url_
         ]
+  shortShow InputStoryAreaTypeWeather
+    { temperature      = temperature_
+    , emoji            = emoji_
+    , background_color = background_color_
+    }
+      = "InputStoryAreaTypeWeather"
+        ++ I.cc
+        [ "temperature"      `I.p` temperature_
+        , "emoji"            `I.p` emoji_
+        , "background_color" `I.p` background_color_
+        ]
 
 instance AT.FromJSON InputStoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -104,6 +120,7 @@ instance AT.FromJSON InputStoryAreaType where
       "inputStoryAreaTypeSuggestedReaction" -> parseInputStoryAreaTypeSuggestedReaction v
       "inputStoryAreaTypeMessage"           -> parseInputStoryAreaTypeMessage v
       "inputStoryAreaTypeLink"              -> parseInputStoryAreaTypeLink v
+      "inputStoryAreaTypeWeather"           -> parseInputStoryAreaTypeWeather v
       _                                     -> mempty
     
     where
@@ -154,6 +171,16 @@ instance AT.FromJSON InputStoryAreaType where
         url_ <- o A..:?  "url"
         pure $ InputStoryAreaTypeLink
           { url = url_
+          }
+      parseInputStoryAreaTypeWeather :: A.Value -> AT.Parser InputStoryAreaType
+      parseInputStoryAreaTypeWeather = A.withObject "InputStoryAreaTypeWeather" $ \o -> do
+        temperature_      <- o A..:?  "temperature"
+        emoji_            <- o A..:?  "emoji"
+        background_color_ <- o A..:?  "background_color"
+        pure $ InputStoryAreaTypeWeather
+          { temperature      = temperature_
+          , emoji            = emoji_
+          , background_color = background_color_
           }
   parseJSON _ = mempty
 
@@ -211,5 +238,16 @@ instance AT.ToJSON InputStoryAreaType where
       = A.object
         [ "@type" A..= AT.String "inputStoryAreaTypeLink"
         , "url"   A..= url_
+        ]
+  toJSON InputStoryAreaTypeWeather
+    { temperature      = temperature_
+    , emoji            = emoji_
+    , background_color = background_color_
+    }
+      = A.object
+        [ "@type"            A..= AT.String "inputStoryAreaTypeWeather"
+        , "temperature"      A..= temperature_
+        , "emoji"            A..= emoji_
+        , "background_color" A..= background_color_
         ]
 

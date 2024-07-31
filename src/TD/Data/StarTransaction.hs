@@ -8,9 +8,9 @@ import qualified Data.Text as T
 import qualified TD.Data.StarTransactionPartner as StarTransactionPartner
 
 data StarTransaction
-  = StarTransaction -- ^ Represents a transaction changing the amount of owned Telegram stars
+  = StarTransaction -- ^ Represents a transaction changing the amount of owned Telegram Stars
     { _id        :: Maybe T.Text                                        -- ^ Unique identifier of the transaction
-    , star_count :: Maybe Int                                           -- ^ The amount of added owned Telegram stars; negative for outgoing transactions
+    , star_count :: Maybe Int                                           -- ^ The amount of added owned Telegram Stars; negative for outgoing transactions
     , is_refund  :: Maybe Bool                                          -- ^ True, if the transaction is a refund of a previous transaction
     , date       :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the transaction was completed
     , partner    :: Maybe StarTransactionPartner.StarTransactionPartner -- ^ Source of the incoming transaction, or its recipient for outgoing transactions

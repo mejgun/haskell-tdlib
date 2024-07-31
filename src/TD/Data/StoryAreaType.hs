@@ -10,7 +10,7 @@ import qualified TD.Data.Venue as Venue
 import qualified TD.Data.ReactionType as ReactionType
 import qualified Data.Text as T
 
--- | Describes type of clickable rectangle area on a story media
+-- | Describes type of clickable area on a story media
 data StoryAreaType
   = StoryAreaTypeLocation -- ^ An area pointing to a location
     { location :: Maybe Location.Location               -- ^ The location
@@ -31,6 +31,11 @@ data StoryAreaType
     }
   | StoryAreaTypeLink -- ^ An area pointing to a HTTP or tg:// link
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the area is clicked
+    }
+  | StoryAreaTypeWeather -- ^ An area with information about weather
+    { temperature      :: Maybe Double -- ^ Temperature, in degree Celsius
+    , emoji            :: Maybe T.Text -- ^ Emoji representing the weather
+    , background_color :: Maybe Int    -- ^ A color of the area background in the ARGB format
     }
   deriving (Eq, Show)
 
@@ -80,6 +85,17 @@ instance I.ShortShow StoryAreaType where
         ++ I.cc
         [ "url" `I.p` url_
         ]
+  shortShow StoryAreaTypeWeather
+    { temperature      = temperature_
+    , emoji            = emoji_
+    , background_color = background_color_
+    }
+      = "StoryAreaTypeWeather"
+        ++ I.cc
+        [ "temperature"      `I.p` temperature_
+        , "emoji"            `I.p` emoji_
+        , "background_color" `I.p` background_color_
+        ]
 
 instance AT.FromJSON StoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -91,6 +107,7 @@ instance AT.FromJSON StoryAreaType where
       "storyAreaTypeSuggestedReaction" -> parseStoryAreaTypeSuggestedReaction v
       "storyAreaTypeMessage"           -> parseStoryAreaTypeMessage v
       "storyAreaTypeLink"              -> parseStoryAreaTypeLink v
+      "storyAreaTypeWeather"           -> parseStoryAreaTypeWeather v
       _                                -> mempty
     
     where
@@ -133,6 +150,16 @@ instance AT.FromJSON StoryAreaType where
         url_ <- o A..:?  "url"
         pure $ StoryAreaTypeLink
           { url = url_
+          }
+      parseStoryAreaTypeWeather :: A.Value -> AT.Parser StoryAreaType
+      parseStoryAreaTypeWeather = A.withObject "StoryAreaTypeWeather" $ \o -> do
+        temperature_      <- o A..:?  "temperature"
+        emoji_            <- o A..:?  "emoji"
+        background_color_ <- o A..:?  "background_color"
+        pure $ StoryAreaTypeWeather
+          { temperature      = temperature_
+          , emoji            = emoji_
+          , background_color = background_color_
           }
   parseJSON _ = mempty
 
