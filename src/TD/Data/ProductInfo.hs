@@ -11,7 +11,7 @@ import qualified TD.Data.Photo as Photo
 data ProductInfo
   = ProductInfo -- ^ Contains information about a product that can be paid with invoice
     { title       :: Maybe T.Text                      -- ^ Product title
-    , description :: Maybe FormattedText.FormattedText
+    , description :: Maybe FormattedText.FormattedText -- ^ Product description
     , photo       :: Maybe Photo.Photo                 -- ^ Product photo; may be null
     }
   deriving (Eq, Show)

@@ -15,7 +15,7 @@ data Game
     , short_name  :: Maybe T.Text                      -- ^ Game short name
     , title       :: Maybe T.Text                      -- ^ Game title
     , text        :: Maybe FormattedText.FormattedText -- ^ Game text, usually containing scoreboards for a game
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text                      -- ^ Game description
     , photo       :: Maybe Photo.Photo                 -- ^ Game photo
     , animation   :: Maybe Animation.Animation         -- ^ Game animation; may be null
     }

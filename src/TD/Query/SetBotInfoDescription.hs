@@ -13,7 +13,7 @@ data SetBotInfoDescription
   = SetBotInfoDescription
     { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot
     , language_code :: Maybe T.Text -- ^ A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
-    , description   :: Maybe T.Text
+    , description   :: Maybe T.Text -- ^ New bot's description on the specified language
     }
   deriving (Eq, Show)
 

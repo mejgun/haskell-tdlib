@@ -31,7 +31,7 @@ data InputInlineQueryResult
     , url                   :: Maybe T.Text                                  -- ^ URL of the result, if it exists
     , hide_url              :: Maybe Bool                                    -- ^ True, if the URL must be not shown
     , title                 :: Maybe T.Text                                  -- ^ Title of the result
-    , description           :: Maybe T.Text
+    , description           :: Maybe T.Text                                  -- ^ A short description of the result
     , thumbnail_url         :: Maybe T.Text                                  -- ^ URL of the result thumbnail, if it exists
     , thumbnail_width       :: Maybe Int                                     -- ^ Thumbnail width, if known
     , thumbnail_height      :: Maybe Int                                     -- ^ Thumbnail height, if known
@@ -59,7 +59,7 @@ data InputInlineQueryResult
   | InputInlineQueryResultDocument -- ^ Represents a link to a file
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
     , title                 :: Maybe T.Text                                  -- ^ Title of the resulting file
-    , description           :: Maybe T.Text
+    , description           :: Maybe T.Text                                  -- ^ Short description of the result, if known
     , document_url          :: Maybe T.Text                                  -- ^ URL of the file
     , mime_type             :: Maybe T.Text                                  -- ^ MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
     , thumbnail_url         :: Maybe T.Text                                  -- ^ The URL of the file thumbnail, if it exists
@@ -87,7 +87,7 @@ data InputInlineQueryResult
   | InputInlineQueryResultPhoto -- ^ Represents link to a JPEG image
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
     , title                 :: Maybe T.Text                                  -- ^ Title of the result, if known
-    , description           :: Maybe T.Text
+    , description           :: Maybe T.Text                                  -- ^ A short description of the result, if known
     , thumbnail_url         :: Maybe T.Text                                  -- ^ URL of the photo thumbnail, if it exists
     , photo_url             :: Maybe T.Text                                  -- ^ The URL of the JPEG photo (photo size must not exceed 5MB)
     , photo_width           :: Maybe Int                                     -- ^ Width of the photo
@@ -116,7 +116,7 @@ data InputInlineQueryResult
   | InputInlineQueryResultVideo -- ^ Represents a link to a page containing an embedded video player or a video file
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
     , title                 :: Maybe T.Text                                  -- ^ Title of the result
-    , description           :: Maybe T.Text
+    , description           :: Maybe T.Text                                  -- ^ A short description of the result, if known
     , thumbnail_url         :: Maybe T.Text                                  -- ^ The URL of the video thumbnail (JPEG), if it exists
     , video_url             :: Maybe T.Text                                  -- ^ URL of the embedded video player or video file
     , mime_type             :: Maybe T.Text                                  -- ^ MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported

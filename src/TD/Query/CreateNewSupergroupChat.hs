@@ -15,7 +15,7 @@ data CreateNewSupergroupChat
     { title                    :: Maybe T.Text                    -- ^ Title of the new chat; 1-128 characters
     , is_forum                 :: Maybe Bool                      -- ^ Pass true to create a forum supergroup chat
     , is_channel               :: Maybe Bool                      -- ^ Pass true to create a channel chat; ignored if a forum is created
-    , description              :: Maybe T.Text
+    , description              :: Maybe T.Text                    -- ^ Chat description; 0-255 characters
     , location                 :: Maybe ChatLocation.ChatLocation -- ^ Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     , message_auto_delete_time :: Maybe Int                       -- ^ Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     , for_import               :: Maybe Bool                      -- ^ Pass true to create a supergroup for importing messages using importMessages

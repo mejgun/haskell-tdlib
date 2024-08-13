@@ -14,7 +14,7 @@ data LinkPreview
     , display_url                  :: Maybe T.Text                          -- ^ URL to display
     , site_name                    :: Maybe T.Text                          -- ^ Short name of the site (e.g., Google Docs, App Store)
     , title                        :: Maybe T.Text                          -- ^ Title of the content
-    , description                  :: Maybe FormattedText.FormattedText
+    , description                  :: Maybe FormattedText.FormattedText     -- ^ Description of the content
     , _type                        :: Maybe LinkPreviewType.LinkPreviewType -- ^ Type of the link preview
     , has_large_media              :: Maybe Bool                            -- ^ True, if size of media in the preview can be changed
     , show_large_media             :: Maybe Bool                            -- ^ True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos

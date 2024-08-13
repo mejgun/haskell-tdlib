@@ -13,7 +13,7 @@ import qualified TD.Data.BotCommands as BotCommands
 data SupergroupFullInfo
   = SupergroupFullInfo -- ^ Contains full information about a supergroup or channel
     { photo                            :: Maybe ChatPhoto.ChatPhoto           -- ^ Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
-    , description                      :: Maybe T.Text
+    , description                      :: Maybe T.Text                        -- ^ Supergroup or channel description
     , member_count                     :: Maybe Int                           -- ^ Number of members in the supergroup or channel; 0 if unknown
     , administrator_count              :: Maybe Int                           -- ^ Number of privileged users in the supergroup or channel; 0 if unknown
     , restricted_count                 :: Maybe Int                           -- ^ Number of restricted users in the supergroup; 0 if unknown

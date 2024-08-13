@@ -12,7 +12,7 @@ data WebApp
   = WebApp -- ^ Describes a Web App. Use getInternalLink with internalLinkTypeWebApp to share the Web App
     { short_name  :: Maybe T.Text              -- ^ Web App short name
     , title       :: Maybe T.Text              -- ^ Web App title
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text              -- ^ Web App description
     , photo       :: Maybe Photo.Photo         -- ^ Web App photo
     , animation   :: Maybe Animation.Animation -- ^ Web App animation; may be null
     }

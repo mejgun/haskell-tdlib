@@ -11,7 +11,7 @@ import qualified Data.Text as T
 data BotCommand
   = BotCommand -- ^ Represents a command supported by a bot
     { command     :: Maybe T.Text -- ^ Text of the bot command
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text -- ^ Description of the bot command
     }
   deriving (Eq, Show)
 

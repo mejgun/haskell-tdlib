@@ -12,7 +12,7 @@ import qualified Data.Text as T
 data SetChatDescription
   = SetChatDescription
     { chat_id     :: Maybe Int    -- ^ Identifier of the chat
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text -- ^ New chat description; 0-255 characters
     }
   deriving (Eq, Show)
 

@@ -16,7 +16,7 @@ data ChatInviteLinkInfo
     , title                :: Maybe T.Text                                -- ^ Title of the chat
     , photo                :: Maybe ChatPhotoInfo.ChatPhotoInfo           -- ^ Chat photo; may be null
     , accent_color_id      :: Maybe Int                                   -- ^ Identifier of the accent color for chat title and background of chat photo
-    , description          :: Maybe T.Text
+    , description          :: Maybe T.Text                                -- ^ Chat description
     , member_count         :: Maybe Int                                   -- ^ Number of members in the chat
     , member_user_ids      :: Maybe [Int]                                 -- ^ User identifiers of some chat members that may be known to the current user
     , creates_join_request :: Maybe Bool                                  -- ^ True, if the link only creates join request

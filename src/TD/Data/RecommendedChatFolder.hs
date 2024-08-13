@@ -10,7 +10,7 @@ import qualified Data.Text as T
 data RecommendedChatFolder
   = RecommendedChatFolder -- ^ Describes a recommended chat folder
     { folder      :: Maybe ChatFolder.ChatFolder -- ^ The chat folder
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text                -- ^ Chat folder description
     }
   deriving (Eq, Show)
 

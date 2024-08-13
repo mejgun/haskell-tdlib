@@ -11,7 +11,7 @@ data PageBlockRelatedArticle
   = PageBlockRelatedArticle -- ^ Contains information about a related article
     { url          :: Maybe T.Text      -- ^ Related article URL
     , title        :: Maybe T.Text      -- ^ Article title; may be empty
-    , description  :: Maybe T.Text
+    , description  :: Maybe T.Text      -- ^ Article description; may be empty
     , photo        :: Maybe Photo.Photo -- ^ Article photo; may be null
     , author       :: Maybe T.Text      -- ^ Article author; may be empty
     , publish_date :: Maybe Int         -- ^ Point in time (Unix timestamp) when the article was published; 0 if unknown

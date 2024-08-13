@@ -125,7 +125,7 @@ data InputMessageContent
   | InputMessageInvoice -- ^ A message with an invoice; can be used only by bots
     { invoice            :: Maybe Invoice.Invoice               -- ^ Invoice
     , title              :: Maybe T.Text                        -- ^ Product title; 1-32 characters
-    , description        :: Maybe T.Text
+    , description        :: Maybe T.Text                        -- ^ Product description; 0-255 characters
     , photo_url          :: Maybe T.Text                        -- ^ Product photo URL; optional
     , photo_size         :: Maybe Int                           -- ^ Product photo size
     , photo_width        :: Maybe Int                           -- ^ Product photo width

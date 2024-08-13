@@ -25,7 +25,7 @@ data InlineQueryResult
     , url         :: Maybe T.Text              -- ^ URL of the result, if it exists
     , hide_url    :: Maybe Bool                -- ^ True, if the URL must be not shown
     , title       :: Maybe T.Text              -- ^ Title of the result
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text              -- ^ A short description of the result
     , thumbnail   :: Maybe Thumbnail.Thumbnail -- ^ Result thumbnail in JPEG format; may be null
     }
   | InlineQueryResultContact -- ^ Represents a user contact
@@ -61,13 +61,13 @@ data InlineQueryResult
     { _id         :: Maybe T.Text            -- ^ Unique identifier of the query result
     , document    :: Maybe Document.Document -- ^ Document
     , title       :: Maybe T.Text            -- ^ Document title
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text            -- ^ Document description
     }
   | InlineQueryResultPhoto -- ^ Represents a photo
     { _id         :: Maybe T.Text      -- ^ Unique identifier of the query result
     , photo       :: Maybe Photo.Photo -- ^ Photo
     , title       :: Maybe T.Text      -- ^ Title of the result, if known
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text      -- ^ A short description of the result, if known
     }
   | InlineQueryResultSticker -- ^ Represents a sticker
     { _id     :: Maybe T.Text          -- ^ Unique identifier of the query result
@@ -77,7 +77,7 @@ data InlineQueryResult
     { _id         :: Maybe T.Text      -- ^ Unique identifier of the query result
     , video       :: Maybe Video.Video -- ^ Video
     , title       :: Maybe T.Text      -- ^ Title of the video
-    , description :: Maybe T.Text
+    , description :: Maybe T.Text      -- ^ Description of the video
     }
   | InlineQueryResultVoiceNote -- ^ Represents a voice note
     { _id        :: Maybe T.Text              -- ^ Unique identifier of the query result

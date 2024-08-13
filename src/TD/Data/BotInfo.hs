@@ -15,7 +15,7 @@ import qualified TD.Data.InternalLinkType as InternalLinkType
 data BotInfo
   = BotInfo -- ^ Contains information about a bot
     { short_description                    :: Maybe T.Text                                          -- ^ The text that is shown on the bot's profile page and is sent together with the link when users share the bot
-    , description                          :: Maybe T.Text
+    , description                          :: Maybe T.Text                                          -- ^ The text shown in the chat with the bot if the chat is empty
     , photo                                :: Maybe Photo.Photo                                     -- ^ Photo shown in the chat with the bot if the chat is empty; may be null
     , animation                            :: Maybe Animation.Animation                             -- ^ Animation shown in the chat with the bot if the chat is empty; may be null
     , menu_button                          :: Maybe BotMenuButton.BotMenuButton                     -- ^ Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
