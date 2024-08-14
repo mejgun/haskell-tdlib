@@ -26,6 +26,7 @@ data SuggestedAction
   | SuggestedActionExtendPremium -- ^ Suggests the user to extend their expiring Telegram Premium subscription
     { manage_premium_subscription_url :: Maybe T.Text -- ^ A URL for managing Telegram Premium subscription
     }
+  | SuggestedActionExtendStarSubscriptions -- ^ Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -68,6 +69,8 @@ instance I.ShortShow SuggestedAction where
         ++ I.cc
         [ "manage_premium_subscription_url" `I.p` manage_premium_subscription_url_
         ]
+  shortShow SuggestedActionExtendStarSubscriptions
+      = "SuggestedActionExtendStarSubscriptions"
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -86,6 +89,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionGiftPremiumForChristmas"      -> pure SuggestedActionGiftPremiumForChristmas
       "suggestedActionSetBirthdate"                 -> pure SuggestedActionSetBirthdate
       "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
+      "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
       _                                             -> mempty
     
     where
@@ -166,5 +170,9 @@ instance AT.ToJSON SuggestedAction where
       = A.object
         [ "@type"                           A..= AT.String "suggestedActionExtendPremium"
         , "manage_premium_subscription_url" A..= manage_premium_subscription_url_
+        ]
+  toJSON SuggestedActionExtendStarSubscriptions
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionExtendStarSubscriptions"
         ]
 

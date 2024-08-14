@@ -13,7 +13,7 @@ import qualified TD.Data.ProxyType as ProxyType
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
   = InternalLinkTypeActiveSessions -- ^ The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
-  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
     , url          :: Maybe T.Text                -- ^ URL to be passed to openWebApp
@@ -41,19 +41,23 @@ data InternalLinkType
   | InternalLinkTypeBusinessChat -- ^ The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
     { link_name :: Maybe T.Text -- ^ Name of the link
     }
-  | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the app
+  | InternalLinkTypeBuyStars -- ^ The link is a link to the Telegram Star purchase section of the application
+    { star_count :: Maybe Int    -- ^ The number of Telegram Stars that must be owned by the user
+    , purpose    :: Maybe T.Text -- ^ Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    }
+  | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the application
   | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
     }
   | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
-  | InternalLinkTypeChatFolderSettings -- ^ The link is a link to the folder section of the app settings
+  | InternalLinkTypeChatFolderSettings -- ^ The link is a link to the folder section of the application settings
   | InternalLinkTypeChatInvite -- ^ The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
-  | InternalLinkTypeDefaultMessageAutoDeleteTimerSettings -- ^ The link is a link to the default message auto-delete timer settings section of the app settings
-  | InternalLinkTypeEditProfileSettings -- ^ The link is a link to the edit profile section of the app settings
+  | InternalLinkTypeDefaultMessageAutoDeleteTimerSettings -- ^ The link is a link to the default message auto-delete timer settings section of the application settings
+  | InternalLinkTypeEditProfileSettings -- ^ The link is a link to the edit profile section of the application settings
   | InternalLinkTypeGame -- ^ The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
@@ -68,8 +72,8 @@ data InternalLinkType
   | InternalLinkTypeLanguagePack -- ^ The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
-  | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the app settings
-  | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+  | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the application settings
+  | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
     { bot_username    :: Maybe T.Text -- ^ Username of the bot
     , start_parameter :: Maybe T.Text -- ^ Start parameter to be passed to getMainWebApp
     , is_compact      :: Maybe Bool   -- ^ True, if the Web App must be opened in the compact mode instead of the full-size mode
@@ -101,7 +105,7 @@ data InternalLinkType
   | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     { code :: Maybe T.Text -- ^ The Telegram Premium gift code
     }
-  | InternalLinkTypePrivacyAndSecuritySettings -- ^ The link is a link to the privacy and security section of the app settings
+  | InternalLinkTypePrivacyAndSecuritySettings -- ^ The link is a link to the privacy and security section of the application settings
   | InternalLinkTypeProxy -- ^ The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     { server :: Maybe T.Text              -- ^ Proxy server domain or IP address
     , port   :: Maybe Int                 -- ^ Proxy server port
@@ -126,7 +130,7 @@ data InternalLinkType
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
     }
-  | InternalLinkTypeThemeSettings -- ^ The link is a link to the theme section of the app settings
+  | InternalLinkTypeThemeSettings -- ^ The link is a link to the theme section of the application settings
   | InternalLinkTypeUnknownDeepLink -- ^ The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
@@ -144,7 +148,7 @@ data InternalLinkType
     , invite_hash    :: Maybe T.Text -- ^ If non-empty, invite hash to be used to join the video chat without being muted by administrators
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
     }
-  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     { bot_username       :: Maybe T.Text -- ^ Username of the bot that owns the Web App
     , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
@@ -217,6 +221,15 @@ instance I.ShortShow InternalLinkType where
       = "InternalLinkTypeBusinessChat"
         ++ I.cc
         [ "link_name" `I.p` link_name_
+        ]
+  shortShow InternalLinkTypeBuyStars
+    { star_count = star_count_
+    , purpose    = purpose_
+    }
+      = "InternalLinkTypeBuyStars"
+        ++ I.cc
+        [ "star_count" `I.p` star_count_
+        , "purpose"    `I.p` purpose_
         ]
   shortShow InternalLinkTypeChangePhoneNumber
       = "InternalLinkTypeChangePhoneNumber"
@@ -475,6 +488,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeBotStart"                              -> parseInternalLinkTypeBotStart v
       "internalLinkTypeBotStartInGroup"                       -> parseInternalLinkTypeBotStartInGroup v
       "internalLinkTypeBusinessChat"                          -> parseInternalLinkTypeBusinessChat v
+      "internalLinkTypeBuyStars"                              -> parseInternalLinkTypeBuyStars v
       "internalLinkTypeChangePhoneNumber"                     -> pure InternalLinkTypeChangePhoneNumber
       "internalLinkTypeChatBoost"                             -> parseInternalLinkTypeChatBoost v
       "internalLinkTypeChatFolderInvite"                      -> parseInternalLinkTypeChatFolderInvite v
@@ -569,6 +583,14 @@ instance AT.FromJSON InternalLinkType where
         link_name_ <- o A..:?  "link_name"
         pure $ InternalLinkTypeBusinessChat
           { link_name = link_name_
+          }
+      parseInternalLinkTypeBuyStars :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeBuyStars = A.withObject "InternalLinkTypeBuyStars" $ \o -> do
+        star_count_ <- o A..:?  "star_count"
+        purpose_    <- o A..:?  "purpose"
+        pure $ InternalLinkTypeBuyStars
+          { star_count = star_count_
+          , purpose    = purpose_
           }
       parseInternalLinkTypeChatBoost :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeChatBoost = A.withObject "InternalLinkTypeChatBoost" $ \o -> do
@@ -835,6 +857,15 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"     A..= AT.String "internalLinkTypeBusinessChat"
         , "link_name" A..= link_name_
+        ]
+  toJSON InternalLinkTypeBuyStars
+    { star_count = star_count_
+    , purpose    = purpose_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "internalLinkTypeBuyStars"
+        , "star_count" A..= star_count_
+        , "purpose"    A..= purpose_
         ]
   toJSON InternalLinkTypeChangePhoneNumber
       = A.object

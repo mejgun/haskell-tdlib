@@ -21,6 +21,8 @@ data ChatMemberStatus
     , rights        :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Rights of the administrator
     }
   | ChatMemberStatusMember -- ^ The user is a member of the chat, without any additional privileges or restrictions
+    { member_until_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the user will be removed from the chat because of the expired subscription; 0 if never. Ignored in setChatMemberStatus
+    }
   | ChatMemberStatusRestricted -- ^ The user is under certain restrictions in the chat. Not supported in basic groups and channels
     { is_member             :: Maybe Bool                            -- ^ True, if the user is a member of the chat
     , restricted_until_date :: Maybe Int                             -- ^ Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever
@@ -56,7 +58,12 @@ instance I.ShortShow ChatMemberStatus where
         , "rights"        `I.p` rights_
         ]
   shortShow ChatMemberStatusMember
+    { member_until_date = member_until_date_
+    }
       = "ChatMemberStatusMember"
+        ++ I.cc
+        [ "member_until_date" `I.p` member_until_date_
+        ]
   shortShow ChatMemberStatusRestricted
     { is_member             = is_member_
     , restricted_until_date = restricted_until_date_
@@ -85,7 +92,7 @@ instance AT.FromJSON ChatMemberStatus where
     case t of
       "chatMemberStatusCreator"       -> parseChatMemberStatusCreator v
       "chatMemberStatusAdministrator" -> parseChatMemberStatusAdministrator v
-      "chatMemberStatusMember"        -> pure ChatMemberStatusMember
+      "chatMemberStatusMember"        -> parseChatMemberStatusMember v
       "chatMemberStatusRestricted"    -> parseChatMemberStatusRestricted v
       "chatMemberStatusLeft"          -> pure ChatMemberStatusLeft
       "chatMemberStatusBanned"        -> parseChatMemberStatusBanned v
@@ -111,6 +118,12 @@ instance AT.FromJSON ChatMemberStatus where
           { custom_title  = custom_title_
           , can_be_edited = can_be_edited_
           , rights        = rights_
+          }
+      parseChatMemberStatusMember :: A.Value -> AT.Parser ChatMemberStatus
+      parseChatMemberStatusMember = A.withObject "ChatMemberStatusMember" $ \o -> do
+        member_until_date_ <- o A..:?  "member_until_date"
+        pure $ ChatMemberStatusMember
+          { member_until_date = member_until_date_
           }
       parseChatMemberStatusRestricted :: A.Value -> AT.Parser ChatMemberStatus
       parseChatMemberStatusRestricted = A.withObject "ChatMemberStatusRestricted" $ \o -> do
@@ -154,8 +167,11 @@ instance AT.ToJSON ChatMemberStatus where
         , "rights"        A..= rights_
         ]
   toJSON ChatMemberStatusMember
+    { member_until_date = member_until_date_
+    }
       = A.object
-        [ "@type" A..= AT.String "chatMemberStatusMember"
+        [ "@type"             A..= AT.String "chatMemberStatusMember"
+        , "member_until_date" A..= member_until_date_
         ]
   toJSON ChatMemberStatusRestricted
     { is_member             = is_member_

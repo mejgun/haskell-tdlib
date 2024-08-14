@@ -10,6 +10,7 @@ import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
+import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
 import qualified TD.Data.Sticker as Sticker
@@ -44,7 +45,8 @@ data LinkPreviewType
     , author    :: Maybe T.Text      -- ^ Author of the audio
     }
   | LinkPreviewTypeBackground -- ^ The link is a link to a background. Link preview title and description are available only for filled backgrounds
-    { document :: Maybe Document.Document -- ^ Document with the background; may be null for filled backgrounds
+    { document        :: Maybe Document.Document             -- ^ Document with the background; may be null for filled backgrounds
+    , background_type :: Maybe BackgroundType.BackgroundType -- ^ Type of the background; may be null if unknown
     }
   | LinkPreviewTypeChannelBoost -- ^ The link is a link to boost a channel chat
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat; may be null
@@ -90,8 +92,8 @@ data LinkPreviewType
     }
   | LinkPreviewTypePremiumGiftCode -- ^ The link is a link to a Telegram Premium gift code
   | LinkPreviewTypeShareableChatFolder -- ^ The link is a link to a shareable chat folder
-  | LinkPreviewTypeSticker -- ^ The link is a link to a sticker message
-    { sticker :: Maybe Sticker.Sticker -- ^ The sticker
+  | LinkPreviewTypeSticker -- ^ The link is a link to a sticker
+    { sticker :: Maybe Sticker.Sticker -- ^ The sticker. It can be an arbitrary WEBP image and can have dimensions bigger than 512
     }
   | LinkPreviewTypeStickerSet -- ^ The link is a link to a sticker set
     { stickers :: Maybe [Sticker.Sticker] -- ^ Up to 4 stickers from the sticker set
@@ -189,11 +191,13 @@ instance I.ShortShow LinkPreviewType where
         , "author"    `I.p` author_
         ]
   shortShow LinkPreviewTypeBackground
-    { document = document_
+    { document        = document_
+    , background_type = background_type_
     }
       = "LinkPreviewTypeBackground"
         ++ I.cc
-        [ "document" `I.p` document_
+        [ "document"        `I.p` document_
+        , "background_type" `I.p` background_type_
         ]
   shortShow LinkPreviewTypeChannelBoost
     { _photo = _photo_
@@ -475,9 +479,11 @@ instance AT.FromJSON LinkPreviewType where
           }
       parseLinkPreviewTypeBackground :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeBackground = A.withObject "LinkPreviewTypeBackground" $ \o -> do
-        document_ <- o A..:?  "document"
+        document_        <- o A..:?  "document"
+        background_type_ <- o A..:?  "background_type"
         pure $ LinkPreviewTypeBackground
-          { document = document_
+          { document        = document_
+          , background_type = background_type_
           }
       parseLinkPreviewTypeChannelBoost :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeChannelBoost = A.withObject "LinkPreviewTypeChannelBoost" $ \o -> do

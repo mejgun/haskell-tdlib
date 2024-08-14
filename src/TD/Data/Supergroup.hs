@@ -18,7 +18,8 @@ data Supergroup
     , boost_level               :: Maybe Int                               -- ^ Approximate boost level for the chat
     , has_linked_chat           :: Maybe Bool                              -- ^ True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     , has_location              :: Maybe Bool                              -- ^ True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
-    , sign_messages             :: Maybe Bool                              -- ^ True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
+    , sign_messages             :: Maybe Bool                              -- ^ True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
+    , show_message_sender       :: Maybe Bool                              -- ^ True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
     , join_to_send_messages     :: Maybe Bool                              -- ^ True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
     , join_by_request           :: Maybe Bool                              -- ^ True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
     , is_slow_mode_enabled      :: Maybe Bool                              -- ^ True, if the slow mode is enabled in the supergroup
@@ -26,6 +27,7 @@ data Supergroup
     , is_broadcast_group        :: Maybe Bool                              -- ^ True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     , is_forum                  :: Maybe Bool                              -- ^ True, if the supergroup is a forum with topics
     , is_verified               :: Maybe Bool                              -- ^ True, if the supergroup or channel is verified
+    , has_sensitive_content     :: Maybe Bool                              -- ^ True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
     , restriction_reason        :: Maybe T.Text                            -- ^ If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     , is_scam                   :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a scam
     , is_fake                   :: Maybe Bool                              -- ^ True, if many users reported this supergroup or channel as a fake account
@@ -45,6 +47,7 @@ instance I.ShortShow Supergroup where
     , has_linked_chat           = has_linked_chat_
     , has_location              = has_location_
     , sign_messages             = sign_messages_
+    , show_message_sender       = show_message_sender_
     , join_to_send_messages     = join_to_send_messages_
     , join_by_request           = join_by_request_
     , is_slow_mode_enabled      = is_slow_mode_enabled_
@@ -52,6 +55,7 @@ instance I.ShortShow Supergroup where
     , is_broadcast_group        = is_broadcast_group_
     , is_forum                  = is_forum_
     , is_verified               = is_verified_
+    , has_sensitive_content     = has_sensitive_content_
     , restriction_reason        = restriction_reason_
     , is_scam                   = is_scam_
     , is_fake                   = is_fake_
@@ -69,6 +73,7 @@ instance I.ShortShow Supergroup where
         , "has_linked_chat"           `I.p` has_linked_chat_
         , "has_location"              `I.p` has_location_
         , "sign_messages"             `I.p` sign_messages_
+        , "show_message_sender"       `I.p` show_message_sender_
         , "join_to_send_messages"     `I.p` join_to_send_messages_
         , "join_by_request"           `I.p` join_by_request_
         , "is_slow_mode_enabled"      `I.p` is_slow_mode_enabled_
@@ -76,6 +81,7 @@ instance I.ShortShow Supergroup where
         , "is_broadcast_group"        `I.p` is_broadcast_group_
         , "is_forum"                  `I.p` is_forum_
         , "is_verified"               `I.p` is_verified_
+        , "has_sensitive_content"     `I.p` has_sensitive_content_
         , "restriction_reason"        `I.p` restriction_reason_
         , "is_scam"                   `I.p` is_scam_
         , "is_fake"                   `I.p` is_fake_
@@ -103,6 +109,7 @@ instance AT.FromJSON Supergroup where
         has_linked_chat_           <- o A..:?  "has_linked_chat"
         has_location_              <- o A..:?  "has_location"
         sign_messages_             <- o A..:?  "sign_messages"
+        show_message_sender_       <- o A..:?  "show_message_sender"
         join_to_send_messages_     <- o A..:?  "join_to_send_messages"
         join_by_request_           <- o A..:?  "join_by_request"
         is_slow_mode_enabled_      <- o A..:?  "is_slow_mode_enabled"
@@ -110,6 +117,7 @@ instance AT.FromJSON Supergroup where
         is_broadcast_group_        <- o A..:?  "is_broadcast_group"
         is_forum_                  <- o A..:?  "is_forum"
         is_verified_               <- o A..:?  "is_verified"
+        has_sensitive_content_     <- o A..:?  "has_sensitive_content"
         restriction_reason_        <- o A..:?  "restriction_reason"
         is_scam_                   <- o A..:?  "is_scam"
         is_fake_                   <- o A..:?  "is_fake"
@@ -125,6 +133,7 @@ instance AT.FromJSON Supergroup where
           , has_linked_chat           = has_linked_chat_
           , has_location              = has_location_
           , sign_messages             = sign_messages_
+          , show_message_sender       = show_message_sender_
           , join_to_send_messages     = join_to_send_messages_
           , join_by_request           = join_by_request_
           , is_slow_mode_enabled      = is_slow_mode_enabled_
@@ -132,6 +141,7 @@ instance AT.FromJSON Supergroup where
           , is_broadcast_group        = is_broadcast_group_
           , is_forum                  = is_forum_
           , is_verified               = is_verified_
+          , has_sensitive_content     = has_sensitive_content_
           , restriction_reason        = restriction_reason_
           , is_scam                   = is_scam_
           , is_fake                   = is_fake_

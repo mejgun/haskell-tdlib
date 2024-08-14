@@ -18,7 +18,6 @@ data MessageProperties
     , can_be_saved                   :: Maybe Bool -- ^ True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
     , can_be_shared_in_story         :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
     , can_edit_scheduling_state      :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
-    , can_get_added_reactions        :: Maybe Bool -- ^ True, if the list of added reactions is available using getMessageAddedReactions
     , can_get_embedding_code         :: Maybe Bool -- ^ True, if code for message embedding can be received using getMessageEmbeddingCode
     , can_get_link                   :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
     , can_get_media_timestamp_links  :: Maybe Bool -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
@@ -48,7 +47,6 @@ instance I.ShortShow MessageProperties where
     , can_be_saved                   = can_be_saved_
     , can_be_shared_in_story         = can_be_shared_in_story_
     , can_edit_scheduling_state      = can_edit_scheduling_state_
-    , can_get_added_reactions        = can_get_added_reactions_
     , can_get_embedding_code         = can_get_embedding_code_
     , can_get_link                   = can_get_link_
     , can_get_media_timestamp_links  = can_get_media_timestamp_links_
@@ -76,7 +74,6 @@ instance I.ShortShow MessageProperties where
         , "can_be_saved"                   `I.p` can_be_saved_
         , "can_be_shared_in_story"         `I.p` can_be_shared_in_story_
         , "can_edit_scheduling_state"      `I.p` can_edit_scheduling_state_
-        , "can_get_added_reactions"        `I.p` can_get_added_reactions_
         , "can_get_embedding_code"         `I.p` can_get_embedding_code_
         , "can_get_link"                   `I.p` can_get_link_
         , "can_get_media_timestamp_links"  `I.p` can_get_media_timestamp_links_
@@ -114,7 +111,6 @@ instance AT.FromJSON MessageProperties where
         can_be_saved_                   <- o A..:?  "can_be_saved"
         can_be_shared_in_story_         <- o A..:?  "can_be_shared_in_story"
         can_edit_scheduling_state_      <- o A..:?  "can_edit_scheduling_state"
-        can_get_added_reactions_        <- o A..:?  "can_get_added_reactions"
         can_get_embedding_code_         <- o A..:?  "can_get_embedding_code"
         can_get_link_                   <- o A..:?  "can_get_link"
         can_get_media_timestamp_links_  <- o A..:?  "can_get_media_timestamp_links"
@@ -140,7 +136,6 @@ instance AT.FromJSON MessageProperties where
           , can_be_saved                   = can_be_saved_
           , can_be_shared_in_story         = can_be_shared_in_story_
           , can_edit_scheduling_state      = can_edit_scheduling_state_
-          , can_get_added_reactions        = can_get_added_reactions_
           , can_get_embedding_code         = can_get_embedding_code_
           , can_get_link                   = can_get_link_
           , can_get_media_timestamp_links  = can_get_media_timestamp_links_

@@ -5,9 +5,9 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
-import qualified TD.Data.ProductInfo as ProductInfo
-import qualified Data.ByteString as BS
+import qualified TD.Data.BotTransactionPurpose as BotTransactionPurpose
 import qualified TD.Data.PaidMedia as PaidMedia
+import qualified TD.Data.ChannelTransactionPurpose as ChannelTransactionPurpose
 import qualified TD.Data.Sticker as Sticker
 
 -- | Describes source or recipient of a transaction with Telegram Stars
@@ -20,14 +20,16 @@ data StarTransactionPartner
     }
   | StarTransactionPartnerTelegramAds -- ^ The transaction is a transaction with Telegram Ad platform
   | StarTransactionPartnerBot -- ^ The transaction is a transaction with a bot
-    { user_id         :: Maybe Int                     -- ^ Identifier of the bot for the user, or the user for the bot
-    , product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product; may be null if not applicable
-    , invoice_payload :: Maybe BS.ByteString           -- ^ Invoice payload; for bots only
+    { user_id :: Maybe Int                                         -- ^ Identifier of the bot
+    , purpose :: Maybe BotTransactionPurpose.BotTransactionPurpose -- ^ Purpose of the transaction
+    }
+  | StarTransactionPartnerBusiness -- ^ The transaction is a transaction with a business account
+    { user_id :: Maybe Int                   -- ^ Identifier of the business account user
+    , media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
     }
   | StarTransactionPartnerChannel -- ^ The transaction is a transaction with a channel chat
-    { chat_id               :: Maybe Int                   -- ^ Identifier of the chat
-    , paid_media_message_id :: Maybe Int                   -- ^ Identifier of the corresponding message with paid media; can be an identifier of a deleted message
-    , media                 :: Maybe [PaidMedia.PaidMedia] -- ^ Information about the bought media
+    { chat_id  :: Maybe Int                                                 -- ^ Identifier of the chat
+    , _purpose :: Maybe ChannelTransactionPurpose.ChannelTransactionPurpose -- ^ Purpose of the transaction
     }
   | StarTransactionPartnerUser -- ^ The transaction is a gift of Telegram Stars from another user
     { user_id :: Maybe Int             -- ^ Identifier of the user; 0 if the gift was anonymous
@@ -53,26 +55,31 @@ instance I.ShortShow StarTransactionPartner where
   shortShow StarTransactionPartnerTelegramAds
       = "StarTransactionPartnerTelegramAds"
   shortShow StarTransactionPartnerBot
-    { user_id         = user_id_
-    , product_info    = product_info_
-    , invoice_payload = invoice_payload_
+    { user_id = user_id_
+    , purpose = purpose_
     }
       = "StarTransactionPartnerBot"
         ++ I.cc
-        [ "user_id"         `I.p` user_id_
-        , "product_info"    `I.p` product_info_
-        , "invoice_payload" `I.p` invoice_payload_
+        [ "user_id" `I.p` user_id_
+        , "purpose" `I.p` purpose_
+        ]
+  shortShow StarTransactionPartnerBusiness
+    { user_id = user_id_
+    , media   = media_
+    }
+      = "StarTransactionPartnerBusiness"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        , "media"   `I.p` media_
         ]
   shortShow StarTransactionPartnerChannel
-    { chat_id               = chat_id_
-    , paid_media_message_id = paid_media_message_id_
-    , media                 = media_
+    { chat_id  = chat_id_
+    , _purpose = _purpose_
     }
       = "StarTransactionPartnerChannel"
         ++ I.cc
-        [ "chat_id"               `I.p` chat_id_
-        , "paid_media_message_id" `I.p` paid_media_message_id_
-        , "media"                 `I.p` media_
+        [ "chat_id"  `I.p` chat_id_
+        , "_purpose" `I.p` _purpose_
         ]
   shortShow StarTransactionPartnerUser
     { user_id = user_id_
@@ -97,6 +104,7 @@ instance AT.FromJSON StarTransactionPartner where
       "starTransactionPartnerFragment"    -> parseStarTransactionPartnerFragment v
       "starTransactionPartnerTelegramAds" -> pure StarTransactionPartnerTelegramAds
       "starTransactionPartnerBot"         -> parseStarTransactionPartnerBot v
+      "starTransactionPartnerBusiness"    -> parseStarTransactionPartnerBusiness v
       "starTransactionPartnerChannel"     -> parseStarTransactionPartnerChannel v
       "starTransactionPartnerUser"        -> parseStarTransactionPartnerUser v
       "starTransactionPartnerUnsupported" -> pure StarTransactionPartnerUnsupported
@@ -111,23 +119,27 @@ instance AT.FromJSON StarTransactionPartner where
           }
       parseStarTransactionPartnerBot :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerBot = A.withObject "StarTransactionPartnerBot" $ \o -> do
-        user_id_         <- o A..:?                       "user_id"
-        product_info_    <- o A..:?                       "product_info"
-        invoice_payload_ <- fmap I.readBytes <$> o A..:?  "invoice_payload"
+        user_id_ <- o A..:?  "user_id"
+        purpose_ <- o A..:?  "purpose"
         pure $ StarTransactionPartnerBot
-          { user_id         = user_id_
-          , product_info    = product_info_
-          , invoice_payload = invoice_payload_
+          { user_id = user_id_
+          , purpose = purpose_
+          }
+      parseStarTransactionPartnerBusiness :: A.Value -> AT.Parser StarTransactionPartner
+      parseStarTransactionPartnerBusiness = A.withObject "StarTransactionPartnerBusiness" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        media_   <- o A..:?  "media"
+        pure $ StarTransactionPartnerBusiness
+          { user_id = user_id_
+          , media   = media_
           }
       parseStarTransactionPartnerChannel :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerChannel = A.withObject "StarTransactionPartnerChannel" $ \o -> do
-        chat_id_               <- o A..:?  "chat_id"
-        paid_media_message_id_ <- o A..:?  "paid_media_message_id"
-        media_                 <- o A..:?  "media"
+        chat_id_  <- o A..:?  "chat_id"
+        _purpose_ <- o A..:?  "purpose"
         pure $ StarTransactionPartnerChannel
-          { chat_id               = chat_id_
-          , paid_media_message_id = paid_media_message_id_
-          , media                 = media_
+          { chat_id  = chat_id_
+          , _purpose = _purpose_
           }
       parseStarTransactionPartnerUser :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerUser = A.withObject "StarTransactionPartnerUser" $ \o -> do

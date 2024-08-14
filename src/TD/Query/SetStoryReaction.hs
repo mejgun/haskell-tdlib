@@ -13,7 +13,7 @@ data SetStoryReaction
   = SetStoryReaction
     { story_sender_chat_id    :: Maybe Int                       -- ^ The identifier of the sender of the story
     , story_id                :: Maybe Int                       -- ^ The identifier of the story
-    , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users
+    , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set
     , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions
     }
   deriving (Eq, Show)

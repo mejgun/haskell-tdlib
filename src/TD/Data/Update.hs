@@ -581,6 +581,9 @@ data Update
     { saved_messages_topic_id :: Maybe Int                                 -- ^ Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
+  | UpdateActiveLiveLocationMessages -- ^ The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+    { _messages :: Maybe [Message.Message] -- ^ The list of messages with active live locations
+    }
   | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
     { star_count :: Maybe Int -- ^ The new number of Telegram Stars owned
     }
@@ -1824,6 +1827,13 @@ instance I.ShortShow Update where
         [ "saved_messages_topic_id" `I.p` saved_messages_topic_id_
         , "tags"                    `I.p` tags_
         ]
+  shortShow UpdateActiveLiveLocationMessages
+    { _messages = _messages_
+    }
+      = "UpdateActiveLiveLocationMessages"
+        ++ I.cc
+        [ "_messages" `I.p` _messages_
+        ]
   shortShow UpdateOwnedStarCount
     { star_count = star_count_
     }
@@ -2303,6 +2313,7 @@ instance AT.FromJSON Update where
       "updateAvailableMessageEffects"         -> parseUpdateAvailableMessageEffects v
       "updateDefaultReactionType"             -> parseUpdateDefaultReactionType v
       "updateSavedMessagesTags"               -> parseUpdateSavedMessagesTags v
+      "updateActiveLiveLocationMessages"      -> parseUpdateActiveLiveLocationMessages v
       "updateOwnedStarCount"                  -> parseUpdateOwnedStarCount v
       "updateChatRevenueAmount"               -> parseUpdateChatRevenueAmount v
       "updateStarRevenueStatus"               -> parseUpdateStarRevenueStatus v
@@ -3296,6 +3307,12 @@ instance AT.FromJSON Update where
         pure $ UpdateSavedMessagesTags
           { saved_messages_topic_id = saved_messages_topic_id_
           , tags                    = tags_
+          }
+      parseUpdateActiveLiveLocationMessages :: A.Value -> AT.Parser Update
+      parseUpdateActiveLiveLocationMessages = A.withObject "UpdateActiveLiveLocationMessages" $ \o -> do
+        _messages_ <- o A..:?  "messages"
+        pure $ UpdateActiveLiveLocationMessages
+          { _messages = _messages_
           }
       parseUpdateOwnedStarCount :: A.Value -> AT.Parser Update
       parseUpdateOwnedStarCount = A.withObject "UpdateOwnedStarCount" $ \o -> do

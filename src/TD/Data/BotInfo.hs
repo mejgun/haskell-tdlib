@@ -20,6 +20,7 @@ data BotInfo
     , animation                            :: Maybe Animation.Animation                             -- ^ Animation shown in the chat with the bot if the chat is empty; may be null
     , menu_button                          :: Maybe BotMenuButton.BotMenuButton                     -- ^ Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
     , commands                             :: Maybe [BotCommand.BotCommand]                         -- ^ List of the bot commands
+    , privacy_policy_url                   :: Maybe T.Text                                          -- ^ The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
     , default_group_administrator_rights   :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; may be null
     , default_channel_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to channels; may be null
     , has_media_previews                   :: Maybe Bool                                            -- ^ True, if the bot has media previews
@@ -38,6 +39,7 @@ instance I.ShortShow BotInfo where
     , animation                            = animation_
     , menu_button                          = menu_button_
     , commands                             = commands_
+    , privacy_policy_url                   = privacy_policy_url_
     , default_group_administrator_rights   = default_group_administrator_rights_
     , default_channel_administrator_rights = default_channel_administrator_rights_
     , has_media_previews                   = has_media_previews_
@@ -54,6 +56,7 @@ instance I.ShortShow BotInfo where
         , "animation"                            `I.p` animation_
         , "menu_button"                          `I.p` menu_button_
         , "commands"                             `I.p` commands_
+        , "privacy_policy_url"                   `I.p` privacy_policy_url_
         , "default_group_administrator_rights"   `I.p` default_group_administrator_rights_
         , "default_channel_administrator_rights" `I.p` default_channel_administrator_rights_
         , "has_media_previews"                   `I.p` has_media_previews_
@@ -80,6 +83,7 @@ instance AT.FromJSON BotInfo where
         animation_                            <- o A..:?  "animation"
         menu_button_                          <- o A..:?  "menu_button"
         commands_                             <- o A..:?  "commands"
+        privacy_policy_url_                   <- o A..:?  "privacy_policy_url"
         default_group_administrator_rights_   <- o A..:?  "default_group_administrator_rights"
         default_channel_administrator_rights_ <- o A..:?  "default_channel_administrator_rights"
         has_media_previews_                   <- o A..:?  "has_media_previews"
@@ -94,6 +98,7 @@ instance AT.FromJSON BotInfo where
           , animation                            = animation_
           , menu_button                          = menu_button_
           , commands                             = commands_
+          , privacy_policy_url                   = privacy_policy_url_
           , default_group_administrator_rights   = default_group_administrator_rights_
           , default_channel_administrator_rights = default_channel_administrator_rights_
           , has_media_previews                   = has_media_previews_

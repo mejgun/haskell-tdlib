@@ -1,0 +1,65 @@
+module TD.Data.BotTransactionPurpose
+  (BotTransactionPurpose(..)) where
+
+import qualified Data.Aeson as A
+import qualified Data.Aeson.Types as AT
+import qualified TD.Lib.Internal as I
+import qualified TD.Data.PaidMedia as PaidMedia
+import qualified TD.Data.ProductInfo as ProductInfo
+import qualified Data.ByteString as BS
+
+-- | Describes purpose of a transaction with a bot
+data BotTransactionPurpose
+  = BotTransactionPurposePaidMedia -- ^ Paid media were bought
+    { media :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    }
+  | BotTransactionPurposeInvoicePayment -- ^ User bought a product from the bot
+    { product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product; may be null if not applicable
+    , invoice_payload :: Maybe BS.ByteString           -- ^ Invoice payload; for bots only
+    }
+  deriving (Eq, Show)
+
+instance I.ShortShow BotTransactionPurpose where
+  shortShow BotTransactionPurposePaidMedia
+    { media = media_
+    }
+      = "BotTransactionPurposePaidMedia"
+        ++ I.cc
+        [ "media" `I.p` media_
+        ]
+  shortShow BotTransactionPurposeInvoicePayment
+    { product_info    = product_info_
+    , invoice_payload = invoice_payload_
+    }
+      = "BotTransactionPurposeInvoicePayment"
+        ++ I.cc
+        [ "product_info"    `I.p` product_info_
+        , "invoice_payload" `I.p` invoice_payload_
+        ]
+
+instance AT.FromJSON BotTransactionPurpose where
+  parseJSON v@(AT.Object obj) = do
+    t <- obj A..: "@type" :: AT.Parser String
+
+    case t of
+      "botTransactionPurposePaidMedia"      -> parseBotTransactionPurposePaidMedia v
+      "botTransactionPurposeInvoicePayment" -> parseBotTransactionPurposeInvoicePayment v
+      _                                     -> mempty
+    
+    where
+      parseBotTransactionPurposePaidMedia :: A.Value -> AT.Parser BotTransactionPurpose
+      parseBotTransactionPurposePaidMedia = A.withObject "BotTransactionPurposePaidMedia" $ \o -> do
+        media_ <- o A..:?  "media"
+        pure $ BotTransactionPurposePaidMedia
+          { media = media_
+          }
+      parseBotTransactionPurposeInvoicePayment :: A.Value -> AT.Parser BotTransactionPurpose
+      parseBotTransactionPurposeInvoicePayment = A.withObject "BotTransactionPurposeInvoicePayment" $ \o -> do
+        product_info_    <- o A..:?                       "product_info"
+        invoice_payload_ <- fmap I.readBytes <$> o A..:?  "invoice_payload"
+        pure $ BotTransactionPurposeInvoicePayment
+          { product_info    = product_info_
+          , invoice_payload = invoice_payload_
+          }
+  parseJSON _ = mempty
+

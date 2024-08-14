@@ -8,7 +8,7 @@ import qualified TD.Data.ReactionType as ReactionType
 
 -- | Describes reactions available in the chat
 data ChatAvailableReactions
-  = ChatAvailableReactionsAll -- ^ All reactions are available in the chat
+  = ChatAvailableReactionsAll -- ^ All reactions are available in the chat, excluding the paid reaction and custom reactions in channel chats
     { max_reaction_count :: Maybe Int -- ^ The maximum allowed number of reactions per message; 1-11
     }
   | ChatAvailableReactionsSome -- ^ Only specific reactions are available in the chat

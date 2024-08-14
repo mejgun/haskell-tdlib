@@ -10,7 +10,7 @@ import qualified TD.Data.ReactionType as ReactionType
 -- | Changes type of default reaction for the current user. Returns 'TD.Data.Ok.Ok'
 data SetDefaultReactionType
   = SetDefaultReactionType
-    { reaction_type :: Maybe ReactionType.ReactionType -- ^ New type of the default reaction
+    { reaction_type :: Maybe ReactionType.ReactionType -- ^ New type of the default reaction. The paid reaction can't be set as default
     }
   deriving (Eq, Show)
 

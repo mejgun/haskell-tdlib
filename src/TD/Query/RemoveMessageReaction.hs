@@ -13,7 +13,7 @@ data RemoveMessageReaction
   = RemoveMessageReaction
     { chat_id       :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
     , message_id    :: Maybe Int                       -- ^ Identifier of the message
-    , reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to remove
+    , reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to remove. The paid reaction can't be removed
     }
   deriving (Eq, Show)
 

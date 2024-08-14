@@ -184,6 +184,7 @@ import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
 import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
 import qualified TD.Data.StarRevenueStatistics as StarRevenueStatistics
+import qualified TD.Data.StarSubscriptions as StarSubscriptions
 import qualified TD.Data.StarTransactions as StarTransactions
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.Sticker as Sticker
@@ -404,6 +405,7 @@ data GeneralResult
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
     | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
     | StarRevenueStatistics              StarRevenueStatistics.StarRevenueStatistics
+    | StarSubscriptions                  StarSubscriptions.StarSubscriptions
     | StarTransactions                   StarTransactions.StarTransactions
     | StatisticalGraph                   StatisticalGraph.StatisticalGraph
     | Sticker                            Sticker.Sticker
@@ -805,6 +807,8 @@ instance I.ShortShow GeneralResult where
     = "StarPaymentOptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarRevenueStatistics v)
     = "StarRevenueStatistics" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarSubscriptions v)
+    = "StarSubscriptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarTransactions v)
     = "StarTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (StatisticalGraph v)
@@ -1064,6 +1068,7 @@ instance T.FromJSON GeneralResult where
     <|> ( SponsoredMessages                   <$> parseJSON v )
     <|> ( StarPaymentOptions                  <$> parseJSON v )
     <|> ( StarRevenueStatistics               <$> parseJSON v )
+    <|> ( StarSubscriptions                   <$> parseJSON v )
     <|> ( StarTransactions                    <$> parseJSON v )
     <|> ( StatisticalGraph                    <$> parseJSON v )
     <|> ( Sticker                             <$> parseJSON v )

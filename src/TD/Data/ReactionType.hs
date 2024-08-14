@@ -14,6 +14,7 @@ data ReactionType
   | ReactionTypeCustomEmoji -- ^ A reaction with a custom emoji
     { custom_emoji_id :: Maybe Int -- ^ Unique identifier of the custom emoji
     }
+  | ReactionTypePaid -- ^ The paid reaction in a channel chat
   deriving (Eq, Show)
 
 instance I.ShortShow ReactionType where
@@ -31,6 +32,8 @@ instance I.ShortShow ReactionType where
         ++ I.cc
         [ "custom_emoji_id" `I.p` custom_emoji_id_
         ]
+  shortShow ReactionTypePaid
+      = "ReactionTypePaid"
 
 instance AT.FromJSON ReactionType where
   parseJSON v@(AT.Object obj) = do
@@ -39,6 +42,7 @@ instance AT.FromJSON ReactionType where
     case t of
       "reactionTypeEmoji"       -> parseReactionTypeEmoji v
       "reactionTypeCustomEmoji" -> parseReactionTypeCustomEmoji v
+      "reactionTypePaid"        -> pure ReactionTypePaid
       _                         -> mempty
     
     where
@@ -70,5 +74,9 @@ instance AT.ToJSON ReactionType where
       = A.object
         [ "@type"           A..= AT.String "reactionTypeCustomEmoji"
         , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
+        ]
+  toJSON ReactionTypePaid
+      = A.object
+        [ "@type" A..= AT.String "reactionTypePaid"
         ]
 

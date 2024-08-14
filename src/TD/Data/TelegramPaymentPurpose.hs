@@ -34,6 +34,9 @@ data TelegramPaymentPurpose
     , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
     }
+  | TelegramPaymentPurposeJoinChat -- ^ The user joins a chat and subscribes to regular payments in Telegram Stars
+    { invite_link :: Maybe T.Text -- ^ Invite link to use
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow TelegramPaymentPurpose where
@@ -91,6 +94,13 @@ instance I.ShortShow TelegramPaymentPurpose where
         , "amount"     `I.p` amount_
         , "star_count" `I.p` star_count_
         ]
+  shortShow TelegramPaymentPurposeJoinChat
+    { invite_link = invite_link_
+    }
+      = "TelegramPaymentPurposeJoinChat"
+        ++ I.cc
+        [ "invite_link" `I.p` invite_link_
+        ]
 
 instance AT.FromJSON TelegramPaymentPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -101,6 +111,7 @@ instance AT.FromJSON TelegramPaymentPurpose where
       "telegramPaymentPurposePremiumGiveaway"  -> parseTelegramPaymentPurposePremiumGiveaway v
       "telegramPaymentPurposeStars"            -> parseTelegramPaymentPurposeStars v
       "telegramPaymentPurposeGiftedStars"      -> parseTelegramPaymentPurposeGiftedStars v
+      "telegramPaymentPurposeJoinChat"         -> parseTelegramPaymentPurposeJoinChat v
       _                                        -> mempty
     
     where
@@ -153,6 +164,12 @@ instance AT.FromJSON TelegramPaymentPurpose where
           , currency   = currency_
           , amount     = amount_
           , star_count = star_count_
+          }
+      parseTelegramPaymentPurposeJoinChat :: A.Value -> AT.Parser TelegramPaymentPurpose
+      parseTelegramPaymentPurposeJoinChat = A.withObject "TelegramPaymentPurposeJoinChat" $ \o -> do
+        invite_link_ <- o A..:?  "invite_link"
+        pure $ TelegramPaymentPurposeJoinChat
+          { invite_link = invite_link_
           }
   parseJSON _ = mempty
 
@@ -210,5 +227,12 @@ instance AT.ToJSON TelegramPaymentPurpose where
         , "currency"   A..= currency_
         , "amount"     A..= amount_
         , "star_count" A..= star_count_
+        ]
+  toJSON TelegramPaymentPurposeJoinChat
+    { invite_link = invite_link_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "telegramPaymentPurposeJoinChat"
+        , "invite_link" A..= invite_link_
         ]
 

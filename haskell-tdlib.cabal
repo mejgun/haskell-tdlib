@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.41.0
+version:        2.0.42.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -66,6 +66,7 @@ library
       TD.Data.BotMediaPreviewInfo
       TD.Data.BotMediaPreviews
       TD.Data.BotMenuButton
+      TD.Data.BotTransactionPurpose
       TD.Data.BotWriteAccessAllowReason
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
@@ -100,6 +101,7 @@ library
       TD.Data.CanSendMessageToUserResult
       TD.Data.CanSendStoryResult
       TD.Data.CanTransferOwnershipResult
+      TD.Data.ChannelTransactionPurpose
       TD.Data.Chat
       TD.Data.ChatAction
       TD.Data.ChatActionBar
@@ -135,6 +137,7 @@ library
       TD.Data.ChatInviteLinkMember
       TD.Data.ChatInviteLinkMembers
       TD.Data.ChatInviteLinks
+      TD.Data.ChatInviteLinkSubscriptionInfo
       TD.Data.ChatJoinRequest
       TD.Data.ChatJoinRequests
       TD.Data.ChatJoinRequestsInfo
@@ -371,6 +374,7 @@ library
       TD.Data.PageBlockTableCell
       TD.Data.PageBlockVerticalAlignment
       TD.Data.PaidMedia
+      TD.Data.PaidReactor
       TD.Data.PassportAuthorizationForm
       TD.Data.PassportElement
       TD.Data.PassportElementError
@@ -474,6 +478,9 @@ library
       TD.Data.StarPaymentOptions
       TD.Data.StarRevenueStatistics
       TD.Data.StarRevenueStatus
+      TD.Data.StarSubscription
+      TD.Data.StarSubscriptionPricing
+      TD.Data.StarSubscriptions
       TD.Data.StarTransaction
       TD.Data.StarTransactionDirection
       TD.Data.StarTransactionPartner
@@ -587,6 +594,7 @@ library
       TD.Query.AddLogMessage
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
+      TD.Query.AddPaidMessageReaction
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
       TD.Query.AddQuickReplyShortcutMessage
@@ -662,6 +670,7 @@ library
       TD.Query.CreateChatFolder
       TD.Query.CreateChatFolderInviteLink
       TD.Query.CreateChatInviteLink
+      TD.Query.CreateChatSubscriptionInviteLink
       TD.Query.CreateForumTopic
       TD.Query.CreateInvoiceLink
       TD.Query.CreateNewBasicGroupChat
@@ -721,6 +730,7 @@ library
       TD.Query.EditChatFolder
       TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
+      TD.Query.EditChatSubscriptionInviteLink
       TD.Query.EditCustomLanguagePackInfo
       TD.Query.EditForumTopic
       TD.Query.EditInlineMessageCaption
@@ -736,6 +746,7 @@ library
       TD.Query.EditMessageText
       TD.Query.EditProxy
       TD.Query.EditQuickReplyMessage
+      TD.Query.EditStarSubscription
       TD.Query.EditStory
       TD.Query.EditStoryCover
       TD.Query.EnableProxy
@@ -745,7 +756,6 @@ library
       TD.Query.FinishFileGeneration
       TD.Query.ForwardMessages
       TD.Query.GetAccountTtl
-      TD.Query.GetActiveLiveLocationMessages
       TD.Query.GetActiveSessions
       TD.Query.GetAllPassportElements
       TD.Query.GetAllStickerEmojis
@@ -961,6 +971,7 @@ library
       TD.Query.GetStarGiftPaymentOptions
       TD.Query.GetStarPaymentOptions
       TD.Query.GetStarRevenueStatistics
+      TD.Query.GetStarSubscriptions
       TD.Query.GetStarTransactions
       TD.Query.GetStarWithdrawalUrl
       TD.Query.GetStatisticalGraph
@@ -1061,6 +1072,7 @@ library
       TD.Query.RemoveMessageReaction
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
+      TD.Query.RemovePendingPaidMessageReactions
       TD.Query.RemoveProxy
       TD.Query.RemoveRecentHashtag
       TD.Query.RemoveRecentlyFoundChat
@@ -1103,6 +1115,7 @@ library
       TD.Query.ResetInstalledBackgrounds
       TD.Query.ResetNetworkStatistics
       TD.Query.ResetPassword
+      TD.Query.ReuseStarSubscription
       TD.Query.RevokeChatInviteLink
       TD.Query.RevokeGroupCallInviteLink
       TD.Query.SaveApplicationLogEvent
@@ -1319,6 +1332,7 @@ library
       TD.Query.ToggleGroupCallParticipantIsMuted
       TD.Query.ToggleGroupCallScreenSharingIsPaused
       TD.Query.ToggleHasSponsoredMessagesEnabled
+      TD.Query.TogglePaidMessageReactionIsAnonymous
       TD.Query.ToggleSavedMessagesTopicIsPinned
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats

@@ -14,7 +14,7 @@ data GetChatStoryInteractions
   = GetChatStoryInteractions
     { story_sender_chat_id :: Maybe Int                       -- ^ The identifier of the sender of the story
     , story_id             :: Maybe Int                       -- ^ Story identifier
-    , reaction_type        :: Maybe ReactionType.ReactionType -- ^ Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions
+    , reaction_type        :: Maybe ReactionType.ReactionType -- ^ Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported
     , prefer_forwards      :: Maybe Bool                      -- ^ Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     , offset               :: Maybe T.Text                    -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     , limit                :: Maybe Int                       -- ^ The maximum number of story interactions to return
