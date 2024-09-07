@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
-import qualified TD.Data.PremiumGiveawayParameters as PremiumGiveawayParameters
+import qualified TD.Data.GiveawayParameters as GiveawayParameters
 
 -- | Describes a purpose of an in-store payment
 data StorePaymentPurpose
@@ -25,9 +25,16 @@ data StorePaymentPurpose
     , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
     }
   | StorePaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway
-    { parameters :: Maybe PremiumGiveawayParameters.PremiumGiveawayParameters -- ^ Giveaway parameters
-    , currency   :: Maybe T.Text                                              -- ^ ISO 4217 currency code of the payment currency
-    , amount     :: Maybe Int                                                 -- ^ Paid amount, in the smallest units of the currency
+    { parameters :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
+    , currency   :: Maybe T.Text                                -- ^ ISO 4217 currency code of the payment currency
+    , amount     :: Maybe Int                                   -- ^ Paid amount, in the smallest units of the currency
+    }
+  | StorePaymentPurposeStarGiveaway -- ^ The user creating a Telegram Star giveaway
+    { parameters   :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
+    , currency     :: Maybe T.Text                                -- ^ ISO 4217 currency code of the payment currency
+    , amount       :: Maybe Int                                   -- ^ Paid amount, in the smallest units of the currency
+    , winner_count :: Maybe Int                                   -- ^ The number of users to receive Telegram Stars
+    , star_count   :: Maybe Int                                   -- ^ The number of Telegram Stars to be distributed through the giveaway
     }
   | StorePaymentPurposeStars -- ^ The user buying Telegram Stars
     { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
@@ -87,6 +94,21 @@ instance I.ShortShow StorePaymentPurpose where
         , "currency"   `I.p` currency_
         , "amount"     `I.p` amount_
         ]
+  shortShow StorePaymentPurposeStarGiveaway
+    { parameters   = parameters_
+    , currency     = currency_
+    , amount       = amount_
+    , winner_count = winner_count_
+    , star_count   = star_count_
+    }
+      = "StorePaymentPurposeStarGiveaway"
+        ++ I.cc
+        [ "parameters"   `I.p` parameters_
+        , "currency"     `I.p` currency_
+        , "amount"       `I.p` amount_
+        , "winner_count" `I.p` winner_count_
+        , "star_count"   `I.p` star_count_
+        ]
   shortShow StorePaymentPurposeStars
     { currency   = currency_
     , amount     = amount_
@@ -121,6 +143,7 @@ instance AT.FromJSON StorePaymentPurpose where
       "storePaymentPurposeGiftedPremium"       -> parseStorePaymentPurposeGiftedPremium v
       "storePaymentPurposePremiumGiftCodes"    -> parseStorePaymentPurposePremiumGiftCodes v
       "storePaymentPurposePremiumGiveaway"     -> parseStorePaymentPurposePremiumGiveaway v
+      "storePaymentPurposeStarGiveaway"        -> parseStorePaymentPurposeStarGiveaway v
       "storePaymentPurposeStars"               -> parseStorePaymentPurposeStars v
       "storePaymentPurposeGiftedStars"         -> parseStorePaymentPurposeGiftedStars v
       _                                        -> mempty
@@ -165,6 +188,20 @@ instance AT.FromJSON StorePaymentPurpose where
           { parameters = parameters_
           , currency   = currency_
           , amount     = amount_
+          }
+      parseStorePaymentPurposeStarGiveaway :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposeStarGiveaway = A.withObject "StorePaymentPurposeStarGiveaway" $ \o -> do
+        parameters_   <- o A..:?  "parameters"
+        currency_     <- o A..:?  "currency"
+        amount_       <- o A..:?  "amount"
+        winner_count_ <- o A..:?  "winner_count"
+        star_count_   <- o A..:?  "star_count"
+        pure $ StorePaymentPurposeStarGiveaway
+          { parameters   = parameters_
+          , currency     = currency_
+          , amount       = amount_
+          , winner_count = winner_count_
+          , star_count   = star_count_
           }
       parseStorePaymentPurposeStars :: A.Value -> AT.Parser StorePaymentPurpose
       parseStorePaymentPurposeStars = A.withObject "StorePaymentPurposeStars" $ \o -> do
@@ -234,6 +271,21 @@ instance AT.ToJSON StorePaymentPurpose where
         , "parameters" A..= parameters_
         , "currency"   A..= currency_
         , "amount"     A..= amount_
+        ]
+  toJSON StorePaymentPurposeStarGiveaway
+    { parameters   = parameters_
+    , currency     = currency_
+    , amount       = amount_
+    , winner_count = winner_count_
+    , star_count   = star_count_
+    }
+      = A.object
+        [ "@type"        A..= AT.String "storePaymentPurposeStarGiveaway"
+        , "parameters"   A..= parameters_
+        , "currency"     A..= currency_
+        , "amount"       A..= amount_
+        , "winner_count" A..= winner_count_
+        , "star_count"   A..= star_count_
         ]
   toJSON StorePaymentPurposeStars
     { currency   = currency_

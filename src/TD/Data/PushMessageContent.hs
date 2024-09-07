@@ -9,6 +9,7 @@ import qualified Data.Text as T
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
 import qualified TD.Data.Photo as Photo
+import qualified TD.Data.GiveawayPrize as GiveawayPrize
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
@@ -72,10 +73,10 @@ data PushMessageContent
   | PushMessageContentPremiumGiftCode -- ^ A message with a Telegram Premium gift code created for the user
     { month_count :: Maybe Int -- ^ Number of months the Telegram Premium subscription will be active after code activation
     }
-  | PushMessageContentPremiumGiveaway -- ^ A message with a Telegram Premium giveaway
-    { winner_count :: Maybe Int  -- ^ Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
-    , month_count  :: Maybe Int  -- ^ Number of months the Telegram Premium subscription will be active after code activation; 0 for pinned message
-    , is_pinned    :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
+  | PushMessageContentGiveaway -- ^ A message with a giveaway
+    { winner_count :: Maybe Int                         -- ^ Number of users which will receive giveaway prizes; 0 for pinned message
+    , prize        :: Maybe GiveawayPrize.GiveawayPrize -- ^ Prize of the giveaway; may be null for pinned message
+    , is_pinned    :: Maybe Bool                        -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
   | PushMessageContentSticker -- ^ A message with a sticker
@@ -269,15 +270,15 @@ instance I.ShortShow PushMessageContent where
         ++ I.cc
         [ "month_count" `I.p` month_count_
         ]
-  shortShow PushMessageContentPremiumGiveaway
+  shortShow PushMessageContentGiveaway
     { winner_count = winner_count_
-    , month_count  = month_count_
+    , prize        = prize_
     , is_pinned    = is_pinned_
     }
-      = "PushMessageContentPremiumGiveaway"
+      = "PushMessageContentGiveaway"
         ++ I.cc
         [ "winner_count" `I.p` winner_count_
-        , "month_count"  `I.p` month_count_
+        , "prize"        `I.p` prize_
         , "is_pinned"    `I.p` is_pinned_
         ]
   shortShow PushMessageContentScreenshotTaken
@@ -442,7 +443,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentPhoto"                -> parsePushMessageContentPhoto v
       "pushMessageContentPoll"                 -> parsePushMessageContentPoll v
       "pushMessageContentPremiumGiftCode"      -> parsePushMessageContentPremiumGiftCode v
-      "pushMessageContentPremiumGiveaway"      -> parsePushMessageContentPremiumGiveaway v
+      "pushMessageContentGiveaway"             -> parsePushMessageContentGiveaway v
       "pushMessageContentScreenshotTaken"      -> pure PushMessageContentScreenshotTaken
       "pushMessageContentSticker"              -> parsePushMessageContentSticker v
       "pushMessageContentStory"                -> parsePushMessageContentStory v
@@ -576,14 +577,14 @@ instance AT.FromJSON PushMessageContent where
         pure $ PushMessageContentPremiumGiftCode
           { month_count = month_count_
           }
-      parsePushMessageContentPremiumGiveaway :: A.Value -> AT.Parser PushMessageContent
-      parsePushMessageContentPremiumGiveaway = A.withObject "PushMessageContentPremiumGiveaway" $ \o -> do
+      parsePushMessageContentGiveaway :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentGiveaway = A.withObject "PushMessageContentGiveaway" $ \o -> do
         winner_count_ <- o A..:?  "winner_count"
-        month_count_  <- o A..:?  "month_count"
+        prize_        <- o A..:?  "prize"
         is_pinned_    <- o A..:?  "is_pinned"
-        pure $ PushMessageContentPremiumGiveaway
+        pure $ PushMessageContentGiveaway
           { winner_count = winner_count_
-          , month_count  = month_count_
+          , prize        = prize_
           , is_pinned    = is_pinned_
           }
       parsePushMessageContentSticker :: A.Value -> AT.Parser PushMessageContent

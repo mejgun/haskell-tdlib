@@ -15,6 +15,7 @@ data LinkPreview
     , site_name                    :: Maybe T.Text                          -- ^ Short name of the site (e.g., Google Docs, App Store)
     , title                        :: Maybe T.Text                          -- ^ Title of the content
     , description                  :: Maybe FormattedText.FormattedText     -- ^ Description of the content
+    , author                       :: Maybe T.Text                          -- ^ Author of the content
     , _type                        :: Maybe LinkPreviewType.LinkPreviewType -- ^ Type of the link preview
     , has_large_media              :: Maybe Bool                            -- ^ True, if size of media in the preview can be changed
     , show_large_media             :: Maybe Bool                            -- ^ True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos
@@ -32,6 +33,7 @@ instance I.ShortShow LinkPreview where
     , site_name                    = site_name_
     , title                        = title_
     , description                  = description_
+    , author                       = author_
     , _type                        = _type_
     , has_large_media              = has_large_media_
     , show_large_media             = show_large_media_
@@ -47,6 +49,7 @@ instance I.ShortShow LinkPreview where
         , "site_name"                    `I.p` site_name_
         , "title"                        `I.p` title_
         , "description"                  `I.p` description_
+        , "author"                       `I.p` author_
         , "_type"                        `I.p` _type_
         , "has_large_media"              `I.p` has_large_media_
         , "show_large_media"             `I.p` show_large_media_
@@ -72,6 +75,7 @@ instance AT.FromJSON LinkPreview where
         site_name_                    <- o A..:?  "site_name"
         title_                        <- o A..:?  "title"
         description_                  <- o A..:?  "description"
+        author_                       <- o A..:?  "author"
         _type_                        <- o A..:?  "type"
         has_large_media_              <- o A..:?  "has_large_media"
         show_large_media_             <- o A..:?  "show_large_media"
@@ -85,6 +89,7 @@ instance AT.FromJSON LinkPreview where
           , site_name                    = site_name_
           , title                        = title_
           , description                  = description_
+          , author                       = author_
           , _type                        = _type_
           , has_large_media              = has_large_media_
           , show_large_media             = show_large_media_

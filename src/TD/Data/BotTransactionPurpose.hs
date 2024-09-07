@@ -5,13 +5,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.PaidMedia as PaidMedia
+import qualified Data.Text as T
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified Data.ByteString as BS
 
 -- | Describes purpose of a transaction with a bot
 data BotTransactionPurpose
   = BotTransactionPurposePaidMedia -- ^ Paid media were bought
-    { media :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    { media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    , payload :: Maybe T.Text                -- ^ Bot-provided payload; for bots only
     }
   | BotTransactionPurposeInvoicePayment -- ^ User bought a product from the bot
     { product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product; may be null if not applicable
@@ -21,11 +23,13 @@ data BotTransactionPurpose
 
 instance I.ShortShow BotTransactionPurpose where
   shortShow BotTransactionPurposePaidMedia
-    { media = media_
+    { media   = media_
+    , payload = payload_
     }
       = "BotTransactionPurposePaidMedia"
         ++ I.cc
-        [ "media" `I.p` media_
+        [ "media"   `I.p` media_
+        , "payload" `I.p` payload_
         ]
   shortShow BotTransactionPurposeInvoicePayment
     { product_info    = product_info_
@@ -49,9 +53,11 @@ instance AT.FromJSON BotTransactionPurpose where
     where
       parseBotTransactionPurposePaidMedia :: A.Value -> AT.Parser BotTransactionPurpose
       parseBotTransactionPurposePaidMedia = A.withObject "BotTransactionPurposePaidMedia" $ \o -> do
-        media_ <- o A..:?  "media"
+        media_   <- o A..:?  "media"
+        payload_ <- o A..:?  "payload"
         pure $ BotTransactionPurposePaidMedia
-          { media = media_
+          { media   = media_
+          , payload = payload_
           }
       parseBotTransactionPurposeInvoicePayment :: A.Value -> AT.Parser BotTransactionPurpose
       parseBotTransactionPurposeInvoicePayment = A.withObject "BotTransactionPurposeInvoicePayment" $ \o -> do

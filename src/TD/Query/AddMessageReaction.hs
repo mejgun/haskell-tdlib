@@ -13,7 +13,7 @@ data AddMessageReaction
   = AddMessageReaction
     { chat_id                 :: Maybe Int                       -- ^ Identifier of the chat to which the message belongs
     , message_id              :: Maybe Int                       -- ^ Identifier of the message
-    , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to add. Use addPaidMessageReaction instead to add the paid reaction
+    , reaction_type           :: Maybe ReactionType.ReactionType -- ^ Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
     , is_big                  :: Maybe Bool                      -- ^ Pass true if the reaction is added with a big animation
     , update_recent_reactions :: Maybe Bool                      -- ^ Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     }

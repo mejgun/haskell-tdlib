@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.PremiumGiftCodePaymentOption as PremiumGiftCodePaymentOption
 
 data PremiumGiftCodePaymentOptions
-  = PremiumGiftCodePaymentOptions -- ^ Contains a list of options for creating Telegram Premium gift codes
+  = PremiumGiftCodePaymentOptions -- ^ Contains a list of options for creating Telegram Premium gift codes or Telegram Premium giveaway
     { options :: Maybe [PremiumGiftCodePaymentOption.PremiumGiftCodePaymentOption] -- ^ The list of options
     }
   deriving (Eq, Show)

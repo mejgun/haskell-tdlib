@@ -1,6 +1,6 @@
-module TD.Data.PremiumGiveawayParameters
-  ( PremiumGiveawayParameters(..)    
-  , defaultPremiumGiveawayParameters 
+module TD.Data.GiveawayParameters
+  ( GiveawayParameters(..)    
+  , defaultGiveawayParameters 
   ) where
 
 import qualified Data.Aeson as A
@@ -8,9 +8,9 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
-data PremiumGiveawayParameters
-  = PremiumGiveawayParameters -- ^ Describes parameters of a Telegram Premium giveaway
-    { boosted_chat_id        :: Maybe Int      -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Premium subscription. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
+data GiveawayParameters
+  = GiveawayParameters -- ^ Describes parameters of a giveaway
+    { boosted_chat_id        :: Maybe Int      -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
     , additional_chat_ids    :: Maybe [Int]    -- ^ Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
     , winners_selection_date :: Maybe Int      -- ^ Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways
     , only_new_members       :: Maybe Bool     -- ^ True, if only new members of the chats will be eligible for the giveaway
@@ -20,8 +20,8 @@ data PremiumGiveawayParameters
     }
   deriving (Eq, Show)
 
-instance I.ShortShow PremiumGiveawayParameters where
-  shortShow PremiumGiveawayParameters
+instance I.ShortShow GiveawayParameters where
+  shortShow GiveawayParameters
     { boosted_chat_id        = boosted_chat_id_
     , additional_chat_ids    = additional_chat_ids_
     , winners_selection_date = winners_selection_date_
@@ -30,7 +30,7 @@ instance I.ShortShow PremiumGiveawayParameters where
     , country_codes          = country_codes_
     , prize_description      = prize_description_
     }
-      = "PremiumGiveawayParameters"
+      = "GiveawayParameters"
         ++ I.cc
         [ "boosted_chat_id"        `I.p` boosted_chat_id_
         , "additional_chat_ids"    `I.p` additional_chat_ids_
@@ -41,17 +41,17 @@ instance I.ShortShow PremiumGiveawayParameters where
         , "prize_description"      `I.p` prize_description_
         ]
 
-instance AT.FromJSON PremiumGiveawayParameters where
+instance AT.FromJSON GiveawayParameters where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "premiumGiveawayParameters" -> parsePremiumGiveawayParameters v
-      _                           -> mempty
+      "giveawayParameters" -> parseGiveawayParameters v
+      _                    -> mempty
     
     where
-      parsePremiumGiveawayParameters :: A.Value -> AT.Parser PremiumGiveawayParameters
-      parsePremiumGiveawayParameters = A.withObject "PremiumGiveawayParameters" $ \o -> do
+      parseGiveawayParameters :: A.Value -> AT.Parser GiveawayParameters
+      parseGiveawayParameters = A.withObject "GiveawayParameters" $ \o -> do
         boosted_chat_id_        <- o A..:?  "boosted_chat_id"
         additional_chat_ids_    <- o A..:?  "additional_chat_ids"
         winners_selection_date_ <- o A..:?  "winners_selection_date"
@@ -59,7 +59,7 @@ instance AT.FromJSON PremiumGiveawayParameters where
         has_public_winners_     <- o A..:?  "has_public_winners"
         country_codes_          <- o A..:?  "country_codes"
         prize_description_      <- o A..:?  "prize_description"
-        pure $ PremiumGiveawayParameters
+        pure $ GiveawayParameters
           { boosted_chat_id        = boosted_chat_id_
           , additional_chat_ids    = additional_chat_ids_
           , winners_selection_date = winners_selection_date_
@@ -70,8 +70,8 @@ instance AT.FromJSON PremiumGiveawayParameters where
           }
   parseJSON _ = mempty
 
-instance AT.ToJSON PremiumGiveawayParameters where
-  toJSON PremiumGiveawayParameters
+instance AT.ToJSON GiveawayParameters where
+  toJSON GiveawayParameters
     { boosted_chat_id        = boosted_chat_id_
     , additional_chat_ids    = additional_chat_ids_
     , winners_selection_date = winners_selection_date_
@@ -81,7 +81,7 @@ instance AT.ToJSON PremiumGiveawayParameters where
     , prize_description      = prize_description_
     }
       = A.object
-        [ "@type"                  A..= AT.String "premiumGiveawayParameters"
+        [ "@type"                  A..= AT.String "giveawayParameters"
         , "boosted_chat_id"        A..= boosted_chat_id_
         , "additional_chat_ids"    A..= additional_chat_ids_
         , "winners_selection_date" A..= winners_selection_date_
@@ -91,9 +91,9 @@ instance AT.ToJSON PremiumGiveawayParameters where
         , "prize_description"      A..= prize_description_
         ]
 
-defaultPremiumGiveawayParameters :: PremiumGiveawayParameters
-defaultPremiumGiveawayParameters =
-  PremiumGiveawayParameters
+defaultGiveawayParameters :: GiveawayParameters
+defaultGiveawayParameters =
+  GiveawayParameters
     { boosted_chat_id        = Nothing
     , additional_chat_ids    = Nothing
     , winners_selection_date = Nothing

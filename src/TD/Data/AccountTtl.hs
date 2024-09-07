@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 
 data AccountTtl
   = AccountTtl -- ^ Contains information about the period of inactivity after which the current user's account will automatically be deleted
-    { days :: Maybe Int -- ^ Number of days of inactivity before the account will be flagged for deletion; 30-366 days
+    { days :: Maybe Int -- ^ Number of days of inactivity before the account will be flagged for deletion; 30-730 days
     }
   deriving (Eq, Show)
 

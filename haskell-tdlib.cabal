@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.42.0
+version:        2.0.43.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -101,7 +101,6 @@ library
       TD.Data.CanSendMessageToUserResult
       TD.Data.CanSendStoryResult
       TD.Data.CanTransferOwnershipResult
-      TD.Data.ChannelTransactionPurpose
       TD.Data.Chat
       TD.Data.ChatAction
       TD.Data.ChatActionBar
@@ -174,6 +173,7 @@ library
       TD.Data.ChatStatisticsMessageSenderInfo
       TD.Data.ChatStatisticsObjectType
       TD.Data.ChatTheme
+      TD.Data.ChatTransactionPurpose
       TD.Data.ChatType
       TD.Data.CheckChatUsernameResult
       TD.Data.CheckStickerSetNameResult
@@ -245,6 +245,10 @@ library
       TD.Data.Game
       TD.Data.GameHighScore
       TD.Data.GameHighScores
+      TD.Data.GiveawayInfo
+      TD.Data.GiveawayParameters
+      TD.Data.GiveawayParticipantStatus
+      TD.Data.GiveawayPrize
       TD.Data.GroupCall
       TD.Data.GroupCallId
       TD.Data.GroupCallParticipant
@@ -409,9 +413,6 @@ library
       TD.Data.PremiumGiftCodeInfo
       TD.Data.PremiumGiftCodePaymentOption
       TD.Data.PremiumGiftCodePaymentOptions
-      TD.Data.PremiumGiveawayInfo
-      TD.Data.PremiumGiveawayParameters
-      TD.Data.PremiumGiveawayParticipantStatus
       TD.Data.PremiumLimit
       TD.Data.PremiumLimitType
       TD.Data.PremiumPaymentOption
@@ -419,7 +420,7 @@ library
       TD.Data.PremiumState
       TD.Data.PremiumStatePaymentOption
       TD.Data.PremiumStoryFeature
-      TD.Data.PrepaidPremiumGiveaway
+      TD.Data.PrepaidGiveaway
       TD.Data.ProductInfo
       TD.Data.ProfileAccentColor
       TD.Data.ProfileAccentColors
@@ -474,6 +475,9 @@ library
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
       TD.Data.SponsoredMessages
+      TD.Data.StarGiveawayPaymentOption
+      TD.Data.StarGiveawayPaymentOptions
+      TD.Data.StarGiveawayWinnerOption
       TD.Data.StarPaymentOption
       TD.Data.StarPaymentOptions
       TD.Data.StarRevenueStatistics
@@ -594,7 +598,7 @@ library
       TD.Query.AddLogMessage
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
-      TD.Query.AddPaidMessageReaction
+      TD.Query.AddPendingPaidMessageReaction
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
       TD.Query.AddQuickReplyShortcutMessage
@@ -662,6 +666,7 @@ library
       TD.Query.CloseSecretChat
       TD.Query.CloseStory
       TD.Query.CloseWebApp
+      TD.Query.CommitPendingPaidMessageReactions
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
       TD.Query.CreateBasicGroupChat
@@ -870,7 +875,9 @@ library
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
+      TD.Query.GetGiveawayInfo
       TD.Query.GetGreetingStickers
+      TD.Query.GetGrossingWebAppBots
       TD.Query.GetGroupCall
       TD.Query.GetGroupCallInviteLink
       TD.Query.GetGroupCallStreams
@@ -934,11 +941,9 @@ library
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
       TD.Query.GetPollVoters
-      TD.Query.GetPopularWebAppBots
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
       TD.Query.GetPremiumGiftCodePaymentOptions
-      TD.Query.GetPremiumGiveawayInfo
       TD.Query.GetPremiumLimit
       TD.Query.GetPremiumState
       TD.Query.GetPremiumStickerExamples
@@ -969,6 +974,7 @@ library
       TD.Query.GetSecretChat
       TD.Query.GetStarAdAccountUrl
       TD.Query.GetStarGiftPaymentOptions
+      TD.Query.GetStarGiveawayPaymentOptions
       TD.Query.GetStarPaymentOptions
       TD.Query.GetStarRevenueStatistics
       TD.Query.GetStarSubscriptions
@@ -978,6 +984,7 @@ library
       TD.Query.GetStickerEmojis
       TD.Query.GetStickers
       TD.Query.GetStickerSet
+      TD.Query.GetStickerSetName
       TD.Query.GetStorageStatistics
       TD.Query.GetStorageStatisticsFast
       TD.Query.GetStory
@@ -1023,7 +1030,7 @@ library
       TD.Query.JoinChat
       TD.Query.JoinChatByInviteLink
       TD.Query.JoinGroupCall
-      TD.Query.LaunchPrepaidPremiumGiveaway
+      TD.Query.LaunchPrepaidGiveaway
       TD.Query.LeaveChat
       TD.Query.LeaveGroupCall
       TD.Query.LoadActiveStories

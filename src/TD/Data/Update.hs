@@ -746,6 +746,10 @@ data Update
     , date       :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the reactions were changed
     , reactions  :: Maybe [MessageReaction.MessageReaction] -- ^ The list of reactions added to the message
     }
+  | UpdatePaidMediaPurchased -- ^ Paid media were purchased by a user; for bots only
+    { user_id  :: Maybe Int    -- ^ User identifier
+    , _payload :: Maybe T.Text -- ^ Bot-specified payload for the paid media
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow Update where
@@ -2189,6 +2193,15 @@ instance I.ShortShow Update where
         , "date"       `I.p` date_
         , "reactions"  `I.p` reactions_
         ]
+  shortShow UpdatePaidMediaPurchased
+    { user_id  = user_id_
+    , _payload = _payload_
+    }
+      = "UpdatePaidMediaPurchased"
+        ++ I.cc
+        [ "user_id"  `I.p` user_id_
+        , "_payload" `I.p` _payload_
+        ]
 
 instance AT.FromJSON Update where
   parseJSON v@(AT.Object obj) = do
@@ -2345,6 +2358,7 @@ instance AT.FromJSON Update where
       "updateChatBoost"                       -> parseUpdateChatBoost v
       "updateMessageReaction"                 -> parseUpdateMessageReaction v
       "updateMessageReactions"                -> parseUpdateMessageReactions v
+      "updatePaidMediaPurchased"              -> parseUpdatePaidMediaPurchased v
       _                                       -> mempty
     
     where
@@ -3637,6 +3651,14 @@ instance AT.FromJSON Update where
           , message_id = message_id_
           , date       = date_
           , reactions  = reactions_
+          }
+      parseUpdatePaidMediaPurchased :: A.Value -> AT.Parser Update
+      parseUpdatePaidMediaPurchased = A.withObject "UpdatePaidMediaPurchased" $ \o -> do
+        user_id_  <- o A..:?  "user_id"
+        _payload_ <- o A..:?  "payload"
+        pure $ UpdatePaidMediaPurchased
+          { user_id  = user_id_
+          , _payload = _payload_
           }
   parseJSON _ = mempty
 

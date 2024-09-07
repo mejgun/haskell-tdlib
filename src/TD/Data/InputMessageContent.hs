@@ -56,6 +56,7 @@ data InputMessageContent
     , paid_media               :: Maybe [InputPaidMedia.InputPaidMedia] -- ^ The content of the paid media
     , caption                  :: Maybe FormattedText.FormattedText     -- ^ Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     , show_caption_above_media :: Maybe Bool                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
+    , payload                  :: Maybe T.Text                          -- ^ Bot-provided data for the paid media; bots only
     }
   | InputMessagePhoto -- ^ A photo message
     { photo                    :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
@@ -130,7 +131,7 @@ data InputMessageContent
     , photo_size         :: Maybe Int                           -- ^ Product photo size
     , photo_width        :: Maybe Int                           -- ^ Product photo width
     , photo_height       :: Maybe Int                           -- ^ Product photo height
-    , payload            :: Maybe BS.ByteString                 -- ^ The invoice payload
+    , _payload           :: Maybe BS.ByteString                 -- ^ The invoice payload
     , provider_token     :: Maybe T.Text                        -- ^ Payment provider token; may be empty for payments in Telegram Stars
     , provider_data      :: Maybe T.Text                        -- ^ JSON-encoded data about the invoice, which will be shared with the payment provider
     , start_parameter    :: Maybe T.Text                        -- ^ Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
@@ -228,6 +229,7 @@ instance I.ShortShow InputMessageContent where
     , paid_media               = paid_media_
     , caption                  = caption_
     , show_caption_above_media = show_caption_above_media_
+    , payload                  = payload_
     }
       = "InputMessagePaidMedia"
         ++ I.cc
@@ -235,6 +237,7 @@ instance I.ShortShow InputMessageContent where
         , "paid_media"               `I.p` paid_media_
         , "caption"                  `I.p` caption_
         , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "payload"                  `I.p` payload_
         ]
   shortShow InputMessagePhoto
     { photo                    = photo_
@@ -384,7 +387,7 @@ instance I.ShortShow InputMessageContent where
     , photo_size         = photo_size_
     , photo_width        = photo_width_
     , photo_height       = photo_height_
-    , payload            = payload_
+    , _payload           = _payload_
     , provider_token     = provider_token_
     , provider_data      = provider_data_
     , start_parameter    = start_parameter_
@@ -400,7 +403,7 @@ instance I.ShortShow InputMessageContent where
         , "photo_size"         `I.p` photo_size_
         , "photo_width"        `I.p` photo_width_
         , "photo_height"       `I.p` photo_height_
-        , "payload"            `I.p` payload_
+        , "_payload"           `I.p` _payload_
         , "provider_token"     `I.p` provider_token_
         , "provider_data"      `I.p` provider_data_
         , "start_parameter"    `I.p` start_parameter_
@@ -542,11 +545,13 @@ instance AT.FromJSON InputMessageContent where
         paid_media_               <- o A..:?  "paid_media"
         caption_                  <- o A..:?  "caption"
         show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        payload_                  <- o A..:?  "payload"
         pure $ InputMessagePaidMedia
           { star_count               = star_count_
           , paid_media               = paid_media_
           , caption                  = caption_
           , show_caption_above_media = show_caption_above_media_
+          , payload                  = payload_
           }
       parseInputMessagePhoto :: A.Value -> AT.Parser InputMessageContent
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
@@ -687,7 +692,7 @@ instance AT.FromJSON InputMessageContent where
         photo_size_         <- o A..:?                       "photo_size"
         photo_width_        <- o A..:?                       "photo_width"
         photo_height_       <- o A..:?                       "photo_height"
-        payload_            <- fmap I.readBytes <$> o A..:?  "payload"
+        _payload_           <- fmap I.readBytes <$> o A..:?  "payload"
         provider_token_     <- o A..:?                       "provider_token"
         provider_data_      <- o A..:?                       "provider_data"
         start_parameter_    <- o A..:?                       "start_parameter"
@@ -701,7 +706,7 @@ instance AT.FromJSON InputMessageContent where
           , photo_size         = photo_size_
           , photo_width        = photo_width_
           , photo_height       = photo_height_
-          , payload            = payload_
+          , _payload           = _payload_
           , provider_token     = provider_token_
           , provider_data      = provider_data_
           , start_parameter    = start_parameter_
@@ -818,6 +823,7 @@ instance AT.ToJSON InputMessageContent where
     , paid_media               = paid_media_
     , caption                  = caption_
     , show_caption_above_media = show_caption_above_media_
+    , payload                  = payload_
     }
       = A.object
         [ "@type"                    A..= AT.String "inputMessagePaidMedia"
@@ -825,6 +831,7 @@ instance AT.ToJSON InputMessageContent where
         , "paid_media"               A..= paid_media_
         , "caption"                  A..= caption_
         , "show_caption_above_media" A..= show_caption_above_media_
+        , "payload"                  A..= payload_
         ]
   toJSON InputMessagePhoto
     { photo                    = photo_
@@ -974,7 +981,7 @@ instance AT.ToJSON InputMessageContent where
     , photo_size         = photo_size_
     , photo_width        = photo_width_
     , photo_height       = photo_height_
-    , payload            = payload_
+    , _payload           = _payload_
     , provider_token     = provider_token_
     , provider_data      = provider_data_
     , start_parameter    = start_parameter_
@@ -990,7 +997,7 @@ instance AT.ToJSON InputMessageContent where
         , "photo_size"         A..= photo_size_
         , "photo_width"        A..= photo_width_
         , "photo_height"       A..= photo_height_
-        , "payload"            A..= fmap I.writeBytes  payload_
+        , "payload"            A..= fmap I.writeBytes  _payload_
         , "provider_token"     A..= provider_token_
         , "provider_data"      A..= provider_data_
         , "start_parameter"    A..= start_parameter_

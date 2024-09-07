@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
 import qualified TD.Data.BotTransactionPurpose as BotTransactionPurpose
 import qualified TD.Data.PaidMedia as PaidMedia
-import qualified TD.Data.ChannelTransactionPurpose as ChannelTransactionPurpose
+import qualified TD.Data.ChatTransactionPurpose as ChatTransactionPurpose
 import qualified TD.Data.Sticker as Sticker
 
 -- | Describes source or recipient of a transaction with Telegram Stars
@@ -27,9 +27,9 @@ data StarTransactionPartner
     { user_id :: Maybe Int                   -- ^ Identifier of the business account user
     , media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
     }
-  | StarTransactionPartnerChannel -- ^ The transaction is a transaction with a channel chat
-    { chat_id  :: Maybe Int                                                 -- ^ Identifier of the chat
-    , _purpose :: Maybe ChannelTransactionPurpose.ChannelTransactionPurpose -- ^ Purpose of the transaction
+  | StarTransactionPartnerChat -- ^ The transaction is a transaction with a supergroup or a channel chat
+    { chat_id  :: Maybe Int                                           -- ^ Identifier of the chat
+    , _purpose :: Maybe ChatTransactionPurpose.ChatTransactionPurpose -- ^ Purpose of the transaction
     }
   | StarTransactionPartnerUser -- ^ The transaction is a gift of Telegram Stars from another user
     { user_id :: Maybe Int             -- ^ Identifier of the user; 0 if the gift was anonymous
@@ -72,11 +72,11 @@ instance I.ShortShow StarTransactionPartner where
         [ "user_id" `I.p` user_id_
         , "media"   `I.p` media_
         ]
-  shortShow StarTransactionPartnerChannel
+  shortShow StarTransactionPartnerChat
     { chat_id  = chat_id_
     , _purpose = _purpose_
     }
-      = "StarTransactionPartnerChannel"
+      = "StarTransactionPartnerChat"
         ++ I.cc
         [ "chat_id"  `I.p` chat_id_
         , "_purpose" `I.p` _purpose_
@@ -105,7 +105,7 @@ instance AT.FromJSON StarTransactionPartner where
       "starTransactionPartnerTelegramAds" -> pure StarTransactionPartnerTelegramAds
       "starTransactionPartnerBot"         -> parseStarTransactionPartnerBot v
       "starTransactionPartnerBusiness"    -> parseStarTransactionPartnerBusiness v
-      "starTransactionPartnerChannel"     -> parseStarTransactionPartnerChannel v
+      "starTransactionPartnerChat"        -> parseStarTransactionPartnerChat v
       "starTransactionPartnerUser"        -> parseStarTransactionPartnerUser v
       "starTransactionPartnerUnsupported" -> pure StarTransactionPartnerUnsupported
       _                                   -> mempty
@@ -133,11 +133,11 @@ instance AT.FromJSON StarTransactionPartner where
           { user_id = user_id_
           , media   = media_
           }
-      parseStarTransactionPartnerChannel :: A.Value -> AT.Parser StarTransactionPartner
-      parseStarTransactionPartnerChannel = A.withObject "StarTransactionPartnerChannel" $ \o -> do
+      parseStarTransactionPartnerChat :: A.Value -> AT.Parser StarTransactionPartner
+      parseStarTransactionPartnerChat = A.withObject "StarTransactionPartnerChat" $ \o -> do
         chat_id_  <- o A..:?  "chat_id"
         _purpose_ <- o A..:?  "purpose"
-        pure $ StarTransactionPartnerChannel
+        pure $ StarTransactionPartnerChat
           { chat_id  = chat_id_
           , _purpose = _purpose_
           }

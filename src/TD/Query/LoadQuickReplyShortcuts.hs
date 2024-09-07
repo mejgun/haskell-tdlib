@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts. Returns 'TD.Data.Ok.Ok'
+-- | Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts. Returns 'TD.Data.Ok.Ok'
 data LoadQuickReplyShortcuts
   = LoadQuickReplyShortcuts
   deriving (Eq, Show)

@@ -7,7 +7,8 @@ import qualified TD.Lib.Internal as I
 
 data MessageProperties
   = MessageProperties -- ^ Contains properties of a message and describes actions that can be done with the message right now
-    { can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
+    { can_be_copied_to_secret_chat   :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    , can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     , can_be_deleted_for_all_users   :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
     , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageMedia, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
     , can_be_forwarded               :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages
@@ -36,7 +37,8 @@ data MessageProperties
 
 instance I.ShortShow MessageProperties where
   shortShow MessageProperties
-    { can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
+    { can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
+    , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
     , can_be_edited                  = can_be_edited_
     , can_be_forwarded               = can_be_forwarded_
@@ -63,7 +65,8 @@ instance I.ShortShow MessageProperties where
     }
       = "MessageProperties"
         ++ I.cc
-        [ "can_be_deleted_only_for_self"   `I.p` can_be_deleted_only_for_self_
+        [ "can_be_copied_to_secret_chat"   `I.p` can_be_copied_to_secret_chat_
+        , "can_be_deleted_only_for_self"   `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users"   `I.p` can_be_deleted_for_all_users_
         , "can_be_edited"                  `I.p` can_be_edited_
         , "can_be_forwarded"               `I.p` can_be_forwarded_
@@ -100,6 +103,7 @@ instance AT.FromJSON MessageProperties where
     where
       parseMessageProperties :: A.Value -> AT.Parser MessageProperties
       parseMessageProperties = A.withObject "MessageProperties" $ \o -> do
+        can_be_copied_to_secret_chat_   <- o A..:?  "can_be_copied_to_secret_chat"
         can_be_deleted_only_for_self_   <- o A..:?  "can_be_deleted_only_for_self"
         can_be_deleted_for_all_users_   <- o A..:?  "can_be_deleted_for_all_users"
         can_be_edited_                  <- o A..:?  "can_be_edited"
@@ -125,7 +129,8 @@ instance AT.FromJSON MessageProperties where
         can_set_fact_check_             <- o A..:?  "can_set_fact_check"
         need_show_statistics_           <- o A..:?  "need_show_statistics"
         pure $ MessageProperties
-          { can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
+          { can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
+          , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
           , can_be_edited                  = can_be_edited_
           , can_be_forwarded               = can_be_forwarded_

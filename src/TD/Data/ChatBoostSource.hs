@@ -12,11 +12,12 @@ data ChatBoostSource
     { user_id   :: Maybe Int    -- ^ Identifier of a user, for which the gift code was created
     , gift_code :: Maybe T.Text -- ^ The created Telegram Premium gift code, which is known only if this is a gift code for the current user, or it has already been claimed
     }
-  | ChatBoostSourceGiveaway -- ^ The chat created a Telegram Premium giveaway
+  | ChatBoostSourceGiveaway -- ^ The chat created a giveaway
     { user_id             :: Maybe Int    -- ^ Identifier of a user that won in the giveaway; 0 if none
-    , gift_code           :: Maybe T.Text -- ^ The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise
+    , gift_code           :: Maybe T.Text -- ^ The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
+    , star_count          :: Maybe Int    -- ^ Number of Telegram Stars distributed among winners of the giveaway
     , giveaway_message_id :: Maybe Int    -- ^ Identifier of the corresponding giveaway message; can be an identifier of a deleted message
-    , is_unclaimed        :: Maybe Bool   -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen, because there were not enough participants
+    , is_unclaimed        :: Maybe Bool   -- ^ True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants
     }
   | ChatBoostSourcePremium -- ^ A user with Telegram Premium subscription or gifted Telegram Premium boosted the chat
     { user_id :: Maybe Int -- ^ Identifier of the user
@@ -36,6 +37,7 @@ instance I.ShortShow ChatBoostSource where
   shortShow ChatBoostSourceGiveaway
     { user_id             = user_id_
     , gift_code           = gift_code_
+    , star_count          = star_count_
     , giveaway_message_id = giveaway_message_id_
     , is_unclaimed        = is_unclaimed_
     }
@@ -43,6 +45,7 @@ instance I.ShortShow ChatBoostSource where
         ++ I.cc
         [ "user_id"             `I.p` user_id_
         , "gift_code"           `I.p` gift_code_
+        , "star_count"          `I.p` star_count_
         , "giveaway_message_id" `I.p` giveaway_message_id_
         , "is_unclaimed"        `I.p` is_unclaimed_
         ]
@@ -77,11 +80,13 @@ instance AT.FromJSON ChatBoostSource where
       parseChatBoostSourceGiveaway = A.withObject "ChatBoostSourceGiveaway" $ \o -> do
         user_id_             <- o A..:?  "user_id"
         gift_code_           <- o A..:?  "gift_code"
+        star_count_          <- o A..:?  "star_count"
         giveaway_message_id_ <- o A..:?  "giveaway_message_id"
         is_unclaimed_        <- o A..:?  "is_unclaimed"
         pure $ ChatBoostSourceGiveaway
           { user_id             = user_id_
           , gift_code           = gift_code_
+          , star_count          = star_count_
           , giveaway_message_id = giveaway_message_id_
           , is_unclaimed        = is_unclaimed_
           }

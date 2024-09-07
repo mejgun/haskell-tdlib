@@ -60,6 +60,11 @@ data ChatEventAction
     , old_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ Previous status of the chat member
     , new_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ New status of the chat member
     }
+  | ChatEventMemberSubscriptionExtended -- ^ A chat member extended their subscription to the chat
+    { user_id    :: Maybe Int                               -- ^ Affected chat member user identifier
+    , old_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ Previous status of the chat member
+    , new_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ New status of the chat member
+    }
   | ChatEventAvailableReactionsChanged -- ^ The chat available reactions were changed
     { old_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ Previous chat available reactions
     , new_available_reactions :: Maybe ChatAvailableReactions.ChatAvailableReactions -- ^ New chat available reactions
@@ -292,6 +297,17 @@ instance I.ShortShow ChatEventAction where
       = "ChatEventMemberRestricted"
         ++ I.cc
         [ "member_id"  `I.p` member_id_
+        , "old_status" `I.p` old_status_
+        , "new_status" `I.p` new_status_
+        ]
+  shortShow ChatEventMemberSubscriptionExtended
+    { user_id    = user_id_
+    , old_status = old_status_
+    , new_status = new_status_
+    }
+      = "ChatEventMemberSubscriptionExtended"
+        ++ I.cc
+        [ "user_id"    `I.p` user_id_
         , "old_status" `I.p` old_status_
         , "new_status" `I.p` new_status_
         ]
@@ -631,6 +647,7 @@ instance AT.FromJSON ChatEventAction where
       "chatEventMemberLeft"                             -> pure ChatEventMemberLeft
       "chatEventMemberPromoted"                         -> parseChatEventMemberPromoted v
       "chatEventMemberRestricted"                       -> parseChatEventMemberRestricted v
+      "chatEventMemberSubscriptionExtended"             -> parseChatEventMemberSubscriptionExtended v
       "chatEventAvailableReactionsChanged"              -> parseChatEventAvailableReactionsChanged v
       "chatEventBackgroundChanged"                      -> parseChatEventBackgroundChanged v
       "chatEventDescriptionChanged"                     -> parseChatEventDescriptionChanged v
@@ -747,6 +764,16 @@ instance AT.FromJSON ChatEventAction where
         new_status_ <- o A..:?  "new_status"
         pure $ ChatEventMemberRestricted
           { member_id  = member_id_
+          , old_status = old_status_
+          , new_status = new_status_
+          }
+      parseChatEventMemberSubscriptionExtended :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventMemberSubscriptionExtended = A.withObject "ChatEventMemberSubscriptionExtended" $ \o -> do
+        user_id_    <- o A..:?  "user_id"
+        old_status_ <- o A..:?  "old_status"
+        new_status_ <- o A..:?  "new_status"
+        pure $ ChatEventMemberSubscriptionExtended
+          { user_id    = user_id_
           , old_status = old_status_
           , new_status = new_status_
           }

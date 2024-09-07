@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Removes all pending paid reactions on a message. Can be called within 5 seconds after the last addPaidMessageReaction call. Returns 'TD.Data.Ok.Ok'
+-- | Removes all pending paid reactions on a message. Returns 'TD.Data.Ok.Ok'
 data RemovePendingPaidMessageReactions
   = RemovePendingPaidMessageReactions
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs

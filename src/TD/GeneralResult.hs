@@ -106,6 +106,7 @@ import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
+import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
 import qualified TD.Data.GroupCallStreams as GroupCallStreams
@@ -159,7 +160,6 @@ import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
 import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
 import qualified TD.Data.PremiumGiftCodePaymentOptions as PremiumGiftCodePaymentOptions
-import qualified TD.Data.PremiumGiveawayInfo as PremiumGiveawayInfo
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.Proxies as Proxies
@@ -182,6 +182,7 @@ import qualified TD.Data.SentWebAppMessage as SentWebAppMessage
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
+import qualified TD.Data.StarGiveawayPaymentOptions as StarGiveawayPaymentOptions
 import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
 import qualified TD.Data.StarRevenueStatistics as StarRevenueStatistics
 import qualified TD.Data.StarSubscriptions as StarSubscriptions
@@ -327,6 +328,7 @@ data GeneralResult
     | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
+    | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
     | GroupCallStreams                   GroupCallStreams.GroupCallStreams
@@ -380,7 +382,6 @@ data GeneralResult
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
     | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
     | PremiumGiftCodePaymentOptions      PremiumGiftCodePaymentOptions.PremiumGiftCodePaymentOptions
-    | PremiumGiveawayInfo                PremiumGiveawayInfo.PremiumGiveawayInfo
     | PremiumLimit                       PremiumLimit.PremiumLimit
     | PremiumState                       PremiumState.PremiumState
     | Proxies                            Proxies.Proxies
@@ -403,6 +404,7 @@ data GeneralResult
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
+    | StarGiveawayPaymentOptions         StarGiveawayPaymentOptions.StarGiveawayPaymentOptions
     | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
     | StarRevenueStatistics              StarRevenueStatistics.StarRevenueStatistics
     | StarSubscriptions                  StarSubscriptions.StarSubscriptions
@@ -651,6 +653,8 @@ instance I.ShortShow GeneralResult where
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiveawayInfo v)
+    = "GiveawayInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCall v)
     = "GroupCall" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCallId v)
@@ -757,8 +761,6 @@ instance I.ShortShow GeneralResult where
     = "PremiumGiftCodeInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumGiftCodePaymentOptions v)
     = "PremiumGiftCodePaymentOptions" <> " (" <> I.shortShow v <> ")"
-  shortShow (PremiumGiveawayInfo v)
-    = "PremiumGiveawayInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumLimit v)
     = "PremiumLimit" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumState v)
@@ -803,6 +805,8 @@ instance I.ShortShow GeneralResult where
     = "Sessions" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarGiveawayPaymentOptions v)
+    = "StarGiveawayPaymentOptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarPaymentOptions v)
     = "StarPaymentOptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarRevenueStatistics v)
@@ -990,6 +994,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
+    <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )
     <|> ( GroupCallStreams                    <$> parseJSON v )
@@ -1043,7 +1048,6 @@ instance T.FromJSON GeneralResult where
     <|> ( PremiumFeatures                     <$> parseJSON v )
     <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )
     <|> ( PremiumGiftCodePaymentOptions       <$> parseJSON v )
-    <|> ( PremiumGiveawayInfo                 <$> parseJSON v )
     <|> ( PremiumLimit                        <$> parseJSON v )
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( Proxies                             <$> parseJSON v )
@@ -1066,6 +1070,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
+    <|> ( StarGiveawayPaymentOptions          <$> parseJSON v )
     <|> ( StarPaymentOptions                  <$> parseJSON v )
     <|> ( StarRevenueStatistics               <$> parseJSON v )
     <|> ( StarSubscriptions                   <$> parseJSON v )
