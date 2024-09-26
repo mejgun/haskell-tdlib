@@ -21,7 +21,7 @@ data InternalLinkType
   | InternalLinkTypeAuthenticationCode -- ^ The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     { code :: Maybe T.Text -- ^ The authentication code
     }
-  | InternalLinkTypeBackground -- ^ The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
+  | InternalLinkTypeBackground -- ^ The link is a link to a background. Call searchBackground with the given background name to process the link. If background is found and the user wants to apply it, then call setDefaultBackground
     { background_name :: Maybe T.Text -- ^ Name of the background
     }
   | InternalLinkTypeBotAddToChannel -- ^ The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
@@ -111,7 +111,7 @@ data InternalLinkType
     , port   :: Maybe Int                 -- ^ Proxy server port
     , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
     }
-  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
+  | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     { chat_username :: Maybe T.Text -- ^ Username of the chat
     , draft_text    :: Maybe T.Text -- ^ Draft text for message to send in the chat
     , open_profile  :: Maybe Bool   -- ^ True, if chat profile information screen must be opened; otherwise, the chat itself must be opened

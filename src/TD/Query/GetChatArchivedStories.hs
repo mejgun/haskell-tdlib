@@ -12,7 +12,7 @@ data GetChatArchivedStories
   = GetChatArchivedStories
     { chat_id       :: Maybe Int -- ^ Chat identifier
     , from_story_id :: Maybe Int -- ^ Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-    , limit         :: Maybe Int -- ^ The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+    , limit         :: Maybe Int -- ^ The maximum number of stories to be returned. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
     }
   deriving (Eq, Show)
 

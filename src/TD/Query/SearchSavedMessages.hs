@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 import qualified Data.Text as T
 
--- | Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. Returns 'TD.Data.FoundChatMessages.FoundChatMessages'
+-- | Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. Returns 'TD.Data.FoundChatMessages.FoundChatMessages'
 data SearchSavedMessages
   = SearchSavedMessages
     { saved_messages_topic_id :: Maybe Int                       -- ^ If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
