@@ -13,7 +13,7 @@ data SponsoredMessage
     { message_id                 :: Maybe Int                           -- ^ Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     , is_recommended             :: Maybe Bool                          -- ^ True, if the message needs to be labeled as "recommended" instead of "sponsored"
     , can_be_reported            :: Maybe Bool                          -- ^ True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage
-    , content                    :: Maybe MessageContent.MessageContent -- ^ Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo
+    , content                    :: Maybe MessageContent.MessageContent -- ^ Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen
     , sponsor                    :: Maybe MessageSponsor.MessageSponsor -- ^ Information about the sponsor of the message
     , title                      :: Maybe T.Text                        -- ^ Title of the sponsored message
     , button_text                :: Maybe T.Text                        -- ^ Text for the message action button

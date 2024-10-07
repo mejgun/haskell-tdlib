@@ -41,7 +41,7 @@ data AuthenticationCodeType
     }
   | AuthenticationCodeTypeFirebaseIos -- ^ A digit-only authentication code is delivered via Firebase Authentication to the official iOS application
     { receipt      :: Maybe T.Text -- ^ Receipt of successful application token validation to compare with receipt from push notification
-    , push_timeout :: Maybe Int    -- ^ Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
+    , push_timeout :: Maybe Int    -- ^ Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds
     , _length      :: Maybe Int    -- ^ Length of the code
     }
   deriving (Eq, Show)

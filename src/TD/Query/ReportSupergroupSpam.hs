@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data ReportSupergroupSpam
   = ReportSupergroupSpam
     { supergroup_id :: Maybe Int   -- ^ Supergroup identifier
-    , message_ids   :: Maybe [Int] -- ^ Identifiers of messages to report. Use messageProperties.can_be_reported to check whether the message can be reported
+    , message_ids   :: Maybe [Int] -- ^ Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
     }
   deriving (Eq, Show)
 

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the last message sent in a chat no later than the specified date. Returns 'TD.Data.Message.Message'
+-- | Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist. Returns 'TD.Data.Message.Message'
 data GetChatMessageByDate
   = GetChatMessageByDate
     { chat_id :: Maybe Int -- ^ Chat identifier

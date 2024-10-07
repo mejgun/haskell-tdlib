@@ -10,7 +10,7 @@ data ConnectionState
   = ConnectionStateWaitingForNetwork -- ^ Waiting for the network to become available. Use setNetworkType to change the available network type
   | ConnectionStateConnectingToProxy -- ^ Establishing a connection with a proxy server
   | ConnectionStateConnecting -- ^ Establishing a connection to the Telegram servers
-  | ConnectionStateUpdating -- ^ Downloading data supposed to be received while the application was offline
+  | ConnectionStateUpdating -- ^ Downloading data expected to be received while the application was offline
   | ConnectionStateReady -- ^ There is a working connection to the Telegram servers
   deriving (Eq, Show)
 

@@ -106,6 +106,7 @@ import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
+import qualified TD.Data.Gifts as Gifts
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
@@ -171,7 +172,9 @@ import qualified TD.Data.QuickReplyMessages as QuickReplyMessages
 import qualified TD.Data.ReadDatePrivacySettings as ReadDatePrivacySettings
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
+import qualified TD.Data.ReportChatResult as ReportChatResult
 import qualified TD.Data.ReportChatSponsoredMessageResult as ReportChatSponsoredMessageResult
+import qualified TD.Data.ReportStoryResult as ReportStoryResult
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RtmpUrl as RtmpUrl
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
@@ -217,6 +220,7 @@ import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
+import qualified TD.Data.UserGifts as UserGifts
 import qualified TD.Data.UserLink as UserLink
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
@@ -328,6 +332,7 @@ data GeneralResult
     | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
+    | Gifts                              Gifts.Gifts
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
@@ -393,7 +398,9 @@ data GeneralResult
     | ReadDatePrivacySettings            ReadDatePrivacySettings.ReadDatePrivacySettings
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
+    | ReportChatResult                   ReportChatResult.ReportChatResult
     | ReportChatSponsoredMessageResult   ReportChatSponsoredMessageResult.ReportChatSponsoredMessageResult
+    | ReportStoryResult                  ReportStoryResult.ReportStoryResult
     | ResetPasswordResult                ResetPasswordResult.ResetPasswordResult
     | RtmpUrl                            RtmpUrl.RtmpUrl
     | SavedMessagesTags                  SavedMessagesTags.SavedMessagesTags
@@ -439,6 +446,7 @@ data GeneralResult
     | Updates                            Updates.Updates
     | User                               User.User
     | UserFullInfo                       UserFullInfo.UserFullInfo
+    | UserGifts                          UserGifts.UserGifts
     | UserLink                           UserLink.UserLink
     | UserPrivacySettingRules            UserPrivacySettingRules.UserPrivacySettingRules
     | UserSupportInfo                    UserSupportInfo.UserSupportInfo
@@ -653,6 +661,8 @@ instance I.ShortShow GeneralResult where
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
+  shortShow (Gifts v)
+    = "Gifts" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
     = "GiveawayInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCall v)
@@ -783,8 +793,12 @@ instance I.ShortShow GeneralResult where
     = "RecommendedChatFolders" <> " (" <> I.shortShow v <> ")"
   shortShow (RecoveryEmailAddress v)
     = "RecoveryEmailAddress" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReportChatResult v)
+    = "ReportChatResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ReportChatSponsoredMessageResult v)
     = "ReportChatSponsoredMessageResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReportStoryResult v)
+    = "ReportStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ResetPasswordResult v)
     = "ResetPasswordResult" <> " (" <> I.shortShow v <> ")"
   shortShow (RtmpUrl v)
@@ -875,6 +889,8 @@ instance I.ShortShow GeneralResult where
     = "User" <> " (" <> I.shortShow v <> ")"
   shortShow (UserFullInfo v)
     = "UserFullInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (UserGifts v)
+    = "UserGifts" <> " (" <> I.shortShow v <> ")"
   shortShow (UserLink v)
     = "UserLink" <> " (" <> I.shortShow v <> ")"
   shortShow (UserPrivacySettingRules v)
@@ -994,6 +1010,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
+    <|> ( Gifts                               <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )
@@ -1059,7 +1076,9 @@ instance T.FromJSON GeneralResult where
     <|> ( ReadDatePrivacySettings             <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
+    <|> ( ReportChatResult                    <$> parseJSON v )
     <|> ( ReportChatSponsoredMessageResult    <$> parseJSON v )
+    <|> ( ReportStoryResult                   <$> parseJSON v )
     <|> ( ResetPasswordResult                 <$> parseJSON v )
     <|> ( RtmpUrl                             <$> parseJSON v )
     <|> ( SavedMessagesTags                   <$> parseJSON v )
@@ -1105,6 +1124,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Updates                             <$> parseJSON v )
     <|> ( User                                <$> parseJSON v )
     <|> ( UserFullInfo                        <$> parseJSON v )
+    <|> ( UserGifts                           <$> parseJSON v )
     <|> ( UserLink                            <$> parseJSON v )
     <|> ( UserPrivacySettingRules             <$> parseJSON v )
     <|> ( UserSupportInfo                     <$> parseJSON v )

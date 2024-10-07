@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Refunds a previously done payment in Telegram Stars. Returns 'TD.Data.Ok.Ok'
+-- | Refunds a previously done payment in Telegram Stars; for bots only. Returns 'TD.Data.Ok.Ok'
 data RefundStarPayment
   = RefundStarPayment
     { user_id                    :: Maybe Int    -- ^ Identifier of the user that did the payment

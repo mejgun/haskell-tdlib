@@ -14,7 +14,7 @@ data StoryContent
     }
   | StoryContentVideo -- ^ A video story
     { video             :: Maybe StoryVideo.StoryVideo -- ^ The video in MPEG4 format
-    , alternative_video :: Maybe StoryVideo.StoryVideo -- ^ Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null
+    , alternative_video :: Maybe StoryVideo.StoryVideo -- ^ Alternative version of the video in MPEG4 format, encoded with H.264 codec; may be null
     }
   | StoryContentUnsupported -- ^ A story content that is not supported in the current TDLib version
   deriving (Eq, Show)

@@ -8,7 +8,7 @@ import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
 import qualified TD.Data.BotTransactionPurpose as BotTransactionPurpose
 import qualified TD.Data.PaidMedia as PaidMedia
 import qualified TD.Data.ChatTransactionPurpose as ChatTransactionPurpose
-import qualified TD.Data.Sticker as Sticker
+import qualified TD.Data.UserTransactionPurpose as UserTransactionPurpose
 
 -- | Describes source or recipient of a transaction with Telegram Stars
 data StarTransactionPartner
@@ -31,9 +31,9 @@ data StarTransactionPartner
     { chat_id  :: Maybe Int                                           -- ^ Identifier of the chat
     , _purpose :: Maybe ChatTransactionPurpose.ChatTransactionPurpose -- ^ Purpose of the transaction
     }
-  | StarTransactionPartnerUser -- ^ The transaction is a gift of Telegram Stars from another user
-    { user_id :: Maybe Int             -- ^ Identifier of the user; 0 if the gift was anonymous
-    , sticker :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
+  | StarTransactionPartnerUser -- ^ The transaction is a transcation with another user
+    { user_id   :: Maybe Int                                           -- ^ Identifier of the user; 0 if the user was anonymous
+    , __purpose :: Maybe UserTransactionPurpose.UserTransactionPurpose -- ^ Purpose of the transaction
     }
   | StarTransactionPartnerUnsupported -- ^ The transaction is a transaction with unknown partner
   deriving (Eq, Show)
@@ -82,13 +82,13 @@ instance I.ShortShow StarTransactionPartner where
         , "_purpose" `I.p` _purpose_
         ]
   shortShow StarTransactionPartnerUser
-    { user_id = user_id_
-    , sticker = sticker_
+    { user_id   = user_id_
+    , __purpose = __purpose_
     }
       = "StarTransactionPartnerUser"
         ++ I.cc
-        [ "user_id" `I.p` user_id_
-        , "sticker" `I.p` sticker_
+        [ "user_id"   `I.p` user_id_
+        , "__purpose" `I.p` __purpose_
         ]
   shortShow StarTransactionPartnerUnsupported
       = "StarTransactionPartnerUnsupported"
@@ -143,11 +143,11 @@ instance AT.FromJSON StarTransactionPartner where
           }
       parseStarTransactionPartnerUser :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerUser = A.withObject "StarTransactionPartnerUser" $ \o -> do
-        user_id_ <- o A..:?  "user_id"
-        sticker_ <- o A..:?  "sticker"
+        user_id_   <- o A..:?  "user_id"
+        __purpose_ <- o A..:?  "purpose"
         pure $ StarTransactionPartnerUser
-          { user_id = user_id_
-          , sticker = sticker_
+          { user_id   = user_id_
+          , __purpose = __purpose_
           }
   parseJSON _ = mempty
 

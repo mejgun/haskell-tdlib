@@ -10,7 +10,7 @@ data PaidReactor
   = PaidReactor -- ^ Contains information about a user that added paid reactions
     { sender_id    :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user
     , star_count   :: Maybe Int                         -- ^ Number of Telegram Stars added
-    , is_top       :: Maybe Bool                        -- ^ True, if the reactor is one of the most active reactors; can be false if the reactor is the current user
+    , is_top       :: Maybe Bool                        -- ^ True, if the reactor is one of the most active reactors; may be false if the reactor is the current user
     , is_me        :: Maybe Bool                        -- ^ True, if the paid reaction was added by the current user
     , is_anonymous :: Maybe Bool                        -- ^ True, if the reactor is anonymous
     }

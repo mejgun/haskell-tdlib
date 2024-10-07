@@ -19,7 +19,7 @@ data ReplyMarkup
     }
   | ReplyMarkupShowKeyboard -- ^ Contains a custom keyboard layout to quickly reply to bots
     { rows                    :: Maybe [[KeyboardButton.KeyboardButton]] -- ^ A list of rows of bot keyboard buttons
-    , is_persistent           :: Maybe Bool                              -- ^ True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden
+    , is_persistent           :: Maybe Bool                              -- ^ True, if the keyboard is expected to always be shown when the ordinary keyboard is hidden
     , resize_keyboard         :: Maybe Bool                              -- ^ True, if the application needs to resize the keyboard vertically
     , one_time                :: Maybe Bool                              -- ^ True, if the application needs to hide the keyboard after use
     , is_personal             :: Maybe Bool                              -- ^ True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply

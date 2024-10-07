@@ -10,7 +10,7 @@ data InputPaidMediaType
   = InputPaidMediaTypePhoto -- ^ The media is a photo. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
   | InputPaidMediaTypeVideo -- ^ The media is a video
     { duration           :: Maybe Int  -- ^ Duration of the video, in seconds
-    , supports_streaming :: Maybe Bool -- ^ True, if the video is supposed to be streamed
+    , supports_streaming :: Maybe Bool -- ^ True, if the video is expected to be streamed
     }
   deriving (Eq, Show)
 

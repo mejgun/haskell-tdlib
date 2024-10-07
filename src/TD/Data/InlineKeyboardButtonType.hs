@@ -36,6 +36,9 @@ data InlineKeyboardButtonType
   | InlineKeyboardButtonTypeUser -- ^ A button with a user reference to be handled in the same way as textEntityTypeMentionName entities
     { user_id :: Maybe Int -- ^ User identifier
     }
+  | InlineKeyboardButtonTypeCopyText -- ^ A button that copies specified text to clipboard
+    { text :: Maybe T.Text -- ^ The text to copy to clipboard
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow InlineKeyboardButtonType where
@@ -98,6 +101,13 @@ instance I.ShortShow InlineKeyboardButtonType where
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
+  shortShow InlineKeyboardButtonTypeCopyText
+    { text = text_
+    }
+      = "InlineKeyboardButtonTypeCopyText"
+        ++ I.cc
+        [ "text" `I.p` text_
+        ]
 
 instance AT.FromJSON InlineKeyboardButtonType where
   parseJSON v@(AT.Object obj) = do
@@ -113,6 +123,7 @@ instance AT.FromJSON InlineKeyboardButtonType where
       "inlineKeyboardButtonTypeSwitchInline"         -> parseInlineKeyboardButtonTypeSwitchInline v
       "inlineKeyboardButtonTypeBuy"                  -> pure InlineKeyboardButtonTypeBuy
       "inlineKeyboardButtonTypeUser"                 -> parseInlineKeyboardButtonTypeUser v
+      "inlineKeyboardButtonTypeCopyText"             -> parseInlineKeyboardButtonTypeCopyText v
       _                                              -> mempty
     
     where
@@ -163,6 +174,12 @@ instance AT.FromJSON InlineKeyboardButtonType where
         user_id_ <- o A..:?  "user_id"
         pure $ InlineKeyboardButtonTypeUser
           { user_id = user_id_
+          }
+      parseInlineKeyboardButtonTypeCopyText :: A.Value -> AT.Parser InlineKeyboardButtonType
+      parseInlineKeyboardButtonTypeCopyText = A.withObject "InlineKeyboardButtonTypeCopyText" $ \o -> do
+        text_ <- o A..:?  "text"
+        pure $ InlineKeyboardButtonTypeCopyText
+          { text = text_
           }
   parseJSON _ = mempty
 
@@ -229,5 +246,12 @@ instance AT.ToJSON InlineKeyboardButtonType where
       = A.object
         [ "@type"   A..= AT.String "inlineKeyboardButtonTypeUser"
         , "user_id" A..= user_id_
+        ]
+  toJSON InlineKeyboardButtonTypeCopyText
+    { text = text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "inlineKeyboardButtonTypeCopyText"
+        , "text"  A..= text_
         ]
 

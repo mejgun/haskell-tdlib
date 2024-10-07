@@ -14,6 +14,7 @@ import qualified TD.Data.PaidMedia as PaidMedia
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
+import qualified TD.Data.AlternativeVideo as AlternativeVideo
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 import qualified TD.Data.Location as Location
@@ -34,6 +35,7 @@ import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
 import qualified TD.Data.GiveawayPrize as GiveawayPrize
+import qualified TD.Data.Gift as Gift
 import qualified TD.Data.SharedUser as SharedUser
 import qualified TD.Data.SharedChat as SharedChat
 import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
@@ -81,11 +83,12 @@ data MessageContent
     , is_premium :: Maybe Bool            -- ^ True, if premium animation of the sticker must be played
     }
   | MessageVideo -- ^ A video message
-    { video                    :: Maybe Video.Video                 -- ^ The video description
-    , caption                  :: Maybe FormattedText.FormattedText -- ^ Video caption
-    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
-    , has_spoiler              :: Maybe Bool                        -- ^ True, if the video preview must be covered by a spoiler animation
-    , is_secret                :: Maybe Bool                        -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
+    { video                    :: Maybe Video.Video                         -- ^ The video description
+    , alternative_videos       :: Maybe [AlternativeVideo.AlternativeVideo] -- ^ Alternative qualities of the video
+    , caption                  :: Maybe FormattedText.FormattedText         -- ^ Video caption
+    , show_caption_above_media :: Maybe Bool                                -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
+    , has_spoiler              :: Maybe Bool                                -- ^ True, if the video preview must be covered by a spoiler animation
+    , is_secret                :: Maybe Bool                                -- ^ True, if the video thumbnail must be blurred and the video must be shown only while tapped
     }
   | MessageVideoNote -- ^ A video note message
     { video_note :: Maybe VideoNote.VideoNote -- ^ The video note description
@@ -154,7 +157,7 @@ data MessageContent
     }
   | MessageVideoChatScheduled -- ^ A new video chat was scheduled
     { group_call_id :: Maybe Int -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
-    , start_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    , start_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the group call is expected to be started by an administrator
     }
   | MessageVideoChatStarted -- ^ A newly created video chat
     { group_call_id :: Maybe Int -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
@@ -329,13 +332,21 @@ data MessageContent
     , transaction_id        :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars purchase; for receiver only
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
-  | MessageGiveawayPrizeStars -- ^ A Telegram Stars were received by the cuurent user from a giveaway
+  | MessageGiveawayPrizeStars -- ^ A Telegram Stars were received by the current user from a giveaway
     { star_count          :: Maybe Int             -- ^ Number of Telegram Stars that were received
     , transaction_id      :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars credit
     , boosted_chat_id     :: Maybe Int             -- ^ Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
     , giveaway_message_id :: Maybe Int             -- ^ Identifier of the message with the giveaway in the boosted chat; can be 0 if the message was deleted
     , is_unclaimed        :: Maybe Bool            -- ^ True, if the corresponding winner wasn't chosen and the Telegram Stars were received by the owner of the boosted chat
     , sticker             :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
+    }
+  | MessageGift -- ^ A gift was received or sent by the current user
+    { gift            :: Maybe Gift.Gift                   -- ^ The gift
+    , text            :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
+    , sell_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift
+    , is_private      :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
+    , is_saved        :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's profile page; only for the receiver of the gift
+    , was_converted   :: Maybe Bool                        -- ^ True, if the gift was converted to Telegram Stars; only for the receiver of the gift
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
@@ -455,6 +466,7 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessageVideo
     { video                    = video_
+    , alternative_videos       = alternative_videos_
     , caption                  = caption_
     , show_caption_above_media = show_caption_above_media_
     , has_spoiler              = has_spoiler_
@@ -463,6 +475,7 @@ instance I.ShortShow MessageContent where
       = "MessageVideo"
         ++ I.cc
         [ "video"                    `I.p` video_
+        , "alternative_videos"       `I.p` alternative_videos_
         , "caption"                  `I.p` caption_
         , "show_caption_above_media" `I.p` show_caption_above_media_
         , "has_spoiler"              `I.p` has_spoiler_
@@ -1015,6 +1028,23 @@ instance I.ShortShow MessageContent where
         , "is_unclaimed"        `I.p` is_unclaimed_
         , "sticker"             `I.p` sticker_
         ]
+  shortShow MessageGift
+    { gift            = gift_
+    , text            = text_
+    , sell_star_count = sell_star_count_
+    , is_private      = is_private_
+    , is_saved        = is_saved_
+    , was_converted   = was_converted_
+    }
+      = "MessageGift"
+        ++ I.cc
+        [ "gift"            `I.p` gift_
+        , "text"            `I.p` text_
+        , "sell_star_count" `I.p` sell_star_count_
+        , "is_private"      `I.p` is_private_
+        , "is_saved"        `I.p` is_saved_
+        , "was_converted"   `I.p` was_converted_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUsersShared
@@ -1156,6 +1186,7 @@ instance AT.FromJSON MessageContent where
       "messageGiveawayWinners"              -> parseMessageGiveawayWinners v
       "messageGiftedStars"                  -> parseMessageGiftedStars v
       "messageGiveawayPrizeStars"           -> parseMessageGiveawayPrizeStars v
+      "messageGift"                         -> parseMessageGift v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1246,12 +1277,14 @@ instance AT.FromJSON MessageContent where
       parseMessageVideo :: A.Value -> AT.Parser MessageContent
       parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
         video_                    <- o A..:?  "video"
+        alternative_videos_       <- o A..:?  "alternative_videos"
         caption_                  <- o A..:?  "caption"
         show_caption_above_media_ <- o A..:?  "show_caption_above_media"
         has_spoiler_              <- o A..:?  "has_spoiler"
         is_secret_                <- o A..:?  "is_secret"
         pure $ MessageVideo
           { video                    = video_
+          , alternative_videos       = alternative_videos_
           , caption                  = caption_
           , show_caption_above_media = show_caption_above_media_
           , has_spoiler              = has_spoiler_
@@ -1740,6 +1773,22 @@ instance AT.FromJSON MessageContent where
           , giveaway_message_id = giveaway_message_id_
           , is_unclaimed        = is_unclaimed_
           , sticker             = sticker_
+          }
+      parseMessageGift :: A.Value -> AT.Parser MessageContent
+      parseMessageGift = A.withObject "MessageGift" $ \o -> do
+        gift_            <- o A..:?  "gift"
+        text_            <- o A..:?  "text"
+        sell_star_count_ <- o A..:?  "sell_star_count"
+        is_private_      <- o A..:?  "is_private"
+        is_saved_        <- o A..:?  "is_saved"
+        was_converted_   <- o A..:?  "was_converted"
+        pure $ MessageGift
+          { gift            = gift_
+          , text            = text_
+          , sell_star_count = sell_star_count_
+          , is_private      = is_private_
+          , is_saved        = is_saved_
+          , was_converted   = was_converted_
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do

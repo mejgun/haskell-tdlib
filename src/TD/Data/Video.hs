@@ -17,7 +17,7 @@ data Video
     , file_name          :: Maybe T.Text                      -- ^ Original name of the file; as defined by the sender
     , mime_type          :: Maybe T.Text                      -- ^ MIME type of the file; as defined by the sender
     , has_stickers       :: Maybe Bool                        -- ^ True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
-    , supports_streaming :: Maybe Bool                        -- ^ True, if the video is supposed to be streamed
+    , supports_streaming :: Maybe Bool                        -- ^ True, if the video is expected to be streamed
     , minithumbnail      :: Maybe Minithumbnail.Minithumbnail -- ^ Video minithumbnail; may be null
     , thumbnail          :: Maybe Thumbnail.Thumbnail         -- ^ Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null
     , video              :: Maybe File.File                   -- ^ File containing the video

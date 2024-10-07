@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a newest pinned message in the chat. Returns 'TD.Data.Message.Message'
+-- | Returns information about a newest pinned message in the chat. Returns a 404 error if the message doesn't exist. Returns 'TD.Data.Message.Message'
 data GetChatPinnedMessage
   = GetChatPinnedMessage
     { chat_id :: Maybe Int -- ^ Identifier of the chat the message belongs to

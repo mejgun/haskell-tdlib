@@ -12,7 +12,7 @@ import qualified Data.Text as T
 data GetSuggestedFileName
   = GetSuggestedFileName
     { file_id   :: Maybe Int    -- ^ Identifier of the file
-    , directory :: Maybe T.Text -- ^ Directory in which the file is supposed to be saved
+    , directory :: Maybe T.Text -- ^ Directory in which the file is expected to be saved
     }
   deriving (Eq, Show)
 

@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.44.0
+version:        2.0.45.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -30,6 +30,7 @@ library
       TD.Data.AddedReaction
       TD.Data.AddedReactions
       TD.Data.Address
+      TD.Data.AlternativeVideo
       TD.Data.AnimatedChatPhoto
       TD.Data.AnimatedEmoji
       TD.Data.Animation
@@ -245,6 +246,8 @@ library
       TD.Data.Game
       TD.Data.GameHighScore
       TD.Data.GameHighScores
+      TD.Data.Gift
+      TD.Data.Gifts
       TD.Data.GiveawayInfo
       TD.Data.GiveawayParameters
       TD.Data.GiveawayParticipantStatus
@@ -446,9 +449,11 @@ library
       TD.Data.RecoveryEmailAddress
       TD.Data.RemoteFile
       TD.Data.ReplyMarkup
-      TD.Data.ReportChatSponsoredMessageOption
+      TD.Data.ReportChatResult
       TD.Data.ReportChatSponsoredMessageResult
+      TD.Data.ReportOption
       TD.Data.ReportReason
+      TD.Data.ReportStoryResult
       TD.Data.ResendCodeReason
       TD.Data.ResetPasswordResult
       TD.Data.RevenueWithdrawalState
@@ -560,6 +565,8 @@ library
       TD.Data.Updates
       TD.Data.User
       TD.Data.UserFullInfo
+      TD.Data.UserGift
+      TD.Data.UserGifts
       TD.Data.UserLink
       TD.Data.Usernames
       TD.Data.UserPrivacySetting
@@ -568,6 +575,7 @@ library
       TD.Data.Users
       TD.Data.UserStatus
       TD.Data.UserSupportInfo
+      TD.Data.UserTransactionPurpose
       TD.Data.UserType
       TD.Data.ValidatedOrderInfo
       TD.Data.VectorPathCommand
@@ -775,6 +783,7 @@ library
       TD.Query.GetAutoDownloadSettingsPresets
       TD.Query.GetAutosaveSettings
       TD.Query.GetAvailableChatBoostSlots
+      TD.Query.GetAvailableGifts
       TD.Query.GetBackgroundUrl
       TD.Query.GetBankCardInfo
       TD.Query.GetBasicGroup
@@ -944,6 +953,7 @@ library
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
       TD.Query.GetPremiumGiftCodePaymentOptions
+      TD.Query.GetPremiumInfoSticker
       TD.Query.GetPremiumLimit
       TD.Query.GetPremiumState
       TD.Query.GetPremiumStickerExamples
@@ -1013,6 +1023,7 @@ library
       TD.Query.GetUser
       TD.Query.GetUserChatBoosts
       TD.Query.GetUserFullInfo
+      TD.Query.GetUserGifts
       TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
       TD.Query.GetUserProfilePhotos
@@ -1158,6 +1169,7 @@ library
       TD.Query.SearchUserByPhoneNumber
       TD.Query.SearchUserByToken
       TD.Query.SearchWebApp
+      TD.Query.SellGift
       TD.Query.SendAuthenticationFirebaseSms
       TD.Query.SendBotStartMessage
       TD.Query.SendBusinessMessage
@@ -1169,6 +1181,7 @@ library
       TD.Query.SendChatAction
       TD.Query.SendCustomRequest
       TD.Query.SendEmailAddressVerificationCode
+      TD.Query.SendGift
       TD.Query.SendInlineQueryResultMessage
       TD.Query.SendMessage
       TD.Query.SendMessageAlbum
@@ -1331,6 +1344,7 @@ library
       TD.Query.ToggleForumTopicIsClosed
       TD.Query.ToggleForumTopicIsPinned
       TD.Query.ToggleGeneralForumTopicIsHidden
+      TD.Query.ToggleGiftIsSaved
       TD.Query.ToggleGroupCallEnabledStartNotification
       TD.Query.ToggleGroupCallIsMyVideoEnabled
       TD.Query.ToggleGroupCallIsMyVideoPaused

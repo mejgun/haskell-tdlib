@@ -17,7 +17,7 @@ data StoryVideo
     , is_animation          :: Maybe Bool                        -- ^ True, if the video has no sound
     , minithumbnail         :: Maybe Minithumbnail.Minithumbnail -- ^ Video minithumbnail; may be null
     , thumbnail             :: Maybe Thumbnail.Thumbnail         -- ^ Video thumbnail in JPEG or MPEG4 format; may be null
-    , preload_prefix_size   :: Maybe Int                         -- ^ Size of file prefix, which is supposed to be preloaded, in bytes
+    , preload_prefix_size   :: Maybe Int                         -- ^ Size of file prefix, which is expected to be preloaded, in bytes
     , cover_frame_timestamp :: Maybe Double                      -- ^ Timestamp of the frame used as video thumbnail
     , video                 :: Maybe File.File                   -- ^ File containing the video
     }

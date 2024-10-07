@@ -17,7 +17,7 @@ data Audio
     , file_name                 :: Maybe T.Text                      -- ^ Original name of the file; as defined by the sender
     , mime_type                 :: Maybe T.Text                      -- ^ The MIME type of the file; as defined by the sender
     , album_cover_minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ The minithumbnail of the album cover; may be null
-    , album_cover_thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null
+    , album_cover_thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is expected to be extracted from the downloaded audio file; may be null
     , external_album_covers     :: Maybe [Thumbnail.Thumbnail]       -- ^ Album cover variants to use if the downloaded audio file contains no album cover. Provided thumbnail dimensions are approximate
     , audio                     :: Maybe File.File                   -- ^ File containing the audio
     }

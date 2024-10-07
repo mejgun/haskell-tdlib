@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.Location as Location
 
--- | Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats. Returns 'TD.Data.ChatsNearby.ChatsNearby'
+-- | Returns a list of users and location-based supergroups nearby. The method was disabled and returns an empty list of chats now. Returns 'TD.Data.ChatsNearby.ChatsNearby'
 data SearchChatsNearby
   = SearchChatsNearby
     { location :: Maybe Location.Location -- ^ Current user location

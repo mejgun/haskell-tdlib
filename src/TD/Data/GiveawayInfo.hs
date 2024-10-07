@@ -18,7 +18,7 @@ data GiveawayInfo
     { creation_date                 :: Maybe Int    -- ^ Point in time (Unix timestamp) when the giveaway was created
     , actual_winners_selection_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
     , was_refunded                  :: Maybe Bool   -- ^ True, if the giveaway was canceled and was fully refunded
-    , is_winner                     :: Maybe Bool   -- ^ True, if the cuurent user is a winner of the giveaway
+    , is_winner                     :: Maybe Bool   -- ^ True, if the current user is a winner of the giveaway
     , winner_count                  :: Maybe Int    -- ^ Number of winners in the giveaway
     , activation_count              :: Maybe Int    -- ^ Number of winners, which activated their gift codes; for Telegram Premium giveaways only
     , gift_code                     :: Maybe T.Text -- ^ Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway

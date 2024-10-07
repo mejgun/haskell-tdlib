@@ -31,6 +31,7 @@ data UserFullInfo
     , birthdate                                    :: Maybe Birthdate.Birthdate                         -- ^ Birthdate of the user; may be null if unknown
     , personal_chat_id                             :: Maybe Int                                         -- ^ Identifier of the personal chat of the user; 0 if none
     , premium_gift_options                         :: Maybe [PremiumPaymentOption.PremiumPaymentOption] -- ^ The list of available options for gifting Telegram Premium to the user
+    , gift_count                                   :: Maybe Int                                         -- ^ Number of gifts saved to profile by the user
     , group_in_common_count                        :: Maybe Int                                         -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
     , business_info                                :: Maybe BusinessInfo.BusinessInfo                   -- ^ Information about business settings for Telegram Business accounts; may be null if none
     , bot_info                                     :: Maybe BotInfo.BotInfo                             -- ^ For bots, information about the bot; may be null if the user isn't a bot
@@ -56,6 +57,7 @@ instance I.ShortShow UserFullInfo where
     , birthdate                                    = birthdate_
     , personal_chat_id                             = personal_chat_id_
     , premium_gift_options                         = premium_gift_options_
+    , gift_count                                   = gift_count_
     , group_in_common_count                        = group_in_common_count_
     , business_info                                = business_info_
     , bot_info                                     = bot_info_
@@ -79,6 +81,7 @@ instance I.ShortShow UserFullInfo where
         , "birthdate"                                    `I.p` birthdate_
         , "personal_chat_id"                             `I.p` personal_chat_id_
         , "premium_gift_options"                         `I.p` premium_gift_options_
+        , "gift_count"                                   `I.p` gift_count_
         , "group_in_common_count"                        `I.p` group_in_common_count_
         , "business_info"                                `I.p` business_info_
         , "bot_info"                                     `I.p` bot_info_
@@ -112,6 +115,7 @@ instance AT.FromJSON UserFullInfo where
         birthdate_                                    <- o A..:?  "birthdate"
         personal_chat_id_                             <- o A..:?  "personal_chat_id"
         premium_gift_options_                         <- o A..:?  "premium_gift_options"
+        gift_count_                                   <- o A..:?  "gift_count"
         group_in_common_count_                        <- o A..:?  "group_in_common_count"
         business_info_                                <- o A..:?  "business_info"
         bot_info_                                     <- o A..:?  "bot_info"
@@ -133,6 +137,7 @@ instance AT.FromJSON UserFullInfo where
           , birthdate                                    = birthdate_
           , personal_chat_id                             = personal_chat_id_
           , premium_gift_options                         = premium_gift_options_
+          , gift_count                                   = gift_count_
           , group_in_common_count                        = group_in_common_count_
           , business_info                                = business_info_
           , bot_info                                     = bot_info_

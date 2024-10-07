@@ -55,7 +55,7 @@ data InputMessageContent
     { star_count               :: Maybe Int                             -- ^ The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
     , paid_media               :: Maybe [InputPaidMedia.InputPaidMedia] -- ^ The content of the paid media
     , caption                  :: Maybe FormattedText.FormattedText     -- ^ Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
-    , show_caption_above_media :: Maybe Bool                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
+    , show_caption_above_media :: Maybe Bool                            -- ^ True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats
     , payload                  :: Maybe T.Text                          -- ^ Bot-provided data for the paid media; bots only
     }
   | InputMessagePhoto -- ^ A photo message
@@ -77,13 +77,13 @@ data InputMessageContent
     , emoji     :: Maybe T.Text                        -- ^ Emoji used to choose the sticker
     }
   | InputMessageVideo -- ^ A video message
-    { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent
+    { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent. The video is expected to be reencoded to MPEG4 format with H.264 codec by the sender
     , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
     , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
     , duration                 :: Maybe Int                                             -- ^ Duration of the video, in seconds
     , width                    :: Maybe Int                                             -- ^ Video width
     , height                   :: Maybe Int                                             -- ^ Video height
-    , supports_streaming       :: Maybe Bool                                            -- ^ True, if the video is supposed to be streamed
+    , supports_streaming       :: Maybe Bool                                            -- ^ True, if the video is expected to be streamed
     , caption                  :: Maybe FormattedText.FormattedText                     -- ^ Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     , show_caption_above_media :: Maybe Bool                                            -- ^ True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     , self_destruct_type       :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video self-destruct type; pass null if none; private chats only

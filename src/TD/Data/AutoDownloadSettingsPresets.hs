@@ -8,9 +8,9 @@ import qualified TD.Data.AutoDownloadSettings as AutoDownloadSettings
 
 data AutoDownloadSettingsPresets
   = AutoDownloadSettingsPresets -- ^ Contains auto-download settings presets for the current user
-    { low    :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with lowest settings; supposed to be used by default when roaming
-    , medium :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with medium settings; supposed to be used by default when using mobile data
-    , high   :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with highest settings; supposed to be used by default when connected on Wi-Fi
+    { low    :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with lowest settings; expected to be used by default when roaming
+    , medium :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with medium settings; expected to be used by default when using mobile data
+    , high   :: Maybe AutoDownloadSettings.AutoDownloadSettings -- ^ Preset with highest settings; expected to be used by default when connected on Wi-Fi
     }
   deriving (Eq, Show)
 
