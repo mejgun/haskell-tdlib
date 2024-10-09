@@ -12,7 +12,7 @@ data Gift
     , sticker                 :: Maybe Sticker.Sticker -- ^ The sticker representing the gift
     , star_count              :: Maybe Int             -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int             -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
-    , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased by all users; 0 if not limited
+    , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
     , total_count             :: Maybe Int             -- ^ Number of total times the gift can be purchased by all users; 0 if not limited
     }
   deriving (Eq, Show)

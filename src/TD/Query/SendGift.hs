@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 
--- | Send a gift to another user. Returns 'TD.Data.Ok.Ok'
+-- | Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out. Returns 'TD.Data.Ok.Ok'
 data SendGift
   = SendGift
     { gift_id    :: Maybe Int                         -- ^ Identifier of the gift to send
