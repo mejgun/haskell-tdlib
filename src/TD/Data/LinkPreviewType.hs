@@ -107,7 +107,7 @@ data LinkPreviewType
     }
   | LinkPreviewTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { documents :: Maybe [Document.Document]         -- ^ The list of files with theme description
-    , settings  :: Maybe ThemeSettings.ThemeSettings -- ^ Settings for the cloud theme
+    , settings  :: Maybe ThemeSettings.ThemeSettings -- ^ Settings for the cloud theme; may be null if unknown
     }
   | LinkPreviewTypeUnsupported -- ^ The link preview type is unsupported yet
   | LinkPreviewTypeUser -- ^ The link is a link to a user
@@ -128,7 +128,7 @@ data LinkPreviewType
     { voice_note :: Maybe VoiceNote.VoiceNote -- ^ The voice note
     }
   | LinkPreviewTypeWebApp -- ^ The link is a link to a Web App
-    { photo :: Maybe Photo.Photo -- ^ Web App photo
+    { photo :: Maybe Photo.Photo -- ^ Web App photo; may be null if none
     }
   deriving (Eq, Show)
 

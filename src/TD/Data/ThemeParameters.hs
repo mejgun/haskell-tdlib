@@ -9,21 +9,21 @@ import qualified TD.Lib.Internal as I
 
 data ThemeParameters
   = ThemeParameters -- ^ Contains parameters of the application theme
-    { background_color            :: Maybe Int -- ^ A color of the background in the RGB24 format
-    , secondary_background_color  :: Maybe Int -- ^ A secondary color for the background in the RGB24 format
-    , header_background_color     :: Maybe Int -- ^ A color of the header background in the RGB24 format
-    , bottom_bar_background_color :: Maybe Int -- ^ A color of the bottom bar background in the RGB24 format
-    , section_background_color    :: Maybe Int -- ^ A color of the section background in the RGB24 format
-    , section_separator_color     :: Maybe Int -- ^ A color of the section separator in the RGB24 format
-    , text_color                  :: Maybe Int -- ^ A color of text in the RGB24 format
-    , accent_text_color           :: Maybe Int -- ^ An accent color of the text in the RGB24 format
-    , section_header_text_color   :: Maybe Int -- ^ A color of text on the section headers in the RGB24 format
-    , subtitle_text_color         :: Maybe Int -- ^ A color of the subtitle text in the RGB24 format
-    , destructive_text_color      :: Maybe Int -- ^ A color of the text for destructive actions in the RGB24 format
-    , hint_color                  :: Maybe Int -- ^ A color of hints in the RGB24 format
-    , link_color                  :: Maybe Int -- ^ A color of links in the RGB24 format
-    , button_color                :: Maybe Int -- ^ A color of the buttons in the RGB24 format
-    , button_text_color           :: Maybe Int -- ^ A color of text on the buttons in the RGB24 format
+    { background_color            :: Maybe Int -- ^ A color of the background in the RGB format
+    , secondary_background_color  :: Maybe Int -- ^ A secondary color for the background in the RGB format
+    , header_background_color     :: Maybe Int -- ^ A color of the header background in the RGB format
+    , bottom_bar_background_color :: Maybe Int -- ^ A color of the bottom bar background in the RGB format
+    , section_background_color    :: Maybe Int -- ^ A color of the section background in the RGB format
+    , section_separator_color     :: Maybe Int -- ^ A color of the section separator in the RGB format
+    , text_color                  :: Maybe Int -- ^ A color of text in the RGB format
+    , accent_text_color           :: Maybe Int -- ^ An accent color of the text in the RGB format
+    , section_header_text_color   :: Maybe Int -- ^ A color of text on the section headers in the RGB format
+    , subtitle_text_color         :: Maybe Int -- ^ A color of the subtitle text in the RGB format
+    , destructive_text_color      :: Maybe Int -- ^ A color of the text for destructive actions in the RGB format
+    , hint_color                  :: Maybe Int -- ^ A color of hints in the RGB format
+    , link_color                  :: Maybe Int -- ^ A color of links in the RGB format
+    , button_color                :: Maybe Int -- ^ A color of the buttons in the RGB format
+    , button_text_color           :: Maybe Int -- ^ A color of text on the buttons in the RGB format
     }
   deriving (Eq, Show)
 

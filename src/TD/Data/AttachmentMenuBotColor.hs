@@ -7,8 +7,8 @@ import qualified TD.Lib.Internal as I
 
 data AttachmentMenuBotColor
   = AttachmentMenuBotColor -- ^ Describes a color to highlight a bot added to attachment menu
-    { light_color :: Maybe Int -- ^ Color in the RGB24 format for light themes
-    , dark_color  :: Maybe Int -- ^ Color in the RGB24 format for dark themes
+    { light_color :: Maybe Int -- ^ Color in the RGB format for light themes
+    , dark_color  :: Maybe Int -- ^ Color in the RGB format for dark themes
     }
   deriving (Eq, Show)
 

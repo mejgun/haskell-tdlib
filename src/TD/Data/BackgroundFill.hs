@@ -8,15 +8,15 @@ import qualified TD.Lib.Internal as I
 -- | Describes a fill of a background
 data BackgroundFill
   = BackgroundFillSolid -- ^ Describes a solid fill of a background
-    { color :: Maybe Int -- ^ A color of the background in the RGB24 format
+    { color :: Maybe Int -- ^ A color of the background in the RGB format
     }
   | BackgroundFillGradient -- ^ Describes a gradient fill of a background
-    { top_color      :: Maybe Int -- ^ A top color of the background in the RGB24 format
-    , bottom_color   :: Maybe Int -- ^ A bottom color of the background in the RGB24 format
+    { top_color      :: Maybe Int -- ^ A top color of the background in the RGB format
+    , bottom_color   :: Maybe Int -- ^ A bottom color of the background in the RGB format
     , rotation_angle :: Maybe Int -- ^ Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
     }
   | BackgroundFillFreeformGradient -- ^ Describes a freeform gradient fill of a background
-    { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradient in the RGB24 format
+    { colors :: Maybe [Int] -- ^ A list of 3 or 4 colors of the freeform gradient in the RGB format
     }
   deriving (Eq, Show)
 
