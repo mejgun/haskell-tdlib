@@ -272,17 +272,19 @@ data MessageContent
     , provider_payment_charge_id :: Maybe T.Text                      -- ^ Provider payment identifier
     }
   | MessageGiftedPremium -- ^ Telegram Premium was gifted to a user
-    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
-    , receiver_user_id      :: Maybe Int             -- ^ The identifier of a user that received Telegram Premium; 0 if the gift is incoming
-    , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
-    , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
-    , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
-    , cryptocurrency_amount :: Maybe Int             -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if none
-    , month_count           :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
-    , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
+    { gifter_user_id        :: Maybe Int                         -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id      :: Maybe Int                         -- ^ The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+    , text                  :: Maybe FormattedText.FormattedText -- ^ Message added to the gifted Telegram Premium by the sender
+    , currency              :: Maybe T.Text                      -- ^ Currency for the paid amount
+    , amount                :: Maybe Int                         -- ^ The paid amount, in the smallest units of the currency
+    , cryptocurrency        :: Maybe T.Text                      -- ^ Cryptocurrency used to pay for the gift; may be empty if none
+    , cryptocurrency_amount :: Maybe Int                         -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if none
+    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active
+    , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
     { creator_id            :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown
+    , text                  :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , is_from_giveaway      :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
     , is_unclaimed          :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
     , currency              :: Maybe T.Text                      -- ^ Currency for the paid amount; empty if unknown
@@ -885,6 +887,7 @@ instance I.ShortShow MessageContent where
   shortShow MessageGiftedPremium
     { gifter_user_id        = gifter_user_id_
     , receiver_user_id      = receiver_user_id_
+    , text                  = text_
     , currency              = currency_
     , amount                = amount_
     , cryptocurrency        = cryptocurrency_
@@ -896,6 +899,7 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "gifter_user_id"        `I.p` gifter_user_id_
         , "receiver_user_id"      `I.p` receiver_user_id_
+        , "text"                  `I.p` text_
         , "currency"              `I.p` currency_
         , "amount"                `I.p` amount_
         , "cryptocurrency"        `I.p` cryptocurrency_
@@ -905,6 +909,7 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessagePremiumGiftCode
     { creator_id            = creator_id_
+    , text                  = text_
     , is_from_giveaway      = is_from_giveaway_
     , is_unclaimed          = is_unclaimed_
     , currency              = currency_
@@ -918,6 +923,7 @@ instance I.ShortShow MessageContent where
       = "MessagePremiumGiftCode"
         ++ I.cc
         [ "creator_id"            `I.p` creator_id_
+        , "text"                  `I.p` text_
         , "is_from_giveaway"      `I.p` is_from_giveaway_
         , "is_unclaimed"          `I.p` is_unclaimed_
         , "currency"              `I.p` currency_
@@ -1640,6 +1646,7 @@ instance AT.FromJSON MessageContent where
       parseMessageGiftedPremium = A.withObject "MessageGiftedPremium" $ \o -> do
         gifter_user_id_        <- o A..:?                       "gifter_user_id"
         receiver_user_id_      <- o A..:?                       "receiver_user_id"
+        text_                  <- o A..:?                       "text"
         currency_              <- o A..:?                       "currency"
         amount_                <- o A..:?                       "amount"
         cryptocurrency_        <- o A..:?                       "cryptocurrency"
@@ -1649,6 +1656,7 @@ instance AT.FromJSON MessageContent where
         pure $ MessageGiftedPremium
           { gifter_user_id        = gifter_user_id_
           , receiver_user_id      = receiver_user_id_
+          , text                  = text_
           , currency              = currency_
           , amount                = amount_
           , cryptocurrency        = cryptocurrency_
@@ -1659,6 +1667,7 @@ instance AT.FromJSON MessageContent where
       parseMessagePremiumGiftCode :: A.Value -> AT.Parser MessageContent
       parseMessagePremiumGiftCode = A.withObject "MessagePremiumGiftCode" $ \o -> do
         creator_id_            <- o A..:?                       "creator_id"
+        text_                  <- o A..:?                       "text"
         is_from_giveaway_      <- o A..:?                       "is_from_giveaway"
         is_unclaimed_          <- o A..:?                       "is_unclaimed"
         currency_              <- o A..:?                       "currency"
@@ -1670,6 +1679,7 @@ instance AT.FromJSON MessageContent where
         code_                  <- o A..:?                       "code"
         pure $ MessagePremiumGiftCode
           { creator_id            = creator_id_
+          , text                  = text_
           , is_from_giveaway      = is_from_giveaway_
           , is_unclaimed          = is_unclaimed_
           , currency              = currency_

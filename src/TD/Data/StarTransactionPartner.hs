@@ -25,13 +25,13 @@ data StarTransactionPartner
     }
   | StarTransactionPartnerBusiness -- ^ The transaction is a transaction with a business account
     { user_id :: Maybe Int                   -- ^ Identifier of the business account user
-    , media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    , media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the transaction wasn't refunded
     }
   | StarTransactionPartnerChat -- ^ The transaction is a transaction with a supergroup or a channel chat
     { chat_id  :: Maybe Int                                           -- ^ Identifier of the chat
     , _purpose :: Maybe ChatTransactionPurpose.ChatTransactionPurpose -- ^ Purpose of the transaction
     }
-  | StarTransactionPartnerUser -- ^ The transaction is a transcation with another user
+  | StarTransactionPartnerUser -- ^ The transaction is a transaction with another user
     { user_id   :: Maybe Int                                           -- ^ Identifier of the user; 0 if the user was anonymous
     , __purpose :: Maybe UserTransactionPurpose.UserTransactionPurpose -- ^ Purpose of the transaction
     }

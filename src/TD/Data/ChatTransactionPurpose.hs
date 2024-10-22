@@ -10,7 +10,7 @@ import qualified TD.Data.PaidMedia as PaidMedia
 data ChatTransactionPurpose
   = ChatTransactionPurposePaidMedia -- ^ Paid media were bought
     { message_id :: Maybe Int                   -- ^ Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message
-    , media      :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    , media      :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the transaction wasn't refunded
     }
   | ChatTransactionPurposeJoin -- ^ User joined the channel and subscribed to regular payments in Telegram Stars
     { period :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debiting

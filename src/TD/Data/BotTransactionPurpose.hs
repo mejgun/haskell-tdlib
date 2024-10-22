@@ -12,7 +12,7 @@ import qualified Data.ByteString as BS
 -- | Describes purpose of a transaction with a bot
 data BotTransactionPurpose
   = BotTransactionPurposePaidMedia -- ^ Paid media were bought
-    { media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the trancastion wasn't refunded
+    { media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the transaction wasn't refunded
     , payload :: Maybe T.Text                -- ^ Bot-provided payload; for bots only
     }
   | BotTransactionPurposeInvoicePayment -- ^ User bought a product from the bot

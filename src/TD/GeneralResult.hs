@@ -69,7 +69,6 @@ import qualified TD.Data.ChatRevenueStatistics as ChatRevenueStatistics
 import qualified TD.Data.ChatRevenueTransactions as ChatRevenueTransactions
 import qualified TD.Data.ChatStatistics as ChatStatistics
 import qualified TD.Data.Chats as Chats
-import qualified TD.Data.ChatsNearby as ChatsNearby
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
 import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
@@ -295,7 +294,6 @@ data GeneralResult
     | ChatRevenueTransactions            ChatRevenueTransactions.ChatRevenueTransactions
     | ChatStatistics                     ChatStatistics.ChatStatistics
     | Chats                              Chats.Chats
-    | ChatsNearby                        ChatsNearby.ChatsNearby
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
     | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
@@ -587,8 +585,6 @@ instance I.ShortShow GeneralResult where
     = "ChatStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (Chats v)
     = "Chats" <> " (" <> I.shortShow v <> ")"
-  shortShow (ChatsNearby v)
-    = "ChatsNearby" <> " (" <> I.shortShow v <> ")"
   shortShow (CheckChatUsernameResult v)
     = "CheckChatUsernameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CheckStickerSetNameResult v)
@@ -973,7 +969,6 @@ instance T.FromJSON GeneralResult where
     <|> ( ChatRevenueTransactions             <$> parseJSON v )
     <|> ( ChatStatistics                      <$> parseJSON v )
     <|> ( Chats                               <$> parseJSON v )
-    <|> ( ChatsNearby                         <$> parseJSON v )
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
     <|> ( CollectibleItemInfo                 <$> parseJSON v )

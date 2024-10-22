@@ -5,16 +5,18 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
 
 -- | Describes a purpose of a payment toward Telegram
 data TelegramPaymentPurpose
   = TelegramPaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
-    { boosted_chat_id :: Maybe Int    -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
-    , currency        :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
-    , amount          :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
-    , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
-    , month_count     :: Maybe Int    -- ^ Number of months the Telegram Premium subscription will be active for the users
+    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
+    , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
+    , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
+    , month_count     :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the users
+    , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     }
   | TelegramPaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway
     { parameters   :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
@@ -53,6 +55,7 @@ instance I.ShortShow TelegramPaymentPurpose where
     , amount          = amount_
     , user_ids        = user_ids_
     , month_count     = month_count_
+    , text            = text_
     }
       = "TelegramPaymentPurposePremiumGiftCodes"
         ++ I.cc
@@ -61,6 +64,7 @@ instance I.ShortShow TelegramPaymentPurpose where
         , "amount"          `I.p` amount_
         , "user_ids"        `I.p` user_ids_
         , "month_count"     `I.p` month_count_
+        , "text"            `I.p` text_
         ]
   shortShow TelegramPaymentPurposePremiumGiveaway
     { parameters   = parameters_
@@ -145,12 +149,14 @@ instance AT.FromJSON TelegramPaymentPurpose where
         amount_          <- o A..:?  "amount"
         user_ids_        <- o A..:?  "user_ids"
         month_count_     <- o A..:?  "month_count"
+        text_            <- o A..:?  "text"
         pure $ TelegramPaymentPurposePremiumGiftCodes
           { boosted_chat_id = boosted_chat_id_
           , currency        = currency_
           , amount          = amount_
           , user_ids        = user_ids_
           , month_count     = month_count_
+          , text            = text_
           }
       parseTelegramPaymentPurposePremiumGiveaway :: A.Value -> AT.Parser TelegramPaymentPurpose
       parseTelegramPaymentPurposePremiumGiveaway = A.withObject "TelegramPaymentPurposePremiumGiveaway" $ \o -> do
@@ -217,6 +223,7 @@ instance AT.ToJSON TelegramPaymentPurpose where
     , amount          = amount_
     , user_ids        = user_ids_
     , month_count     = month_count_
+    , text            = text_
     }
       = A.object
         [ "@type"           A..= AT.String "telegramPaymentPurposePremiumGiftCodes"
@@ -225,6 +232,7 @@ instance AT.ToJSON TelegramPaymentPurpose where
         , "amount"          A..= amount_
         , "user_ids"        A..= user_ids_
         , "month_count"     A..= month_count_
+        , "text"            A..= text_
         ]
   toJSON TelegramPaymentPurposePremiumGiveaway
     { parameters   = parameters_

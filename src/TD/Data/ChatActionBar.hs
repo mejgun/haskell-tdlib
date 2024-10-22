@@ -11,11 +11,9 @@ data ChatActionBar
   = ChatActionBarReportSpam -- ^ The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     { can_unarchive :: Maybe Bool -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     }
-  | ChatActionBarReportUnrelatedLocation -- ^ The chat is a location-based supergroup, which can't be reported anymore
   | ChatActionBarInviteMembers -- ^ The chat is a recently created group chat to which new members can be invited
   | ChatActionBarReportAddBlock -- ^ The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
     { can_unarchive :: Maybe Bool -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
-    , distance      :: Maybe Int  -- ^ If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users
     }
   | ChatActionBarAddContact -- ^ The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
   | ChatActionBarSharePhoneNumber -- ^ The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
@@ -34,18 +32,14 @@ instance I.ShortShow ChatActionBar where
         ++ I.cc
         [ "can_unarchive" `I.p` can_unarchive_
         ]
-  shortShow ChatActionBarReportUnrelatedLocation
-      = "ChatActionBarReportUnrelatedLocation"
   shortShow ChatActionBarInviteMembers
       = "ChatActionBarInviteMembers"
   shortShow ChatActionBarReportAddBlock
     { can_unarchive = can_unarchive_
-    , distance      = distance_
     }
       = "ChatActionBarReportAddBlock"
         ++ I.cc
         [ "can_unarchive" `I.p` can_unarchive_
-        , "distance"      `I.p` distance_
         ]
   shortShow ChatActionBarAddContact
       = "ChatActionBarAddContact"
@@ -68,14 +62,13 @@ instance AT.FromJSON ChatActionBar where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "chatActionBarReportSpam"              -> parseChatActionBarReportSpam v
-      "chatActionBarReportUnrelatedLocation" -> pure ChatActionBarReportUnrelatedLocation
-      "chatActionBarInviteMembers"           -> pure ChatActionBarInviteMembers
-      "chatActionBarReportAddBlock"          -> parseChatActionBarReportAddBlock v
-      "chatActionBarAddContact"              -> pure ChatActionBarAddContact
-      "chatActionBarSharePhoneNumber"        -> pure ChatActionBarSharePhoneNumber
-      "chatActionBarJoinRequest"             -> parseChatActionBarJoinRequest v
-      _                                      -> mempty
+      "chatActionBarReportSpam"       -> parseChatActionBarReportSpam v
+      "chatActionBarInviteMembers"    -> pure ChatActionBarInviteMembers
+      "chatActionBarReportAddBlock"   -> parseChatActionBarReportAddBlock v
+      "chatActionBarAddContact"       -> pure ChatActionBarAddContact
+      "chatActionBarSharePhoneNumber" -> pure ChatActionBarSharePhoneNumber
+      "chatActionBarJoinRequest"      -> parseChatActionBarJoinRequest v
+      _                               -> mempty
     
     where
       parseChatActionBarReportSpam :: A.Value -> AT.Parser ChatActionBar
@@ -87,10 +80,8 @@ instance AT.FromJSON ChatActionBar where
       parseChatActionBarReportAddBlock :: A.Value -> AT.Parser ChatActionBar
       parseChatActionBarReportAddBlock = A.withObject "ChatActionBarReportAddBlock" $ \o -> do
         can_unarchive_ <- o A..:?  "can_unarchive"
-        distance_      <- o A..:?  "distance"
         pure $ ChatActionBarReportAddBlock
           { can_unarchive = can_unarchive_
-          , distance      = distance_
           }
       parseChatActionBarJoinRequest :: A.Value -> AT.Parser ChatActionBar
       parseChatActionBarJoinRequest = A.withObject "ChatActionBarJoinRequest" $ \o -> do

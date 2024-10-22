@@ -73,7 +73,6 @@ import qualified TD.Data.ProfileAccentColor as ProfileAccentColor
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
 import qualified TD.Data.TermsOfService as TermsOfService
-import qualified TD.Data.ChatNearby as ChatNearby
 import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
@@ -554,9 +553,6 @@ data Update
   | UpdateTermsOfService -- ^ New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     { terms_of_service_id :: Maybe T.Text                        -- ^ Identifier of the terms of service
     , terms_of_service    :: Maybe TermsOfService.TermsOfService -- ^ The new terms of service
-    }
-  | UpdateUsersNearby -- ^ The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
-    { users_nearby :: Maybe [ChatNearby.ChatNearby] -- ^ The new list of users nearby
     }
   | UpdateUnconfirmedSession -- ^ The first unconfirmed session has changed
     { session :: Maybe UnconfirmedSession.UnconfirmedSession -- ^ The unconfirmed session; may be null if none
@@ -1771,13 +1767,6 @@ instance I.ShortShow Update where
         [ "terms_of_service_id" `I.p` terms_of_service_id_
         , "terms_of_service"    `I.p` terms_of_service_
         ]
-  shortShow UpdateUsersNearby
-    { users_nearby = users_nearby_
-    }
-      = "UpdateUsersNearby"
-        ++ I.cc
-        [ "users_nearby" `I.p` users_nearby_
-        ]
   shortShow UpdateUnconfirmedSession
     { session = session_
     }
@@ -2318,7 +2307,6 @@ instance AT.FromJSON Update where
       "updateLanguagePackStrings"             -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                 -> parseUpdateConnectionState v
       "updateTermsOfService"                  -> parseUpdateTermsOfService v
-      "updateUsersNearby"                     -> parseUpdateUsersNearby v
       "updateUnconfirmedSession"              -> parseUpdateUnconfirmedSession v
       "updateAttachmentMenuBots"              -> parseUpdateAttachmentMenuBots v
       "updateWebAppMessageSent"               -> parseUpdateWebAppMessageSent v
@@ -3269,12 +3257,6 @@ instance AT.FromJSON Update where
         pure $ UpdateTermsOfService
           { terms_of_service_id = terms_of_service_id_
           , terms_of_service    = terms_of_service_
-          }
-      parseUpdateUsersNearby :: A.Value -> AT.Parser Update
-      parseUpdateUsersNearby = A.withObject "UpdateUsersNearby" $ \o -> do
-        users_nearby_ <- o A..:?  "users_nearby"
-        pure $ UpdateUsersNearby
-          { users_nearby = users_nearby_
           }
       parseUpdateUnconfirmedSession :: A.Value -> AT.Parser Update
       parseUpdateUnconfirmedSession = A.withObject "UpdateUnconfirmedSession" $ \o -> do

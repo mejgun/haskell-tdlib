@@ -11,7 +11,7 @@ import qualified TD.Data.TelegramPaymentPurpose as TelegramPaymentPurpose
 data InputInvoice
   = InputInvoiceMessage -- ^ An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia
     { chat_id    :: Maybe Int -- ^ Chat identifier of the message
-    , message_id :: Maybe Int -- ^ Message identifier
+    , message_id :: Maybe Int -- ^ Message identifier. Use messageProperties.can_be_paid to check whether the message can be used in the method
     }
   | InputInvoiceName -- ^ An invoice from a link of the type internalLinkTypeInvoice
     { name :: Maybe T.Text -- ^ Name of the invoice

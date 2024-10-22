@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
 
 -- | Describes a purpose of an in-store payment
@@ -19,10 +20,11 @@ data StorePaymentPurpose
     , amount   :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     }
   | StorePaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
-    { boosted_chat_id :: Maybe Int    -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
-    , currency        :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
-    , amount          :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
-    , user_ids        :: Maybe [Int]  -- ^ Identifiers of the users which can activate the gift codes
+    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+    , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
+    , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
+    , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
+    , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     }
   | StorePaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway
     { parameters :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
@@ -75,6 +77,7 @@ instance I.ShortShow StorePaymentPurpose where
     , currency        = currency_
     , amount          = amount_
     , user_ids        = user_ids_
+    , text            = text_
     }
       = "StorePaymentPurposePremiumGiftCodes"
         ++ I.cc
@@ -82,6 +85,7 @@ instance I.ShortShow StorePaymentPurpose where
         , "currency"        `I.p` currency_
         , "amount"          `I.p` amount_
         , "user_ids"        `I.p` user_ids_
+        , "text"            `I.p` text_
         ]
   shortShow StorePaymentPurposePremiumGiveaway
     { parameters = parameters_
@@ -173,11 +177,13 @@ instance AT.FromJSON StorePaymentPurpose where
         currency_        <- o A..:?  "currency"
         amount_          <- o A..:?  "amount"
         user_ids_        <- o A..:?  "user_ids"
+        text_            <- o A..:?  "text"
         pure $ StorePaymentPurposePremiumGiftCodes
           { boosted_chat_id = boosted_chat_id_
           , currency        = currency_
           , amount          = amount_
           , user_ids        = user_ids_
+          , text            = text_
           }
       parseStorePaymentPurposePremiumGiveaway :: A.Value -> AT.Parser StorePaymentPurpose
       parseStorePaymentPurposePremiumGiveaway = A.withObject "StorePaymentPurposePremiumGiveaway" $ \o -> do
@@ -253,6 +259,7 @@ instance AT.ToJSON StorePaymentPurpose where
     , currency        = currency_
     , amount          = amount_
     , user_ids        = user_ids_
+    , text            = text_
     }
       = A.object
         [ "@type"           A..= AT.String "storePaymentPurposePremiumGiftCodes"
@@ -260,6 +267,7 @@ instance AT.ToJSON StorePaymentPurpose where
         , "currency"        A..= currency_
         , "amount"          A..= amount_
         , "user_ids"        A..= user_ids_
+        , "text"            A..= text_
         ]
   toJSON StorePaymentPurposePremiumGiveaway
     { parameters = parameters_

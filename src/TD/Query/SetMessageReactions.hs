@@ -13,7 +13,7 @@ data SetMessageReactions
   = SetMessageReactions
     { chat_id        :: Maybe Int                         -- ^ Identifier of the chat to which the message belongs
     , message_id     :: Maybe Int                         -- ^ Identifier of the message
-    , reaction_types :: Maybe [ReactionType.ReactionType] -- ^ Types of the reaction to set
+    , reaction_types :: Maybe [ReactionType.ReactionType] -- ^ Types of the reaction to set; pass an empty list to remove the reactions
     , is_big         :: Maybe Bool                        -- ^ Pass true if the reactions are added with a big animation
     }
   deriving (Eq, Show)

@@ -9,8 +9,8 @@ import qualified Data.Text as T
 -- | Represents a part of the text which must be formatted differently
 data TextEntityType
   = TextEntityTypeMention -- ^ A mention of a user, a supergroup, or a channel by their username
-  | TextEntityTypeHashtag -- ^ A hashtag text, beginning with "#"
-  | TextEntityTypeCashtag -- ^ A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
+  | TextEntityTypeHashtag -- ^ A hashtag text, beginning with "#" and optionally containing a chat username at the end
+  | TextEntityTypeCashtag -- ^ A cashtag text, beginning with "$", consisting of capital English letters (e.g., "$USD"), and optionally containing a chat username at the end
   | TextEntityTypeBotCommand -- ^ A bot command, beginning with "/"
   | TextEntityTypeUrl -- ^ An HTTP URL
   | TextEntityTypeEmailAddress -- ^ An email address

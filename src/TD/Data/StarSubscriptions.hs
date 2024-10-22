@@ -10,7 +10,7 @@ import qualified Data.Text as T
 data StarSubscriptions
   = StarSubscriptions -- ^ Represents a list of Telegram Star subscriptions
     { star_count          :: Maybe Int                                 -- ^ The amount of owned Telegram Stars
-    , subscriptions       :: Maybe [StarSubscription.StarSubscription] -- ^ List of subbscriptions for Telegram Stars
+    , subscriptions       :: Maybe [StarSubscription.StarSubscription] -- ^ List of subscriptions for Telegram Stars
     , required_star_count :: Maybe Int                                 -- ^ The number of Telegram Stars required to buy to extend subscriptions expiring soon
     , next_offset         :: Maybe T.Text                              -- ^ The offset for the next request. If empty, then there are no more results
     }
