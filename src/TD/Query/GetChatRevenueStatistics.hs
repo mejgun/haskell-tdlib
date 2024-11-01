@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true. Returns 'TD.Data.ChatRevenueStatistics.ChatRevenueStatistics'
+-- | Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true. Returns 'TD.Data.ChatRevenueStatistics.ChatRevenueStatistics'
 data GetChatRevenueStatistics
   = GetChatRevenueStatistics
     { chat_id :: Maybe Int  -- ^ Chat identifier

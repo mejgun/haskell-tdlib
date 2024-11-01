@@ -16,9 +16,12 @@ data StarTransactionPartner
   | StarTransactionPartnerAppStore -- ^ The transaction is a transaction with App Store
   | StarTransactionPartnerGooglePlay -- ^ The transaction is a transaction with Google Play
   | StarTransactionPartnerFragment -- ^ The transaction is a transaction with Fragment
-    { withdrawal_state :: Maybe RevenueWithdrawalState.RevenueWithdrawalState -- ^ State of the withdrawal; may be null for refunds from Fragment
+    { withdrawal_state :: Maybe RevenueWithdrawalState.RevenueWithdrawalState -- ^ State of the withdrawal; may be null for refunds from Fragment or for Telegram Stars bought on Fragment
     }
   | StarTransactionPartnerTelegramAds -- ^ The transaction is a transaction with Telegram Ad platform
+  | StarTransactionPartnerTelegramApi -- ^ The transaction is a transaction with Telegram for API usage
+    { request_count :: Maybe Int -- ^ The number of billed requests
+    }
   | StarTransactionPartnerBot -- ^ The transaction is a transaction with a bot
     { user_id :: Maybe Int                                         -- ^ Identifier of the bot
     , purpose :: Maybe BotTransactionPurpose.BotTransactionPurpose -- ^ Purpose of the transaction
@@ -54,6 +57,13 @@ instance I.ShortShow StarTransactionPartner where
         ]
   shortShow StarTransactionPartnerTelegramAds
       = "StarTransactionPartnerTelegramAds"
+  shortShow StarTransactionPartnerTelegramApi
+    { request_count = request_count_
+    }
+      = "StarTransactionPartnerTelegramApi"
+        ++ I.cc
+        [ "request_count" `I.p` request_count_
+        ]
   shortShow StarTransactionPartnerBot
     { user_id = user_id_
     , purpose = purpose_
@@ -103,6 +113,7 @@ instance AT.FromJSON StarTransactionPartner where
       "starTransactionPartnerGooglePlay"  -> pure StarTransactionPartnerGooglePlay
       "starTransactionPartnerFragment"    -> parseStarTransactionPartnerFragment v
       "starTransactionPartnerTelegramAds" -> pure StarTransactionPartnerTelegramAds
+      "starTransactionPartnerTelegramApi" -> parseStarTransactionPartnerTelegramApi v
       "starTransactionPartnerBot"         -> parseStarTransactionPartnerBot v
       "starTransactionPartnerBusiness"    -> parseStarTransactionPartnerBusiness v
       "starTransactionPartnerChat"        -> parseStarTransactionPartnerChat v
@@ -116,6 +127,12 @@ instance AT.FromJSON StarTransactionPartner where
         withdrawal_state_ <- o A..:?  "withdrawal_state"
         pure $ StarTransactionPartnerFragment
           { withdrawal_state = withdrawal_state_
+          }
+      parseStarTransactionPartnerTelegramApi :: A.Value -> AT.Parser StarTransactionPartner
+      parseStarTransactionPartnerTelegramApi = A.withObject "StarTransactionPartnerTelegramApi" $ \o -> do
+        request_count_ <- o A..:?  "request_count"
+        pure $ StarTransactionPartnerTelegramApi
+          { request_count = request_count_
           }
       parseStarTransactionPartnerBot :: A.Value -> AT.Parser StarTransactionPartner
       parseStarTransactionPartnerBot = A.withObject "StarTransactionPartnerBot" $ \o -> do

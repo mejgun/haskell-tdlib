@@ -33,8 +33,8 @@ data Message
     , is_channel_post             :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
     , is_topic_message            :: Maybe Bool                                            -- ^ True, if the message is a forum topic message
     , contains_unread_mention     :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
-    , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent
-    , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited
+    , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
+    , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
     , forward_info                :: Maybe MessageForwardInfo.MessageForwardInfo           -- ^ Information about the initial message sender; may be null if none or unknown
     , import_info                 :: Maybe MessageImportInfo.MessageImportInfo             -- ^ Information about the initial message for messages created with importMessages; may be null if the message isn't imported
     , interaction_info            :: Maybe MessageInteractionInfo.MessageInteractionInfo   -- ^ Information about interactions with the message; may be null if none

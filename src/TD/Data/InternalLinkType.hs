@@ -99,7 +99,7 @@ data InternalLinkType
   | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
-  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
+  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGiftCodes payments or in-store purchases
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
   | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode

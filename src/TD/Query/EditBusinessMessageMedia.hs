@@ -10,7 +10,7 @@ import qualified Data.Text as T
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only. Returns 'TD.Data.BusinessMessage.BusinessMessage'
+-- | Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only. Returns 'TD.Data.BusinessMessage.BusinessMessage'
 data EditBusinessMessageMedia
   = EditBusinessMessageMedia
     { business_connection_id :: Maybe T.Text                                  -- ^ Unique identifier of business connection on behalf of which the message was sent

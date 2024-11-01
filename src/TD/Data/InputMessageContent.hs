@@ -90,7 +90,7 @@ data InputMessageContent
     , has_spoiler              :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageVideoNote -- ^ A video note message
-    { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent
+    { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle
     , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
     , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds; 0-60
     , _length            :: Maybe Int                                             -- ^ Video width and height; must be positive and not greater than 640

@@ -10,7 +10,7 @@ data MessageProperties
     { can_be_copied_to_secret_chat   :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
     , can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     , can_be_deleted_for_all_users   :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
-    , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageMedia, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
+    , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
     , can_be_forwarded               :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages
     , can_be_paid                    :: Maybe Bool -- ^ True, if the message can be paid using inputInvoiceMessage
     , can_be_pinned                  :: Maybe Bool -- ^ True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
@@ -18,6 +18,7 @@ data MessageProperties
     , can_be_replied_in_another_chat :: Maybe Bool -- ^ True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
     , can_be_saved                   :: Maybe Bool -- ^ True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
     , can_be_shared_in_story         :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
+    , can_edit_media                 :: Maybe Bool -- ^ True, if the message can be edited using the method editMessageMedia
     , can_edit_scheduling_state      :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
     , can_get_embedding_code         :: Maybe Bool -- ^ True, if code for message embedding can be received using getMessageEmbeddingCode
     , can_get_link                   :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
@@ -48,6 +49,7 @@ instance I.ShortShow MessageProperties where
     , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
     , can_be_saved                   = can_be_saved_
     , can_be_shared_in_story         = can_be_shared_in_story_
+    , can_edit_media                 = can_edit_media_
     , can_edit_scheduling_state      = can_edit_scheduling_state_
     , can_get_embedding_code         = can_get_embedding_code_
     , can_get_link                   = can_get_link_
@@ -76,6 +78,7 @@ instance I.ShortShow MessageProperties where
         , "can_be_replied_in_another_chat" `I.p` can_be_replied_in_another_chat_
         , "can_be_saved"                   `I.p` can_be_saved_
         , "can_be_shared_in_story"         `I.p` can_be_shared_in_story_
+        , "can_edit_media"                 `I.p` can_edit_media_
         , "can_edit_scheduling_state"      `I.p` can_edit_scheduling_state_
         , "can_get_embedding_code"         `I.p` can_get_embedding_code_
         , "can_get_link"                   `I.p` can_get_link_
@@ -114,6 +117,7 @@ instance AT.FromJSON MessageProperties where
         can_be_replied_in_another_chat_ <- o A..:?  "can_be_replied_in_another_chat"
         can_be_saved_                   <- o A..:?  "can_be_saved"
         can_be_shared_in_story_         <- o A..:?  "can_be_shared_in_story"
+        can_edit_media_                 <- o A..:?  "can_edit_media"
         can_edit_scheduling_state_      <- o A..:?  "can_edit_scheduling_state"
         can_get_embedding_code_         <- o A..:?  "can_get_embedding_code"
         can_get_link_                   <- o A..:?  "can_get_link"
@@ -140,6 +144,7 @@ instance AT.FromJSON MessageProperties where
           , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
           , can_be_saved                   = can_be_saved_
           , can_be_shared_in_story         = can_be_shared_in_story_
+          , can_edit_media                 = can_edit_media_
           , can_edit_scheduling_state      = can_edit_scheduling_state_
           , can_get_embedding_code         = can_get_embedding_code_
           , can_get_link                   = can_get_link_

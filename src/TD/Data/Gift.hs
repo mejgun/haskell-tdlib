@@ -14,6 +14,8 @@ data Gift
     , default_sell_star_count :: Maybe Int             -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
     , total_count             :: Maybe Int             -- ^ Number of total times the gift can be purchased by all users; 0 if not limited
+    , first_send_date         :: Maybe Int             -- ^ Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
+    , last_send_date          :: Maybe Int             -- ^ Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     }
   deriving (Eq, Show)
 
@@ -25,6 +27,8 @@ instance I.ShortShow Gift where
     , default_sell_star_count = default_sell_star_count_
     , remaining_count         = remaining_count_
     , total_count             = total_count_
+    , first_send_date         = first_send_date_
+    , last_send_date          = last_send_date_
     }
       = "Gift"
         ++ I.cc
@@ -34,6 +38,8 @@ instance I.ShortShow Gift where
         , "default_sell_star_count" `I.p` default_sell_star_count_
         , "remaining_count"         `I.p` remaining_count_
         , "total_count"             `I.p` total_count_
+        , "first_send_date"         `I.p` first_send_date_
+        , "last_send_date"          `I.p` last_send_date_
         ]
 
 instance AT.FromJSON Gift where
@@ -53,6 +59,8 @@ instance AT.FromJSON Gift where
         default_sell_star_count_ <- o A..:?                       "default_sell_star_count"
         remaining_count_         <- o A..:?                       "remaining_count"
         total_count_             <- o A..:?                       "total_count"
+        first_send_date_         <- o A..:?                       "first_send_date"
+        last_send_date_          <- o A..:?                       "last_send_date"
         pure $ Gift
           { _id                     = _id_
           , sticker                 = sticker_
@@ -60,6 +68,8 @@ instance AT.FromJSON Gift where
           , default_sell_star_count = default_sell_star_count_
           , remaining_count         = remaining_count_
           , total_count             = total_count_
+          , first_send_date         = first_send_date_
+          , last_send_date          = last_send_date_
           }
   parseJSON _ = mempty
 

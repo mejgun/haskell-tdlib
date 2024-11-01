@@ -111,7 +111,7 @@ data Update
     , message_id :: Maybe Int -- ^ A temporary message identifier
     }
   | UpdateMessageSendSucceeded -- ^ A message has been successfully sent
-    { message        :: Maybe Message.Message -- ^ The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    { message        :: Maybe Message.Message -- ^ The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled, or non-scheduled
     , old_message_id :: Maybe Int             -- ^ The previous temporary message identifier
     }
   | UpdateMessageSendFailed -- ^ A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
@@ -163,6 +163,10 @@ data Update
   | UpdateMessageLiveLocationViewed -- ^ A message with a live location was viewed. When the update is received, the application is expected to update the live location
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the live location message
     , message_id :: Maybe Int -- ^ Identifier of the message with live location
+    }
+  | UpdateVideoPublished -- ^ An automatically scheduled message with video has been successfully sent after conversion
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message
+    , message_id :: Maybe Int -- ^ Identifier of the sent message
     }
   | UpdateNewChat -- ^ A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
     { chat :: Maybe Chat.Chat -- ^ The chat
@@ -887,6 +891,15 @@ instance I.ShortShow Update where
     , message_id = message_id_
     }
       = "UpdateMessageLiveLocationViewed"
+        ++ I.cc
+        [ "chat_id"    `I.p` chat_id_
+        , "message_id" `I.p` message_id_
+        ]
+  shortShow UpdateVideoPublished
+    { chat_id    = chat_id_
+    , message_id = message_id_
+    }
+      = "UpdateVideoPublished"
         ++ I.cc
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
@@ -2211,6 +2224,7 @@ instance AT.FromJSON Update where
       "updateMessageUnreadReactions"          -> parseUpdateMessageUnreadReactions v
       "updateMessageFactCheck"                -> parseUpdateMessageFactCheck v
       "updateMessageLiveLocationViewed"       -> parseUpdateMessageLiveLocationViewed v
+      "updateVideoPublished"                  -> parseUpdateVideoPublished v
       "updateNewChat"                         -> parseUpdateNewChat v
       "updateChatTitle"                       -> parseUpdateChatTitle v
       "updateChatPhoto"                       -> parseUpdateChatPhoto v
@@ -2475,6 +2489,14 @@ instance AT.FromJSON Update where
         chat_id_    <- o A..:?  "chat_id"
         message_id_ <- o A..:?  "message_id"
         pure $ UpdateMessageLiveLocationViewed
+          { chat_id    = chat_id_
+          , message_id = message_id_
+          }
+      parseUpdateVideoPublished :: A.Value -> AT.Parser Update
+      parseUpdateVideoPublished = A.withObject "UpdateVideoPublished" $ \o -> do
+        chat_id_    <- o A..:?  "chat_id"
+        message_id_ <- o A..:?  "message_id"
+        pure $ UpdateVideoPublished
           { chat_id    = chat_id_
           , message_id = message_id_
           }
