@@ -12,10 +12,10 @@ data UserTransactionPurpose
   = UserTransactionPurposeGiftedStars -- ^ A user gifted Telegram Stars
     { sticker :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
     }
-  | UserTransactionPurposeGiftSell -- ^ The current user sold a gift received from another user
+  | UserTransactionPurposeGiftSell -- ^ The user sold a gift received from another user or bot
     { gift :: Maybe Gift.Gift -- ^ The gift
     }
-  | UserTransactionPurposeGiftSend -- ^ The current user sent a gift to another user
+  | UserTransactionPurposeGiftSend -- ^ The user or the bot sent a gift to a user
     { gift :: Maybe Gift.Gift -- ^ The gift
     }
   deriving (Eq, Show)

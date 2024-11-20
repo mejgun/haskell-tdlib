@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.VectorPathCommand as VectorPathCommand
 
 data ClosedVectorPath
-  = ClosedVectorPath -- ^ Represents a closed vector path. The path begins at the end point of the last command
+  = ClosedVectorPath -- ^ Represents a closed vector path. The path begins at the end point of the last command. The coordinate system origin is in the upper-left corner
     { commands :: Maybe [VectorPathCommand.VectorPathCommand] -- ^ List of vector path commands
     }
   deriving (Eq, Show)

@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import {-# SOURCE #-} qualified TD.Data.TargetChat as TargetChat
 import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
+import qualified TD.Data.WebAppOpenMode as WebAppOpenMode
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ProxyType as ProxyType
 
@@ -73,10 +74,10 @@ data InternalLinkType
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
   | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the application settings
-  | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
-    { bot_username    :: Maybe T.Text -- ^ Username of the bot
-    , start_parameter :: Maybe T.Text -- ^ Start parameter to be passed to getMainWebApp
-    , is_compact      :: Maybe Bool   -- ^ True, if the Web App must be opened in the compact mode instead of the full-size mode
+  | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
+    { bot_username    :: Maybe T.Text                        -- ^ Username of the bot
+    , start_parameter :: Maybe T.Text                        -- ^ Start parameter to be passed to getMainWebApp
+    , mode            :: Maybe WebAppOpenMode.WebAppOpenMode -- ^ The mode to be passed to getMainWebApp
     }
   | InternalLinkTypeMessage -- ^ The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
     { url :: Maybe T.Text -- ^ URL to be passed to getMessageLinkInfo
@@ -149,10 +150,10 @@ data InternalLinkType
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
     }
   | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
-    { bot_username       :: Maybe T.Text -- ^ Username of the bot that owns the Web App
-    , web_app_short_name :: Maybe T.Text -- ^ Short name of the Web App
-    , start_parameter    :: Maybe T.Text -- ^ Start parameter to be passed to getWebAppLinkUrl
-    , is_compact         :: Maybe Bool   -- ^ True, if the Web App must be opened in the compact mode instead of the full-size mode
+    { bot_username       :: Maybe T.Text                        -- ^ Username of the bot that owns the Web App
+    , web_app_short_name :: Maybe T.Text                        -- ^ Short name of the Web App
+    , start_parameter    :: Maybe T.Text                        -- ^ Start parameter to be passed to getWebAppLinkUrl
+    , mode               :: Maybe WebAppOpenMode.WebAppOpenMode -- ^ The mode in which the Web App must be opened
     }
   deriving (Eq, Show)
 
@@ -297,13 +298,13 @@ instance I.ShortShow InternalLinkType where
   shortShow InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
-    , is_compact      = is_compact_
+    , mode            = mode_
     }
       = "InternalLinkTypeMainWebApp"
         ++ I.cc
         [ "bot_username"    `I.p` bot_username_
         , "start_parameter" `I.p` start_parameter_
-        , "is_compact"      `I.p` is_compact_
+        , "mode"            `I.p` mode_
         ]
   shortShow InternalLinkTypeMessage
     { url = url_
@@ -465,14 +466,14 @@ instance I.ShortShow InternalLinkType where
     { bot_username       = bot_username_
     , web_app_short_name = web_app_short_name_
     , start_parameter    = start_parameter_
-    , is_compact         = is_compact_
+    , mode               = mode_
     }
       = "InternalLinkTypeWebApp"
         ++ I.cc
         [ "bot_username"       `I.p` bot_username_
         , "web_app_short_name" `I.p` web_app_short_name_
         , "start_parameter"    `I.p` start_parameter_
-        , "is_compact"         `I.p` is_compact_
+        , "mode"               `I.p` mode_
         ]
 
 instance AT.FromJSON InternalLinkType where
@@ -642,11 +643,11 @@ instance AT.FromJSON InternalLinkType where
       parseInternalLinkTypeMainWebApp = A.withObject "InternalLinkTypeMainWebApp" $ \o -> do
         bot_username_    <- o A..:?  "bot_username"
         start_parameter_ <- o A..:?  "start_parameter"
-        is_compact_      <- o A..:?  "is_compact"
+        mode_            <- o A..:?  "mode"
         pure $ InternalLinkTypeMainWebApp
           { bot_username    = bot_username_
           , start_parameter = start_parameter_
-          , is_compact      = is_compact_
+          , mode            = mode_
           }
       parseInternalLinkTypeMessage :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeMessage = A.withObject "InternalLinkTypeMessage" $ \o -> do
@@ -781,12 +782,12 @@ instance AT.FromJSON InternalLinkType where
         bot_username_       <- o A..:?  "bot_username"
         web_app_short_name_ <- o A..:?  "web_app_short_name"
         start_parameter_    <- o A..:?  "start_parameter"
-        is_compact_         <- o A..:?  "is_compact"
+        mode_               <- o A..:?  "mode"
         pure $ InternalLinkTypeWebApp
           { bot_username       = bot_username_
           , web_app_short_name = web_app_short_name_
           , start_parameter    = start_parameter_
-          , is_compact         = is_compact_
+          , mode               = mode_
           }
   parseJSON _ = mempty
 
@@ -943,13 +944,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
-    , is_compact      = is_compact_
+    , mode            = mode_
     }
       = A.object
         [ "@type"           A..= AT.String "internalLinkTypeMainWebApp"
         , "bot_username"    A..= bot_username_
         , "start_parameter" A..= start_parameter_
-        , "is_compact"      A..= is_compact_
+        , "mode"            A..= mode_
         ]
   toJSON InternalLinkTypeMessage
     { url = url_
@@ -1123,13 +1124,13 @@ instance AT.ToJSON InternalLinkType where
     { bot_username       = bot_username_
     , web_app_short_name = web_app_short_name_
     , start_parameter    = start_parameter_
-    , is_compact         = is_compact_
+    , mode               = mode_
     }
       = A.object
         [ "@type"              A..= AT.String "internalLinkTypeWebApp"
         , "bot_username"       A..= bot_username_
         , "web_app_short_name" A..= web_app_short_name_
         , "start_parameter"    A..= start_parameter_
-        , "is_compact"         A..= is_compact_
+        , "mode"               A..= mode_
         ]
 

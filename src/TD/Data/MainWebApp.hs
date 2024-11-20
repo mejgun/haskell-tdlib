@@ -5,23 +5,24 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.WebAppOpenMode as WebAppOpenMode
 
 data MainWebApp
   = MainWebApp -- ^ Contains information about the main Web App of a bot
-    { url        :: Maybe T.Text -- ^ URL of the Web App to open
-    , is_compact :: Maybe Bool   -- ^ True, if the Web App must always be opened in the compact mode instead of the full-size mode
+    { url  :: Maybe T.Text                        -- ^ URL of the Web App to open
+    , mode :: Maybe WebAppOpenMode.WebAppOpenMode -- ^ The mode in which the Web App must be opened
     }
   deriving (Eq, Show)
 
 instance I.ShortShow MainWebApp where
   shortShow MainWebApp
-    { url        = url_
-    , is_compact = is_compact_
+    { url  = url_
+    , mode = mode_
     }
       = "MainWebApp"
         ++ I.cc
-        [ "url"        `I.p` url_
-        , "is_compact" `I.p` is_compact_
+        [ "url"  `I.p` url_
+        , "mode" `I.p` mode_
         ]
 
 instance AT.FromJSON MainWebApp where
@@ -35,11 +36,11 @@ instance AT.FromJSON MainWebApp where
     where
       parseMainWebApp :: A.Value -> AT.Parser MainWebApp
       parseMainWebApp = A.withObject "MainWebApp" $ \o -> do
-        url_        <- o A..:?  "url"
-        is_compact_ <- o A..:?  "is_compact"
+        url_  <- o A..:?  "url"
+        mode_ <- o A..:?  "mode"
         pure $ MainWebApp
-          { url        = url_
-          , is_compact = is_compact_
+          { url  = url_
+          , mode = mode_
           }
   parseJSON _ = mempty
 

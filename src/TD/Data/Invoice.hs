@@ -13,6 +13,7 @@ data Invoice
   = Invoice -- ^ Product invoice
     { currency                               :: Maybe T.Text                              -- ^ ISO 4217 currency code
     , price_parts                            :: Maybe [LabeledPricePart.LabeledPricePart] -- ^ A list of objects used to calculate the total price of the product
+    , subscription_period                    :: Maybe Int                                 -- ^ The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
     , max_tip_amount                         :: Maybe Int                                 -- ^ The maximum allowed amount of tip in the smallest units of the currency
     , suggested_tip_amounts                  :: Maybe [Int]                               -- ^ Suggested amounts of tip in the smallest units of the currency
     , recurring_payment_terms_of_service_url :: Maybe T.Text                              -- ^ An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
@@ -32,6 +33,7 @@ instance I.ShortShow Invoice where
   shortShow Invoice
     { currency                               = currency_
     , price_parts                            = price_parts_
+    , subscription_period                    = subscription_period_
     , max_tip_amount                         = max_tip_amount_
     , suggested_tip_amounts                  = suggested_tip_amounts_
     , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
@@ -49,6 +51,7 @@ instance I.ShortShow Invoice where
         ++ I.cc
         [ "currency"                               `I.p` currency_
         , "price_parts"                            `I.p` price_parts_
+        , "subscription_period"                    `I.p` subscription_period_
         , "max_tip_amount"                         `I.p` max_tip_amount_
         , "suggested_tip_amounts"                  `I.p` suggested_tip_amounts_
         , "recurring_payment_terms_of_service_url" `I.p` recurring_payment_terms_of_service_url_
@@ -76,6 +79,7 @@ instance AT.FromJSON Invoice where
       parseInvoice = A.withObject "Invoice" $ \o -> do
         currency_                               <- o A..:?  "currency"
         price_parts_                            <- o A..:?  "price_parts"
+        subscription_period_                    <- o A..:?  "subscription_period"
         max_tip_amount_                         <- o A..:?  "max_tip_amount"
         suggested_tip_amounts_                  <- o A..:?  "suggested_tip_amounts"
         recurring_payment_terms_of_service_url_ <- o A..:?  "recurring_payment_terms_of_service_url"
@@ -91,6 +95,7 @@ instance AT.FromJSON Invoice where
         pure $ Invoice
           { currency                               = currency_
           , price_parts                            = price_parts_
+          , subscription_period                    = subscription_period_
           , max_tip_amount                         = max_tip_amount_
           , suggested_tip_amounts                  = suggested_tip_amounts_
           , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
@@ -110,6 +115,7 @@ instance AT.ToJSON Invoice where
   toJSON Invoice
     { currency                               = currency_
     , price_parts                            = price_parts_
+    , subscription_period                    = subscription_period_
     , max_tip_amount                         = max_tip_amount_
     , suggested_tip_amounts                  = suggested_tip_amounts_
     , recurring_payment_terms_of_service_url = recurring_payment_terms_of_service_url_
@@ -127,6 +133,7 @@ instance AT.ToJSON Invoice where
         [ "@type"                                  A..= AT.String "invoice"
         , "currency"                               A..= currency_
         , "price_parts"                            A..= price_parts_
+        , "subscription_period"                    A..= subscription_period_
         , "max_tip_amount"                         A..= max_tip_amount_
         , "suggested_tip_amounts"                  A..= suggested_tip_amounts_
         , "recurring_payment_terms_of_service_url" A..= recurring_payment_terms_of_service_url_
@@ -146,6 +153,7 @@ defaultInvoice =
   Invoice
     { currency                               = Nothing
     , price_parts                            = Nothing
+    , subscription_period                    = Nothing
     , max_tip_amount                         = Nothing
     , suggested_tip_amounts                  = Nothing
     , recurring_payment_terms_of_service_url = Nothing

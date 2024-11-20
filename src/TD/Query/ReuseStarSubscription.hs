@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Reuses an active subscription and joins the subscribed chat again. Returns 'TD.Data.Ok.Ok'
+-- | Reuses an active Telegram Star subscription to a channel chat and joins the chat again. Returns 'TD.Data.Ok.Ok'
 data ReuseStarSubscription
   = ReuseStarSubscription
     { subscription_id :: Maybe T.Text -- ^ Identifier of the subscription

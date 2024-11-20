@@ -148,6 +148,7 @@ import qualified TD.Data.NotificationSounds as NotificationSounds
 import qualified TD.Data.Ok as Ok
 import qualified TD.Data.OptionValue as OptionValue
 import qualified TD.Data.OrderInfo as OrderInfo
+import qualified TD.Data.Outline as Outline
 import qualified TD.Data.PassportAuthorizationForm as PassportAuthorizationForm
 import qualified TD.Data.PassportElement as PassportElement
 import qualified TD.Data.PassportElements as PassportElements
@@ -162,6 +163,8 @@ import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
 import qualified TD.Data.PremiumGiftCodePaymentOptions as PremiumGiftCodePaymentOptions
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
+import qualified TD.Data.PreparedInlineMessage as PreparedInlineMessage
+import qualified TD.Data.PreparedInlineMessageId as PreparedInlineMessageId
 import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.PublicForwards as PublicForwards
@@ -373,6 +376,7 @@ data GeneralResult
     | Ok                                 Ok.Ok
     | OptionValue                        OptionValue.OptionValue
     | OrderInfo                          OrderInfo.OrderInfo
+    | Outline                            Outline.Outline
     | PassportAuthorizationForm          PassportAuthorizationForm.PassportAuthorizationForm
     | PassportElement                    PassportElement.PassportElement
     | PassportElements                   PassportElements.PassportElements
@@ -387,6 +391,8 @@ data GeneralResult
     | PremiumGiftCodePaymentOptions      PremiumGiftCodePaymentOptions.PremiumGiftCodePaymentOptions
     | PremiumLimit                       PremiumLimit.PremiumLimit
     | PremiumState                       PremiumState.PremiumState
+    | PreparedInlineMessage              PreparedInlineMessage.PreparedInlineMessage
+    | PreparedInlineMessageId            PreparedInlineMessageId.PreparedInlineMessageId
     | Proxies                            Proxies.Proxies
     | Proxy                              Proxy.Proxy
     | PublicForwards                     PublicForwards.PublicForwards
@@ -743,6 +749,8 @@ instance I.ShortShow GeneralResult where
     = "OptionValue" <> " (" <> I.shortShow v <> ")"
   shortShow (OrderInfo v)
     = "OrderInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (Outline v)
+    = "Outline" <> " (" <> I.shortShow v <> ")"
   shortShow (PassportAuthorizationForm v)
     = "PassportAuthorizationForm" <> " (" <> I.shortShow v <> ")"
   shortShow (PassportElement v)
@@ -771,6 +779,10 @@ instance I.ShortShow GeneralResult where
     = "PremiumLimit" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumState v)
     = "PremiumState" <> " (" <> I.shortShow v <> ")"
+  shortShow (PreparedInlineMessage v)
+    = "PreparedInlineMessage" <> " (" <> I.shortShow v <> ")"
+  shortShow (PreparedInlineMessageId v)
+    = "PreparedInlineMessageId" <> " (" <> I.shortShow v <> ")"
   shortShow (Proxies v)
     = "Proxies" <> " (" <> I.shortShow v <> ")"
   shortShow (Proxy v)
@@ -1048,6 +1060,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Ok                                  <$> parseJSON v )
     <|> ( OptionValue                         <$> parseJSON v )
     <|> ( OrderInfo                           <$> parseJSON v )
+    <|> ( Outline                             <$> parseJSON v )
     <|> ( PassportAuthorizationForm           <$> parseJSON v )
     <|> ( PassportElement                     <$> parseJSON v )
     <|> ( PassportElements                    <$> parseJSON v )
@@ -1062,6 +1075,8 @@ instance T.FromJSON GeneralResult where
     <|> ( PremiumGiftCodePaymentOptions       <$> parseJSON v )
     <|> ( PremiumLimit                        <$> parseJSON v )
     <|> ( PremiumState                        <$> parseJSON v )
+    <|> ( PreparedInlineMessage               <$> parseJSON v )
+    <|> ( PreparedInlineMessageId             <$> parseJSON v )
     <|> ( Proxies                             <$> parseJSON v )
     <|> ( Proxy                               <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )

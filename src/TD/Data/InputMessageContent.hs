@@ -77,7 +77,7 @@ data InputMessageContent
     , emoji     :: Maybe T.Text                        -- ^ Emoji used to choose the sticker
     }
   | InputMessageVideo -- ^ A video message
-    { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent. The video is expected to be reencoded to MPEG4 format with H.264 codec by the sender
+    { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
     , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
     , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
     , duration                 :: Maybe Int                                             -- ^ Duration of the video, in seconds

@@ -12,6 +12,7 @@ data Gift
     , sticker                 :: Maybe Sticker.Sticker -- ^ The sticker representing the gift
     , star_count              :: Maybe Int             -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int             -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
+    , is_for_birthday         :: Maybe Bool            -- ^ True, if the gift is a birthday gift
     , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
     , total_count             :: Maybe Int             -- ^ Number of total times the gift can be purchased by all users; 0 if not limited
     , first_send_date         :: Maybe Int             -- ^ Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
@@ -25,6 +26,7 @@ instance I.ShortShow Gift where
     , sticker                 = sticker_
     , star_count              = star_count_
     , default_sell_star_count = default_sell_star_count_
+    , is_for_birthday         = is_for_birthday_
     , remaining_count         = remaining_count_
     , total_count             = total_count_
     , first_send_date         = first_send_date_
@@ -36,6 +38,7 @@ instance I.ShortShow Gift where
         , "sticker"                 `I.p` sticker_
         , "star_count"              `I.p` star_count_
         , "default_sell_star_count" `I.p` default_sell_star_count_
+        , "is_for_birthday"         `I.p` is_for_birthday_
         , "remaining_count"         `I.p` remaining_count_
         , "total_count"             `I.p` total_count_
         , "first_send_date"         `I.p` first_send_date_
@@ -57,6 +60,7 @@ instance AT.FromJSON Gift where
         sticker_                 <- o A..:?                       "sticker"
         star_count_              <- o A..:?                       "star_count"
         default_sell_star_count_ <- o A..:?                       "default_sell_star_count"
+        is_for_birthday_         <- o A..:?                       "is_for_birthday"
         remaining_count_         <- o A..:?                       "remaining_count"
         total_count_             <- o A..:?                       "total_count"
         first_send_date_         <- o A..:?                       "first_send_date"
@@ -66,6 +70,7 @@ instance AT.FromJSON Gift where
           , sticker                 = sticker_
           , star_count              = star_count_
           , default_sell_star_count = default_sell_star_count_
+          , is_for_birthday         = is_for_birthday_
           , remaining_count         = remaining_count_
           , total_count             = total_count_
           , first_send_date         = first_send_date_

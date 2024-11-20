@@ -16,7 +16,7 @@ data UserGift
     , date            :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift was sent
     , gift            :: Maybe Gift.Gift                   -- ^ The gift
     , message_id      :: Maybe Int                         -- ^ Identifier of the message with the gift in the chat with the sender of the gift; can be 0 or an identifier of a deleted message; only for the gift receiver
-    , sell_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift; only for the gift receiver
+    , sell_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the current user
     }
   deriving (Eq, Show)
 

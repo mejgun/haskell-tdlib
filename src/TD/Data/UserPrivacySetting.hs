@@ -18,6 +18,7 @@ data UserPrivacySetting
   | UserPrivacySettingAllowPeerToPeerCalls -- ^ A privacy setting for managing whether peer-to-peer connections can be used for calls
   | UserPrivacySettingAllowFindingByPhoneNumber -- ^ A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
   | UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages -- ^ A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
+  | UserPrivacySettingAutosaveGifts -- ^ A privacy setting for managing whether received gifts are automatically shown on the user's profile page
   deriving (Eq, Show)
 
 instance I.ShortShow UserPrivacySetting where
@@ -43,6 +44,8 @@ instance I.ShortShow UserPrivacySetting where
       = "UserPrivacySettingAllowFindingByPhoneNumber"
   shortShow UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
       = "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+  shortShow UserPrivacySettingAutosaveGifts
+      = "UserPrivacySettingAutosaveGifts"
 
 instance AT.FromJSON UserPrivacySetting where
   parseJSON (AT.Object obj) = do
@@ -60,6 +63,7 @@ instance AT.FromJSON UserPrivacySetting where
       "userPrivacySettingAllowPeerToPeerCalls"                  -> pure UserPrivacySettingAllowPeerToPeerCalls
       "userPrivacySettingAllowFindingByPhoneNumber"             -> pure UserPrivacySettingAllowFindingByPhoneNumber
       "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages" -> pure UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+      "userPrivacySettingAutosaveGifts"                         -> pure UserPrivacySettingAutosaveGifts
       _                                                         -> mempty
     
   parseJSON _ = mempty
@@ -108,5 +112,9 @@ instance AT.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+        ]
+  toJSON UserPrivacySettingAutosaveGifts
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingAutosaveGifts"
         ]
 

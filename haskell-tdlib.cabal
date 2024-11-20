@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.49.0
+version:        2.0.50.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -371,6 +371,7 @@ library
       TD.Data.Ok
       TD.Data.OptionValue
       TD.Data.OrderInfo
+      TD.Data.Outline
       TD.Data.PageBlock
       TD.Data.PageBlockCaption
       TD.Data.PageBlockHorizontalAlignment
@@ -422,6 +423,8 @@ library
       TD.Data.PremiumStatePaymentOption
       TD.Data.PremiumStoryFeature
       TD.Data.PrepaidGiveaway
+      TD.Data.PreparedInlineMessage
+      TD.Data.PreparedInlineMessageId
       TD.Data.ProductInfo
       TD.Data.ProfileAccentColor
       TD.Data.ProfileAccentColors
@@ -488,6 +491,7 @@ library
       TD.Data.StarSubscription
       TD.Data.StarSubscriptionPricing
       TD.Data.StarSubscriptions
+      TD.Data.StarSubscriptionType
       TD.Data.StarTransaction
       TD.Data.StarTransactionDirection
       TD.Data.StarTransactionPartner
@@ -530,6 +534,7 @@ library
       TD.Data.SupergroupFullInfo
       TD.Data.SupergroupMembersFilter
       TD.Data.TargetChat
+      TD.Data.TargetChatTypes
       TD.Data.TelegramPaymentPurpose
       TD.Data.TemporaryPasswordState
       TD.Data.TermsOfService
@@ -584,6 +589,8 @@ library
       TD.Data.VoiceNote
       TD.Data.WebApp
       TD.Data.WebAppInfo
+      TD.Data.WebAppOpenMode
+      TD.Data.WebAppOpenParameters
       TD.Data.WebPageInstantView
       TD.GeneralResult
       TD.Lib
@@ -655,6 +662,7 @@ library
       TD.Query.CheckQuickReplyShortcutName
       TD.Query.CheckRecoveryEmailAddressCode
       TD.Query.CheckStickerSetName
+      TD.Query.CheckWebAppFileDownload
       TD.Query.CleanFileName
       TD.Query.ClearAllDraftMessages
       TD.Query.ClearAutosaveSettingsExceptions
@@ -760,6 +768,7 @@ library
       TD.Query.EditStarSubscription
       TD.Query.EditStory
       TD.Query.EditStoryCover
+      TD.Query.EditUserStarSubscription
       TD.Query.EnableProxy
       TD.Query.EndGroupCall
       TD.Query.EndGroupCallRecording
@@ -956,6 +965,7 @@ library
       TD.Query.GetPremiumState
       TD.Query.GetPremiumStickerExamples
       TD.Query.GetPremiumStickers
+      TD.Query.GetPreparedInlineMessage
       TD.Query.GetProxies
       TD.Query.GetProxyLink
       TD.Query.GetPushReceiverId
@@ -990,6 +1000,7 @@ library
       TD.Query.GetStarWithdrawalUrl
       TD.Query.GetStatisticalGraph
       TD.Query.GetStickerEmojis
+      TD.Query.GetStickerOutline
       TD.Query.GetStickers
       TD.Query.GetStickerSet
       TD.Query.GetStickerSetName
@@ -1029,6 +1040,7 @@ library
       TD.Query.GetVideoChatAvailableParticipants
       TD.Query.GetVideoChatRtmpUrl
       TD.Query.GetWebAppLinkUrl
+      TD.Query.GetWebAppPlaceholder
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
       TD.Query.HideContactCloseBirthdays
@@ -1135,6 +1147,7 @@ library
       TD.Query.RevokeChatInviteLink
       TD.Query.RevokeGroupCallInviteLink
       TD.Query.SaveApplicationLogEvent
+      TD.Query.SavePreparedInlineMessage
       TD.Query.SearchBackground
       TD.Query.SearchCallMessages
       TD.Query.SearchChatMembers
@@ -1295,6 +1308,7 @@ library
       TD.Query.SetSupergroupUnrestrictBoostCount
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
+      TD.Query.SetUserEmojiStatus
       TD.Query.SetUsername
       TD.Query.SetUserPersonalProfilePhoto
       TD.Query.SetUserPrivacySettingRules
@@ -1326,6 +1340,7 @@ library
       TD.Query.TestSquareInt
       TD.Query.TestUseUpdate
       TD.Query.ToggleAllDownloadsArePaused
+      TD.Query.ToggleBotCanManageEmojiStatus
       TD.Query.ToggleBotIsAddedToAttachmentMenu
       TD.Query.ToggleBotUsernameIsActive
       TD.Query.ToggleBusinessConnectedBotChatIsPaused

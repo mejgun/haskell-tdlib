@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Cancels or reenables Telegram Star subscription to a channel. Returns 'TD.Data.Ok.Ok'
+-- | Cancels or re-enables Telegram Star subscription. Returns 'TD.Data.Ok.Ok'
 data EditStarSubscription
   = EditStarSubscription
     { subscription_id :: Maybe T.Text -- ^ Identifier of the subscription to change

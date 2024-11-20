@@ -7,22 +7,20 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.StickerFormat as StickerFormat
 import qualified TD.Data.StickerFullType as StickerFullType
-import qualified TD.Data.ClosedVectorPath as ClosedVectorPath
 import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.File as File
 
 data Sticker
   = Sticker -- ^ Describes a sticker
-    { _id       :: Maybe Int                                 -- ^ Unique sticker identifier within the set; 0 if none
-    , set_id    :: Maybe Int                                 -- ^ Identifier of the sticker set to which the sticker belongs; 0 if none
-    , width     :: Maybe Int                                 -- ^ Sticker width; as defined by the sender
-    , height    :: Maybe Int                                 -- ^ Sticker height; as defined by the sender
-    , emoji     :: Maybe T.Text                              -- ^ Emoji corresponding to the sticker
-    , format    :: Maybe StickerFormat.StickerFormat         -- ^ Sticker format
-    , full_type :: Maybe StickerFullType.StickerFullType     -- ^ Sticker's full type
-    , outline   :: Maybe [ClosedVectorPath.ClosedVectorPath] -- ^ Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    , thumbnail :: Maybe Thumbnail.Thumbnail                 -- ^ Sticker thumbnail in WEBP or JPEG format; may be null
-    , sticker   :: Maybe File.File                           -- ^ File containing the sticker
+    { _id       :: Maybe Int                             -- ^ Unique sticker identifier within the set; 0 if none
+    , set_id    :: Maybe Int                             -- ^ Identifier of the sticker set to which the sticker belongs; 0 if none
+    , width     :: Maybe Int                             -- ^ Sticker width; as defined by the sender
+    , height    :: Maybe Int                             -- ^ Sticker height; as defined by the sender
+    , emoji     :: Maybe T.Text                          -- ^ Emoji corresponding to the sticker
+    , format    :: Maybe StickerFormat.StickerFormat     -- ^ Sticker format
+    , full_type :: Maybe StickerFullType.StickerFullType -- ^ Sticker's full type
+    , thumbnail :: Maybe Thumbnail.Thumbnail             -- ^ Sticker thumbnail in WEBP or JPEG format; may be null
+    , sticker   :: Maybe File.File                       -- ^ File containing the sticker
     }
   deriving (Eq, Show)
 
@@ -35,7 +33,6 @@ instance I.ShortShow Sticker where
     , emoji     = emoji_
     , format    = format_
     , full_type = full_type_
-    , outline   = outline_
     , thumbnail = thumbnail_
     , sticker   = sticker_
     }
@@ -48,7 +45,6 @@ instance I.ShortShow Sticker where
         , "emoji"     `I.p` emoji_
         , "format"    `I.p` format_
         , "full_type" `I.p` full_type_
-        , "outline"   `I.p` outline_
         , "thumbnail" `I.p` thumbnail_
         , "sticker"   `I.p` sticker_
         ]
@@ -71,7 +67,6 @@ instance AT.FromJSON Sticker where
         emoji_     <- o A..:?                       "emoji"
         format_    <- o A..:?                       "format"
         full_type_ <- o A..:?                       "full_type"
-        outline_   <- o A..:?                       "outline"
         thumbnail_ <- o A..:?                       "thumbnail"
         sticker_   <- o A..:?                       "sticker"
         pure $ Sticker
@@ -82,7 +77,6 @@ instance AT.FromJSON Sticker where
           , emoji     = emoji_
           , format    = format_
           , full_type = full_type_
-          , outline   = outline_
           , thumbnail = thumbnail_
           , sticker   = sticker_
           }

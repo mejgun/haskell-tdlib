@@ -9,6 +9,7 @@ import qualified TD.Lib.Internal as I
 data UserPrivacySettingRule
   = UserPrivacySettingRuleAllowAll -- ^ A rule to allow all users to do something
   | UserPrivacySettingRuleAllowContacts -- ^ A rule to allow all contacts of the user to do something
+  | UserPrivacySettingRuleAllowBots -- ^ A rule to allow all bots to do something
   | UserPrivacySettingRuleAllowPremiumUsers -- ^ A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
   | UserPrivacySettingRuleAllowUsers -- ^ A rule to allow certain specified users to do something
     { user_ids :: Maybe [Int] -- ^ The user identifiers, total number of users in all rules must not exceed 1000
@@ -18,6 +19,7 @@ data UserPrivacySettingRule
     }
   | UserPrivacySettingRuleRestrictAll -- ^ A rule to restrict all users from doing something
   | UserPrivacySettingRuleRestrictContacts -- ^ A rule to restrict all contacts of the user from doing something
+  | UserPrivacySettingRuleRestrictBots -- ^ A rule to restrict all bots from doing something
   | UserPrivacySettingRuleRestrictUsers -- ^ A rule to restrict all specified users from doing something
     { user_ids :: Maybe [Int] -- ^ The user identifiers, total number of users in all rules must not exceed 1000
     }
@@ -31,6 +33,8 @@ instance I.ShortShow UserPrivacySettingRule where
       = "UserPrivacySettingRuleAllowAll"
   shortShow UserPrivacySettingRuleAllowContacts
       = "UserPrivacySettingRuleAllowContacts"
+  shortShow UserPrivacySettingRuleAllowBots
+      = "UserPrivacySettingRuleAllowBots"
   shortShow UserPrivacySettingRuleAllowPremiumUsers
       = "UserPrivacySettingRuleAllowPremiumUsers"
   shortShow UserPrivacySettingRuleAllowUsers
@@ -51,6 +55,8 @@ instance I.ShortShow UserPrivacySettingRule where
       = "UserPrivacySettingRuleRestrictAll"
   shortShow UserPrivacySettingRuleRestrictContacts
       = "UserPrivacySettingRuleRestrictContacts"
+  shortShow UserPrivacySettingRuleRestrictBots
+      = "UserPrivacySettingRuleRestrictBots"
   shortShow UserPrivacySettingRuleRestrictUsers
     { user_ids = user_ids_
     }
@@ -73,11 +79,13 @@ instance AT.FromJSON UserPrivacySettingRule where
     case t of
       "userPrivacySettingRuleAllowAll"            -> pure UserPrivacySettingRuleAllowAll
       "userPrivacySettingRuleAllowContacts"       -> pure UserPrivacySettingRuleAllowContacts
+      "userPrivacySettingRuleAllowBots"           -> pure UserPrivacySettingRuleAllowBots
       "userPrivacySettingRuleAllowPremiumUsers"   -> pure UserPrivacySettingRuleAllowPremiumUsers
       "userPrivacySettingRuleAllowUsers"          -> parseUserPrivacySettingRuleAllowUsers v
       "userPrivacySettingRuleAllowChatMembers"    -> parseUserPrivacySettingRuleAllowChatMembers v
       "userPrivacySettingRuleRestrictAll"         -> pure UserPrivacySettingRuleRestrictAll
       "userPrivacySettingRuleRestrictContacts"    -> pure UserPrivacySettingRuleRestrictContacts
+      "userPrivacySettingRuleRestrictBots"        -> pure UserPrivacySettingRuleRestrictBots
       "userPrivacySettingRuleRestrictUsers"       -> parseUserPrivacySettingRuleRestrictUsers v
       "userPrivacySettingRuleRestrictChatMembers" -> parseUserPrivacySettingRuleRestrictChatMembers v
       _                                           -> mempty
@@ -118,6 +126,10 @@ instance AT.ToJSON UserPrivacySettingRule where
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingRuleAllowContacts"
         ]
+  toJSON UserPrivacySettingRuleAllowBots
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingRuleAllowBots"
+        ]
   toJSON UserPrivacySettingRuleAllowPremiumUsers
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingRuleAllowPremiumUsers"
@@ -143,6 +155,10 @@ instance AT.ToJSON UserPrivacySettingRule where
   toJSON UserPrivacySettingRuleRestrictContacts
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingRuleRestrictContacts"
+        ]
+  toJSON UserPrivacySettingRuleRestrictBots
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingRuleRestrictBots"
         ]
   toJSON UserPrivacySettingRuleRestrictUsers
     { user_ids = user_ids_

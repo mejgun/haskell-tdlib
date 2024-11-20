@@ -8,7 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.File as File
 
 data AlternativeVideo
-  = AlternativeVideo -- ^ Describes an alternative reencoded quality of a video file
+  = AlternativeVideo -- ^ Describes an alternative re-encoded quality of a video file
     { width    :: Maybe Int       -- ^ Video width
     , height   :: Maybe Int       -- ^ Video height
     , codec    :: Maybe T.Text    -- ^ Codec used for video file encoding, for example, "h264", "h265", or "av1"

@@ -9,6 +9,7 @@ import qualified TD.Data.PaymentProvider as PaymentProvider
 import qualified TD.Data.PaymentOption as PaymentOption
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.SavedCredentials as SavedCredentials
+import qualified TD.Data.StarSubscriptionPricing as StarSubscriptionPricing
 
 -- | Describes type of payment form
 data PaymentFormType
@@ -24,6 +25,9 @@ data PaymentFormType
     }
   | PaymentFormTypeStars -- ^ The payment form is for a payment in Telegram Stars
     { star_count :: Maybe Int -- ^ Number of Telegram Stars that will be paid
+    }
+  | PaymentFormTypeStarSubscription -- ^ The payment form is for a payment in Telegram Stars for subscription
+    { pricing :: Maybe StarSubscriptionPricing.StarSubscriptionPricing -- ^ Information about subscription plan
     }
   deriving (Eq, Show)
 
@@ -56,15 +60,23 @@ instance I.ShortShow PaymentFormType where
         ++ I.cc
         [ "star_count" `I.p` star_count_
         ]
+  shortShow PaymentFormTypeStarSubscription
+    { pricing = pricing_
+    }
+      = "PaymentFormTypeStarSubscription"
+        ++ I.cc
+        [ "pricing" `I.p` pricing_
+        ]
 
 instance AT.FromJSON PaymentFormType where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "paymentFormTypeRegular" -> parsePaymentFormTypeRegular v
-      "paymentFormTypeStars"   -> parsePaymentFormTypeStars v
-      _                        -> mempty
+      "paymentFormTypeRegular"          -> parsePaymentFormTypeRegular v
+      "paymentFormTypeStars"            -> parsePaymentFormTypeStars v
+      "paymentFormTypeStarSubscription" -> parsePaymentFormTypeStarSubscription v
+      _                                 -> mempty
     
     where
       parsePaymentFormTypeRegular :: A.Value -> AT.Parser PaymentFormType
@@ -92,6 +104,12 @@ instance AT.FromJSON PaymentFormType where
         star_count_ <- o A..:?  "star_count"
         pure $ PaymentFormTypeStars
           { star_count = star_count_
+          }
+      parsePaymentFormTypeStarSubscription :: A.Value -> AT.Parser PaymentFormType
+      parsePaymentFormTypeStarSubscription = A.withObject "PaymentFormTypeStarSubscription" $ \o -> do
+        pricing_ <- o A..:?  "pricing"
+        pure $ PaymentFormTypeStarSubscription
+          { pricing = pricing_
           }
   parseJSON _ = mempty
 

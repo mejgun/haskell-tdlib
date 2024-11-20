@@ -6,27 +6,27 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.Thumbnail as Thumbnail
-import qualified TD.Data.ClosedVectorPath as ClosedVectorPath
+import qualified TD.Data.Outline as Outline
 import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.Sticker as Sticker
 
 data StickerSetInfo
   = StickerSetInfo -- ^ Represents short information about a sticker set
-    { _id                             :: Maybe Int                                 -- ^ Identifier of the sticker set
-    , title                           :: Maybe T.Text                              -- ^ Title of the sticker set
-    , name                            :: Maybe T.Text                              -- ^ Name of the sticker set
-    , thumbnail                       :: Maybe Thumbnail.Thumbnail                 -- ^ Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
-    , thumbnail_outline               :: Maybe [ClosedVectorPath.ClosedVectorPath] -- ^ Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    , is_owned                        :: Maybe Bool                                -- ^ True, if the sticker set is owned by the current user
-    , is_installed                    :: Maybe Bool                                -- ^ True, if the sticker set has been installed by the current user
-    , is_archived                     :: Maybe Bool                                -- ^ True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
-    , is_official                     :: Maybe Bool                                -- ^ True, if the sticker set is official
-    , sticker_type                    :: Maybe StickerType.StickerType             -- ^ Type of the stickers in the set
-    , needs_repainting                :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
-    , is_allowed_as_chat_emoji_status :: Maybe Bool                                -- ^ True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
-    , is_viewed                       :: Maybe Bool                                -- ^ True for already viewed trending sticker sets
-    , size                            :: Maybe Int                                 -- ^ Total number of stickers in the set
-    , covers                          :: Maybe [Sticker.Sticker]                   -- ^ Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
+    { _id                             :: Maybe Int                     -- ^ Identifier of the sticker set
+    , title                           :: Maybe T.Text                  -- ^ Title of the sticker set
+    , name                            :: Maybe T.Text                  -- ^ Name of the sticker set
+    , thumbnail                       :: Maybe Thumbnail.Thumbnail     -- ^ Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
+    , thumbnail_outline               :: Maybe Outline.Outline         -- ^ Sticker set thumbnail's outline; may be null if unknown
+    , is_owned                        :: Maybe Bool                    -- ^ True, if the sticker set is owned by the current user
+    , is_installed                    :: Maybe Bool                    -- ^ True, if the sticker set has been installed by the current user
+    , is_archived                     :: Maybe Bool                    -- ^ True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+    , is_official                     :: Maybe Bool                    -- ^ True, if the sticker set is official
+    , sticker_type                    :: Maybe StickerType.StickerType -- ^ Type of the stickers in the set
+    , needs_repainting                :: Maybe Bool                    -- ^ True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
+    , is_allowed_as_chat_emoji_status :: Maybe Bool                    -- ^ True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
+    , is_viewed                       :: Maybe Bool                    -- ^ True for already viewed trending sticker sets
+    , size                            :: Maybe Int                     -- ^ Total number of stickers in the set
+    , covers                          :: Maybe [Sticker.Sticker]       -- ^ Up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
     }
   deriving (Eq, Show)
 

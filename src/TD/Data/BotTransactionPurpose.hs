@@ -19,6 +19,11 @@ data BotTransactionPurpose
     { product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product; may be null if not applicable
     , invoice_payload :: Maybe BS.ByteString           -- ^ Invoice payload; for bots only
     }
+  | BotTransactionPurposeSubscription -- ^ User bought a subscription in a bot or a business account
+    { period          :: Maybe Int                     -- ^ The number of seconds between consecutive Telegram Star debiting
+    , product_info    :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought subscription; may be null if not applicable
+    , invoice_payload :: Maybe BS.ByteString           -- ^ Invoice payload; for bots only
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow BotTransactionPurpose where
@@ -40,6 +45,17 @@ instance I.ShortShow BotTransactionPurpose where
         [ "product_info"    `I.p` product_info_
         , "invoice_payload" `I.p` invoice_payload_
         ]
+  shortShow BotTransactionPurposeSubscription
+    { period          = period_
+    , product_info    = product_info_
+    , invoice_payload = invoice_payload_
+    }
+      = "BotTransactionPurposeSubscription"
+        ++ I.cc
+        [ "period"          `I.p` period_
+        , "product_info"    `I.p` product_info_
+        , "invoice_payload" `I.p` invoice_payload_
+        ]
 
 instance AT.FromJSON BotTransactionPurpose where
   parseJSON v@(AT.Object obj) = do
@@ -48,6 +64,7 @@ instance AT.FromJSON BotTransactionPurpose where
     case t of
       "botTransactionPurposePaidMedia"      -> parseBotTransactionPurposePaidMedia v
       "botTransactionPurposeInvoicePayment" -> parseBotTransactionPurposeInvoicePayment v
+      "botTransactionPurposeSubscription"   -> parseBotTransactionPurposeSubscription v
       _                                     -> mempty
     
     where
@@ -65,6 +82,16 @@ instance AT.FromJSON BotTransactionPurpose where
         invoice_payload_ <- fmap I.readBytes <$> o A..:?  "invoice_payload"
         pure $ BotTransactionPurposeInvoicePayment
           { product_info    = product_info_
+          , invoice_payload = invoice_payload_
+          }
+      parseBotTransactionPurposeSubscription :: A.Value -> AT.Parser BotTransactionPurpose
+      parseBotTransactionPurposeSubscription = A.withObject "BotTransactionPurposeSubscription" $ \o -> do
+        period_          <- o A..:?                       "period"
+        product_info_    <- o A..:?                       "product_info"
+        invoice_payload_ <- fmap I.readBytes <$> o A..:?  "invoice_payload"
+        pure $ BotTransactionPurposeSubscription
+          { period          = period_
+          , product_info    = product_info_
           , invoice_payload = invoice_payload_
           }
   parseJSON _ = mempty

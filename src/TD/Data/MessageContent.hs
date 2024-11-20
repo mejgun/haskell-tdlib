@@ -243,23 +243,25 @@ data MessageContent
     , game_id         :: Maybe Int -- ^ Identifier of the game; may be different from the games presented in the message with the game
     , score           :: Maybe Int -- ^ New score
     }
-  | MessagePaymentSuccessful -- ^ A payment has been completed
-    { invoice_chat_id    :: Maybe Int    -- ^ Identifier of the chat, containing the corresponding invoice message
-    , invoice_message_id :: Maybe Int    -- ^ Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
-    , currency           :: Maybe T.Text -- ^ Currency for the price of the product
-    , total_amount       :: Maybe Int    -- ^ Total price for the product, in the smallest units of the currency
-    , is_recurring       :: Maybe Bool   -- ^ True, if this is a recurring payment
-    , is_first_recurring :: Maybe Bool   -- ^ True, if this is the first recurring payment
-    , invoice_name       :: Maybe T.Text -- ^ Name of the invoice; may be empty if unknown
+  | MessagePaymentSuccessful -- ^ A payment has been sent to a bot or a business account
+    { invoice_chat_id         :: Maybe Int    -- ^ Identifier of the chat, containing the corresponding invoice message
+    , invoice_message_id      :: Maybe Int    -- ^ Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
+    , currency                :: Maybe T.Text -- ^ Currency for the price of the product
+    , total_amount            :: Maybe Int    -- ^ Total price for the product, in the smallest units of the currency
+    , subscription_until_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
+    , is_recurring            :: Maybe Bool   -- ^ True, if this is a recurring payment
+    , is_first_recurring      :: Maybe Bool   -- ^ True, if this is the first recurring payment
+    , invoice_name            :: Maybe T.Text -- ^ Name of the invoice; may be empty if unknown
     }
-  | MessagePaymentSuccessfulBot -- ^ A payment has been completed; for bots only
+  | MessagePaymentSuccessfulBot -- ^ A payment has been received by the bot or the business account
     { currency                   :: Maybe T.Text              -- ^ Currency for price of the product
     , total_amount               :: Maybe Int                 -- ^ Total price for the product, in the smallest units of the currency
+    , subscription_until_date    :: Maybe Int                 -- ^ Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
     , is_recurring               :: Maybe Bool                -- ^ True, if this is a recurring payment
     , is_first_recurring         :: Maybe Bool                -- ^ True, if this is the first recurring payment
     , invoice_payload            :: Maybe BS.ByteString       -- ^ Invoice payload
-    , shipping_option_id         :: Maybe T.Text              -- ^ Identifier of the shipping option chosen by the user; may be empty if not applicable
-    , order_info                 :: Maybe OrderInfo.OrderInfo -- ^ Information about the order; may be null
+    , shipping_option_id         :: Maybe T.Text              -- ^ Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only
+    , order_info                 :: Maybe OrderInfo.OrderInfo -- ^ Information about the order; may be null; for bots only
     , telegram_payment_charge_id :: Maybe T.Text              -- ^ Telegram payment identifier
     , provider_payment_charge_id :: Maybe T.Text              -- ^ Provider payment identifier
     }
@@ -345,7 +347,7 @@ data MessageContent
   | MessageGift -- ^ A gift was received or sent by the current user
     { gift            :: Maybe Gift.Gift                   -- ^ The gift
     , text            :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
-    , sell_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift
+    , sell_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the receiver
     , is_private      :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     , is_saved        :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's profile page; only for the receiver of the gift
     , was_converted   :: Maybe Bool                        -- ^ True, if the gift was converted to Telegram Stars; only for the receiver of the gift
@@ -826,27 +828,30 @@ instance I.ShortShow MessageContent where
         , "score"           `I.p` score_
         ]
   shortShow MessagePaymentSuccessful
-    { invoice_chat_id    = invoice_chat_id_
-    , invoice_message_id = invoice_message_id_
-    , currency           = currency_
-    , total_amount       = total_amount_
-    , is_recurring       = is_recurring_
-    , is_first_recurring = is_first_recurring_
-    , invoice_name       = invoice_name_
+    { invoice_chat_id         = invoice_chat_id_
+    , invoice_message_id      = invoice_message_id_
+    , currency                = currency_
+    , total_amount            = total_amount_
+    , subscription_until_date = subscription_until_date_
+    , is_recurring            = is_recurring_
+    , is_first_recurring      = is_first_recurring_
+    , invoice_name            = invoice_name_
     }
       = "MessagePaymentSuccessful"
         ++ I.cc
-        [ "invoice_chat_id"    `I.p` invoice_chat_id_
-        , "invoice_message_id" `I.p` invoice_message_id_
-        , "currency"           `I.p` currency_
-        , "total_amount"       `I.p` total_amount_
-        , "is_recurring"       `I.p` is_recurring_
-        , "is_first_recurring" `I.p` is_first_recurring_
-        , "invoice_name"       `I.p` invoice_name_
+        [ "invoice_chat_id"         `I.p` invoice_chat_id_
+        , "invoice_message_id"      `I.p` invoice_message_id_
+        , "currency"                `I.p` currency_
+        , "total_amount"            `I.p` total_amount_
+        , "subscription_until_date" `I.p` subscription_until_date_
+        , "is_recurring"            `I.p` is_recurring_
+        , "is_first_recurring"      `I.p` is_first_recurring_
+        , "invoice_name"            `I.p` invoice_name_
         ]
   shortShow MessagePaymentSuccessfulBot
     { currency                   = currency_
     , total_amount               = total_amount_
+    , subscription_until_date    = subscription_until_date_
     , is_recurring               = is_recurring_
     , is_first_recurring         = is_first_recurring_
     , invoice_payload            = invoice_payload_
@@ -859,6 +864,7 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "currency"                   `I.p` currency_
         , "total_amount"               `I.p` total_amount_
+        , "subscription_until_date"    `I.p` subscription_until_date_
         , "is_recurring"               `I.p` is_recurring_
         , "is_first_recurring"         `I.p` is_first_recurring_
         , "invoice_payload"            `I.p` invoice_payload_
@@ -1588,26 +1594,29 @@ instance AT.FromJSON MessageContent where
           }
       parseMessagePaymentSuccessful :: A.Value -> AT.Parser MessageContent
       parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
-        invoice_chat_id_    <- o A..:?  "invoice_chat_id"
-        invoice_message_id_ <- o A..:?  "invoice_message_id"
-        currency_           <- o A..:?  "currency"
-        total_amount_       <- o A..:?  "total_amount"
-        is_recurring_       <- o A..:?  "is_recurring"
-        is_first_recurring_ <- o A..:?  "is_first_recurring"
-        invoice_name_       <- o A..:?  "invoice_name"
+        invoice_chat_id_         <- o A..:?  "invoice_chat_id"
+        invoice_message_id_      <- o A..:?  "invoice_message_id"
+        currency_                <- o A..:?  "currency"
+        total_amount_            <- o A..:?  "total_amount"
+        subscription_until_date_ <- o A..:?  "subscription_until_date"
+        is_recurring_            <- o A..:?  "is_recurring"
+        is_first_recurring_      <- o A..:?  "is_first_recurring"
+        invoice_name_            <- o A..:?  "invoice_name"
         pure $ MessagePaymentSuccessful
-          { invoice_chat_id    = invoice_chat_id_
-          , invoice_message_id = invoice_message_id_
-          , currency           = currency_
-          , total_amount       = total_amount_
-          , is_recurring       = is_recurring_
-          , is_first_recurring = is_first_recurring_
-          , invoice_name       = invoice_name_
+          { invoice_chat_id         = invoice_chat_id_
+          , invoice_message_id      = invoice_message_id_
+          , currency                = currency_
+          , total_amount            = total_amount_
+          , subscription_until_date = subscription_until_date_
+          , is_recurring            = is_recurring_
+          , is_first_recurring      = is_first_recurring_
+          , invoice_name            = invoice_name_
           }
       parseMessagePaymentSuccessfulBot :: A.Value -> AT.Parser MessageContent
       parseMessagePaymentSuccessfulBot = A.withObject "MessagePaymentSuccessfulBot" $ \o -> do
         currency_                   <- o A..:?                       "currency"
         total_amount_               <- o A..:?                       "total_amount"
+        subscription_until_date_    <- o A..:?                       "subscription_until_date"
         is_recurring_               <- o A..:?                       "is_recurring"
         is_first_recurring_         <- o A..:?                       "is_first_recurring"
         invoice_payload_            <- fmap I.readBytes <$> o A..:?  "invoice_payload"
@@ -1618,6 +1627,7 @@ instance AT.FromJSON MessageContent where
         pure $ MessagePaymentSuccessfulBot
           { currency                   = currency_
           , total_amount               = total_amount_
+          , subscription_until_date    = subscription_until_date_
           , is_recurring               = is_recurring_
           , is_first_recurring         = is_first_recurring_
           , invoice_payload            = invoice_payload_
