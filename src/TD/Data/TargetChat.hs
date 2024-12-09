@@ -9,7 +9,7 @@ import {-# SOURCE #-} qualified TD.Data.InternalLinkType as InternalLinkType
 
 -- | Describes the target chat to be opened
 data TargetChat
-  = TargetChatCurrent -- ^ The currently opened chat needs to be kept
+  = TargetChatCurrent -- ^ The currently opened chat and forum topic must be kept
   | TargetChatChosen -- ^ The chat needs to be chosen by the user among chats of the specified types
     { types :: Maybe TargetChatTypes.TargetChatTypes -- ^ Allowed types for the chat
     }

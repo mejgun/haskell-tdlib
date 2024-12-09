@@ -4,30 +4,31 @@ module TD.Data.StarRevenueStatus
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.StarAmount as StarAmount
 
 data StarRevenueStatus
   = StarRevenueStatus -- ^ Contains information about Telegram Stars earned by a bot or a chat
-    { total_count        :: Maybe Int  -- ^ Total number of Telegram Stars earned
-    , current_count      :: Maybe Int  -- ^ The number of Telegram Stars that aren't withdrawn yet
-    , available_count    :: Maybe Int  -- ^ The number of Telegram Stars that are available for withdrawal
-    , withdrawal_enabled :: Maybe Bool -- ^ True, if Telegram Stars can be withdrawn now or later
-    , next_withdrawal_in :: Maybe Int  -- ^ Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
+    { total_amount       :: Maybe StarAmount.StarAmount -- ^ Total amount of Telegram Stars earned
+    , current_amount     :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that aren't withdrawn yet
+    , available_amount   :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that are available for withdrawal
+    , withdrawal_enabled :: Maybe Bool                  -- ^ True, if Telegram Stars can be withdrawn now or later
+    , next_withdrawal_in :: Maybe Int                   -- ^ Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
     }
   deriving (Eq, Show)
 
 instance I.ShortShow StarRevenueStatus where
   shortShow StarRevenueStatus
-    { total_count        = total_count_
-    , current_count      = current_count_
-    , available_count    = available_count_
+    { total_amount       = total_amount_
+    , current_amount     = current_amount_
+    , available_amount   = available_amount_
     , withdrawal_enabled = withdrawal_enabled_
     , next_withdrawal_in = next_withdrawal_in_
     }
       = "StarRevenueStatus"
         ++ I.cc
-        [ "total_count"        `I.p` total_count_
-        , "current_count"      `I.p` current_count_
-        , "available_count"    `I.p` available_count_
+        [ "total_amount"       `I.p` total_amount_
+        , "current_amount"     `I.p` current_amount_
+        , "available_amount"   `I.p` available_amount_
         , "withdrawal_enabled" `I.p` withdrawal_enabled_
         , "next_withdrawal_in" `I.p` next_withdrawal_in_
         ]
@@ -43,15 +44,15 @@ instance AT.FromJSON StarRevenueStatus where
     where
       parseStarRevenueStatus :: A.Value -> AT.Parser StarRevenueStatus
       parseStarRevenueStatus = A.withObject "StarRevenueStatus" $ \o -> do
-        total_count_        <- o A..:?  "total_count"
-        current_count_      <- o A..:?  "current_count"
-        available_count_    <- o A..:?  "available_count"
+        total_amount_       <- o A..:?  "total_amount"
+        current_amount_     <- o A..:?  "current_amount"
+        available_amount_   <- o A..:?  "available_amount"
         withdrawal_enabled_ <- o A..:?  "withdrawal_enabled"
         next_withdrawal_in_ <- o A..:?  "next_withdrawal_in"
         pure $ StarRevenueStatus
-          { total_count        = total_count_
-          , current_count      = current_count_
-          , available_count    = available_count_
+          { total_amount       = total_amount_
+          , current_amount     = current_amount_
+          , available_amount   = available_amount_
           , withdrawal_enabled = withdrawal_enabled_
           , next_withdrawal_in = next_withdrawal_in_
           }

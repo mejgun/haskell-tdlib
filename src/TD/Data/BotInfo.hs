@@ -10,6 +10,7 @@ import qualified TD.Data.Animation as Animation
 import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.BotCommand as BotCommand
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
+import qualified TD.Data.AffiliateProgramInfo as AffiliateProgramInfo
 import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data BotInfo
@@ -23,6 +24,7 @@ data BotInfo
     , privacy_policy_url                   :: Maybe T.Text                                          -- ^ The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
     , default_group_administrator_rights   :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to basic group and supergroup chats; may be null
     , default_channel_administrator_rights :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Default administrator rights for adding the bot to channels; may be null
+    , affiliate_program                    :: Maybe AffiliateProgramInfo.AffiliateProgramInfo       -- ^ Information about the affiliate program of the bot; may be null if none
     , web_app_background_light_color       :: Maybe Int                                             -- ^ Default light background color for bot Web Apps; -1 if not specified
     , web_app_background_dark_color        :: Maybe Int                                             -- ^ Default dark background color for bot Web Apps; -1 if not specified
     , web_app_header_light_color           :: Maybe Int                                             -- ^ Default light header color for bot Web Apps; -1 if not specified
@@ -48,6 +50,7 @@ instance I.ShortShow BotInfo where
     , privacy_policy_url                   = privacy_policy_url_
     , default_group_administrator_rights   = default_group_administrator_rights_
     , default_channel_administrator_rights = default_channel_administrator_rights_
+    , affiliate_program                    = affiliate_program_
     , web_app_background_light_color       = web_app_background_light_color_
     , web_app_background_dark_color        = web_app_background_dark_color_
     , web_app_header_light_color           = web_app_header_light_color_
@@ -71,6 +74,7 @@ instance I.ShortShow BotInfo where
         , "privacy_policy_url"                   `I.p` privacy_policy_url_
         , "default_group_administrator_rights"   `I.p` default_group_administrator_rights_
         , "default_channel_administrator_rights" `I.p` default_channel_administrator_rights_
+        , "affiliate_program"                    `I.p` affiliate_program_
         , "web_app_background_light_color"       `I.p` web_app_background_light_color_
         , "web_app_background_dark_color"        `I.p` web_app_background_dark_color_
         , "web_app_header_light_color"           `I.p` web_app_header_light_color_
@@ -104,6 +108,7 @@ instance AT.FromJSON BotInfo where
         privacy_policy_url_                   <- o A..:?  "privacy_policy_url"
         default_group_administrator_rights_   <- o A..:?  "default_group_administrator_rights"
         default_channel_administrator_rights_ <- o A..:?  "default_channel_administrator_rights"
+        affiliate_program_                    <- o A..:?  "affiliate_program"
         web_app_background_light_color_       <- o A..:?  "web_app_background_light_color"
         web_app_background_dark_color_        <- o A..:?  "web_app_background_dark_color"
         web_app_header_light_color_           <- o A..:?  "web_app_header_light_color"
@@ -125,6 +130,7 @@ instance AT.FromJSON BotInfo where
           , privacy_policy_url                   = privacy_policy_url_
           , default_group_administrator_rights   = default_group_administrator_rights_
           , default_channel_administrator_rights = default_channel_administrator_rights_
+          , affiliate_program                    = affiliate_program_
           , web_app_background_light_color       = web_app_background_light_color_
           , web_app_background_dark_color        = web_app_background_dark_color_
           , web_app_header_light_color           = web_app_header_light_color_

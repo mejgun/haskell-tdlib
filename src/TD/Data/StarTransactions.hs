@@ -4,12 +4,13 @@ module TD.Data.StarTransactions
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.StarTransaction as StarTransaction
 import qualified Data.Text as T
 
 data StarTransactions
   = StarTransactions -- ^ Represents a list of Telegram Star transactions
-    { star_count   :: Maybe Int                               -- ^ The amount of owned Telegram Stars
+    { star_amount  :: Maybe StarAmount.StarAmount             -- ^ The amount of owned Telegram Stars
     , transactions :: Maybe [StarTransaction.StarTransaction] -- ^ List of transactions with Telegram Stars
     , next_offset  :: Maybe T.Text                            -- ^ The offset for the next request. If empty, then there are no more results
     }
@@ -17,13 +18,13 @@ data StarTransactions
 
 instance I.ShortShow StarTransactions where
   shortShow StarTransactions
-    { star_count   = star_count_
+    { star_amount  = star_amount_
     , transactions = transactions_
     , next_offset  = next_offset_
     }
       = "StarTransactions"
         ++ I.cc
-        [ "star_count"   `I.p` star_count_
+        [ "star_amount"  `I.p` star_amount_
         , "transactions" `I.p` transactions_
         , "next_offset"  `I.p` next_offset_
         ]
@@ -39,11 +40,11 @@ instance AT.FromJSON StarTransactions where
     where
       parseStarTransactions :: A.Value -> AT.Parser StarTransactions
       parseStarTransactions = A.withObject "StarTransactions" $ \o -> do
-        star_count_   <- o A..:?  "star_count"
+        star_amount_  <- o A..:?  "star_amount"
         transactions_ <- o A..:?  "transactions"
         next_offset_  <- o A..:?  "next_offset"
         pure $ StarTransactions
-          { star_count   = star_count_
+          { star_amount  = star_amount_
           , transactions = transactions_
           , next_offset  = next_offset_
           }

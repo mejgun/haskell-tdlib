@@ -41,6 +41,8 @@ import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResul
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
+import qualified TD.Data.ChatAffiliateProgram as ChatAffiliateProgram
+import qualified TD.Data.ChatAffiliatePrograms as ChatAffiliatePrograms
 import qualified TD.Data.ChatBoostFeatures as ChatBoostFeatures
 import qualified TD.Data.ChatBoostLevelFeatures as ChatBoostLevelFeatures
 import qualified TD.Data.ChatBoostLink as ChatBoostLink
@@ -95,6 +97,7 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.ForumTopics as ForumTopics
+import qualified TD.Data.FoundAffiliatePrograms as FoundAffiliatePrograms
 import qualified TD.Data.FoundChatBoosts as FoundChatBoosts
 import qualified TD.Data.FoundChatMessages as FoundChatMessages
 import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
@@ -269,6 +272,8 @@ data GeneralResult
     | Chat                               Chat.Chat
     | ChatActiveStories                  ChatActiveStories.ChatActiveStories
     | ChatAdministrators                 ChatAdministrators.ChatAdministrators
+    | ChatAffiliateProgram               ChatAffiliateProgram.ChatAffiliateProgram
+    | ChatAffiliatePrograms              ChatAffiliatePrograms.ChatAffiliatePrograms
     | ChatBoostFeatures                  ChatBoostFeatures.ChatBoostFeatures
     | ChatBoostLevelFeatures             ChatBoostLevelFeatures.ChatBoostLevelFeatures
     | ChatBoostLink                      ChatBoostLink.ChatBoostLink
@@ -323,6 +328,7 @@ data GeneralResult
     | ForumTopic                         ForumTopic.ForumTopic
     | ForumTopicInfo                     ForumTopicInfo.ForumTopicInfo
     | ForumTopics                        ForumTopics.ForumTopics
+    | FoundAffiliatePrograms             FoundAffiliatePrograms.FoundAffiliatePrograms
     | FoundChatBoosts                    FoundChatBoosts.FoundChatBoosts
     | FoundChatMessages                  FoundChatMessages.FoundChatMessages
     | FoundFileDownloads                 FoundFileDownloads.FoundFileDownloads
@@ -535,6 +541,10 @@ instance I.ShortShow GeneralResult where
     = "ChatActiveStories" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatAdministrators v)
     = "ChatAdministrators" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatAffiliateProgram v)
+    = "ChatAffiliateProgram" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatAffiliatePrograms v)
+    = "ChatAffiliatePrograms" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostFeatures v)
     = "ChatBoostFeatures" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostLevelFeatures v)
@@ -643,6 +653,8 @@ instance I.ShortShow GeneralResult where
     = "ForumTopicInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (ForumTopics v)
     = "ForumTopics" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundAffiliatePrograms v)
+    = "FoundAffiliatePrograms" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundChatBoosts v)
     = "FoundChatBoosts" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundChatMessages v)
@@ -953,6 +965,8 @@ instance T.FromJSON GeneralResult where
     <|> ( Chat                                <$> parseJSON v )
     <|> ( ChatActiveStories                   <$> parseJSON v )
     <|> ( ChatAdministrators                  <$> parseJSON v )
+    <|> ( ChatAffiliateProgram                <$> parseJSON v )
+    <|> ( ChatAffiliatePrograms               <$> parseJSON v )
     <|> ( ChatBoostFeatures                   <$> parseJSON v )
     <|> ( ChatBoostLevelFeatures              <$> parseJSON v )
     <|> ( ChatBoostLink                       <$> parseJSON v )
@@ -1007,6 +1021,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ForumTopic                          <$> parseJSON v )
     <|> ( ForumTopicInfo                      <$> parseJSON v )
     <|> ( ForumTopics                         <$> parseJSON v )
+    <|> ( FoundAffiliatePrograms              <$> parseJSON v )
     <|> ( FoundChatBoosts                     <$> parseJSON v )
     <|> ( FoundChatMessages                   <$> parseJSON v )
     <|> ( FoundFileDownloads                  <$> parseJSON v )

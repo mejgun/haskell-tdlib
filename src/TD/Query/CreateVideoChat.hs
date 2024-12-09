@@ -14,7 +14,7 @@ data CreateVideoChat
     { chat_id        :: Maybe Int    -- ^ Identifier of a chat in which the video chat will be created
     , title          :: Maybe T.Text -- ^ Group call title; if empty, chat title will be used
     , start_date     :: Maybe Int    -- ^ Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
-    , is_rtmp_stream :: Maybe Bool   -- ^ Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
+    , is_rtmp_stream :: Maybe Bool   -- ^ Pass true to create an RTMP stream instead of an ordinary video chat
     }
   deriving (Eq, Show)
 

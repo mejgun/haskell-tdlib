@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.50.0
+version:        2.0.51.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -30,6 +30,10 @@ library
       TD.Data.AddedReaction
       TD.Data.AddedReactions
       TD.Data.Address
+      TD.Data.AffiliateInfo
+      TD.Data.AffiliateProgramInfo
+      TD.Data.AffiliateProgramParameters
+      TD.Data.AffiliateProgramSortOrder
       TD.Data.AlternativeVideo
       TD.Data.AnimatedChatPhoto
       TD.Data.AnimatedEmoji
@@ -67,7 +71,6 @@ library
       TD.Data.BotMediaPreviewInfo
       TD.Data.BotMediaPreviews
       TD.Data.BotMenuButton
-      TD.Data.BotTransactionPurpose
       TD.Data.BotWriteAccessAllowReason
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
@@ -109,6 +112,8 @@ library
       TD.Data.ChatAdministrator
       TD.Data.ChatAdministratorRights
       TD.Data.ChatAdministrators
+      TD.Data.ChatAffiliateProgram
+      TD.Data.ChatAffiliatePrograms
       TD.Data.ChatAvailableReactions
       TD.Data.ChatBackground
       TD.Data.ChatBoost
@@ -172,7 +177,6 @@ library
       TD.Data.ChatStatisticsMessageSenderInfo
       TD.Data.ChatStatisticsObjectType
       TD.Data.ChatTheme
-      TD.Data.ChatTransactionPurpose
       TD.Data.ChatType
       TD.Data.CheckChatUsernameResult
       TD.Data.CheckStickerSetNameResult
@@ -232,6 +236,8 @@ library
       TD.Data.ForumTopicInfo
       TD.Data.ForumTopics
       TD.Data.ForwardSource
+      TD.Data.FoundAffiliateProgram
+      TD.Data.FoundAffiliatePrograms
       TD.Data.FoundChatBoosts
       TD.Data.FoundChatMessages
       TD.Data.FoundFileDownloads
@@ -481,6 +487,7 @@ library
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredMessage
       TD.Data.SponsoredMessages
+      TD.Data.StarAmount
       TD.Data.StarGiveawayPaymentOption
       TD.Data.StarGiveawayPaymentOptions
       TD.Data.StarGiveawayWinnerOption
@@ -494,8 +501,8 @@ library
       TD.Data.StarSubscriptionType
       TD.Data.StarTransaction
       TD.Data.StarTransactionDirection
-      TD.Data.StarTransactionPartner
       TD.Data.StarTransactions
+      TD.Data.StarTransactionType
       TD.Data.StatisticalGraph
       TD.Data.StatisticalValue
       TD.Data.Sticker
@@ -578,7 +585,6 @@ library
       TD.Data.Users
       TD.Data.UserStatus
       TD.Data.UserSupportInfo
-      TD.Data.UserTransactionPurpose
       TD.Data.UserType
       TD.Data.ValidatedOrderInfo
       TD.Data.VectorPathCommand
@@ -683,6 +689,7 @@ library
       TD.Query.CommitPendingPaidMessageReactions
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
+      TD.Query.ConnectChatAffiliateProgram
       TD.Query.CreateBasicGroupChat
       TD.Query.CreateBusinessChatLink
       TD.Query.CreateCall
@@ -737,6 +744,7 @@ library
       TD.Query.DisableProxy
       TD.Query.DiscardCall
       TD.Query.DisconnectAllWebsites
+      TD.Query.DisconnectChatAffiliateProgram
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
       TD.Query.EditBotMediaPreview
@@ -811,6 +819,8 @@ library
       TD.Query.GetChat
       TD.Query.GetChatActiveStories
       TD.Query.GetChatAdministrators
+      TD.Query.GetChatAffiliateProgram
+      TD.Query.GetChatAffiliatePrograms
       TD.Query.GetChatArchivedStories
       TD.Query.GetChatAvailableMessageSenders
       TD.Query.GetChatBoostFeatures
@@ -947,6 +957,7 @@ library
       TD.Query.GetNetworkStatistics
       TD.Query.GetNewChatPrivacySettings
       TD.Query.GetOption
+      TD.Query.GetOwnedBots
       TD.Query.GetOwnedStickerSets
       TD.Query.GetPassportAuthorizationForm
       TD.Query.GetPassportAuthorizationFormAvailableElements
@@ -1148,8 +1159,10 @@ library
       TD.Query.RevokeGroupCallInviteLink
       TD.Query.SaveApplicationLogEvent
       TD.Query.SavePreparedInlineMessage
+      TD.Query.SearchAffiliatePrograms
       TD.Query.SearchBackground
       TD.Query.SearchCallMessages
+      TD.Query.SearchChatAffiliateProgram
       TD.Query.SearchChatMembers
       TD.Query.SearchChatMessages
       TD.Query.SearchChatRecentLocationMessages
@@ -1228,6 +1241,7 @@ library
       TD.Query.SetBusinessStartPage
       TD.Query.SetChatAccentColor
       TD.Query.SetChatActiveStoriesList
+      TD.Query.SetChatAffiliateProgram
       TD.Query.SetChatAvailableReactions
       TD.Query.SetChatBackground
       TD.Query.SetChatClientData

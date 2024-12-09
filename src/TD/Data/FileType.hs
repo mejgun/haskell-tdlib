@@ -18,6 +18,10 @@ data FileType
   | FileTypeSecret -- ^ The file was sent to a secret chat (the file type is not known to the server)
   | FileTypeSecretThumbnail -- ^ The file is a thumbnail of a file from a secret chat
   | FileTypeSecure -- ^ The file is a file from Secure storage used for storing Telegram Passport files
+  | FileTypeSelfDestructingPhoto -- ^ The file is a self-destructing photo in a private chat
+  | FileTypeSelfDestructingVideo -- ^ The file is a self-destructing video in a private chat
+  | FileTypeSelfDestructingVideoNote -- ^ The file is a self-destructing video note in a private chat
+  | FileTypeSelfDestructingVoiceNote -- ^ The file is a self-destructing voice note in a private chat
   | FileTypeSticker -- ^ The file is a sticker
   | FileTypeThumbnail -- ^ The file is a thumbnail of another file
   | FileTypeUnknown -- ^ The file type is not yet known
@@ -51,6 +55,14 @@ instance I.ShortShow FileType where
       = "FileTypeSecretThumbnail"
   shortShow FileTypeSecure
       = "FileTypeSecure"
+  shortShow FileTypeSelfDestructingPhoto
+      = "FileTypeSelfDestructingPhoto"
+  shortShow FileTypeSelfDestructingVideo
+      = "FileTypeSelfDestructingVideo"
+  shortShow FileTypeSelfDestructingVideoNote
+      = "FileTypeSelfDestructingVideoNote"
+  shortShow FileTypeSelfDestructingVoiceNote
+      = "FileTypeSelfDestructingVoiceNote"
   shortShow FileTypeSticker
       = "FileTypeSticker"
   shortShow FileTypeThumbnail
@@ -73,26 +85,30 @@ instance AT.FromJSON FileType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "fileTypeNone"              -> pure FileTypeNone
-      "fileTypeAnimation"         -> pure FileTypeAnimation
-      "fileTypeAudio"             -> pure FileTypeAudio
-      "fileTypeDocument"          -> pure FileTypeDocument
-      "fileTypeNotificationSound" -> pure FileTypeNotificationSound
-      "fileTypePhoto"             -> pure FileTypePhoto
-      "fileTypePhotoStory"        -> pure FileTypePhotoStory
-      "fileTypeProfilePhoto"      -> pure FileTypeProfilePhoto
-      "fileTypeSecret"            -> pure FileTypeSecret
-      "fileTypeSecretThumbnail"   -> pure FileTypeSecretThumbnail
-      "fileTypeSecure"            -> pure FileTypeSecure
-      "fileTypeSticker"           -> pure FileTypeSticker
-      "fileTypeThumbnail"         -> pure FileTypeThumbnail
-      "fileTypeUnknown"           -> pure FileTypeUnknown
-      "fileTypeVideo"             -> pure FileTypeVideo
-      "fileTypeVideoNote"         -> pure FileTypeVideoNote
-      "fileTypeVideoStory"        -> pure FileTypeVideoStory
-      "fileTypeVoiceNote"         -> pure FileTypeVoiceNote
-      "fileTypeWallpaper"         -> pure FileTypeWallpaper
-      _                           -> mempty
+      "fileTypeNone"                     -> pure FileTypeNone
+      "fileTypeAnimation"                -> pure FileTypeAnimation
+      "fileTypeAudio"                    -> pure FileTypeAudio
+      "fileTypeDocument"                 -> pure FileTypeDocument
+      "fileTypeNotificationSound"        -> pure FileTypeNotificationSound
+      "fileTypePhoto"                    -> pure FileTypePhoto
+      "fileTypePhotoStory"               -> pure FileTypePhotoStory
+      "fileTypeProfilePhoto"             -> pure FileTypeProfilePhoto
+      "fileTypeSecret"                   -> pure FileTypeSecret
+      "fileTypeSecretThumbnail"          -> pure FileTypeSecretThumbnail
+      "fileTypeSecure"                   -> pure FileTypeSecure
+      "fileTypeSelfDestructingPhoto"     -> pure FileTypeSelfDestructingPhoto
+      "fileTypeSelfDestructingVideo"     -> pure FileTypeSelfDestructingVideo
+      "fileTypeSelfDestructingVideoNote" -> pure FileTypeSelfDestructingVideoNote
+      "fileTypeSelfDestructingVoiceNote" -> pure FileTypeSelfDestructingVoiceNote
+      "fileTypeSticker"                  -> pure FileTypeSticker
+      "fileTypeThumbnail"                -> pure FileTypeThumbnail
+      "fileTypeUnknown"                  -> pure FileTypeUnknown
+      "fileTypeVideo"                    -> pure FileTypeVideo
+      "fileTypeVideoNote"                -> pure FileTypeVideoNote
+      "fileTypeVideoStory"               -> pure FileTypeVideoStory
+      "fileTypeVoiceNote"                -> pure FileTypeVoiceNote
+      "fileTypeWallpaper"                -> pure FileTypeWallpaper
+      _                                  -> mempty
     
   parseJSON _ = mempty
 
@@ -140,6 +156,22 @@ instance AT.ToJSON FileType where
   toJSON FileTypeSecure
       = A.object
         [ "@type" A..= AT.String "fileTypeSecure"
+        ]
+  toJSON FileTypeSelfDestructingPhoto
+      = A.object
+        [ "@type" A..= AT.String "fileTypeSelfDestructingPhoto"
+        ]
+  toJSON FileTypeSelfDestructingVideo
+      = A.object
+        [ "@type" A..= AT.String "fileTypeSelfDestructingVideo"
+        ]
+  toJSON FileTypeSelfDestructingVideoNote
+      = A.object
+        [ "@type" A..= AT.String "fileTypeSelfDestructingVideoNote"
+        ]
+  toJSON FileTypeSelfDestructingVoiceNote
+      = A.object
+        [ "@type" A..= AT.String "fileTypeSelfDestructingVoiceNote"
         ]
   toJSON FileTypeSticker
       = A.object

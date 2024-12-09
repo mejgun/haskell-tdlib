@@ -77,6 +77,7 @@ import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
 import qualified TD.Data.ReactionType as ReactionType
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
+import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
 import qualified TD.Data.Sticker as Sticker
@@ -540,11 +541,11 @@ data Update
     }
   | UpdateAccentColors -- ^ The list of supported accent colors has changed
     { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
-    , available_accent_color_ids :: Maybe [Int]                     -- ^ The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    , available_accent_color_ids :: Maybe [Int]                     -- ^ The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
     }
   | UpdateProfileAccentColors -- ^ The list of supported accent colors for user profiles has changed
     { _colors                    :: Maybe [ProfileAccentColor.ProfileAccentColor] -- ^ Information about supported colors
-    , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
+    , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order
     }
   | UpdateLanguagePackStrings -- ^ Some language pack strings have been updated
     { localization_target :: Maybe T.Text                                  -- ^ Localization target to which the language pack belongs
@@ -585,7 +586,7 @@ data Update
     { _messages :: Maybe [Message.Message] -- ^ The list of messages with active live locations
     }
   | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
-    { star_count :: Maybe Int -- ^ The new number of Telegram Stars owned
+    { star_amount :: Maybe StarAmount.StarAmount -- ^ The new amount of owned Telegram Stars
     }
   | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
@@ -1841,11 +1842,11 @@ instance I.ShortShow Update where
         [ "_messages" `I.p` _messages_
         ]
   shortShow UpdateOwnedStarCount
-    { star_count = star_count_
+    { star_amount = star_amount_
     }
       = "UpdateOwnedStarCount"
         ++ I.cc
-        [ "star_count" `I.p` star_count_
+        [ "star_amount" `I.p` star_amount_
         ]
   shortShow UpdateChatRevenueAmount
     { chat_id        = chat_id_
@@ -3334,9 +3335,9 @@ instance AT.FromJSON Update where
           }
       parseUpdateOwnedStarCount :: A.Value -> AT.Parser Update
       parseUpdateOwnedStarCount = A.withObject "UpdateOwnedStarCount" $ \o -> do
-        star_count_ <- o A..:?  "star_count"
+        star_amount_ <- o A..:?  "star_amount"
         pure $ UpdateOwnedStarCount
-          { star_count = star_count_
+          { star_amount = star_amount_
           }
       parseUpdateChatRevenueAmount :: A.Value -> AT.Parser Update
       parseUpdateChatRevenueAmount = A.withObject "UpdateChatRevenueAmount" $ \o -> do

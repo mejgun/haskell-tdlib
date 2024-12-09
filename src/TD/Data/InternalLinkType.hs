@@ -47,6 +47,10 @@ data InternalLinkType
     , purpose    :: Maybe T.Text -- ^ Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
     }
   | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the application
+  | InternalLinkTypeChatAffiliateProgram -- ^ The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
+    { username :: Maybe T.Text -- ^ Username to be passed to searchChatAffiliateProgram
+    , referrer :: Maybe T.Text -- ^ Referrer to be passed to searchChatAffiliateProgram
+    }
   | InternalLinkTypeChatBoost -- ^ The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and getAvailableChatBoostSlots to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat
     { url :: Maybe T.Text -- ^ URL to be passed to getChatBoostLinkInfo
     }
@@ -234,6 +238,15 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeChangePhoneNumber
       = "InternalLinkTypeChangePhoneNumber"
+  shortShow InternalLinkTypeChatAffiliateProgram
+    { username = username_
+    , referrer = referrer_
+    }
+      = "InternalLinkTypeChatAffiliateProgram"
+        ++ I.cc
+        [ "username" `I.p` username_
+        , "referrer" `I.p` referrer_
+        ]
   shortShow InternalLinkTypeChatBoost
     { url = url_
     }
@@ -491,6 +504,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeBusinessChat"                          -> parseInternalLinkTypeBusinessChat v
       "internalLinkTypeBuyStars"                              -> parseInternalLinkTypeBuyStars v
       "internalLinkTypeChangePhoneNumber"                     -> pure InternalLinkTypeChangePhoneNumber
+      "internalLinkTypeChatAffiliateProgram"                  -> parseInternalLinkTypeChatAffiliateProgram v
       "internalLinkTypeChatBoost"                             -> parseInternalLinkTypeChatBoost v
       "internalLinkTypeChatFolderInvite"                      -> parseInternalLinkTypeChatFolderInvite v
       "internalLinkTypeChatFolderSettings"                    -> pure InternalLinkTypeChatFolderSettings
@@ -592,6 +606,14 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeBuyStars
           { star_count = star_count_
           , purpose    = purpose_
+          }
+      parseInternalLinkTypeChatAffiliateProgram :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeChatAffiliateProgram = A.withObject "InternalLinkTypeChatAffiliateProgram" $ \o -> do
+        username_ <- o A..:?  "username"
+        referrer_ <- o A..:?  "referrer"
+        pure $ InternalLinkTypeChatAffiliateProgram
+          { username = username_
+          , referrer = referrer_
           }
       parseInternalLinkTypeChatBoost :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeChatBoost = A.withObject "InternalLinkTypeChatBoost" $ \o -> do
@@ -871,6 +893,15 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeChangePhoneNumber
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeChangePhoneNumber"
+        ]
+  toJSON InternalLinkTypeChatAffiliateProgram
+    { username = username_
+    , referrer = referrer_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "internalLinkTypeChatAffiliateProgram"
+        , "username" A..= username_
+        , "referrer" A..= referrer_
         ]
   toJSON InternalLinkTypeChatBoost
     { url = url_

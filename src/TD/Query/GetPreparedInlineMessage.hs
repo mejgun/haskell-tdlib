@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Saves an inline message to be sent by the given user; for bots only. Returns 'TD.Data.PreparedInlineMessage.PreparedInlineMessage'
+-- | Saves an inline message to be sent by the given user. Returns 'TD.Data.PreparedInlineMessage.PreparedInlineMessage'
 data GetPreparedInlineMessage
   = GetPreparedInlineMessage
     { bot_user_id         :: Maybe Int    -- ^ Identifier of the bot that created the message

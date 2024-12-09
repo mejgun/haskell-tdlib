@@ -12,7 +12,7 @@ import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 data SetStoryPrivacySettings
   = SetStoryPrivacySettings
     { story_id         :: Maybe Int                                       -- ^ Identifier of the story
-    , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The new privacy settigs for the story
+    , privacy_settings :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The new privacy settings for the story
     }
   deriving (Eq, Show)
 
