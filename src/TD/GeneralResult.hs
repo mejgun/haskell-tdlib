@@ -41,8 +41,6 @@ import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResul
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.ChatAdministrators as ChatAdministrators
-import qualified TD.Data.ChatAffiliateProgram as ChatAffiliateProgram
-import qualified TD.Data.ChatAffiliatePrograms as ChatAffiliatePrograms
 import qualified TD.Data.ChatBoostFeatures as ChatBoostFeatures
 import qualified TD.Data.ChatBoostLevelFeatures as ChatBoostLevelFeatures
 import qualified TD.Data.ChatBoostLink as ChatBoostLink
@@ -74,6 +72,8 @@ import qualified TD.Data.Chats as Chats
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
 import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
+import qualified TD.Data.ConnectedAffiliateProgram as ConnectedAffiliateProgram
+import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliatePrograms
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
@@ -108,6 +108,7 @@ import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
+import qualified TD.Data.GiftUpgradePreview as GiftUpgradePreview
 import qualified TD.Data.Gifts as Gifts
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
@@ -223,8 +224,10 @@ import qualified TD.Data.TimeZones as TimeZones
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
+import qualified TD.Data.UpgradeGiftResult as UpgradeGiftResult
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
+import qualified TD.Data.UserGift as UserGift
 import qualified TD.Data.UserGifts as UserGifts
 import qualified TD.Data.UserLink as UserLink
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
@@ -272,8 +275,6 @@ data GeneralResult
     | Chat                               Chat.Chat
     | ChatActiveStories                  ChatActiveStories.ChatActiveStories
     | ChatAdministrators                 ChatAdministrators.ChatAdministrators
-    | ChatAffiliateProgram               ChatAffiliateProgram.ChatAffiliateProgram
-    | ChatAffiliatePrograms              ChatAffiliatePrograms.ChatAffiliatePrograms
     | ChatBoostFeatures                  ChatBoostFeatures.ChatBoostFeatures
     | ChatBoostLevelFeatures             ChatBoostLevelFeatures.ChatBoostLevelFeatures
     | ChatBoostLink                      ChatBoostLink.ChatBoostLink
@@ -305,6 +306,8 @@ data GeneralResult
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
     | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
+    | ConnectedAffiliateProgram          ConnectedAffiliateProgram.ConnectedAffiliateProgram
+    | ConnectedAffiliatePrograms         ConnectedAffiliatePrograms.ConnectedAffiliatePrograms
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
     | Count                              Count.Count
     | Countries                          Countries.Countries
@@ -339,6 +342,7 @@ data GeneralResult
     | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
+    | GiftUpgradePreview                 GiftUpgradePreview.GiftUpgradePreview
     | Gifts                              Gifts.Gifts
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
@@ -454,8 +458,10 @@ data GeneralResult
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
     | Updates                            Updates.Updates
+    | UpgradeGiftResult                  UpgradeGiftResult.UpgradeGiftResult
     | User                               User.User
     | UserFullInfo                       UserFullInfo.UserFullInfo
+    | UserGift                           UserGift.UserGift
     | UserGifts                          UserGifts.UserGifts
     | UserLink                           UserLink.UserLink
     | UserPrivacySettingRules            UserPrivacySettingRules.UserPrivacySettingRules
@@ -541,10 +547,6 @@ instance I.ShortShow GeneralResult where
     = "ChatActiveStories" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatAdministrators v)
     = "ChatAdministrators" <> " (" <> I.shortShow v <> ")"
-  shortShow (ChatAffiliateProgram v)
-    = "ChatAffiliateProgram" <> " (" <> I.shortShow v <> ")"
-  shortShow (ChatAffiliatePrograms v)
-    = "ChatAffiliatePrograms" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostFeatures v)
     = "ChatBoostFeatures" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatBoostLevelFeatures v)
@@ -607,6 +609,10 @@ instance I.ShortShow GeneralResult where
     = "CheckStickerSetNameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CollectibleItemInfo v)
     = "CollectibleItemInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (ConnectedAffiliateProgram v)
+    = "ConnectedAffiliateProgram" <> " (" <> I.shortShow v <> ")"
+  shortShow (ConnectedAffiliatePrograms v)
+    = "ConnectedAffiliatePrograms" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedWebsites v)
     = "ConnectedWebsites" <> " (" <> I.shortShow v <> ")"
   shortShow (Count v)
@@ -675,6 +681,8 @@ instance I.ShortShow GeneralResult where
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftUpgradePreview v)
+    = "GiftUpgradePreview" <> " (" <> I.shortShow v <> ")"
   shortShow (Gifts v)
     = "Gifts" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
@@ -905,10 +913,14 @@ instance I.ShortShow GeneralResult where
     = "Update" <> " (" <> I.shortShow v <> ")"
   shortShow (Updates v)
     = "Updates" <> " (" <> I.shortShow v <> ")"
+  shortShow (UpgradeGiftResult v)
+    = "UpgradeGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (User v)
     = "User" <> " (" <> I.shortShow v <> ")"
   shortShow (UserFullInfo v)
     = "UserFullInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (UserGift v)
+    = "UserGift" <> " (" <> I.shortShow v <> ")"
   shortShow (UserGifts v)
     = "UserGifts" <> " (" <> I.shortShow v <> ")"
   shortShow (UserLink v)
@@ -965,8 +977,6 @@ instance T.FromJSON GeneralResult where
     <|> ( Chat                                <$> parseJSON v )
     <|> ( ChatActiveStories                   <$> parseJSON v )
     <|> ( ChatAdministrators                  <$> parseJSON v )
-    <|> ( ChatAffiliateProgram                <$> parseJSON v )
-    <|> ( ChatAffiliatePrograms               <$> parseJSON v )
     <|> ( ChatBoostFeatures                   <$> parseJSON v )
     <|> ( ChatBoostLevelFeatures              <$> parseJSON v )
     <|> ( ChatBoostLink                       <$> parseJSON v )
@@ -998,6 +1008,8 @@ instance T.FromJSON GeneralResult where
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
     <|> ( CollectibleItemInfo                 <$> parseJSON v )
+    <|> ( ConnectedAffiliateProgram           <$> parseJSON v )
+    <|> ( ConnectedAffiliatePrograms          <$> parseJSON v )
     <|> ( ConnectedWebsites                   <$> parseJSON v )
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
@@ -1032,6 +1044,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
+    <|> ( GiftUpgradePreview                  <$> parseJSON v )
     <|> ( Gifts                               <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -1147,8 +1160,10 @@ instance T.FromJSON GeneralResult where
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )
+    <|> ( UpgradeGiftResult                   <$> parseJSON v )
     <|> ( User                                <$> parseJSON v )
     <|> ( UserFullInfo                        <$> parseJSON v )
+    <|> ( UserGift                            <$> parseJSON v )
     <|> ( UserGifts                           <$> parseJSON v )
     <|> ( UserLink                            <$> parseJSON v )
     <|> ( UserPrivacySettingRules             <$> parseJSON v )

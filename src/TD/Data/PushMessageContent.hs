@@ -81,6 +81,9 @@ data PushMessageContent
   | PushMessageContentGift -- ^ A message with a gift
     { star_count :: Maybe Int -- ^ Number of Telegram Stars that sender paid for the gift
     }
+  | PushMessageContentUpgradedGift -- ^ A message with an upgraded gift
+    { is_upgrade :: Maybe Bool -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    }
   | PushMessageContentScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
   | PushMessageContentSticker -- ^ A message with a sticker
     { sticker   :: Maybe Sticker.Sticker -- ^ Message content; may be null
@@ -291,6 +294,13 @@ instance I.ShortShow PushMessageContent where
         ++ I.cc
         [ "star_count" `I.p` star_count_
         ]
+  shortShow PushMessageContentUpgradedGift
+    { is_upgrade = is_upgrade_
+    }
+      = "PushMessageContentUpgradedGift"
+        ++ I.cc
+        [ "is_upgrade" `I.p` is_upgrade_
+        ]
   shortShow PushMessageContentScreenshotTaken
       = "PushMessageContentScreenshotTaken"
   shortShow PushMessageContentSticker
@@ -455,6 +465,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentPremiumGiftCode"      -> parsePushMessageContentPremiumGiftCode v
       "pushMessageContentGiveaway"             -> parsePushMessageContentGiveaway v
       "pushMessageContentGift"                 -> parsePushMessageContentGift v
+      "pushMessageContentUpgradedGift"         -> parsePushMessageContentUpgradedGift v
       "pushMessageContentScreenshotTaken"      -> pure PushMessageContentScreenshotTaken
       "pushMessageContentSticker"              -> parsePushMessageContentSticker v
       "pushMessageContentStory"                -> parsePushMessageContentStory v
@@ -603,6 +614,12 @@ instance AT.FromJSON PushMessageContent where
         star_count_ <- o A..:?  "star_count"
         pure $ PushMessageContentGift
           { star_count = star_count_
+          }
+      parsePushMessageContentUpgradedGift :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentUpgradedGift = A.withObject "PushMessageContentUpgradedGift" $ \o -> do
+        is_upgrade_ <- o A..:?  "is_upgrade"
+        pure $ PushMessageContentUpgradedGift
+          { is_upgrade = is_upgrade_
           }
       parsePushMessageContentSticker :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentSticker = A.withObject "PushMessageContentSticker" $ \o -> do

@@ -8,6 +8,7 @@ import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
 import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.ChatInviteLinkSubscriptionInfo as ChatInviteLinkSubscriptionInfo
+import qualified TD.Data.VerificationStatus as VerificationStatus
 
 data ChatInviteLinkInfo
   = ChatInviteLinkInfo -- ^ Contains information about a chat invite link
@@ -23,9 +24,7 @@ data ChatInviteLinkInfo
     , subscription_info    :: Maybe ChatInviteLinkSubscriptionInfo.ChatInviteLinkSubscriptionInfo -- ^ Information about subscription plan that must be paid by the user to use the link; may be null if the link doesn't require subscription
     , creates_join_request :: Maybe Bool                                                          -- ^ True, if the link only creates join request
     , is_public            :: Maybe Bool                                                          -- ^ True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
-    , is_verified          :: Maybe Bool                                                          -- ^ True, if the chat is verified
-    , is_scam              :: Maybe Bool                                                          -- ^ True, if many users reported this chat as a scam
-    , is_fake              :: Maybe Bool                                                          -- ^ True, if many users reported this chat as a fake account
+    , verification_status  :: Maybe VerificationStatus.VerificationStatus                         -- ^ Information about verification status of the chat; may be null if none
     }
   deriving (Eq, Show)
 
@@ -43,9 +42,7 @@ instance I.ShortShow ChatInviteLinkInfo where
     , subscription_info    = subscription_info_
     , creates_join_request = creates_join_request_
     , is_public            = is_public_
-    , is_verified          = is_verified_
-    , is_scam              = is_scam_
-    , is_fake              = is_fake_
+    , verification_status  = verification_status_
     }
       = "ChatInviteLinkInfo"
         ++ I.cc
@@ -61,9 +58,7 @@ instance I.ShortShow ChatInviteLinkInfo where
         , "subscription_info"    `I.p` subscription_info_
         , "creates_join_request" `I.p` creates_join_request_
         , "is_public"            `I.p` is_public_
-        , "is_verified"          `I.p` is_verified_
-        , "is_scam"              `I.p` is_scam_
-        , "is_fake"              `I.p` is_fake_
+        , "verification_status"  `I.p` verification_status_
         ]
 
 instance AT.FromJSON ChatInviteLinkInfo where
@@ -89,9 +84,7 @@ instance AT.FromJSON ChatInviteLinkInfo where
         subscription_info_    <- o A..:?  "subscription_info"
         creates_join_request_ <- o A..:?  "creates_join_request"
         is_public_            <- o A..:?  "is_public"
-        is_verified_          <- o A..:?  "is_verified"
-        is_scam_              <- o A..:?  "is_scam"
-        is_fake_              <- o A..:?  "is_fake"
+        verification_status_  <- o A..:?  "verification_status"
         pure $ ChatInviteLinkInfo
           { chat_id              = chat_id_
           , accessible_for       = accessible_for_
@@ -105,9 +98,7 @@ instance AT.FromJSON ChatInviteLinkInfo where
           , subscription_info    = subscription_info_
           , creates_join_request = creates_join_request_
           , is_public            = is_public_
-          , is_verified          = is_verified_
-          , is_scam              = is_scam_
-          , is_fake              = is_fake_
+          , verification_status  = verification_status_
           }
   parseJSON _ = mempty
 

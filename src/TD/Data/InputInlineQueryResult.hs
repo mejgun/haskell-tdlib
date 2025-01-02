@@ -29,7 +29,6 @@ data InputInlineQueryResult
   | InputInlineQueryResultArticle -- ^ Represents a link to an article or web page
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
     , url                   :: Maybe T.Text                                  -- ^ URL of the result, if it exists
-    , hide_url              :: Maybe Bool                                    -- ^ True, if the URL must be not shown
     , title                 :: Maybe T.Text                                  -- ^ Title of the result
     , description           :: Maybe T.Text                                  -- ^ A short description of the result
     , thumbnail_url         :: Maybe T.Text                                  -- ^ URL of the result thumbnail, if it exists
@@ -167,7 +166,6 @@ instance I.ShortShow InputInlineQueryResult where
   shortShow InputInlineQueryResultArticle
     { _id                   = _id_
     , url                   = url_
-    , hide_url              = hide_url_
     , title                 = title_
     , description           = description_
     , thumbnail_url         = thumbnail_url_
@@ -180,7 +178,6 @@ instance I.ShortShow InputInlineQueryResult where
         ++ I.cc
         [ "_id"                   `I.p` _id_
         , "url"                   `I.p` url_
-        , "hide_url"              `I.p` hide_url_
         , "title"                 `I.p` title_
         , "description"           `I.p` description_
         , "thumbnail_url"         `I.p` thumbnail_url_
@@ -442,7 +439,6 @@ instance AT.FromJSON InputInlineQueryResult where
       parseInputInlineQueryResultArticle = A.withObject "InputInlineQueryResultArticle" $ \o -> do
         _id_                   <- o A..:?  "id"
         url_                   <- o A..:?  "url"
-        hide_url_              <- o A..:?  "hide_url"
         title_                 <- o A..:?  "title"
         description_           <- o A..:?  "description"
         thumbnail_url_         <- o A..:?  "thumbnail_url"
@@ -453,7 +449,6 @@ instance AT.FromJSON InputInlineQueryResult where
         pure $ InputInlineQueryResultArticle
           { _id                   = _id_
           , url                   = url_
-          , hide_url              = hide_url_
           , title                 = title_
           , description           = description_
           , thumbnail_url         = thumbnail_url_
@@ -687,7 +682,6 @@ instance AT.ToJSON InputInlineQueryResult where
   toJSON InputInlineQueryResultArticle
     { _id                   = _id_
     , url                   = url_
-    , hide_url              = hide_url_
     , title                 = title_
     , description           = description_
     , thumbnail_url         = thumbnail_url_
@@ -700,7 +694,6 @@ instance AT.ToJSON InputInlineQueryResult where
         [ "@type"                 A..= AT.String "inputInlineQueryResultArticle"
         , "id"                    A..= _id_
         , "url"                   A..= url_
-        , "hide_url"              A..= hide_url_
         , "title"                 A..= title_
         , "description"           A..= description_
         , "thumbnail_url"         A..= thumbnail_url_

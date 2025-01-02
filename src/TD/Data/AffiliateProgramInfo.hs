@@ -10,7 +10,7 @@ import qualified TD.Data.StarAmount as StarAmount
 data AffiliateProgramInfo
   = AffiliateProgramInfo -- ^ Contains information about an active affiliate program
     { parameters                    :: Maybe AffiliateProgramParameters.AffiliateProgramParameters -- ^ Parameters of the affiliate program
-    , end_date                      :: Maybe Int                                                   -- ^ Point in time (Unix timestamp) when the affiliate program will be closed; 0 if the affiliate program isn't scheduled to be closed. If positive, then the program can't be connected using connectChatAffiliateProgram, but active connections will work until the date
+    , end_date                      :: Maybe Int                                                   -- ^ Point in time (Unix timestamp) when the affiliate program will be closed; 0 if the affiliate program isn't scheduled to be closed. If positive, then the program can't be connected using connectAffiliateProgram, but active connections will work until the date
     , daily_revenue_per_user_amount :: Maybe StarAmount.StarAmount                                 -- ^ The amount of daily revenue per user in Telegram Stars of the bot that created the affiliate program
     }
   deriving (Eq, Show)

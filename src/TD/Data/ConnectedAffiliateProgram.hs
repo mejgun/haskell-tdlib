@@ -1,5 +1,5 @@
-module TD.Data.ChatAffiliateProgram
-  (ChatAffiliateProgram(..)) where
+module TD.Data.ConnectedAffiliateProgram
+  (ConnectedAffiliateProgram(..)) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -7,8 +7,8 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.AffiliateProgramParameters as AffiliateProgramParameters
 
-data ChatAffiliateProgram
-  = ChatAffiliateProgram -- ^ Describes an affiliate program that was connected to a chat
+data ConnectedAffiliateProgram
+  = ConnectedAffiliateProgram -- ^ Describes an affiliate program that was connected to an affiliate
     { url                :: Maybe T.Text                                                -- ^ The link that can be used to refer users if the program is still active
     , bot_user_id        :: Maybe Int                                                   -- ^ User identifier of the bot created the program
     , parameters         :: Maybe AffiliateProgramParameters.AffiliateProgramParameters -- ^ The parameters of the affiliate program
@@ -19,8 +19,8 @@ data ChatAffiliateProgram
     }
   deriving (Eq, Show)
 
-instance I.ShortShow ChatAffiliateProgram where
-  shortShow ChatAffiliateProgram
+instance I.ShortShow ConnectedAffiliateProgram where
+  shortShow ConnectedAffiliateProgram
     { url                = url_
     , bot_user_id        = bot_user_id_
     , parameters         = parameters_
@@ -29,7 +29,7 @@ instance I.ShortShow ChatAffiliateProgram where
     , user_count         = user_count_
     , revenue_star_count = revenue_star_count_
     }
-      = "ChatAffiliateProgram"
+      = "ConnectedAffiliateProgram"
         ++ I.cc
         [ "url"                `I.p` url_
         , "bot_user_id"        `I.p` bot_user_id_
@@ -40,17 +40,17 @@ instance I.ShortShow ChatAffiliateProgram where
         , "revenue_star_count" `I.p` revenue_star_count_
         ]
 
-instance AT.FromJSON ChatAffiliateProgram where
+instance AT.FromJSON ConnectedAffiliateProgram where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "chatAffiliateProgram" -> parseChatAffiliateProgram v
-      _                      -> mempty
+      "connectedAffiliateProgram" -> parseConnectedAffiliateProgram v
+      _                           -> mempty
     
     where
-      parseChatAffiliateProgram :: A.Value -> AT.Parser ChatAffiliateProgram
-      parseChatAffiliateProgram = A.withObject "ChatAffiliateProgram" $ \o -> do
+      parseConnectedAffiliateProgram :: A.Value -> AT.Parser ConnectedAffiliateProgram
+      parseConnectedAffiliateProgram = A.withObject "ConnectedAffiliateProgram" $ \o -> do
         url_                <- o A..:?                       "url"
         bot_user_id_        <- o A..:?                       "bot_user_id"
         parameters_         <- o A..:?                       "parameters"
@@ -58,7 +58,7 @@ instance AT.FromJSON ChatAffiliateProgram where
         is_disconnected_    <- o A..:?                       "is_disconnected"
         user_count_         <- fmap I.readInt64 <$> o A..:?  "user_count"
         revenue_star_count_ <- fmap I.readInt64 <$> o A..:?  "revenue_star_count"
-        pure $ ChatAffiliateProgram
+        pure $ ConnectedAffiliateProgram
           { url                = url_
           , bot_user_id        = bot_user_id_
           , parameters         = parameters_

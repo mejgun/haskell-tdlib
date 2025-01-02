@@ -23,6 +23,7 @@ data SuggestedAction
   | SuggestedActionSubscribeToAnnualPremium -- ^ Suggests the user to subscribe to the Premium subscription with annual payments
   | SuggestedActionGiftPremiumForChristmas -- ^ Suggests the user to gift Telegram Premium to friends for Christmas
   | SuggestedActionSetBirthdate -- ^ Suggests the user to set birthdate
+  | SuggestedActionSetProfilePhoto -- ^ Suggests the user to set profile photo
   | SuggestedActionExtendPremium -- ^ Suggests the user to extend their expiring Telegram Premium subscription
     { manage_premium_subscription_url :: Maybe T.Text -- ^ A URL for managing Telegram Premium subscription
     }
@@ -62,6 +63,8 @@ instance I.ShortShow SuggestedAction where
       = "SuggestedActionGiftPremiumForChristmas"
   shortShow SuggestedActionSetBirthdate
       = "SuggestedActionSetBirthdate"
+  shortShow SuggestedActionSetProfilePhoto
+      = "SuggestedActionSetProfilePhoto"
   shortShow SuggestedActionExtendPremium
     { manage_premium_subscription_url = manage_premium_subscription_url_
     }
@@ -88,6 +91,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionSubscribeToAnnualPremium"     -> pure SuggestedActionSubscribeToAnnualPremium
       "suggestedActionGiftPremiumForChristmas"      -> pure SuggestedActionGiftPremiumForChristmas
       "suggestedActionSetBirthdate"                 -> pure SuggestedActionSetBirthdate
+      "suggestedActionSetProfilePhoto"              -> pure SuggestedActionSetProfilePhoto
       "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
       "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
       _                                             -> mempty
@@ -163,6 +167,10 @@ instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionSetBirthdate
       = A.object
         [ "@type" A..= AT.String "suggestedActionSetBirthdate"
+        ]
+  toJSON SuggestedActionSetProfilePhoto
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionSetProfilePhoto"
         ]
   toJSON SuggestedActionExtendPremium
     { manage_premium_subscription_url = manage_premium_subscription_url_

@@ -23,7 +23,6 @@ data InlineQueryResult
   = InlineQueryResultArticle -- ^ Represents a link to an article or web page
     { _id         :: Maybe T.Text              -- ^ Unique identifier of the query result
     , url         :: Maybe T.Text              -- ^ URL of the result, if it exists
-    , hide_url    :: Maybe Bool                -- ^ True, if the URL must be not shown
     , title       :: Maybe T.Text              -- ^ Title of the result
     , description :: Maybe T.Text              -- ^ A short description of the result
     , thumbnail   :: Maybe Thumbnail.Thumbnail -- ^ Result thumbnail in JPEG format; may be null
@@ -90,7 +89,6 @@ instance I.ShortShow InlineQueryResult where
   shortShow InlineQueryResultArticle
     { _id         = _id_
     , url         = url_
-    , hide_url    = hide_url_
     , title       = title_
     , description = description_
     , thumbnail   = thumbnail_
@@ -99,7 +97,6 @@ instance I.ShortShow InlineQueryResult where
         ++ I.cc
         [ "_id"         `I.p` _id_
         , "url"         `I.p` url_
-        , "hide_url"    `I.p` hide_url_
         , "title"       `I.p` title_
         , "description" `I.p` description_
         , "thumbnail"   `I.p` thumbnail_
@@ -252,14 +249,12 @@ instance AT.FromJSON InlineQueryResult where
       parseInlineQueryResultArticle = A.withObject "InlineQueryResultArticle" $ \o -> do
         _id_         <- o A..:?  "id"
         url_         <- o A..:?  "url"
-        hide_url_    <- o A..:?  "hide_url"
         title_       <- o A..:?  "title"
         description_ <- o A..:?  "description"
         thumbnail_   <- o A..:?  "thumbnail"
         pure $ InlineQueryResultArticle
           { _id         = _id_
           , url         = url_
-          , hide_url    = hide_url_
           , title       = title_
           , description = description_
           , thumbnail   = thumbnail_

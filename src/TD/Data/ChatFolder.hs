@@ -6,12 +6,12 @@ module TD.Data.ChatFolder
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.ChatFolderName as ChatFolderName
 import qualified TD.Data.ChatFolderIcon as ChatFolderIcon
 
 data ChatFolder
   = ChatFolder -- ^ Represents a folder for user chats
-    { title                :: Maybe T.Text                        -- ^ The title of the folder; 1-12 characters without line feeds
+    { name                 :: Maybe ChatFolderName.ChatFolderName -- ^ The name of the folder
     , icon                 :: Maybe ChatFolderIcon.ChatFolderIcon -- ^ The chosen icon for the chat folder; may be null. If null, use getChatFolderDefaultIconName to get default icon name for the folder
     , color_id             :: Maybe Int                           -- ^ The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription
     , is_shareable         :: Maybe Bool                          -- ^ True, if at least one link has been created for the folder
@@ -31,7 +31,7 @@ data ChatFolder
 
 instance I.ShortShow ChatFolder where
   shortShow ChatFolder
-    { title                = title_
+    { name                 = name_
     , icon                 = icon_
     , color_id             = color_id_
     , is_shareable         = is_shareable_
@@ -49,7 +49,7 @@ instance I.ShortShow ChatFolder where
     }
       = "ChatFolder"
         ++ I.cc
-        [ "title"                `I.p` title_
+        [ "name"                 `I.p` name_
         , "icon"                 `I.p` icon_
         , "color_id"             `I.p` color_id_
         , "is_shareable"         `I.p` is_shareable_
@@ -77,7 +77,7 @@ instance AT.FromJSON ChatFolder where
     where
       parseChatFolder :: A.Value -> AT.Parser ChatFolder
       parseChatFolder = A.withObject "ChatFolder" $ \o -> do
-        title_                <- o A..:?  "title"
+        name_                 <- o A..:?  "name"
         icon_                 <- o A..:?  "icon"
         color_id_             <- o A..:?  "color_id"
         is_shareable_         <- o A..:?  "is_shareable"
@@ -93,7 +93,7 @@ instance AT.FromJSON ChatFolder where
         include_groups_       <- o A..:?  "include_groups"
         include_channels_     <- o A..:?  "include_channels"
         pure $ ChatFolder
-          { title                = title_
+          { name                 = name_
           , icon                 = icon_
           , color_id             = color_id_
           , is_shareable         = is_shareable_
@@ -113,7 +113,7 @@ instance AT.FromJSON ChatFolder where
 
 instance AT.ToJSON ChatFolder where
   toJSON ChatFolder
-    { title                = title_
+    { name                 = name_
     , icon                 = icon_
     , color_id             = color_id_
     , is_shareable         = is_shareable_
@@ -131,7 +131,7 @@ instance AT.ToJSON ChatFolder where
     }
       = A.object
         [ "@type"                A..= AT.String "chatFolder"
-        , "title"                A..= title_
+        , "name"                 A..= name_
         , "icon"                 A..= icon_
         , "color_id"             A..= color_id_
         , "is_shareable"         A..= is_shareable_
@@ -151,7 +151,7 @@ instance AT.ToJSON ChatFolder where
 defaultChatFolder :: ChatFolder
 defaultChatFolder =
   ChatFolder
-    { title                = Nothing
+    { name                 = Nothing
     , icon                 = Nothing
     , color_id             = Nothing
     , is_shareable         = Nothing

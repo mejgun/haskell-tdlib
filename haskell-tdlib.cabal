@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.52.0
+version:        2.0.53.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -34,6 +34,7 @@ library
       TD.Data.AffiliateProgramInfo
       TD.Data.AffiliateProgramParameters
       TD.Data.AffiliateProgramSortOrder
+      TD.Data.AffiliateType
       TD.Data.AlternativeVideo
       TD.Data.AnimatedChatPhoto
       TD.Data.AnimatedEmoji
@@ -71,6 +72,8 @@ library
       TD.Data.BotMediaPreviewInfo
       TD.Data.BotMediaPreviews
       TD.Data.BotMenuButton
+      TD.Data.BotVerification
+      TD.Data.BotVerificationParameters
       TD.Data.BotWriteAccessAllowReason
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
@@ -112,8 +115,6 @@ library
       TD.Data.ChatAdministrator
       TD.Data.ChatAdministratorRights
       TD.Data.ChatAdministrators
-      TD.Data.ChatAffiliateProgram
-      TD.Data.ChatAffiliatePrograms
       TD.Data.ChatAvailableReactions
       TD.Data.ChatBackground
       TD.Data.ChatBoost
@@ -135,6 +136,7 @@ library
       TD.Data.ChatFolderInviteLink
       TD.Data.ChatFolderInviteLinkInfo
       TD.Data.ChatFolderInviteLinks
+      TD.Data.ChatFolderName
       TD.Data.ChatInviteLink
       TD.Data.ChatInviteLinkCount
       TD.Data.ChatInviteLinkCounts
@@ -184,6 +186,8 @@ library
       TD.Data.ClosedVectorPath
       TD.Data.CollectibleItemInfo
       TD.Data.CollectibleItemType
+      TD.Data.ConnectedAffiliateProgram
+      TD.Data.ConnectedAffiliatePrograms
       TD.Data.ConnectedWebsite
       TD.Data.ConnectedWebsites
       TD.Data.ConnectionState
@@ -252,6 +256,7 @@ library
       TD.Data.GameHighScores
       TD.Data.Gift
       TD.Data.Gifts
+      TD.Data.GiftUpgradePreview
       TD.Data.GiveawayInfo
       TD.Data.GiveawayParameters
       TD.Data.GiveawayParticipantStatus
@@ -473,10 +478,12 @@ library
       TD.Data.SavedMessagesTopicType
       TD.Data.ScopeAutosaveSettings
       TD.Data.ScopeNotificationSettings
+      TD.Data.SearchMessagesChatTypeFilter
       TD.Data.SearchMessagesFilter
       TD.Data.Seconds
       TD.Data.SecretChat
       TD.Data.SecretChatState
+      TD.Data.SentGift
       TD.Data.SentWebAppMessage
       TD.Data.Session
       TD.Data.Sessions
@@ -573,6 +580,12 @@ library
       TD.Data.UnreadReaction
       TD.Data.Update
       TD.Data.Updates
+      TD.Data.UpgradedGift
+      TD.Data.UpgradedGiftBackdrop
+      TD.Data.UpgradedGiftModel
+      TD.Data.UpgradedGiftOriginalDetails
+      TD.Data.UpgradedGiftSymbol
+      TD.Data.UpgradeGiftResult
       TD.Data.User
       TD.Data.UserFullInfo
       TD.Data.UserGift
@@ -589,6 +602,7 @@ library
       TD.Data.ValidatedOrderInfo
       TD.Data.VectorPathCommand
       TD.Data.Venue
+      TD.Data.VerificationStatus
       TD.Data.Video
       TD.Data.VideoChat
       TD.Data.VideoNote
@@ -689,7 +703,7 @@ library
       TD.Query.CommitPendingPaidMessageReactions
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
-      TD.Query.ConnectChatAffiliateProgram
+      TD.Query.ConnectAffiliateProgram
       TD.Query.CreateBasicGroupChat
       TD.Query.CreateBusinessChatLink
       TD.Query.CreateCall
@@ -698,6 +712,7 @@ library
       TD.Query.CreateChatInviteLink
       TD.Query.CreateChatSubscriptionInviteLink
       TD.Query.CreateForumTopic
+      TD.Query.CreateGroupCall
       TD.Query.CreateInvoiceLink
       TD.Query.CreateNewBasicGroupChat
       TD.Query.CreateNewSecretChat
@@ -743,8 +758,8 @@ library
       TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
       TD.Query.DiscardCall
+      TD.Query.DisconnectAffiliateProgram
       TD.Query.DisconnectAllWebsites
-      TD.Query.DisconnectChatAffiliateProgram
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
       TD.Query.EditBotMediaPreview
@@ -819,8 +834,6 @@ library
       TD.Query.GetChat
       TD.Query.GetChatActiveStories
       TD.Query.GetChatAdministrators
-      TD.Query.GetChatAffiliateProgram
-      TD.Query.GetChatAffiliatePrograms
       TD.Query.GetChatArchivedStories
       TD.Query.GetChatAvailableMessageSenders
       TD.Query.GetChatBoostFeatures
@@ -867,6 +880,8 @@ library
       TD.Query.GetCloseFriends
       TD.Query.GetCollectibleItemInfo
       TD.Query.GetCommands
+      TD.Query.GetConnectedAffiliateProgram
+      TD.Query.GetConnectedAffiliatePrograms
       TD.Query.GetConnectedWebsites
       TD.Query.GetContacts
       TD.Query.GetCountries
@@ -901,6 +916,7 @@ library
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
+      TD.Query.GetGiftUpgradePreview
       TD.Query.GetGiveawayInfo
       TD.Query.GetGreetingStickers
       TD.Query.GetGrossingWebAppBots
@@ -1043,6 +1059,7 @@ library
       TD.Query.GetUser
       TD.Query.GetUserChatBoosts
       TD.Query.GetUserFullInfo
+      TD.Query.GetUserGift
       TD.Query.GetUserGifts
       TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
@@ -1109,6 +1126,7 @@ library
       TD.Query.RemoveFileFromDownloads
       TD.Query.RemoveInstalledBackground
       TD.Query.RemoveMessageReaction
+      TD.Query.RemoveMessageSenderBotVerification
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
       TD.Query.RemovePendingPaidMessageReactions
@@ -1289,6 +1307,7 @@ library
       TD.Query.SetMessageFactCheck
       TD.Query.SetMessageReactions
       TD.Query.SetMessageSenderBlockList
+      TD.Query.SetMessageSenderBotVerification
       TD.Query.SetName
       TD.Query.SetNetworkType
       TD.Query.SetNewChatPrivacySettings
@@ -1395,12 +1414,14 @@ library
       TD.Query.ToggleSupergroupUsernameIsActive
       TD.Query.ToggleUsernameIsActive
       TD.Query.TransferChatOwnership
+      TD.Query.TransferGift
       TD.Query.TranslateMessageText
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
       TD.Query.UnpinAllMessageThreadMessages
       TD.Query.UnpinChatMessage
       TD.Query.UpgradeBasicGroupChatToSupergroupChat
+      TD.Query.UpgradeGift
       TD.Query.UploadStickerFile
       TD.Query.ValidateOrderInfo
       TD.Query.ViewMessages
