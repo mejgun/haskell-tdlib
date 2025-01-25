@@ -10,7 +10,7 @@ data BotVerification
   = BotVerification -- ^ Describes verification status provided by a bot
     { bot_user_id          :: Maybe Int                         -- ^ Identifier of the bot that provided the verification
     , icon_custom_emoji_id :: Maybe Int                         -- ^ Identifier of the custom emoji that is used as the verification sign
-    , custom_description   :: Maybe FormattedText.FormattedText -- ^ Custom description of verification reason set by the bot
+    , custom_description   :: Maybe FormattedText.FormattedText -- ^ Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities
     }
   deriving (Eq, Show)
 

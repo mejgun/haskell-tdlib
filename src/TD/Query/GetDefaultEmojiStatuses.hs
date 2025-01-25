@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns default emoji statuses for self status. Returns 'TD.Data.EmojiStatuses.EmojiStatuses'
+-- | Returns default emoji statuses for self status. Returns 'TD.Data.EmojiStatusCustomEmojis.EmojiStatusCustomEmojis'
 data GetDefaultEmojiStatuses
   = GetDefaultEmojiStatuses
   deriving (Eq, Show)

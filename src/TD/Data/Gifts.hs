@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Gift as Gift
 
 data Gifts
-  = Gifts -- ^ Contains a list of gifts that can be sent to another user
+  = Gifts -- ^ Contains a list of gifts that can be sent to another user or channel chat
     { gifts :: Maybe [Gift.Gift] -- ^ The list of gifts
     }
   deriving (Eq, Show)

@@ -4,20 +4,21 @@ module TD.Data.EmojiStatuses
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.EmojiStatus as EmojiStatus
 
 data EmojiStatuses
-  = EmojiStatuses -- ^ Contains a list of custom emoji identifiers for emoji statuses
-    { custom_emoji_ids :: Maybe [Int] -- ^ The list of custom emoji identifiers
+  = EmojiStatuses -- ^ Contains a list of emoji statuses
+    { emoji_statuses :: Maybe [EmojiStatus.EmojiStatus] -- ^ The list of emoji statuses identifiers
     }
   deriving (Eq, Show)
 
 instance I.ShortShow EmojiStatuses where
   shortShow EmojiStatuses
-    { custom_emoji_ids = custom_emoji_ids_
+    { emoji_statuses = emoji_statuses_
     }
       = "EmojiStatuses"
         ++ I.cc
-        [ "custom_emoji_ids" `I.p` custom_emoji_ids_
+        [ "emoji_statuses" `I.p` emoji_statuses_
         ]
 
 instance AT.FromJSON EmojiStatuses where
@@ -31,9 +32,9 @@ instance AT.FromJSON EmojiStatuses where
     where
       parseEmojiStatuses :: A.Value -> AT.Parser EmojiStatuses
       parseEmojiStatuses = A.withObject "EmojiStatuses" $ \o -> do
-        custom_emoji_ids_ <- fmap (fmap I.readInt64) <$> o A..:?  "custom_emoji_ids"
+        emoji_statuses_ <- o A..:?  "emoji_statuses"
         pure $ EmojiStatuses
-          { custom_emoji_ids = custom_emoji_ids_
+          { emoji_statuses = emoji_statuses_
           }
   parseJSON _ = mempty
 

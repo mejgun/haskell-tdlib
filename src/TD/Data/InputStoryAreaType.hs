@@ -40,6 +40,9 @@ data InputStoryAreaType
     , emoji            :: Maybe T.Text -- ^ Emoji representing the weather
     , background_color :: Maybe Int    -- ^ A color of the area background in the ARGB format
     }
+  | InputStoryAreaTypeUpgradedGift -- ^ An area with an upgraded gift
+    { gift_name :: Maybe T.Text -- ^ Unique name of the upgraded gift
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow InputStoryAreaType where
@@ -108,6 +111,13 @@ instance I.ShortShow InputStoryAreaType where
         , "emoji"            `I.p` emoji_
         , "background_color" `I.p` background_color_
         ]
+  shortShow InputStoryAreaTypeUpgradedGift
+    { gift_name = gift_name_
+    }
+      = "InputStoryAreaTypeUpgradedGift"
+        ++ I.cc
+        [ "gift_name" `I.p` gift_name_
+        ]
 
 instance AT.FromJSON InputStoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -121,6 +131,7 @@ instance AT.FromJSON InputStoryAreaType where
       "inputStoryAreaTypeMessage"           -> parseInputStoryAreaTypeMessage v
       "inputStoryAreaTypeLink"              -> parseInputStoryAreaTypeLink v
       "inputStoryAreaTypeWeather"           -> parseInputStoryAreaTypeWeather v
+      "inputStoryAreaTypeUpgradedGift"      -> parseInputStoryAreaTypeUpgradedGift v
       _                                     -> mempty
     
     where
@@ -181,6 +192,12 @@ instance AT.FromJSON InputStoryAreaType where
           { temperature      = temperature_
           , emoji            = emoji_
           , background_color = background_color_
+          }
+      parseInputStoryAreaTypeUpgradedGift :: A.Value -> AT.Parser InputStoryAreaType
+      parseInputStoryAreaTypeUpgradedGift = A.withObject "InputStoryAreaTypeUpgradedGift" $ \o -> do
+        gift_name_ <- o A..:?  "gift_name"
+        pure $ InputStoryAreaTypeUpgradedGift
+          { gift_name = gift_name_
           }
   parseJSON _ = mempty
 
@@ -249,5 +266,12 @@ instance AT.ToJSON InputStoryAreaType where
         , "temperature"      A..= temperature_
         , "emoji"            A..= emoji_
         , "background_color" A..= background_color_
+        ]
+  toJSON InputStoryAreaTypeUpgradedGift
+    { gift_name = gift_name_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "inputStoryAreaTypeUpgradedGift"
+        , "gift_name" A..= gift_name_
         ]
 

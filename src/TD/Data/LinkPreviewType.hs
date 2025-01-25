@@ -15,6 +15,7 @@ import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.ThemeSettings as ThemeSettings
+import qualified TD.Data.UpgradedGift as UpgradedGift
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
@@ -110,6 +111,9 @@ data LinkPreviewType
     , settings  :: Maybe ThemeSettings.ThemeSettings -- ^ Settings for the cloud theme; may be null if unknown
     }
   | LinkPreviewTypeUnsupported -- ^ The link preview type is unsupported yet
+  | LinkPreviewTypeUpgradedGift -- ^ The link is a link to an upgraded gift
+    { gift :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+    }
   | LinkPreviewTypeUser -- ^ The link is a link to a user
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the user; may be null if none
     , is_bot :: Maybe Bool                -- ^ True, if the user is a bot
@@ -331,6 +335,13 @@ instance I.ShortShow LinkPreviewType where
         ]
   shortShow LinkPreviewTypeUnsupported
       = "LinkPreviewTypeUnsupported"
+  shortShow LinkPreviewTypeUpgradedGift
+    { gift = gift_
+    }
+      = "LinkPreviewTypeUpgradedGift"
+        ++ I.cc
+        [ "gift" `I.p` gift_
+        ]
   shortShow LinkPreviewTypeUser
     { _photo = _photo_
     , is_bot = is_bot_
@@ -408,6 +419,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeSupergroupBoost"         -> parseLinkPreviewTypeSupergroupBoost v
       "linkPreviewTypeTheme"                   -> parseLinkPreviewTypeTheme v
       "linkPreviewTypeUnsupported"             -> pure LinkPreviewTypeUnsupported
+      "linkPreviewTypeUpgradedGift"            -> parseLinkPreviewTypeUpgradedGift v
       "linkPreviewTypeUser"                    -> parseLinkPreviewTypeUser v
       "linkPreviewTypeVideo"                   -> parseLinkPreviewTypeVideo v
       "linkPreviewTypeVideoChat"               -> parseLinkPreviewTypeVideoChat v
@@ -584,6 +596,12 @@ instance AT.FromJSON LinkPreviewType where
         pure $ LinkPreviewTypeTheme
           { documents = documents_
           , settings  = settings_
+          }
+      parseLinkPreviewTypeUpgradedGift :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeUpgradedGift = A.withObject "LinkPreviewTypeUpgradedGift" $ \o -> do
+        gift_ <- o A..:?  "gift"
+        pure $ LinkPreviewTypeUpgradedGift
+          { gift = gift_
           }
       parseLinkPreviewTypeUser :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeUser = A.withObject "LinkPreviewTypeUser" $ \o -> do

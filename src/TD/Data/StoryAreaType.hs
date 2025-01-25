@@ -37,6 +37,9 @@ data StoryAreaType
     , emoji            :: Maybe T.Text -- ^ Emoji representing the weather
     , background_color :: Maybe Int    -- ^ A color of the area background in the ARGB format
     }
+  | StoryAreaTypeUpgradedGift -- ^ An area with an upgraded gift
+    { gift_name :: Maybe T.Text -- ^ Unique name of the upgraded gift
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow StoryAreaType where
@@ -96,6 +99,13 @@ instance I.ShortShow StoryAreaType where
         , "emoji"            `I.p` emoji_
         , "background_color" `I.p` background_color_
         ]
+  shortShow StoryAreaTypeUpgradedGift
+    { gift_name = gift_name_
+    }
+      = "StoryAreaTypeUpgradedGift"
+        ++ I.cc
+        [ "gift_name" `I.p` gift_name_
+        ]
 
 instance AT.FromJSON StoryAreaType where
   parseJSON v@(AT.Object obj) = do
@@ -108,6 +118,7 @@ instance AT.FromJSON StoryAreaType where
       "storyAreaTypeMessage"           -> parseStoryAreaTypeMessage v
       "storyAreaTypeLink"              -> parseStoryAreaTypeLink v
       "storyAreaTypeWeather"           -> parseStoryAreaTypeWeather v
+      "storyAreaTypeUpgradedGift"      -> parseStoryAreaTypeUpgradedGift v
       _                                -> mempty
     
     where
@@ -160,6 +171,12 @@ instance AT.FromJSON StoryAreaType where
           { temperature      = temperature_
           , emoji            = emoji_
           , background_color = background_color_
+          }
+      parseStoryAreaTypeUpgradedGift :: A.Value -> AT.Parser StoryAreaType
+      parseStoryAreaTypeUpgradedGift = A.withObject "StoryAreaTypeUpgradedGift" $ \o -> do
+        gift_name_ <- o A..:?  "gift_name"
+        pure $ StoryAreaTypeUpgradedGift
+          { gift_name = gift_name_
           }
   parseJSON _ = mempty
 

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns default emoji statuses for chats. Returns 'TD.Data.EmojiStatuses.EmojiStatuses'
+-- | Returns default emoji statuses for chats. Returns 'TD.Data.EmojiStatusCustomEmojis.EmojiStatusCustomEmojis'
 data GetDefaultChatEmojiStatuses
   = GetDefaultChatEmojiStatuses
   deriving (Eq, Show)

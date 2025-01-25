@@ -20,7 +20,9 @@ data PaidMedia
     { photo :: Maybe Photo.Photo -- ^ The photo
     }
   | PaidMediaVideo -- ^ The media is a video
-    { video :: Maybe Video.Video -- ^ The video
+    { video           :: Maybe Video.Video -- ^ The video
+    , cover           :: Maybe Photo.Photo -- ^ Cover of the video; may be null if none
+    , start_timestamp :: Maybe Int         -- ^ Timestamp from which the video playing must start, in seconds
     }
   | PaidMediaUnsupported -- ^ The media is unsupported
   deriving (Eq, Show)
@@ -47,11 +49,15 @@ instance I.ShortShow PaidMedia where
         [ "photo" `I.p` photo_
         ]
   shortShow PaidMediaVideo
-    { video = video_
+    { video           = video_
+    , cover           = cover_
+    , start_timestamp = start_timestamp_
     }
       = "PaidMediaVideo"
         ++ I.cc
-        [ "video" `I.p` video_
+        [ "video"           `I.p` video_
+        , "cover"           `I.p` cover_
+        , "start_timestamp" `I.p` start_timestamp_
         ]
   shortShow PaidMediaUnsupported
       = "PaidMediaUnsupported"
@@ -88,9 +94,13 @@ instance AT.FromJSON PaidMedia where
           }
       parsePaidMediaVideo :: A.Value -> AT.Parser PaidMedia
       parsePaidMediaVideo = A.withObject "PaidMediaVideo" $ \o -> do
-        video_ <- o A..:?  "video"
+        video_           <- o A..:?  "video"
+        cover_           <- o A..:?  "cover"
+        start_timestamp_ <- o A..:?  "start_timestamp"
         pure $ PaidMediaVideo
-          { video = video_
+          { video           = video_
+          , cover           = cover_
+          , start_timestamp = start_timestamp_
           }
   parseJSON _ = mempty
 

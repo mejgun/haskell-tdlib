@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
 
--- | Represents a gift received by a user
+-- | Represents content of a gift received by a user or a channel chat
 data SentGift
   = SentGiftRegular -- ^ Regular gift
     { gift :: Maybe Gift.Gift -- ^ The gift

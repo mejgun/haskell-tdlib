@@ -7,15 +7,15 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Sticker as Sticker
 
 data Gift
-  = Gift -- ^ Describes a gift that can be sent to another user
+  = Gift -- ^ Describes a gift that can be sent to another user or channel chat
     { _id                     :: Maybe Int             -- ^ Unique identifier of the gift
     , sticker                 :: Maybe Sticker.Sticker -- ^ The sticker representing the gift
     , star_count              :: Maybe Int             -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int             -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     , upgrade_star_count      :: Maybe Int             -- ^ Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
     , is_for_birthday         :: Maybe Bool            -- ^ True, if the gift is a birthday gift
-    , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
-    , total_count             :: Maybe Int             -- ^ Number of total times the gift can be purchased by all users; 0 if not limited
+    , remaining_count         :: Maybe Int             -- ^ Number of remaining times the gift can be purchased; 0 if not limited or the gift was sold out
+    , total_count             :: Maybe Int             -- ^ Number of total times the gift can be purchased; 0 if not limited
     , first_send_date         :: Maybe Int             -- ^ Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
     , last_send_date          :: Maybe Int             -- ^ Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     }

@@ -6,22 +6,23 @@ module TD.Data.EmojiStatus
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.EmojiStatusType as EmojiStatusType
 
 data EmojiStatus
-  = EmojiStatus -- ^ Describes a custom emoji to be shown instead of the Telegram Premium badge
-    { custom_emoji_id :: Maybe Int -- ^ Identifier of the custom emoji in stickerFormatTgs format
-    , expiration_date :: Maybe Int -- ^ Point in time (Unix timestamp) when the status will expire; 0 if never
+  = EmojiStatus -- ^ Describes an emoji to be shown instead of the Telegram Premium badge
+    { _type           :: Maybe EmojiStatusType.EmojiStatusType -- ^ Type of the emoji status
+    , expiration_date :: Maybe Int                             -- ^ Point in time (Unix timestamp) when the status will expire; 0 if never
     }
   deriving (Eq, Show)
 
 instance I.ShortShow EmojiStatus where
   shortShow EmojiStatus
-    { custom_emoji_id = custom_emoji_id_
+    { _type           = _type_
     , expiration_date = expiration_date_
     }
       = "EmojiStatus"
         ++ I.cc
-        [ "custom_emoji_id" `I.p` custom_emoji_id_
+        [ "_type"           `I.p` _type_
         , "expiration_date" `I.p` expiration_date_
         ]
 
@@ -36,29 +37,29 @@ instance AT.FromJSON EmojiStatus where
     where
       parseEmojiStatus :: A.Value -> AT.Parser EmojiStatus
       parseEmojiStatus = A.withObject "EmojiStatus" $ \o -> do
-        custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "custom_emoji_id"
-        expiration_date_ <- o A..:?                       "expiration_date"
+        _type_           <- o A..:?  "type"
+        expiration_date_ <- o A..:?  "expiration_date"
         pure $ EmojiStatus
-          { custom_emoji_id = custom_emoji_id_
+          { _type           = _type_
           , expiration_date = expiration_date_
           }
   parseJSON _ = mempty
 
 instance AT.ToJSON EmojiStatus where
   toJSON EmojiStatus
-    { custom_emoji_id = custom_emoji_id_
+    { _type           = _type_
     , expiration_date = expiration_date_
     }
       = A.object
         [ "@type"           A..= AT.String "emojiStatus"
-        , "custom_emoji_id" A..= fmap I.writeInt64  custom_emoji_id_
+        , "type"            A..= _type_
         , "expiration_date" A..= expiration_date_
         ]
 
 defaultEmojiStatus :: EmojiStatus
 defaultEmojiStatus =
   EmojiStatus
-    { custom_emoji_id = Nothing
+    { _type           = Nothing
     , expiration_date = Nothing
     }
 

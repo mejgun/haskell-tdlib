@@ -5,20 +5,23 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified Data.Text as T
 
 data UpgradeGiftResult
   = UpgradeGiftResult -- ^ Contains result of gift upgrading
     { gift                :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
-    , is_saved            :: Maybe Bool                      -- ^ True, if the gift is displayed on the user's profile page
-    , can_be_transferred  :: Maybe Bool                      -- ^ True, if the gift can be transferred to another user
+    , received_gift_id    :: Maybe T.Text                    -- ^ Unique identifier of the received gift for the current user
+    , is_saved            :: Maybe Bool                      -- ^ True, if the gift is displayed on the user's or the channel's profile page
+    , can_be_transferred  :: Maybe Bool                      -- ^ True, if the gift can be transferred to another owner
     , transfer_star_count :: Maybe Int                       -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift
-    , export_date         :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to TON blockchain as an NFT
+    , export_date         :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT
     }
   deriving (Eq, Show)
 
 instance I.ShortShow UpgradeGiftResult where
   shortShow UpgradeGiftResult
     { gift                = gift_
+    , received_gift_id    = received_gift_id_
     , is_saved            = is_saved_
     , can_be_transferred  = can_be_transferred_
     , transfer_star_count = transfer_star_count_
@@ -27,6 +30,7 @@ instance I.ShortShow UpgradeGiftResult where
       = "UpgradeGiftResult"
         ++ I.cc
         [ "gift"                `I.p` gift_
+        , "received_gift_id"    `I.p` received_gift_id_
         , "is_saved"            `I.p` is_saved_
         , "can_be_transferred"  `I.p` can_be_transferred_
         , "transfer_star_count" `I.p` transfer_star_count_
@@ -45,12 +49,14 @@ instance AT.FromJSON UpgradeGiftResult where
       parseUpgradeGiftResult :: A.Value -> AT.Parser UpgradeGiftResult
       parseUpgradeGiftResult = A.withObject "UpgradeGiftResult" $ \o -> do
         gift_                <- o A..:?  "gift"
+        received_gift_id_    <- o A..:?  "received_gift_id"
         is_saved_            <- o A..:?  "is_saved"
         can_be_transferred_  <- o A..:?  "can_be_transferred"
         transfer_star_count_ <- o A..:?  "transfer_star_count"
         export_date_         <- o A..:?  "export_date"
         pure $ UpgradeGiftResult
           { gift                = gift_
+          , received_gift_id    = received_gift_id_
           , is_saved            = is_saved_
           , can_be_transferred  = can_be_transferred_
           , transfer_star_count = transfer_star_count_

@@ -30,7 +30,7 @@ data UserFullInfo
     , bio                                          :: Maybe FormattedText.FormattedText     -- ^ A short user bio; may be null for bots
     , birthdate                                    :: Maybe Birthdate.Birthdate             -- ^ Birthdate of the user; may be null if unknown
     , personal_chat_id                             :: Maybe Int                             -- ^ Identifier of the personal chat of the user; 0 if none
-    , gift_count                                   :: Maybe Int                             -- ^ Number of gifts saved to profile by the user
+    , gift_count                                   :: Maybe Int                             -- ^ Number of saved to profile gifts for other users or the total number of received gifts for the current user
     , group_in_common_count                        :: Maybe Int                             -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
     , bot_verification                             :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the user provided by a bot; may be null if none or unknown
     , business_info                                :: Maybe BusinessInfo.BusinessInfo       -- ^ Information about business settings for Telegram Business accounts; may be null if none

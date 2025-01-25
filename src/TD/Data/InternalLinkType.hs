@@ -140,6 +140,9 @@ data InternalLinkType
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
   | InternalLinkTypeUnsupportedProxy -- ^ The link is a link to an unsupported proxy. An alert can be shown to the user
+  | InternalLinkTypeUpgradedGift -- ^ The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
+    { name :: Maybe T.Text -- ^ Name of the unique gift
+    }
   | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
     { phone_number :: Maybe T.Text -- ^ Phone number of the user
     , draft_text   :: Maybe T.Text -- ^ Draft text for message to send in the chat
@@ -446,6 +449,13 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeUnsupportedProxy
       = "InternalLinkTypeUnsupportedProxy"
+  shortShow InternalLinkTypeUpgradedGift
+    { name = name_
+    }
+      = "InternalLinkTypeUpgradedGift"
+        ++ I.cc
+        [ "name" `I.p` name_
+        ]
   shortShow InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_
     , draft_text   = draft_text_
@@ -536,6 +546,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeThemeSettings"                         -> pure InternalLinkTypeThemeSettings
       "internalLinkTypeUnknownDeepLink"                       -> parseInternalLinkTypeUnknownDeepLink v
       "internalLinkTypeUnsupportedProxy"                      -> pure InternalLinkTypeUnsupportedProxy
+      "internalLinkTypeUpgradedGift"                          -> parseInternalLinkTypeUpgradedGift v
       "internalLinkTypeUserPhoneNumber"                       -> parseInternalLinkTypeUserPhoneNumber v
       "internalLinkTypeUserToken"                             -> parseInternalLinkTypeUserToken v
       "internalLinkTypeVideoChat"                             -> parseInternalLinkTypeVideoChat v
@@ -772,6 +783,12 @@ instance AT.FromJSON InternalLinkType where
         link_ <- o A..:?  "link"
         pure $ InternalLinkTypeUnknownDeepLink
           { link = link_
+          }
+      parseInternalLinkTypeUpgradedGift :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeUpgradedGift = A.withObject "InternalLinkTypeUpgradedGift" $ \o -> do
+        name_ <- o A..:?  "name"
+        pure $ InternalLinkTypeUpgradedGift
+          { name = name_
           }
       parseInternalLinkTypeUserPhoneNumber :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
@@ -1121,6 +1138,13 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeUnsupportedProxy
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeUnsupportedProxy"
+        ]
+  toJSON InternalLinkTypeUpgradedGift
+    { name = name_
+    }
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeUpgradedGift"
+        , "name"  A..= name_
         ]
   toJSON InternalLinkTypeUserPhoneNumber
     { phone_number = phone_number_

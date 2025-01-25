@@ -5,19 +5,23 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.UpgradedGiftModel as UpgradedGiftModel
 import qualified TD.Data.UpgradedGiftSymbol as UpgradedGiftSymbol
 import qualified TD.Data.UpgradedGiftBackdrop as UpgradedGiftBackdrop
 import qualified TD.Data.UpgradedGiftOriginalDetails as UpgradedGiftOriginalDetails
 
 data UpgradedGift
-  = UpgradedGift -- ^ Describes an upgraded gift that can be gifted to another user or transferred to TON blockchain as an NFT
+  = UpgradedGift -- ^ Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
     { _id                  :: Maybe Int                                                     -- ^ Unique identifier of the gift
     , title                :: Maybe T.Text                                                  -- ^ The title of the upgraded gift
+    , name                 :: Maybe T.Text                                                  -- ^ Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
     , number               :: Maybe Int                                                     -- ^ Unique number of the upgraded gift among gifts upgraded from the same gift
     , total_upgraded_count :: Maybe Int                                                     -- ^ Total number of gifts that were upgraded from the same gift
     , max_upgraded_count   :: Maybe Int                                                     -- ^ The maximum number of gifts that can be upgraded from the same gift
-    , owner_user_id        :: Maybe Int                                                     -- ^ User identifier of the user that owns the upgraded gift; 0 if none
+    , owner_id             :: Maybe MessageSender.MessageSender                             -- ^ Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
+    , owner_address        :: Maybe T.Text                                                  -- ^ Address of the gift NFT owner in TON blockchain; may be empty if none
+    , owner_name           :: Maybe T.Text                                                  -- ^ Name of the owner for the case when owner identifier and address aren't known
     , model                :: Maybe UpgradedGiftModel.UpgradedGiftModel                     -- ^ Model of the upgraded gift
     , symbol               :: Maybe UpgradedGiftSymbol.UpgradedGiftSymbol                   -- ^ Symbol of the upgraded gift
     , backdrop             :: Maybe UpgradedGiftBackdrop.UpgradedGiftBackdrop               -- ^ Backdrop of the upgraded gift
@@ -29,10 +33,13 @@ instance I.ShortShow UpgradedGift where
   shortShow UpgradedGift
     { _id                  = _id_
     , title                = title_
+    , name                 = name_
     , number               = number_
     , total_upgraded_count = total_upgraded_count_
     , max_upgraded_count   = max_upgraded_count_
-    , owner_user_id        = owner_user_id_
+    , owner_id             = owner_id_
+    , owner_address        = owner_address_
+    , owner_name           = owner_name_
     , model                = model_
     , symbol               = symbol_
     , backdrop             = backdrop_
@@ -42,10 +49,13 @@ instance I.ShortShow UpgradedGift where
         ++ I.cc
         [ "_id"                  `I.p` _id_
         , "title"                `I.p` title_
+        , "name"                 `I.p` name_
         , "number"               `I.p` number_
         , "total_upgraded_count" `I.p` total_upgraded_count_
         , "max_upgraded_count"   `I.p` max_upgraded_count_
-        , "owner_user_id"        `I.p` owner_user_id_
+        , "owner_id"             `I.p` owner_id_
+        , "owner_address"        `I.p` owner_address_
+        , "owner_name"           `I.p` owner_name_
         , "model"                `I.p` model_
         , "symbol"               `I.p` symbol_
         , "backdrop"             `I.p` backdrop_
@@ -65,10 +75,13 @@ instance AT.FromJSON UpgradedGift where
       parseUpgradedGift = A.withObject "UpgradedGift" $ \o -> do
         _id_                  <- fmap I.readInt64 <$> o A..:?  "id"
         title_                <- o A..:?                       "title"
+        name_                 <- o A..:?                       "name"
         number_               <- o A..:?                       "number"
         total_upgraded_count_ <- o A..:?                       "total_upgraded_count"
         max_upgraded_count_   <- o A..:?                       "max_upgraded_count"
-        owner_user_id_        <- o A..:?                       "owner_user_id"
+        owner_id_             <- o A..:?                       "owner_id"
+        owner_address_        <- o A..:?                       "owner_address"
+        owner_name_           <- o A..:?                       "owner_name"
         model_                <- o A..:?                       "model"
         symbol_               <- o A..:?                       "symbol"
         backdrop_             <- o A..:?                       "backdrop"
@@ -76,10 +89,13 @@ instance AT.FromJSON UpgradedGift where
         pure $ UpgradedGift
           { _id                  = _id_
           , title                = title_
+          , name                 = name_
           , number               = number_
           , total_upgraded_count = total_upgraded_count_
           , max_upgraded_count   = max_upgraded_count_
-          , owner_user_id        = owner_user_id_
+          , owner_id             = owner_id_
+          , owner_address        = owner_address_
+          , owner_name           = owner_name_
           , model                = model_
           , symbol               = symbol_
           , backdrop             = backdrop_

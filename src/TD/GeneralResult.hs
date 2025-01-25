@@ -86,6 +86,7 @@ import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthe
 import qualified TD.Data.EmojiCategories as EmojiCategories
 import qualified TD.Data.EmojiKeywords as EmojiKeywords
 import qualified TD.Data.EmojiReaction as EmojiReaction
+import qualified TD.Data.EmojiStatusCustomEmojis as EmojiStatusCustomEmojis
 import qualified TD.Data.EmojiStatuses as EmojiStatuses
 import qualified TD.Data.Emojis as Emojis
 import qualified TD.Data.Error as Error
@@ -176,6 +177,8 @@ import qualified TD.Data.PushReceiverId as PushReceiverId
 import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
 import qualified TD.Data.QuickReplyMessages as QuickReplyMessages
 import qualified TD.Data.ReadDatePrivacySettings as ReadDatePrivacySettings
+import qualified TD.Data.ReceivedGift as ReceivedGift
+import qualified TD.Data.ReceivedGifts as ReceivedGifts
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
 import qualified TD.Data.ReportChatResult as ReportChatResult
@@ -225,10 +228,9 @@ import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
 import qualified TD.Data.UpgradeGiftResult as UpgradeGiftResult
+import qualified TD.Data.UpgradedGift as UpgradedGift
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
-import qualified TD.Data.UserGift as UserGift
-import qualified TD.Data.UserGifts as UserGifts
 import qualified TD.Data.UserLink as UserLink
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
@@ -320,6 +322,7 @@ data GeneralResult
     | EmojiCategories                    EmojiCategories.EmojiCategories
     | EmojiKeywords                      EmojiKeywords.EmojiKeywords
     | EmojiReaction                      EmojiReaction.EmojiReaction
+    | EmojiStatusCustomEmojis            EmojiStatusCustomEmojis.EmojiStatusCustomEmojis
     | EmojiStatuses                      EmojiStatuses.EmojiStatuses
     | Emojis                             Emojis.Emojis
     | Error                              Error.Error
@@ -410,6 +413,8 @@ data GeneralResult
     | QuickReplyMessage                  QuickReplyMessage.QuickReplyMessage
     | QuickReplyMessages                 QuickReplyMessages.QuickReplyMessages
     | ReadDatePrivacySettings            ReadDatePrivacySettings.ReadDatePrivacySettings
+    | ReceivedGift                       ReceivedGift.ReceivedGift
+    | ReceivedGifts                      ReceivedGifts.ReceivedGifts
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
     | ReportChatResult                   ReportChatResult.ReportChatResult
@@ -459,10 +464,9 @@ data GeneralResult
     | Update                             Update.Update
     | Updates                            Updates.Updates
     | UpgradeGiftResult                  UpgradeGiftResult.UpgradeGiftResult
+    | UpgradedGift                       UpgradedGift.UpgradedGift
     | User                               User.User
     | UserFullInfo                       UserFullInfo.UserFullInfo
-    | UserGift                           UserGift.UserGift
-    | UserGifts                          UserGifts.UserGifts
     | UserLink                           UserLink.UserLink
     | UserPrivacySettingRules            UserPrivacySettingRules.UserPrivacySettingRules
     | UserSupportInfo                    UserSupportInfo.UserSupportInfo
@@ -637,6 +641,8 @@ instance I.ShortShow GeneralResult where
     = "EmojiKeywords" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiReaction v)
     = "EmojiReaction" <> " (" <> I.shortShow v <> ")"
+  shortShow (EmojiStatusCustomEmojis v)
+    = "EmojiStatusCustomEmojis" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiStatuses v)
     = "EmojiStatuses" <> " (" <> I.shortShow v <> ")"
   shortShow (Emojis v)
@@ -817,6 +823,10 @@ instance I.ShortShow GeneralResult where
     = "QuickReplyMessages" <> " (" <> I.shortShow v <> ")"
   shortShow (ReadDatePrivacySettings v)
     = "ReadDatePrivacySettings" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReceivedGift v)
+    = "ReceivedGift" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReceivedGifts v)
+    = "ReceivedGifts" <> " (" <> I.shortShow v <> ")"
   shortShow (RecommendedChatFolders v)
     = "RecommendedChatFolders" <> " (" <> I.shortShow v <> ")"
   shortShow (RecoveryEmailAddress v)
@@ -915,14 +925,12 @@ instance I.ShortShow GeneralResult where
     = "Updates" <> " (" <> I.shortShow v <> ")"
   shortShow (UpgradeGiftResult v)
     = "UpgradeGiftResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (UpgradedGift v)
+    = "UpgradedGift" <> " (" <> I.shortShow v <> ")"
   shortShow (User v)
     = "User" <> " (" <> I.shortShow v <> ")"
   shortShow (UserFullInfo v)
     = "UserFullInfo" <> " (" <> I.shortShow v <> ")"
-  shortShow (UserGift v)
-    = "UserGift" <> " (" <> I.shortShow v <> ")"
-  shortShow (UserGifts v)
-    = "UserGifts" <> " (" <> I.shortShow v <> ")"
   shortShow (UserLink v)
     = "UserLink" <> " (" <> I.shortShow v <> ")"
   shortShow (UserPrivacySettingRules v)
@@ -1022,6 +1030,7 @@ instance T.FromJSON GeneralResult where
     <|> ( EmojiCategories                     <$> parseJSON v )
     <|> ( EmojiKeywords                       <$> parseJSON v )
     <|> ( EmojiReaction                       <$> parseJSON v )
+    <|> ( EmojiStatusCustomEmojis             <$> parseJSON v )
     <|> ( EmojiStatuses                       <$> parseJSON v )
     <|> ( Emojis                              <$> parseJSON v )
     <|> ( Error                               <$> parseJSON v )
@@ -1112,6 +1121,8 @@ instance T.FromJSON GeneralResult where
     <|> ( QuickReplyMessage                   <$> parseJSON v )
     <|> ( QuickReplyMessages                  <$> parseJSON v )
     <|> ( ReadDatePrivacySettings             <$> parseJSON v )
+    <|> ( ReceivedGift                        <$> parseJSON v )
+    <|> ( ReceivedGifts                       <$> parseJSON v )
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
     <|> ( ReportChatResult                    <$> parseJSON v )
@@ -1161,10 +1172,9 @@ instance T.FromJSON GeneralResult where
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )
     <|> ( UpgradeGiftResult                   <$> parseJSON v )
+    <|> ( UpgradedGift                        <$> parseJSON v )
     <|> ( User                                <$> parseJSON v )
     <|> ( UserFullInfo                        <$> parseJSON v )
-    <|> ( UserGift                            <$> parseJSON v )
-    <|> ( UserGifts                           <$> parseJSON v )
     <|> ( UserLink                            <$> parseJSON v )
     <|> ( UserPrivacySettingRules             <$> parseJSON v )
     <|> ( UserSupportInfo                     <$> parseJSON v )

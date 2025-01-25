@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats. Returns 'TD.Data.EmojiStatuses.EmojiStatuses'
+-- | Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats. Returns 'TD.Data.EmojiStatusCustomEmojis.EmojiStatusCustomEmojis'
 data GetThemedChatEmojiStatuses
   = GetThemedChatEmojiStatuses
   deriving (Eq, Show)

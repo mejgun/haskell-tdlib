@@ -79,6 +79,8 @@ data InputMessageContent
   | InputMessageVideo -- ^ A video message
     { video                    :: Maybe InputFile.InputFile                             -- ^ Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
     , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; pass null to skip thumbnail uploading
+    , cover                    :: Maybe InputFile.InputFile                             -- ^ Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages
+    , start_timestamp          :: Maybe Int                                             -- ^ Timestamp from which the video playing must start, in seconds
     , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the video, if applicable
     , duration                 :: Maybe Int                                             -- ^ Duration of the video, in seconds
     , width                    :: Maybe Int                                             -- ^ Video width
@@ -152,10 +154,12 @@ data InputMessageContent
     , story_id             :: Maybe Int -- ^ Story identifier
     }
   | InputMessageForwarded -- ^ A forwarded message
-    { from_chat_id  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
-    , message_id    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
-    , in_game_share :: Maybe Bool                                  -- ^ True, if a game message is being shared from a launched game; applies only to game messages
-    , copy_options  :: Maybe MessageCopyOptions.MessageCopyOptions -- ^ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
+    { from_chat_id                  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
+    , message_id                    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
+    , in_game_share                 :: Maybe Bool                                  -- ^ Pass true if a game message is being shared from a launched game; applies only to game messages
+    , replace_video_start_timestamp :: Maybe Bool                                  -- ^ Pass true to replace video start timestamp in the forwarded message
+    , new_video_start_timestamp     :: Maybe Int                                   -- ^ The new video start timestamp; ignored if replace_video_start_timestamp == false
+    , copy_options                  :: Maybe MessageCopyOptions.MessageCopyOptions -- ^ Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     }
   deriving (Eq, Show)
 
@@ -280,6 +284,8 @@ instance I.ShortShow InputMessageContent where
   shortShow InputMessageVideo
     { video                    = video_
     , thumbnail                = thumbnail_
+    , cover                    = cover_
+    , start_timestamp          = start_timestamp_
     , added_sticker_file_ids   = added_sticker_file_ids_
     , duration                 = duration_
     , width                    = width_
@@ -294,6 +300,8 @@ instance I.ShortShow InputMessageContent where
         ++ I.cc
         [ "video"                    `I.p` video_
         , "thumbnail"                `I.p` thumbnail_
+        , "cover"                    `I.p` cover_
+        , "start_timestamp"          `I.p` start_timestamp_
         , "added_sticker_file_ids"   `I.p` added_sticker_file_ids_
         , "duration"                 `I.p` duration_
         , "width"                    `I.p` width_
@@ -439,17 +447,21 @@ instance I.ShortShow InputMessageContent where
         , "story_id"             `I.p` story_id_
         ]
   shortShow InputMessageForwarded
-    { from_chat_id  = from_chat_id_
-    , message_id    = message_id_
-    , in_game_share = in_game_share_
-    , copy_options  = copy_options_
+    { from_chat_id                  = from_chat_id_
+    , message_id                    = message_id_
+    , in_game_share                 = in_game_share_
+    , replace_video_start_timestamp = replace_video_start_timestamp_
+    , new_video_start_timestamp     = new_video_start_timestamp_
+    , copy_options                  = copy_options_
     }
       = "InputMessageForwarded"
         ++ I.cc
-        [ "from_chat_id"  `I.p` from_chat_id_
-        , "message_id"    `I.p` message_id_
-        , "in_game_share" `I.p` in_game_share_
-        , "copy_options"  `I.p` copy_options_
+        [ "from_chat_id"                  `I.p` from_chat_id_
+        , "message_id"                    `I.p` message_id_
+        , "in_game_share"                 `I.p` in_game_share_
+        , "replace_video_start_timestamp" `I.p` replace_video_start_timestamp_
+        , "new_video_start_timestamp"     `I.p` new_video_start_timestamp_
+        , "copy_options"                  `I.p` copy_options_
         ]
 
 instance AT.FromJSON InputMessageContent where
@@ -593,6 +605,8 @@ instance AT.FromJSON InputMessageContent where
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
         video_                    <- o A..:?  "video"
         thumbnail_                <- o A..:?  "thumbnail"
+        cover_                    <- o A..:?  "cover"
+        start_timestamp_          <- o A..:?  "start_timestamp"
         added_sticker_file_ids_   <- o A..:?  "added_sticker_file_ids"
         duration_                 <- o A..:?  "duration"
         width_                    <- o A..:?  "width"
@@ -605,6 +619,8 @@ instance AT.FromJSON InputMessageContent where
         pure $ InputMessageVideo
           { video                    = video_
           , thumbnail                = thumbnail_
+          , cover                    = cover_
+          , start_timestamp          = start_timestamp_
           , added_sticker_file_ids   = added_sticker_file_ids_
           , duration                 = duration_
           , width                    = width_
@@ -741,15 +757,19 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageForwarded :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
-        from_chat_id_  <- o A..:?  "from_chat_id"
-        message_id_    <- o A..:?  "message_id"
-        in_game_share_ <- o A..:?  "in_game_share"
-        copy_options_  <- o A..:?  "copy_options"
+        from_chat_id_                  <- o A..:?  "from_chat_id"
+        message_id_                    <- o A..:?  "message_id"
+        in_game_share_                 <- o A..:?  "in_game_share"
+        replace_video_start_timestamp_ <- o A..:?  "replace_video_start_timestamp"
+        new_video_start_timestamp_     <- o A..:?  "new_video_start_timestamp"
+        copy_options_                  <- o A..:?  "copy_options"
         pure $ InputMessageForwarded
-          { from_chat_id  = from_chat_id_
-          , message_id    = message_id_
-          , in_game_share = in_game_share_
-          , copy_options  = copy_options_
+          { from_chat_id                  = from_chat_id_
+          , message_id                    = message_id_
+          , in_game_share                 = in_game_share_
+          , replace_video_start_timestamp = replace_video_start_timestamp_
+          , new_video_start_timestamp     = new_video_start_timestamp_
+          , copy_options                  = copy_options_
           }
   parseJSON _ = mempty
 
@@ -874,6 +894,8 @@ instance AT.ToJSON InputMessageContent where
   toJSON InputMessageVideo
     { video                    = video_
     , thumbnail                = thumbnail_
+    , cover                    = cover_
+    , start_timestamp          = start_timestamp_
     , added_sticker_file_ids   = added_sticker_file_ids_
     , duration                 = duration_
     , width                    = width_
@@ -888,6 +910,8 @@ instance AT.ToJSON InputMessageContent where
         [ "@type"                    A..= AT.String "inputMessageVideo"
         , "video"                    A..= video_
         , "thumbnail"                A..= thumbnail_
+        , "cover"                    A..= cover_
+        , "start_timestamp"          A..= start_timestamp_
         , "added_sticker_file_ids"   A..= added_sticker_file_ids_
         , "duration"                 A..= duration_
         , "width"                    A..= width_
@@ -1033,16 +1057,20 @@ instance AT.ToJSON InputMessageContent where
         , "story_id"             A..= story_id_
         ]
   toJSON InputMessageForwarded
-    { from_chat_id  = from_chat_id_
-    , message_id    = message_id_
-    , in_game_share = in_game_share_
-    , copy_options  = copy_options_
+    { from_chat_id                  = from_chat_id_
+    , message_id                    = message_id_
+    , in_game_share                 = in_game_share_
+    , replace_video_start_timestamp = replace_video_start_timestamp_
+    , new_video_start_timestamp     = new_video_start_timestamp_
+    , copy_options                  = copy_options_
     }
       = A.object
-        [ "@type"         A..= AT.String "inputMessageForwarded"
-        , "from_chat_id"  A..= from_chat_id_
-        , "message_id"    A..= message_id_
-        , "in_game_share" A..= in_game_share_
-        , "copy_options"  A..= copy_options_
+        [ "@type"                         A..= AT.String "inputMessageForwarded"
+        , "from_chat_id"                  A..= from_chat_id_
+        , "message_id"                    A..= message_id_
+        , "in_game_share"                 A..= in_game_share_
+        , "replace_video_start_timestamp" A..= replace_video_start_timestamp_
+        , "new_video_start_timestamp"     A..= new_video_start_timestamp_
+        , "copy_options"                  A..= copy_options_
         ]
 

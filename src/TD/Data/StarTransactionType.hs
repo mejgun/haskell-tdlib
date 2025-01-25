@@ -11,6 +11,7 @@ import qualified Data.Text as T
 import qualified TD.Data.AffiliateInfo as AffiliateInfo
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified Data.ByteString as BS
+import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
 
@@ -85,15 +86,15 @@ data StarTransactionType
     { user_id             :: Maybe Int -- ^ Identifier of the user that bought the subscription
     , subscription_period :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debitings
     }
-  | StarTransactionTypeGiftPurchase -- ^ The transaction is a purchase of a regular gift to another user; for regular users and bots only
-    { user_id :: Maybe Int       -- ^ Identifier of the user that received the gift
-    , gift    :: Maybe Gift.Gift -- ^ The gift
+  | StarTransactionTypeGiftPurchase -- ^ The transaction is a purchase of a regular gift; for regular users and bots only
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel that received the gift
+    , gift     :: Maybe Gift.Gift                   -- ^ The gift
     }
-  | StarTransactionTypeGiftTransfer -- ^ The transaction is a transfer of an upgraded gift to another user; for regular users only
-    { user_id :: Maybe Int                       -- ^ Identifier of the user that received the gift
-    , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+  | StarTransactionTypeGiftTransfer -- ^ The transaction is a transfer of an upgraded gift; for regular users only
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel that received the gift
+    , _gift    :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
     }
-  | StarTransactionTypeGiftSale -- ^ The transaction is a sale of a gift received from another user or bot; for regular users only
+  | StarTransactionTypeGiftSale -- ^ The transaction is a sale of a received gift; for regular users and channel chats only
     { user_id :: Maybe Int       -- ^ Identifier of the user that sent the gift
     , gift    :: Maybe Gift.Gift -- ^ The gift
     }
@@ -269,22 +270,22 @@ instance I.ShortShow StarTransactionType where
         , "subscription_period" `I.p` subscription_period_
         ]
   shortShow StarTransactionTypeGiftPurchase
-    { user_id = user_id_
-    , gift    = gift_
+    { owner_id = owner_id_
+    , gift     = gift_
     }
       = "StarTransactionTypeGiftPurchase"
         ++ I.cc
-        [ "user_id" `I.p` user_id_
-        , "gift"    `I.p` gift_
+        [ "owner_id" `I.p` owner_id_
+        , "gift"     `I.p` gift_
         ]
   shortShow StarTransactionTypeGiftTransfer
-    { user_id = user_id_
-    , _gift   = _gift_
+    { owner_id = owner_id_
+    , _gift    = _gift_
     }
       = "StarTransactionTypeGiftTransfer"
         ++ I.cc
-        [ "user_id" `I.p` user_id_
-        , "_gift"   `I.p` _gift_
+        [ "owner_id" `I.p` owner_id_
+        , "_gift"    `I.p` _gift_
         ]
   shortShow StarTransactionTypeGiftSale
     { user_id = user_id_
@@ -497,19 +498,19 @@ instance AT.FromJSON StarTransactionType where
           }
       parseStarTransactionTypeGiftPurchase :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeGiftPurchase = A.withObject "StarTransactionTypeGiftPurchase" $ \o -> do
-        user_id_ <- o A..:?  "user_id"
-        gift_    <- o A..:?  "gift"
+        owner_id_ <- o A..:?  "owner_id"
+        gift_     <- o A..:?  "gift"
         pure $ StarTransactionTypeGiftPurchase
-          { user_id = user_id_
-          , gift    = gift_
+          { owner_id = owner_id_
+          , gift     = gift_
           }
       parseStarTransactionTypeGiftTransfer :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeGiftTransfer = A.withObject "StarTransactionTypeGiftTransfer" $ \o -> do
-        user_id_ <- o A..:?  "user_id"
-        _gift_   <- o A..:?  "gift"
+        owner_id_ <- o A..:?  "owner_id"
+        _gift_    <- o A..:?  "gift"
         pure $ StarTransactionTypeGiftTransfer
-          { user_id = user_id_
-          , _gift   = _gift_
+          { owner_id = owner_id_
+          , _gift    = _gift_
           }
       parseStarTransactionTypeGiftSale :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeGiftSale = A.withObject "StarTransactionTypeGiftSale" $ \o -> do

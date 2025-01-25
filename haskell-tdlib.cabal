@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.53.0
+version:        2.0.54.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -220,7 +220,9 @@ library
       TD.Data.EmojiReaction
       TD.Data.Emojis
       TD.Data.EmojiStatus
+      TD.Data.EmojiStatusCustomEmojis
       TD.Data.EmojiStatuses
+      TD.Data.EmojiStatusType
       TD.Data.EncryptedCredentials
       TD.Data.EncryptedPassportElement
       TD.Data.Error
@@ -456,6 +458,8 @@ library
       TD.Data.ReactionType
       TD.Data.ReactionUnavailabilityReason
       TD.Data.ReadDatePrivacySettings
+      TD.Data.ReceivedGift
+      TD.Data.ReceivedGifts
       TD.Data.RecommendedChatFolder
       TD.Data.RecommendedChatFolders
       TD.Data.RecoveryEmailAddress
@@ -582,14 +586,13 @@ library
       TD.Data.Updates
       TD.Data.UpgradedGift
       TD.Data.UpgradedGiftBackdrop
+      TD.Data.UpgradedGiftBackdropColors
       TD.Data.UpgradedGiftModel
       TD.Data.UpgradedGiftOriginalDetails
       TD.Data.UpgradedGiftSymbol
       TD.Data.UpgradeGiftResult
       TD.Data.User
       TD.Data.UserFullInfo
-      TD.Data.UserGift
-      TD.Data.UserGifts
       TD.Data.UserLink
       TD.Data.Usernames
       TD.Data.UserPrivacySetting
@@ -824,6 +827,8 @@ library
       TD.Query.GetBotMediaPreviewInfo
       TD.Query.GetBotMediaPreviews
       TD.Query.GetBotName
+      TD.Query.GetBotSimilarBotCount
+      TD.Query.GetBotSimilarBots
       TD.Query.GetBusinessChatLinkInfo
       TD.Query.GetBusinessChatLinks
       TD.Query.GetBusinessConnectedBot
@@ -997,6 +1002,8 @@ library
       TD.Query.GetProxyLink
       TD.Query.GetPushReceiverId
       TD.Query.GetReadDatePrivacySettings
+      TD.Query.GetReceivedGift
+      TD.Query.GetReceivedGifts
       TD.Query.GetRecentEmojiStatuses
       TD.Query.GetRecentInlineBots
       TD.Query.GetRecentlyOpenedChats
@@ -1056,11 +1063,12 @@ library
       TD.Query.GetTimeZones
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
+      TD.Query.GetUpgradedGift
+      TD.Query.GetUpgradedGiftEmojiStatuses
+      TD.Query.GetUpgradedGiftWithdrawalUrl
       TD.Query.GetUser
       TD.Query.GetUserChatBoosts
       TD.Query.GetUserFullInfo
-      TD.Query.GetUserGift
-      TD.Query.GetUserGifts
       TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
       TD.Query.GetUserProfilePhotos
@@ -1089,6 +1097,7 @@ library
       TD.Query.LoadQuickReplyShortcuts
       TD.Query.LoadSavedMessagesTopics
       TD.Query.LogOut
+      TD.Query.OpenBotSimilarBot
       TD.Query.OpenChat
       TD.Query.OpenChatSimilarChat
       TD.Query.OpenMessageContent
@@ -1379,6 +1388,7 @@ library
       TD.Query.ToggleBusinessConnectedBotChatIsPaused
       TD.Query.ToggleChatDefaultDisableNotification
       TD.Query.ToggleChatFolderTags
+      TD.Query.ToggleChatGiftNotifications
       TD.Query.ToggleChatHasProtectedContent
       TD.Query.ToggleChatIsMarkedAsUnread
       TD.Query.ToggleChatIsPinned

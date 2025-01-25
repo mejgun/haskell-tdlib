@@ -31,12 +31,14 @@ data SupergroupFullInfo
     , can_get_statistics               :: Maybe Bool                            -- ^ True, if the supergroup or channel statistics are available
     , can_get_revenue_statistics       :: Maybe Bool                            -- ^ True, if the supergroup or channel revenue statistics are available
     , can_get_star_revenue_statistics  :: Maybe Bool                            -- ^ True, if the supergroup or channel Telegram Star revenue statistics are available
+    , can_send_gift                    :: Maybe Bool                            -- ^ True, if the user can send a gift to the supergroup or channel using sendGift or transferGift
     , can_toggle_aggressive_anti_spam  :: Maybe Bool                            -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     , is_all_history_available         :: Maybe Bool                            -- ^ True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
     , can_have_sponsored_messages      :: Maybe Bool                            -- ^ True, if the chat can have sponsored messages. The value of this field is only available to the owner of the chat
     , has_aggressive_anti_spam_enabled :: Maybe Bool                            -- ^ True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
     , has_paid_media_allowed           :: Maybe Bool                            -- ^ True, if paid media can be sent and forwarded to the channel chat; for channels only
     , has_pinned_stories               :: Maybe Bool                            -- ^ True, if the supergroup or channel has pinned stories
+    , gift_count                       :: Maybe Int                             -- ^ Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
     , my_boost_count                   :: Maybe Int                             -- ^ Number of times the current user boosted the supergroup or channel
     , unrestrict_boost_count           :: Maybe Int                             -- ^ Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
     , sticker_set_id                   :: Maybe Int                             -- ^ Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
@@ -70,12 +72,14 @@ instance I.ShortShow SupergroupFullInfo where
     , can_get_statistics               = can_get_statistics_
     , can_get_revenue_statistics       = can_get_revenue_statistics_
     , can_get_star_revenue_statistics  = can_get_star_revenue_statistics_
+    , can_send_gift                    = can_send_gift_
     , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
     , is_all_history_available         = is_all_history_available_
     , can_have_sponsored_messages      = can_have_sponsored_messages_
     , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
     , has_paid_media_allowed           = has_paid_media_allowed_
     , has_pinned_stories               = has_pinned_stories_
+    , gift_count                       = gift_count_
     , my_boost_count                   = my_boost_count_
     , unrestrict_boost_count           = unrestrict_boost_count_
     , sticker_set_id                   = sticker_set_id_
@@ -107,12 +111,14 @@ instance I.ShortShow SupergroupFullInfo where
         , "can_get_statistics"               `I.p` can_get_statistics_
         , "can_get_revenue_statistics"       `I.p` can_get_revenue_statistics_
         , "can_get_star_revenue_statistics"  `I.p` can_get_star_revenue_statistics_
+        , "can_send_gift"                    `I.p` can_send_gift_
         , "can_toggle_aggressive_anti_spam"  `I.p` can_toggle_aggressive_anti_spam_
         , "is_all_history_available"         `I.p` is_all_history_available_
         , "can_have_sponsored_messages"      `I.p` can_have_sponsored_messages_
         , "has_aggressive_anti_spam_enabled" `I.p` has_aggressive_anti_spam_enabled_
         , "has_paid_media_allowed"           `I.p` has_paid_media_allowed_
         , "has_pinned_stories"               `I.p` has_pinned_stories_
+        , "gift_count"                       `I.p` gift_count_
         , "my_boost_count"                   `I.p` my_boost_count_
         , "unrestrict_boost_count"           `I.p` unrestrict_boost_count_
         , "sticker_set_id"                   `I.p` sticker_set_id_
@@ -154,12 +160,14 @@ instance AT.FromJSON SupergroupFullInfo where
         can_get_statistics_               <- o A..:?                       "can_get_statistics"
         can_get_revenue_statistics_       <- o A..:?                       "can_get_revenue_statistics"
         can_get_star_revenue_statistics_  <- o A..:?                       "can_get_star_revenue_statistics"
+        can_send_gift_                    <- o A..:?                       "can_send_gift"
         can_toggle_aggressive_anti_spam_  <- o A..:?                       "can_toggle_aggressive_anti_spam"
         is_all_history_available_         <- o A..:?                       "is_all_history_available"
         can_have_sponsored_messages_      <- o A..:?                       "can_have_sponsored_messages"
         has_aggressive_anti_spam_enabled_ <- o A..:?                       "has_aggressive_anti_spam_enabled"
         has_paid_media_allowed_           <- o A..:?                       "has_paid_media_allowed"
         has_pinned_stories_               <- o A..:?                       "has_pinned_stories"
+        gift_count_                       <- o A..:?                       "gift_count"
         my_boost_count_                   <- o A..:?                       "my_boost_count"
         unrestrict_boost_count_           <- o A..:?                       "unrestrict_boost_count"
         sticker_set_id_                   <- fmap I.readInt64 <$> o A..:?  "sticker_set_id"
@@ -189,12 +197,14 @@ instance AT.FromJSON SupergroupFullInfo where
           , can_get_statistics               = can_get_statistics_
           , can_get_revenue_statistics       = can_get_revenue_statistics_
           , can_get_star_revenue_statistics  = can_get_star_revenue_statistics_
+          , can_send_gift                    = can_send_gift_
           , can_toggle_aggressive_anti_spam  = can_toggle_aggressive_anti_spam_
           , is_all_history_available         = is_all_history_available_
           , can_have_sponsored_messages      = can_have_sponsored_messages_
           , has_aggressive_anti_spam_enabled = has_aggressive_anti_spam_enabled_
           , has_paid_media_allowed           = has_paid_media_allowed_
           , has_pinned_stories               = has_pinned_stories_
+          , gift_count                       = gift_count_
           , my_boost_count                   = my_boost_count_
           , unrestrict_boost_count           = unrestrict_boost_count_
           , sticker_set_id                   = sticker_set_id_
