@@ -8,11 +8,11 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Application verification has been completed. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
+-- | Application or reCAPTCHA verification has been completed. Can be called before authorization. Returns 'TD.Data.Ok.Ok'
 data SetApplicationVerificationToken
   = SetApplicationVerificationToken
-    { verification_id :: Maybe Int    -- ^ Unique identifier for the verification process as received from updateApplicationVerificationRequired
-    , token           :: Maybe T.Text -- ^ Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+    { verification_id :: Maybe Int    -- ^ Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
+    , token           :: Maybe T.Text -- ^ Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
     }
   deriving (Eq, Show)
 

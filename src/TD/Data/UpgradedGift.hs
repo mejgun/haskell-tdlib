@@ -22,6 +22,7 @@ data UpgradedGift
     , owner_id             :: Maybe MessageSender.MessageSender                             -- ^ Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
     , owner_address        :: Maybe T.Text                                                  -- ^ Address of the gift NFT owner in TON blockchain; may be empty if none
     , owner_name           :: Maybe T.Text                                                  -- ^ Name of the owner for the case when owner identifier and address aren't known
+    , gift_address         :: Maybe T.Text                                                  -- ^ Address of the gift NFT in TON blockchain; may be empty if none
     , model                :: Maybe UpgradedGiftModel.UpgradedGiftModel                     -- ^ Model of the upgraded gift
     , symbol               :: Maybe UpgradedGiftSymbol.UpgradedGiftSymbol                   -- ^ Symbol of the upgraded gift
     , backdrop             :: Maybe UpgradedGiftBackdrop.UpgradedGiftBackdrop               -- ^ Backdrop of the upgraded gift
@@ -40,6 +41,7 @@ instance I.ShortShow UpgradedGift where
     , owner_id             = owner_id_
     , owner_address        = owner_address_
     , owner_name           = owner_name_
+    , gift_address         = gift_address_
     , model                = model_
     , symbol               = symbol_
     , backdrop             = backdrop_
@@ -56,6 +58,7 @@ instance I.ShortShow UpgradedGift where
         , "owner_id"             `I.p` owner_id_
         , "owner_address"        `I.p` owner_address_
         , "owner_name"           `I.p` owner_name_
+        , "gift_address"         `I.p` gift_address_
         , "model"                `I.p` model_
         , "symbol"               `I.p` symbol_
         , "backdrop"             `I.p` backdrop_
@@ -82,6 +85,7 @@ instance AT.FromJSON UpgradedGift where
         owner_id_             <- o A..:?                       "owner_id"
         owner_address_        <- o A..:?                       "owner_address"
         owner_name_           <- o A..:?                       "owner_name"
+        gift_address_         <- o A..:?                       "gift_address"
         model_                <- o A..:?                       "model"
         symbol_               <- o A..:?                       "symbol"
         backdrop_             <- o A..:?                       "backdrop"
@@ -96,6 +100,7 @@ instance AT.FromJSON UpgradedGift where
           , owner_id             = owner_id_
           , owner_address        = owner_address_
           , owner_name           = owner_name_
+          , gift_address         = gift_address_
           , model                = model_
           , symbol               = symbol_
           , backdrop             = backdrop_

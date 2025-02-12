@@ -13,7 +13,7 @@ import qualified TD.Data.WebAppOpenParameters as WebAppOpenParameters
 data GetMainWebApp
   = GetMainWebApp
     { chat_id         :: Maybe Int                                       -- ^ Identifier of the chat in which the Web App is opened; pass 0 if none
-    , bot_user_id     :: Maybe Int                                       -- ^ Identifier of the target bot
+    , bot_user_id     :: Maybe Int                                       -- ^ Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     , start_parameter :: Maybe T.Text                                    -- ^ Start parameter from internalLinkTypeMainWebApp
     , parameters      :: Maybe WebAppOpenParameters.WebAppOpenParameters -- ^ Parameters to use to open the Web App
     }

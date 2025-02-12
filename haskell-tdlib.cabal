@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.54.0
+version:        2.0.55.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -393,6 +393,7 @@ library
       TD.Data.PageBlockTableCell
       TD.Data.PageBlockVerticalAlignment
       TD.Data.PaidMedia
+      TD.Data.PaidReactionType
       TD.Data.PaidReactor
       TD.Data.PassportAuthorizationForm
       TD.Data.PassportElement
@@ -841,6 +842,7 @@ library
       TD.Query.GetChatAdministrators
       TD.Query.GetChatArchivedStories
       TD.Query.GetChatAvailableMessageSenders
+      TD.Query.GetChatAvailablePaidMessageReactionSenders
       TD.Query.GetChatBoostFeatures
       TD.Query.GetChatBoostLevelFeatures
       TD.Query.GetChatBoostLink
@@ -1321,6 +1323,7 @@ library
       TD.Query.SetNetworkType
       TD.Query.SetNewChatPrivacySettings
       TD.Query.SetOption
+      TD.Query.SetPaidMessageReactionType
       TD.Query.SetPassportElement
       TD.Query.SetPassportElementErrors
       TD.Query.SetPassword
@@ -1407,7 +1410,6 @@ library
       TD.Query.ToggleGroupCallParticipantIsMuted
       TD.Query.ToggleGroupCallScreenSharingIsPaused
       TD.Query.ToggleHasSponsoredMessagesEnabled
-      TD.Query.TogglePaidMessageReactionIsAnonymous
       TD.Query.ToggleSavedMessagesTopicIsPinned
       TD.Query.ToggleSessionCanAcceptCalls
       TD.Query.ToggleSessionCanAcceptSecretChats

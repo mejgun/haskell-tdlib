@@ -12,7 +12,7 @@ import qualified TD.Data.WebAppOpenParameters as WebAppOpenParameters
 -- | Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button. Returns 'TD.Data.HttpUrl.HttpUrl'
 data GetWebAppUrl
   = GetWebAppUrl
-    { bot_user_id :: Maybe Int                                       -- ^ Identifier of the target bot
+    { bot_user_id :: Maybe Int                                       -- ^ Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     , url         :: Maybe T.Text                                    -- ^ The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     , parameters  :: Maybe WebAppOpenParameters.WebAppOpenParameters -- ^ Parameters to use to open the Web App
     }

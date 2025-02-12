@@ -14,7 +14,7 @@ import qualified TD.Data.WebAppOpenParameters as WebAppOpenParameters
 data OpenWebApp
   = OpenWebApp
     { chat_id           :: Maybe Int                                       -- ^ Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
-    , bot_user_id       :: Maybe Int                                       -- ^ Identifier of the bot, providing the Web App
+    , bot_user_id       :: Maybe Int                                       -- ^ Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
     , url               :: Maybe T.Text                                    -- ^ The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     , message_thread_id :: Maybe Int                                       -- ^ If not 0, the message thread identifier in which the message will be sent
     , reply_to          :: Maybe InputMessageReplyTo.InputMessageReplyTo   -- ^ Information about the message or story to be replied in the message sent by the Web App; pass null if none

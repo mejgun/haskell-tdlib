@@ -119,7 +119,9 @@ data LinkPreviewType
     , is_bot :: Maybe Bool                -- ^ True, if the user is a bot
     }
   | LinkPreviewTypeVideo -- ^ The link is a link to a video
-    { video :: Maybe Video.Video -- ^ The video description
+    { video           :: Maybe Video.Video -- ^ The video description
+    , cover           :: Maybe Photo.Photo -- ^ Cover of the video; may be null if none
+    , start_timestamp :: Maybe Int         -- ^ Timestamp from which the video playing must start, in seconds
     }
   | LinkPreviewTypeVideoChat -- ^ The link is a link to a video chat
     { _photo         :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat with the video chat; may be null if none
@@ -352,11 +354,15 @@ instance I.ShortShow LinkPreviewType where
         , "is_bot" `I.p` is_bot_
         ]
   shortShow LinkPreviewTypeVideo
-    { video = video_
+    { video           = video_
+    , cover           = cover_
+    , start_timestamp = start_timestamp_
     }
       = "LinkPreviewTypeVideo"
         ++ I.cc
-        [ "video" `I.p` video_
+        [ "video"           `I.p` video_
+        , "cover"           `I.p` cover_
+        , "start_timestamp" `I.p` start_timestamp_
         ]
   shortShow LinkPreviewTypeVideoChat
     { _photo         = _photo_
@@ -613,9 +619,13 @@ instance AT.FromJSON LinkPreviewType where
           }
       parseLinkPreviewTypeVideo :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeVideo = A.withObject "LinkPreviewTypeVideo" $ \o -> do
-        video_ <- o A..:?  "video"
+        video_           <- o A..:?  "video"
+        cover_           <- o A..:?  "cover"
+        start_timestamp_ <- o A..:?  "start_timestamp"
         pure $ LinkPreviewTypeVideo
-          { video = video_
+          { video           = video_
+          , cover           = cover_
+          , start_timestamp = start_timestamp_
           }
       parseLinkPreviewTypeVideoChat :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeVideoChat = A.withObject "LinkPreviewTypeVideoChat" $ \o -> do
