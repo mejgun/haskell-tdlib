@@ -19,6 +19,7 @@ data JoinGroupCall
     , is_muted            :: Maybe Bool                        -- ^ Pass true to join the call with muted microphone
     , is_my_video_enabled :: Maybe Bool                        -- ^ Pass true if the user's video is enabled
     , invite_hash         :: Maybe T.Text                      -- ^ If non-empty, invite hash to be used to join the group call without being muted by administrators
+    , key_fingerprint     :: Maybe Int                         -- ^ Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
     }
   deriving (Eq, Show)
 
@@ -32,6 +33,7 @@ instance I.ShortShow JoinGroupCall where
       , is_muted            = is_muted_
       , is_my_video_enabled = is_my_video_enabled_
       , invite_hash         = invite_hash_
+      , key_fingerprint     = key_fingerprint_
       }
         = "JoinGroupCall"
           ++ I.cc
@@ -42,6 +44,7 @@ instance I.ShortShow JoinGroupCall where
           , "is_muted"            `I.p` is_muted_
           , "is_my_video_enabled" `I.p` is_my_video_enabled_
           , "invite_hash"         `I.p` invite_hash_
+          , "key_fingerprint"     `I.p` key_fingerprint_
           ]
 
 instance AT.ToJSON JoinGroupCall where
@@ -54,6 +57,7 @@ instance AT.ToJSON JoinGroupCall where
       , is_muted            = is_muted_
       , is_my_video_enabled = is_my_video_enabled_
       , invite_hash         = invite_hash_
+      , key_fingerprint     = key_fingerprint_
       }
         = A.object
           [ "@type"               A..= AT.String "joinGroupCall"
@@ -64,6 +68,7 @@ instance AT.ToJSON JoinGroupCall where
           , "is_muted"            A..= is_muted_
           , "is_my_video_enabled" A..= is_my_video_enabled_
           , "invite_hash"         A..= invite_hash_
+          , "key_fingerprint"     A..= fmap I.writeInt64  key_fingerprint_
           ]
 
 defaultJoinGroupCall :: JoinGroupCall
@@ -76,5 +81,6 @@ defaultJoinGroupCall =
     , is_muted            = Nothing
     , is_my_video_enabled = Nothing
     , invite_hash         = Nothing
+    , key_fingerprint     = Nothing
     }
 

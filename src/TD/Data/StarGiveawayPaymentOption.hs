@@ -8,7 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.StarGiveawayWinnerOption as StarGiveawayWinnerOption
 
 data StarGiveawayPaymentOption
-  = StarGiveawayPaymentOption -- ^ Describes an option for creating Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
+  = StarGiveawayPaymentOption -- ^ Describes an option for creating of Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
     { currency           :: Maybe T.Text                                              -- ^ ISO 4217 currency code for the payment
     , amount             :: Maybe Int                                                 -- ^ The amount to pay, in the smallest units of the currency
     , star_count         :: Maybe Int                                                 -- ^ Number of Telegram Stars that will be distributed among winners

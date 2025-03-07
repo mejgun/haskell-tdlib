@@ -16,6 +16,7 @@ data ReceivedGift
     , text                       :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , is_private                 :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them
     , is_saved                   :: Maybe Bool                        -- ^ True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
+    , is_pinned                  :: Maybe Bool                        -- ^ True, if the gift is pinned to the top of the chat's profile page
     , can_be_upgraded            :: Maybe Bool                        -- ^ True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift
     , can_be_transferred         :: Maybe Bool                        -- ^ True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift
     , was_refunded               :: Maybe Bool                        -- ^ True, if the gift was refunded and isn't available anymore
@@ -35,6 +36,7 @@ instance I.ShortShow ReceivedGift where
     , text                       = text_
     , is_private                 = is_private_
     , is_saved                   = is_saved_
+    , is_pinned                  = is_pinned_
     , can_be_upgraded            = can_be_upgraded_
     , can_be_transferred         = can_be_transferred_
     , was_refunded               = was_refunded_
@@ -52,6 +54,7 @@ instance I.ShortShow ReceivedGift where
         , "text"                       `I.p` text_
         , "is_private"                 `I.p` is_private_
         , "is_saved"                   `I.p` is_saved_
+        , "is_pinned"                  `I.p` is_pinned_
         , "can_be_upgraded"            `I.p` can_be_upgraded_
         , "can_be_transferred"         `I.p` can_be_transferred_
         , "was_refunded"               `I.p` was_refunded_
@@ -79,6 +82,7 @@ instance AT.FromJSON ReceivedGift where
         text_                       <- o A..:?  "text"
         is_private_                 <- o A..:?  "is_private"
         is_saved_                   <- o A..:?  "is_saved"
+        is_pinned_                  <- o A..:?  "is_pinned"
         can_be_upgraded_            <- o A..:?  "can_be_upgraded"
         can_be_transferred_         <- o A..:?  "can_be_transferred"
         was_refunded_               <- o A..:?  "was_refunded"
@@ -94,6 +98,7 @@ instance AT.FromJSON ReceivedGift where
           , text                       = text_
           , is_private                 = is_private_
           , is_saved                   = is_saved_
+          , is_pinned                  = is_pinned_
           , can_be_upgraded            = can_be_upgraded_
           , can_be_transferred         = can_be_transferred_
           , was_refunded               = was_refunded_

@@ -165,7 +165,8 @@ import qualified TD.Data.PaymentResult as PaymentResult
 import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
 import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
-import qualified TD.Data.PremiumGiftCodePaymentOptions as PremiumGiftCodePaymentOptions
+import qualified TD.Data.PremiumGiftPaymentOptions as PremiumGiftPaymentOptions
+import qualified TD.Data.PremiumGiveawayPaymentOptions as PremiumGiveawayPaymentOptions
 import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.PreparedInlineMessage as PreparedInlineMessage
@@ -194,6 +195,7 @@ import qualified TD.Data.SentWebAppMessage as SentWebAppMessage
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
+import qualified TD.Data.StarCount as StarCount
 import qualified TD.Data.StarGiveawayPaymentOptions as StarGiveawayPaymentOptions
 import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
 import qualified TD.Data.StarRevenueStatistics as StarRevenueStatistics
@@ -401,7 +403,8 @@ data GeneralResult
     | PhoneNumberInfo                    PhoneNumberInfo.PhoneNumberInfo
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
     | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
-    | PremiumGiftCodePaymentOptions      PremiumGiftCodePaymentOptions.PremiumGiftCodePaymentOptions
+    | PremiumGiftPaymentOptions          PremiumGiftPaymentOptions.PremiumGiftPaymentOptions
+    | PremiumGiveawayPaymentOptions      PremiumGiveawayPaymentOptions.PremiumGiveawayPaymentOptions
     | PremiumLimit                       PremiumLimit.PremiumLimit
     | PremiumState                       PremiumState.PremiumState
     | PreparedInlineMessage              PreparedInlineMessage.PreparedInlineMessage
@@ -430,6 +433,7 @@ data GeneralResult
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
+    | StarCount                          StarCount.StarCount
     | StarGiveawayPaymentOptions         StarGiveawayPaymentOptions.StarGiveawayPaymentOptions
     | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
     | StarRevenueStatistics              StarRevenueStatistics.StarRevenueStatistics
@@ -799,8 +803,10 @@ instance I.ShortShow GeneralResult where
     = "PremiumFeatures" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumGiftCodeInfo v)
     = "PremiumGiftCodeInfo" <> " (" <> I.shortShow v <> ")"
-  shortShow (PremiumGiftCodePaymentOptions v)
-    = "PremiumGiftCodePaymentOptions" <> " (" <> I.shortShow v <> ")"
+  shortShow (PremiumGiftPaymentOptions v)
+    = "PremiumGiftPaymentOptions" <> " (" <> I.shortShow v <> ")"
+  shortShow (PremiumGiveawayPaymentOptions v)
+    = "PremiumGiveawayPaymentOptions" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumLimit v)
     = "PremiumLimit" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumState v)
@@ -857,6 +863,8 @@ instance I.ShortShow GeneralResult where
     = "Sessions" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarCount v)
+    = "StarCount" <> " (" <> I.shortShow v <> ")"
   shortShow (StarGiveawayPaymentOptions v)
     = "StarGiveawayPaymentOptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarPaymentOptions v)
@@ -1109,7 +1117,8 @@ instance T.FromJSON GeneralResult where
     <|> ( PhoneNumberInfo                     <$> parseJSON v )
     <|> ( PremiumFeatures                     <$> parseJSON v )
     <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )
-    <|> ( PremiumGiftCodePaymentOptions       <$> parseJSON v )
+    <|> ( PremiumGiftPaymentOptions           <$> parseJSON v )
+    <|> ( PremiumGiveawayPaymentOptions       <$> parseJSON v )
     <|> ( PremiumLimit                        <$> parseJSON v )
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( PreparedInlineMessage               <$> parseJSON v )
@@ -1138,6 +1147,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
+    <|> ( StarCount                           <$> parseJSON v )
     <|> ( StarGiveawayPaymentOptions          <$> parseJSON v )
     <|> ( StarPaymentOptions                  <$> parseJSON v )
     <|> ( StarRevenueStatistics               <$> parseJSON v )

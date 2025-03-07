@@ -14,8 +14,9 @@ data MessageSendOptions
     , from_background                        :: Maybe Bool                                          -- ^ Pass true if the message is sent from the background
     , protect_content                        :: Maybe Bool                                          -- ^ Pass true if the content of the message must be protected from forwarding and saving; for bots only
     , allow_paid_broadcast                   :: Maybe Bool                                          -- ^ Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
+    , paid_message_star_count                :: Maybe Int                                           -- ^ The number of Telegram Stars the user agreed to pay to send the messages
     , update_order_of_installed_sticker_sets :: Maybe Bool                                          -- ^ Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
-    , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
+    , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, live location messages and self-destructing messages can't be scheduled
     , effect_id                              :: Maybe Int                                           -- ^ Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
     , sending_id                             :: Maybe Int                                           -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     , only_preview                           :: Maybe Bool                                          -- ^ Pass true to get a fake message instead of actually sending them
@@ -28,6 +29,7 @@ instance I.ShortShow MessageSendOptions where
     , from_background                        = from_background_
     , protect_content                        = protect_content_
     , allow_paid_broadcast                   = allow_paid_broadcast_
+    , paid_message_star_count                = paid_message_star_count_
     , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
     , scheduling_state                       = scheduling_state_
     , effect_id                              = effect_id_
@@ -40,6 +42,7 @@ instance I.ShortShow MessageSendOptions where
         , "from_background"                        `I.p` from_background_
         , "protect_content"                        `I.p` protect_content_
         , "allow_paid_broadcast"                   `I.p` allow_paid_broadcast_
+        , "paid_message_star_count"                `I.p` paid_message_star_count_
         , "update_order_of_installed_sticker_sets" `I.p` update_order_of_installed_sticker_sets_
         , "scheduling_state"                       `I.p` scheduling_state_
         , "effect_id"                              `I.p` effect_id_
@@ -62,6 +65,7 @@ instance AT.FromJSON MessageSendOptions where
         from_background_                        <- o A..:?                       "from_background"
         protect_content_                        <- o A..:?                       "protect_content"
         allow_paid_broadcast_                   <- o A..:?                       "allow_paid_broadcast"
+        paid_message_star_count_                <- o A..:?                       "paid_message_star_count"
         update_order_of_installed_sticker_sets_ <- o A..:?                       "update_order_of_installed_sticker_sets"
         scheduling_state_                       <- o A..:?                       "scheduling_state"
         effect_id_                              <- fmap I.readInt64 <$> o A..:?  "effect_id"
@@ -72,6 +76,7 @@ instance AT.FromJSON MessageSendOptions where
           , from_background                        = from_background_
           , protect_content                        = protect_content_
           , allow_paid_broadcast                   = allow_paid_broadcast_
+          , paid_message_star_count                = paid_message_star_count_
           , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
           , scheduling_state                       = scheduling_state_
           , effect_id                              = effect_id_
@@ -86,6 +91,7 @@ instance AT.ToJSON MessageSendOptions where
     , from_background                        = from_background_
     , protect_content                        = protect_content_
     , allow_paid_broadcast                   = allow_paid_broadcast_
+    , paid_message_star_count                = paid_message_star_count_
     , update_order_of_installed_sticker_sets = update_order_of_installed_sticker_sets_
     , scheduling_state                       = scheduling_state_
     , effect_id                              = effect_id_
@@ -98,6 +104,7 @@ instance AT.ToJSON MessageSendOptions where
         , "from_background"                        A..= from_background_
         , "protect_content"                        A..= protect_content_
         , "allow_paid_broadcast"                   A..= allow_paid_broadcast_
+        , "paid_message_star_count"                A..= paid_message_star_count_
         , "update_order_of_installed_sticker_sets" A..= update_order_of_installed_sticker_sets_
         , "scheduling_state"                       A..= scheduling_state_
         , "effect_id"                              A..= fmap I.writeInt64  effect_id_
@@ -112,6 +119,7 @@ defaultMessageSendOptions =
     , from_background                        = Nothing
     , protect_content                        = Nothing
     , allow_paid_broadcast                   = Nothing
+    , paid_message_star_count                = Nothing
     , update_order_of_installed_sticker_sets = Nothing
     , scheduling_state                       = Nothing
     , effect_id                              = Nothing

@@ -36,6 +36,7 @@ data User
     , has_active_stories                 :: Maybe Bool                                  -- ^ True, if the user has non-expired stories available to the current user
     , has_unread_active_stories          :: Maybe Bool                                  -- ^ True, if the user has unread non-expired stories available to the current user
     , restricts_new_chats                :: Maybe Bool                                  -- ^ True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
+    , paid_message_star_count            :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
     , have_access                        :: Maybe Bool                                  -- ^ If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
     , _type                              :: Maybe UserType.UserType                     -- ^ Type of the user
     , language_code                      :: Maybe T.Text                                -- ^ IETF language tag of the user's language; only available to bots
@@ -67,6 +68,7 @@ instance I.ShortShow User where
     , has_active_stories                 = has_active_stories_
     , has_unread_active_stories          = has_unread_active_stories_
     , restricts_new_chats                = restricts_new_chats_
+    , paid_message_star_count            = paid_message_star_count_
     , have_access                        = have_access_
     , _type                              = _type_
     , language_code                      = language_code_
@@ -96,6 +98,7 @@ instance I.ShortShow User where
         , "has_active_stories"                 `I.p` has_active_stories_
         , "has_unread_active_stories"          `I.p` has_unread_active_stories_
         , "restricts_new_chats"                `I.p` restricts_new_chats_
+        , "paid_message_star_count"            `I.p` paid_message_star_count_
         , "have_access"                        `I.p` have_access_
         , "_type"                              `I.p` _type_
         , "language_code"                      `I.p` language_code_
@@ -135,6 +138,7 @@ instance AT.FromJSON User where
         has_active_stories_                 <- o A..:?                       "has_active_stories"
         has_unread_active_stories_          <- o A..:?                       "has_unread_active_stories"
         restricts_new_chats_                <- o A..:?                       "restricts_new_chats"
+        paid_message_star_count_            <- o A..:?                       "paid_message_star_count"
         have_access_                        <- o A..:?                       "have_access"
         _type_                              <- o A..:?                       "type"
         language_code_                      <- o A..:?                       "language_code"
@@ -162,6 +166,7 @@ instance AT.FromJSON User where
           , has_active_stories                 = has_active_stories_
           , has_unread_active_stories          = has_unread_active_stories_
           , restricts_new_chats                = restricts_new_chats_
+          , paid_message_star_count            = paid_message_star_count_
           , have_access                        = have_access_
           , _type                              = _type_
           , language_code                      = language_code_

@@ -4,6 +4,7 @@ module TD.Data.ChatActionBar
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.AccountInfo as AccountInfo
 import qualified Data.Text as T
 
 -- | Describes actions which must be possible to do through a chat action bar
@@ -13,7 +14,8 @@ data ChatActionBar
     }
   | ChatActionBarInviteMembers -- ^ The chat is a recently created group chat to which new members can be invited
   | ChatActionBarReportAddBlock -- ^ The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
-    { can_unarchive :: Maybe Bool -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+    { can_unarchive :: Maybe Bool                    -- ^ If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+    , account_info  :: Maybe AccountInfo.AccountInfo -- ^ Basic information about the other user in the chat; may be null if unknown
     }
   | ChatActionBarAddContact -- ^ The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
   | ChatActionBarSharePhoneNumber -- ^ The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
@@ -36,10 +38,12 @@ instance I.ShortShow ChatActionBar where
       = "ChatActionBarInviteMembers"
   shortShow ChatActionBarReportAddBlock
     { can_unarchive = can_unarchive_
+    , account_info  = account_info_
     }
       = "ChatActionBarReportAddBlock"
         ++ I.cc
         [ "can_unarchive" `I.p` can_unarchive_
+        , "account_info"  `I.p` account_info_
         ]
   shortShow ChatActionBarAddContact
       = "ChatActionBarAddContact"
@@ -80,8 +84,10 @@ instance AT.FromJSON ChatActionBar where
       parseChatActionBarReportAddBlock :: A.Value -> AT.Parser ChatActionBar
       parseChatActionBarReportAddBlock = A.withObject "ChatActionBarReportAddBlock" $ \o -> do
         can_unarchive_ <- o A..:?  "can_unarchive"
+        account_info_  <- o A..:?  "account_info"
         pure $ ChatActionBarReportAddBlock
           { can_unarchive = can_unarchive_
+          , account_info  = account_info_
           }
       parseChatActionBarJoinRequest :: A.Value -> AT.Parser ChatActionBar
       parseChatActionBarJoinRequest = A.withObject "ChatActionBarJoinRequest" $ \o -> do

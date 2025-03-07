@@ -91,7 +91,8 @@ data PushMessageContent
     , is_pinned :: Maybe Bool            -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentStory -- ^ A message with a story
-    { is_pinned :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
+    { is_mention :: Maybe Bool -- ^ True, if the user was mentioned in the story
+    , is_pinned  :: Maybe Bool -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentText -- ^ A text message
     { text      :: Maybe T.Text -- ^ Message text
@@ -112,6 +113,11 @@ data PushMessageContent
     , is_pinned  :: Maybe Bool                -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentBasicGroupChatCreate -- ^ A newly created basic group
+  | PushMessageContentVideoChatStarted -- ^ A video chat or live stream was started
+  | PushMessageContentVideoChatEnded -- ^ A video chat or live stream has ended
+  | PushMessageContentInviteVideoChatParticipants -- ^ An invitation of participants to a video chat or live stream
+    { is_current_user :: Maybe Bool -- ^ True, if the current user was invited to the video chat or the live stream
+    }
   | PushMessageContentChatAddMembers -- ^ New chat members were invited to a group
     { member_name     :: Maybe T.Text -- ^ Name of the added member
     , is_current_user :: Maybe Bool   -- ^ True, if the current user was added to the group
@@ -138,6 +144,9 @@ data PushMessageContent
     { amount :: Maybe T.Text -- ^ The paid amount
     }
   | PushMessageContentSuggestProfilePhoto -- ^ A profile photo was suggested to the user
+  | PushMessageContentProximityAlertTriggered -- ^ A user in the chat came within proximity alert range from the current user
+    { distance :: Maybe Int -- ^ The distance to the user
+    }
   | PushMessageContentMessageForwards -- ^ A forwarded messages
     { total_count :: Maybe Int -- ^ Number of forwarded messages
     }
@@ -315,11 +324,13 @@ instance I.ShortShow PushMessageContent where
         , "is_pinned" `I.p` is_pinned_
         ]
   shortShow PushMessageContentStory
-    { is_pinned = is_pinned_
+    { is_mention = is_mention_
+    , is_pinned  = is_pinned_
     }
       = "PushMessageContentStory"
         ++ I.cc
-        [ "is_pinned" `I.p` is_pinned_
+        [ "is_mention" `I.p` is_mention_
+        , "is_pinned"  `I.p` is_pinned_
         ]
   shortShow PushMessageContentText
     { text      = text_
@@ -363,6 +374,17 @@ instance I.ShortShow PushMessageContent where
         ]
   shortShow PushMessageContentBasicGroupChatCreate
       = "PushMessageContentBasicGroupChatCreate"
+  shortShow PushMessageContentVideoChatStarted
+      = "PushMessageContentVideoChatStarted"
+  shortShow PushMessageContentVideoChatEnded
+      = "PushMessageContentVideoChatEnded"
+  shortShow PushMessageContentInviteVideoChatParticipants
+    { is_current_user = is_current_user_
+    }
+      = "PushMessageContentInviteVideoChatParticipants"
+        ++ I.cc
+        [ "is_current_user" `I.p` is_current_user_
+        ]
   shortShow PushMessageContentChatAddMembers
     { member_name     = member_name_
     , is_current_user = is_current_user_
@@ -421,6 +443,13 @@ instance I.ShortShow PushMessageContent where
         ]
   shortShow PushMessageContentSuggestProfilePhoto
       = "PushMessageContentSuggestProfilePhoto"
+  shortShow PushMessageContentProximityAlertTriggered
+    { distance = distance_
+    }
+      = "PushMessageContentProximityAlertTriggered"
+        ++ I.cc
+        [ "distance" `I.p` distance_
+        ]
   shortShow PushMessageContentMessageForwards
     { total_count = total_count_
     }
@@ -449,44 +478,48 @@ instance AT.FromJSON PushMessageContent where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "pushMessageContentHidden"               -> parsePushMessageContentHidden v
-      "pushMessageContentAnimation"            -> parsePushMessageContentAnimation v
-      "pushMessageContentAudio"                -> parsePushMessageContentAudio v
-      "pushMessageContentContact"              -> parsePushMessageContentContact v
-      "pushMessageContentContactRegistered"    -> pure PushMessageContentContactRegistered
-      "pushMessageContentDocument"             -> parsePushMessageContentDocument v
-      "pushMessageContentGame"                 -> parsePushMessageContentGame v
-      "pushMessageContentGameScore"            -> parsePushMessageContentGameScore v
-      "pushMessageContentInvoice"              -> parsePushMessageContentInvoice v
-      "pushMessageContentLocation"             -> parsePushMessageContentLocation v
-      "pushMessageContentPaidMedia"            -> parsePushMessageContentPaidMedia v
-      "pushMessageContentPhoto"                -> parsePushMessageContentPhoto v
-      "pushMessageContentPoll"                 -> parsePushMessageContentPoll v
-      "pushMessageContentPremiumGiftCode"      -> parsePushMessageContentPremiumGiftCode v
-      "pushMessageContentGiveaway"             -> parsePushMessageContentGiveaway v
-      "pushMessageContentGift"                 -> parsePushMessageContentGift v
-      "pushMessageContentUpgradedGift"         -> parsePushMessageContentUpgradedGift v
-      "pushMessageContentScreenshotTaken"      -> pure PushMessageContentScreenshotTaken
-      "pushMessageContentSticker"              -> parsePushMessageContentSticker v
-      "pushMessageContentStory"                -> parsePushMessageContentStory v
-      "pushMessageContentText"                 -> parsePushMessageContentText v
-      "pushMessageContentVideo"                -> parsePushMessageContentVideo v
-      "pushMessageContentVideoNote"            -> parsePushMessageContentVideoNote v
-      "pushMessageContentVoiceNote"            -> parsePushMessageContentVoiceNote v
-      "pushMessageContentBasicGroupChatCreate" -> pure PushMessageContentBasicGroupChatCreate
-      "pushMessageContentChatAddMembers"       -> parsePushMessageContentChatAddMembers v
-      "pushMessageContentChatChangePhoto"      -> pure PushMessageContentChatChangePhoto
-      "pushMessageContentChatChangeTitle"      -> parsePushMessageContentChatChangeTitle v
-      "pushMessageContentChatSetBackground"    -> parsePushMessageContentChatSetBackground v
-      "pushMessageContentChatSetTheme"         -> parsePushMessageContentChatSetTheme v
-      "pushMessageContentChatDeleteMember"     -> parsePushMessageContentChatDeleteMember v
-      "pushMessageContentChatJoinByLink"       -> pure PushMessageContentChatJoinByLink
-      "pushMessageContentChatJoinByRequest"    -> pure PushMessageContentChatJoinByRequest
-      "pushMessageContentRecurringPayment"     -> parsePushMessageContentRecurringPayment v
-      "pushMessageContentSuggestProfilePhoto"  -> pure PushMessageContentSuggestProfilePhoto
-      "pushMessageContentMessageForwards"      -> parsePushMessageContentMessageForwards v
-      "pushMessageContentMediaAlbum"           -> parsePushMessageContentMediaAlbum v
-      _                                        -> mempty
+      "pushMessageContentHidden"                      -> parsePushMessageContentHidden v
+      "pushMessageContentAnimation"                   -> parsePushMessageContentAnimation v
+      "pushMessageContentAudio"                       -> parsePushMessageContentAudio v
+      "pushMessageContentContact"                     -> parsePushMessageContentContact v
+      "pushMessageContentContactRegistered"           -> pure PushMessageContentContactRegistered
+      "pushMessageContentDocument"                    -> parsePushMessageContentDocument v
+      "pushMessageContentGame"                        -> parsePushMessageContentGame v
+      "pushMessageContentGameScore"                   -> parsePushMessageContentGameScore v
+      "pushMessageContentInvoice"                     -> parsePushMessageContentInvoice v
+      "pushMessageContentLocation"                    -> parsePushMessageContentLocation v
+      "pushMessageContentPaidMedia"                   -> parsePushMessageContentPaidMedia v
+      "pushMessageContentPhoto"                       -> parsePushMessageContentPhoto v
+      "pushMessageContentPoll"                        -> parsePushMessageContentPoll v
+      "pushMessageContentPremiumGiftCode"             -> parsePushMessageContentPremiumGiftCode v
+      "pushMessageContentGiveaway"                    -> parsePushMessageContentGiveaway v
+      "pushMessageContentGift"                        -> parsePushMessageContentGift v
+      "pushMessageContentUpgradedGift"                -> parsePushMessageContentUpgradedGift v
+      "pushMessageContentScreenshotTaken"             -> pure PushMessageContentScreenshotTaken
+      "pushMessageContentSticker"                     -> parsePushMessageContentSticker v
+      "pushMessageContentStory"                       -> parsePushMessageContentStory v
+      "pushMessageContentText"                        -> parsePushMessageContentText v
+      "pushMessageContentVideo"                       -> parsePushMessageContentVideo v
+      "pushMessageContentVideoNote"                   -> parsePushMessageContentVideoNote v
+      "pushMessageContentVoiceNote"                   -> parsePushMessageContentVoiceNote v
+      "pushMessageContentBasicGroupChatCreate"        -> pure PushMessageContentBasicGroupChatCreate
+      "pushMessageContentVideoChatStarted"            -> pure PushMessageContentVideoChatStarted
+      "pushMessageContentVideoChatEnded"              -> pure PushMessageContentVideoChatEnded
+      "pushMessageContentInviteVideoChatParticipants" -> parsePushMessageContentInviteVideoChatParticipants v
+      "pushMessageContentChatAddMembers"              -> parsePushMessageContentChatAddMembers v
+      "pushMessageContentChatChangePhoto"             -> pure PushMessageContentChatChangePhoto
+      "pushMessageContentChatChangeTitle"             -> parsePushMessageContentChatChangeTitle v
+      "pushMessageContentChatSetBackground"           -> parsePushMessageContentChatSetBackground v
+      "pushMessageContentChatSetTheme"                -> parsePushMessageContentChatSetTheme v
+      "pushMessageContentChatDeleteMember"            -> parsePushMessageContentChatDeleteMember v
+      "pushMessageContentChatJoinByLink"              -> pure PushMessageContentChatJoinByLink
+      "pushMessageContentChatJoinByRequest"           -> pure PushMessageContentChatJoinByRequest
+      "pushMessageContentRecurringPayment"            -> parsePushMessageContentRecurringPayment v
+      "pushMessageContentSuggestProfilePhoto"         -> pure PushMessageContentSuggestProfilePhoto
+      "pushMessageContentProximityAlertTriggered"     -> parsePushMessageContentProximityAlertTriggered v
+      "pushMessageContentMessageForwards"             -> parsePushMessageContentMessageForwards v
+      "pushMessageContentMediaAlbum"                  -> parsePushMessageContentMediaAlbum v
+      _                                               -> mempty
     
     where
       parsePushMessageContentHidden :: A.Value -> AT.Parser PushMessageContent
@@ -633,9 +666,11 @@ instance AT.FromJSON PushMessageContent where
           }
       parsePushMessageContentStory :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentStory = A.withObject "PushMessageContentStory" $ \o -> do
-        is_pinned_ <- o A..:?  "is_pinned"
+        is_mention_ <- o A..:?  "is_mention"
+        is_pinned_  <- o A..:?  "is_pinned"
         pure $ PushMessageContentStory
-          { is_pinned = is_pinned_
+          { is_mention = is_mention_
+          , is_pinned  = is_pinned_
           }
       parsePushMessageContentText :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentText = A.withObject "PushMessageContentText" $ \o -> do
@@ -672,6 +707,12 @@ instance AT.FromJSON PushMessageContent where
         pure $ PushMessageContentVoiceNote
           { voice_note = voice_note_
           , is_pinned  = is_pinned_
+          }
+      parsePushMessageContentInviteVideoChatParticipants :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentInviteVideoChatParticipants = A.withObject "PushMessageContentInviteVideoChatParticipants" $ \o -> do
+        is_current_user_ <- o A..:?  "is_current_user"
+        pure $ PushMessageContentInviteVideoChatParticipants
+          { is_current_user = is_current_user_
           }
       parsePushMessageContentChatAddMembers :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentChatAddMembers = A.withObject "PushMessageContentChatAddMembers" $ \o -> do
@@ -716,6 +757,12 @@ instance AT.FromJSON PushMessageContent where
         amount_ <- o A..:?  "amount"
         pure $ PushMessageContentRecurringPayment
           { amount = amount_
+          }
+      parsePushMessageContentProximityAlertTriggered :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentProximityAlertTriggered = A.withObject "PushMessageContentProximityAlertTriggered" $ \o -> do
+        distance_ <- o A..:?  "distance"
+        pure $ PushMessageContentProximityAlertTriggered
+          { distance = distance_
           }
       parsePushMessageContentMessageForwards :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do

@@ -14,6 +14,7 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified TD.Data.StarAmount as StarAmount
 
 -- | Describes type of transaction with Telegram Stars
 data StarTransactionType
@@ -29,7 +30,7 @@ data StarTransactionType
     { chat_id             :: Maybe Int -- ^ Identifier of a supergroup or a channel chat that created the giveaway
     , giveaway_message_id :: Maybe Int -- ^ Identifier of the message with the giveaway; can be 0 or an identifier of a deleted message
     }
-  | StarTransactionTypeFragmentWithdrawal -- ^ The transaction is a withdrawal of earned Telegram Stars to Fragment; for bots and channel chats only
+  | StarTransactionTypeFragmentWithdrawal -- ^ The transaction is a withdrawal of earned Telegram Stars to Fragment; for regular users, bots, supergroup and channel chats only
     { withdrawal_state :: Maybe RevenueWithdrawalState.RevenueWithdrawalState -- ^ State of the withdrawal; may be null for refunds from Fragment
     }
   | StarTransactionTypeTelegramAdsWithdrawal -- ^ The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; for bots and channel chats only
@@ -99,7 +100,8 @@ data StarTransactionType
     , gift    :: Maybe Gift.Gift -- ^ The gift
     }
   | StarTransactionTypeGiftUpgrade -- ^ The transaction is an upgrade of a gift; for regular users only
-    { _gift :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
+    { user_id :: Maybe Int                       -- ^ Identifier of the user that initially sent the gift
+    , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
     }
   | StarTransactionTypeChannelPaidReactionSend -- ^ The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
     { chat_id    :: Maybe Int -- ^ Identifier of the channel chat
@@ -112,6 +114,21 @@ data StarTransactionType
   | StarTransactionTypeAffiliateProgramCommission -- ^ The transaction is a receiving of a commission from an affiliate program; for regular users, bots and channel chats only
     { chat_id              :: Maybe Int -- ^ Identifier of the chat that created the affiliate program
     , commission_per_mille :: Maybe Int -- ^ The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner
+    }
+  | StarTransactionTypePaidMessageSend -- ^ The transaction is a sending of a paid message; for regular users only
+    { chat_id       :: Maybe Int -- ^ Identifier of the chat that received the payment
+    , message_count :: Maybe Int -- ^ Number of sent paid messages
+    }
+  | StarTransactionTypePaidMessageReceive -- ^ The transaction is a receiving of a paid message; for regular users and supergroup chats only
+    { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
+    , message_count          :: Maybe Int                         -- ^ Number of received paid messages
+    , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    }
+  | StarTransactionTypePremiumPurchase -- ^ The transaction is a purchase of Telegram Premium subscription; for regular users only
+    { user_id     :: Maybe Int             -- ^ Identifier of the user that received the Telegram Premium subscription
+    , month_count :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
+    , sticker     :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
     }
   | StarTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type
   deriving (Eq, Show)
@@ -297,11 +314,13 @@ instance I.ShortShow StarTransactionType where
         , "gift"    `I.p` gift_
         ]
   shortShow StarTransactionTypeGiftUpgrade
-    { _gift = _gift_
+    { user_id = user_id_
+    , _gift   = _gift_
     }
       = "StarTransactionTypeGiftUpgrade"
         ++ I.cc
-        [ "_gift" `I.p` _gift_
+        [ "user_id" `I.p` user_id_
+        , "_gift"   `I.p` _gift_
         ]
   shortShow StarTransactionTypeChannelPaidReactionSend
     { chat_id    = chat_id_
@@ -329,6 +348,39 @@ instance I.ShortShow StarTransactionType where
         ++ I.cc
         [ "chat_id"              `I.p` chat_id_
         , "commission_per_mille" `I.p` commission_per_mille_
+        ]
+  shortShow StarTransactionTypePaidMessageSend
+    { chat_id       = chat_id_
+    , message_count = message_count_
+    }
+      = "StarTransactionTypePaidMessageSend"
+        ++ I.cc
+        [ "chat_id"       `I.p` chat_id_
+        , "message_count" `I.p` message_count_
+        ]
+  shortShow StarTransactionTypePaidMessageReceive
+    { sender_id              = sender_id_
+    , message_count          = message_count_
+    , commission_per_mille   = commission_per_mille_
+    , commission_star_amount = commission_star_amount_
+    }
+      = "StarTransactionTypePaidMessageReceive"
+        ++ I.cc
+        [ "sender_id"              `I.p` sender_id_
+        , "message_count"          `I.p` message_count_
+        , "commission_per_mille"   `I.p` commission_per_mille_
+        , "commission_star_amount" `I.p` commission_star_amount_
+        ]
+  shortShow StarTransactionTypePremiumPurchase
+    { user_id     = user_id_
+    , month_count = month_count_
+    , sticker     = sticker_
+    }
+      = "StarTransactionTypePremiumPurchase"
+        ++ I.cc
+        [ "user_id"     `I.p` user_id_
+        , "month_count" `I.p` month_count_
+        , "sticker"     `I.p` sticker_
         ]
   shortShow StarTransactionTypeUnsupported
       = "StarTransactionTypeUnsupported"
@@ -364,6 +416,9 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypeChannelPaidReactionSend"     -> parseStarTransactionTypeChannelPaidReactionSend v
       "starTransactionTypeChannelPaidReactionReceive"  -> parseStarTransactionTypeChannelPaidReactionReceive v
       "starTransactionTypeAffiliateProgramCommission"  -> parseStarTransactionTypeAffiliateProgramCommission v
+      "starTransactionTypePaidMessageSend"             -> parseStarTransactionTypePaidMessageSend v
+      "starTransactionTypePaidMessageReceive"          -> parseStarTransactionTypePaidMessageReceive v
+      "starTransactionTypePremiumPurchase"             -> parseStarTransactionTypePremiumPurchase v
       "starTransactionTypeUnsupported"                 -> pure StarTransactionTypeUnsupported
       _                                                -> mempty
     
@@ -522,9 +577,11 @@ instance AT.FromJSON StarTransactionType where
           }
       parseStarTransactionTypeGiftUpgrade :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeGiftUpgrade = A.withObject "StarTransactionTypeGiftUpgrade" $ \o -> do
-        _gift_ <- o A..:?  "gift"
+        user_id_ <- o A..:?  "user_id"
+        _gift_   <- o A..:?  "gift"
         pure $ StarTransactionTypeGiftUpgrade
-          { _gift = _gift_
+          { user_id = user_id_
+          , _gift   = _gift_
           }
       parseStarTransactionTypeChannelPaidReactionSend :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeChannelPaidReactionSend = A.withObject "StarTransactionTypeChannelPaidReactionSend" $ \o -> do
@@ -549,6 +606,36 @@ instance AT.FromJSON StarTransactionType where
         pure $ StarTransactionTypeAffiliateProgramCommission
           { chat_id              = chat_id_
           , commission_per_mille = commission_per_mille_
+          }
+      parseStarTransactionTypePaidMessageSend :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidMessageSend = A.withObject "StarTransactionTypePaidMessageSend" $ \o -> do
+        chat_id_       <- o A..:?  "chat_id"
+        message_count_ <- o A..:?  "message_count"
+        pure $ StarTransactionTypePaidMessageSend
+          { chat_id       = chat_id_
+          , message_count = message_count_
+          }
+      parseStarTransactionTypePaidMessageReceive :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidMessageReceive = A.withObject "StarTransactionTypePaidMessageReceive" $ \o -> do
+        sender_id_              <- o A..:?  "sender_id"
+        message_count_          <- o A..:?  "message_count"
+        commission_per_mille_   <- o A..:?  "commission_per_mille"
+        commission_star_amount_ <- o A..:?  "commission_star_amount"
+        pure $ StarTransactionTypePaidMessageReceive
+          { sender_id              = sender_id_
+          , message_count          = message_count_
+          , commission_per_mille   = commission_per_mille_
+          , commission_star_amount = commission_star_amount_
+          }
+      parseStarTransactionTypePremiumPurchase :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePremiumPurchase = A.withObject "StarTransactionTypePremiumPurchase" $ \o -> do
+        user_id_     <- o A..:?  "user_id"
+        month_count_ <- o A..:?  "month_count"
+        sticker_     <- o A..:?  "sticker"
+        pure $ StarTransactionTypePremiumPurchase
+          { user_id     = user_id_
+          , month_count = month_count_
+          , sticker     = sticker_
           }
   parseJSON _ = mempty
 

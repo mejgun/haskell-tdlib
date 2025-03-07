@@ -30,6 +30,7 @@ data Supergroup
     , verification_status       :: Maybe VerificationStatus.VerificationStatus -- ^ Information about verification status of the supergroup or channel; may be null if none
     , has_sensitive_content     :: Maybe Bool                                  -- ^ True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
     , restriction_reason        :: Maybe T.Text                                -- ^ If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
+    , paid_message_star_count   :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
     , has_active_stories        :: Maybe Bool                                  -- ^ True, if the supergroup or channel has non-expired stories available to the current user
     , has_unread_active_stories :: Maybe Bool                                  -- ^ True, if the supergroup or channel has unread non-expired stories available to the current user
     }
@@ -56,6 +57,7 @@ instance I.ShortShow Supergroup where
     , verification_status       = verification_status_
     , has_sensitive_content     = has_sensitive_content_
     , restriction_reason        = restriction_reason_
+    , paid_message_star_count   = paid_message_star_count_
     , has_active_stories        = has_active_stories_
     , has_unread_active_stories = has_unread_active_stories_
     }
@@ -80,6 +82,7 @@ instance I.ShortShow Supergroup where
         , "verification_status"       `I.p` verification_status_
         , "has_sensitive_content"     `I.p` has_sensitive_content_
         , "restriction_reason"        `I.p` restriction_reason_
+        , "paid_message_star_count"   `I.p` paid_message_star_count_
         , "has_active_stories"        `I.p` has_active_stories_
         , "has_unread_active_stories" `I.p` has_unread_active_stories_
         ]
@@ -114,6 +117,7 @@ instance AT.FromJSON Supergroup where
         verification_status_       <- o A..:?  "verification_status"
         has_sensitive_content_     <- o A..:?  "has_sensitive_content"
         restriction_reason_        <- o A..:?  "restriction_reason"
+        paid_message_star_count_   <- o A..:?  "paid_message_star_count"
         has_active_stories_        <- o A..:?  "has_active_stories"
         has_unread_active_stories_ <- o A..:?  "has_unread_active_stories"
         pure $ Supergroup
@@ -136,6 +140,7 @@ instance AT.FromJSON Supergroup where
           , verification_status       = verification_status_
           , has_sensitive_content     = has_sensitive_content_
           , restriction_reason        = restriction_reason_
+          , paid_message_star_count   = paid_message_star_count_
           , has_active_stories        = has_active_stories_
           , has_unread_active_stories = has_unread_active_stories_
           }

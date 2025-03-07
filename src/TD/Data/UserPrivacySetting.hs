@@ -19,6 +19,7 @@ data UserPrivacySetting
   | UserPrivacySettingAllowFindingByPhoneNumber -- ^ A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
   | UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages -- ^ A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
   | UserPrivacySettingAutosaveGifts -- ^ A privacy setting for managing whether received gifts are automatically shown on the user's profile page
+  | UserPrivacySettingAllowUnpaidMessages -- ^ A privacy setting for managing whether the user can receive messages without additional payment
   deriving (Eq, Show)
 
 instance I.ShortShow UserPrivacySetting where
@@ -46,6 +47,8 @@ instance I.ShortShow UserPrivacySetting where
       = "UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
   shortShow UserPrivacySettingAutosaveGifts
       = "UserPrivacySettingAutosaveGifts"
+  shortShow UserPrivacySettingAllowUnpaidMessages
+      = "UserPrivacySettingAllowUnpaidMessages"
 
 instance AT.FromJSON UserPrivacySetting where
   parseJSON (AT.Object obj) = do
@@ -64,6 +67,7 @@ instance AT.FromJSON UserPrivacySetting where
       "userPrivacySettingAllowFindingByPhoneNumber"             -> pure UserPrivacySettingAllowFindingByPhoneNumber
       "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages" -> pure UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
       "userPrivacySettingAutosaveGifts"                         -> pure UserPrivacySettingAutosaveGifts
+      "userPrivacySettingAllowUnpaidMessages"                   -> pure UserPrivacySettingAllowUnpaidMessages
       _                                                         -> mempty
     
   parseJSON _ = mempty
@@ -116,5 +120,9 @@ instance AT.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingAutosaveGifts
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingAutosaveGifts"
+        ]
+  toJSON UserPrivacySettingAllowUnpaidMessages
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingAllowUnpaidMessages"
         ]
 

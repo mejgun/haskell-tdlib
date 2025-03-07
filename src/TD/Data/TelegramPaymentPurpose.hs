@@ -10,8 +10,15 @@ import qualified TD.Data.GiveawayParameters as GiveawayParameters
 
 -- | Describes a purpose of a payment toward Telegram
 data TelegramPaymentPurpose
-  = TelegramPaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
-    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+  = TelegramPaymentPurposePremiumGift -- ^ The user gifting Telegram Premium to another user
+    { currency    :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
+    , amount      :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
+    , user_id     :: Maybe Int                         -- ^ Identifier of the user which will receive Telegram Premium
+    , month_count :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the user
+    , text        :: Maybe FormattedText.FormattedText -- ^ Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    }
+  | TelegramPaymentPurposePremiumGiftCodes -- ^ The user boosting a chat by creating Telegram Premium gift codes for other users
+    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
     , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
     , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
@@ -49,6 +56,21 @@ data TelegramPaymentPurpose
   deriving (Eq, Show)
 
 instance I.ShortShow TelegramPaymentPurpose where
+  shortShow TelegramPaymentPurposePremiumGift
+    { currency    = currency_
+    , amount      = amount_
+    , user_id     = user_id_
+    , month_count = month_count_
+    , text        = text_
+    }
+      = "TelegramPaymentPurposePremiumGift"
+        ++ I.cc
+        [ "currency"    `I.p` currency_
+        , "amount"      `I.p` amount_
+        , "user_id"     `I.p` user_id_
+        , "month_count" `I.p` month_count_
+        , "text"        `I.p` text_
+        ]
   shortShow TelegramPaymentPurposePremiumGiftCodes
     { boosted_chat_id = boosted_chat_id_
     , currency        = currency_
@@ -133,6 +155,7 @@ instance AT.FromJSON TelegramPaymentPurpose where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
+      "telegramPaymentPurposePremiumGift"      -> parseTelegramPaymentPurposePremiumGift v
       "telegramPaymentPurposePremiumGiftCodes" -> parseTelegramPaymentPurposePremiumGiftCodes v
       "telegramPaymentPurposePremiumGiveaway"  -> parseTelegramPaymentPurposePremiumGiveaway v
       "telegramPaymentPurposeStars"            -> parseTelegramPaymentPurposeStars v
@@ -142,6 +165,20 @@ instance AT.FromJSON TelegramPaymentPurpose where
       _                                        -> mempty
     
     where
+      parseTelegramPaymentPurposePremiumGift :: A.Value -> AT.Parser TelegramPaymentPurpose
+      parseTelegramPaymentPurposePremiumGift = A.withObject "TelegramPaymentPurposePremiumGift" $ \o -> do
+        currency_    <- o A..:?  "currency"
+        amount_      <- o A..:?  "amount"
+        user_id_     <- o A..:?  "user_id"
+        month_count_ <- o A..:?  "month_count"
+        text_        <- o A..:?  "text"
+        pure $ TelegramPaymentPurposePremiumGift
+          { currency    = currency_
+          , amount      = amount_
+          , user_id     = user_id_
+          , month_count = month_count_
+          , text        = text_
+          }
       parseTelegramPaymentPurposePremiumGiftCodes :: A.Value -> AT.Parser TelegramPaymentPurpose
       parseTelegramPaymentPurposePremiumGiftCodes = A.withObject "TelegramPaymentPurposePremiumGiftCodes" $ \o -> do
         boosted_chat_id_ <- o A..:?  "boosted_chat_id"
@@ -217,6 +254,21 @@ instance AT.FromJSON TelegramPaymentPurpose where
   parseJSON _ = mempty
 
 instance AT.ToJSON TelegramPaymentPurpose where
+  toJSON TelegramPaymentPurposePremiumGift
+    { currency    = currency_
+    , amount      = amount_
+    , user_id     = user_id_
+    , month_count = month_count_
+    , text        = text_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "telegramPaymentPurposePremiumGift"
+        , "currency"    A..= currency_
+        , "amount"      A..= amount_
+        , "user_id"     A..= user_id_
+        , "month_count" A..= month_count_
+        , "text"        A..= text_
+        ]
   toJSON TelegramPaymentPurposePremiumGiftCodes
     { boosted_chat_id = boosted_chat_id_
     , currency        = currency_

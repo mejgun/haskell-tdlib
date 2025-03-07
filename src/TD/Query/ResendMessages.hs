@@ -11,45 +11,51 @@ import qualified TD.Data.InputTextQuote as InputTextQuote
 -- | Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message. Returns 'TD.Data.Messages.Messages'
 data ResendMessages
   = ResendMessages
-    { chat_id     :: Maybe Int                           -- ^ Identifier of the chat to send messages
-    , message_ids :: Maybe [Int]                         -- ^ Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
-    , quote       :: Maybe InputTextQuote.InputTextQuote -- ^ New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
+    { chat_id                 :: Maybe Int                           -- ^ Identifier of the chat to send messages
+    , message_ids             :: Maybe [Int]                         -- ^ Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+    , quote                   :: Maybe InputTextQuote.InputTextQuote -- ^ New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
+    , paid_message_star_count :: Maybe Int                           -- ^ The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
     }
   deriving (Eq, Show)
 
 instance I.ShortShow ResendMessages where
   shortShow
     ResendMessages
-      { chat_id     = chat_id_
-      , message_ids = message_ids_
-      , quote       = quote_
+      { chat_id                 = chat_id_
+      , message_ids             = message_ids_
+      , quote                   = quote_
+      , paid_message_star_count = paid_message_star_count_
       }
         = "ResendMessages"
           ++ I.cc
-          [ "chat_id"     `I.p` chat_id_
-          , "message_ids" `I.p` message_ids_
-          , "quote"       `I.p` quote_
+          [ "chat_id"                 `I.p` chat_id_
+          , "message_ids"             `I.p` message_ids_
+          , "quote"                   `I.p` quote_
+          , "paid_message_star_count" `I.p` paid_message_star_count_
           ]
 
 instance AT.ToJSON ResendMessages where
   toJSON
     ResendMessages
-      { chat_id     = chat_id_
-      , message_ids = message_ids_
-      , quote       = quote_
+      { chat_id                 = chat_id_
+      , message_ids             = message_ids_
+      , quote                   = quote_
+      , paid_message_star_count = paid_message_star_count_
       }
         = A.object
-          [ "@type"       A..= AT.String "resendMessages"
-          , "chat_id"     A..= chat_id_
-          , "message_ids" A..= message_ids_
-          , "quote"       A..= quote_
+          [ "@type"                   A..= AT.String "resendMessages"
+          , "chat_id"                 A..= chat_id_
+          , "message_ids"             A..= message_ids_
+          , "quote"                   A..= quote_
+          , "paid_message_star_count" A..= paid_message_star_count_
           ]
 
 defaultResendMessages :: ResendMessages
 defaultResendMessages =
   ResendMessages
-    { chat_id     = Nothing
-    , message_ids = Nothing
-    , quote       = Nothing
+    { chat_id                 = Nothing
+    , message_ids             = Nothing
+    , quote                   = Nothing
+    , paid_message_star_count = Nothing
     }
 

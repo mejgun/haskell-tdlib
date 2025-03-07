@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Returns 'TD.Data.Messages.Messages'
+-- | Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages. Returns 'TD.Data.Messages.Messages'
 data SendQuickReplyShortcutMessages
   = SendQuickReplyShortcutMessages
     { chat_id     :: Maybe Int -- ^ Identifier of the chat to which to send messages. The chat must be a private chat with a regular user

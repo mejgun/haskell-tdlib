@@ -14,8 +14,14 @@ data StorePaymentPurpose
     { is_restore :: Maybe Bool -- ^ Pass true if this is a restore of a Telegram Premium purchase; only for App Store
     , is_upgrade :: Maybe Bool -- ^ Pass true if this is an upgrade from a monthly subscription to early subscription; only for App Store
     }
-  | StorePaymentPurposePremiumGiftCodes -- ^ The user creating Telegram Premium gift codes for other users
-    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+  | StorePaymentPurposePremiumGift -- ^ The user gifting Telegram Premium to another user
+    { currency :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
+    , amount   :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
+    , user_id  :: Maybe Int                         -- ^ Identifiers of the user which will receive Telegram Premium
+    , text     :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    }
+  | StorePaymentPurposePremiumGiftCodes -- ^ The user boosting a chat by creating Telegram Premium gift codes for other users
+    { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
     , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
     , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
@@ -55,6 +61,19 @@ instance I.ShortShow StorePaymentPurpose where
         ++ I.cc
         [ "is_restore" `I.p` is_restore_
         , "is_upgrade" `I.p` is_upgrade_
+        ]
+  shortShow StorePaymentPurposePremiumGift
+    { currency = currency_
+    , amount   = amount_
+    , user_id  = user_id_
+    , text     = text_
+    }
+      = "StorePaymentPurposePremiumGift"
+        ++ I.cc
+        [ "currency" `I.p` currency_
+        , "amount"   `I.p` amount_
+        , "user_id"  `I.p` user_id_
+        , "text"     `I.p` text_
         ]
   shortShow StorePaymentPurposePremiumGiftCodes
     { boosted_chat_id = boosted_chat_id_
@@ -128,6 +147,7 @@ instance AT.FromJSON StorePaymentPurpose where
 
     case t of
       "storePaymentPurposePremiumSubscription" -> parseStorePaymentPurposePremiumSubscription v
+      "storePaymentPurposePremiumGift"         -> parseStorePaymentPurposePremiumGift v
       "storePaymentPurposePremiumGiftCodes"    -> parseStorePaymentPurposePremiumGiftCodes v
       "storePaymentPurposePremiumGiveaway"     -> parseStorePaymentPurposePremiumGiveaway v
       "storePaymentPurposeStarGiveaway"        -> parseStorePaymentPurposeStarGiveaway v
@@ -143,6 +163,18 @@ instance AT.FromJSON StorePaymentPurpose where
         pure $ StorePaymentPurposePremiumSubscription
           { is_restore = is_restore_
           , is_upgrade = is_upgrade_
+          }
+      parseStorePaymentPurposePremiumGift :: A.Value -> AT.Parser StorePaymentPurpose
+      parseStorePaymentPurposePremiumGift = A.withObject "StorePaymentPurposePremiumGift" $ \o -> do
+        currency_ <- o A..:?  "currency"
+        amount_   <- o A..:?  "amount"
+        user_id_  <- o A..:?  "user_id"
+        text_     <- o A..:?  "text"
+        pure $ StorePaymentPurposePremiumGift
+          { currency = currency_
+          , amount   = amount_
+          , user_id  = user_id_
+          , text     = text_
           }
       parseStorePaymentPurposePremiumGiftCodes :: A.Value -> AT.Parser StorePaymentPurpose
       parseStorePaymentPurposePremiumGiftCodes = A.withObject "StorePaymentPurposePremiumGiftCodes" $ \o -> do
@@ -215,6 +247,19 @@ instance AT.ToJSON StorePaymentPurpose where
         [ "@type"      A..= AT.String "storePaymentPurposePremiumSubscription"
         , "is_restore" A..= is_restore_
         , "is_upgrade" A..= is_upgrade_
+        ]
+  toJSON StorePaymentPurposePremiumGift
+    { currency = currency_
+    , amount   = amount_
+    , user_id  = user_id_
+    , text     = text_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "storePaymentPurposePremiumGift"
+        , "currency" A..= currency_
+        , "amount"   A..= amount_
+        , "user_id"  A..= user_id_
+        , "text"     A..= text_
         ]
   toJSON StorePaymentPurposePremiumGiftCodes
     { boosted_chat_id = boosted_chat_id_

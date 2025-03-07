@@ -49,6 +49,7 @@ data Message
     , via_bot_user_id             :: Maybe Int                                             -- ^ If non-zero, the user identifier of the inline bot through which this message was sent
     , sender_business_bot_user_id :: Maybe Int                                             -- ^ If non-zero, the user identifier of the business bot that sent this message
     , sender_boost_count          :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
+    , paid_message_star_count     :: Maybe Int                                             -- ^ The number of Telegram Stars the sender paid to send the message
     , author_signature            :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
     , media_album_id              :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     , effect_id                   :: Maybe Int                                             -- ^ Unique identifier of the effect added to the message; 0 if none
@@ -90,6 +91,7 @@ instance I.ShortShow Message where
     , via_bot_user_id             = via_bot_user_id_
     , sender_business_bot_user_id = sender_business_bot_user_id_
     , sender_boost_count          = sender_boost_count_
+    , paid_message_star_count     = paid_message_star_count_
     , author_signature            = author_signature_
     , media_album_id              = media_album_id_
     , effect_id                   = effect_id_
@@ -129,6 +131,7 @@ instance I.ShortShow Message where
         , "via_bot_user_id"             `I.p` via_bot_user_id_
         , "sender_business_bot_user_id" `I.p` sender_business_bot_user_id_
         , "sender_boost_count"          `I.p` sender_boost_count_
+        , "paid_message_star_count"     `I.p` paid_message_star_count_
         , "author_signature"            `I.p` author_signature_
         , "media_album_id"              `I.p` media_album_id_
         , "effect_id"                   `I.p` effect_id_
@@ -178,6 +181,7 @@ instance AT.FromJSON Message where
         via_bot_user_id_             <- o A..:?                       "via_bot_user_id"
         sender_business_bot_user_id_ <- o A..:?                       "sender_business_bot_user_id"
         sender_boost_count_          <- o A..:?                       "sender_boost_count"
+        paid_message_star_count_     <- o A..:?                       "paid_message_star_count"
         author_signature_            <- o A..:?                       "author_signature"
         media_album_id_              <- fmap I.readInt64 <$> o A..:?  "media_album_id"
         effect_id_                   <- fmap I.readInt64 <$> o A..:?  "effect_id"
@@ -215,6 +219,7 @@ instance AT.FromJSON Message where
           , via_bot_user_id             = via_bot_user_id_
           , sender_business_bot_user_id = sender_business_bot_user_id_
           , sender_boost_count          = sender_boost_count_
+          , paid_message_star_count     = paid_message_star_count_
           , author_signature            = author_signature_
           , media_album_id              = media_album_id_
           , effect_id                   = effect_id_

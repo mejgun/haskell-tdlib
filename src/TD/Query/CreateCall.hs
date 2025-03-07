@@ -14,7 +14,7 @@ data CreateCall
     { user_id       :: Maybe Int                       -- ^ Identifier of the user to be called
     , protocol      :: Maybe CallProtocol.CallProtocol -- ^ The call protocols supported by the application
     , is_video      :: Maybe Bool                      -- ^ Pass true to create a video call
-    , group_call_id :: Maybe Int                       -- ^ Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none; currently, ignored
+    , group_call_id :: Maybe Int                       -- ^ Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
     }
   deriving (Eq, Show)
 

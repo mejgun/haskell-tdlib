@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.55.0
+version:        2.0.56.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       TD.Data.AccentColor
+      TD.Data.AccountInfo
       TD.Data.AccountTtl
       TD.Data.AddedReaction
       TD.Data.AddedReactions
@@ -427,8 +428,10 @@ library
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
       TD.Data.PremiumGiftCodeInfo
-      TD.Data.PremiumGiftCodePaymentOption
-      TD.Data.PremiumGiftCodePaymentOptions
+      TD.Data.PremiumGiftPaymentOption
+      TD.Data.PremiumGiftPaymentOptions
+      TD.Data.PremiumGiveawayPaymentOption
+      TD.Data.PremiumGiveawayPaymentOptions
       TD.Data.PremiumLimit
       TD.Data.PremiumLimitType
       TD.Data.PremiumPaymentOption
@@ -500,6 +503,7 @@ library
       TD.Data.SponsoredMessage
       TD.Data.SponsoredMessages
       TD.Data.StarAmount
+      TD.Data.StarCount
       TD.Data.StarGiveawayPaymentOption
       TD.Data.StarGiveawayPaymentOptions
       TD.Data.StarGiveawayWinnerOption
@@ -646,6 +650,7 @@ library
       TD.Query.AddSavedNotificationSound
       TD.Query.AddStickerToSet
       TD.Query.AllowBotToSendMessages
+      TD.Query.AllowUnpaidMessagesFromUser
       TD.Query.AnswerCallbackQuery
       TD.Query.AnswerCustomQuery
       TD.Query.AnswerInlineQuery
@@ -982,6 +987,7 @@ library
       TD.Query.GetOption
       TD.Query.GetOwnedBots
       TD.Query.GetOwnedStickerSets
+      TD.Query.GetPaidMessageRevenue
       TD.Query.GetPassportAuthorizationForm
       TD.Query.GetPassportAuthorizationFormAvailableElements
       TD.Query.GetPassportElement
@@ -993,7 +999,8 @@ library
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
-      TD.Query.GetPremiumGiftCodePaymentOptions
+      TD.Query.GetPremiumGiftPaymentOptions
+      TD.Query.GetPremiumGiveawayPaymentOptions
       TD.Query.GetPremiumInfoSticker
       TD.Query.GetPremiumLimit
       TD.Query.GetPremiumState
@@ -1283,6 +1290,7 @@ library
       TD.Query.SetChatMessageAutoDeleteTime
       TD.Query.SetChatMessageSender
       TD.Query.SetChatNotificationSettings
+      TD.Query.SetChatPaidMessageStarCount
       TD.Query.SetChatPermissions
       TD.Query.SetChatPhoto
       TD.Query.SetChatPinnedStories
@@ -1330,6 +1338,7 @@ library
       TD.Query.SetPersonalChat
       TD.Query.SetPinnedChats
       TD.Query.SetPinnedForumTopics
+      TD.Query.SetPinnedGifts
       TD.Query.SetPinnedSavedMessagesTopics
       TD.Query.SetPollAnswer
       TD.Query.SetProfileAccentColor

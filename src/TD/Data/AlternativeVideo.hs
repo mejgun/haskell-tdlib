@@ -9,7 +9,8 @@ import qualified TD.Data.File as File
 
 data AlternativeVideo
   = AlternativeVideo -- ^ Describes an alternative re-encoded quality of a video file
-    { width    :: Maybe Int       -- ^ Video width
+    { _id      :: Maybe Int       -- ^ Unique identifier of the alternative video, which is used in the HLS file
+    , width    :: Maybe Int       -- ^ Video width
     , height   :: Maybe Int       -- ^ Video height
     , codec    :: Maybe T.Text    -- ^ Codec used for video file encoding, for example, "h264", "h265", or "av1"
     , hls_file :: Maybe File.File -- ^ HLS file describing the video
@@ -19,7 +20,8 @@ data AlternativeVideo
 
 instance I.ShortShow AlternativeVideo where
   shortShow AlternativeVideo
-    { width    = width_
+    { _id      = _id_
+    , width    = width_
     , height   = height_
     , codec    = codec_
     , hls_file = hls_file_
@@ -27,7 +29,8 @@ instance I.ShortShow AlternativeVideo where
     }
       = "AlternativeVideo"
         ++ I.cc
-        [ "width"    `I.p` width_
+        [ "_id"      `I.p` _id_
+        , "width"    `I.p` width_
         , "height"   `I.p` height_
         , "codec"    `I.p` codec_
         , "hls_file" `I.p` hls_file_
@@ -45,13 +48,15 @@ instance AT.FromJSON AlternativeVideo where
     where
       parseAlternativeVideo :: A.Value -> AT.Parser AlternativeVideo
       parseAlternativeVideo = A.withObject "AlternativeVideo" $ \o -> do
-        width_    <- o A..:?  "width"
-        height_   <- o A..:?  "height"
-        codec_    <- o A..:?  "codec"
-        hls_file_ <- o A..:?  "hls_file"
-        video_    <- o A..:?  "video"
+        _id_      <- fmap I.readInt64 <$> o A..:?  "id"
+        width_    <- o A..:?                       "width"
+        height_   <- o A..:?                       "height"
+        codec_    <- o A..:?                       "codec"
+        hls_file_ <- o A..:?                       "hls_file"
+        video_    <- o A..:?                       "video"
         pure $ AlternativeVideo
-          { width    = width_
+          { _id      = _id_
+          , width    = width_
           , height   = height_
           , codec    = codec_
           , hls_file = hls_file_

@@ -22,6 +22,7 @@ data SupergroupFullInfo
     , linked_chat_id                   :: Maybe Int                             -- ^ Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
     , slow_mode_delay                  :: Maybe Int                             -- ^ Delay between consecutive sent messages for non-administrator supergroup members, in seconds
     , slow_mode_delay_expires_in       :: Maybe Double                          -- ^ Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
+    , can_enable_paid_messages         :: Maybe Bool                            -- ^ True, if paid messages can be enabled in the supergroup chat; for supergroup only
     , can_enable_paid_reaction         :: Maybe Bool                            -- ^ True, if paid reaction can be enabled in the channel chat; for channels only
     , can_get_members                  :: Maybe Bool                            -- ^ True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
     , has_hidden_members               :: Maybe Bool                            -- ^ True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
@@ -63,6 +64,7 @@ instance I.ShortShow SupergroupFullInfo where
     , linked_chat_id                   = linked_chat_id_
     , slow_mode_delay                  = slow_mode_delay_
     , slow_mode_delay_expires_in       = slow_mode_delay_expires_in_
+    , can_enable_paid_messages         = can_enable_paid_messages_
     , can_enable_paid_reaction         = can_enable_paid_reaction_
     , can_get_members                  = can_get_members_
     , has_hidden_members               = has_hidden_members_
@@ -102,6 +104,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "linked_chat_id"                   `I.p` linked_chat_id_
         , "slow_mode_delay"                  `I.p` slow_mode_delay_
         , "slow_mode_delay_expires_in"       `I.p` slow_mode_delay_expires_in_
+        , "can_enable_paid_messages"         `I.p` can_enable_paid_messages_
         , "can_enable_paid_reaction"         `I.p` can_enable_paid_reaction_
         , "can_get_members"                  `I.p` can_get_members_
         , "has_hidden_members"               `I.p` has_hidden_members_
@@ -151,6 +154,7 @@ instance AT.FromJSON SupergroupFullInfo where
         linked_chat_id_                   <- o A..:?                       "linked_chat_id"
         slow_mode_delay_                  <- o A..:?                       "slow_mode_delay"
         slow_mode_delay_expires_in_       <- o A..:?                       "slow_mode_delay_expires_in"
+        can_enable_paid_messages_         <- o A..:?                       "can_enable_paid_messages"
         can_enable_paid_reaction_         <- o A..:?                       "can_enable_paid_reaction"
         can_get_members_                  <- o A..:?                       "can_get_members"
         has_hidden_members_               <- o A..:?                       "has_hidden_members"
@@ -188,6 +192,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , linked_chat_id                   = linked_chat_id_
           , slow_mode_delay                  = slow_mode_delay_
           , slow_mode_delay_expires_in       = slow_mode_delay_expires_in_
+          , can_enable_paid_messages         = can_enable_paid_messages_
           , can_enable_paid_reaction         = can_enable_paid_reaction_
           , can_get_members                  = can_get_members_
           , has_hidden_members               = has_hidden_members_

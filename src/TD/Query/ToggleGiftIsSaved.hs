@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat. Returns 'TD.Data.Ok.Ok'
+-- | Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat. Returns 'TD.Data.Ok.Ok'
 data ToggleGiftIsSaved
   = ToggleGiftIsSaved
     { received_gift_id :: Maybe T.Text -- ^ Identifier of the gift

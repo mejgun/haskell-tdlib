@@ -10,6 +10,7 @@ import qualified TD.Data.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 data GroupCall
   = GroupCall -- ^ Describes a group call
     { _id                              :: Maybe Int                                             -- ^ Group call identifier
+    , from_call_id                     :: Maybe Int                                             -- ^ Identifier of one-to-one call from which the group call was created; 0 if unknown
     , title                            :: Maybe T.Text                                          -- ^ Group call title
     , scheduled_start_date             :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended
     , enabled_start_notification       :: Maybe Bool                                            -- ^ True, if the group call is scheduled and the current user will receive a notification when the group call starts
@@ -36,6 +37,7 @@ data GroupCall
 instance I.ShortShow GroupCall where
   shortShow GroupCall
     { _id                              = _id_
+    , from_call_id                     = from_call_id_
     , title                            = title_
     , scheduled_start_date             = scheduled_start_date_
     , enabled_start_notification       = enabled_start_notification_
@@ -60,6 +62,7 @@ instance I.ShortShow GroupCall where
       = "GroupCall"
         ++ I.cc
         [ "_id"                              `I.p` _id_
+        , "from_call_id"                     `I.p` from_call_id_
         , "title"                            `I.p` title_
         , "scheduled_start_date"             `I.p` scheduled_start_date_
         , "enabled_start_notification"       `I.p` enabled_start_notification_
@@ -94,6 +97,7 @@ instance AT.FromJSON GroupCall where
       parseGroupCall :: A.Value -> AT.Parser GroupCall
       parseGroupCall = A.withObject "GroupCall" $ \o -> do
         _id_                              <- o A..:?  "id"
+        from_call_id_                     <- o A..:?  "from_call_id"
         title_                            <- o A..:?  "title"
         scheduled_start_date_             <- o A..:?  "scheduled_start_date"
         enabled_start_notification_       <- o A..:?  "enabled_start_notification"
@@ -116,6 +120,7 @@ instance AT.FromJSON GroupCall where
         duration_                         <- o A..:?  "duration"
         pure $ GroupCall
           { _id                              = _id_
+          , from_call_id                     = from_call_id_
           , title                            = title_
           , scheduled_start_date             = scheduled_start_date_
           , enabled_start_notification       = enabled_start_notification_
