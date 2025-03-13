@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a user by their identifier. This is an offline request if the current user is not a bot. Returns 'TD.Data.User.User'
+-- | Returns information about a user by their identifier. This is an offline method if the current user is not a bot. Returns 'TD.Data.User.User'
 data GetUser
   = GetUser
     { user_id :: Maybe Int -- ^ User identifier

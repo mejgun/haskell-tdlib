@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns an instant view version of a web page if available. This is an offline request if only_local is true. Returns a 404 error if the web page has no instant view page. Returns 'TD.Data.WebPageInstantView.WebPageInstantView'
+-- | Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page. Returns 'TD.Data.WebPageInstantView.WebPageInstantView'
 data GetWebPageInstantView
   = GetWebPageInstantView
     { url        :: Maybe T.Text -- ^ The web page URL

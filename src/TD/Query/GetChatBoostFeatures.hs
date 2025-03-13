@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns the list of features available for different chat boost levels; this is an offline request. Returns 'TD.Data.ChatBoostFeatures.ChatBoostFeatures'
+-- | Returns the list of features available for different chat boost levels. This is an offline method. Returns 'TD.Data.ChatBoostFeatures.ChatBoostFeatures'
 data GetChatBoostFeatures
   = GetChatBoostFeatures
     { is_channel :: Maybe Bool -- ^ Pass true to get the list of features for channels; pass false to get the list of features for supergroups

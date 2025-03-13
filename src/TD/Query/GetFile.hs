@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns information about a file; this is an offline request. Returns 'TD.Data.File.File'
+-- | Returns information about a file. This is an offline method. Returns 'TD.Data.File.File'
 data GetFile
   = GetFile
     { file_id :: Maybe Int -- ^ Identifier of the file to get

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns a default placeholder for Web Apps of a bot; this is an offline request. Returns a 404 error if the placeholder isn't known. Returns 'TD.Data.Outline.Outline'
+-- | Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known. Returns 'TD.Data.Outline.Outline'
 data GetWebAppPlaceholder
   = GetWebAppPlaceholder
     { bot_user_id :: Maybe Int -- ^ Identifier of the target bot

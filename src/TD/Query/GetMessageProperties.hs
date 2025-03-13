@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns properties of a message; this is an offline request. Returns 'TD.Data.MessageProperties.MessageProperties'
+-- | Returns properties of a message. This is an offline method. Returns 'TD.Data.MessageProperties.MessageProperties'
 data GetMessageProperties
   = GetMessageProperties
     { chat_id    :: Maybe Int -- ^ Chat identifier

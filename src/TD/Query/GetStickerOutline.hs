@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known. Returns 'TD.Data.Outline.Outline'
+-- | Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known. Returns 'TD.Data.Outline.Outline'
 data GetStickerOutline
   = GetStickerOutline
     { sticker_file_id                    :: Maybe Int  -- ^ File identifier of the sticker
