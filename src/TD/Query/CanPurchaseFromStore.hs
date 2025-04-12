@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StorePaymentPurpose as StorePaymentPurpose
 
--- | Checks whether an in-store purchase is possible. Must be called before any in-store purchase. Returns 'TD.Data.Ok.Ok'
+-- | Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only. Returns 'TD.Data.Ok.Ok'
 data CanPurchaseFromStore
   = CanPurchaseFromStore
     { purpose :: Maybe StorePaymentPurpose.StorePaymentPurpose -- ^ Transaction purpose

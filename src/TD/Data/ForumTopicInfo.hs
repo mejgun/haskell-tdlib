@@ -10,7 +10,8 @@ import qualified TD.Data.MessageSender as MessageSender
 
 data ForumTopicInfo
   = ForumTopicInfo -- ^ Contains basic information about a forum topic
-    { message_thread_id :: Maybe Int                           -- ^ Message thread identifier of the topic
+    { chat_id           :: Maybe Int                           -- ^ Identifier of the forum chat to which the topic belongs
+    , message_thread_id :: Maybe Int                           -- ^ Message thread identifier of the topic
     , name              :: Maybe T.Text                        -- ^ Name of the topic
     , icon              :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
     , creation_date     :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the topic was created
@@ -24,7 +25,8 @@ data ForumTopicInfo
 
 instance I.ShortShow ForumTopicInfo where
   shortShow ForumTopicInfo
-    { message_thread_id = message_thread_id_
+    { chat_id           = chat_id_
+    , message_thread_id = message_thread_id_
     , name              = name_
     , icon              = icon_
     , creation_date     = creation_date_
@@ -36,7 +38,8 @@ instance I.ShortShow ForumTopicInfo where
     }
       = "ForumTopicInfo"
         ++ I.cc
-        [ "message_thread_id" `I.p` message_thread_id_
+        [ "chat_id"           `I.p` chat_id_
+        , "message_thread_id" `I.p` message_thread_id_
         , "name"              `I.p` name_
         , "icon"              `I.p` icon_
         , "creation_date"     `I.p` creation_date_
@@ -58,6 +61,7 @@ instance AT.FromJSON ForumTopicInfo where
     where
       parseForumTopicInfo :: A.Value -> AT.Parser ForumTopicInfo
       parseForumTopicInfo = A.withObject "ForumTopicInfo" $ \o -> do
+        chat_id_           <- o A..:?  "chat_id"
         message_thread_id_ <- o A..:?  "message_thread_id"
         name_              <- o A..:?  "name"
         icon_              <- o A..:?  "icon"
@@ -68,7 +72,8 @@ instance AT.FromJSON ForumTopicInfo where
         is_closed_         <- o A..:?  "is_closed"
         is_hidden_         <- o A..:?  "is_hidden"
         pure $ ForumTopicInfo
-          { message_thread_id = message_thread_id_
+          { chat_id           = chat_id_
+          , message_thread_id = message_thread_id_
           , name              = name_
           , icon              = icon_
           , creation_date     = creation_date_

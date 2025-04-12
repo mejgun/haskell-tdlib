@@ -378,6 +378,13 @@ data MessageContent
     , sender_id  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
     , is_upgrade :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift
     }
+  | MessagePaidMessagesRefunded -- ^ Paid messages were refunded
+    { message_count :: Maybe Int -- ^ The number of refunded messages
+    , star_count    :: Maybe Int -- ^ The number of refunded Telegram Stars
+    }
+  | MessagePaidMessagePriceChanged -- ^ A price for paid messages was changed in the supergroup chat
+    { paid_message_star_count :: Maybe Int -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+    }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
     { users     :: Maybe [SharedUser.SharedUser] -- ^ The shared users
@@ -1135,6 +1142,22 @@ instance I.ShortShow MessageContent where
         , "sender_id"  `I.p` sender_id_
         , "is_upgrade" `I.p` is_upgrade_
         ]
+  shortShow MessagePaidMessagesRefunded
+    { message_count = message_count_
+    , star_count    = star_count_
+    }
+      = "MessagePaidMessagesRefunded"
+        ++ I.cc
+        [ "message_count" `I.p` message_count_
+        , "star_count"    `I.p` star_count_
+        ]
+  shortShow MessagePaidMessagePriceChanged
+    { paid_message_star_count = paid_message_star_count_
+    }
+      = "MessagePaidMessagePriceChanged"
+        ++ I.cc
+        [ "paid_message_star_count" `I.p` paid_message_star_count_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUsersShared
@@ -1279,6 +1302,8 @@ instance AT.FromJSON MessageContent where
       "messageGift"                         -> parseMessageGift v
       "messageUpgradedGift"                 -> parseMessageUpgradedGift v
       "messageRefundedUpgradedGift"         -> parseMessageRefundedUpgradedGift v
+      "messagePaidMessagesRefunded"         -> parseMessagePaidMessagesRefunded v
+      "messagePaidMessagePriceChanged"      -> parseMessagePaidMessagePriceChanged v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1939,6 +1964,20 @@ instance AT.FromJSON MessageContent where
           { gift       = gift_
           , sender_id  = sender_id_
           , is_upgrade = is_upgrade_
+          }
+      parseMessagePaidMessagesRefunded :: A.Value -> AT.Parser MessageContent
+      parseMessagePaidMessagesRefunded = A.withObject "MessagePaidMessagesRefunded" $ \o -> do
+        message_count_ <- o A..:?  "message_count"
+        star_count_    <- o A..:?  "star_count"
+        pure $ MessagePaidMessagesRefunded
+          { message_count = message_count_
+          , star_count    = star_count_
+          }
+      parseMessagePaidMessagePriceChanged :: A.Value -> AT.Parser MessageContent
+      parseMessagePaidMessagePriceChanged = A.withObject "MessagePaidMessagePriceChanged" $ \o -> do
+        paid_message_star_count_ <- o A..:?  "paid_message_star_count"
+        pure $ MessagePaidMessagePriceChanged
+          { paid_message_star_count = paid_message_star_count_
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do

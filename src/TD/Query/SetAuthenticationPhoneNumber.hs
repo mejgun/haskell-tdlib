@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.PhoneNumberAuthenticationSettings as PhoneNumberAuthenticationSettings
 
--- | Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword. Returns 'TD.Data.Ok.Ok'
+-- | Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword. Returns 'TD.Data.Ok.Ok'
 data SetAuthenticationPhoneNumber
   = SetAuthenticationPhoneNumber
     { phone_number :: Maybe T.Text                                                              -- ^ The phone number of the user, in international format

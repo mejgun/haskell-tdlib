@@ -11,7 +11,7 @@ import qualified TD.Data.GiveawayParameters as GiveawayParameters
 -- | Describes a purpose of a payment toward Telegram
 data TelegramPaymentPurpose
   = TelegramPaymentPurposePremiumGift -- ^ The user gifting Telegram Premium to another user
-    { currency    :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
+    { currency    :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency, or "XTR" for payments in Telegram Stars
     , amount      :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
     , user_id     :: Maybe Int                         -- ^ Identifier of the user which will receive Telegram Premium
     , month_count :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the user

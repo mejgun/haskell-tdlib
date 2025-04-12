@@ -125,10 +125,16 @@ data StarTransactionType
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
     }
-  | StarTransactionTypePremiumPurchase -- ^ The transaction is a purchase of Telegram Premium subscription; for regular users only
+  | StarTransactionTypePremiumPurchase -- ^ The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
     { user_id     :: Maybe Int             -- ^ Identifier of the user that received the Telegram Premium subscription
     , month_count :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
     , sticker     :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
+    }
+  | StarTransactionTypeBusinessBotTransferSend -- ^ The transaction is a transfer of Telegram Stars to a business bot; for regular users only
+    { user_id :: Maybe Int -- ^ Identifier of the bot that received Telegram Stars
+    }
+  | StarTransactionTypeBusinessBotTransferReceive -- ^ The transaction is a transfer of Telegram Stars from a business account; for bots only
+    { user_id :: Maybe Int -- ^ Identifier of the user that sent Telegram Stars
     }
   | StarTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type
   deriving (Eq, Show)
@@ -382,6 +388,20 @@ instance I.ShortShow StarTransactionType where
         , "month_count" `I.p` month_count_
         , "sticker"     `I.p` sticker_
         ]
+  shortShow StarTransactionTypeBusinessBotTransferSend
+    { user_id = user_id_
+    }
+      = "StarTransactionTypeBusinessBotTransferSend"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        ]
+  shortShow StarTransactionTypeBusinessBotTransferReceive
+    { user_id = user_id_
+    }
+      = "StarTransactionTypeBusinessBotTransferReceive"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        ]
   shortShow StarTransactionTypeUnsupported
       = "StarTransactionTypeUnsupported"
 
@@ -419,6 +439,8 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypePaidMessageSend"             -> parseStarTransactionTypePaidMessageSend v
       "starTransactionTypePaidMessageReceive"          -> parseStarTransactionTypePaidMessageReceive v
       "starTransactionTypePremiumPurchase"             -> parseStarTransactionTypePremiumPurchase v
+      "starTransactionTypeBusinessBotTransferSend"     -> parseStarTransactionTypeBusinessBotTransferSend v
+      "starTransactionTypeBusinessBotTransferReceive"  -> parseStarTransactionTypeBusinessBotTransferReceive v
       "starTransactionTypeUnsupported"                 -> pure StarTransactionTypeUnsupported
       _                                                -> mempty
     
@@ -636,6 +658,18 @@ instance AT.FromJSON StarTransactionType where
           { user_id     = user_id_
           , month_count = month_count_
           , sticker     = sticker_
+          }
+      parseStarTransactionTypeBusinessBotTransferSend :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeBusinessBotTransferSend = A.withObject "StarTransactionTypeBusinessBotTransferSend" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        pure $ StarTransactionTypeBusinessBotTransferSend
+          { user_id = user_id_
+          }
+      parseStarTransactionTypeBusinessBotTransferReceive :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeBusinessBotTransferReceive = A.withObject "StarTransactionTypeBusinessBotTransferReceive" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        pure $ StarTransactionTypeBusinessBotTransferReceive
+          { user_id = user_id_
           }
   parseJSON _ = mempty
 

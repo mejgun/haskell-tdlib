@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.57.0
+version:        2.0.58.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       TD.Data.AccentColor
+      TD.Data.AcceptedGiftTypes
       TD.Data.AccountInfo
       TD.Data.AccountTtl
       TD.Data.AddedReaction
@@ -79,6 +80,7 @@ library
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
       TD.Data.BusinessBotManageBar
+      TD.Data.BusinessBotRights
       TD.Data.BusinessChatLink
       TD.Data.BusinessChatLinkInfo
       TD.Data.BusinessChatLinks
@@ -259,6 +261,7 @@ library
       TD.Data.GameHighScores
       TD.Data.Gift
       TD.Data.Gifts
+      TD.Data.GiftSettings
       TD.Data.GiftUpgradePreview
       TD.Data.GiveawayInfo
       TD.Data.GiveawayParameters
@@ -470,9 +473,9 @@ library
       TD.Data.RemoteFile
       TD.Data.ReplyMarkup
       TD.Data.ReportChatResult
-      TD.Data.ReportChatSponsoredMessageResult
       TD.Data.ReportOption
       TD.Data.ReportReason
+      TD.Data.ReportSponsoredResult
       TD.Data.ReportStoryResult
       TD.Data.ResendCodeReason
       TD.Data.ResetPasswordResult
@@ -500,6 +503,8 @@ library
       TD.Data.SharedUser
       TD.Data.ShippingOption
       TD.Data.SpeechRecognitionResult
+      TD.Data.SponsoredChat
+      TD.Data.SponsoredChats
       TD.Data.SponsoredMessage
       TD.Data.SponsoredMessages
       TD.Data.StarAmount
@@ -534,6 +539,7 @@ library
       TD.Data.StorageStatisticsByFileType
       TD.Data.StorageStatisticsFast
       TD.Data.StorePaymentPurpose
+      TD.Data.StoreTransaction
       TD.Data.Stories
       TD.Data.Story
       TD.Data.StoryArea
@@ -658,8 +664,7 @@ library
       TD.Query.AnswerShippingQuery
       TD.Query.AnswerWebAppQuery
       TD.Query.ApplyPremiumGiftCode
-      TD.Query.AssignAppStoreTransaction
-      TD.Query.AssignGooglePlayTransaction
+      TD.Query.AssignStoreTransaction
       TD.Query.BanChatMember
       TD.Query.BlockMessageSenderFromReplies
       TD.Query.BoostChat
@@ -679,6 +684,7 @@ library
       TD.Query.CheckAuthenticationEmailCode
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
+      TD.Query.CheckAuthenticationPremiumPurchase
       TD.Query.CheckChatFolderInviteLink
       TD.Query.CheckChatInviteLink
       TD.Query.CheckChatUsername
@@ -738,6 +744,8 @@ library
       TD.Query.DeleteBotMediaPreviews
       TD.Query.DeleteBusinessChatLink
       TD.Query.DeleteBusinessConnectedBot
+      TD.Query.DeleteBusinessMessages
+      TD.Query.DeleteBusinessStory
       TD.Query.DeleteChat
       TD.Query.DeleteChatBackground
       TD.Query.DeleteChatFolder
@@ -778,6 +786,7 @@ library
       TD.Query.EditBusinessMessageMedia
       TD.Query.EditBusinessMessageReplyMarkup
       TD.Query.EditBusinessMessageText
+      TD.Query.EditBusinessStory
       TD.Query.EditChatFolder
       TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
@@ -835,6 +844,7 @@ library
       TD.Query.GetBotName
       TD.Query.GetBotSimilarBotCount
       TD.Query.GetBotSimilarBots
+      TD.Query.GetBusinessAccountStarAmount
       TD.Query.GetBusinessChatLinkInfo
       TD.Query.GetBusinessChatLinks
       TD.Query.GetBusinessConnectedBot
@@ -1032,6 +1042,7 @@ library
       TD.Query.GetSavedOrderInfo
       TD.Query.GetScopeNotificationSettings
       TD.Query.GetSearchedForTags
+      TD.Query.GetSearchSponsoredChats
       TD.Query.GetSecretChat
       TD.Query.GetStarAdAccountUrl
       TD.Query.GetStarGiftPaymentOptions
@@ -1088,6 +1099,7 @@ library
       TD.Query.GetWebAppPlaceholder
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
+      TD.Query.GiftPremiumWithStars
       TD.Query.HideContactCloseBirthdays
       TD.Query.HideSuggestedAction
       TD.Query.ImportContacts
@@ -1110,6 +1122,7 @@ library
       TD.Query.OpenChat
       TD.Query.OpenChatSimilarChat
       TD.Query.OpenMessageContent
+      TD.Query.OpenSponsoredChat
       TD.Query.OpenStory
       TD.Query.OpenWebApp
       TD.Query.OptimizeStorage
@@ -1127,6 +1140,7 @@ library
       TD.Query.ReadAllChatReactions
       TD.Query.ReadAllMessageThreadMentions
       TD.Query.ReadAllMessageThreadReactions
+      TD.Query.ReadBusinessMessage
       TD.Query.ReadChatList
       TD.Query.ReaddQuickReplyShortcutMessages
       TD.Query.ReadFilePart
@@ -1173,6 +1187,7 @@ library
       TD.Query.ReportChatSponsoredMessage
       TD.Query.ReportMessageReactions
       TD.Query.ReportPhoneNumberCodeMissing
+      TD.Query.ReportSponsoredChat
       TD.Query.ReportStory
       TD.Query.ReportSupergroupAntiSpamFalsePositive
       TD.Query.ReportSupergroupSpam
@@ -1259,6 +1274,7 @@ library
       TD.Query.SetArchiveChatListSettings
       TD.Query.SetAuthenticationEmailAddress
       TD.Query.SetAuthenticationPhoneNumber
+      TD.Query.SetAuthenticationPremiumPurchaseTransaction
       TD.Query.SetAutoDownloadSettings
       TD.Query.SetAutosaveSettings
       TD.Query.SetBio
@@ -1268,6 +1284,11 @@ library
       TD.Query.SetBotName
       TD.Query.SetBotProfilePhoto
       TD.Query.SetBotUpdatesStatus
+      TD.Query.SetBusinessAccountBio
+      TD.Query.SetBusinessAccountGiftSettings
+      TD.Query.SetBusinessAccountName
+      TD.Query.SetBusinessAccountProfilePhoto
+      TD.Query.SetBusinessAccountUsername
       TD.Query.SetBusinessAwayMessageSettings
       TD.Query.SetBusinessConnectedBot
       TD.Query.SetBusinessGreetingMessageSettings
@@ -1313,6 +1334,7 @@ library
       TD.Query.SetFileGenerationProgress
       TD.Query.SetForumTopicNotificationSettings
       TD.Query.SetGameScore
+      TD.Query.SetGiftSettings
       TD.Query.SetGroupCallParticipantIsSpeaking
       TD.Query.SetGroupCallParticipantVolumeLevel
       TD.Query.SetGroupCallTitle
@@ -1434,6 +1456,7 @@ library
       TD.Query.ToggleSupergroupSignMessages
       TD.Query.ToggleSupergroupUsernameIsActive
       TD.Query.ToggleUsernameIsActive
+      TD.Query.TransferBusinessAccountStars
       TD.Query.TransferChatOwnership
       TD.Query.TransferGift
       TD.Query.TranslateMessageText
@@ -1447,6 +1470,7 @@ library
       TD.Query.ValidateOrderInfo
       TD.Query.ViewMessages
       TD.Query.ViewPremiumFeature
+      TD.Query.ViewSponsoredChat
       TD.Query.ViewTrendingStickerSets
       TD.Query.WriteGeneratedFilePart
   other-modules:

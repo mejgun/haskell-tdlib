@@ -13,6 +13,7 @@ data ForumTopic
   = ForumTopic -- ^ Describes a forum topic
     { info                        :: Maybe ForumTopicInfo.ForumTopicInfo                     -- ^ Basic information about the topic
     , last_message                :: Maybe Message.Message                                   -- ^ Last message in the topic; may be null if unknown
+    , order                       :: Maybe Int                                               -- ^ A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
     , is_pinned                   :: Maybe Bool                                              -- ^ True, if the topic is pinned in the topic list
     , unread_count                :: Maybe Int                                               -- ^ Number of unread messages in the topic
     , last_read_inbox_message_id  :: Maybe Int                                               -- ^ Identifier of the last read incoming message
@@ -28,6 +29,7 @@ instance I.ShortShow ForumTopic where
   shortShow ForumTopic
     { info                        = info_
     , last_message                = last_message_
+    , order                       = order_
     , is_pinned                   = is_pinned_
     , unread_count                = unread_count_
     , last_read_inbox_message_id  = last_read_inbox_message_id_
@@ -41,6 +43,7 @@ instance I.ShortShow ForumTopic where
         ++ I.cc
         [ "info"                        `I.p` info_
         , "last_message"                `I.p` last_message_
+        , "order"                       `I.p` order_
         , "is_pinned"                   `I.p` is_pinned_
         , "unread_count"                `I.p` unread_count_
         , "last_read_inbox_message_id"  `I.p` last_read_inbox_message_id_
@@ -62,19 +65,21 @@ instance AT.FromJSON ForumTopic where
     where
       parseForumTopic :: A.Value -> AT.Parser ForumTopic
       parseForumTopic = A.withObject "ForumTopic" $ \o -> do
-        info_                        <- o A..:?  "info"
-        last_message_                <- o A..:?  "last_message"
-        is_pinned_                   <- o A..:?  "is_pinned"
-        unread_count_                <- o A..:?  "unread_count"
-        last_read_inbox_message_id_  <- o A..:?  "last_read_inbox_message_id"
-        last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
-        unread_mention_count_        <- o A..:?  "unread_mention_count"
-        unread_reaction_count_       <- o A..:?  "unread_reaction_count"
-        notification_settings_       <- o A..:?  "notification_settings"
-        draft_message_               <- o A..:?  "draft_message"
+        info_                        <- o A..:?                       "info"
+        last_message_                <- o A..:?                       "last_message"
+        order_                       <- fmap I.readInt64 <$> o A..:?  "order"
+        is_pinned_                   <- o A..:?                       "is_pinned"
+        unread_count_                <- o A..:?                       "unread_count"
+        last_read_inbox_message_id_  <- o A..:?                       "last_read_inbox_message_id"
+        last_read_outbox_message_id_ <- o A..:?                       "last_read_outbox_message_id"
+        unread_mention_count_        <- o A..:?                       "unread_mention_count"
+        unread_reaction_count_       <- o A..:?                       "unread_reaction_count"
+        notification_settings_       <- o A..:?                       "notification_settings"
+        draft_message_               <- o A..:?                       "draft_message"
         pure $ ForumTopic
           { info                        = info_
           , last_message                = last_message_
+          , order                       = order_
           , is_pinned                   = is_pinned_
           , unread_count                = unread_count_
           , last_read_inbox_message_id  = last_read_inbox_message_id_

@@ -11,7 +11,7 @@ data UpgradedGiftModel
   = UpgradedGiftModel -- ^ Describes a model of an upgraded gift
     { name             :: Maybe T.Text          -- ^ Name of the model
     , sticker          :: Maybe Sticker.Sticker -- ^ The sticker representing the upgraded gift
-    , rarity_per_mille :: Maybe Int             -- ^ The number of upgraded gift that receive this model for each 1000 gifts upgraded
+    , rarity_per_mille :: Maybe Int             -- ^ The number of upgraded gifts that receive this model for each 1000 gifts upgraded
     }
   deriving (Eq, Show)
 

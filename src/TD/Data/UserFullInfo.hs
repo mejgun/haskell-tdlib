@@ -8,6 +8,7 @@ import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Birthdate as Birthdate
+import qualified TD.Data.GiftSettings as GiftSettings
 import qualified TD.Data.BotVerification as BotVerification
 import qualified TD.Data.BusinessInfo as BusinessInfo
 import qualified TD.Data.BotInfo as BotInfo
@@ -34,6 +35,7 @@ data UserFullInfo
     , group_in_common_count                        :: Maybe Int                             -- ^ Number of group chats where both the other user and the current user are a member; 0 for the current user
     , incoming_paid_message_star_count             :: Maybe Int                             -- ^ Number of Telegram Stars that must be paid by the user for each sent message to the current user
     , outgoing_paid_message_star_count             :: Maybe Int                             -- ^ Number of Telegram Stars that must be paid by the current user for each sent message to the user
+    , gift_settings                                :: Maybe GiftSettings.GiftSettings       -- ^ Settings for gift receiving for the user
     , bot_verification                             :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the user provided by a bot; may be null if none or unknown
     , business_info                                :: Maybe BusinessInfo.BusinessInfo       -- ^ Information about business settings for Telegram Business accounts; may be null if none
     , bot_info                                     :: Maybe BotInfo.BotInfo                 -- ^ For bots, information about the bot; may be null if the user isn't a bot
@@ -62,6 +64,7 @@ instance I.ShortShow UserFullInfo where
     , group_in_common_count                        = group_in_common_count_
     , incoming_paid_message_star_count             = incoming_paid_message_star_count_
     , outgoing_paid_message_star_count             = outgoing_paid_message_star_count_
+    , gift_settings                                = gift_settings_
     , bot_verification                             = bot_verification_
     , business_info                                = business_info_
     , bot_info                                     = bot_info_
@@ -88,6 +91,7 @@ instance I.ShortShow UserFullInfo where
         , "group_in_common_count"                        `I.p` group_in_common_count_
         , "incoming_paid_message_star_count"             `I.p` incoming_paid_message_star_count_
         , "outgoing_paid_message_star_count"             `I.p` outgoing_paid_message_star_count_
+        , "gift_settings"                                `I.p` gift_settings_
         , "bot_verification"                             `I.p` bot_verification_
         , "business_info"                                `I.p` business_info_
         , "bot_info"                                     `I.p` bot_info_
@@ -124,6 +128,7 @@ instance AT.FromJSON UserFullInfo where
         group_in_common_count_                        <- o A..:?  "group_in_common_count"
         incoming_paid_message_star_count_             <- o A..:?  "incoming_paid_message_star_count"
         outgoing_paid_message_star_count_             <- o A..:?  "outgoing_paid_message_star_count"
+        gift_settings_                                <- o A..:?  "gift_settings"
         bot_verification_                             <- o A..:?  "bot_verification"
         business_info_                                <- o A..:?  "business_info"
         bot_info_                                     <- o A..:?  "bot_info"
@@ -148,6 +153,7 @@ instance AT.FromJSON UserFullInfo where
           , group_in_common_count                        = group_in_common_count_
           , incoming_paid_message_star_count             = incoming_paid_message_star_count_
           , outgoing_paid_message_star_count             = outgoing_paid_message_star_count_
+          , gift_settings                                = gift_settings_
           , bot_verification                             = bot_verification_
           , business_info                                = business_info_
           , bot_info                                     = bot_info_

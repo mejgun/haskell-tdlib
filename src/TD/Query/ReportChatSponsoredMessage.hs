@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 
--- | Reports a sponsored message to Telegram moderators. Returns 'TD.Data.ReportChatSponsoredMessageResult.ReportChatSponsoredMessageResult'
+-- | Reports a sponsored message to Telegram moderators. Returns 'TD.Data.ReportSponsoredResult.ReportSponsoredResult'
 data ReportChatSponsoredMessage
   = ReportChatSponsoredMessage
     { chat_id    :: Maybe Int           -- ^ Chat identifier of the sponsored message

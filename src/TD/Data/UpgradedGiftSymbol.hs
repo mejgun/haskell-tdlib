@@ -10,8 +10,8 @@ import qualified TD.Data.Sticker as Sticker
 data UpgradedGiftSymbol
   = UpgradedGiftSymbol -- ^ Describes a symbol shown on the pattern of an upgraded gift
     { name             :: Maybe T.Text          -- ^ Name of the symbol
-    , sticker          :: Maybe Sticker.Sticker -- ^ The sticker representing the upgraded gift
-    , rarity_per_mille :: Maybe Int             -- ^ The number of upgraded gift that receive this symbol for each 1000 gifts upgraded
+    , sticker          :: Maybe Sticker.Sticker -- ^ The sticker representing the symbol
+    , rarity_per_mille :: Maybe Int             -- ^ The number of upgraded gifts that receive this symbol for each 1000 gifts upgraded
     }
   deriving (Eq, Show)
 

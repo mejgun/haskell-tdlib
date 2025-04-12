@@ -183,7 +183,7 @@ import qualified TD.Data.ReceivedGifts as ReceivedGifts
 import qualified TD.Data.RecommendedChatFolders as RecommendedChatFolders
 import qualified TD.Data.RecoveryEmailAddress as RecoveryEmailAddress
 import qualified TD.Data.ReportChatResult as ReportChatResult
-import qualified TD.Data.ReportChatSponsoredMessageResult as ReportChatSponsoredMessageResult
+import qualified TD.Data.ReportSponsoredResult as ReportSponsoredResult
 import qualified TD.Data.ReportStoryResult as ReportStoryResult
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
 import qualified TD.Data.RtmpUrl as RtmpUrl
@@ -194,7 +194,9 @@ import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.SentWebAppMessage as SentWebAppMessage
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
+import qualified TD.Data.SponsoredChats as SponsoredChats
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
+import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.StarCount as StarCount
 import qualified TD.Data.StarGiveawayPaymentOptions as StarGiveawayPaymentOptions
 import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
@@ -421,7 +423,7 @@ data GeneralResult
     | RecommendedChatFolders             RecommendedChatFolders.RecommendedChatFolders
     | RecoveryEmailAddress               RecoveryEmailAddress.RecoveryEmailAddress
     | ReportChatResult                   ReportChatResult.ReportChatResult
-    | ReportChatSponsoredMessageResult   ReportChatSponsoredMessageResult.ReportChatSponsoredMessageResult
+    | ReportSponsoredResult              ReportSponsoredResult.ReportSponsoredResult
     | ReportStoryResult                  ReportStoryResult.ReportStoryResult
     | ResetPasswordResult                ResetPasswordResult.ResetPasswordResult
     | RtmpUrl                            RtmpUrl.RtmpUrl
@@ -432,7 +434,9 @@ data GeneralResult
     | SentWebAppMessage                  SentWebAppMessage.SentWebAppMessage
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
+    | SponsoredChats                     SponsoredChats.SponsoredChats
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
+    | StarAmount                         StarAmount.StarAmount
     | StarCount                          StarCount.StarCount
     | StarGiveawayPaymentOptions         StarGiveawayPaymentOptions.StarGiveawayPaymentOptions
     | StarPaymentOptions                 StarPaymentOptions.StarPaymentOptions
@@ -839,8 +843,8 @@ instance I.ShortShow GeneralResult where
     = "RecoveryEmailAddress" <> " (" <> I.shortShow v <> ")"
   shortShow (ReportChatResult v)
     = "ReportChatResult" <> " (" <> I.shortShow v <> ")"
-  shortShow (ReportChatSponsoredMessageResult v)
-    = "ReportChatSponsoredMessageResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (ReportSponsoredResult v)
+    = "ReportSponsoredResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ReportStoryResult v)
     = "ReportStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ResetPasswordResult v)
@@ -861,8 +865,12 @@ instance I.ShortShow GeneralResult where
     = "Session" <> " (" <> I.shortShow v <> ")"
   shortShow (Sessions v)
     = "Sessions" <> " (" <> I.shortShow v <> ")"
+  shortShow (SponsoredChats v)
+    = "SponsoredChats" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (StarAmount v)
+    = "StarAmount" <> " (" <> I.shortShow v <> ")"
   shortShow (StarCount v)
     = "StarCount" <> " (" <> I.shortShow v <> ")"
   shortShow (StarGiveawayPaymentOptions v)
@@ -1135,7 +1143,7 @@ instance T.FromJSON GeneralResult where
     <|> ( RecommendedChatFolders              <$> parseJSON v )
     <|> ( RecoveryEmailAddress                <$> parseJSON v )
     <|> ( ReportChatResult                    <$> parseJSON v )
-    <|> ( ReportChatSponsoredMessageResult    <$> parseJSON v )
+    <|> ( ReportSponsoredResult               <$> parseJSON v )
     <|> ( ReportStoryResult                   <$> parseJSON v )
     <|> ( ResetPasswordResult                 <$> parseJSON v )
     <|> ( RtmpUrl                             <$> parseJSON v )
@@ -1146,7 +1154,9 @@ instance T.FromJSON GeneralResult where
     <|> ( SentWebAppMessage                   <$> parseJSON v )
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
+    <|> ( SponsoredChats                      <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
+    <|> ( StarAmount                          <$> parseJSON v )
     <|> ( StarCount                           <$> parseJSON v )
     <|> ( StarGiveawayPaymentOptions          <$> parseJSON v )
     <|> ( StarPaymentOptions                  <$> parseJSON v )

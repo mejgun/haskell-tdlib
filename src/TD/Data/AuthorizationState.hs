@@ -4,16 +4,19 @@ module TD.Data.AuthorizationState
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified TD.Data.EmailAddressResetState as EmailAddressResetState
 import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
-import qualified Data.Text as T
 import qualified TD.Data.TermsOfService as TermsOfService
 
 -- | Represents the current authorization state of the TDLib client
 data AuthorizationState
   = AuthorizationStateWaitTdlibParameters -- ^ Initialization parameters are needed. Call setTdlibParameters to provide them
   | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
+  | AuthorizationStateWaitPremiumPurchase -- ^ The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
+    { store_product_id :: Maybe T.Text -- ^ Identifier of the store product that must be bought
+    }
   | AuthorizationStateWaitEmailAddress -- ^ TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     { allow_apple_id  :: Maybe Bool -- ^ True, if authorization through Apple ID is allowed
     , allow_google_id :: Maybe Bool -- ^ True, if authorization through Google ID is allowed
@@ -50,6 +53,13 @@ instance I.ShortShow AuthorizationState where
       = "AuthorizationStateWaitTdlibParameters"
   shortShow AuthorizationStateWaitPhoneNumber
       = "AuthorizationStateWaitPhoneNumber"
+  shortShow AuthorizationStateWaitPremiumPurchase
+    { store_product_id = store_product_id_
+    }
+      = "AuthorizationStateWaitPremiumPurchase"
+        ++ I.cc
+        [ "store_product_id" `I.p` store_product_id_
+        ]
   shortShow AuthorizationStateWaitEmailAddress
     { allow_apple_id  = allow_apple_id_
     , allow_google_id = allow_google_id_
@@ -122,6 +132,7 @@ instance AT.FromJSON AuthorizationState where
     case t of
       "authorizationStateWaitTdlibParameters"         -> pure AuthorizationStateWaitTdlibParameters
       "authorizationStateWaitPhoneNumber"             -> pure AuthorizationStateWaitPhoneNumber
+      "authorizationStateWaitPremiumPurchase"         -> parseAuthorizationStateWaitPremiumPurchase v
       "authorizationStateWaitEmailAddress"            -> parseAuthorizationStateWaitEmailAddress v
       "authorizationStateWaitEmailCode"               -> parseAuthorizationStateWaitEmailCode v
       "authorizationStateWaitCode"                    -> parseAuthorizationStateWaitCode v
@@ -135,6 +146,12 @@ instance AT.FromJSON AuthorizationState where
       _                                               -> mempty
     
     where
+      parseAuthorizationStateWaitPremiumPurchase :: A.Value -> AT.Parser AuthorizationState
+      parseAuthorizationStateWaitPremiumPurchase = A.withObject "AuthorizationStateWaitPremiumPurchase" $ \o -> do
+        store_product_id_ <- o A..:?  "store_product_id"
+        pure $ AuthorizationStateWaitPremiumPurchase
+          { store_product_id = store_product_id_
+          }
       parseAuthorizationStateWaitEmailAddress :: A.Value -> AT.Parser AuthorizationState
       parseAuthorizationStateWaitEmailAddress = A.withObject "AuthorizationStateWaitEmailAddress" $ \o -> do
         allow_apple_id_  <- o A..:?  "allow_apple_id"

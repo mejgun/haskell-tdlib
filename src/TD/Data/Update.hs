@@ -336,8 +336,14 @@ data Update
     , messages    :: Maybe [QuickReplyMessage.QuickReplyMessage] -- ^ The new list of quick reply messages for the shortcut in order from the first to the last sent
     }
   | UpdateForumTopicInfo -- ^ Basic information about a topic in a forum chat was changed
-    { chat_id :: Maybe Int                           -- ^ Chat identifier
-    , info    :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ New information about the topic
+    { info :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ New information about the topic
+    }
+  | UpdateForumTopic -- ^ Information about a topic in a forum chat was changed
+    { chat_id                     :: Maybe Int                                               -- ^ Chat identifier
+    , message_thread_id           :: Maybe Int                                               -- ^ Message thread identifier of the topic
+    , is_pinned                   :: Maybe Bool                                              -- ^ True, if the topic is pinned in the topic list
+    , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
+    , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     }
   | UpdateScopeNotificationSettings -- ^ Notification settings for some type of chats were updated
     { scope                  :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which notification settings were updated
@@ -560,6 +566,12 @@ data Update
     }
   | UpdateConnectionState -- ^ The connection state has changed. This update must be used only to show a human-readable description of the connection state
     { state :: Maybe ConnectionState.ConnectionState -- ^ The new connection state
+    }
+  | UpdateFreezeState -- ^ The freeze state of the current user's account has changed
+    { is_frozen     :: Maybe Bool   -- ^ True, if the account is frozen
+    , freezing_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the account was frozen; 0 if the account isn't frozen
+    , deletion_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the account will be deleted and can't be unfrozen; 0 if the account isn't frozen
+    , appeal_link   :: Maybe T.Text -- ^ The link to open to send an appeal to unfreeze the account
     }
   | UpdateTermsOfService -- ^ New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     { terms_of_service_id :: Maybe T.Text                        -- ^ Identifier of the terms of service
@@ -1286,13 +1298,26 @@ instance I.ShortShow Update where
         , "messages"    `I.p` messages_
         ]
   shortShow UpdateForumTopicInfo
-    { chat_id = chat_id_
-    , info    = info_
+    { info = info_
     }
       = "UpdateForumTopicInfo"
         ++ I.cc
-        [ "chat_id" `I.p` chat_id_
-        , "info"    `I.p` info_
+        [ "info" `I.p` info_
+        ]
+  shortShow UpdateForumTopic
+    { chat_id                     = chat_id_
+    , message_thread_id           = message_thread_id_
+    , is_pinned                   = is_pinned_
+    , last_read_outbox_message_id = last_read_outbox_message_id_
+    , notification_settings       = notification_settings_
+    }
+      = "UpdateForumTopic"
+        ++ I.cc
+        [ "chat_id"                     `I.p` chat_id_
+        , "message_thread_id"           `I.p` message_thread_id_
+        , "is_pinned"                   `I.p` is_pinned_
+        , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
+        , "notification_settings"       `I.p` notification_settings_
         ]
   shortShow UpdateScopeNotificationSettings
     { scope                  = scope_
@@ -1791,6 +1816,19 @@ instance I.ShortShow Update where
       = "UpdateConnectionState"
         ++ I.cc
         [ "state" `I.p` state_
+        ]
+  shortShow UpdateFreezeState
+    { is_frozen     = is_frozen_
+    , freezing_date = freezing_date_
+    , deletion_date = deletion_date_
+    , appeal_link   = appeal_link_
+    }
+      = "UpdateFreezeState"
+        ++ I.cc
+        [ "is_frozen"     `I.p` is_frozen_
+        , "freezing_date" `I.p` freezing_date_
+        , "deletion_date" `I.p` deletion_date_
+        , "appeal_link"   `I.p` appeal_link_
         ]
   shortShow UpdateTermsOfService
     { terms_of_service_id = terms_of_service_id_
@@ -2295,6 +2333,7 @@ instance AT.FromJSON Update where
       "updateQuickReplyShortcuts"                      -> parseUpdateQuickReplyShortcuts v
       "updateQuickReplyShortcutMessages"               -> parseUpdateQuickReplyShortcutMessages v
       "updateForumTopicInfo"                           -> parseUpdateForumTopicInfo v
+      "updateForumTopic"                               -> parseUpdateForumTopic v
       "updateScopeNotificationSettings"                -> parseUpdateScopeNotificationSettings v
       "updateReactionNotificationSettings"             -> parseUpdateReactionNotificationSettings v
       "updateNotification"                             -> parseUpdateNotification v
@@ -2349,6 +2388,7 @@ instance AT.FromJSON Update where
       "updateProfileAccentColors"                      -> parseUpdateProfileAccentColors v
       "updateLanguagePackStrings"                      -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                          -> parseUpdateConnectionState v
+      "updateFreezeState"                              -> parseUpdateFreezeState v
       "updateTermsOfService"                           -> parseUpdateTermsOfService v
       "updateUnconfirmedSession"                       -> parseUpdateUnconfirmedSession v
       "updateAttachmentMenuBots"                       -> parseUpdateAttachmentMenuBots v
@@ -2862,11 +2902,23 @@ instance AT.FromJSON Update where
           }
       parseUpdateForumTopicInfo :: A.Value -> AT.Parser Update
       parseUpdateForumTopicInfo = A.withObject "UpdateForumTopicInfo" $ \o -> do
-        chat_id_ <- o A..:?  "chat_id"
-        info_    <- o A..:?  "info"
+        info_ <- o A..:?  "info"
         pure $ UpdateForumTopicInfo
-          { chat_id = chat_id_
-          , info    = info_
+          { info = info_
+          }
+      parseUpdateForumTopic :: A.Value -> AT.Parser Update
+      parseUpdateForumTopic = A.withObject "UpdateForumTopic" $ \o -> do
+        chat_id_                     <- o A..:?  "chat_id"
+        message_thread_id_           <- o A..:?  "message_thread_id"
+        is_pinned_                   <- o A..:?  "is_pinned"
+        last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
+        notification_settings_       <- o A..:?  "notification_settings"
+        pure $ UpdateForumTopic
+          { chat_id                     = chat_id_
+          , message_thread_id           = message_thread_id_
+          , is_pinned                   = is_pinned_
+          , last_read_outbox_message_id = last_read_outbox_message_id_
+          , notification_settings       = notification_settings_
           }
       parseUpdateScopeNotificationSettings :: A.Value -> AT.Parser Update
       parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
@@ -3311,6 +3363,18 @@ instance AT.FromJSON Update where
         state_ <- o A..:?  "state"
         pure $ UpdateConnectionState
           { state = state_
+          }
+      parseUpdateFreezeState :: A.Value -> AT.Parser Update
+      parseUpdateFreezeState = A.withObject "UpdateFreezeState" $ \o -> do
+        is_frozen_     <- o A..:?  "is_frozen"
+        freezing_date_ <- o A..:?  "freezing_date"
+        deletion_date_ <- o A..:?  "deletion_date"
+        appeal_link_   <- o A..:?  "appeal_link"
+        pure $ UpdateFreezeState
+          { is_frozen     = is_frozen_
+          , freezing_date = freezing_date_
+          , deletion_date = deletion_date_
+          , appeal_link   = appeal_link_
           }
       parseUpdateTermsOfService :: A.Value -> AT.Parser Update
       parseUpdateTermsOfService = A.withObject "UpdateTermsOfService" $ \o -> do

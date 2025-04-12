@@ -11,7 +11,7 @@ data UpgradedGiftBackdrop
   = UpgradedGiftBackdrop -- ^ Describes a backdrop of an upgraded gift
     { name             :: Maybe T.Text                                                -- ^ Name of the backdrop
     , colors           :: Maybe UpgradedGiftBackdropColors.UpgradedGiftBackdropColors -- ^ Colors of the backdrop
-    , rarity_per_mille :: Maybe Int                                                   -- ^ The number of upgraded gift that receive this backdrop for each 1000 gifts upgraded
+    , rarity_per_mille :: Maybe Int                                                   -- ^ The number of upgraded gifts that receive this backdrop for each 1000 gifts upgraded
     }
   deriving (Eq, Show)
 
