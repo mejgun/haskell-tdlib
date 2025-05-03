@@ -59,7 +59,7 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.Story as Story
-import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
+import qualified TD.Data.CanPostStoryResult as CanPostStoryResult
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
 import qualified TD.Data.StoryList as StoryList
 import qualified TD.Data.OptionValue as OptionValue
@@ -342,6 +342,7 @@ data Update
     { chat_id                     :: Maybe Int                                               -- ^ Chat identifier
     , message_thread_id           :: Maybe Int                                               -- ^ Message thread identifier of the topic
     , is_pinned                   :: Maybe Bool                                              -- ^ True, if the topic is pinned in the topic list
+    , last_read_inbox_message_id  :: Maybe Int                                               -- ^ Identifier of the last read incoming message
     , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     }
@@ -462,11 +463,20 @@ data Update
     { call :: Maybe Call.Call -- ^ New data about a call
     }
   | UpdateGroupCall -- ^ Information about a group call was updated
-    { group_call :: Maybe GroupCall.GroupCall -- ^ New data about a group call
+    { group_call :: Maybe GroupCall.GroupCall -- ^ New data about the group call
     }
   | UpdateGroupCallParticipant -- ^ Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
-    { group_call_id :: Maybe Int                                       -- ^ Identifier of group call
-    , participant   :: Maybe GroupCallParticipant.GroupCallParticipant -- ^ New data about a participant
+    { group_call_id :: Maybe Int                                       -- ^ Identifier of the group call
+    , participant   :: Maybe GroupCallParticipant.GroupCallParticipant -- ^ New data about the participant
+    }
+  | UpdateGroupCallParticipants -- ^ The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
+    { group_call_id        :: Maybe Int   -- ^ Identifier of the group call
+    , participant_user_ids :: Maybe [Int] -- ^ New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even there is no information about them
+    }
+  | UpdateGroupCallVerificationState -- ^ The verification state of an encrypted group call has changed; for group calls not bound to a chat only
+    { group_call_id :: Maybe Int      -- ^ Identifier of the group call
+    , generation    :: Maybe Int      -- ^ The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different
+    , emojis        :: Maybe [T.Text] -- ^ Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet
     }
   | UpdateNewCallSignalingData -- ^ New call signaling data arrived
     { call_id :: Maybe Int           -- ^ The call identifier
@@ -493,17 +503,17 @@ data Update
     { story :: Maybe Story.Story -- ^ The new information about the story
     }
   | UpdateStoryDeleted -- ^ A story became inaccessible
-    { story_sender_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
+    { story_poster_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
     }
-  | UpdateStorySendSucceeded -- ^ A story has been successfully sent
-    { story        :: Maybe Story.Story -- ^ The sent story
+  | UpdateStoryPostSucceeded -- ^ A story has been successfully posted
+    { story        :: Maybe Story.Story -- ^ The posted story
     , old_story_id :: Maybe Int         -- ^ The previous temporary story identifier
     }
-  | UpdateStorySendFailed -- ^ A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
-    { story      :: Maybe Story.Story                           -- ^ The failed to send story
-    , _error     :: Maybe Error.Error                           -- ^ The cause of the story sending failure
-    , error_type :: Maybe CanSendStoryResult.CanSendStoryResult -- ^ Type of the error; may be null if unknown
+  | UpdateStoryPostFailed -- ^ A story failed to post. If the story posting is canceled, then updateStoryDeleted will be received instead of this update
+    { story      :: Maybe Story.Story                           -- ^ The failed to post story
+    , _error     :: Maybe Error.Error                           -- ^ The cause of the story posting failure
+    , error_type :: Maybe CanPostStoryResult.CanPostStoryResult -- ^ Type of the error; may be null if unknown
     }
   | UpdateChatActiveStories -- ^ The list of active stories posted by a specific chat has changed
     { active_stories :: Maybe ChatActiveStories.ChatActiveStories -- ^ The new list of active stories
@@ -1308,6 +1318,7 @@ instance I.ShortShow Update where
     { chat_id                     = chat_id_
     , message_thread_id           = message_thread_id_
     , is_pinned                   = is_pinned_
+    , last_read_inbox_message_id  = last_read_inbox_message_id_
     , last_read_outbox_message_id = last_read_outbox_message_id_
     , notification_settings       = notification_settings_
     }
@@ -1316,6 +1327,7 @@ instance I.ShortShow Update where
         [ "chat_id"                     `I.p` chat_id_
         , "message_thread_id"           `I.p` message_thread_id_
         , "is_pinned"                   `I.p` is_pinned_
+        , "last_read_inbox_message_id"  `I.p` last_read_inbox_message_id_
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
         , "notification_settings"       `I.p` notification_settings_
         ]
@@ -1594,6 +1606,26 @@ instance I.ShortShow Update where
         [ "group_call_id" `I.p` group_call_id_
         , "participant"   `I.p` participant_
         ]
+  shortShow UpdateGroupCallParticipants
+    { group_call_id        = group_call_id_
+    , participant_user_ids = participant_user_ids_
+    }
+      = "UpdateGroupCallParticipants"
+        ++ I.cc
+        [ "group_call_id"        `I.p` group_call_id_
+        , "participant_user_ids" `I.p` participant_user_ids_
+        ]
+  shortShow UpdateGroupCallVerificationState
+    { group_call_id = group_call_id_
+    , generation    = generation_
+    , emojis        = emojis_
+    }
+      = "UpdateGroupCallVerificationState"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "generation"    `I.p` generation_
+        , "emojis"        `I.p` emojis_
+        ]
   shortShow UpdateNewCallSignalingData
     { call_id = call_id_
     , _data   = _data_
@@ -1648,29 +1680,29 @@ instance I.ShortShow Update where
         [ "story" `I.p` story_
         ]
   shortShow UpdateStoryDeleted
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = "UpdateStoryDeleted"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
-  shortShow UpdateStorySendSucceeded
+  shortShow UpdateStoryPostSucceeded
     { story        = story_
     , old_story_id = old_story_id_
     }
-      = "UpdateStorySendSucceeded"
+      = "UpdateStoryPostSucceeded"
         ++ I.cc
         [ "story"        `I.p` story_
         , "old_story_id" `I.p` old_story_id_
         ]
-  shortShow UpdateStorySendFailed
+  shortShow UpdateStoryPostFailed
     { story      = story_
     , _error     = _error_
     , error_type = error_type_
     }
-      = "UpdateStorySendFailed"
+      = "UpdateStoryPostFailed"
         ++ I.cc
         [ "story"      `I.p` story_
         , "_error"     `I.p` _error_
@@ -2363,14 +2395,16 @@ instance AT.FromJSON Update where
       "updateCall"                                     -> parseUpdateCall v
       "updateGroupCall"                                -> parseUpdateGroupCall v
       "updateGroupCallParticipant"                     -> parseUpdateGroupCallParticipant v
+      "updateGroupCallParticipants"                    -> parseUpdateGroupCallParticipants v
+      "updateGroupCallVerificationState"               -> parseUpdateGroupCallVerificationState v
       "updateNewCallSignalingData"                     -> parseUpdateNewCallSignalingData v
       "updateUserPrivacySettingRules"                  -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount"                       -> parseUpdateUnreadMessageCount v
       "updateUnreadChatCount"                          -> parseUpdateUnreadChatCount v
       "updateStory"                                    -> parseUpdateStory v
       "updateStoryDeleted"                             -> parseUpdateStoryDeleted v
-      "updateStorySendSucceeded"                       -> parseUpdateStorySendSucceeded v
-      "updateStorySendFailed"                          -> parseUpdateStorySendFailed v
+      "updateStoryPostSucceeded"                       -> parseUpdateStoryPostSucceeded v
+      "updateStoryPostFailed"                          -> parseUpdateStoryPostFailed v
       "updateChatActiveStories"                        -> parseUpdateChatActiveStories v
       "updateStoryListChatCount"                       -> parseUpdateStoryListChatCount v
       "updateStoryStealthMode"                         -> parseUpdateStoryStealthMode v
@@ -2911,12 +2945,14 @@ instance AT.FromJSON Update where
         chat_id_                     <- o A..:?  "chat_id"
         message_thread_id_           <- o A..:?  "message_thread_id"
         is_pinned_                   <- o A..:?  "is_pinned"
+        last_read_inbox_message_id_  <- o A..:?  "last_read_inbox_message_id"
         last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
         notification_settings_       <- o A..:?  "notification_settings"
         pure $ UpdateForumTopic
           { chat_id                     = chat_id_
           , message_thread_id           = message_thread_id_
           , is_pinned                   = is_pinned_
+          , last_read_inbox_message_id  = last_read_inbox_message_id_
           , last_read_outbox_message_id = last_read_outbox_message_id_
           , notification_settings       = notification_settings_
           }
@@ -3166,6 +3202,24 @@ instance AT.FromJSON Update where
           { group_call_id = group_call_id_
           , participant   = participant_
           }
+      parseUpdateGroupCallParticipants :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallParticipants = A.withObject "UpdateGroupCallParticipants" $ \o -> do
+        group_call_id_        <- o A..:?                              "group_call_id"
+        participant_user_ids_ <- fmap (fmap I.readInt64) <$> o A..:?  "participant_user_ids"
+        pure $ UpdateGroupCallParticipants
+          { group_call_id        = group_call_id_
+          , participant_user_ids = participant_user_ids_
+          }
+      parseUpdateGroupCallVerificationState :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallVerificationState = A.withObject "UpdateGroupCallVerificationState" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        generation_    <- o A..:?  "generation"
+        emojis_        <- o A..:?  "emojis"
+        pure $ UpdateGroupCallVerificationState
+          { group_call_id = group_call_id_
+          , generation    = generation_
+          , emojis        = emojis_
+          }
       parseUpdateNewCallSignalingData :: A.Value -> AT.Parser Update
       parseUpdateNewCallSignalingData = A.withObject "UpdateNewCallSignalingData" $ \o -> do
         call_id_ <- o A..:?                       "call_id"
@@ -3216,26 +3270,26 @@ instance AT.FromJSON Update where
           }
       parseUpdateStoryDeleted :: A.Value -> AT.Parser Update
       parseUpdateStoryDeleted = A.withObject "UpdateStoryDeleted" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         pure $ UpdateStoryDeleted
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           }
-      parseUpdateStorySendSucceeded :: A.Value -> AT.Parser Update
-      parseUpdateStorySendSucceeded = A.withObject "UpdateStorySendSucceeded" $ \o -> do
+      parseUpdateStoryPostSucceeded :: A.Value -> AT.Parser Update
+      parseUpdateStoryPostSucceeded = A.withObject "UpdateStoryPostSucceeded" $ \o -> do
         story_        <- o A..:?  "story"
         old_story_id_ <- o A..:?  "old_story_id"
-        pure $ UpdateStorySendSucceeded
+        pure $ UpdateStoryPostSucceeded
           { story        = story_
           , old_story_id = old_story_id_
           }
-      parseUpdateStorySendFailed :: A.Value -> AT.Parser Update
-      parseUpdateStorySendFailed = A.withObject "UpdateStorySendFailed" $ \o -> do
+      parseUpdateStoryPostFailed :: A.Value -> AT.Parser Update
+      parseUpdateStoryPostFailed = A.withObject "UpdateStoryPostFailed" $ \o -> do
         story_      <- o A..:?  "story"
         _error_     <- o A..:?  "error"
         error_type_ <- o A..:?  "error_type"
-        pure $ UpdateStorySendFailed
+        pure $ UpdateStoryPostFailed
           { story      = story_
           , _error     = _error_
           , error_type = error_type_

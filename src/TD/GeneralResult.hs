@@ -35,8 +35,8 @@ import qualified TD.Data.BusinessMessage as BusinessMessage
 import qualified TD.Data.BusinessMessages as BusinessMessages
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
+import qualified TD.Data.CanPostStoryResult as CanPostStoryResult
 import qualified TD.Data.CanSendMessageToUserResult as CanSendMessageToUserResult
-import qualified TD.Data.CanSendStoryResult as CanSendStoryResult
 import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResult
 import qualified TD.Data.Chat as Chat
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
@@ -80,6 +80,7 @@ import qualified TD.Data.Countries as Countries
 import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
 import qualified TD.Data.CurrentWeather as CurrentWeather
 import qualified TD.Data.CustomRequestResult as CustomRequestResult
+import qualified TD.Data.Data as Data
 import qualified TD.Data.DatabaseStatistics as DatabaseStatistics
 import qualified TD.Data.DeepLinkInfo as DeepLinkInfo
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
@@ -93,7 +94,6 @@ import qualified TD.Data.Error as Error
 import qualified TD.Data.FailedToAddMembers as FailedToAddMembers
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
-import qualified TD.Data.FilePart as FilePart
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
@@ -114,12 +114,14 @@ import qualified TD.Data.Gifts as Gifts
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
-import qualified TD.Data.GroupCallStreams as GroupCallStreams
+import qualified TD.Data.GroupCallInfo as GroupCallInfo
+import qualified TD.Data.GroupCallParticipants as GroupCallParticipants
 import qualified TD.Data.Hashtags as Hashtags
 import qualified TD.Data.HttpUrl as HttpUrl
 import qualified TD.Data.ImportedContacts as ImportedContacts
 import qualified TD.Data.InlineQueryResults as InlineQueryResults
 import qualified TD.Data.InternalLinkType as InternalLinkType
+import qualified TD.Data.InviteGroupCallParticipantResult as InviteGroupCallParticipantResult
 import qualified TD.Data.JsonValue as JsonValue
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
@@ -240,6 +242,7 @@ import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
+import qualified TD.Data.VideoChatStreams as VideoChatStreams
 import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
 
@@ -275,8 +278,8 @@ data GeneralResult
     | BusinessMessages                   BusinessMessages.BusinessMessages
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
+    | CanPostStoryResult                 CanPostStoryResult.CanPostStoryResult
     | CanSendMessageToUserResult         CanSendMessageToUserResult.CanSendMessageToUserResult
-    | CanSendStoryResult                 CanSendStoryResult.CanSendStoryResult
     | CanTransferOwnershipResult         CanTransferOwnershipResult.CanTransferOwnershipResult
     | Chat                               Chat.Chat
     | ChatActiveStories                  ChatActiveStories.ChatActiveStories
@@ -320,6 +323,7 @@ data GeneralResult
     | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
     | CurrentWeather                     CurrentWeather.CurrentWeather
     | CustomRequestResult                CustomRequestResult.CustomRequestResult
+    | Data                               Data.Data
     | DatabaseStatistics                 DatabaseStatistics.DatabaseStatistics
     | DeepLinkInfo                       DeepLinkInfo.DeepLinkInfo
     | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
@@ -333,7 +337,6 @@ data GeneralResult
     | FailedToAddMembers                 FailedToAddMembers.FailedToAddMembers
     | File                               File.File
     | FileDownloadedPrefixSize           FileDownloadedPrefixSize.FileDownloadedPrefixSize
-    | FilePart                           FilePart.FilePart
     | FormattedText                      FormattedText.FormattedText
     | ForumTopic                         ForumTopic.ForumTopic
     | ForumTopicInfo                     ForumTopicInfo.ForumTopicInfo
@@ -354,12 +357,14 @@ data GeneralResult
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
-    | GroupCallStreams                   GroupCallStreams.GroupCallStreams
+    | GroupCallInfo                      GroupCallInfo.GroupCallInfo
+    | GroupCallParticipants              GroupCallParticipants.GroupCallParticipants
     | Hashtags                           Hashtags.Hashtags
     | HttpUrl                            HttpUrl.HttpUrl
     | ImportedContacts                   ImportedContacts.ImportedContacts
     | InlineQueryResults                 InlineQueryResults.InlineQueryResults
     | InternalLinkType                   InternalLinkType.InternalLinkType
+    | InviteGroupCallParticipantResult   InviteGroupCallParticipantResult.InviteGroupCallParticipantResult
     | JsonValue                          JsonValue.JsonValue
     | LanguagePackInfo                   LanguagePackInfo.LanguagePackInfo
     | LanguagePackStringValue            LanguagePackStringValue.LanguagePackStringValue
@@ -480,6 +485,7 @@ data GeneralResult
     | UserSupportInfo                    UserSupportInfo.UserSupportInfo
     | Users                              Users.Users
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
+    | VideoChatStreams                   VideoChatStreams.VideoChatStreams
     | WebAppInfo                         WebAppInfo.WebAppInfo
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
  deriving (Eq, Show)
@@ -547,10 +553,10 @@ instance I.ShortShow GeneralResult where
     = "CallId" <> " (" <> I.shortShow v <> ")"
   shortShow (CallbackQueryAnswer v)
     = "CallbackQueryAnswer" <> " (" <> I.shortShow v <> ")"
+  shortShow (CanPostStoryResult v)
+    = "CanPostStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanSendMessageToUserResult v)
     = "CanSendMessageToUserResult" <> " (" <> I.shortShow v <> ")"
-  shortShow (CanSendStoryResult v)
-    = "CanSendStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanTransferOwnershipResult v)
     = "CanTransferOwnershipResult" <> " (" <> I.shortShow v <> ")"
   shortShow (Chat v)
@@ -637,6 +643,8 @@ instance I.ShortShow GeneralResult where
     = "CurrentWeather" <> " (" <> I.shortShow v <> ")"
   shortShow (CustomRequestResult v)
     = "CustomRequestResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (Data v)
+    = "Data" <> " (" <> I.shortShow v <> ")"
   shortShow (DatabaseStatistics v)
     = "DatabaseStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (DeepLinkInfo v)
@@ -663,8 +671,6 @@ instance I.ShortShow GeneralResult where
     = "File" <> " (" <> I.shortShow v <> ")"
   shortShow (FileDownloadedPrefixSize v)
     = "FileDownloadedPrefixSize" <> " (" <> I.shortShow v <> ")"
-  shortShow (FilePart v)
-    = "FilePart" <> " (" <> I.shortShow v <> ")"
   shortShow (FormattedText v)
     = "FormattedText" <> " (" <> I.shortShow v <> ")"
   shortShow (ForumTopic v)
@@ -705,8 +711,10 @@ instance I.ShortShow GeneralResult where
     = "GroupCall" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCallId v)
     = "GroupCallId" <> " (" <> I.shortShow v <> ")"
-  shortShow (GroupCallStreams v)
-    = "GroupCallStreams" <> " (" <> I.shortShow v <> ")"
+  shortShow (GroupCallInfo v)
+    = "GroupCallInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (GroupCallParticipants v)
+    = "GroupCallParticipants" <> " (" <> I.shortShow v <> ")"
   shortShow (Hashtags v)
     = "Hashtags" <> " (" <> I.shortShow v <> ")"
   shortShow (HttpUrl v)
@@ -717,6 +725,8 @@ instance I.ShortShow GeneralResult where
     = "InlineQueryResults" <> " (" <> I.shortShow v <> ")"
   shortShow (InternalLinkType v)
     = "InternalLinkType" <> " (" <> I.shortShow v <> ")"
+  shortShow (InviteGroupCallParticipantResult v)
+    = "InviteGroupCallParticipantResult" <> " (" <> I.shortShow v <> ")"
   shortShow (JsonValue v)
     = "JsonValue" <> " (" <> I.shortShow v <> ")"
   shortShow (LanguagePackInfo v)
@@ -957,6 +967,8 @@ instance I.ShortShow GeneralResult where
     = "Users" <> " (" <> I.shortShow v <> ")"
   shortShow (ValidatedOrderInfo v)
     = "ValidatedOrderInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (VideoChatStreams v)
+    = "VideoChatStreams" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
     = "WebAppInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (WebPageInstantView v)
@@ -995,8 +1007,8 @@ instance T.FromJSON GeneralResult where
     <|> ( BusinessMessages                    <$> parseJSON v )
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
+    <|> ( CanPostStoryResult                  <$> parseJSON v )
     <|> ( CanSendMessageToUserResult          <$> parseJSON v )
-    <|> ( CanSendStoryResult                  <$> parseJSON v )
     <|> ( CanTransferOwnershipResult          <$> parseJSON v )
     <|> ( Chat                                <$> parseJSON v )
     <|> ( ChatActiveStories                   <$> parseJSON v )
@@ -1040,6 +1052,7 @@ instance T.FromJSON GeneralResult where
     <|> ( CreatedBasicGroupChat               <$> parseJSON v )
     <|> ( CurrentWeather                      <$> parseJSON v )
     <|> ( CustomRequestResult                 <$> parseJSON v )
+    <|> ( Data                                <$> parseJSON v )
     <|> ( DatabaseStatistics                  <$> parseJSON v )
     <|> ( DeepLinkInfo                        <$> parseJSON v )
     <|> ( EmailAddressAuthenticationCodeInfo  <$> parseJSON v )
@@ -1053,7 +1066,6 @@ instance T.FromJSON GeneralResult where
     <|> ( FailedToAddMembers                  <$> parseJSON v )
     <|> ( File                                <$> parseJSON v )
     <|> ( FileDownloadedPrefixSize            <$> parseJSON v )
-    <|> ( FilePart                            <$> parseJSON v )
     <|> ( FormattedText                       <$> parseJSON v )
     <|> ( ForumTopic                          <$> parseJSON v )
     <|> ( ForumTopicInfo                      <$> parseJSON v )
@@ -1074,12 +1086,14 @@ instance T.FromJSON GeneralResult where
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )
-    <|> ( GroupCallStreams                    <$> parseJSON v )
+    <|> ( GroupCallInfo                       <$> parseJSON v )
+    <|> ( GroupCallParticipants               <$> parseJSON v )
     <|> ( Hashtags                            <$> parseJSON v )
     <|> ( HttpUrl                             <$> parseJSON v )
     <|> ( ImportedContacts                    <$> parseJSON v )
     <|> ( InlineQueryResults                  <$> parseJSON v )
     <|> ( InternalLinkType                    <$> parseJSON v )
+    <|> ( InviteGroupCallParticipantResult    <$> parseJSON v )
     <|> ( JsonValue                           <$> parseJSON v )
     <|> ( LanguagePackInfo                    <$> parseJSON v )
     <|> ( LanguagePackStringValue             <$> parseJSON v )
@@ -1200,5 +1214,6 @@ instance T.FromJSON GeneralResult where
     <|> ( UserSupportInfo                     <$> parseJSON v )
     <|> ( Users                               <$> parseJSON v )
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
+    <|> ( VideoChatStreams                    <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )

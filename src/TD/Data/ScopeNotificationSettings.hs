@@ -15,7 +15,7 @@ data ScopeNotificationSettings
     , use_default_mute_stories             :: Maybe Bool -- ^ If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
     , mute_stories                         :: Maybe Bool -- ^ True, if story notifications are disabled
     , story_sound_id                       :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
-    , show_story_sender                    :: Maybe Bool -- ^ True, if the sender of stories must be displayed in notifications
+    , show_story_poster                    :: Maybe Bool -- ^ True, if the chat that posted a story must be displayed in notifications
     , disable_pinned_message_notifications :: Maybe Bool -- ^ True, if notifications for incoming pinned messages will be created as for an ordinary unread message
     , disable_mention_notifications        :: Maybe Bool -- ^ True, if notifications for messages with mentions will be created as for an ordinary unread message
     }
@@ -29,7 +29,7 @@ instance I.ShortShow ScopeNotificationSettings where
     , use_default_mute_stories             = use_default_mute_stories_
     , mute_stories                         = mute_stories_
     , story_sound_id                       = story_sound_id_
-    , show_story_sender                    = show_story_sender_
+    , show_story_poster                    = show_story_poster_
     , disable_pinned_message_notifications = disable_pinned_message_notifications_
     , disable_mention_notifications        = disable_mention_notifications_
     }
@@ -41,7 +41,7 @@ instance I.ShortShow ScopeNotificationSettings where
         , "use_default_mute_stories"             `I.p` use_default_mute_stories_
         , "mute_stories"                         `I.p` mute_stories_
         , "story_sound_id"                       `I.p` story_sound_id_
-        , "show_story_sender"                    `I.p` show_story_sender_
+        , "show_story_poster"                    `I.p` show_story_poster_
         , "disable_pinned_message_notifications" `I.p` disable_pinned_message_notifications_
         , "disable_mention_notifications"        `I.p` disable_mention_notifications_
         ]
@@ -63,7 +63,7 @@ instance AT.FromJSON ScopeNotificationSettings where
         use_default_mute_stories_             <- o A..:?                       "use_default_mute_stories"
         mute_stories_                         <- o A..:?                       "mute_stories"
         story_sound_id_                       <- fmap I.readInt64 <$> o A..:?  "story_sound_id"
-        show_story_sender_                    <- o A..:?                       "show_story_sender"
+        show_story_poster_                    <- o A..:?                       "show_story_poster"
         disable_pinned_message_notifications_ <- o A..:?                       "disable_pinned_message_notifications"
         disable_mention_notifications_        <- o A..:?                       "disable_mention_notifications"
         pure $ ScopeNotificationSettings
@@ -73,7 +73,7 @@ instance AT.FromJSON ScopeNotificationSettings where
           , use_default_mute_stories             = use_default_mute_stories_
           , mute_stories                         = mute_stories_
           , story_sound_id                       = story_sound_id_
-          , show_story_sender                    = show_story_sender_
+          , show_story_poster                    = show_story_poster_
           , disable_pinned_message_notifications = disable_pinned_message_notifications_
           , disable_mention_notifications        = disable_mention_notifications_
           }
@@ -87,7 +87,7 @@ instance AT.ToJSON ScopeNotificationSettings where
     , use_default_mute_stories             = use_default_mute_stories_
     , mute_stories                         = mute_stories_
     , story_sound_id                       = story_sound_id_
-    , show_story_sender                    = show_story_sender_
+    , show_story_poster                    = show_story_poster_
     , disable_pinned_message_notifications = disable_pinned_message_notifications_
     , disable_mention_notifications        = disable_mention_notifications_
     }
@@ -99,7 +99,7 @@ instance AT.ToJSON ScopeNotificationSettings where
         , "use_default_mute_stories"             A..= use_default_mute_stories_
         , "mute_stories"                         A..= mute_stories_
         , "story_sound_id"                       A..= fmap I.writeInt64  story_sound_id_
-        , "show_story_sender"                    A..= show_story_sender_
+        , "show_story_poster"                    A..= show_story_poster_
         , "disable_pinned_message_notifications" A..= disable_pinned_message_notifications_
         , "disable_mention_notifications"        A..= disable_mention_notifications_
         ]
@@ -113,7 +113,7 @@ defaultScopeNotificationSettings =
     , use_default_mute_stories             = Nothing
     , mute_stories                         = Nothing
     , story_sound_id                       = Nothing
-    , show_story_sender                    = Nothing
+    , show_story_poster                    = Nothing
     , disable_pinned_message_notifications = Nothing
     , disable_mention_notifications        = Nothing
     }

@@ -19,8 +19,8 @@ data ChatNotificationSettings
     , mute_stories                                     :: Maybe Bool -- ^ True, if story notifications are disabled for the chat
     , use_default_story_sound                          :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of story_sound_id
     , story_sound_id                                   :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
-    , use_default_show_story_sender                    :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of show_story_sender
-    , show_story_sender                                :: Maybe Bool -- ^ True, if the sender of stories must be displayed in notifications
+    , use_default_show_story_poster                    :: Maybe Bool -- ^ If true, the value for the relevant type of chat is used instead of show_story_poster
+    , show_story_poster                                :: Maybe Bool -- ^ True, if the chat that posted a story must be displayed in notifications
     , use_default_disable_pinned_message_notifications :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of disable_pinned_message_notifications
     , disable_pinned_message_notifications             :: Maybe Bool -- ^ If true, notifications for incoming pinned messages will be created as for an ordinary unread message
     , use_default_disable_mention_notifications        :: Maybe Bool -- ^ If true, the value for the relevant type of chat or the forum chat is used instead of disable_mention_notifications
@@ -40,8 +40,8 @@ instance I.ShortShow ChatNotificationSettings where
     , mute_stories                                     = mute_stories_
     , use_default_story_sound                          = use_default_story_sound_
     , story_sound_id                                   = story_sound_id_
-    , use_default_show_story_sender                    = use_default_show_story_sender_
-    , show_story_sender                                = show_story_sender_
+    , use_default_show_story_poster                    = use_default_show_story_poster_
+    , show_story_poster                                = show_story_poster_
     , use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_
     , disable_pinned_message_notifications             = disable_pinned_message_notifications_
     , use_default_disable_mention_notifications        = use_default_disable_mention_notifications_
@@ -59,8 +59,8 @@ instance I.ShortShow ChatNotificationSettings where
         , "mute_stories"                                     `I.p` mute_stories_
         , "use_default_story_sound"                          `I.p` use_default_story_sound_
         , "story_sound_id"                                   `I.p` story_sound_id_
-        , "use_default_show_story_sender"                    `I.p` use_default_show_story_sender_
-        , "show_story_sender"                                `I.p` show_story_sender_
+        , "use_default_show_story_poster"                    `I.p` use_default_show_story_poster_
+        , "show_story_poster"                                `I.p` show_story_poster_
         , "use_default_disable_pinned_message_notifications" `I.p` use_default_disable_pinned_message_notifications_
         , "disable_pinned_message_notifications"             `I.p` disable_pinned_message_notifications_
         , "use_default_disable_mention_notifications"        `I.p` use_default_disable_mention_notifications_
@@ -88,8 +88,8 @@ instance AT.FromJSON ChatNotificationSettings where
         mute_stories_                                     <- o A..:?                       "mute_stories"
         use_default_story_sound_                          <- o A..:?                       "use_default_story_sound"
         story_sound_id_                                   <- fmap I.readInt64 <$> o A..:?  "story_sound_id"
-        use_default_show_story_sender_                    <- o A..:?                       "use_default_show_story_sender"
-        show_story_sender_                                <- o A..:?                       "show_story_sender"
+        use_default_show_story_poster_                    <- o A..:?                       "use_default_show_story_poster"
+        show_story_poster_                                <- o A..:?                       "show_story_poster"
         use_default_disable_pinned_message_notifications_ <- o A..:?                       "use_default_disable_pinned_message_notifications"
         disable_pinned_message_notifications_             <- o A..:?                       "disable_pinned_message_notifications"
         use_default_disable_mention_notifications_        <- o A..:?                       "use_default_disable_mention_notifications"
@@ -105,8 +105,8 @@ instance AT.FromJSON ChatNotificationSettings where
           , mute_stories                                     = mute_stories_
           , use_default_story_sound                          = use_default_story_sound_
           , story_sound_id                                   = story_sound_id_
-          , use_default_show_story_sender                    = use_default_show_story_sender_
-          , show_story_sender                                = show_story_sender_
+          , use_default_show_story_poster                    = use_default_show_story_poster_
+          , show_story_poster                                = show_story_poster_
           , use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_
           , disable_pinned_message_notifications             = disable_pinned_message_notifications_
           , use_default_disable_mention_notifications        = use_default_disable_mention_notifications_
@@ -126,8 +126,8 @@ instance AT.ToJSON ChatNotificationSettings where
     , mute_stories                                     = mute_stories_
     , use_default_story_sound                          = use_default_story_sound_
     , story_sound_id                                   = story_sound_id_
-    , use_default_show_story_sender                    = use_default_show_story_sender_
-    , show_story_sender                                = show_story_sender_
+    , use_default_show_story_poster                    = use_default_show_story_poster_
+    , show_story_poster                                = show_story_poster_
     , use_default_disable_pinned_message_notifications = use_default_disable_pinned_message_notifications_
     , disable_pinned_message_notifications             = disable_pinned_message_notifications_
     , use_default_disable_mention_notifications        = use_default_disable_mention_notifications_
@@ -145,8 +145,8 @@ instance AT.ToJSON ChatNotificationSettings where
         , "mute_stories"                                     A..= mute_stories_
         , "use_default_story_sound"                          A..= use_default_story_sound_
         , "story_sound_id"                                   A..= fmap I.writeInt64  story_sound_id_
-        , "use_default_show_story_sender"                    A..= use_default_show_story_sender_
-        , "show_story_sender"                                A..= show_story_sender_
+        , "use_default_show_story_poster"                    A..= use_default_show_story_poster_
+        , "show_story_poster"                                A..= show_story_poster_
         , "use_default_disable_pinned_message_notifications" A..= use_default_disable_pinned_message_notifications_
         , "disable_pinned_message_notifications"             A..= disable_pinned_message_notifications_
         , "use_default_disable_mention_notifications"        A..= use_default_disable_mention_notifications_
@@ -166,8 +166,8 @@ defaultChatNotificationSettings =
     , mute_stories                                     = Nothing
     , use_default_story_sound                          = Nothing
     , story_sound_id                                   = Nothing
-    , use_default_show_story_sender                    = Nothing
-    , show_story_sender                                = Nothing
+    , use_default_show_story_poster                    = Nothing
+    , show_story_poster                                = Nothing
     , use_default_disable_pinned_message_notifications = Nothing
     , disable_pinned_message_notifications             = Nothing
     , use_default_disable_mention_notifications        = Nothing

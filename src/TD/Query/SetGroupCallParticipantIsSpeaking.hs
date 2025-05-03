@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Informs TDLib that speaking state of a participant of an active group has changed. Returns 'TD.Data.Ok.Ok'
+-- | Informs TDLib that speaking state of a participant of an active group call has changed. Returns 'TD.Data.Ok.Ok'
 data SetGroupCallParticipantIsSpeaking
   = SetGroupCallParticipantIsSpeaking
     { group_call_id :: Maybe Int  -- ^ Group call identifier

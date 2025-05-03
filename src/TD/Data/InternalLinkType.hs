@@ -67,6 +67,9 @@ data InternalLinkType
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
     }
+  | InternalLinkTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+    { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
+    }
   | InternalLinkTypeInstantView -- ^ The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
     { url          :: Maybe T.Text -- ^ URL to be passed to getWebPageInstantView
     , fallback_url :: Maybe T.Text -- ^ An URL to open if getWebPageInstantView fails
@@ -128,8 +131,8 @@ data InternalLinkType
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
     , expect_custom_emoji :: Maybe Bool   -- ^ True, if the sticker set is expected to contain custom emoji
     }
-  | InternalLinkTypeStory -- ^ The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
-    { story_sender_username :: Maybe T.Text -- ^ Username of the sender of the story
+  | InternalLinkTypeStory -- ^ The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
+    { story_poster_username :: Maybe T.Text -- ^ Username of the poster of the story
     , story_id              :: Maybe Int    -- ^ Story identifier
     }
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
@@ -151,7 +154,7 @@ data InternalLinkType
   | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
     { token :: Maybe T.Text -- ^ The token
     }
-  | InternalLinkTypeVideoChat -- ^ The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
+  | InternalLinkTypeVideoChat -- ^ The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
     { chat_username  :: Maybe T.Text -- ^ Username of the chat with the video chat
     , invite_hash    :: Maybe T.Text -- ^ If non-empty, invite hash to be used to join the video chat without being muted by administrators
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
@@ -285,6 +288,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "bot_username"    `I.p` bot_username_
         , "game_short_name" `I.p` game_short_name_
+        ]
+  shortShow InternalLinkTypeGroupCall
+    { invite_link = invite_link_
+    }
+      = "InternalLinkTypeGroupCall"
+        ++ I.cc
+        [ "invite_link" `I.p` invite_link_
         ]
   shortShow InternalLinkTypeInstantView
     { url          = url_
@@ -423,12 +433,12 @@ instance I.ShortShow InternalLinkType where
         , "expect_custom_emoji" `I.p` expect_custom_emoji_
         ]
   shortShow InternalLinkTypeStory
-    { story_sender_username = story_sender_username_
+    { story_poster_username = story_poster_username_
     , story_id              = story_id_
     }
       = "InternalLinkTypeStory"
         ++ I.cc
-        [ "story_sender_username" `I.p` story_sender_username_
+        [ "story_poster_username" `I.p` story_poster_username_
         , "story_id"              `I.p` story_id_
         ]
   shortShow InternalLinkTypeTheme
@@ -522,6 +532,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> pure InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
       "internalLinkTypeEditProfileSettings"                   -> pure InternalLinkTypeEditProfileSettings
       "internalLinkTypeGame"                                  -> parseInternalLinkTypeGame v
+      "internalLinkTypeGroupCall"                             -> parseInternalLinkTypeGroupCall v
       "internalLinkTypeInstantView"                           -> parseInternalLinkTypeInstantView v
       "internalLinkTypeInvoice"                               -> parseInternalLinkTypeInvoice v
       "internalLinkTypeLanguagePack"                          -> parseInternalLinkTypeLanguagePack v
@@ -652,6 +663,12 @@ instance AT.FromJSON InternalLinkType where
           { bot_username    = bot_username_
           , game_short_name = game_short_name_
           }
+      parseInternalLinkTypeGroupCall :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeGroupCall = A.withObject "InternalLinkTypeGroupCall" $ \o -> do
+        invite_link_ <- o A..:?  "invite_link"
+        pure $ InternalLinkTypeGroupCall
+          { invite_link = invite_link_
+          }
       parseInternalLinkTypeInstantView :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeInstantView = A.withObject "InternalLinkTypeInstantView" $ \o -> do
         url_          <- o A..:?  "url"
@@ -766,10 +783,10 @@ instance AT.FromJSON InternalLinkType where
           }
       parseInternalLinkTypeStory :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeStory = A.withObject "InternalLinkTypeStory" $ \o -> do
-        story_sender_username_ <- o A..:?  "story_sender_username"
+        story_poster_username_ <- o A..:?  "story_poster_username"
         story_id_              <- o A..:?  "story_id"
         pure $ InternalLinkTypeStory
-          { story_sender_username = story_sender_username_
+          { story_poster_username = story_poster_username_
           , story_id              = story_id_
           }
       parseInternalLinkTypeTheme :: A.Value -> AT.Parser InternalLinkType
@@ -962,6 +979,13 @@ instance AT.ToJSON InternalLinkType where
         , "bot_username"    A..= bot_username_
         , "game_short_name" A..= game_short_name_
         ]
+  toJSON InternalLinkTypeGroupCall
+    { invite_link = invite_link_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "internalLinkTypeGroupCall"
+        , "invite_link" A..= invite_link_
+        ]
   toJSON InternalLinkTypeInstantView
     { url          = url_
     , fallback_url = fallback_url_
@@ -1109,12 +1133,12 @@ instance AT.ToJSON InternalLinkType where
         , "expect_custom_emoji" A..= expect_custom_emoji_
         ]
   toJSON InternalLinkTypeStory
-    { story_sender_username = story_sender_username_
+    { story_poster_username = story_poster_username_
     , story_id              = story_id_
     }
       = A.object
         [ "@type"                 A..= AT.String "internalLinkTypeStory"
-        , "story_sender_username" A..= story_sender_username_
+        , "story_poster_username" A..= story_poster_username_
         , "story_id"              A..= story_id_
         ]
   toJSON InternalLinkTypeTheme

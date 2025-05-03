@@ -4,7 +4,7 @@ module TD.Data.CallDiscardReason
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.ByteString as BS
+import qualified Data.Text as T
 
 -- | Describes the reason why a call was discarded
 data CallDiscardReason
@@ -13,8 +13,8 @@ data CallDiscardReason
   | CallDiscardReasonDeclined -- ^ The call was ended before the conversation started. It was declined by the other party
   | CallDiscardReasonDisconnected -- ^ The call was ended during the conversation because the users were disconnected
   | CallDiscardReasonHungUp -- ^ The call was ended because one of the parties hung up
-  | CallDiscardReasonAllowGroupCall -- ^ The call was ended because it has been used successfully to transfer private encryption key for the associated group call
-    { encrypted_group_call_key :: Maybe BS.ByteString -- ^ Encrypted using the call private key encryption key for the associated group call
+  | CallDiscardReasonUpgradeToGroupCall -- ^ The call was ended because it has been upgraded to a group call
+    { invite_link :: Maybe T.Text -- ^ Invite link for the group call
     }
   deriving (Eq, Show)
 
@@ -29,12 +29,12 @@ instance I.ShortShow CallDiscardReason where
       = "CallDiscardReasonDisconnected"
   shortShow CallDiscardReasonHungUp
       = "CallDiscardReasonHungUp"
-  shortShow CallDiscardReasonAllowGroupCall
-    { encrypted_group_call_key = encrypted_group_call_key_
+  shortShow CallDiscardReasonUpgradeToGroupCall
+    { invite_link = invite_link_
     }
-      = "CallDiscardReasonAllowGroupCall"
+      = "CallDiscardReasonUpgradeToGroupCall"
         ++ I.cc
-        [ "encrypted_group_call_key" `I.p` encrypted_group_call_key_
+        [ "invite_link" `I.p` invite_link_
         ]
 
 instance AT.FromJSON CallDiscardReason where
@@ -42,20 +42,20 @@ instance AT.FromJSON CallDiscardReason where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "callDiscardReasonEmpty"          -> pure CallDiscardReasonEmpty
-      "callDiscardReasonMissed"         -> pure CallDiscardReasonMissed
-      "callDiscardReasonDeclined"       -> pure CallDiscardReasonDeclined
-      "callDiscardReasonDisconnected"   -> pure CallDiscardReasonDisconnected
-      "callDiscardReasonHungUp"         -> pure CallDiscardReasonHungUp
-      "callDiscardReasonAllowGroupCall" -> parseCallDiscardReasonAllowGroupCall v
-      _                                 -> mempty
+      "callDiscardReasonEmpty"              -> pure CallDiscardReasonEmpty
+      "callDiscardReasonMissed"             -> pure CallDiscardReasonMissed
+      "callDiscardReasonDeclined"           -> pure CallDiscardReasonDeclined
+      "callDiscardReasonDisconnected"       -> pure CallDiscardReasonDisconnected
+      "callDiscardReasonHungUp"             -> pure CallDiscardReasonHungUp
+      "callDiscardReasonUpgradeToGroupCall" -> parseCallDiscardReasonUpgradeToGroupCall v
+      _                                     -> mempty
     
     where
-      parseCallDiscardReasonAllowGroupCall :: A.Value -> AT.Parser CallDiscardReason
-      parseCallDiscardReasonAllowGroupCall = A.withObject "CallDiscardReasonAllowGroupCall" $ \o -> do
-        encrypted_group_call_key_ <- fmap I.readBytes <$> o A..:?  "encrypted_group_call_key"
-        pure $ CallDiscardReasonAllowGroupCall
-          { encrypted_group_call_key = encrypted_group_call_key_
+      parseCallDiscardReasonUpgradeToGroupCall :: A.Value -> AT.Parser CallDiscardReason
+      parseCallDiscardReasonUpgradeToGroupCall = A.withObject "CallDiscardReasonUpgradeToGroupCall" $ \o -> do
+        invite_link_ <- o A..:?  "invite_link"
+        pure $ CallDiscardReasonUpgradeToGroupCall
+          { invite_link = invite_link_
           }
   parseJSON _ = mempty
 

@@ -19,7 +19,7 @@ data MessageReplyTo
     , content          :: Maybe MessageContent.MessageContent -- ^ Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
     }
   | MessageReplyToStory -- ^ Describes a story replied by a given message
-    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story
+    { story_poster_chat_id :: Maybe Int -- ^ The identifier of the poster of the story
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
   deriving (Eq, Show)
@@ -43,12 +43,12 @@ instance I.ShortShow MessageReplyTo where
         , "content"          `I.p` content_
         ]
   shortShow MessageReplyToStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = "MessageReplyToStory"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
 
@@ -80,10 +80,10 @@ instance AT.FromJSON MessageReplyTo where
           }
       parseMessageReplyToStory :: A.Value -> AT.Parser MessageReplyTo
       parseMessageReplyToStory = A.withObject "MessageReplyToStory" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         pure $ MessageReplyToStory
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           }
   parseJSON _ = mempty

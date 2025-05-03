@@ -38,9 +38,9 @@ data ChatStatistics
     , mean_message_view_count          :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently sent messages were viewed
     , mean_message_share_count         :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently sent messages were shared
     , mean_message_reaction_count      :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times reactions were added to the recently sent messages
-    , mean_story_view_count            :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently sent stories were viewed
-    , mean_story_share_count           :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently sent stories were shared
-    , mean_story_reaction_count        :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times reactions were added to the recently sent stories
+    , mean_story_view_count            :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently posted stories were viewed
+    , mean_story_share_count           :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times the recently posted stories were shared
+    , mean_story_reaction_count        :: Maybe StatisticalValue.StatisticalValue                             -- ^ Mean number of times reactions were added to the recently posted stories
     , enabled_notifications_percentage :: Maybe Double                                                        -- ^ A percentage of users with enabled notifications for the chat; 0-100
     , member_count_graph               :: Maybe StatisticalGraph.StatisticalGraph                             -- ^ A graph containing number of members in the chat
     , join_graph                       :: Maybe StatisticalGraph.StatisticalGraph                             -- ^ A graph containing number of members joined and left the chat
@@ -54,7 +54,7 @@ data ChatStatistics
     , story_interaction_graph          :: Maybe StatisticalGraph.StatisticalGraph                             -- ^ A graph containing number of story views and shares
     , story_reaction_graph             :: Maybe StatisticalGraph.StatisticalGraph                             -- ^ A graph containing number of reactions on stories
     , instant_view_interaction_graph   :: Maybe StatisticalGraph.StatisticalGraph                             -- ^ A graph containing number of views of associated with the chat instant views
-    , recent_interactions              :: Maybe [ChatStatisticsInteractionInfo.ChatStatisticsInteractionInfo] -- ^ Detailed statistics about number of views and shares of recently sent messages and stories
+    , recent_interactions              :: Maybe [ChatStatisticsInteractionInfo.ChatStatisticsInteractionInfo] -- ^ Detailed statistics about number of views and shares of recently sent messages and posted stories
     }
   deriving (Eq, Show)
 

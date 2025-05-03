@@ -22,7 +22,7 @@ data BusinessBotRights
     , can_change_gift_settings       :: Maybe Bool -- ^ True, if the bot can change gift receiving settings of the business account
     , can_transfer_and_upgrade_gifts :: Maybe Bool -- ^ True, if the bot can transfer and upgrade gifts received by the business account
     , can_transfer_stars             :: Maybe Bool -- ^ True, if the bot can transfer Telegram Stars received by the business account to account of the bot, or use them to upgrade and transfer gifts
-    , can_manage_stories             :: Maybe Bool -- ^ True, if the bot can send, edit and delete stories
+    , can_manage_stories             :: Maybe Bool -- ^ True, if the bot can post, edit and delete stories
     }
   deriving (Eq, Show)
 

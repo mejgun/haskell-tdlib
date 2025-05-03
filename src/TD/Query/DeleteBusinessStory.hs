@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Deletes a story sent by the bot on behalf of a business account; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Deletes a story posted by the bot on behalf of a business account; for bots only. Returns 'TD.Data.Ok.Ok'
 data DeleteBusinessStory
   = DeleteBusinessStory
     { business_connection_id :: Maybe T.Text -- ^ Unique identifier of business connection

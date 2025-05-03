@@ -5,31 +5,32 @@ module TD.Query.CreateGroupCall
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.GroupCallJoinParameters as GroupCallJoinParameters
 
--- | Creates a group call from a one-to-one call. Returns 'TD.Data.Ok.Ok'
+-- | Creates a new group call that isn't bound to a chat. Returns 'TD.Data.GroupCallInfo.GroupCallInfo'
 data CreateGroupCall
   = CreateGroupCall
-    { call_id :: Maybe Int -- ^ Call identifier
+    { join_parameters :: Maybe GroupCallJoinParameters.GroupCallJoinParameters -- ^ Parameters to join the call; pass null to only create call link without joining the call
     }
   deriving (Eq, Show)
 
 instance I.ShortShow CreateGroupCall where
   shortShow
     CreateGroupCall
-      { call_id = call_id_
+      { join_parameters = join_parameters_
       }
         = "CreateGroupCall"
           ++ I.cc
-          [ "call_id" `I.p` call_id_
+          [ "join_parameters" `I.p` join_parameters_
           ]
 
 instance AT.ToJSON CreateGroupCall where
   toJSON
     CreateGroupCall
-      { call_id = call_id_
+      { join_parameters = join_parameters_
       }
         = A.object
-          [ "@type"   A..= AT.String "createGroupCall"
-          , "call_id" A..= call_id_
+          [ "@type"           A..= AT.String "createGroupCall"
+          , "join_parameters" A..= join_parameters_
           ]
 

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right. Returns 'TD.Data.RtmpUrl.RtmpUrl'
+-- | Returns RTMP URL for streaming to the video chat of a chat; requires can_manage_video_chats administrator right. Returns 'TD.Data.RtmpUrl.RtmpUrl'
 data GetVideoChatRtmpUrl
   = GetVideoChatRtmpUrl
     { chat_id :: Maybe Int -- ^ Chat identifier

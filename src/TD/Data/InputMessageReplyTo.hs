@@ -18,7 +18,7 @@ data InputMessageReplyTo
     , quote      :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied
-    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat and channel stories can't be replied
+    { story_poster_chat_id :: Maybe Int -- ^ The identifier of the poster of the story. Currently, stories can be replied only in the chat that posted the story; channel stories can't be replied
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
   deriving (Eq, Show)
@@ -45,12 +45,12 @@ instance I.ShortShow InputMessageReplyTo where
         , "quote"      `I.p` quote_
         ]
   shortShow InputMessageReplyToStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = "InputMessageReplyToStory"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
 
@@ -85,10 +85,10 @@ instance AT.FromJSON InputMessageReplyTo where
           }
       parseInputMessageReplyToStory :: A.Value -> AT.Parser InputMessageReplyTo
       parseInputMessageReplyToStory = A.withObject "InputMessageReplyToStory" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         pure $ InputMessageReplyToStory
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           }
   parseJSON _ = mempty
@@ -115,12 +115,12 @@ instance AT.ToJSON InputMessageReplyTo where
         , "quote"      A..= quote_
         ]
   toJSON InputMessageReplyToStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = A.object
         [ "@type"                A..= AT.String "inputMessageReplyToStory"
-        , "story_sender_chat_id" A..= story_sender_chat_id_
+        , "story_poster_chat_id" A..= story_poster_chat_id_
         , "story_id"             A..= story_id_
         ]
 

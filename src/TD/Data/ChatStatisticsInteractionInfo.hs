@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatStatisticsObjectType as ChatStatisticsObjectType
 
 data ChatStatisticsInteractionInfo
-  = ChatStatisticsInteractionInfo -- ^ Contains statistics about interactions with a message sent in the chat or a story sent by the chat
+  = ChatStatisticsInteractionInfo -- ^ Contains statistics about interactions with a message sent in the chat or a story posted on behalf of the chat
     { object_type    :: Maybe ChatStatisticsObjectType.ChatStatisticsObjectType -- ^ Type of the object
     , view_count     :: Maybe Int                                               -- ^ Number of times the object was viewed
     , forward_count  :: Maybe Int                                               -- ^ Number of times the object was forwarded

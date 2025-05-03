@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputFile as InputFile
 
--- | The content of a story to send
+-- | The content of a story to post
 data InputStoryContent
   = InputStoryContentPhoto -- ^ A photo story
     { photo                  :: Maybe InputFile.InputFile -- ^ Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920

@@ -27,12 +27,12 @@ import qualified TD.Data.Game as Game
 import qualified TD.Data.Poll as Poll
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
+import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
-import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
 import qualified TD.Data.GiveawayPrize as GiveawayPrize
 import qualified TD.Data.Gift as Gift
@@ -138,7 +138,7 @@ data MessageContent
     { poll :: Maybe Poll.Poll -- ^ The poll description
     }
   | MessageStory -- ^ A message with a forwarded story
-    { story_sender_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story
+    { story_poster_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int  -- ^ Story identifier
     , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
     }
@@ -157,6 +157,13 @@ data MessageContent
     { is_video       :: Maybe Bool                                -- ^ True, if the call was a video call
     , discard_reason :: Maybe CallDiscardReason.CallDiscardReason -- ^ Reason why the call was discarded
     , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
+    }
+  | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+    { is_active             :: Maybe Bool                          -- ^ True, if the call is active, i.e. the called user joined the call
+    , was_missed            :: Maybe Bool                          -- ^ True, if the called user missed or declined the call
+    , is_video              :: Maybe Bool                          -- ^ True, if the call is a video call
+    , duration              :: Maybe Int                           -- ^ Call duration, in seconds; for left calls only
+    , other_participant_ids :: Maybe [MessageSender.MessageSender] -- ^ Identifiers of some other call participants
     }
   | MessageVideoChatScheduled -- ^ A new video chat was scheduled
     { group_call_id :: Maybe Int -- ^ Identifier of the video chat. The video chat can be received through the method getGroupCall
@@ -620,13 +627,13 @@ instance I.ShortShow MessageContent where
         [ "poll" `I.p` poll_
         ]
   shortShow MessageStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     , via_mention          = via_mention_
     }
       = "MessageStory"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         , "via_mention"          `I.p` via_mention_
         ]
@@ -663,6 +670,21 @@ instance I.ShortShow MessageContent where
         [ "is_video"       `I.p` is_video_
         , "discard_reason" `I.p` discard_reason_
         , "duration"       `I.p` duration_
+        ]
+  shortShow MessageGroupCall
+    { is_active             = is_active_
+    , was_missed            = was_missed_
+    , is_video              = is_video_
+    , duration              = duration_
+    , other_participant_ids = other_participant_ids_
+    }
+      = "MessageGroupCall"
+        ++ I.cc
+        [ "is_active"             `I.p` is_active_
+        , "was_missed"            `I.p` was_missed_
+        , "is_video"              `I.p` is_video_
+        , "duration"              `I.p` duration_
+        , "other_participant_ids" `I.p` other_participant_ids_
         ]
   shortShow MessageVideoChatScheduled
     { group_call_id = group_call_id_
@@ -1260,6 +1282,7 @@ instance AT.FromJSON MessageContent where
       "messageStory"                        -> parseMessageStory v
       "messageInvoice"                      -> parseMessageInvoice v
       "messageCall"                         -> parseMessageCall v
+      "messageGroupCall"                    -> parseMessageGroupCall v
       "messageVideoChatScheduled"           -> parseMessageVideoChatScheduled v
       "messageVideoChatStarted"             -> parseMessageVideoChatStarted v
       "messageVideoChatEnded"               -> parseMessageVideoChatEnded v
@@ -1493,11 +1516,11 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageStory :: A.Value -> AT.Parser MessageContent
       parseMessageStory = A.withObject "MessageStory" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         via_mention_          <- o A..:?  "via_mention"
         pure $ MessageStory
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           , via_mention          = via_mention_
           }
@@ -1532,6 +1555,20 @@ instance AT.FromJSON MessageContent where
           { is_video       = is_video_
           , discard_reason = discard_reason_
           , duration       = duration_
+          }
+      parseMessageGroupCall :: A.Value -> AT.Parser MessageContent
+      parseMessageGroupCall = A.withObject "MessageGroupCall" $ \o -> do
+        is_active_             <- o A..:?  "is_active"
+        was_missed_            <- o A..:?  "was_missed"
+        is_video_              <- o A..:?  "is_video"
+        duration_              <- o A..:?  "duration"
+        other_participant_ids_ <- o A..:?  "other_participant_ids"
+        pure $ MessageGroupCall
+          { is_active             = is_active_
+          , was_missed            = was_missed_
+          , is_video              = is_video_
+          , duration              = duration_
+          , other_participant_ids = other_participant_ids_
           }
       parseMessageVideoChatScheduled :: A.Value -> AT.Parser MessageContent
       parseMessageVideoChatScheduled = A.withObject "MessageVideoChatScheduled" $ \o -> do

@@ -149,8 +149,8 @@ data InputMessageContent
     , close_date   :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
     , is_closed    :: Maybe Bool                          -- ^ True, if the poll needs to be sent already closed; for bots only
     }
-  | InputMessageStory -- ^ A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
-    { story_sender_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
+  | InputMessageStory -- ^ A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
+    { story_poster_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
     }
   | InputMessageForwarded -- ^ A forwarded message
@@ -438,12 +438,12 @@ instance I.ShortShow InputMessageContent where
         , "is_closed"    `I.p` is_closed_
         ]
   shortShow InputMessageStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = "InputMessageStory"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
   shortShow InputMessageForwarded
@@ -749,10 +749,10 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageStory :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageStory = A.withObject "InputMessageStory" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         pure $ InputMessageStory
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           }
       parseInputMessageForwarded :: A.Value -> AT.Parser InputMessageContent
@@ -1048,12 +1048,12 @@ instance AT.ToJSON InputMessageContent where
         , "is_closed"    A..= is_closed_
         ]
   toJSON InputMessageStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = A.object
         [ "@type"                A..= AT.String "inputMessageStory"
-        , "story_sender_chat_id" A..= story_sender_chat_id_
+        , "story_poster_chat_id" A..= story_poster_chat_id_
         , "story_id"             A..= story_id_
         ]
   toJSON InputMessageForwarded

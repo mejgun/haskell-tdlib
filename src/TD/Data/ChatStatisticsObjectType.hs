@@ -10,7 +10,7 @@ data ChatStatisticsObjectType
   = ChatStatisticsObjectTypeMessage -- ^ Describes a message sent in the chat
     { message_id :: Maybe Int -- ^ Message identifier
     }
-  | ChatStatisticsObjectTypeStory -- ^ Describes a story sent by the chat
+  | ChatStatisticsObjectTypeStory -- ^ Describes a story posted on behalf of the chat
     { story_id :: Maybe Int -- ^ Story identifier
     }
   deriving (Eq, Show)

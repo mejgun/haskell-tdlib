@@ -13,7 +13,7 @@ import qualified TD.Data.FormattedText as FormattedText
 -- | Changes content and caption of a story. Can be called only if story.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
 data EditStory
   = EditStory
-    { story_sender_chat_id :: Maybe Int                                 -- ^ Identifier of the chat that posted the story
+    { story_poster_chat_id :: Maybe Int                                 -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int                                 -- ^ Identifier of the story to edit
     , content              :: Maybe InputStoryContent.InputStoryContent -- ^ New content of the story; pass null to keep the current content
     , areas                :: Maybe InputStoryAreas.InputStoryAreas     -- ^ New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed
@@ -24,7 +24,7 @@ data EditStory
 instance I.ShortShow EditStory where
   shortShow
     EditStory
-      { story_sender_chat_id = story_sender_chat_id_
+      { story_poster_chat_id = story_poster_chat_id_
       , story_id             = story_id_
       , content              = content_
       , areas                = areas_
@@ -32,7 +32,7 @@ instance I.ShortShow EditStory where
       }
         = "EditStory"
           ++ I.cc
-          [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+          [ "story_poster_chat_id" `I.p` story_poster_chat_id_
           , "story_id"             `I.p` story_id_
           , "content"              `I.p` content_
           , "areas"                `I.p` areas_
@@ -42,7 +42,7 @@ instance I.ShortShow EditStory where
 instance AT.ToJSON EditStory where
   toJSON
     EditStory
-      { story_sender_chat_id = story_sender_chat_id_
+      { story_poster_chat_id = story_poster_chat_id_
       , story_id             = story_id_
       , content              = content_
       , areas                = areas_
@@ -50,7 +50,7 @@ instance AT.ToJSON EditStory where
       }
         = A.object
           [ "@type"                A..= AT.String "editStory"
-          , "story_sender_chat_id" A..= story_sender_chat_id_
+          , "story_poster_chat_id" A..= story_poster_chat_id_
           , "story_id"             A..= story_id_
           , "content"              A..= content_
           , "areas"                A..= areas_
@@ -60,7 +60,7 @@ instance AT.ToJSON EditStory where
 defaultEditStory :: EditStory
 defaultEditStory =
   EditStory
-    { story_sender_chat_id = Nothing
+    { story_poster_chat_id = Nothing
     , story_id             = Nothing
     , content              = Nothing
     , areas                = Nothing

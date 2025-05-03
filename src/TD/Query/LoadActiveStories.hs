@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryList as StoryList
 
--- | Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_sender_chat_id) in descending order. Returns a 404 error if all active stories have been loaded. Returns 'TD.Data.Ok.Ok'
+-- | Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_poster_chat_id) in descending order. Returns a 404 error if all active stories have been loaded. Returns 'TD.Data.Ok.Ok'
 data LoadActiveStories
   = LoadActiveStories
     { story_list :: Maybe StoryList.StoryList -- ^ The story list in which to load active stories

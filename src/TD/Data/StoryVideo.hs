@@ -9,7 +9,7 @@ import qualified TD.Data.Thumbnail as Thumbnail
 import qualified TD.Data.File as File
 
 data StoryVideo
-  = StoryVideo -- ^ Describes a video file sent in a story
+  = StoryVideo -- ^ Describes a video file posted as a story
     { duration              :: Maybe Double                      -- ^ Duration of the video, in seconds
     , width                 :: Maybe Int                         -- ^ Video width
     , height                :: Maybe Int                         -- ^ Video height

@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
 data VideoChat
-  = VideoChat -- ^ Describes a video chat
+  = VideoChat -- ^ Describes a video chat, i.e. a group call bound to a chat
     { group_call_id          :: Maybe Int                         -- ^ Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
     , has_participants       :: Maybe Bool                        -- ^ True, if the video chat has participants
     , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chat; may be null

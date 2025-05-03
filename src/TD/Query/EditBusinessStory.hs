@@ -11,10 +11,10 @@ import qualified TD.Data.InputStoryAreas as InputStoryAreas
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
--- | Changes a story sent by the bot on behalf of a business account; for bots only. Returns 'TD.Data.Story.Story'
+-- | Changes a story posted by the bot on behalf of a business account; for bots only. Returns 'TD.Data.Story.Story'
 data EditBusinessStory
   = EditBusinessStory
-    { story_sender_chat_id :: Maybe Int                                       -- ^ Identifier of the chat that posted the story
+    { story_poster_chat_id :: Maybe Int                                       -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int                                       -- ^ Identifier of the story to edit
     , content              :: Maybe InputStoryContent.InputStoryContent       -- ^ New content of the story
     , areas                :: Maybe InputStoryAreas.InputStoryAreas           -- ^ New clickable rectangle areas to be shown on the story media
@@ -26,7 +26,7 @@ data EditBusinessStory
 instance I.ShortShow EditBusinessStory where
   shortShow
     EditBusinessStory
-      { story_sender_chat_id = story_sender_chat_id_
+      { story_poster_chat_id = story_poster_chat_id_
       , story_id             = story_id_
       , content              = content_
       , areas                = areas_
@@ -35,7 +35,7 @@ instance I.ShortShow EditBusinessStory where
       }
         = "EditBusinessStory"
           ++ I.cc
-          [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+          [ "story_poster_chat_id" `I.p` story_poster_chat_id_
           , "story_id"             `I.p` story_id_
           , "content"              `I.p` content_
           , "areas"                `I.p` areas_
@@ -46,7 +46,7 @@ instance I.ShortShow EditBusinessStory where
 instance AT.ToJSON EditBusinessStory where
   toJSON
     EditBusinessStory
-      { story_sender_chat_id = story_sender_chat_id_
+      { story_poster_chat_id = story_poster_chat_id_
       , story_id             = story_id_
       , content              = content_
       , areas                = areas_
@@ -55,7 +55,7 @@ instance AT.ToJSON EditBusinessStory where
       }
         = A.object
           [ "@type"                A..= AT.String "editBusinessStory"
-          , "story_sender_chat_id" A..= story_sender_chat_id_
+          , "story_poster_chat_id" A..= story_poster_chat_id_
           , "story_id"             A..= story_id_
           , "content"              A..= content_
           , "areas"                A..= areas_
@@ -66,7 +66,7 @@ instance AT.ToJSON EditBusinessStory where
 defaultEditBusinessStory :: EditBusinessStory
 defaultEditBusinessStory =
   EditBusinessStory
-    { story_sender_chat_id = Nothing
+    { story_poster_chat_id = Nothing
     , story_id             = Nothing
     , content              = Nothing
     , areas                = Nothing

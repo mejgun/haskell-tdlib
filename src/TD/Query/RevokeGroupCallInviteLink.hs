@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag. Returns 'TD.Data.Ok.Ok'
+-- | Revokes invite link for a group call. Requires groupCall.can_be_managed right for video chats or groupCall.is_owned otherwise. Returns 'TD.Data.Ok.Ok'
 data RevokeGroupCallInviteLink
   = RevokeGroupCallInviteLink
     { group_call_id :: Maybe Int -- ^ Group call identifier

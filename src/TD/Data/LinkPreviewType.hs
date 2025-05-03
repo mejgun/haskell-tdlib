@@ -86,6 +86,7 @@ data LinkPreviewType
     , height    :: Maybe Int    -- ^ Expected height of the video preview; 0 if unknown
     , duration  :: Maybe Int    -- ^ Duration of the video, in seconds; 0 if unknown
     }
+  | LinkPreviewTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat
   | LinkPreviewTypeInvoice -- ^ The link is a link to an invoice
   | LinkPreviewTypeMessage -- ^ The link is a link to a text or a poll Telegram message
   | LinkPreviewTypePhoto -- ^ The link is a link to a photo
@@ -100,7 +101,7 @@ data LinkPreviewType
     { stickers :: Maybe [Sticker.Sticker] -- ^ Up to 4 stickers from the sticker set
     }
   | LinkPreviewTypeStory -- ^ The link is a link to a story. Link preview description is unavailable
-    { story_sender_chat_id :: Maybe Int -- ^ The identifier of the chat that posted the story
+    { story_poster_chat_id :: Maybe Int -- ^ The identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
     }
   | LinkPreviewTypeSupergroupBoost -- ^ The link is a link to boost a supergroup chat
@@ -281,6 +282,8 @@ instance I.ShortShow LinkPreviewType where
         , "height"    `I.p` height_
         , "duration"  `I.p` duration_
         ]
+  shortShow LinkPreviewTypeGroupCall
+      = "LinkPreviewTypeGroupCall"
   shortShow LinkPreviewTypeInvoice
       = "LinkPreviewTypeInvoice"
   shortShow LinkPreviewTypeMessage
@@ -311,12 +314,12 @@ instance I.ShortShow LinkPreviewType where
         [ "stickers" `I.p` stickers_
         ]
   shortShow LinkPreviewTypeStory
-    { story_sender_chat_id = story_sender_chat_id_
+    { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
     }
       = "LinkPreviewTypeStory"
         ++ I.cc
-        [ "story_sender_chat_id" `I.p` story_sender_chat_id_
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
   shortShow LinkPreviewTypeSupergroupBoost
@@ -414,6 +417,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeEmbeddedVideoPlayer"     -> parseLinkPreviewTypeEmbeddedVideoPlayer v
       "linkPreviewTypeExternalAudio"           -> parseLinkPreviewTypeExternalAudio v
       "linkPreviewTypeExternalVideo"           -> parseLinkPreviewTypeExternalVideo v
+      "linkPreviewTypeGroupCall"               -> pure LinkPreviewTypeGroupCall
       "linkPreviewTypeInvoice"                 -> pure LinkPreviewTypeInvoice
       "linkPreviewTypeMessage"                 -> pure LinkPreviewTypeMessage
       "linkPreviewTypePhoto"                   -> parseLinkPreviewTypePhoto v
@@ -583,10 +587,10 @@ instance AT.FromJSON LinkPreviewType where
           }
       parseLinkPreviewTypeStory :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeStory = A.withObject "LinkPreviewTypeStory" $ \o -> do
-        story_sender_chat_id_ <- o A..:?  "story_sender_chat_id"
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
         story_id_             <- o A..:?  "story_id"
         pure $ LinkPreviewTypeStory
-          { story_sender_chat_id = story_sender_chat_id_
+          { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           }
       parseLinkPreviewTypeSupergroupBoost :: A.Value -> AT.Parser LinkPreviewType

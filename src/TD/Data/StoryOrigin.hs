@@ -8,12 +8,12 @@ import qualified Data.Text as T
 
 -- | Contains information about the origin of a story that was reposted
 data StoryOrigin
-  = StoryOriginPublicStory -- ^ The original story was a public story with known sender
+  = StoryOriginPublicStory -- ^ The original story was a public story that was posted by a known chat
     { chat_id  :: Maybe Int -- ^ Identifier of the chat that posted original story
     , story_id :: Maybe Int -- ^ Story identifier of the original story
     }
-  | StoryOriginHiddenUser -- ^ The original story was sent by an unknown user
-    { sender_name :: Maybe T.Text -- ^ Name of the story sender
+  | StoryOriginHiddenUser -- ^ The original story was posted by an unknown user
+    { poster_name :: Maybe T.Text -- ^ Name of the user or the chat that posted the story
     }
   deriving (Eq, Show)
 
@@ -28,11 +28,11 @@ instance I.ShortShow StoryOrigin where
         , "story_id" `I.p` story_id_
         ]
   shortShow StoryOriginHiddenUser
-    { sender_name = sender_name_
+    { poster_name = poster_name_
     }
       = "StoryOriginHiddenUser"
         ++ I.cc
-        [ "sender_name" `I.p` sender_name_
+        [ "poster_name" `I.p` poster_name_
         ]
 
 instance AT.FromJSON StoryOrigin where
@@ -55,9 +55,9 @@ instance AT.FromJSON StoryOrigin where
           }
       parseStoryOriginHiddenUser :: A.Value -> AT.Parser StoryOrigin
       parseStoryOriginHiddenUser = A.withObject "StoryOriginHiddenUser" $ \o -> do
-        sender_name_ <- o A..:?  "sender_name"
+        poster_name_ <- o A..:?  "poster_name"
         pure $ StoryOriginHiddenUser
-          { sender_name = sender_name_
+          { poster_name = poster_name_
           }
   parseJSON _ = mempty
 

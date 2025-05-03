@@ -1,6 +1,6 @@
-module TD.Query.GetGroupCallStreamSegment
-  (GetGroupCallStreamSegment(..)
-  , defaultGetGroupCallStreamSegment
+module TD.Query.GetVideoChatStreamSegment
+  (GetVideoChatStreamSegment(..)
+  , defaultGetVideoChatStreamSegment
   ) where
 
 import qualified Data.Aeson as A
@@ -8,9 +8,9 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.GroupCallVideoQuality as GroupCallVideoQuality
 
--- | Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video. Returns 'TD.Data.FilePart.FilePart'
-data GetGroupCallStreamSegment
-  = GetGroupCallStreamSegment
+-- | Returns a file with a segment of a video chat stream in a modified OGG format for audio or MPEG-4 format for video. Returns 'TD.Data.Data.Data'
+data GetVideoChatStreamSegment
+  = GetVideoChatStreamSegment
     { group_call_id :: Maybe Int                                         -- ^ Group call identifier
     , time_offset   :: Maybe Int                                         -- ^ Point in time when the stream segment begins; Unix timestamp in milliseconds
     , scale         :: Maybe Int                                         -- ^ Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
@@ -19,16 +19,16 @@ data GetGroupCallStreamSegment
     }
   deriving (Eq, Show)
 
-instance I.ShortShow GetGroupCallStreamSegment where
+instance I.ShortShow GetVideoChatStreamSegment where
   shortShow
-    GetGroupCallStreamSegment
+    GetVideoChatStreamSegment
       { group_call_id = group_call_id_
       , time_offset   = time_offset_
       , scale         = scale_
       , channel_id    = channel_id_
       , video_quality = video_quality_
       }
-        = "GetGroupCallStreamSegment"
+        = "GetVideoChatStreamSegment"
           ++ I.cc
           [ "group_call_id" `I.p` group_call_id_
           , "time_offset"   `I.p` time_offset_
@@ -37,9 +37,9 @@ instance I.ShortShow GetGroupCallStreamSegment where
           , "video_quality" `I.p` video_quality_
           ]
 
-instance AT.ToJSON GetGroupCallStreamSegment where
+instance AT.ToJSON GetVideoChatStreamSegment where
   toJSON
-    GetGroupCallStreamSegment
+    GetVideoChatStreamSegment
       { group_call_id = group_call_id_
       , time_offset   = time_offset_
       , scale         = scale_
@@ -47,7 +47,7 @@ instance AT.ToJSON GetGroupCallStreamSegment where
       , video_quality = video_quality_
       }
         = A.object
-          [ "@type"         A..= AT.String "getGroupCallStreamSegment"
+          [ "@type"         A..= AT.String "getVideoChatStreamSegment"
           , "group_call_id" A..= group_call_id_
           , "time_offset"   A..= time_offset_
           , "scale"         A..= scale_
@@ -55,9 +55,9 @@ instance AT.ToJSON GetGroupCallStreamSegment where
           , "video_quality" A..= video_quality_
           ]
 
-defaultGetGroupCallStreamSegment :: GetGroupCallStreamSegment
-defaultGetGroupCallStreamSegment =
-  GetGroupCallStreamSegment
+defaultGetVideoChatStreamSegment :: GetVideoChatStreamSegment
+defaultGetVideoChatStreamSegment =
+  GetVideoChatStreamSegment
     { group_call_id = Nothing
     , time_offset   = Nothing
     , scale         = Nothing

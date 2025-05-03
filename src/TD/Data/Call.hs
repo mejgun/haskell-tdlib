@@ -8,32 +8,29 @@ import qualified TD.Data.CallState as CallState
 
 data Call
   = Call -- ^ Describes a call
-    { _id           :: Maybe Int                 -- ^ Call identifier, not persistent
-    , user_id       :: Maybe Int                 -- ^ User identifier of the other call participant
-    , is_outgoing   :: Maybe Bool                -- ^ True, if the call is outgoing
-    , is_video      :: Maybe Bool                -- ^ True, if the call is a video call
-    , state         :: Maybe CallState.CallState -- ^ Call state
-    , group_call_id :: Maybe Int                 -- ^ Identifier of the group call associated with the call; 0 if the group call isn't created yet. The group call can be received through the method getGroupCall
+    { _id         :: Maybe Int                 -- ^ Call identifier, not persistent
+    , user_id     :: Maybe Int                 -- ^ User identifier of the other call participant
+    , is_outgoing :: Maybe Bool                -- ^ True, if the call is outgoing
+    , is_video    :: Maybe Bool                -- ^ True, if the call is a video call
+    , state       :: Maybe CallState.CallState -- ^ Call state
     }
   deriving (Eq, Show)
 
 instance I.ShortShow Call where
   shortShow Call
-    { _id           = _id_
-    , user_id       = user_id_
-    , is_outgoing   = is_outgoing_
-    , is_video      = is_video_
-    , state         = state_
-    , group_call_id = group_call_id_
+    { _id         = _id_
+    , user_id     = user_id_
+    , is_outgoing = is_outgoing_
+    , is_video    = is_video_
+    , state       = state_
     }
       = "Call"
         ++ I.cc
-        [ "_id"           `I.p` _id_
-        , "user_id"       `I.p` user_id_
-        , "is_outgoing"   `I.p` is_outgoing_
-        , "is_video"      `I.p` is_video_
-        , "state"         `I.p` state_
-        , "group_call_id" `I.p` group_call_id_
+        [ "_id"         `I.p` _id_
+        , "user_id"     `I.p` user_id_
+        , "is_outgoing" `I.p` is_outgoing_
+        , "is_video"    `I.p` is_video_
+        , "state"       `I.p` state_
         ]
 
 instance AT.FromJSON Call where
@@ -47,19 +44,17 @@ instance AT.FromJSON Call where
     where
       parseCall :: A.Value -> AT.Parser Call
       parseCall = A.withObject "Call" $ \o -> do
-        _id_           <- o A..:?  "id"
-        user_id_       <- o A..:?  "user_id"
-        is_outgoing_   <- o A..:?  "is_outgoing"
-        is_video_      <- o A..:?  "is_video"
-        state_         <- o A..:?  "state"
-        group_call_id_ <- o A..:?  "group_call_id"
+        _id_         <- o A..:?  "id"
+        user_id_     <- o A..:?  "user_id"
+        is_outgoing_ <- o A..:?  "is_outgoing"
+        is_video_    <- o A..:?  "is_video"
+        state_       <- o A..:?  "state"
         pure $ Call
-          { _id           = _id_
-          , user_id       = user_id_
-          , is_outgoing   = is_outgoing_
-          , is_video      = is_video_
-          , state         = state_
-          , group_call_id = group_call_id_
+          { _id         = _id_
+          , user_id     = user_id_
+          , is_outgoing = is_outgoing_
+          , is_video    = is_video_
+          , state       = state_
           }
   parseJSON _ = mempty
 

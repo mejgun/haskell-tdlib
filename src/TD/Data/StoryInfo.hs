@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 
 data StoryInfo
   = StoryInfo -- ^ Contains basic information about a story
-    { story_id             :: Maybe Int  -- ^ Unique story identifier among stories of the given sender
+    { story_id             :: Maybe Int  -- ^ Unique story identifier among stories of the chat
     , date                 :: Maybe Int  -- ^ Point in time (Unix timestamp) when the story was published
     , is_for_close_friends :: Maybe Bool -- ^ True, if the story is available only to close friends
     }

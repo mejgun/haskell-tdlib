@@ -21,9 +21,9 @@ data PremiumLimitType
   | PremiumLimitTypeChatFolderInviteLinkCount -- ^ The maximum number of invite links for a chat folder
   | PremiumLimitTypeShareableChatFolderCount -- ^ The maximum number of added shareable chat folders
   | PremiumLimitTypeActiveStoryCount -- ^ The maximum number of active stories
-  | PremiumLimitTypeWeeklySentStoryCount -- ^ The maximum number of stories sent per week
-  | PremiumLimitTypeMonthlySentStoryCount -- ^ The maximum number of stories sent per month
-  | PremiumLimitTypeStoryCaptionLength -- ^ The maximum length of captions of sent stories
+  | PremiumLimitTypeWeeklyPostedStoryCount -- ^ The maximum number of stories posted per week
+  | PremiumLimitTypeMonthlyPostedStoryCount -- ^ The maximum number of stories posted per month
+  | PremiumLimitTypeStoryCaptionLength -- ^ The maximum length of captions of posted stories
   | PremiumLimitTypeStorySuggestedReactionAreaCount -- ^ The maximum number of suggested reaction areas on a story
   | PremiumLimitTypeSimilarChatCount -- ^ The maximum number of received similar chats
   deriving (Eq, Show)
@@ -57,10 +57,10 @@ instance I.ShortShow PremiumLimitType where
       = "PremiumLimitTypeShareableChatFolderCount"
   shortShow PremiumLimitTypeActiveStoryCount
       = "PremiumLimitTypeActiveStoryCount"
-  shortShow PremiumLimitTypeWeeklySentStoryCount
-      = "PremiumLimitTypeWeeklySentStoryCount"
-  shortShow PremiumLimitTypeMonthlySentStoryCount
-      = "PremiumLimitTypeMonthlySentStoryCount"
+  shortShow PremiumLimitTypeWeeklyPostedStoryCount
+      = "PremiumLimitTypeWeeklyPostedStoryCount"
+  shortShow PremiumLimitTypeMonthlyPostedStoryCount
+      = "PremiumLimitTypeMonthlyPostedStoryCount"
   shortShow PremiumLimitTypeStoryCaptionLength
       = "PremiumLimitTypeStoryCaptionLength"
   shortShow PremiumLimitTypeStorySuggestedReactionAreaCount
@@ -87,8 +87,8 @@ instance AT.FromJSON PremiumLimitType where
       "premiumLimitTypeChatFolderInviteLinkCount"       -> pure PremiumLimitTypeChatFolderInviteLinkCount
       "premiumLimitTypeShareableChatFolderCount"        -> pure PremiumLimitTypeShareableChatFolderCount
       "premiumLimitTypeActiveStoryCount"                -> pure PremiumLimitTypeActiveStoryCount
-      "premiumLimitTypeWeeklySentStoryCount"            -> pure PremiumLimitTypeWeeklySentStoryCount
-      "premiumLimitTypeMonthlySentStoryCount"           -> pure PremiumLimitTypeMonthlySentStoryCount
+      "premiumLimitTypeWeeklyPostedStoryCount"          -> pure PremiumLimitTypeWeeklyPostedStoryCount
+      "premiumLimitTypeMonthlyPostedStoryCount"         -> pure PremiumLimitTypeMonthlyPostedStoryCount
       "premiumLimitTypeStoryCaptionLength"              -> pure PremiumLimitTypeStoryCaptionLength
       "premiumLimitTypeStorySuggestedReactionAreaCount" -> pure PremiumLimitTypeStorySuggestedReactionAreaCount
       "premiumLimitTypeSimilarChatCount"                -> pure PremiumLimitTypeSimilarChatCount
@@ -153,13 +153,13 @@ instance AT.ToJSON PremiumLimitType where
       = A.object
         [ "@type" A..= AT.String "premiumLimitTypeActiveStoryCount"
         ]
-  toJSON PremiumLimitTypeWeeklySentStoryCount
+  toJSON PremiumLimitTypeWeeklyPostedStoryCount
       = A.object
-        [ "@type" A..= AT.String "premiumLimitTypeWeeklySentStoryCount"
+        [ "@type" A..= AT.String "premiumLimitTypeWeeklyPostedStoryCount"
         ]
-  toJSON PremiumLimitTypeMonthlySentStoryCount
+  toJSON PremiumLimitTypeMonthlyPostedStoryCount
       = A.object
-        [ "@type" A..= AT.String "premiumLimitTypeMonthlySentStoryCount"
+        [ "@type" A..= AT.String "premiumLimitTypeMonthlyPostedStoryCount"
         ]
   toJSON PremiumLimitTypeStoryCaptionLength
       = A.object

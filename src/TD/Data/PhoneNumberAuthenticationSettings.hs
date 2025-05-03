@@ -17,7 +17,7 @@ data PhoneNumberAuthenticationSettings
     , has_unknown_phone_number         :: Maybe Bool                                                          -- ^ Pass true if there is a SIM card in the current device, but it is not possible to check whether phone number matches
     , allow_sms_retriever_api          :: Maybe Bool                                                          -- ^ For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
     , firebase_authentication_settings :: Maybe FirebaseAuthenticationSettings.FirebaseAuthenticationSettings -- ^ For official Android and iOS applications only; pass null otherwise. Settings for Firebase Authentication
-    , authentication_tokens            :: Maybe [T.Text]                                                      -- ^ List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions
+    , authentication_tokens            :: Maybe [T.Text]                                                      -- ^ List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions; for setAuthenticationPhoneNumber only
     }
   deriving (Eq, Show)
 
