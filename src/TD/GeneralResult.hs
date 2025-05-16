@@ -14,6 +14,7 @@ import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.AutoDownloadSettingsPresets as AutoDownloadSettingsPresets
 import qualified TD.Data.AutosaveSettings as AutosaveSettings
+import qualified TD.Data.AvailableGifts as AvailableGifts
 import qualified TD.Data.AvailableReactions as AvailableReactions
 import qualified TD.Data.Background as Background
 import qualified TD.Data.Backgrounds as Backgrounds
@@ -110,7 +111,7 @@ import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
 import qualified TD.Data.GiftUpgradePreview as GiftUpgradePreview
-import qualified TD.Data.Gifts as Gifts
+import qualified TD.Data.GiftsForResale as GiftsForResale
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
@@ -257,6 +258,7 @@ data GeneralResult
     | AuthorizationState                 AuthorizationState.AuthorizationState
     | AutoDownloadSettingsPresets        AutoDownloadSettingsPresets.AutoDownloadSettingsPresets
     | AutosaveSettings                   AutosaveSettings.AutosaveSettings
+    | AvailableGifts                     AvailableGifts.AvailableGifts
     | AvailableReactions                 AvailableReactions.AvailableReactions
     | Background                         Background.Background
     | Backgrounds                        Backgrounds.Backgrounds
@@ -353,7 +355,7 @@ data GeneralResult
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
     | GiftUpgradePreview                 GiftUpgradePreview.GiftUpgradePreview
-    | Gifts                              Gifts.Gifts
+    | GiftsForResale                     GiftsForResale.GiftsForResale
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
@@ -511,6 +513,8 @@ instance I.ShortShow GeneralResult where
     = "AutoDownloadSettingsPresets" <> " (" <> I.shortShow v <> ")"
   shortShow (AutosaveSettings v)
     = "AutosaveSettings" <> " (" <> I.shortShow v <> ")"
+  shortShow (AvailableGifts v)
+    = "AvailableGifts" <> " (" <> I.shortShow v <> ")"
   shortShow (AvailableReactions v)
     = "AvailableReactions" <> " (" <> I.shortShow v <> ")"
   shortShow (Background v)
@@ -703,8 +707,8 @@ instance I.ShortShow GeneralResult where
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftUpgradePreview v)
     = "GiftUpgradePreview" <> " (" <> I.shortShow v <> ")"
-  shortShow (Gifts v)
-    = "Gifts" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftsForResale v)
+    = "GiftsForResale" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
     = "GiveawayInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCall v)
@@ -986,6 +990,7 @@ instance T.FromJSON GeneralResult where
     <|> ( AuthorizationState                  <$> parseJSON v )
     <|> ( AutoDownloadSettingsPresets         <$> parseJSON v )
     <|> ( AutosaveSettings                    <$> parseJSON v )
+    <|> ( AvailableGifts                      <$> parseJSON v )
     <|> ( AvailableReactions                  <$> parseJSON v )
     <|> ( Background                          <$> parseJSON v )
     <|> ( Backgrounds                         <$> parseJSON v )
@@ -1082,7 +1087,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
     <|> ( GiftUpgradePreview                  <$> parseJSON v )
-    <|> ( Gifts                               <$> parseJSON v )
+    <|> ( GiftsForResale                      <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )

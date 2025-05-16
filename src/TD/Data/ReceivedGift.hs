@@ -25,6 +25,8 @@ data ReceivedGift
     , sell_star_count            :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user
     , prepaid_upgrade_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     , transfer_star_count        :: Maybe Int                         -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    , next_transfer_date         :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    , next_resale_date           :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
     , export_date                :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   deriving (Eq, Show)
@@ -45,6 +47,8 @@ instance I.ShortShow ReceivedGift where
     , sell_star_count            = sell_star_count_
     , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
     , transfer_star_count        = transfer_star_count_
+    , next_transfer_date         = next_transfer_date_
+    , next_resale_date           = next_resale_date_
     , export_date                = export_date_
     }
       = "ReceivedGift"
@@ -63,6 +67,8 @@ instance I.ShortShow ReceivedGift where
         , "sell_star_count"            `I.p` sell_star_count_
         , "prepaid_upgrade_star_count" `I.p` prepaid_upgrade_star_count_
         , "transfer_star_count"        `I.p` transfer_star_count_
+        , "next_transfer_date"         `I.p` next_transfer_date_
+        , "next_resale_date"           `I.p` next_resale_date_
         , "export_date"                `I.p` export_date_
         ]
 
@@ -91,6 +97,8 @@ instance AT.FromJSON ReceivedGift where
         sell_star_count_            <- o A..:?  "sell_star_count"
         prepaid_upgrade_star_count_ <- o A..:?  "prepaid_upgrade_star_count"
         transfer_star_count_        <- o A..:?  "transfer_star_count"
+        next_transfer_date_         <- o A..:?  "next_transfer_date"
+        next_resale_date_           <- o A..:?  "next_resale_date"
         export_date_                <- o A..:?  "export_date"
         pure $ ReceivedGift
           { received_gift_id           = received_gift_id_
@@ -107,6 +115,8 @@ instance AT.FromJSON ReceivedGift where
           , sell_star_count            = sell_star_count_
           , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
           , transfer_star_count        = transfer_star_count_
+          , next_transfer_date         = next_transfer_date_
+          , next_resale_date           = next_resale_date_
           , export_date                = export_date_
           }
   parseJSON _ = mempty

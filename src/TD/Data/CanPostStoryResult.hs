@@ -8,6 +8,8 @@ import qualified TD.Lib.Internal as I
 -- | Represents result of checking whether the current user can post a story on behalf of the specific chat
 data CanPostStoryResult
   = CanPostStoryResultOk -- ^ A story can be sent
+    { story_count :: Maybe Int -- ^ Number of stories that can be posted by the user
+    }
   | CanPostStoryResultPremiumNeeded -- ^ The user must subscribe to Telegram Premium to be able to post stories
   | CanPostStoryResultBoostNeeded -- ^ The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
   | CanPostStoryResultActiveStoryLimitExceeded -- ^ The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
@@ -21,7 +23,12 @@ data CanPostStoryResult
 
 instance I.ShortShow CanPostStoryResult where
   shortShow CanPostStoryResultOk
+    { story_count = story_count_
+    }
       = "CanPostStoryResultOk"
+        ++ I.cc
+        [ "story_count" `I.p` story_count_
+        ]
   shortShow CanPostStoryResultPremiumNeeded
       = "CanPostStoryResultPremiumNeeded"
   shortShow CanPostStoryResultBoostNeeded
@@ -48,7 +55,7 @@ instance AT.FromJSON CanPostStoryResult where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "canPostStoryResultOk"                       -> pure CanPostStoryResultOk
+      "canPostStoryResultOk"                       -> parseCanPostStoryResultOk v
       "canPostStoryResultPremiumNeeded"            -> pure CanPostStoryResultPremiumNeeded
       "canPostStoryResultBoostNeeded"              -> pure CanPostStoryResultBoostNeeded
       "canPostStoryResultActiveStoryLimitExceeded" -> pure CanPostStoryResultActiveStoryLimitExceeded
@@ -57,6 +64,12 @@ instance AT.FromJSON CanPostStoryResult where
       _                                            -> mempty
     
     where
+      parseCanPostStoryResultOk :: A.Value -> AT.Parser CanPostStoryResult
+      parseCanPostStoryResultOk = A.withObject "CanPostStoryResultOk" $ \o -> do
+        story_count_ <- o A..:?  "story_count"
+        pure $ CanPostStoryResultOk
+          { story_count = story_count_
+          }
       parseCanPostStoryResultWeeklyLimitExceeded :: A.Value -> AT.Parser CanPostStoryResult
       parseCanPostStoryResultWeeklyLimitExceeded = A.withObject "CanPostStoryResultWeeklyLimitExceeded" $ \o -> do
         retry_after_ <- o A..:?  "retry_after"

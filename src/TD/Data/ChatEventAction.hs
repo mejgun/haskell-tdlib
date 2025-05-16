@@ -155,6 +155,9 @@ data ChatEventAction
   | ChatEventShowMessageSenderToggled -- ^ The show_message_sender setting of a channel was toggled
     { show_message_sender :: Maybe Bool -- ^ New value of show_message_sender
     }
+  | ChatEventAutomaticTranslationToggled -- ^ The has_automatic_translation setting of a channel was toggled
+    { has_automatic_translation :: Maybe Bool -- ^ New value of has_automatic_translation
+    }
   | ChatEventInviteLinkEdited -- ^ A chat invite link was edited
     { old_invite_link :: Maybe ChatInviteLink.ChatInviteLink -- ^ Previous information about the invite link
     , new_invite_link :: Maybe ChatInviteLink.ChatInviteLink -- ^ New information about the invite link
@@ -514,6 +517,13 @@ instance I.ShortShow ChatEventAction where
         ++ I.cc
         [ "show_message_sender" `I.p` show_message_sender_
         ]
+  shortShow ChatEventAutomaticTranslationToggled
+    { has_automatic_translation = has_automatic_translation_
+    }
+      = "ChatEventAutomaticTranslationToggled"
+        ++ I.cc
+        [ "has_automatic_translation" `I.p` has_automatic_translation_
+        ]
   shortShow ChatEventInviteLinkEdited
     { old_invite_link = old_invite_link_
     , new_invite_link = new_invite_link_
@@ -671,6 +681,7 @@ instance AT.FromJSON ChatEventAction where
       "chatEventHasAggressiveAntiSpamEnabledToggled"    -> parseChatEventHasAggressiveAntiSpamEnabledToggled v
       "chatEventSignMessagesToggled"                    -> parseChatEventSignMessagesToggled v
       "chatEventShowMessageSenderToggled"               -> parseChatEventShowMessageSenderToggled v
+      "chatEventAutomaticTranslationToggled"            -> parseChatEventAutomaticTranslationToggled v
       "chatEventInviteLinkEdited"                       -> parseChatEventInviteLinkEdited v
       "chatEventInviteLinkRevoked"                      -> parseChatEventInviteLinkRevoked v
       "chatEventInviteLinkDeleted"                      -> parseChatEventInviteLinkDeleted v
@@ -956,6 +967,12 @@ instance AT.FromJSON ChatEventAction where
         show_message_sender_ <- o A..:?  "show_message_sender"
         pure $ ChatEventShowMessageSenderToggled
           { show_message_sender = show_message_sender_
+          }
+      parseChatEventAutomaticTranslationToggled :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventAutomaticTranslationToggled = A.withObject "ChatEventAutomaticTranslationToggled" $ \o -> do
+        has_automatic_translation_ <- o A..:?  "has_automatic_translation"
+        pure $ ChatEventAutomaticTranslationToggled
+          { has_automatic_translation = has_automatic_translation_
           }
       parseChatEventInviteLinkEdited :: A.Value -> AT.Parser ChatEventAction
       parseChatEventInviteLinkEdited = A.withObject "ChatEventInviteLinkEdited" $ \o -> do

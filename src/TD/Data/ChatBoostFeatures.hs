@@ -15,6 +15,7 @@ data ChatBoostFeatures
     , min_chat_theme_background_boost_level           :: Maybe Int                                             -- ^ The minimum boost level required to set a chat theme background as chat background
     , min_custom_background_boost_level               :: Maybe Int                                             -- ^ The minimum boost level required to set custom chat background
     , min_custom_emoji_sticker_set_boost_level        :: Maybe Int                                             -- ^ The minimum boost level required to set custom emoji sticker set for the chat; for supergroup chats only
+    , min_automatic_translation_boost_level           :: Maybe Int                                             -- ^ The minimum boost level allowing to enable automatic translation of messages for non-Premium users; for channel chats only
     , min_speech_recognition_boost_level              :: Maybe Int                                             -- ^ The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only
     , min_sponsored_message_disable_boost_level       :: Maybe Int                                             -- ^ The minimum boost level allowing to disable sponsored messages in the chat; for channel chats only
     }
@@ -29,6 +30,7 @@ instance I.ShortShow ChatBoostFeatures where
     , min_chat_theme_background_boost_level           = min_chat_theme_background_boost_level_
     , min_custom_background_boost_level               = min_custom_background_boost_level_
     , min_custom_emoji_sticker_set_boost_level        = min_custom_emoji_sticker_set_boost_level_
+    , min_automatic_translation_boost_level           = min_automatic_translation_boost_level_
     , min_speech_recognition_boost_level              = min_speech_recognition_boost_level_
     , min_sponsored_message_disable_boost_level       = min_sponsored_message_disable_boost_level_
     }
@@ -41,6 +43,7 @@ instance I.ShortShow ChatBoostFeatures where
         , "min_chat_theme_background_boost_level"           `I.p` min_chat_theme_background_boost_level_
         , "min_custom_background_boost_level"               `I.p` min_custom_background_boost_level_
         , "min_custom_emoji_sticker_set_boost_level"        `I.p` min_custom_emoji_sticker_set_boost_level_
+        , "min_automatic_translation_boost_level"           `I.p` min_automatic_translation_boost_level_
         , "min_speech_recognition_boost_level"              `I.p` min_speech_recognition_boost_level_
         , "min_sponsored_message_disable_boost_level"       `I.p` min_sponsored_message_disable_boost_level_
         ]
@@ -63,6 +66,7 @@ instance AT.FromJSON ChatBoostFeatures where
         min_chat_theme_background_boost_level_           <- o A..:?  "min_chat_theme_background_boost_level"
         min_custom_background_boost_level_               <- o A..:?  "min_custom_background_boost_level"
         min_custom_emoji_sticker_set_boost_level_        <- o A..:?  "min_custom_emoji_sticker_set_boost_level"
+        min_automatic_translation_boost_level_           <- o A..:?  "min_automatic_translation_boost_level"
         min_speech_recognition_boost_level_              <- o A..:?  "min_speech_recognition_boost_level"
         min_sponsored_message_disable_boost_level_       <- o A..:?  "min_sponsored_message_disable_boost_level"
         pure $ ChatBoostFeatures
@@ -73,6 +77,7 @@ instance AT.FromJSON ChatBoostFeatures where
           , min_chat_theme_background_boost_level           = min_chat_theme_background_boost_level_
           , min_custom_background_boost_level               = min_custom_background_boost_level_
           , min_custom_emoji_sticker_set_boost_level        = min_custom_emoji_sticker_set_boost_level_
+          , min_automatic_translation_boost_level           = min_automatic_translation_boost_level_
           , min_speech_recognition_boost_level              = min_speech_recognition_boost_level_
           , min_sponsored_message_disable_boost_level       = min_sponsored_message_disable_boost_level_
           }

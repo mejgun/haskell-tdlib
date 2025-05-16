@@ -82,7 +82,7 @@ data PushMessageContent
     { star_count :: Maybe Int -- ^ Number of Telegram Stars that sender paid for the gift
     }
   | PushMessageContentUpgradedGift -- ^ A message with an upgraded gift
-    { is_upgrade :: Maybe Bool -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    { is_upgrade :: Maybe Bool -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     }
   | PushMessageContentScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
   | PushMessageContentSticker -- ^ A message with a sticker

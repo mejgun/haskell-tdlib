@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 
 -- | Describes an action suggested to the current user
 data SuggestedAction
@@ -28,6 +29,12 @@ data SuggestedAction
     { manage_premium_subscription_url :: Maybe T.Text -- ^ A URL for managing Telegram Premium subscription
     }
   | SuggestedActionExtendStarSubscriptions -- ^ Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
+  | SuggestedActionCustom -- ^ A custom suggestion to be shown at the top of the chat list
+    { name        :: Maybe T.Text                      -- ^ Unique name of the suggestion
+    , title       :: Maybe FormattedText.FormattedText -- ^ Title of the suggestion
+    , description :: Maybe FormattedText.FormattedText -- ^ Description of the suggestion
+    , url         :: Maybe T.Text                      -- ^ The link to open when the suggestion is clicked
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -74,6 +81,19 @@ instance I.ShortShow SuggestedAction where
         ]
   shortShow SuggestedActionExtendStarSubscriptions
       = "SuggestedActionExtendStarSubscriptions"
+  shortShow SuggestedActionCustom
+    { name        = name_
+    , title       = title_
+    , description = description_
+    , url         = url_
+    }
+      = "SuggestedActionCustom"
+        ++ I.cc
+        [ "name"        `I.p` name_
+        , "title"       `I.p` title_
+        , "description" `I.p` description_
+        , "url"         `I.p` url_
+        ]
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -94,6 +114,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionSetProfilePhoto"              -> pure SuggestedActionSetProfilePhoto
       "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
       "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
+      "suggestedActionCustom"                       -> parseSuggestedActionCustom v
       _                                             -> mempty
     
     where
@@ -114,6 +135,18 @@ instance AT.FromJSON SuggestedAction where
         manage_premium_subscription_url_ <- o A..:?  "manage_premium_subscription_url"
         pure $ SuggestedActionExtendPremium
           { manage_premium_subscription_url = manage_premium_subscription_url_
+          }
+      parseSuggestedActionCustom :: A.Value -> AT.Parser SuggestedAction
+      parseSuggestedActionCustom = A.withObject "SuggestedActionCustom" $ \o -> do
+        name_        <- o A..:?  "name"
+        title_       <- o A..:?  "title"
+        description_ <- o A..:?  "description"
+        url_         <- o A..:?  "url"
+        pure $ SuggestedActionCustom
+          { name        = name_
+          , title       = title_
+          , description = description_
+          , url         = url_
           }
   parseJSON _ = mempty
 
@@ -182,5 +215,18 @@ instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionExtendStarSubscriptions
       = A.object
         [ "@type" A..= AT.String "suggestedActionExtendStarSubscriptions"
+        ]
+  toJSON SuggestedActionCustom
+    { name        = name_
+    , title       = title_
+    , description = description_
+    , url         = url_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "suggestedActionCustom"
+        , "name"        A..= name_
+        , "title"       A..= title_
+        , "description" A..= description_
+        , "url"         A..= url_
         ]
 

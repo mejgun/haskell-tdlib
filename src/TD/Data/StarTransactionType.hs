@@ -103,6 +103,15 @@ data StarTransactionType
     { user_id :: Maybe Int                       -- ^ Identifier of the user that initially sent the gift
     , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
     }
+  | StarTransactionTypeUpgradedGiftPurchase -- ^ The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
+    { user_id :: Maybe Int                       -- ^ Identifier of the user that sold the gift
+    , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+    }
+  | StarTransactionTypeUpgradedGiftSale -- ^ The transaction is a sale of an upgraded gift; for regular users only
+    { user_id   :: Maybe Int                         -- ^ Identifier of the user that bought the gift
+    , _gift     :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
+    , affiliate :: Maybe AffiliateInfo.AffiliateInfo -- ^ Information about commission received by Telegram from the transaction
+    }
   | StarTransactionTypeChannelPaidReactionSend -- ^ The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
     { chat_id    :: Maybe Int -- ^ Identifier of the channel chat
     , message_id :: Maybe Int -- ^ Identifier of the reacted message; can be 0 or an identifier of a deleted message
@@ -328,6 +337,26 @@ instance I.ShortShow StarTransactionType where
         [ "user_id" `I.p` user_id_
         , "_gift"   `I.p` _gift_
         ]
+  shortShow StarTransactionTypeUpgradedGiftPurchase
+    { user_id = user_id_
+    , _gift   = _gift_
+    }
+      = "StarTransactionTypeUpgradedGiftPurchase"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        , "_gift"   `I.p` _gift_
+        ]
+  shortShow StarTransactionTypeUpgradedGiftSale
+    { user_id   = user_id_
+    , _gift     = _gift_
+    , affiliate = affiliate_
+    }
+      = "StarTransactionTypeUpgradedGiftSale"
+        ++ I.cc
+        [ "user_id"   `I.p` user_id_
+        , "_gift"     `I.p` _gift_
+        , "affiliate" `I.p` affiliate_
+        ]
   shortShow StarTransactionTypeChannelPaidReactionSend
     { chat_id    = chat_id_
     , message_id = message_id_
@@ -433,6 +462,8 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypeGiftTransfer"                -> parseStarTransactionTypeGiftTransfer v
       "starTransactionTypeGiftSale"                    -> parseStarTransactionTypeGiftSale v
       "starTransactionTypeGiftUpgrade"                 -> parseStarTransactionTypeGiftUpgrade v
+      "starTransactionTypeUpgradedGiftPurchase"        -> parseStarTransactionTypeUpgradedGiftPurchase v
+      "starTransactionTypeUpgradedGiftSale"            -> parseStarTransactionTypeUpgradedGiftSale v
       "starTransactionTypeChannelPaidReactionSend"     -> parseStarTransactionTypeChannelPaidReactionSend v
       "starTransactionTypeChannelPaidReactionReceive"  -> parseStarTransactionTypeChannelPaidReactionReceive v
       "starTransactionTypeAffiliateProgramCommission"  -> parseStarTransactionTypeAffiliateProgramCommission v
@@ -604,6 +635,24 @@ instance AT.FromJSON StarTransactionType where
         pure $ StarTransactionTypeGiftUpgrade
           { user_id = user_id_
           , _gift   = _gift_
+          }
+      parseStarTransactionTypeUpgradedGiftPurchase :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeUpgradedGiftPurchase = A.withObject "StarTransactionTypeUpgradedGiftPurchase" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        _gift_   <- o A..:?  "gift"
+        pure $ StarTransactionTypeUpgradedGiftPurchase
+          { user_id = user_id_
+          , _gift   = _gift_
+          }
+      parseStarTransactionTypeUpgradedGiftSale :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeUpgradedGiftSale = A.withObject "StarTransactionTypeUpgradedGiftSale" $ \o -> do
+        user_id_   <- o A..:?  "user_id"
+        _gift_     <- o A..:?  "gift"
+        affiliate_ <- o A..:?  "affiliate"
+        pure $ StarTransactionTypeUpgradedGiftSale
+          { user_id   = user_id_
+          , _gift     = _gift_
+          , affiliate = affiliate_
           }
       parseStarTransactionTypeChannelPaidReactionSend :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeChannelPaidReactionSend = A.withObject "StarTransactionTypeChannelPaidReactionSend" $ \o -> do

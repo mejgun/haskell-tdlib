@@ -370,20 +370,23 @@ data MessageContent
     , upgraded_received_gift_id  :: Maybe T.Text                      -- ^ Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
     }
   | MessageUpgradedGift -- ^ An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
-    { _gift               :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
-    , sender_id           :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for anonymous gifts
-    , received_gift_id    :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
-    , is_upgrade          :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
-    , is_saved            :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
-    , can_be_transferred  :: Maybe Bool                        -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
-    , was_transferred     :: Maybe Bool                        -- ^ True, if the gift was transferred to another owner; only for the receiver of the gift
-    , transfer_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
-    , export_date         :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    { _gift                  :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
+    , sender_id              :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for anonymous gifts
+    , received_gift_id       :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
+    , is_upgrade             :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
+    , is_saved               :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    , can_be_transferred     :: Maybe Bool                        -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
+    , was_transferred        :: Maybe Bool                        -- ^ True, if the gift was transferred to another owner; only for the receiver of the gift
+    , last_resale_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the gift; 0 if the gift was upgraded or transferred
+    , transfer_star_count    :: Maybe Int                         -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    , next_transfer_date     :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    , next_resale_date       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    , export_date            :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
     { gift       :: Maybe Gift.Gift                   -- ^ The gift
     , sender_id  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
-    , is_upgrade :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift
+    , is_upgrade :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     }
   | MessagePaidMessagesRefunded -- ^ Paid messages were refunded
     { message_count :: Maybe Int -- ^ The number of refunded messages
@@ -1131,27 +1134,33 @@ instance I.ShortShow MessageContent where
         , "upgraded_received_gift_id"  `I.p` upgraded_received_gift_id_
         ]
   shortShow MessageUpgradedGift
-    { _gift               = _gift_
-    , sender_id           = sender_id_
-    , received_gift_id    = received_gift_id_
-    , is_upgrade          = is_upgrade_
-    , is_saved            = is_saved_
-    , can_be_transferred  = can_be_transferred_
-    , was_transferred     = was_transferred_
-    , transfer_star_count = transfer_star_count_
-    , export_date         = export_date_
+    { _gift                  = _gift_
+    , sender_id              = sender_id_
+    , received_gift_id       = received_gift_id_
+    , is_upgrade             = is_upgrade_
+    , is_saved               = is_saved_
+    , can_be_transferred     = can_be_transferred_
+    , was_transferred        = was_transferred_
+    , last_resale_star_count = last_resale_star_count_
+    , transfer_star_count    = transfer_star_count_
+    , next_transfer_date     = next_transfer_date_
+    , next_resale_date       = next_resale_date_
+    , export_date            = export_date_
     }
       = "MessageUpgradedGift"
         ++ I.cc
-        [ "_gift"               `I.p` _gift_
-        , "sender_id"           `I.p` sender_id_
-        , "received_gift_id"    `I.p` received_gift_id_
-        , "is_upgrade"          `I.p` is_upgrade_
-        , "is_saved"            `I.p` is_saved_
-        , "can_be_transferred"  `I.p` can_be_transferred_
-        , "was_transferred"     `I.p` was_transferred_
-        , "transfer_star_count" `I.p` transfer_star_count_
-        , "export_date"         `I.p` export_date_
+        [ "_gift"                  `I.p` _gift_
+        , "sender_id"              `I.p` sender_id_
+        , "received_gift_id"       `I.p` received_gift_id_
+        , "is_upgrade"             `I.p` is_upgrade_
+        , "is_saved"               `I.p` is_saved_
+        , "can_be_transferred"     `I.p` can_be_transferred_
+        , "was_transferred"        `I.p` was_transferred_
+        , "last_resale_star_count" `I.p` last_resale_star_count_
+        , "transfer_star_count"    `I.p` transfer_star_count_
+        , "next_transfer_date"     `I.p` next_transfer_date_
+        , "next_resale_date"       `I.p` next_resale_date_
+        , "export_date"            `I.p` export_date_
         ]
   shortShow MessageRefundedUpgradedGift
     { gift       = gift_
@@ -1972,25 +1981,31 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageUpgradedGift = A.withObject "MessageUpgradedGift" $ \o -> do
-        _gift_               <- o A..:?  "gift"
-        sender_id_           <- o A..:?  "sender_id"
-        received_gift_id_    <- o A..:?  "received_gift_id"
-        is_upgrade_          <- o A..:?  "is_upgrade"
-        is_saved_            <- o A..:?  "is_saved"
-        can_be_transferred_  <- o A..:?  "can_be_transferred"
-        was_transferred_     <- o A..:?  "was_transferred"
-        transfer_star_count_ <- o A..:?  "transfer_star_count"
-        export_date_         <- o A..:?  "export_date"
+        _gift_                  <- o A..:?  "gift"
+        sender_id_              <- o A..:?  "sender_id"
+        received_gift_id_       <- o A..:?  "received_gift_id"
+        is_upgrade_             <- o A..:?  "is_upgrade"
+        is_saved_               <- o A..:?  "is_saved"
+        can_be_transferred_     <- o A..:?  "can_be_transferred"
+        was_transferred_        <- o A..:?  "was_transferred"
+        last_resale_star_count_ <- o A..:?  "last_resale_star_count"
+        transfer_star_count_    <- o A..:?  "transfer_star_count"
+        next_transfer_date_     <- o A..:?  "next_transfer_date"
+        next_resale_date_       <- o A..:?  "next_resale_date"
+        export_date_            <- o A..:?  "export_date"
         pure $ MessageUpgradedGift
-          { _gift               = _gift_
-          , sender_id           = sender_id_
-          , received_gift_id    = received_gift_id_
-          , is_upgrade          = is_upgrade_
-          , is_saved            = is_saved_
-          , can_be_transferred  = can_be_transferred_
-          , was_transferred     = was_transferred_
-          , transfer_star_count = transfer_star_count_
-          , export_date         = export_date_
+          { _gift                  = _gift_
+          , sender_id              = sender_id_
+          , received_gift_id       = received_gift_id_
+          , is_upgrade             = is_upgrade_
+          , is_saved               = is_saved_
+          , can_be_transferred     = can_be_transferred_
+          , was_transferred        = was_transferred_
+          , last_resale_star_count = last_resale_star_count_
+          , transfer_star_count    = transfer_star_count_
+          , next_transfer_date     = next_transfer_date_
+          , next_resale_date       = next_resale_date_
+          , export_date            = export_date_
           }
       parseMessageRefundedUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageRefundedUpgradedGift = A.withObject "MessageRefundedUpgradedGift" $ \o -> do

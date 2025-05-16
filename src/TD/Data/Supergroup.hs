@@ -17,6 +17,7 @@ data Supergroup
     , status                    :: Maybe ChatMemberStatus.ChatMemberStatus     -- ^ Status of the current user in the supergroup or channel; custom title will always be empty
     , member_count              :: Maybe Int                                   -- ^ Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToPostStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories
     , boost_level               :: Maybe Int                                   -- ^ Approximate boost level for the chat
+    , has_automatic_translation :: Maybe Bool                                  -- ^ True, if automatic translation of messages is enabled in the channel
     , has_linked_chat           :: Maybe Bool                                  -- ^ True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     , has_location              :: Maybe Bool                                  -- ^ True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     , sign_messages             :: Maybe Bool                                  -- ^ True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
@@ -44,6 +45,7 @@ instance I.ShortShow Supergroup where
     , status                    = status_
     , member_count              = member_count_
     , boost_level               = boost_level_
+    , has_automatic_translation = has_automatic_translation_
     , has_linked_chat           = has_linked_chat_
     , has_location              = has_location_
     , sign_messages             = sign_messages_
@@ -69,6 +71,7 @@ instance I.ShortShow Supergroup where
         , "status"                    `I.p` status_
         , "member_count"              `I.p` member_count_
         , "boost_level"               `I.p` boost_level_
+        , "has_automatic_translation" `I.p` has_automatic_translation_
         , "has_linked_chat"           `I.p` has_linked_chat_
         , "has_location"              `I.p` has_location_
         , "sign_messages"             `I.p` sign_messages_
@@ -104,6 +107,7 @@ instance AT.FromJSON Supergroup where
         status_                    <- o A..:?  "status"
         member_count_              <- o A..:?  "member_count"
         boost_level_               <- o A..:?  "boost_level"
+        has_automatic_translation_ <- o A..:?  "has_automatic_translation"
         has_linked_chat_           <- o A..:?  "has_linked_chat"
         has_location_              <- o A..:?  "has_location"
         sign_messages_             <- o A..:?  "sign_messages"
@@ -127,6 +131,7 @@ instance AT.FromJSON Supergroup where
           , status                    = status_
           , member_count              = member_count_
           , boost_level               = boost_level_
+          , has_automatic_translation = has_automatic_translation_
           , has_linked_chat           = has_linked_chat_
           , has_location              = has_location_
           , sign_messages             = sign_messages_

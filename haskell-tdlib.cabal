@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.60.0
+version:        2.0.61.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -54,6 +54,8 @@ library
       TD.Data.AutosaveSettings
       TD.Data.AutosaveSettingsException
       TD.Data.AutosaveSettingsScope
+      TD.Data.AvailableGift
+      TD.Data.AvailableGifts
       TD.Data.AvailableReaction
       TD.Data.AvailableReactions
       TD.Data.Background
@@ -260,8 +262,10 @@ library
       TD.Data.GameHighScore
       TD.Data.GameHighScores
       TD.Data.Gift
-      TD.Data.Gifts
+      TD.Data.GiftForResale
+      TD.Data.GiftForResaleOrder
       TD.Data.GiftSettings
+      TD.Data.GiftsForResale
       TD.Data.GiftUpgradePreview
       TD.Data.GiveawayInfo
       TD.Data.GiveawayParameters
@@ -600,11 +604,15 @@ library
       TD.Data.Update
       TD.Data.Updates
       TD.Data.UpgradedGift
+      TD.Data.UpgradedGiftAttributeId
       TD.Data.UpgradedGiftBackdrop
       TD.Data.UpgradedGiftBackdropColors
+      TD.Data.UpgradedGiftBackdropCount
       TD.Data.UpgradedGiftModel
+      TD.Data.UpgradedGiftModelCount
       TD.Data.UpgradedGiftOriginalDetails
       TD.Data.UpgradedGiftSymbol
+      TD.Data.UpgradedGiftSymbolCount
       TD.Data.UpgradeGiftResult
       TD.Data.User
       TD.Data.UserFullInfo
@@ -1236,6 +1244,7 @@ library
       TD.Query.SearchContacts
       TD.Query.SearchEmojis
       TD.Query.SearchFileDownloads
+      TD.Query.SearchGiftsForResale
       TD.Query.SearchHashtags
       TD.Query.SearchInstalledStickerSets
       TD.Query.SearchMessages
@@ -1278,6 +1287,7 @@ library
       TD.Query.SendPhoneNumberCode
       TD.Query.SendPhoneNumberFirebaseSms
       TD.Query.SendQuickReplyShortcutMessages
+      TD.Query.SendResoldGift
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
       TD.Query.SetAccentColor
@@ -1347,6 +1357,7 @@ library
       TD.Query.SetFileGenerationProgress
       TD.Query.SetForumTopicNotificationSettings
       TD.Query.SetGameScore
+      TD.Query.SetGiftResalePrice
       TD.Query.SetGiftSettings
       TD.Query.SetGroupCallParticipantIsSpeaking
       TD.Query.SetGroupCallParticipantVolumeLevel
@@ -1458,6 +1469,7 @@ library
       TD.Query.ToggleStoryIsPostedToChatPage
       TD.Query.ToggleSupergroupCanHaveSponsoredMessages
       TD.Query.ToggleSupergroupHasAggressiveAntiSpamEnabled
+      TD.Query.ToggleSupergroupHasAutomaticTranslation
       TD.Query.ToggleSupergroupHasHiddenMembers
       TD.Query.ToggleSupergroupIsAllHistoryAvailable
       TD.Query.ToggleSupergroupIsBroadcastGroup
