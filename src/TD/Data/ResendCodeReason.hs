@@ -10,7 +10,7 @@ import qualified Data.Text as T
 data ResendCodeReason
   = ResendCodeReasonUserRequest -- ^ The user requested to resend the code
   | ResendCodeReasonVerificationFailed -- ^ The code is re-sent, because device verification has failed
-    { error_message :: Maybe T.Text -- ^ Cause of the verification failure, for example, PLAY_SERVICES_NOT_AVAILABLE, APNS_RECEIVE_TIMEOUT, or APNS_INIT_FAILED
+    { error_message :: Maybe T.Text -- ^ Cause of the verification failure, for example, "PLAY_SERVICES_NOT_AVAILABLE", "APNS_RECEIVE_TIMEOUT", or "APNS_INIT_FAILED"
     }
   deriving (Eq, Show)
 

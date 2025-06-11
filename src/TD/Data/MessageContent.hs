@@ -158,7 +158,7 @@ data MessageContent
     , discard_reason :: Maybe CallDiscardReason.CallDiscardReason -- ^ Reason why the call was discarded
     , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
     }
-  | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+  | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
     { is_active             :: Maybe Bool                          -- ^ True, if the call is active, i.e. the called user joined the call
     , was_missed            :: Maybe Bool                          -- ^ True, if the called user missed or declined the call
     , is_video              :: Maybe Bool                          -- ^ True, if the call is a video call
@@ -357,6 +357,7 @@ data MessageContent
   | MessageGift -- ^ A regular gift was received or sent by the current user, or the current user was notified about a channel gift
     { gift                       :: Maybe Gift.Gift                   -- ^ The gift
     , sender_id                  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
+    , receiver_id                :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
     , received_gift_id           :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
     , text                       :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , sell_star_count            :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
@@ -372,6 +373,7 @@ data MessageContent
   | MessageUpgradedGift -- ^ An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
     { _gift                  :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
     , sender_id              :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for anonymous gifts
+    , receiver_id            :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
     , received_gift_id       :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
     , is_upgrade             :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     , is_saved               :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
@@ -384,9 +386,10 @@ data MessageContent
     , export_date            :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
-    { gift       :: Maybe Gift.Gift                   -- ^ The gift
-    , sender_id  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
-    , is_upgrade :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
+    { gift        :: Maybe Gift.Gift                   -- ^ The gift
+    , sender_id   :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
+    , receiver_id :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
+    , is_upgrade  :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
     }
   | MessagePaidMessagesRefunded -- ^ Paid messages were refunded
     { message_count :: Maybe Int -- ^ The number of refunded messages
@@ -394,6 +397,10 @@ data MessageContent
     }
   | MessagePaidMessagePriceChanged -- ^ A price for paid messages was changed in the supergroup chat
     { paid_message_star_count :: Maybe Int -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+    }
+  | MessageDirectMessagePriceChanged -- ^ A price for direct messages was changed in the channel chat
+    { is_enabled              :: Maybe Bool -- ^ True, if direct messages group was enabled for the channel; false otherwise
+    , paid_message_star_count :: Maybe Int  -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
@@ -1105,6 +1112,7 @@ instance I.ShortShow MessageContent where
   shortShow MessageGift
     { gift                       = gift_
     , sender_id                  = sender_id_
+    , receiver_id                = receiver_id_
     , received_gift_id           = received_gift_id_
     , text                       = text_
     , sell_star_count            = sell_star_count_
@@ -1121,6 +1129,7 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "gift"                       `I.p` gift_
         , "sender_id"                  `I.p` sender_id_
+        , "receiver_id"                `I.p` receiver_id_
         , "received_gift_id"           `I.p` received_gift_id_
         , "text"                       `I.p` text_
         , "sell_star_count"            `I.p` sell_star_count_
@@ -1136,6 +1145,7 @@ instance I.ShortShow MessageContent where
   shortShow MessageUpgradedGift
     { _gift                  = _gift_
     , sender_id              = sender_id_
+    , receiver_id            = receiver_id_
     , received_gift_id       = received_gift_id_
     , is_upgrade             = is_upgrade_
     , is_saved               = is_saved_
@@ -1151,6 +1161,7 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "_gift"                  `I.p` _gift_
         , "sender_id"              `I.p` sender_id_
+        , "receiver_id"            `I.p` receiver_id_
         , "received_gift_id"       `I.p` received_gift_id_
         , "is_upgrade"             `I.p` is_upgrade_
         , "is_saved"               `I.p` is_saved_
@@ -1163,15 +1174,17 @@ instance I.ShortShow MessageContent where
         , "export_date"            `I.p` export_date_
         ]
   shortShow MessageRefundedUpgradedGift
-    { gift       = gift_
-    , sender_id  = sender_id_
-    , is_upgrade = is_upgrade_
+    { gift        = gift_
+    , sender_id   = sender_id_
+    , receiver_id = receiver_id_
+    , is_upgrade  = is_upgrade_
     }
       = "MessageRefundedUpgradedGift"
         ++ I.cc
-        [ "gift"       `I.p` gift_
-        , "sender_id"  `I.p` sender_id_
-        , "is_upgrade" `I.p` is_upgrade_
+        [ "gift"        `I.p` gift_
+        , "sender_id"   `I.p` sender_id_
+        , "receiver_id" `I.p` receiver_id_
+        , "is_upgrade"  `I.p` is_upgrade_
         ]
   shortShow MessagePaidMessagesRefunded
     { message_count = message_count_
@@ -1188,6 +1201,15 @@ instance I.ShortShow MessageContent where
       = "MessagePaidMessagePriceChanged"
         ++ I.cc
         [ "paid_message_star_count" `I.p` paid_message_star_count_
+        ]
+  shortShow MessageDirectMessagePriceChanged
+    { is_enabled              = is_enabled_
+    , paid_message_star_count = paid_message_star_count_
+    }
+      = "MessageDirectMessagePriceChanged"
+        ++ I.cc
+        [ "is_enabled"              `I.p` is_enabled_
+        , "paid_message_star_count" `I.p` paid_message_star_count_
         ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
@@ -1336,6 +1358,7 @@ instance AT.FromJSON MessageContent where
       "messageRefundedUpgradedGift"         -> parseMessageRefundedUpgradedGift v
       "messagePaidMessagesRefunded"         -> parseMessagePaidMessagesRefunded v
       "messagePaidMessagePriceChanged"      -> parseMessagePaidMessagePriceChanged v
+      "messageDirectMessagePriceChanged"    -> parseMessageDirectMessagePriceChanged v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1953,6 +1976,7 @@ instance AT.FromJSON MessageContent where
       parseMessageGift = A.withObject "MessageGift" $ \o -> do
         gift_                       <- o A..:?  "gift"
         sender_id_                  <- o A..:?  "sender_id"
+        receiver_id_                <- o A..:?  "receiver_id"
         received_gift_id_           <- o A..:?  "received_gift_id"
         text_                       <- o A..:?  "text"
         sell_star_count_            <- o A..:?  "sell_star_count"
@@ -1967,6 +1991,7 @@ instance AT.FromJSON MessageContent where
         pure $ MessageGift
           { gift                       = gift_
           , sender_id                  = sender_id_
+          , receiver_id                = receiver_id_
           , received_gift_id           = received_gift_id_
           , text                       = text_
           , sell_star_count            = sell_star_count_
@@ -1983,6 +2008,7 @@ instance AT.FromJSON MessageContent where
       parseMessageUpgradedGift = A.withObject "MessageUpgradedGift" $ \o -> do
         _gift_                  <- o A..:?  "gift"
         sender_id_              <- o A..:?  "sender_id"
+        receiver_id_            <- o A..:?  "receiver_id"
         received_gift_id_       <- o A..:?  "received_gift_id"
         is_upgrade_             <- o A..:?  "is_upgrade"
         is_saved_               <- o A..:?  "is_saved"
@@ -1996,6 +2022,7 @@ instance AT.FromJSON MessageContent where
         pure $ MessageUpgradedGift
           { _gift                  = _gift_
           , sender_id              = sender_id_
+          , receiver_id            = receiver_id_
           , received_gift_id       = received_gift_id_
           , is_upgrade             = is_upgrade_
           , is_saved               = is_saved_
@@ -2009,13 +2036,15 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageRefundedUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageRefundedUpgradedGift = A.withObject "MessageRefundedUpgradedGift" $ \o -> do
-        gift_       <- o A..:?  "gift"
-        sender_id_  <- o A..:?  "sender_id"
-        is_upgrade_ <- o A..:?  "is_upgrade"
+        gift_        <- o A..:?  "gift"
+        sender_id_   <- o A..:?  "sender_id"
+        receiver_id_ <- o A..:?  "receiver_id"
+        is_upgrade_  <- o A..:?  "is_upgrade"
         pure $ MessageRefundedUpgradedGift
-          { gift       = gift_
-          , sender_id  = sender_id_
-          , is_upgrade = is_upgrade_
+          { gift        = gift_
+          , sender_id   = sender_id_
+          , receiver_id = receiver_id_
+          , is_upgrade  = is_upgrade_
           }
       parseMessagePaidMessagesRefunded :: A.Value -> AT.Parser MessageContent
       parseMessagePaidMessagesRefunded = A.withObject "MessagePaidMessagesRefunded" $ \o -> do
@@ -2030,6 +2059,14 @@ instance AT.FromJSON MessageContent where
         paid_message_star_count_ <- o A..:?  "paid_message_star_count"
         pure $ MessagePaidMessagePriceChanged
           { paid_message_star_count = paid_message_star_count_
+          }
+      parseMessageDirectMessagePriceChanged :: A.Value -> AT.Parser MessageContent
+      parseMessageDirectMessagePriceChanged = A.withObject "MessageDirectMessagePriceChanged" $ \o -> do
+        is_enabled_              <- o A..:?  "is_enabled"
+        paid_message_star_count_ <- o A..:?  "paid_message_star_count"
+        pure $ MessageDirectMessagePriceChanged
+          { is_enabled              = is_enabled_
+          , paid_message_star_count = paid_message_star_count_
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do

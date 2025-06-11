@@ -31,6 +31,8 @@ import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
 import qualified TD.Data.SavedMessagesTopic as SavedMessagesTopic
+import qualified TD.Data.DirectMessagesChatTopic as DirectMessagesChatTopic
+import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.QuickReplyShortcut as QuickReplyShortcut
 import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
@@ -322,6 +324,14 @@ data Update
   | UpdateSavedMessagesTopicCount -- ^ Number of Saved Messages topics has changed
     { topic_count :: Maybe Int -- ^ Approximate total number of Saved Messages topics
     }
+  | UpdateDirectMessagesChatTopic -- ^ Basic information about a topic in a channel direct messages chat administered by the current user has changed. This update is guaranteed to come before the topic identifier is returned to the application
+    { _topic :: Maybe DirectMessagesChatTopic.DirectMessagesChatTopic -- ^ New data about the topic
+    }
+  | UpdateTopicMessageCount -- ^ Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
+    { chat_id       :: Maybe Int                       -- ^ Identifier of the chat in topic of which the number of messages has changed
+    , topic_id      :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic
+    , message_count :: Maybe Int                       -- ^ Approximate number of messages in the topics
+    }
   | UpdateQuickReplyShortcut -- ^ Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
     { shortcut :: Maybe QuickReplyShortcut.QuickReplyShortcut -- ^ New data about the shortcut
     }
@@ -344,6 +354,8 @@ data Update
     , is_pinned                   :: Maybe Bool                                              -- ^ True, if the topic is pinned in the topic list
     , last_read_inbox_message_id  :: Maybe Int                                               -- ^ Identifier of the last read incoming message
     , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
+    , unread_mention_count        :: Maybe Int                                               -- ^ Number of unread messages with a mention/reply in the topic
+    , unread_reaction_count       :: Maybe Int                                               -- ^ Number of messages with unread reactions in the topic
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     }
   | UpdateScopeNotificationSettings -- ^ Notification settings for some type of chats were updated
@@ -1277,6 +1289,24 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "topic_count" `I.p` topic_count_
         ]
+  shortShow UpdateDirectMessagesChatTopic
+    { _topic = _topic_
+    }
+      = "UpdateDirectMessagesChatTopic"
+        ++ I.cc
+        [ "_topic" `I.p` _topic_
+        ]
+  shortShow UpdateTopicMessageCount
+    { chat_id       = chat_id_
+    , topic_id      = topic_id_
+    , message_count = message_count_
+    }
+      = "UpdateTopicMessageCount"
+        ++ I.cc
+        [ "chat_id"       `I.p` chat_id_
+        , "topic_id"      `I.p` topic_id_
+        , "message_count" `I.p` message_count_
+        ]
   shortShow UpdateQuickReplyShortcut
     { shortcut = shortcut_
     }
@@ -1320,6 +1350,8 @@ instance I.ShortShow Update where
     , is_pinned                   = is_pinned_
     , last_read_inbox_message_id  = last_read_inbox_message_id_
     , last_read_outbox_message_id = last_read_outbox_message_id_
+    , unread_mention_count        = unread_mention_count_
+    , unread_reaction_count       = unread_reaction_count_
     , notification_settings       = notification_settings_
     }
       = "UpdateForumTopic"
@@ -1329,6 +1361,8 @@ instance I.ShortShow Update where
         , "is_pinned"                   `I.p` is_pinned_
         , "last_read_inbox_message_id"  `I.p` last_read_inbox_message_id_
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
+        , "unread_mention_count"        `I.p` unread_mention_count_
+        , "unread_reaction_count"       `I.p` unread_reaction_count_
         , "notification_settings"       `I.p` notification_settings_
         ]
   shortShow UpdateScopeNotificationSettings
@@ -2360,6 +2394,8 @@ instance AT.FromJSON Update where
       "updateChatOnlineMemberCount"                    -> parseUpdateChatOnlineMemberCount v
       "updateSavedMessagesTopic"                       -> parseUpdateSavedMessagesTopic v
       "updateSavedMessagesTopicCount"                  -> parseUpdateSavedMessagesTopicCount v
+      "updateDirectMessagesChatTopic"                  -> parseUpdateDirectMessagesChatTopic v
+      "updateTopicMessageCount"                        -> parseUpdateTopicMessageCount v
       "updateQuickReplyShortcut"                       -> parseUpdateQuickReplyShortcut v
       "updateQuickReplyShortcutDeleted"                -> parseUpdateQuickReplyShortcutDeleted v
       "updateQuickReplyShortcuts"                      -> parseUpdateQuickReplyShortcuts v
@@ -2908,6 +2944,22 @@ instance AT.FromJSON Update where
         pure $ UpdateSavedMessagesTopicCount
           { topic_count = topic_count_
           }
+      parseUpdateDirectMessagesChatTopic :: A.Value -> AT.Parser Update
+      parseUpdateDirectMessagesChatTopic = A.withObject "UpdateDirectMessagesChatTopic" $ \o -> do
+        _topic_ <- o A..:?  "topic"
+        pure $ UpdateDirectMessagesChatTopic
+          { _topic = _topic_
+          }
+      parseUpdateTopicMessageCount :: A.Value -> AT.Parser Update
+      parseUpdateTopicMessageCount = A.withObject "UpdateTopicMessageCount" $ \o -> do
+        chat_id_       <- o A..:?  "chat_id"
+        topic_id_      <- o A..:?  "topic_id"
+        message_count_ <- o A..:?  "message_count"
+        pure $ UpdateTopicMessageCount
+          { chat_id       = chat_id_
+          , topic_id      = topic_id_
+          , message_count = message_count_
+          }
       parseUpdateQuickReplyShortcut :: A.Value -> AT.Parser Update
       parseUpdateQuickReplyShortcut = A.withObject "UpdateQuickReplyShortcut" $ \o -> do
         shortcut_ <- o A..:?  "shortcut"
@@ -2947,6 +2999,8 @@ instance AT.FromJSON Update where
         is_pinned_                   <- o A..:?  "is_pinned"
         last_read_inbox_message_id_  <- o A..:?  "last_read_inbox_message_id"
         last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
+        unread_mention_count_        <- o A..:?  "unread_mention_count"
+        unread_reaction_count_       <- o A..:?  "unread_reaction_count"
         notification_settings_       <- o A..:?  "notification_settings"
         pure $ UpdateForumTopic
           { chat_id                     = chat_id_
@@ -2954,6 +3008,8 @@ instance AT.FromJSON Update where
           , is_pinned                   = is_pinned_
           , last_read_inbox_message_id  = last_read_inbox_message_id_
           , last_read_outbox_message_id = last_read_outbox_message_id_
+          , unread_mention_count        = unread_mention_count_
+          , unread_reaction_count       = unread_reaction_count_
           , notification_settings       = notification_settings_
           }
       parseUpdateScopeNotificationSettings :: A.Value -> AT.Parser Update

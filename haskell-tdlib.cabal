@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.62.0
+version:        2.0.63.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -211,6 +211,7 @@ library
       TD.Data.DeepLinkInfo
       TD.Data.DeviceToken
       TD.Data.DiceStickers
+      TD.Data.DirectMessagesChatTopic
       TD.Data.Document
       TD.Data.DownloadedFileCounts
       TD.Data.DraftMessage
@@ -379,6 +380,7 @@ library
       TD.Data.MessageSponsor
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
+      TD.Data.MessageTopic
       TD.Data.MessageViewer
       TD.Data.MessageViewers
       TD.Data.Minithumbnail
@@ -773,6 +775,8 @@ library
       TD.Query.DeleteChatReplyMarkup
       TD.Query.DeleteCommands
       TD.Query.DeleteDefaultBackground
+      TD.Query.DeleteDirectMessagesChatTopicHistory
+      TD.Query.DeleteDirectMessagesChatTopicMessagesByDate
       TD.Query.DeleteFile
       TD.Query.DeleteForumTopic
       TD.Query.DeleteLanguagePack
@@ -940,6 +944,9 @@ library
       TD.Query.GetDefaultEmojiStatuses
       TD.Query.GetDefaultMessageAutoDeleteTime
       TD.Query.GetDefaultProfilePhotoCustomEmojiStickers
+      TD.Query.GetDirectMessagesChatTopic
+      TD.Query.GetDirectMessagesChatTopicHistory
+      TD.Query.GetDirectMessagesChatTopicMessageByDate
       TD.Query.GetDisallowedChatEmojiStatuses
       TD.Query.GetEmojiCategories
       TD.Query.GetEmojiReaction
@@ -992,6 +999,7 @@ library
       TD.Query.GetMenuButton
       TD.Query.GetMessage
       TD.Query.GetMessageAddedReactions
+      TD.Query.GetMessageAuthor
       TD.Query.GetMessageAvailableReactions
       TD.Query.GetMessageEffect
       TD.Query.GetMessageEmbeddingCode
@@ -1134,6 +1142,7 @@ library
       TD.Query.LeaveGroupCall
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
+      TD.Query.LoadDirectMessagesChatTopics
       TD.Query.LoadGroupCallParticipants
       TD.Query.LoadQuickReplyShortcutMessages
       TD.Query.LoadQuickReplyShortcuts
@@ -1160,6 +1169,7 @@ library
       TD.Query.RateSpeechRecognition
       TD.Query.ReadAllChatMentions
       TD.Query.ReadAllChatReactions
+      TD.Query.ReadAllDirectMessagesChatTopicReactions
       TD.Query.ReadAllMessageThreadMentions
       TD.Query.ReadAllMessageThreadReactions
       TD.Query.ReadBusinessMessage
@@ -1326,6 +1336,7 @@ library
       TD.Query.SetChatBackground
       TD.Query.SetChatClientData
       TD.Query.SetChatDescription
+      TD.Query.SetChatDirectMessagesGroup
       TD.Query.SetChatDiscussionGroup
       TD.Query.SetChatDraftMessage
       TD.Query.SetChatEmojiStatus
@@ -1353,6 +1364,8 @@ library
       TD.Query.SetDefaultGroupAdministratorRights
       TD.Query.SetDefaultMessageAutoDeleteTime
       TD.Query.SetDefaultReactionType
+      TD.Query.SetDirectMessagesChatTopicDraftMessage
+      TD.Query.SetDirectMessagesChatTopicIsMarkedAsUnread
       TD.Query.SetEmojiStatus
       TD.Query.SetFileGenerationProgress
       TD.Query.SetForumTopicNotificationSettings
@@ -1487,6 +1500,7 @@ library
       TD.Query.TranslateMessageText
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
+      TD.Query.UnpinAllDirectMessagesChatTopicMessages
       TD.Query.UnpinAllMessageThreadMessages
       TD.Query.UnpinChatMessage
       TD.Query.UpgradeBasicGroupChatToSupergroupChat

@@ -13,6 +13,7 @@ import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.FactCheck as FactCheck
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
+import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
 import qualified TD.Data.MessageContent as MessageContent
@@ -28,10 +29,9 @@ data Message
     , is_outgoing                 :: Maybe Bool                                            -- ^ True, if the message is outgoing
     , is_pinned                   :: Maybe Bool                                            -- ^ True, if the message is pinned
     , is_from_offline             :: Maybe Bool                                            -- ^ True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
-    , can_be_saved                :: Maybe Bool                                            -- ^ True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
+    , can_be_saved                :: Maybe Bool                                            -- ^ True, if content of the message can be saved locally
     , has_timestamped_media       :: Maybe Bool                                            -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     , is_channel_post             :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
-    , is_topic_message            :: Maybe Bool                                            -- ^ True, if the message is a forum topic message
     , contains_unread_mention     :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
     , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
     , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
@@ -42,7 +42,7 @@ data Message
     , fact_check                  :: Maybe FactCheck.FactCheck                             -- ^ Information about fact-check added to the message; may be null if none
     , reply_to                    :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
     , message_thread_id           :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
-    , saved_messages_topic_id     :: Maybe Int                                             -- ^ Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
+    , topic_id                    :: Maybe MessageTopic.MessageTopic                       -- ^ Identifier of the topic within the chat to which the message belongs; may be null if none
     , self_destruct_type          :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in            :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in              :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
@@ -73,7 +73,6 @@ instance I.ShortShow Message where
     , can_be_saved                = can_be_saved_
     , has_timestamped_media       = has_timestamped_media_
     , is_channel_post             = is_channel_post_
-    , is_topic_message            = is_topic_message_
     , contains_unread_mention     = contains_unread_mention_
     , date                        = date_
     , edit_date                   = edit_date_
@@ -84,7 +83,7 @@ instance I.ShortShow Message where
     , fact_check                  = fact_check_
     , reply_to                    = reply_to_
     , message_thread_id           = message_thread_id_
-    , saved_messages_topic_id     = saved_messages_topic_id_
+    , topic_id                    = topic_id_
     , self_destruct_type          = self_destruct_type_
     , self_destruct_in            = self_destruct_in_
     , auto_delete_in              = auto_delete_in_
@@ -113,7 +112,6 @@ instance I.ShortShow Message where
         , "can_be_saved"                `I.p` can_be_saved_
         , "has_timestamped_media"       `I.p` has_timestamped_media_
         , "is_channel_post"             `I.p` is_channel_post_
-        , "is_topic_message"            `I.p` is_topic_message_
         , "contains_unread_mention"     `I.p` contains_unread_mention_
         , "date"                        `I.p` date_
         , "edit_date"                   `I.p` edit_date_
@@ -124,7 +122,7 @@ instance I.ShortShow Message where
         , "fact_check"                  `I.p` fact_check_
         , "reply_to"                    `I.p` reply_to_
         , "message_thread_id"           `I.p` message_thread_id_
-        , "saved_messages_topic_id"     `I.p` saved_messages_topic_id_
+        , "topic_id"                    `I.p` topic_id_
         , "self_destruct_type"          `I.p` self_destruct_type_
         , "self_destruct_in"            `I.p` self_destruct_in_
         , "auto_delete_in"              `I.p` auto_delete_in_
@@ -163,7 +161,6 @@ instance AT.FromJSON Message where
         can_be_saved_                <- o A..:?                       "can_be_saved"
         has_timestamped_media_       <- o A..:?                       "has_timestamped_media"
         is_channel_post_             <- o A..:?                       "is_channel_post"
-        is_topic_message_            <- o A..:?                       "is_topic_message"
         contains_unread_mention_     <- o A..:?                       "contains_unread_mention"
         date_                        <- o A..:?                       "date"
         edit_date_                   <- o A..:?                       "edit_date"
@@ -174,7 +171,7 @@ instance AT.FromJSON Message where
         fact_check_                  <- o A..:?                       "fact_check"
         reply_to_                    <- o A..:?                       "reply_to"
         message_thread_id_           <- o A..:?                       "message_thread_id"
-        saved_messages_topic_id_     <- o A..:?                       "saved_messages_topic_id"
+        topic_id_                    <- o A..:?                       "topic_id"
         self_destruct_type_          <- o A..:?                       "self_destruct_type"
         self_destruct_in_            <- o A..:?                       "self_destruct_in"
         auto_delete_in_              <- o A..:?                       "auto_delete_in"
@@ -201,7 +198,6 @@ instance AT.FromJSON Message where
           , can_be_saved                = can_be_saved_
           , has_timestamped_media       = has_timestamped_media_
           , is_channel_post             = is_channel_post_
-          , is_topic_message            = is_topic_message_
           , contains_unread_mention     = contains_unread_mention_
           , date                        = date_
           , edit_date                   = edit_date_
@@ -212,7 +208,7 @@ instance AT.FromJSON Message where
           , fact_check                  = fact_check_
           , reply_to                    = reply_to_
           , message_thread_id           = message_thread_id_
-          , saved_messages_topic_id     = saved_messages_topic_id_
+          , topic_id                    = topic_id_
           , self_destruct_type          = self_destruct_type_
           , self_destruct_in            = self_destruct_in_
           , auto_delete_in              = auto_delete_in_

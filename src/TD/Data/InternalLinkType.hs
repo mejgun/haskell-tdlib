@@ -67,7 +67,7 @@ data InternalLinkType
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
     }
-  | InternalLinkTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat. Call joinGroupCall with the given invite_link
+  | InternalLinkTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
   | InternalLinkTypeInstantView -- ^ The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser

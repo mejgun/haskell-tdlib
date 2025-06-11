@@ -20,6 +20,7 @@ data SupergroupFullInfo
     , restricted_count                 :: Maybe Int                             -- ^ Number of restricted users in the supergroup; 0 if unknown
     , banned_count                     :: Maybe Int                             -- ^ Number of users banned from chat; 0 if unknown
     , linked_chat_id                   :: Maybe Int                             -- ^ Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
+    , direct_messages_chat_id          :: Maybe Int                             -- ^ Chat identifier of a direct messages group for the channel, or a channel, for which the supergroup is the designated direct messages group; 0 if none
     , slow_mode_delay                  :: Maybe Int                             -- ^ Delay between consecutive sent messages for non-administrator supergroup members, in seconds
     , slow_mode_delay_expires_in       :: Maybe Double                          -- ^ Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
     , can_enable_paid_messages         :: Maybe Bool                            -- ^ True, if paid messages can be enabled in the supergroup chat; for supergroup only
@@ -62,6 +63,7 @@ instance I.ShortShow SupergroupFullInfo where
     , restricted_count                 = restricted_count_
     , banned_count                     = banned_count_
     , linked_chat_id                   = linked_chat_id_
+    , direct_messages_chat_id          = direct_messages_chat_id_
     , slow_mode_delay                  = slow_mode_delay_
     , slow_mode_delay_expires_in       = slow_mode_delay_expires_in_
     , can_enable_paid_messages         = can_enable_paid_messages_
@@ -102,6 +104,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "restricted_count"                 `I.p` restricted_count_
         , "banned_count"                     `I.p` banned_count_
         , "linked_chat_id"                   `I.p` linked_chat_id_
+        , "direct_messages_chat_id"          `I.p` direct_messages_chat_id_
         , "slow_mode_delay"                  `I.p` slow_mode_delay_
         , "slow_mode_delay_expires_in"       `I.p` slow_mode_delay_expires_in_
         , "can_enable_paid_messages"         `I.p` can_enable_paid_messages_
@@ -152,6 +155,7 @@ instance AT.FromJSON SupergroupFullInfo where
         restricted_count_                 <- o A..:?                       "restricted_count"
         banned_count_                     <- o A..:?                       "banned_count"
         linked_chat_id_                   <- o A..:?                       "linked_chat_id"
+        direct_messages_chat_id_          <- o A..:?                       "direct_messages_chat_id"
         slow_mode_delay_                  <- o A..:?                       "slow_mode_delay"
         slow_mode_delay_expires_in_       <- o A..:?                       "slow_mode_delay_expires_in"
         can_enable_paid_messages_         <- o A..:?                       "can_enable_paid_messages"
@@ -190,6 +194,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , restricted_count                 = restricted_count_
           , banned_count                     = banned_count_
           , linked_chat_id                   = linked_chat_id_
+          , direct_messages_chat_id          = direct_messages_chat_id_
           , slow_mode_delay                  = slow_mode_delay_
           , slow_mode_delay_expires_in       = slow_mode_delay_expires_in_
           , can_enable_paid_messages         = can_enable_paid_messages_

@@ -10,13 +10,14 @@ import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 
 data MessageSendOptions
   = MessageSendOptions -- ^ Options to be used when a message is sent
-    { disable_notification                   :: Maybe Bool                                          -- ^ Pass true to disable notification for the message
+    { direct_messages_chat_topic_id          :: Maybe Int                                           -- ^ Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user
+    , disable_notification                   :: Maybe Bool                                          -- ^ Pass true to disable notification for the message
     , from_background                        :: Maybe Bool                                          -- ^ Pass true if the message is sent from the background
     , protect_content                        :: Maybe Bool                                          -- ^ Pass true if the content of the message must be protected from forwarding and saving; for bots only
     , allow_paid_broadcast                   :: Maybe Bool                                          -- ^ Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
     , paid_message_star_count                :: Maybe Int                                           -- ^ The number of Telegram Stars the user agreed to pay to send the messages
     , update_order_of_installed_sticker_sets :: Maybe Bool                                          -- ^ Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
-    , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, live location messages and self-destructing messages can't be scheduled
+    , scheduling_state                       :: Maybe MessageSchedulingState.MessageSchedulingState -- ^ Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, to a channel direct messages chat, live location messages and self-destructing messages can't be scheduled
     , effect_id                              :: Maybe Int                                           -- ^ Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
     , sending_id                             :: Maybe Int                                           -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     , only_preview                           :: Maybe Bool                                          -- ^ Pass true to get a fake message instead of actually sending them
@@ -25,7 +26,8 @@ data MessageSendOptions
 
 instance I.ShortShow MessageSendOptions where
   shortShow MessageSendOptions
-    { disable_notification                   = disable_notification_
+    { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
+    , disable_notification                   = disable_notification_
     , from_background                        = from_background_
     , protect_content                        = protect_content_
     , allow_paid_broadcast                   = allow_paid_broadcast_
@@ -38,7 +40,8 @@ instance I.ShortShow MessageSendOptions where
     }
       = "MessageSendOptions"
         ++ I.cc
-        [ "disable_notification"                   `I.p` disable_notification_
+        [ "direct_messages_chat_topic_id"          `I.p` direct_messages_chat_topic_id_
+        , "disable_notification"                   `I.p` disable_notification_
         , "from_background"                        `I.p` from_background_
         , "protect_content"                        `I.p` protect_content_
         , "allow_paid_broadcast"                   `I.p` allow_paid_broadcast_
@@ -61,6 +64,7 @@ instance AT.FromJSON MessageSendOptions where
     where
       parseMessageSendOptions :: A.Value -> AT.Parser MessageSendOptions
       parseMessageSendOptions = A.withObject "MessageSendOptions" $ \o -> do
+        direct_messages_chat_topic_id_          <- o A..:?                       "direct_messages_chat_topic_id"
         disable_notification_                   <- o A..:?                       "disable_notification"
         from_background_                        <- o A..:?                       "from_background"
         protect_content_                        <- o A..:?                       "protect_content"
@@ -72,7 +76,8 @@ instance AT.FromJSON MessageSendOptions where
         sending_id_                             <- o A..:?                       "sending_id"
         only_preview_                           <- o A..:?                       "only_preview"
         pure $ MessageSendOptions
-          { disable_notification                   = disable_notification_
+          { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
+          , disable_notification                   = disable_notification_
           , from_background                        = from_background_
           , protect_content                        = protect_content_
           , allow_paid_broadcast                   = allow_paid_broadcast_
@@ -87,7 +92,8 @@ instance AT.FromJSON MessageSendOptions where
 
 instance AT.ToJSON MessageSendOptions where
   toJSON MessageSendOptions
-    { disable_notification                   = disable_notification_
+    { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
+    , disable_notification                   = disable_notification_
     , from_background                        = from_background_
     , protect_content                        = protect_content_
     , allow_paid_broadcast                   = allow_paid_broadcast_
@@ -100,6 +106,7 @@ instance AT.ToJSON MessageSendOptions where
     }
       = A.object
         [ "@type"                                  A..= AT.String "messageSendOptions"
+        , "direct_messages_chat_topic_id"          A..= direct_messages_chat_topic_id_
         , "disable_notification"                   A..= disable_notification_
         , "from_background"                        A..= from_background_
         , "protect_content"                        A..= protect_content_
@@ -115,7 +122,8 @@ instance AT.ToJSON MessageSendOptions where
 defaultMessageSendOptions :: MessageSendOptions
 defaultMessageSendOptions =
   MessageSendOptions
-    { disable_notification                   = Nothing
+    { direct_messages_chat_topic_id          = Nothing
+    , disable_notification                   = Nothing
     , from_background                        = Nothing
     , protect_content                        = Nothing
     , allow_paid_broadcast                   = Nothing

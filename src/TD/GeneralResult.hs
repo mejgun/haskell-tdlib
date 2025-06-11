@@ -84,6 +84,7 @@ import qualified TD.Data.CustomRequestResult as CustomRequestResult
 import qualified TD.Data.Data as Data
 import qualified TD.Data.DatabaseStatistics as DatabaseStatistics
 import qualified TD.Data.DeepLinkInfo as DeepLinkInfo
+import qualified TD.Data.DirectMessagesChatTopic as DirectMessagesChatTopic
 import qualified TD.Data.EmailAddressAuthenticationCodeInfo as EmailAddressAuthenticationCodeInfo
 import qualified TD.Data.EmojiCategories as EmojiCategories
 import qualified TD.Data.EmojiKeywords as EmojiKeywords
@@ -144,6 +145,7 @@ import qualified TD.Data.MessageLinkInfo as MessageLinkInfo
 import qualified TD.Data.MessagePositions as MessagePositions
 import qualified TD.Data.MessageProperties as MessageProperties
 import qualified TD.Data.MessageReadDate as MessageReadDate
+import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.MessageSenders as MessageSenders
 import qualified TD.Data.MessageStatistics as MessageStatistics
 import qualified TD.Data.MessageThreadInfo as MessageThreadInfo
@@ -328,6 +330,7 @@ data GeneralResult
     | Data                               Data.Data
     | DatabaseStatistics                 DatabaseStatistics.DatabaseStatistics
     | DeepLinkInfo                       DeepLinkInfo.DeepLinkInfo
+    | DirectMessagesChatTopic            DirectMessagesChatTopic.DirectMessagesChatTopic
     | EmailAddressAuthenticationCodeInfo EmailAddressAuthenticationCodeInfo.EmailAddressAuthenticationCodeInfo
     | EmojiCategories                    EmojiCategories.EmojiCategories
     | EmojiKeywords                      EmojiKeywords.EmojiKeywords
@@ -388,6 +391,7 @@ data GeneralResult
     | MessagePositions                   MessagePositions.MessagePositions
     | MessageProperties                  MessageProperties.MessageProperties
     | MessageReadDate                    MessageReadDate.MessageReadDate
+    | MessageSender                      MessageSender.MessageSender
     | MessageSenders                     MessageSenders.MessageSenders
     | MessageStatistics                  MessageStatistics.MessageStatistics
     | MessageThreadInfo                  MessageThreadInfo.MessageThreadInfo
@@ -653,6 +657,8 @@ instance I.ShortShow GeneralResult where
     = "DatabaseStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (DeepLinkInfo v)
     = "DeepLinkInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (DirectMessagesChatTopic v)
+    = "DirectMessagesChatTopic" <> " (" <> I.shortShow v <> ")"
   shortShow (EmailAddressAuthenticationCodeInfo v)
     = "EmailAddressAuthenticationCodeInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (EmojiCategories v)
@@ -773,6 +779,8 @@ instance I.ShortShow GeneralResult where
     = "MessageProperties" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageReadDate v)
     = "MessageReadDate" <> " (" <> I.shortShow v <> ")"
+  shortShow (MessageSender v)
+    = "MessageSender" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageSenders v)
     = "MessageSenders" <> " (" <> I.shortShow v <> ")"
   shortShow (MessageStatistics v)
@@ -1060,6 +1068,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Data                                <$> parseJSON v )
     <|> ( DatabaseStatistics                  <$> parseJSON v )
     <|> ( DeepLinkInfo                        <$> parseJSON v )
+    <|> ( DirectMessagesChatTopic             <$> parseJSON v )
     <|> ( EmailAddressAuthenticationCodeInfo  <$> parseJSON v )
     <|> ( EmojiCategories                     <$> parseJSON v )
     <|> ( EmojiKeywords                       <$> parseJSON v )
@@ -1120,6 +1129,7 @@ instance T.FromJSON GeneralResult where
     <|> ( MessagePositions                    <$> parseJSON v )
     <|> ( MessageProperties                   <$> parseJSON v )
     <|> ( MessageReadDate                     <$> parseJSON v )
+    <|> ( MessageSender                       <$> parseJSON v )
     <|> ( MessageSenders                      <$> parseJSON v )
     <|> ( MessageStatistics                   <$> parseJSON v )
     <|> ( MessageThreadInfo                   <$> parseJSON v )

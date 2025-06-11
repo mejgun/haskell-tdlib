@@ -13,7 +13,7 @@ import qualified TD.Data.InputMessageContent as InputMessageContent
 -- | Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message. Returns 'TD.Data.Message.Message'
 data AddLocalMessage
   = AddLocalMessage
-    { chat_id               :: Maybe Int                                     -- ^ Target chat
+    { chat_id               :: Maybe Int                                     -- ^ Target chat; channel direct messages chats aren't supported
     , sender_id             :: Maybe MessageSender.MessageSender             -- ^ Identifier of the sender of the message
     , reply_to              :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , disable_notification  :: Maybe Bool                                    -- ^ Pass true to disable notification for the message

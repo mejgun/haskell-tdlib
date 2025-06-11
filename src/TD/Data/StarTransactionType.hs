@@ -128,7 +128,7 @@ data StarTransactionType
     { chat_id       :: Maybe Int -- ^ Identifier of the chat that received the payment
     , message_count :: Maybe Int -- ^ Number of sent paid messages
     }
-  | StarTransactionTypePaidMessageReceive -- ^ The transaction is a receiving of a paid message; for regular users and supergroup chats only
+  | StarTransactionTypePaidMessageReceive -- ^ The transaction is a receiving of a paid message; for regular users, supergroup and channel chats only
     { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
     , message_count          :: Maybe Int                         -- ^ Number of received paid messages
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending

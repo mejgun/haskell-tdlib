@@ -11,6 +11,7 @@ import qualified TD.Data.MessageSender as MessageSender
 data ForumTopicInfo
   = ForumTopicInfo -- ^ Contains basic information about a forum topic
     { chat_id           :: Maybe Int                           -- ^ Identifier of the forum chat to which the topic belongs
+    , forum_topic_id    :: Maybe Int                           -- ^ Forum topic identifier of the topic
     , message_thread_id :: Maybe Int                           -- ^ Message thread identifier of the topic
     , name              :: Maybe T.Text                        -- ^ Name of the topic
     , icon              :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
@@ -26,6 +27,7 @@ data ForumTopicInfo
 instance I.ShortShow ForumTopicInfo where
   shortShow ForumTopicInfo
     { chat_id           = chat_id_
+    , forum_topic_id    = forum_topic_id_
     , message_thread_id = message_thread_id_
     , name              = name_
     , icon              = icon_
@@ -39,6 +41,7 @@ instance I.ShortShow ForumTopicInfo where
       = "ForumTopicInfo"
         ++ I.cc
         [ "chat_id"           `I.p` chat_id_
+        , "forum_topic_id"    `I.p` forum_topic_id_
         , "message_thread_id" `I.p` message_thread_id_
         , "name"              `I.p` name_
         , "icon"              `I.p` icon_
@@ -62,6 +65,7 @@ instance AT.FromJSON ForumTopicInfo where
       parseForumTopicInfo :: A.Value -> AT.Parser ForumTopicInfo
       parseForumTopicInfo = A.withObject "ForumTopicInfo" $ \o -> do
         chat_id_           <- o A..:?  "chat_id"
+        forum_topic_id_    <- o A..:?  "forum_topic_id"
         message_thread_id_ <- o A..:?  "message_thread_id"
         name_              <- o A..:?  "name"
         icon_              <- o A..:?  "icon"
@@ -73,6 +77,7 @@ instance AT.FromJSON ForumTopicInfo where
         is_hidden_         <- o A..:?  "is_hidden"
         pure $ ForumTopicInfo
           { chat_id           = chat_id_
+          , forum_topic_id    = forum_topic_id_
           , message_thread_id = message_thread_id_
           , name              = name_
           , icon              = icon_

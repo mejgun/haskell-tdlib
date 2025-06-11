@@ -140,9 +140,9 @@ data InputMessageContent
     , _paid_media        :: Maybe InputPaidMedia.InputPaidMedia -- ^ The content of paid media attached to the invoice; pass null if none
     , paid_media_caption :: Maybe FormattedText.FormattedText   -- ^ Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
-  | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot or the Saved Messages chat
+  | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats and channel direct messages chats. Polls can be sent to a private chat only if the chat is a chat with a bot or the Saved Messages chat
     { question     :: Maybe FormattedText.FormattedText   -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
-    , options      :: Maybe [FormattedText.FormattedText] -- ^ List of poll answer options, 2-12 strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
+    , options      :: Maybe [FormattedText.FormattedText] -- ^ List of poll answer options, 2-getOption("poll_answer_count_max") strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
     , is_anonymous :: Maybe Bool                          -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
     , _type        :: Maybe PollType.PollType             -- ^ Type of the poll
     , open_period  :: Maybe Int                           -- ^ Amount of time the poll will be active after creation, in seconds; for bots only

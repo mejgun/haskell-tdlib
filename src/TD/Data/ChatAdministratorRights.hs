@@ -9,9 +9,9 @@ import qualified TD.Lib.Internal as I
 
 data ChatAdministratorRights
   = ChatAdministratorRights -- ^ Describes rights of the administrator
-    { can_manage_chat        :: Maybe Bool -- ^ True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+    { can_manage_chat        :: Maybe Bool -- ^ True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages, ignore slow mode, and send messages to the chat without paying Telegram Stars. Implied by any other privilege; applicable to supergroups and channels only
     , can_change_info        :: Maybe Bool -- ^ True, if the administrator can change the chat title, photo, and other settings
-    , can_post_messages      :: Maybe Bool -- ^ True, if the administrator can create channel posts or view channel statistics; applicable to channels only
+    , can_post_messages      :: Maybe Bool -- ^ True, if the administrator can create channel posts, answer to channel direct messages, or view channel statistics; applicable to channels only
     , can_edit_messages      :: Maybe Bool -- ^ True, if the administrator can edit messages of other users and pin messages; applicable to channels only
     , can_delete_messages    :: Maybe Bool -- ^ True, if the administrator can delete messages of other users
     , can_invite_users       :: Maybe Bool -- ^ True, if the administrator can invite new users to the chat
