@@ -43,6 +43,7 @@ data SupergroupFullInfo
     , gift_count                       :: Maybe Int                             -- ^ Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
     , my_boost_count                   :: Maybe Int                             -- ^ Number of times the current user boosted the supergroup or channel
     , unrestrict_boost_count           :: Maybe Int                             -- ^ Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
+    , outgoing_paid_message_star_count :: Maybe Int                             -- ^ Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup
     , sticker_set_id                   :: Maybe Int                             -- ^ Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
     , custom_emoji_sticker_set_id      :: Maybe Int                             -- ^ Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
     , location                         :: Maybe ChatLocation.ChatLocation       -- ^ Location to which the supergroup is connected; may be null if none
@@ -86,6 +87,7 @@ instance I.ShortShow SupergroupFullInfo where
     , gift_count                       = gift_count_
     , my_boost_count                   = my_boost_count_
     , unrestrict_boost_count           = unrestrict_boost_count_
+    , outgoing_paid_message_star_count = outgoing_paid_message_star_count_
     , sticker_set_id                   = sticker_set_id_
     , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
     , location                         = location_
@@ -127,6 +129,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "gift_count"                       `I.p` gift_count_
         , "my_boost_count"                   `I.p` my_boost_count_
         , "unrestrict_boost_count"           `I.p` unrestrict_boost_count_
+        , "outgoing_paid_message_star_count" `I.p` outgoing_paid_message_star_count_
         , "sticker_set_id"                   `I.p` sticker_set_id_
         , "custom_emoji_sticker_set_id"      `I.p` custom_emoji_sticker_set_id_
         , "location"                         `I.p` location_
@@ -178,6 +181,7 @@ instance AT.FromJSON SupergroupFullInfo where
         gift_count_                       <- o A..:?                       "gift_count"
         my_boost_count_                   <- o A..:?                       "my_boost_count"
         unrestrict_boost_count_           <- o A..:?                       "unrestrict_boost_count"
+        outgoing_paid_message_star_count_ <- o A..:?                       "outgoing_paid_message_star_count"
         sticker_set_id_                   <- fmap I.readInt64 <$> o A..:?  "sticker_set_id"
         custom_emoji_sticker_set_id_      <- fmap I.readInt64 <$> o A..:?  "custom_emoji_sticker_set_id"
         location_                         <- o A..:?                       "location"
@@ -217,6 +221,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , gift_count                       = gift_count_
           , my_boost_count                   = my_boost_count_
           , unrestrict_boost_count           = unrestrict_boost_count_
+          , outgoing_paid_message_star_count = outgoing_paid_message_star_count_
           , sticker_set_id                   = sticker_set_id_
           , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
           , location                         = location_

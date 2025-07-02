@@ -14,7 +14,7 @@ data AddQuickReplyShortcutMessage
   = AddQuickReplyShortcutMessage
     { shortcut_name         :: Maybe T.Text                                  -- ^ Name of the target shortcut
     , reply_to_message_id   :: Maybe Int                                     -- ^ Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be added; inputMessagePaidMedia, inputMessageForwarded and inputMessageLocation with live_period aren't supported
     }
   deriving (Eq, Show)
 

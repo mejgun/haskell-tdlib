@@ -17,6 +17,7 @@ import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Invoice as Invoice
 import qualified TD.Data.PollType as PollType
+import qualified TD.Data.InputChecklist as InputChecklist
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 
 -- | The content of a message to send
@@ -152,6 +153,9 @@ data InputMessageContent
   | InputMessageStory -- ^ A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     { story_poster_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
+    }
+  | InputMessageChecklist -- ^ A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
+    { checklist :: Maybe InputChecklist.InputChecklist -- ^ The checklist to send
     }
   | InputMessageForwarded -- ^ A forwarded message
     { from_chat_id                  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
@@ -446,6 +450,13 @@ instance I.ShortShow InputMessageContent where
         [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
+  shortShow InputMessageChecklist
+    { checklist = checklist_
+    }
+      = "InputMessageChecklist"
+        ++ I.cc
+        [ "checklist" `I.p` checklist_
+        ]
   shortShow InputMessageForwarded
     { from_chat_id                  = from_chat_id_
     , message_id                    = message_id_
@@ -487,6 +498,7 @@ instance AT.FromJSON InputMessageContent where
       "inputMessageInvoice"   -> parseInputMessageInvoice v
       "inputMessagePoll"      -> parseInputMessagePoll v
       "inputMessageStory"     -> parseInputMessageStory v
+      "inputMessageChecklist" -> parseInputMessageChecklist v
       "inputMessageForwarded" -> parseInputMessageForwarded v
       _                       -> mempty
     
@@ -754,6 +766,12 @@ instance AT.FromJSON InputMessageContent where
         pure $ InputMessageStory
           { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
+          }
+      parseInputMessageChecklist :: A.Value -> AT.Parser InputMessageContent
+      parseInputMessageChecklist = A.withObject "InputMessageChecklist" $ \o -> do
+        checklist_ <- o A..:?  "checklist"
+        pure $ InputMessageChecklist
+          { checklist = checklist_
           }
       parseInputMessageForwarded :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
@@ -1055,6 +1073,13 @@ instance AT.ToJSON InputMessageContent where
         [ "@type"                A..= AT.String "inputMessageStory"
         , "story_poster_chat_id" A..= story_poster_chat_id_
         , "story_id"             A..= story_id_
+        ]
+  toJSON InputMessageChecklist
+    { checklist = checklist_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "inputMessageChecklist"
+        , "checklist" A..= checklist_
         ]
   toJSON InputMessageForwarded
     { from_chat_id                  = from_chat_id_

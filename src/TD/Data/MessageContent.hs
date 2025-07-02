@@ -15,6 +15,7 @@ import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
 import qualified TD.Data.AlternativeVideo as AlternativeVideo
+import qualified TD.Data.VideoStoryboard as VideoStoryboard
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 import qualified TD.Data.Location as Location
@@ -25,6 +26,7 @@ import qualified Data.Text as T
 import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Game as Game
 import qualified TD.Data.Poll as Poll
+import qualified TD.Data.Checklist as Checklist
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.MessageSender as MessageSender
@@ -37,6 +39,7 @@ import qualified TD.Data.GiveawayParameters as GiveawayParameters
 import qualified TD.Data.GiveawayPrize as GiveawayPrize
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified TD.Data.ChecklistTask as ChecklistTask
 import qualified TD.Data.SharedUser as SharedUser
 import qualified TD.Data.SharedChat as SharedChat
 import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
@@ -86,6 +89,7 @@ data MessageContent
   | MessageVideo -- ^ A video message
     { video                    :: Maybe Video.Video                         -- ^ The video description
     , alternative_videos       :: Maybe [AlternativeVideo.AlternativeVideo] -- ^ Alternative qualities of the video
+    , storyboards              :: Maybe [VideoStoryboard.VideoStoryboard]   -- ^ Available storyboards for the video
     , cover                    :: Maybe Photo.Photo                         -- ^ Cover of the video; may be null if none
     , start_timestamp          :: Maybe Int                                 -- ^ Timestamp from which the video playing must start, in seconds
     , caption                  :: Maybe FormattedText.FormattedText         -- ^ Video caption
@@ -141,6 +145,9 @@ data MessageContent
     { story_poster_chat_id :: Maybe Int  -- ^ Identifier of the chat that posted the story
     , story_id             :: Maybe Int  -- ^ Story identifier
     , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
+    }
+  | MessageChecklist -- ^ A message with a checklist
+    { list :: Maybe Checklist.Checklist -- ^ The checklist description
     }
   | MessageInvoice -- ^ A message with an invoice from a bot. Use getInternalLink with internalLinkTypeBotStart to share the invoice
     { product_info          :: Maybe ProductInfo.ProductInfo     -- ^ Information about the product
@@ -402,6 +409,15 @@ data MessageContent
     { is_enabled              :: Maybe Bool -- ^ True, if direct messages group was enabled for the channel; false otherwise
     , paid_message_star_count :: Maybe Int  -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
     }
+  | MessageChecklistTasksDone -- ^ Some tasks from a checklist were marked as done or not done
+    { checklist_message_id        :: Maybe Int   -- ^ Identifier of the message with the checklist; can be 0 if the message was deleted
+    , marked_as_done_task_ids     :: Maybe [Int] -- ^ Identifiers of tasks that were marked as done
+    , marked_as_not_done_task_ids :: Maybe [Int] -- ^ Identifiers of tasks that were marked as not done
+    }
+  | MessageChecklistTasksAdded -- ^ Some tasks were added to a checklist
+    { checklist_message_id :: Maybe Int                           -- ^ Identifier of the message with the checklist; can be 0 if the message was deleted
+    , tasks                :: Maybe [ChecklistTask.ChecklistTask] -- ^ List of tasks added to the checklist
+    }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
     { users     :: Maybe [SharedUser.SharedUser] -- ^ The shared users
@@ -521,6 +537,7 @@ instance I.ShortShow MessageContent where
   shortShow MessageVideo
     { video                    = video_
     , alternative_videos       = alternative_videos_
+    , storyboards              = storyboards_
     , cover                    = cover_
     , start_timestamp          = start_timestamp_
     , caption                  = caption_
@@ -532,6 +549,7 @@ instance I.ShortShow MessageContent where
         ++ I.cc
         [ "video"                    `I.p` video_
         , "alternative_videos"       `I.p` alternative_videos_
+        , "storyboards"              `I.p` storyboards_
         , "cover"                    `I.p` cover_
         , "start_timestamp"          `I.p` start_timestamp_
         , "caption"                  `I.p` caption_
@@ -646,6 +664,13 @@ instance I.ShortShow MessageContent where
         [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         , "via_mention"          `I.p` via_mention_
+        ]
+  shortShow MessageChecklist
+    { list = list_
+    }
+      = "MessageChecklist"
+        ++ I.cc
+        [ "list" `I.p` list_
         ]
   shortShow MessageInvoice
     { product_info          = product_info_
@@ -1211,6 +1236,26 @@ instance I.ShortShow MessageContent where
         [ "is_enabled"              `I.p` is_enabled_
         , "paid_message_star_count" `I.p` paid_message_star_count_
         ]
+  shortShow MessageChecklistTasksDone
+    { checklist_message_id        = checklist_message_id_
+    , marked_as_done_task_ids     = marked_as_done_task_ids_
+    , marked_as_not_done_task_ids = marked_as_not_done_task_ids_
+    }
+      = "MessageChecklistTasksDone"
+        ++ I.cc
+        [ "checklist_message_id"        `I.p` checklist_message_id_
+        , "marked_as_done_task_ids"     `I.p` marked_as_done_task_ids_
+        , "marked_as_not_done_task_ids" `I.p` marked_as_not_done_task_ids_
+        ]
+  shortShow MessageChecklistTasksAdded
+    { checklist_message_id = checklist_message_id_
+    , tasks                = tasks_
+    }
+      = "MessageChecklistTasksAdded"
+        ++ I.cc
+        [ "checklist_message_id" `I.p` checklist_message_id_
+        , "tasks"                `I.p` tasks_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUsersShared
@@ -1311,6 +1356,7 @@ instance AT.FromJSON MessageContent where
       "messageGame"                         -> parseMessageGame v
       "messagePoll"                         -> parseMessagePoll v
       "messageStory"                        -> parseMessageStory v
+      "messageChecklist"                    -> parseMessageChecklist v
       "messageInvoice"                      -> parseMessageInvoice v
       "messageCall"                         -> parseMessageCall v
       "messageGroupCall"                    -> parseMessageGroupCall v
@@ -1359,6 +1405,8 @@ instance AT.FromJSON MessageContent where
       "messagePaidMessagesRefunded"         -> parseMessagePaidMessagesRefunded v
       "messagePaidMessagePriceChanged"      -> parseMessagePaidMessagePriceChanged v
       "messageDirectMessagePriceChanged"    -> parseMessageDirectMessagePriceChanged v
+      "messageChecklistTasksDone"           -> parseMessageChecklistTasksDone v
+      "messageChecklistTasksAdded"          -> parseMessageChecklistTasksAdded v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -1450,6 +1498,7 @@ instance AT.FromJSON MessageContent where
       parseMessageVideo = A.withObject "MessageVideo" $ \o -> do
         video_                    <- o A..:?  "video"
         alternative_videos_       <- o A..:?  "alternative_videos"
+        storyboards_              <- o A..:?  "storyboards"
         cover_                    <- o A..:?  "cover"
         start_timestamp_          <- o A..:?  "start_timestamp"
         caption_                  <- o A..:?  "caption"
@@ -1459,6 +1508,7 @@ instance AT.FromJSON MessageContent where
         pure $ MessageVideo
           { video                    = video_
           , alternative_videos       = alternative_videos_
+          , storyboards              = storyboards_
           , cover                    = cover_
           , start_timestamp          = start_timestamp_
           , caption                  = caption_
@@ -1555,6 +1605,12 @@ instance AT.FromJSON MessageContent where
           { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           , via_mention          = via_mention_
+          }
+      parseMessageChecklist :: A.Value -> AT.Parser MessageContent
+      parseMessageChecklist = A.withObject "MessageChecklist" $ \o -> do
+        list_ <- o A..:?  "list"
+        pure $ MessageChecklist
+          { list = list_
           }
       parseMessageInvoice :: A.Value -> AT.Parser MessageContent
       parseMessageInvoice = A.withObject "MessageInvoice" $ \o -> do
@@ -2067,6 +2123,24 @@ instance AT.FromJSON MessageContent where
         pure $ MessageDirectMessagePriceChanged
           { is_enabled              = is_enabled_
           , paid_message_star_count = paid_message_star_count_
+          }
+      parseMessageChecklistTasksDone :: A.Value -> AT.Parser MessageContent
+      parseMessageChecklistTasksDone = A.withObject "MessageChecklistTasksDone" $ \o -> do
+        checklist_message_id_        <- o A..:?  "checklist_message_id"
+        marked_as_done_task_ids_     <- o A..:?  "marked_as_done_task_ids"
+        marked_as_not_done_task_ids_ <- o A..:?  "marked_as_not_done_task_ids"
+        pure $ MessageChecklistTasksDone
+          { checklist_message_id        = checklist_message_id_
+          , marked_as_done_task_ids     = marked_as_done_task_ids_
+          , marked_as_not_done_task_ids = marked_as_not_done_task_ids_
+          }
+      parseMessageChecklistTasksAdded :: A.Value -> AT.Parser MessageContent
+      parseMessageChecklistTasksAdded = A.withObject "MessageChecklistTasksAdded" $ \o -> do
+        checklist_message_id_ <- o A..:?  "checklist_message_id"
+        tasks_                <- o A..:?  "tasks"
+        pure $ MessageChecklistTasksAdded
+          { checklist_message_id = checklist_message_id_
+          , tasks                = tasks_
           }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do

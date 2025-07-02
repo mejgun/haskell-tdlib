@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.63.0
+version:        2.0.64.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -32,6 +32,7 @@ library
       TD.Data.AddedReaction
       TD.Data.AddedReactions
       TD.Data.Address
+      TD.Data.AdvertisementSponsor
       TD.Data.AffiliateInfo
       TD.Data.AffiliateProgramInfo
       TD.Data.AffiliateProgramParameters
@@ -186,6 +187,8 @@ library
       TD.Data.ChatTheme
       TD.Data.ChatType
       TD.Data.CheckChatUsernameResult
+      TD.Data.Checklist
+      TD.Data.ChecklistTask
       TD.Data.CheckStickerSetNameResult
       TD.Data.CloseBirthdayUser
       TD.Data.ClosedVectorPath
@@ -297,6 +300,8 @@ library
       TD.Data.InputBusinessChatLink
       TD.Data.InputBusinessStartPage
       TD.Data.InputChatPhoto
+      TD.Data.InputChecklist
+      TD.Data.InputChecklistTask
       TD.Data.InputCredentials
       TD.Data.InputFile
       TD.Data.InputGroupCall
@@ -377,7 +382,6 @@ library
       TD.Data.MessageSendingState
       TD.Data.MessageSendOptions
       TD.Data.MessageSource
-      TD.Data.MessageSponsor
       TD.Data.MessageStatistics
       TD.Data.MessageThreadInfo
       TD.Data.MessageTopic
@@ -635,7 +639,10 @@ library
       TD.Data.VideoChat
       TD.Data.VideoChatStream
       TD.Data.VideoChatStreams
+      TD.Data.VideoMessageAdvertisement
+      TD.Data.VideoMessageAdvertisements
       TD.Data.VideoNote
+      TD.Data.VideoStoryboard
       TD.Data.VoiceNote
       TD.Data.WebApp
       TD.Data.WebAppInfo
@@ -653,6 +660,7 @@ library
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
       TD.Query.AddChatToList
+      TD.Query.AddChecklistTasks
       TD.Query.AddContact
       TD.Query.AddCustomServerLanguagePack
       TD.Query.AddFavoriteSticker
@@ -727,6 +735,7 @@ library
       TD.Query.ClickAnimatedEmojiMessage
       TD.Query.ClickChatSponsoredMessage
       TD.Query.ClickPremiumSubscriptionButton
+      TD.Query.ClickVideoMessageAdvertisement
       TD.Query.Close
       TD.Query.CloseChat
       TD.Query.CloseSecretChat
@@ -803,6 +812,7 @@ library
       TD.Query.EditBotMediaPreview
       TD.Query.EditBusinessChatLink
       TD.Query.EditBusinessMessageCaption
+      TD.Query.EditBusinessMessageChecklist
       TD.Query.EditBusinessMessageLiveLocation
       TD.Query.EditBusinessMessageMedia
       TD.Query.EditBusinessMessageReplyMarkup
@@ -820,6 +830,7 @@ library
       TD.Query.EditInlineMessageReplyMarkup
       TD.Query.EditInlineMessageText
       TD.Query.EditMessageCaption
+      TD.Query.EditMessageChecklist
       TD.Query.EditMessageLiveLocation
       TD.Query.EditMessageMedia
       TD.Query.EditMessageReplyMarkup
@@ -947,6 +958,7 @@ library
       TD.Query.GetDirectMessagesChatTopic
       TD.Query.GetDirectMessagesChatTopicHistory
       TD.Query.GetDirectMessagesChatTopicMessageByDate
+      TD.Query.GetDirectMessagesChatTopicRevenue
       TD.Query.GetDisallowedChatEmojiStatuses
       TD.Query.GetEmojiCategories
       TD.Query.GetEmojiReaction
@@ -1122,6 +1134,7 @@ library
       TD.Query.GetVideoChatRtmpUrl
       TD.Query.GetVideoChatStreams
       TD.Query.GetVideoChatStreamSegment
+      TD.Query.GetVideoMessageAdvertisements
       TD.Query.GetWebAppLinkUrl
       TD.Query.GetWebAppPlaceholder
       TD.Query.GetWebAppUrl
@@ -1148,6 +1161,7 @@ library
       TD.Query.LoadQuickReplyShortcuts
       TD.Query.LoadSavedMessagesTopics
       TD.Query.LogOut
+      TD.Query.MarkChecklistTasksAsDone
       TD.Query.OpenBotSimilarBot
       TD.Query.OpenChat
       TD.Query.OpenChatSimilarChat
@@ -1223,6 +1237,7 @@ library
       TD.Query.ReportStory
       TD.Query.ReportSupergroupAntiSpamFalsePositive
       TD.Query.ReportSupergroupSpam
+      TD.Query.ReportVideoMessageAdvertisement
       TD.Query.RequestAuthenticationPasswordRecovery
       TD.Query.RequestPasswordRecovery
       TD.Query.RequestQrCodeAuthentication
@@ -1465,6 +1480,7 @@ library
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleChatIsTranslatable
       TD.Query.ToggleChatViewAsTopics
+      TD.Query.ToggleDirectMessagesChatTopicCanSendUnpaidMessages
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed
       TD.Query.ToggleForumTopicIsPinned
@@ -1511,6 +1527,7 @@ library
       TD.Query.ViewPremiumFeature
       TD.Query.ViewSponsoredChat
       TD.Query.ViewTrendingStickerSets
+      TD.Query.ViewVideoMessageAdvertisement
       TD.Query.WriteGeneratedFilePart
   other-modules:
       Paths_haskell_tdlib

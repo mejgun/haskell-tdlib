@@ -98,6 +98,10 @@ data PushMessageContent
     { text      :: Maybe T.Text -- ^ Message text
     , is_pinned :: Maybe Bool   -- ^ True, if the message is a pinned message with the specified content
     }
+  | PushMessageContentChecklist -- ^ A message with a checklist
+    { title     :: Maybe T.Text -- ^ Checklist title
+    , is_pinned :: Maybe Bool   -- ^ True, if the message is a pinned message with the specified content
+    }
   | PushMessageContentVideo -- ^ A video message
     { video     :: Maybe Video.Video -- ^ Message content; may be null
     , caption   :: Maybe T.Text      -- ^ Video caption
@@ -146,6 +150,12 @@ data PushMessageContent
   | PushMessageContentSuggestProfilePhoto -- ^ A profile photo was suggested to the user
   | PushMessageContentProximityAlertTriggered -- ^ A user in the chat came within proximity alert range from the current user
     { distance :: Maybe Int -- ^ The distance to the user
+    }
+  | PushMessageContentChecklistTasksAdded -- ^ Some tasks were added to a checklist
+    { task_count :: Maybe Int -- ^ Number of added tasks
+    }
+  | PushMessageContentChecklistTasksDone -- ^ Some tasks from a checklist were marked as done or not done
+    { task_count :: Maybe Int -- ^ Number of changed tasks
     }
   | PushMessageContentMessageForwards -- ^ A forwarded messages
     { total_count :: Maybe Int -- ^ Number of forwarded messages
@@ -341,6 +351,15 @@ instance I.ShortShow PushMessageContent where
         [ "text"      `I.p` text_
         , "is_pinned" `I.p` is_pinned_
         ]
+  shortShow PushMessageContentChecklist
+    { title     = title_
+    , is_pinned = is_pinned_
+    }
+      = "PushMessageContentChecklist"
+        ++ I.cc
+        [ "title"     `I.p` title_
+        , "is_pinned" `I.p` is_pinned_
+        ]
   shortShow PushMessageContentVideo
     { video     = video_
     , caption   = caption_
@@ -450,6 +469,20 @@ instance I.ShortShow PushMessageContent where
         ++ I.cc
         [ "distance" `I.p` distance_
         ]
+  shortShow PushMessageContentChecklistTasksAdded
+    { task_count = task_count_
+    }
+      = "PushMessageContentChecklistTasksAdded"
+        ++ I.cc
+        [ "task_count" `I.p` task_count_
+        ]
+  shortShow PushMessageContentChecklistTasksDone
+    { task_count = task_count_
+    }
+      = "PushMessageContentChecklistTasksDone"
+        ++ I.cc
+        [ "task_count" `I.p` task_count_
+        ]
   shortShow PushMessageContentMessageForwards
     { total_count = total_count_
     }
@@ -499,6 +532,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentSticker"                     -> parsePushMessageContentSticker v
       "pushMessageContentStory"                       -> parsePushMessageContentStory v
       "pushMessageContentText"                        -> parsePushMessageContentText v
+      "pushMessageContentChecklist"                   -> parsePushMessageContentChecklist v
       "pushMessageContentVideo"                       -> parsePushMessageContentVideo v
       "pushMessageContentVideoNote"                   -> parsePushMessageContentVideoNote v
       "pushMessageContentVoiceNote"                   -> parsePushMessageContentVoiceNote v
@@ -517,6 +551,8 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentRecurringPayment"            -> parsePushMessageContentRecurringPayment v
       "pushMessageContentSuggestProfilePhoto"         -> pure PushMessageContentSuggestProfilePhoto
       "pushMessageContentProximityAlertTriggered"     -> parsePushMessageContentProximityAlertTriggered v
+      "pushMessageContentChecklistTasksAdded"         -> parsePushMessageContentChecklistTasksAdded v
+      "pushMessageContentChecklistTasksDone"          -> parsePushMessageContentChecklistTasksDone v
       "pushMessageContentMessageForwards"             -> parsePushMessageContentMessageForwards v
       "pushMessageContentMediaAlbum"                  -> parsePushMessageContentMediaAlbum v
       _                                               -> mempty
@@ -680,6 +716,14 @@ instance AT.FromJSON PushMessageContent where
           { text      = text_
           , is_pinned = is_pinned_
           }
+      parsePushMessageContentChecklist :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentChecklist = A.withObject "PushMessageContentChecklist" $ \o -> do
+        title_     <- o A..:?  "title"
+        is_pinned_ <- o A..:?  "is_pinned"
+        pure $ PushMessageContentChecklist
+          { title     = title_
+          , is_pinned = is_pinned_
+          }
       parsePushMessageContentVideo :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentVideo = A.withObject "PushMessageContentVideo" $ \o -> do
         video_     <- o A..:?  "video"
@@ -763,6 +807,18 @@ instance AT.FromJSON PushMessageContent where
         distance_ <- o A..:?  "distance"
         pure $ PushMessageContentProximityAlertTriggered
           { distance = distance_
+          }
+      parsePushMessageContentChecklistTasksAdded :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentChecklistTasksAdded = A.withObject "PushMessageContentChecklistTasksAdded" $ \o -> do
+        task_count_ <- o A..:?  "task_count"
+        pure $ PushMessageContentChecklistTasksAdded
+          { task_count = task_count_
+          }
+      parsePushMessageContentChecklistTasksDone :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentChecklistTasksDone = A.withObject "PushMessageContentChecklistTasksDone" $ \o -> do
+        task_count_ <- o A..:?  "task_count"
+        pure $ PushMessageContentChecklistTasksDone
+          { task_count = task_count_
           }
       parsePushMessageContentMessageForwards :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do

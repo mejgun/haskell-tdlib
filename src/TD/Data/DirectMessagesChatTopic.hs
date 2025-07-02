@@ -14,6 +14,7 @@ data DirectMessagesChatTopic
     , _id                         :: Maybe Int                         -- ^ Unique topic identifier
     , sender_id                   :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that sends the messages to the topic
     , order                       :: Maybe Int                         -- ^ A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+    , can_send_unpaid_messages    :: Maybe Bool                        -- ^ True, if the other party can send unpaid messages even if the chat has paid messages enabled
     , is_marked_as_unread         :: Maybe Bool                        -- ^ True, if the forum topic is marked as unread
     , unread_count                :: Maybe Int                         -- ^ Number of unread messages in the chat
     , last_read_inbox_message_id  :: Maybe Int                         -- ^ Identifier of the last read incoming message
@@ -30,6 +31,7 @@ instance I.ShortShow DirectMessagesChatTopic where
     , _id                         = _id_
     , sender_id                   = sender_id_
     , order                       = order_
+    , can_send_unpaid_messages    = can_send_unpaid_messages_
     , is_marked_as_unread         = is_marked_as_unread_
     , unread_count                = unread_count_
     , last_read_inbox_message_id  = last_read_inbox_message_id_
@@ -44,6 +46,7 @@ instance I.ShortShow DirectMessagesChatTopic where
         , "_id"                         `I.p` _id_
         , "sender_id"                   `I.p` sender_id_
         , "order"                       `I.p` order_
+        , "can_send_unpaid_messages"    `I.p` can_send_unpaid_messages_
         , "is_marked_as_unread"         `I.p` is_marked_as_unread_
         , "unread_count"                `I.p` unread_count_
         , "last_read_inbox_message_id"  `I.p` last_read_inbox_message_id_
@@ -68,6 +71,7 @@ instance AT.FromJSON DirectMessagesChatTopic where
         _id_                         <- o A..:?                       "id"
         sender_id_                   <- o A..:?                       "sender_id"
         order_                       <- fmap I.readInt64 <$> o A..:?  "order"
+        can_send_unpaid_messages_    <- o A..:?                       "can_send_unpaid_messages"
         is_marked_as_unread_         <- o A..:?                       "is_marked_as_unread"
         unread_count_                <- o A..:?                       "unread_count"
         last_read_inbox_message_id_  <- o A..:?                       "last_read_inbox_message_id"
@@ -80,6 +84,7 @@ instance AT.FromJSON DirectMessagesChatTopic where
           , _id                         = _id_
           , sender_id                   = sender_id_
           , order                       = order_
+          , can_send_unpaid_messages    = can_send_unpaid_messages_
           , is_marked_as_unread         = is_marked_as_unread_
           , unread_count                = unread_count_
           , last_read_inbox_message_id  = last_read_inbox_message_id_

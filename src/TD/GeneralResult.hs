@@ -246,6 +246,7 @@ import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
 import qualified TD.Data.VideoChatStreams as VideoChatStreams
+import qualified TD.Data.VideoMessageAdvertisements as VideoMessageAdvertisements
 import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
 
@@ -492,6 +493,7 @@ data GeneralResult
     | Users                              Users.Users
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
     | VideoChatStreams                   VideoChatStreams.VideoChatStreams
+    | VideoMessageAdvertisements         VideoMessageAdvertisements.VideoMessageAdvertisements
     | WebAppInfo                         WebAppInfo.WebAppInfo
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
  deriving (Eq, Show)
@@ -981,6 +983,8 @@ instance I.ShortShow GeneralResult where
     = "ValidatedOrderInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (VideoChatStreams v)
     = "VideoChatStreams" <> " (" <> I.shortShow v <> ")"
+  shortShow (VideoMessageAdvertisements v)
+    = "VideoMessageAdvertisements" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
     = "WebAppInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (WebPageInstantView v)
@@ -1230,5 +1234,6 @@ instance T.FromJSON GeneralResult where
     <|> ( Users                               <$> parseJSON v )
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
     <|> ( VideoChatStreams                    <$> parseJSON v )
+    <|> ( VideoMessageAdvertisements          <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )

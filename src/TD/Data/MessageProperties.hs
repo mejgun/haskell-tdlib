@@ -7,11 +7,12 @@ import qualified TD.Lib.Internal as I
 
 data MessageProperties
   = MessageProperties -- ^ Contains properties of a message and describes actions that can be done with the message right now
-    { can_be_copied                  :: Maybe Bool -- ^ True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
+    { can_add_tasks                  :: Maybe Bool -- ^ True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    , can_be_copied                  :: Maybe Bool -- ^ True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
     , can_be_copied_to_secret_chat   :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
     , can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     , can_be_deleted_for_all_users   :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
-    , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
+    , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
     , can_be_forwarded               :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
     , can_be_paid                    :: Maybe Bool -- ^ True, if the message can be paid using inputInvoiceMessage
     , can_be_pinned                  :: Maybe Bool -- ^ True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
@@ -28,7 +29,9 @@ data MessageProperties
     , can_get_message_thread         :: Maybe Bool -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     , can_get_read_date              :: Maybe Bool -- ^ True, if read date of the message can be received through getMessageReadDate
     , can_get_statistics             :: Maybe Bool -- ^ True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
+    , can_get_video_advertisements   :: Maybe Bool -- ^ True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
     , can_get_viewers                :: Maybe Bool -- ^ True, if chat members already viewed the message can be received through getMessageViewers
+    , can_mark_tasks_as_done         :: Maybe Bool -- ^ True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
     , can_recognize_speech           :: Maybe Bool -- ^ True, if speech can be recognized for the message through recognizeSpeech
     , can_report_chat                :: Maybe Bool -- ^ True, if the message can be reported using reportChat
     , can_report_reactions           :: Maybe Bool -- ^ True, if reactions on the message can be reported through reportMessageReactions
@@ -40,7 +43,8 @@ data MessageProperties
 
 instance I.ShortShow MessageProperties where
   shortShow MessageProperties
-    { can_be_copied                  = can_be_copied_
+    { can_add_tasks                  = can_add_tasks_
+    , can_be_copied                  = can_be_copied_
     , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
     , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
@@ -61,7 +65,9 @@ instance I.ShortShow MessageProperties where
     , can_get_message_thread         = can_get_message_thread_
     , can_get_read_date              = can_get_read_date_
     , can_get_statistics             = can_get_statistics_
+    , can_get_video_advertisements   = can_get_video_advertisements_
     , can_get_viewers                = can_get_viewers_
+    , can_mark_tasks_as_done         = can_mark_tasks_as_done_
     , can_recognize_speech           = can_recognize_speech_
     , can_report_chat                = can_report_chat_
     , can_report_reactions           = can_report_reactions_
@@ -71,7 +77,8 @@ instance I.ShortShow MessageProperties where
     }
       = "MessageProperties"
         ++ I.cc
-        [ "can_be_copied"                  `I.p` can_be_copied_
+        [ "can_add_tasks"                  `I.p` can_add_tasks_
+        , "can_be_copied"                  `I.p` can_be_copied_
         , "can_be_copied_to_secret_chat"   `I.p` can_be_copied_to_secret_chat_
         , "can_be_deleted_only_for_self"   `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users"   `I.p` can_be_deleted_for_all_users_
@@ -92,7 +99,9 @@ instance I.ShortShow MessageProperties where
         , "can_get_message_thread"         `I.p` can_get_message_thread_
         , "can_get_read_date"              `I.p` can_get_read_date_
         , "can_get_statistics"             `I.p` can_get_statistics_
+        , "can_get_video_advertisements"   `I.p` can_get_video_advertisements_
         , "can_get_viewers"                `I.p` can_get_viewers_
+        , "can_mark_tasks_as_done"         `I.p` can_mark_tasks_as_done_
         , "can_recognize_speech"           `I.p` can_recognize_speech_
         , "can_report_chat"                `I.p` can_report_chat_
         , "can_report_reactions"           `I.p` can_report_reactions_
@@ -112,6 +121,7 @@ instance AT.FromJSON MessageProperties where
     where
       parseMessageProperties :: A.Value -> AT.Parser MessageProperties
       parseMessageProperties = A.withObject "MessageProperties" $ \o -> do
+        can_add_tasks_                  <- o A..:?  "can_add_tasks"
         can_be_copied_                  <- o A..:?  "can_be_copied"
         can_be_copied_to_secret_chat_   <- o A..:?  "can_be_copied_to_secret_chat"
         can_be_deleted_only_for_self_   <- o A..:?  "can_be_deleted_only_for_self"
@@ -133,7 +143,9 @@ instance AT.FromJSON MessageProperties where
         can_get_message_thread_         <- o A..:?  "can_get_message_thread"
         can_get_read_date_              <- o A..:?  "can_get_read_date"
         can_get_statistics_             <- o A..:?  "can_get_statistics"
+        can_get_video_advertisements_   <- o A..:?  "can_get_video_advertisements"
         can_get_viewers_                <- o A..:?  "can_get_viewers"
+        can_mark_tasks_as_done_         <- o A..:?  "can_mark_tasks_as_done"
         can_recognize_speech_           <- o A..:?  "can_recognize_speech"
         can_report_chat_                <- o A..:?  "can_report_chat"
         can_report_reactions_           <- o A..:?  "can_report_reactions"
@@ -141,7 +153,8 @@ instance AT.FromJSON MessageProperties where
         can_set_fact_check_             <- o A..:?  "can_set_fact_check"
         need_show_statistics_           <- o A..:?  "need_show_statistics"
         pure $ MessageProperties
-          { can_be_copied                  = can_be_copied_
+          { can_add_tasks                  = can_add_tasks_
+          , can_be_copied                  = can_be_copied_
           , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
           , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
@@ -162,7 +175,9 @@ instance AT.FromJSON MessageProperties where
           , can_get_message_thread         = can_get_message_thread_
           , can_get_read_date              = can_get_read_date_
           , can_get_statistics             = can_get_statistics_
+          , can_get_video_advertisements   = can_get_video_advertisements_
           , can_get_viewers                = can_get_viewers_
+          , can_mark_tasks_as_done         = can_mark_tasks_as_done_
           , can_recognize_speech           = can_recognize_speech_
           , can_report_chat                = can_report_chat_
           , can_report_reactions           = can_report_reactions_

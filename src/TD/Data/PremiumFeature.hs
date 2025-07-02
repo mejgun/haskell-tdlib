@@ -31,6 +31,7 @@ data PremiumFeature
   | PremiumFeatureLastSeenTimes -- ^ The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
   | PremiumFeatureBusiness -- ^ The ability to use Business features
   | PremiumFeatureMessageEffects -- ^ The ability to use all available message effects
+  | PremiumFeatureChecklists -- ^ The ability to create and use checklist messages
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -82,6 +83,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureBusiness"
   shortShow PremiumFeatureMessageEffects
       = "PremiumFeatureMessageEffects"
+  shortShow PremiumFeatureChecklists
+      = "PremiumFeatureChecklists"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -112,6 +115,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureLastSeenTimes"           -> pure PremiumFeatureLastSeenTimes
       "premiumFeatureBusiness"                -> pure PremiumFeatureBusiness
       "premiumFeatureMessageEffects"          -> pure PremiumFeatureMessageEffects
+      "premiumFeatureChecklists"              -> pure PremiumFeatureChecklists
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -212,5 +216,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureMessageEffects
       = A.object
         [ "@type" A..= AT.String "premiumFeatureMessageEffects"
+        ]
+  toJSON PremiumFeatureChecklists
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureChecklists"
         ]
 
