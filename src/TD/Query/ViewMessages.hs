@@ -14,7 +14,7 @@ data ViewMessages
     { chat_id     :: Maybe Int                         -- ^ Chat identifier
     , message_ids :: Maybe [Int]                       -- ^ The identifiers of the messages being viewed
     , source      :: Maybe MessageSource.MessageSource -- ^ Source of the message view; pass null to guess the source based on chat open state
-    , force_read  :: Maybe Bool                        -- ^ Pass true to mark as read the specified messages even the chat is closed
+    , force_read  :: Maybe Bool                        -- ^ Pass true to mark as read the specified messages even if the chat is closed
     }
   deriving (Eq, Show)
 

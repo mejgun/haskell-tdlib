@@ -11,8 +11,8 @@ data VideoMessageAdvertisement
   = VideoMessageAdvertisement -- ^ Describes an advertisent to be shown while a video from a message is watched
     { unique_id            :: Maybe Int                                       -- ^ Unique identifier of this result
     , text                 :: Maybe T.Text                                    -- ^ Text of the advertisement
-    , min_display_duration :: Maybe Int                                       -- ^ The minimum amount of time the advertisement must be dispalyed before it can be hidden by the user, in seconds
-    , max_display_duration :: Maybe Int                                       -- ^ The maximum amount of time the advertisement must be dispalyed before it must be automatically hidden, in seconds
+    , min_display_duration :: Maybe Int                                       -- ^ The minimum amount of time the advertisement must be displayed before it can be hidden by the user, in seconds
+    , max_display_duration :: Maybe Int                                       -- ^ The maximum amount of time the advertisement must be displayed before it must be automatically hidden, in seconds
     , can_be_reported      :: Maybe Bool                                      -- ^ True, if the advertisement can be reported to Telegram moderators through reportVideoMessageAdvertisement
     , sponsor              :: Maybe AdvertisementSponsor.AdvertisementSponsor -- ^ Information about the sponsor of the advertisement
     , title                :: Maybe T.Text                                    -- ^ Title of the sponsored message
