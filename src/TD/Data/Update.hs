@@ -483,7 +483,7 @@ data Update
     }
   | UpdateGroupCallParticipants -- ^ The list of group call participants that can send and receive encrypted call data has changed; for group calls not bound to a chat only
     { group_call_id        :: Maybe Int   -- ^ Identifier of the group call
-    , participant_user_ids :: Maybe [Int] -- ^ New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even there is no information about them
+    , participant_user_ids :: Maybe [Int] -- ^ New list of group call participant user identifiers. The identifiers may be invalid or the corresponding users may be unknown. The participants must be shown in the list of group call participants even if there is no information about them
     }
   | UpdateGroupCallVerificationState -- ^ The verification state of an encrypted group call has changed; for group calls not bound to a chat only
     { group_call_id :: Maybe Int      -- ^ Identifier of the group call

@@ -14,7 +14,7 @@ data SetBusinessAccountProfilePhoto
   = SetBusinessAccountProfilePhoto
     { business_connection_id :: Maybe T.Text                        -- ^ Unique identifier of business connection
     , photo                  :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set; pass null to remove the photo
-    , is_public              :: Maybe Bool                          -- ^ Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    , is_public              :: Maybe Bool                          -- ^ Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     }
   deriving (Eq, Show)
 

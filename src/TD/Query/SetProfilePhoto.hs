@@ -12,7 +12,7 @@ import qualified TD.Data.InputChatPhoto as InputChatPhoto
 data SetProfilePhoto
   = SetProfilePhoto
     { photo     :: Maybe InputChatPhoto.InputChatPhoto -- ^ Profile photo to set
-    , is_public :: Maybe Bool                          -- ^ Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+    , is_public :: Maybe Bool                          -- ^ Pass true to set the public photo, which will be visible even if the main photo is hidden by privacy settings
     }
   deriving (Eq, Show)
 

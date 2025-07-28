@@ -36,7 +36,7 @@ data Chat
     , permissions                        :: Maybe ChatPermissions.ChatPermissions                   -- ^ Actions that non-administrator chat members are allowed to take in the chat
     , last_message                       :: Maybe Message.Message                                   -- ^ Last message in the chat; may be null if none or unknown
     , positions                          :: Maybe [ChatPosition.ChatPosition]                       -- ^ Positions of the chat in chat lists
-    , chat_lists                         :: Maybe [ChatList.ChatList]                               -- ^ Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list
+    , chat_lists                         :: Maybe [ChatList.ChatList]                               -- ^ Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even if it doesn't belong to the chat list and have no position in a chat list even if it belongs to the chat list
     , message_sender_id                  :: Maybe MessageSender.MessageSender                       -- ^ Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
     , block_list                         :: Maybe BlockList.BlockList                               -- ^ Block list to which the chat is added; may be null if none
     , has_protected_content              :: Maybe Bool                                              -- ^ True, if chat content can't be saved locally, forwarded, or copied

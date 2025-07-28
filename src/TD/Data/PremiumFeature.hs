@@ -28,7 +28,7 @@ data PremiumFeature
   | PremiumFeatureBackgroundForBoth -- ^ The ability to set private chat background for both users
   | PremiumFeatureSavedMessagesTags -- ^ The ability to use tags in Saved Messages
   | PremiumFeatureMessagePrivacy -- ^ The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
-  | PremiumFeatureLastSeenTimes -- ^ The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
+  | PremiumFeatureLastSeenTimes -- ^ The ability to view last seen and read times of other users even if they can't view last seen or read time for the current user
   | PremiumFeatureBusiness -- ^ The ability to use Business features
   | PremiumFeatureMessageEffects -- ^ The ability to use all available message effects
   | PremiumFeatureChecklists -- ^ The ability to create and use checklist messages
