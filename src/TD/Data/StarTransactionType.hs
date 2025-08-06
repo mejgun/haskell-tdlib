@@ -134,6 +134,12 @@ data StarTransactionType
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
     }
+  | StarTransactionTypeSuggestedPostPaymentSend -- ^ The transaction is a payment for a suggested post; for regular users only
+    { chat_id :: Maybe Int -- ^ Identifier of the channel chat that posted the post
+    }
+  | StarTransactionTypeSuggestedPostPaymentReceive -- ^ The transaction is a receiving of a payment for a suggested post by the channel chat; for channel chats only
+    { user_id :: Maybe Int -- ^ Identifier of the user that paid for the suggested post
+    }
   | StarTransactionTypePremiumPurchase -- ^ The transaction is a purchase of Telegram Premium subscription; for regular users and bots only
     { user_id     :: Maybe Int             -- ^ Identifier of the user that received the Telegram Premium subscription
     , month_count :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
@@ -406,6 +412,20 @@ instance I.ShortShow StarTransactionType where
         , "commission_per_mille"   `I.p` commission_per_mille_
         , "commission_star_amount" `I.p` commission_star_amount_
         ]
+  shortShow StarTransactionTypeSuggestedPostPaymentSend
+    { chat_id = chat_id_
+    }
+      = "StarTransactionTypeSuggestedPostPaymentSend"
+        ++ I.cc
+        [ "chat_id" `I.p` chat_id_
+        ]
+  shortShow StarTransactionTypeSuggestedPostPaymentReceive
+    { user_id = user_id_
+    }
+      = "StarTransactionTypeSuggestedPostPaymentReceive"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        ]
   shortShow StarTransactionTypePremiumPurchase
     { user_id     = user_id_
     , month_count = month_count_
@@ -469,6 +489,8 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypeAffiliateProgramCommission"  -> parseStarTransactionTypeAffiliateProgramCommission v
       "starTransactionTypePaidMessageSend"             -> parseStarTransactionTypePaidMessageSend v
       "starTransactionTypePaidMessageReceive"          -> parseStarTransactionTypePaidMessageReceive v
+      "starTransactionTypeSuggestedPostPaymentSend"    -> parseStarTransactionTypeSuggestedPostPaymentSend v
+      "starTransactionTypeSuggestedPostPaymentReceive" -> parseStarTransactionTypeSuggestedPostPaymentReceive v
       "starTransactionTypePremiumPurchase"             -> parseStarTransactionTypePremiumPurchase v
       "starTransactionTypeBusinessBotTransferSend"     -> parseStarTransactionTypeBusinessBotTransferSend v
       "starTransactionTypeBusinessBotTransferReceive"  -> parseStarTransactionTypeBusinessBotTransferReceive v
@@ -697,6 +719,18 @@ instance AT.FromJSON StarTransactionType where
           , message_count          = message_count_
           , commission_per_mille   = commission_per_mille_
           , commission_star_amount = commission_star_amount_
+          }
+      parseStarTransactionTypeSuggestedPostPaymentSend :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeSuggestedPostPaymentSend = A.withObject "StarTransactionTypeSuggestedPostPaymentSend" $ \o -> do
+        chat_id_ <- o A..:?  "chat_id"
+        pure $ StarTransactionTypeSuggestedPostPaymentSend
+          { chat_id = chat_id_
+          }
+      parseStarTransactionTypeSuggestedPostPaymentReceive :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeSuggestedPostPaymentReceive = A.withObject "StarTransactionTypeSuggestedPostPaymentReceive" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        pure $ StarTransactionTypeSuggestedPostPaymentReceive
+          { user_id = user_id_
           }
       parseStarTransactionTypePremiumPurchase :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypePremiumPurchase = A.withObject "StarTransactionTypePremiumPurchase" $ \o -> do

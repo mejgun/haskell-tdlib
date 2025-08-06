@@ -233,6 +233,7 @@ import qualified TD.Data.TestVectorStringObject as TestVectorStringObject
 import qualified TD.Data.Text as Text
 import qualified TD.Data.TextEntities as TextEntities
 import qualified TD.Data.TimeZones as TimeZones
+import qualified TD.Data.TonTransactions as TonTransactions
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
@@ -480,6 +481,7 @@ data GeneralResult
     | Text                               Text.Text
     | TextEntities                       TextEntities.TextEntities
     | TimeZones                          TimeZones.TimeZones
+    | TonTransactions                    TonTransactions.TonTransactions
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
     | Updates                            Updates.Updates
@@ -957,6 +959,8 @@ instance I.ShortShow GeneralResult where
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
     = "TimeZones" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonTransactions v)
+    = "TonTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (TrendingStickerSets v)
     = "TrendingStickerSets" <> " (" <> I.shortShow v <> ")"
   shortShow (Update v)
@@ -1221,6 +1225,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Text                                <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
+    <|> ( TonTransactions                     <$> parseJSON v )
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )

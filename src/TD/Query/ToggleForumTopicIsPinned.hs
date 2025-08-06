@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics. Returns 'TD.Data.Ok.Ok'
+-- | Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics. Returns 'TD.Data.Ok.Ok'
 data ToggleForumTopicIsPinned
   = ToggleForumTopicIsPinned
     { chat_id           :: Maybe Int  -- ^ Chat identifier

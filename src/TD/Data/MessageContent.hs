@@ -39,7 +39,11 @@ import qualified TD.Data.GiveawayParameters as GiveawayParameters
 import qualified TD.Data.GiveawayPrize as GiveawayPrize
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified TD.Data.UpgradedGiftOrigin as UpgradedGiftOrigin
 import qualified TD.Data.ChecklistTask as ChecklistTask
+import qualified TD.Data.SuggestedPostPrice as SuggestedPostPrice
+import qualified TD.Data.StarAmount as StarAmount
+import qualified TD.Data.SuggestedPostRefundReason as SuggestedPostRefundReason
 import qualified TD.Data.SharedUser as SharedUser
 import qualified TD.Data.SharedChat as SharedChat
 import qualified TD.Data.BotWriteAccessAllowReason as BotWriteAccessAllowReason
@@ -353,6 +357,13 @@ data MessageContent
     , transaction_id        :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars purchase; for receiver only
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
+  | MessageGiftedTon -- ^ Toncoins were gifted to a user
+    { gifter_user_id   :: Maybe Int             -- ^ The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id :: Maybe Int             -- ^ The identifier of a user that received Toncoins; 0 if the gift is incoming
+    , ton_amount       :: Maybe Int             -- ^ The received amount of Toncoins, in the smallest units of the cryptocurrency
+    , transaction_id   :: Maybe T.Text          -- ^ Identifier of the transaction for Toncoin credit; for receiver only
+    , sticker          :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
+    }
   | MessageGiveawayPrizeStars -- ^ A Telegram Stars were received by the current user from a giveaway
     { star_count          :: Maybe Int             -- ^ Number of Telegram Stars that were received
     , transaction_id      :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars credit
@@ -378,19 +389,18 @@ data MessageContent
     , upgraded_received_gift_id  :: Maybe T.Text                      -- ^ Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
     }
   | MessageUpgradedGift -- ^ An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
-    { _gift                  :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
-    , sender_id              :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for anonymous gifts
-    , receiver_id            :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
-    , received_gift_id       :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
-    , is_upgrade             :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
-    , is_saved               :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
-    , can_be_transferred     :: Maybe Bool                        -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
-    , was_transferred        :: Maybe Bool                        -- ^ True, if the gift was transferred to another owner; only for the receiver of the gift
-    , last_resale_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the gift; 0 if the gift was upgraded or transferred
-    , transfer_star_count    :: Maybe Int                         -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
-    , next_transfer_date     :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
-    , next_resale_date       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
-    , export_date            :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    { _gift               :: Maybe UpgradedGift.UpgradedGift             -- ^ The gift
+    , sender_id           :: Maybe MessageSender.MessageSender           -- ^ Sender of the gift; may be null for anonymous gifts
+    , receiver_id         :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
+    , origin              :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
+    , received_gift_id    :: Maybe T.Text                                -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
+    , is_saved            :: Maybe Bool                                  -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    , can_be_transferred  :: Maybe Bool                                  -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
+    , was_transferred     :: Maybe Bool                                  -- ^ True, if the gift has already been transferred to another owner; only for the receiver of the gift
+    , transfer_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    , next_transfer_date  :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    , next_resale_date    :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
+    , export_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
     { gift        :: Maybe Gift.Gift                   -- ^ The gift
@@ -418,6 +428,28 @@ data MessageContent
     { checklist_message_id :: Maybe Int                           -- ^ Identifier of the message with the checklist; can be 0 if the message was deleted
     , tasks                :: Maybe [ChecklistTask.ChecklistTask] -- ^ List of tasks added to the checklist
     }
+  | MessageSuggestedPostApprovalFailed -- ^ Approval of suggested post has failed, because the user which proposed the post had no enough funds
+    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    , price                     :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post
+    }
+  | MessageSuggestedPostApproved -- ^ A suggested post was approved
+    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    , price                     :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post; may be null if the post is non-paid
+    , send_date                 :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the post is expected to be published
+    }
+  | MessageSuggestedPostDeclined -- ^ A suggested post was declined
+    { suggested_post_message_id :: Maybe Int    -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    , comment                   :: Maybe T.Text -- ^ Comment added by administrator of the channel when the post was declined
+    }
+  | MessageSuggestedPostPaid -- ^ A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
+    { suggested_post_message_id :: Maybe Int                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    , star_amount               :: Maybe StarAmount.StarAmount -- ^ The amount of received Telegram Stars
+    , ton_amount                :: Maybe Int                   -- ^ The amount of received Toncoins; in the smallest units of the cryptocurrency
+    }
+  | MessageSuggestedPostRefunded -- ^ A suggested post was refunded
+    { suggested_post_message_id :: Maybe Int                                                 -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    , reason                    :: Maybe SuggestedPostRefundReason.SuggestedPostRefundReason -- ^ Reason of the refund
+    }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
   | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
     { users     :: Maybe [SharedUser.SharedUser] -- ^ The shared users
@@ -428,7 +460,7 @@ data MessageContent
     , button_id :: Maybe Int                   -- ^ Identifier of the keyboard button with the request
     }
   | MessageBotWriteAccessAllowed -- ^ The user allowed the bot to send messages
-    { reason :: Maybe BotWriteAccessAllowReason.BotWriteAccessAllowReason -- ^ The reason why the bot was allowed to write messages
+    { _reason :: Maybe BotWriteAccessAllowReason.BotWriteAccessAllowReason -- ^ The reason why the bot was allowed to write messages
     }
   | MessageWebAppDataSent -- ^ Data from a Web App has been sent to a bot
     { button_text :: Maybe T.Text -- ^ Text of the keyboardButtonTypeWebApp button, which opened the Web App
@@ -1117,6 +1149,21 @@ instance I.ShortShow MessageContent where
         , "transaction_id"        `I.p` transaction_id_
         , "sticker"               `I.p` sticker_
         ]
+  shortShow MessageGiftedTon
+    { gifter_user_id   = gifter_user_id_
+    , receiver_user_id = receiver_user_id_
+    , ton_amount       = ton_amount_
+    , transaction_id   = transaction_id_
+    , sticker          = sticker_
+    }
+      = "MessageGiftedTon"
+        ++ I.cc
+        [ "gifter_user_id"   `I.p` gifter_user_id_
+        , "receiver_user_id" `I.p` receiver_user_id_
+        , "ton_amount"       `I.p` ton_amount_
+        , "transaction_id"   `I.p` transaction_id_
+        , "sticker"          `I.p` sticker_
+        ]
   shortShow MessageGiveawayPrizeStars
     { star_count          = star_count_
     , transaction_id      = transaction_id_
@@ -1168,35 +1215,33 @@ instance I.ShortShow MessageContent where
         , "upgraded_received_gift_id"  `I.p` upgraded_received_gift_id_
         ]
   shortShow MessageUpgradedGift
-    { _gift                  = _gift_
-    , sender_id              = sender_id_
-    , receiver_id            = receiver_id_
-    , received_gift_id       = received_gift_id_
-    , is_upgrade             = is_upgrade_
-    , is_saved               = is_saved_
-    , can_be_transferred     = can_be_transferred_
-    , was_transferred        = was_transferred_
-    , last_resale_star_count = last_resale_star_count_
-    , transfer_star_count    = transfer_star_count_
-    , next_transfer_date     = next_transfer_date_
-    , next_resale_date       = next_resale_date_
-    , export_date            = export_date_
+    { _gift               = _gift_
+    , sender_id           = sender_id_
+    , receiver_id         = receiver_id_
+    , origin              = origin_
+    , received_gift_id    = received_gift_id_
+    , is_saved            = is_saved_
+    , can_be_transferred  = can_be_transferred_
+    , was_transferred     = was_transferred_
+    , transfer_star_count = transfer_star_count_
+    , next_transfer_date  = next_transfer_date_
+    , next_resale_date    = next_resale_date_
+    , export_date         = export_date_
     }
       = "MessageUpgradedGift"
         ++ I.cc
-        [ "_gift"                  `I.p` _gift_
-        , "sender_id"              `I.p` sender_id_
-        , "receiver_id"            `I.p` receiver_id_
-        , "received_gift_id"       `I.p` received_gift_id_
-        , "is_upgrade"             `I.p` is_upgrade_
-        , "is_saved"               `I.p` is_saved_
-        , "can_be_transferred"     `I.p` can_be_transferred_
-        , "was_transferred"        `I.p` was_transferred_
-        , "last_resale_star_count" `I.p` last_resale_star_count_
-        , "transfer_star_count"    `I.p` transfer_star_count_
-        , "next_transfer_date"     `I.p` next_transfer_date_
-        , "next_resale_date"       `I.p` next_resale_date_
-        , "export_date"            `I.p` export_date_
+        [ "_gift"               `I.p` _gift_
+        , "sender_id"           `I.p` sender_id_
+        , "receiver_id"         `I.p` receiver_id_
+        , "origin"              `I.p` origin_
+        , "received_gift_id"    `I.p` received_gift_id_
+        , "is_saved"            `I.p` is_saved_
+        , "can_be_transferred"  `I.p` can_be_transferred_
+        , "was_transferred"     `I.p` was_transferred_
+        , "transfer_star_count" `I.p` transfer_star_count_
+        , "next_transfer_date"  `I.p` next_transfer_date_
+        , "next_resale_date"    `I.p` next_resale_date_
+        , "export_date"         `I.p` export_date_
         ]
   shortShow MessageRefundedUpgradedGift
     { gift        = gift_
@@ -1256,6 +1301,55 @@ instance I.ShortShow MessageContent where
         [ "checklist_message_id" `I.p` checklist_message_id_
         , "tasks"                `I.p` tasks_
         ]
+  shortShow MessageSuggestedPostApprovalFailed
+    { suggested_post_message_id = suggested_post_message_id_
+    , price                     = price_
+    }
+      = "MessageSuggestedPostApprovalFailed"
+        ++ I.cc
+        [ "suggested_post_message_id" `I.p` suggested_post_message_id_
+        , "price"                     `I.p` price_
+        ]
+  shortShow MessageSuggestedPostApproved
+    { suggested_post_message_id = suggested_post_message_id_
+    , price                     = price_
+    , send_date                 = send_date_
+    }
+      = "MessageSuggestedPostApproved"
+        ++ I.cc
+        [ "suggested_post_message_id" `I.p` suggested_post_message_id_
+        , "price"                     `I.p` price_
+        , "send_date"                 `I.p` send_date_
+        ]
+  shortShow MessageSuggestedPostDeclined
+    { suggested_post_message_id = suggested_post_message_id_
+    , comment                   = comment_
+    }
+      = "MessageSuggestedPostDeclined"
+        ++ I.cc
+        [ "suggested_post_message_id" `I.p` suggested_post_message_id_
+        , "comment"                   `I.p` comment_
+        ]
+  shortShow MessageSuggestedPostPaid
+    { suggested_post_message_id = suggested_post_message_id_
+    , star_amount               = star_amount_
+    , ton_amount                = ton_amount_
+    }
+      = "MessageSuggestedPostPaid"
+        ++ I.cc
+        [ "suggested_post_message_id" `I.p` suggested_post_message_id_
+        , "star_amount"               `I.p` star_amount_
+        , "ton_amount"                `I.p` ton_amount_
+        ]
+  shortShow MessageSuggestedPostRefunded
+    { suggested_post_message_id = suggested_post_message_id_
+    , reason                    = reason_
+    }
+      = "MessageSuggestedPostRefunded"
+        ++ I.cc
+        [ "suggested_post_message_id" `I.p` suggested_post_message_id_
+        , "reason"                    `I.p` reason_
+        ]
   shortShow MessageContactRegistered
       = "MessageContactRegistered"
   shortShow MessageUsersShared
@@ -1277,11 +1371,11 @@ instance I.ShortShow MessageContent where
         , "button_id" `I.p` button_id_
         ]
   shortShow MessageBotWriteAccessAllowed
-    { reason = reason_
+    { _reason = _reason_
     }
       = "MessageBotWriteAccessAllowed"
         ++ I.cc
-        [ "reason" `I.p` reason_
+        [ "_reason" `I.p` _reason_
         ]
   shortShow MessageWebAppDataSent
     { button_text = button_text_
@@ -1398,6 +1492,7 @@ instance AT.FromJSON MessageContent where
       "messageGiveawayCompleted"            -> parseMessageGiveawayCompleted v
       "messageGiveawayWinners"              -> parseMessageGiveawayWinners v
       "messageGiftedStars"                  -> parseMessageGiftedStars v
+      "messageGiftedTon"                    -> parseMessageGiftedTon v
       "messageGiveawayPrizeStars"           -> parseMessageGiveawayPrizeStars v
       "messageGift"                         -> parseMessageGift v
       "messageUpgradedGift"                 -> parseMessageUpgradedGift v
@@ -1407,6 +1502,11 @@ instance AT.FromJSON MessageContent where
       "messageDirectMessagePriceChanged"    -> parseMessageDirectMessagePriceChanged v
       "messageChecklistTasksDone"           -> parseMessageChecklistTasksDone v
       "messageChecklistTasksAdded"          -> parseMessageChecklistTasksAdded v
+      "messageSuggestedPostApprovalFailed"  -> parseMessageSuggestedPostApprovalFailed v
+      "messageSuggestedPostApproved"        -> parseMessageSuggestedPostApproved v
+      "messageSuggestedPostDeclined"        -> parseMessageSuggestedPostDeclined v
+      "messageSuggestedPostPaid"            -> parseMessageSuggestedPostPaid v
+      "messageSuggestedPostRefunded"        -> parseMessageSuggestedPostRefunded v
       "messageContactRegistered"            -> pure MessageContactRegistered
       "messageUsersShared"                  -> parseMessageUsersShared v
       "messageChatShared"                   -> parseMessageChatShared v
@@ -2012,6 +2112,20 @@ instance AT.FromJSON MessageContent where
           , transaction_id        = transaction_id_
           , sticker               = sticker_
           }
+      parseMessageGiftedTon :: A.Value -> AT.Parser MessageContent
+      parseMessageGiftedTon = A.withObject "MessageGiftedTon" $ \o -> do
+        gifter_user_id_   <- o A..:?  "gifter_user_id"
+        receiver_user_id_ <- o A..:?  "receiver_user_id"
+        ton_amount_       <- o A..:?  "ton_amount"
+        transaction_id_   <- o A..:?  "transaction_id"
+        sticker_          <- o A..:?  "sticker"
+        pure $ MessageGiftedTon
+          { gifter_user_id   = gifter_user_id_
+          , receiver_user_id = receiver_user_id_
+          , ton_amount       = ton_amount_
+          , transaction_id   = transaction_id_
+          , sticker          = sticker_
+          }
       parseMessageGiveawayPrizeStars :: A.Value -> AT.Parser MessageContent
       parseMessageGiveawayPrizeStars = A.withObject "MessageGiveawayPrizeStars" $ \o -> do
         star_count_          <- o A..:?  "star_count"
@@ -2062,33 +2176,31 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageUpgradedGift = A.withObject "MessageUpgradedGift" $ \o -> do
-        _gift_                  <- o A..:?  "gift"
-        sender_id_              <- o A..:?  "sender_id"
-        receiver_id_            <- o A..:?  "receiver_id"
-        received_gift_id_       <- o A..:?  "received_gift_id"
-        is_upgrade_             <- o A..:?  "is_upgrade"
-        is_saved_               <- o A..:?  "is_saved"
-        can_be_transferred_     <- o A..:?  "can_be_transferred"
-        was_transferred_        <- o A..:?  "was_transferred"
-        last_resale_star_count_ <- o A..:?  "last_resale_star_count"
-        transfer_star_count_    <- o A..:?  "transfer_star_count"
-        next_transfer_date_     <- o A..:?  "next_transfer_date"
-        next_resale_date_       <- o A..:?  "next_resale_date"
-        export_date_            <- o A..:?  "export_date"
+        _gift_               <- o A..:?  "gift"
+        sender_id_           <- o A..:?  "sender_id"
+        receiver_id_         <- o A..:?  "receiver_id"
+        origin_              <- o A..:?  "origin"
+        received_gift_id_    <- o A..:?  "received_gift_id"
+        is_saved_            <- o A..:?  "is_saved"
+        can_be_transferred_  <- o A..:?  "can_be_transferred"
+        was_transferred_     <- o A..:?  "was_transferred"
+        transfer_star_count_ <- o A..:?  "transfer_star_count"
+        next_transfer_date_  <- o A..:?  "next_transfer_date"
+        next_resale_date_    <- o A..:?  "next_resale_date"
+        export_date_         <- o A..:?  "export_date"
         pure $ MessageUpgradedGift
-          { _gift                  = _gift_
-          , sender_id              = sender_id_
-          , receiver_id            = receiver_id_
-          , received_gift_id       = received_gift_id_
-          , is_upgrade             = is_upgrade_
-          , is_saved               = is_saved_
-          , can_be_transferred     = can_be_transferred_
-          , was_transferred        = was_transferred_
-          , last_resale_star_count = last_resale_star_count_
-          , transfer_star_count    = transfer_star_count_
-          , next_transfer_date     = next_transfer_date_
-          , next_resale_date       = next_resale_date_
-          , export_date            = export_date_
+          { _gift               = _gift_
+          , sender_id           = sender_id_
+          , receiver_id         = receiver_id_
+          , origin              = origin_
+          , received_gift_id    = received_gift_id_
+          , is_saved            = is_saved_
+          , can_be_transferred  = can_be_transferred_
+          , was_transferred     = was_transferred_
+          , transfer_star_count = transfer_star_count_
+          , next_transfer_date  = next_transfer_date_
+          , next_resale_date    = next_resale_date_
+          , export_date         = export_date_
           }
       parseMessageRefundedUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageRefundedUpgradedGift = A.withObject "MessageRefundedUpgradedGift" $ \o -> do
@@ -2142,6 +2254,50 @@ instance AT.FromJSON MessageContent where
           { checklist_message_id = checklist_message_id_
           , tasks                = tasks_
           }
+      parseMessageSuggestedPostApprovalFailed :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestedPostApprovalFailed = A.withObject "MessageSuggestedPostApprovalFailed" $ \o -> do
+        suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
+        price_                     <- o A..:?  "price"
+        pure $ MessageSuggestedPostApprovalFailed
+          { suggested_post_message_id = suggested_post_message_id_
+          , price                     = price_
+          }
+      parseMessageSuggestedPostApproved :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestedPostApproved = A.withObject "MessageSuggestedPostApproved" $ \o -> do
+        suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
+        price_                     <- o A..:?  "price"
+        send_date_                 <- o A..:?  "send_date"
+        pure $ MessageSuggestedPostApproved
+          { suggested_post_message_id = suggested_post_message_id_
+          , price                     = price_
+          , send_date                 = send_date_
+          }
+      parseMessageSuggestedPostDeclined :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestedPostDeclined = A.withObject "MessageSuggestedPostDeclined" $ \o -> do
+        suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
+        comment_                   <- o A..:?  "comment"
+        pure $ MessageSuggestedPostDeclined
+          { suggested_post_message_id = suggested_post_message_id_
+          , comment                   = comment_
+          }
+      parseMessageSuggestedPostPaid :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestedPostPaid = A.withObject "MessageSuggestedPostPaid" $ \o -> do
+        suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
+        star_amount_               <- o A..:?  "star_amount"
+        ton_amount_                <- o A..:?  "ton_amount"
+        pure $ MessageSuggestedPostPaid
+          { suggested_post_message_id = suggested_post_message_id_
+          , star_amount               = star_amount_
+          , ton_amount                = ton_amount_
+          }
+      parseMessageSuggestedPostRefunded :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestedPostRefunded = A.withObject "MessageSuggestedPostRefunded" $ \o -> do
+        suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
+        reason_                    <- o A..:?  "reason"
+        pure $ MessageSuggestedPostRefunded
+          { suggested_post_message_id = suggested_post_message_id_
+          , reason                    = reason_
+          }
       parseMessageUsersShared :: A.Value -> AT.Parser MessageContent
       parseMessageUsersShared = A.withObject "MessageUsersShared" $ \o -> do
         users_     <- o A..:?  "users"
@@ -2160,9 +2316,9 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageBotWriteAccessAllowed :: A.Value -> AT.Parser MessageContent
       parseMessageBotWriteAccessAllowed = A.withObject "MessageBotWriteAccessAllowed" $ \o -> do
-        reason_ <- o A..:?  "reason"
+        _reason_ <- o A..:?  "reason"
         pure $ MessageBotWriteAccessAllowed
-          { reason = reason_
+          { _reason = _reason_
           }
       parseMessageWebAppDataSent :: A.Value -> AT.Parser MessageContent
       parseMessageWebAppDataSent = A.withObject "MessageWebAppDataSent" $ \o -> do

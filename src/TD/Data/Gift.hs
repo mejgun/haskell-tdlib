@@ -9,6 +9,7 @@ import qualified TD.Data.Sticker as Sticker
 data Gift
   = Gift -- ^ Describes a gift that can be sent to another user or channel chat
     { _id                     :: Maybe Int             -- ^ Unique identifier of the gift
+    , publisher_chat_id       :: Maybe Int             -- ^ Identifier of the chat that published the gift; 0 if none
     , sticker                 :: Maybe Sticker.Sticker -- ^ The sticker representing the gift
     , star_count              :: Maybe Int             -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int             -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
@@ -24,6 +25,7 @@ data Gift
 instance I.ShortShow Gift where
   shortShow Gift
     { _id                     = _id_
+    , publisher_chat_id       = publisher_chat_id_
     , sticker                 = sticker_
     , star_count              = star_count_
     , default_sell_star_count = default_sell_star_count_
@@ -37,6 +39,7 @@ instance I.ShortShow Gift where
       = "Gift"
         ++ I.cc
         [ "_id"                     `I.p` _id_
+        , "publisher_chat_id"       `I.p` publisher_chat_id_
         , "sticker"                 `I.p` sticker_
         , "star_count"              `I.p` star_count_
         , "default_sell_star_count" `I.p` default_sell_star_count_
@@ -60,6 +63,7 @@ instance AT.FromJSON Gift where
       parseGift :: A.Value -> AT.Parser Gift
       parseGift = A.withObject "Gift" $ \o -> do
         _id_                     <- fmap I.readInt64 <$> o A..:?  "id"
+        publisher_chat_id_       <- o A..:?                       "publisher_chat_id"
         sticker_                 <- o A..:?                       "sticker"
         star_count_              <- o A..:?                       "star_count"
         default_sell_star_count_ <- o A..:?                       "default_sell_star_count"
@@ -71,6 +75,7 @@ instance AT.FromJSON Gift where
         last_send_date_          <- o A..:?                       "last_send_date"
         pure $ Gift
           { _id                     = _id_
+          , publisher_chat_id       = publisher_chat_id_
           , sticker                 = sticker_
           , star_count              = star_count_
           , default_sell_star_count = default_sell_star_count_

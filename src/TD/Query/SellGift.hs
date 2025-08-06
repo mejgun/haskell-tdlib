@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sells a gift for Telegram Stars. Returns 'TD.Data.Ok.Ok'
+-- | Sells a gift for Telegram Stars; requires owner privileges for gifts owned by a chat. Returns 'TD.Data.Ok.Ok'
 data SellGift
   = SellGift
     { business_connection_id :: Maybe T.Text -- ^ Unique identifier of business connection on behalf of which to send the request; for bots only

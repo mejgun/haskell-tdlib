@@ -10,7 +10,7 @@ import qualified TD.Data.GiftForResaleOrder as GiftForResaleOrder
 import qualified TD.Data.UpgradedGiftAttributeId as UpgradedGiftAttributeId
 import qualified Data.Text as T
 
--- | Returns upgraded gifts that can be bought from other owners. Returns 'TD.Data.GiftsForResale.GiftsForResale'
+-- | Returns upgraded gifts that can be bought from other owners using sendResoldGift. Returns 'TD.Data.GiftsForResale.GiftsForResale'
 data SearchGiftsForResale
   = SearchGiftsForResale
     { gift_id    :: Maybe Int                                               -- ^ Identifier of the regular gift that was upgraded to a unique gift

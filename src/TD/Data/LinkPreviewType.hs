@@ -125,8 +125,9 @@ data LinkPreviewType
     , start_timestamp :: Maybe Int         -- ^ Timestamp from which the video playing must start, in seconds
     }
   | LinkPreviewTypeVideoChat -- ^ The link is a link to a video chat
-    { _photo         :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat with the video chat; may be null if none
-    , is_live_stream :: Maybe Bool                -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
+    { _photo           :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat with the video chat; may be null if none
+    , is_live_stream   :: Maybe Bool                -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
+    , joins_as_speaker :: Maybe Bool                -- ^ True, if the user can use the link to join the video chat without being muted by administrators
     }
   | LinkPreviewTypeVideoNote -- ^ The link is a link to a video note message
     { video_note :: Maybe VideoNote.VideoNote -- ^ The video note
@@ -368,13 +369,15 @@ instance I.ShortShow LinkPreviewType where
         , "start_timestamp" `I.p` start_timestamp_
         ]
   shortShow LinkPreviewTypeVideoChat
-    { _photo         = _photo_
-    , is_live_stream = is_live_stream_
+    { _photo           = _photo_
+    , is_live_stream   = is_live_stream_
+    , joins_as_speaker = joins_as_speaker_
     }
       = "LinkPreviewTypeVideoChat"
         ++ I.cc
-        [ "_photo"         `I.p` _photo_
-        , "is_live_stream" `I.p` is_live_stream_
+        [ "_photo"           `I.p` _photo_
+        , "is_live_stream"   `I.p` is_live_stream_
+        , "joins_as_speaker" `I.p` joins_as_speaker_
         ]
   shortShow LinkPreviewTypeVideoNote
     { video_note = video_note_
@@ -633,11 +636,13 @@ instance AT.FromJSON LinkPreviewType where
           }
       parseLinkPreviewTypeVideoChat :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeVideoChat = A.withObject "LinkPreviewTypeVideoChat" $ \o -> do
-        _photo_         <- o A..:?  "photo"
-        is_live_stream_ <- o A..:?  "is_live_stream"
+        _photo_           <- o A..:?  "photo"
+        is_live_stream_   <- o A..:?  "is_live_stream"
+        joins_as_speaker_ <- o A..:?  "joins_as_speaker"
         pure $ LinkPreviewTypeVideoChat
-          { _photo         = _photo_
-          , is_live_stream = is_live_stream_
+          { _photo           = _photo_
+          , is_live_stream   = is_live_stream_
+          , joins_as_speaker = joins_as_speaker_
           }
       parseLinkPreviewTypeVideoNote :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeVideoNote = A.withObject "LinkPreviewTypeVideoNote" $ \o -> do

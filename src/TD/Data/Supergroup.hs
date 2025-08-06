@@ -22,7 +22,7 @@ data Supergroup
     , has_location                          :: Maybe Bool                                  -- ^ True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     , sign_messages                         :: Maybe Bool                                  -- ^ True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
     , show_message_sender                   :: Maybe Bool                                  -- ^ True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
-    , join_to_send_messages                 :: Maybe Bool                                  -- ^ True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
+    , join_to_send_messages                 :: Maybe Bool                                  -- ^ True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups
     , join_by_request                       :: Maybe Bool                                  -- ^ True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
     , is_slow_mode_enabled                  :: Maybe Bool                                  -- ^ True, if the slow mode is enabled in the supergroup
     , is_channel                            :: Maybe Bool                                  -- ^ True, if the supergroup is a channel

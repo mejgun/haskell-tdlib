@@ -13,7 +13,7 @@ import qualified Data.Text as T
 data GetStarWithdrawalUrl
   = GetStarWithdrawalUrl
     { owner_id   :: Maybe MessageSender.MessageSender -- ^ Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
-    , star_count :: Maybe Int                         -- ^ The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    , star_count :: Maybe Int                         -- ^ The number of Telegram Stars to withdraw; must be between getOption("star_withdrawal_count_min") and getOption("star_withdrawal_count_max")
     , password   :: Maybe T.Text                      -- ^ The 2-step verification password of the current user
     }
   deriving (Eq, Show)

@@ -94,6 +94,7 @@ data InternalLinkType
     , contains_link :: Maybe Bool                        -- ^ True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     }
   | InternalLinkTypeMyStars -- ^ The link is a link to the screen with information about Telegram Star balance and transactions of the current user
+  | InternalLinkTypeMyToncoins -- ^ The link is a link to the screen with information about Toncoin balance and transactions of the current user
   | InternalLinkTypePassportDataRequest -- ^ The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     { bot_user_id  :: Maybe Int    -- ^ User identifier of the service's bot; the corresponding user may be unknown yet
     , scope        :: Maybe T.Text -- ^ Telegram Passport element types requested by the service
@@ -351,6 +352,8 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeMyStars
       = "InternalLinkTypeMyStars"
+  shortShow InternalLinkTypeMyToncoins
+      = "InternalLinkTypeMyToncoins"
   shortShow InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_
     , scope        = scope_
@@ -544,6 +547,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeMessage"                               -> parseInternalLinkTypeMessage v
       "internalLinkTypeMessageDraft"                          -> parseInternalLinkTypeMessageDraft v
       "internalLinkTypeMyStars"                               -> pure InternalLinkTypeMyStars
+      "internalLinkTypeMyToncoins"                            -> pure InternalLinkTypeMyToncoins
       "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
       "internalLinkTypePhoneNumberConfirmation"               -> parseInternalLinkTypePhoneNumberConfirmation v
       "internalLinkTypePremiumFeatures"                       -> parseInternalLinkTypePremiumFeatures v
@@ -1047,6 +1051,10 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeMyStars
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeMyStars"
+        ]
+  toJSON InternalLinkTypeMyToncoins
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeMyToncoins"
         ]
   toJSON InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_

@@ -6,13 +6,14 @@ module TD.Query.GetChatRevenueTransactions
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true. Returns 'TD.Data.ChatRevenueTransactions.ChatRevenueTransactions'
 data GetChatRevenueTransactions
   = GetChatRevenueTransactions
-    { chat_id :: Maybe Int -- ^ Chat identifier
-    , offset  :: Maybe Int -- ^ Number of transactions to skip
-    , limit   :: Maybe Int -- ^ The maximum number of transactions to be returned; up to 200
+    { chat_id :: Maybe Int    -- ^ Chat identifier
+    , offset  :: Maybe T.Text -- ^ Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+    , limit   :: Maybe Int    -- ^ The maximum number of transactions to be returned; up to 100
     }
   deriving (Eq, Show)
 

@@ -10,7 +10,7 @@ import qualified Data.Text as T
 
 data GiveawayParameters
   = GiveawayParameters -- ^ Describes parameters of a giveaway
-    { boosted_chat_id        :: Maybe Int      -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
+    { boosted_chat_id        :: Maybe Int      -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages administrator right is required in the channel, otherwise, the user must be an administrator in the supergroup
     , additional_chat_ids    :: Maybe [Int]    -- ^ Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
     , winners_selection_date :: Maybe Int      -- ^ Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways
     , only_new_members       :: Maybe Bool     -- ^ True, if only new members of the chats will be eligible for the giveaway

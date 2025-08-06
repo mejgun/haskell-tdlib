@@ -7,9 +7,12 @@ import qualified TD.Lib.Internal as I
 
 data MessageProperties
   = MessageProperties -- ^ Contains properties of a message and describes actions that can be done with the message right now
-    { can_add_tasks                  :: Maybe Bool -- ^ True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    { can_add_offer                  :: Maybe Bool -- ^ True, if an offer can be added to the message using addOffer
+    , can_add_tasks                  :: Maybe Bool -- ^ True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    , can_be_approved                :: Maybe Bool -- ^ True, if the message is a suggested post that can be approved by the user using approveSuggestedPost
     , can_be_copied                  :: Maybe Bool -- ^ True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
     , can_be_copied_to_secret_chat   :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    , can_be_declined                :: Maybe Bool -- ^ True, if the message is a suggested post that can be declined by the user using declineSuggestedPost
     , can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
     , can_be_deleted_for_all_users   :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
     , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
@@ -22,6 +25,7 @@ data MessageProperties
     , can_be_shared_in_story         :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
     , can_edit_media                 :: Maybe Bool -- ^ True, if the message can be edited using the method editMessageMedia
     , can_edit_scheduling_state      :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
+    , can_edit_suggested_post_info   :: Maybe Bool -- ^ True, if another price or post send time can be suggested using addOffer
     , can_get_author                 :: Maybe Bool -- ^ True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
     , can_get_embedding_code         :: Maybe Bool -- ^ True, if code for message embedding can be received using getMessageEmbeddingCode
     , can_get_link                   :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
@@ -43,9 +47,12 @@ data MessageProperties
 
 instance I.ShortShow MessageProperties where
   shortShow MessageProperties
-    { can_add_tasks                  = can_add_tasks_
+    { can_add_offer                  = can_add_offer_
+    , can_add_tasks                  = can_add_tasks_
+    , can_be_approved                = can_be_approved_
     , can_be_copied                  = can_be_copied_
     , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
+    , can_be_declined                = can_be_declined_
     , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
     , can_be_edited                  = can_be_edited_
@@ -58,6 +65,7 @@ instance I.ShortShow MessageProperties where
     , can_be_shared_in_story         = can_be_shared_in_story_
     , can_edit_media                 = can_edit_media_
     , can_edit_scheduling_state      = can_edit_scheduling_state_
+    , can_edit_suggested_post_info   = can_edit_suggested_post_info_
     , can_get_author                 = can_get_author_
     , can_get_embedding_code         = can_get_embedding_code_
     , can_get_link                   = can_get_link_
@@ -77,9 +85,12 @@ instance I.ShortShow MessageProperties where
     }
       = "MessageProperties"
         ++ I.cc
-        [ "can_add_tasks"                  `I.p` can_add_tasks_
+        [ "can_add_offer"                  `I.p` can_add_offer_
+        , "can_add_tasks"                  `I.p` can_add_tasks_
+        , "can_be_approved"                `I.p` can_be_approved_
         , "can_be_copied"                  `I.p` can_be_copied_
         , "can_be_copied_to_secret_chat"   `I.p` can_be_copied_to_secret_chat_
+        , "can_be_declined"                `I.p` can_be_declined_
         , "can_be_deleted_only_for_self"   `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users"   `I.p` can_be_deleted_for_all_users_
         , "can_be_edited"                  `I.p` can_be_edited_
@@ -92,6 +103,7 @@ instance I.ShortShow MessageProperties where
         , "can_be_shared_in_story"         `I.p` can_be_shared_in_story_
         , "can_edit_media"                 `I.p` can_edit_media_
         , "can_edit_scheduling_state"      `I.p` can_edit_scheduling_state_
+        , "can_edit_suggested_post_info"   `I.p` can_edit_suggested_post_info_
         , "can_get_author"                 `I.p` can_get_author_
         , "can_get_embedding_code"         `I.p` can_get_embedding_code_
         , "can_get_link"                   `I.p` can_get_link_
@@ -121,9 +133,12 @@ instance AT.FromJSON MessageProperties where
     where
       parseMessageProperties :: A.Value -> AT.Parser MessageProperties
       parseMessageProperties = A.withObject "MessageProperties" $ \o -> do
+        can_add_offer_                  <- o A..:?  "can_add_offer"
         can_add_tasks_                  <- o A..:?  "can_add_tasks"
+        can_be_approved_                <- o A..:?  "can_be_approved"
         can_be_copied_                  <- o A..:?  "can_be_copied"
         can_be_copied_to_secret_chat_   <- o A..:?  "can_be_copied_to_secret_chat"
+        can_be_declined_                <- o A..:?  "can_be_declined"
         can_be_deleted_only_for_self_   <- o A..:?  "can_be_deleted_only_for_self"
         can_be_deleted_for_all_users_   <- o A..:?  "can_be_deleted_for_all_users"
         can_be_edited_                  <- o A..:?  "can_be_edited"
@@ -136,6 +151,7 @@ instance AT.FromJSON MessageProperties where
         can_be_shared_in_story_         <- o A..:?  "can_be_shared_in_story"
         can_edit_media_                 <- o A..:?  "can_edit_media"
         can_edit_scheduling_state_      <- o A..:?  "can_edit_scheduling_state"
+        can_edit_suggested_post_info_   <- o A..:?  "can_edit_suggested_post_info"
         can_get_author_                 <- o A..:?  "can_get_author"
         can_get_embedding_code_         <- o A..:?  "can_get_embedding_code"
         can_get_link_                   <- o A..:?  "can_get_link"
@@ -153,9 +169,12 @@ instance AT.FromJSON MessageProperties where
         can_set_fact_check_             <- o A..:?  "can_set_fact_check"
         need_show_statistics_           <- o A..:?  "need_show_statistics"
         pure $ MessageProperties
-          { can_add_tasks                  = can_add_tasks_
+          { can_add_offer                  = can_add_offer_
+          , can_add_tasks                  = can_add_tasks_
+          , can_be_approved                = can_be_approved_
           , can_be_copied                  = can_be_copied_
           , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
+          , can_be_declined                = can_be_declined_
           , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
           , can_be_edited                  = can_be_edited_
@@ -168,6 +187,7 @@ instance AT.FromJSON MessageProperties where
           , can_be_shared_in_story         = can_be_shared_in_story_
           , can_edit_media                 = can_edit_media_
           , can_edit_scheduling_state      = can_edit_scheduling_state_
+          , can_edit_suggested_post_info   = can_edit_suggested_post_info_
           , can_get_author                 = can_get_author_
           , can_get_embedding_code         = can_get_embedding_code_
           , can_get_link                   = can_get_link_

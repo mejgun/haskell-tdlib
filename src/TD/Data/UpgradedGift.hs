@@ -14,6 +14,7 @@ import qualified TD.Data.UpgradedGiftOriginalDetails as UpgradedGiftOriginalDeta
 data UpgradedGift
   = UpgradedGift -- ^ Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
     { _id                  :: Maybe Int                                                     -- ^ Unique identifier of the gift
+    , publisher_chat_id    :: Maybe Int                                                     -- ^ Identifier of the chat that published the gift; 0 if none
     , title                :: Maybe T.Text                                                  -- ^ The title of the upgraded gift
     , name                 :: Maybe T.Text                                                  -- ^ Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift or sendResoldGift
     , number               :: Maybe Int                                                     -- ^ Unique number of the upgraded gift among gifts upgraded from the same gift
@@ -34,6 +35,7 @@ data UpgradedGift
 instance I.ShortShow UpgradedGift where
   shortShow UpgradedGift
     { _id                  = _id_
+    , publisher_chat_id    = publisher_chat_id_
     , title                = title_
     , name                 = name_
     , number               = number_
@@ -52,6 +54,7 @@ instance I.ShortShow UpgradedGift where
       = "UpgradedGift"
         ++ I.cc
         [ "_id"                  `I.p` _id_
+        , "publisher_chat_id"    `I.p` publisher_chat_id_
         , "title"                `I.p` title_
         , "name"                 `I.p` name_
         , "number"               `I.p` number_
@@ -80,6 +83,7 @@ instance AT.FromJSON UpgradedGift where
       parseUpgradedGift :: A.Value -> AT.Parser UpgradedGift
       parseUpgradedGift = A.withObject "UpgradedGift" $ \o -> do
         _id_                  <- fmap I.readInt64 <$> o A..:?  "id"
+        publisher_chat_id_    <- o A..:?                       "publisher_chat_id"
         title_                <- o A..:?                       "title"
         name_                 <- o A..:?                       "name"
         number_               <- o A..:?                       "number"
@@ -96,6 +100,7 @@ instance AT.FromJSON UpgradedGift where
         resale_star_count_    <- o A..:?                       "resale_star_count"
         pure $ UpgradedGift
           { _id                  = _id_
+          , publisher_chat_id    = publisher_chat_id_
           , title                = title_
           , name                 = name_
           , number               = number_

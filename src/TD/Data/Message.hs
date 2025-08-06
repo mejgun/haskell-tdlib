@@ -12,6 +12,7 @@ import qualified TD.Data.MessageImportInfo as MessageImportInfo
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.FactCheck as FactCheck
+import qualified TD.Data.SuggestedPostInfo as SuggestedPostInfo
 import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
@@ -32,6 +33,8 @@ data Message
     , can_be_saved                :: Maybe Bool                                            -- ^ True, if content of the message can be saved locally
     , has_timestamped_media       :: Maybe Bool                                            -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     , is_channel_post             :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
+    , is_paid_star_suggested_post :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    , is_paid_ton_suggested_post  :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     , contains_unread_mention     :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
     , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
     , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
@@ -40,6 +43,7 @@ data Message
     , interaction_info            :: Maybe MessageInteractionInfo.MessageInteractionInfo   -- ^ Information about interactions with the message; may be null if none
     , unread_reactions            :: Maybe [UnreadReaction.UnreadReaction]                 -- ^ Information about unread reactions added to the message
     , fact_check                  :: Maybe FactCheck.FactCheck                             -- ^ Information about fact-check added to the message; may be null if none
+    , suggested_post_info         :: Maybe SuggestedPostInfo.SuggestedPostInfo             -- ^ Information about the suggested post; may be null if the message isn't a suggested post
     , reply_to                    :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
     , message_thread_id           :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     , topic_id                    :: Maybe MessageTopic.MessageTopic                       -- ^ Identifier of the topic within the chat to which the message belongs; may be null if none
@@ -73,6 +77,8 @@ instance I.ShortShow Message where
     , can_be_saved                = can_be_saved_
     , has_timestamped_media       = has_timestamped_media_
     , is_channel_post             = is_channel_post_
+    , is_paid_star_suggested_post = is_paid_star_suggested_post_
+    , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
     , contains_unread_mention     = contains_unread_mention_
     , date                        = date_
     , edit_date                   = edit_date_
@@ -81,6 +87,7 @@ instance I.ShortShow Message where
     , interaction_info            = interaction_info_
     , unread_reactions            = unread_reactions_
     , fact_check                  = fact_check_
+    , suggested_post_info         = suggested_post_info_
     , reply_to                    = reply_to_
     , message_thread_id           = message_thread_id_
     , topic_id                    = topic_id_
@@ -112,6 +119,8 @@ instance I.ShortShow Message where
         , "can_be_saved"                `I.p` can_be_saved_
         , "has_timestamped_media"       `I.p` has_timestamped_media_
         , "is_channel_post"             `I.p` is_channel_post_
+        , "is_paid_star_suggested_post" `I.p` is_paid_star_suggested_post_
+        , "is_paid_ton_suggested_post"  `I.p` is_paid_ton_suggested_post_
         , "contains_unread_mention"     `I.p` contains_unread_mention_
         , "date"                        `I.p` date_
         , "edit_date"                   `I.p` edit_date_
@@ -120,6 +129,7 @@ instance I.ShortShow Message where
         , "interaction_info"            `I.p` interaction_info_
         , "unread_reactions"            `I.p` unread_reactions_
         , "fact_check"                  `I.p` fact_check_
+        , "suggested_post_info"         `I.p` suggested_post_info_
         , "reply_to"                    `I.p` reply_to_
         , "message_thread_id"           `I.p` message_thread_id_
         , "topic_id"                    `I.p` topic_id_
@@ -161,6 +171,8 @@ instance AT.FromJSON Message where
         can_be_saved_                <- o A..:?                       "can_be_saved"
         has_timestamped_media_       <- o A..:?                       "has_timestamped_media"
         is_channel_post_             <- o A..:?                       "is_channel_post"
+        is_paid_star_suggested_post_ <- o A..:?                       "is_paid_star_suggested_post"
+        is_paid_ton_suggested_post_  <- o A..:?                       "is_paid_ton_suggested_post"
         contains_unread_mention_     <- o A..:?                       "contains_unread_mention"
         date_                        <- o A..:?                       "date"
         edit_date_                   <- o A..:?                       "edit_date"
@@ -169,6 +181,7 @@ instance AT.FromJSON Message where
         interaction_info_            <- o A..:?                       "interaction_info"
         unread_reactions_            <- o A..:?                       "unread_reactions"
         fact_check_                  <- o A..:?                       "fact_check"
+        suggested_post_info_         <- o A..:?                       "suggested_post_info"
         reply_to_                    <- o A..:?                       "reply_to"
         message_thread_id_           <- o A..:?                       "message_thread_id"
         topic_id_                    <- o A..:?                       "topic_id"
@@ -198,6 +211,8 @@ instance AT.FromJSON Message where
           , can_be_saved                = can_be_saved_
           , has_timestamped_media       = has_timestamped_media_
           , is_channel_post             = is_channel_post_
+          , is_paid_star_suggested_post = is_paid_star_suggested_post_
+          , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
           , contains_unread_mention     = contains_unread_mention_
           , date                        = date_
           , edit_date                   = edit_date_
@@ -206,6 +221,7 @@ instance AT.FromJSON Message where
           , interaction_info            = interaction_info_
           , unread_reactions            = unread_reactions_
           , fact_check                  = fact_check_
+          , suggested_post_info         = suggested_post_info_
           , reply_to                    = reply_to_
           , message_thread_id           = message_thread_id_
           , topic_id                    = topic_id_

@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.66.0
+version:        2.0.67.0
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 homepage:       https://github.com/mejgun/haskell-tdlib#readme
 bug-reports:    https://github.com/mejgun/haskell-tdlib/issues
@@ -321,6 +321,7 @@ library
       TD.Data.InputStoryAreas
       TD.Data.InputStoryAreaType
       TD.Data.InputStoryContent
+      TD.Data.InputSuggestedPostInfo
       TD.Data.InputTextQuote
       TD.Data.InputThumbnail
       TD.Data.InternalLinkType
@@ -535,7 +536,6 @@ library
       TD.Data.StarSubscriptions
       TD.Data.StarSubscriptionType
       TD.Data.StarTransaction
-      TD.Data.StarTransactionDirection
       TD.Data.StarTransactions
       TD.Data.StarTransactionType
       TD.Data.StatisticalGraph
@@ -573,6 +573,10 @@ library
       TD.Data.StoryStatistics
       TD.Data.StoryVideo
       TD.Data.SuggestedAction
+      TD.Data.SuggestedPostInfo
+      TD.Data.SuggestedPostPrice
+      TD.Data.SuggestedPostRefundReason
+      TD.Data.SuggestedPostState
       TD.Data.Supergroup
       TD.Data.SupergroupFullInfo
       TD.Data.SupergroupMembersFilter
@@ -603,7 +607,11 @@ library
       TD.Data.TMeUrl
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
+      TD.Data.TonTransaction
+      TD.Data.TonTransactions
+      TD.Data.TonTransactionType
       TD.Data.TopChatCategory
+      TD.Data.TransactionDirection
       TD.Data.TrendingStickerSets
       TD.Data.UnconfirmedSession
       TD.Data.UnreadReaction
@@ -616,6 +624,7 @@ library
       TD.Data.UpgradedGiftBackdropCount
       TD.Data.UpgradedGiftModel
       TD.Data.UpgradedGiftModelCount
+      TD.Data.UpgradedGiftOrigin
       TD.Data.UpgradedGiftOriginalDetails
       TD.Data.UpgradedGiftSymbol
       TD.Data.UpgradedGiftSymbolCount
@@ -669,6 +678,7 @@ library
       TD.Query.AddLogMessage
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
+      TD.Query.AddOffer
       TD.Query.AddPendingPaidMessageReaction
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
@@ -688,6 +698,7 @@ library
       TD.Query.AnswerShippingQuery
       TD.Query.AnswerWebAppQuery
       TD.Query.ApplyPremiumGiftCode
+      TD.Query.ApproveSuggestedPost
       TD.Query.AssignStoreTransaction
       TD.Query.BanChatMember
       TD.Query.BanGroupCallParticipants
@@ -765,6 +776,7 @@ library
       TD.Query.CreateTemporaryPassword
       TD.Query.CreateVideoChat
       TD.Query.DeclineGroupCallInvitation
+      TD.Query.DeclineSuggestedPost
       TD.Query.DecryptGroupCallData
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
@@ -1117,6 +1129,7 @@ library
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTimeZones
+      TD.Query.GetTonTransactions
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUpgradedGift

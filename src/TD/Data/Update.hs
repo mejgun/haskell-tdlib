@@ -12,6 +12,7 @@ import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
 import qualified TD.Data.FactCheck as FactCheck
+import qualified TD.Data.SuggestedPostInfo as SuggestedPostInfo
 import qualified TD.Data.Chat as Chat
 import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
@@ -163,6 +164,11 @@ data Update
     { chat_id    :: Maybe Int                 -- ^ Chat identifier
     , message_id :: Maybe Int                 -- ^ Message identifier
     , fact_check :: Maybe FactCheck.FactCheck -- ^ The new fact-check
+    }
+  | UpdateMessageSuggestedPostInfo -- ^ Information about suggested post of a message was changed
+    { chat_id             :: Maybe Int                                 -- ^ Chat identifier
+    , message_id          :: Maybe Int                                 -- ^ Message identifier
+    , suggested_post_info :: Maybe SuggestedPostInfo.SuggestedPostInfo -- ^ The new information about the suggested post
     }
   | UpdateMessageLiveLocationViewed -- ^ A message with a live location was viewed. When the update is received, the application is expected to update the live location
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the live location message
@@ -631,6 +637,9 @@ data Update
   | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
     { star_amount :: Maybe StarAmount.StarAmount -- ^ The new amount of owned Telegram Stars
     }
+  | UpdateOwnedTonCount -- ^ The number of Toncoins owned by the current user has changed
+    { ton_amount :: Maybe Int -- ^ The new amount of owned Toncoins; in the smallest units of the cryptocurrency
+    }
   | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
     , revenue_amount :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ New amount of earned revenue
@@ -929,6 +938,17 @@ instance I.ShortShow Update where
         [ "chat_id"    `I.p` chat_id_
         , "message_id" `I.p` message_id_
         , "fact_check" `I.p` fact_check_
+        ]
+  shortShow UpdateMessageSuggestedPostInfo
+    { chat_id             = chat_id_
+    , message_id          = message_id_
+    , suggested_post_info = suggested_post_info_
+    }
+      = "UpdateMessageSuggestedPostInfo"
+        ++ I.cc
+        [ "chat_id"             `I.p` chat_id_
+        , "message_id"          `I.p` message_id_
+        , "suggested_post_info" `I.p` suggested_post_info_
         ]
   shortShow UpdateMessageLiveLocationViewed
     { chat_id    = chat_id_
@@ -1979,6 +1999,13 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "star_amount" `I.p` star_amount_
         ]
+  shortShow UpdateOwnedTonCount
+    { ton_amount = ton_amount_
+    }
+      = "UpdateOwnedTonCount"
+        ++ I.cc
+        [ "ton_amount" `I.p` ton_amount_
+        ]
   shortShow UpdateChatRevenueAmount
     { chat_id        = chat_id_
     , revenue_amount = revenue_amount_
@@ -2355,6 +2382,7 @@ instance AT.FromJSON Update where
       "updateMessageMentionRead"                       -> parseUpdateMessageMentionRead v
       "updateMessageUnreadReactions"                   -> parseUpdateMessageUnreadReactions v
       "updateMessageFactCheck"                         -> parseUpdateMessageFactCheck v
+      "updateMessageSuggestedPostInfo"                 -> parseUpdateMessageSuggestedPostInfo v
       "updateMessageLiveLocationViewed"                -> parseUpdateMessageLiveLocationViewed v
       "updateVideoPublished"                           -> parseUpdateVideoPublished v
       "updateNewChat"                                  -> parseUpdateNewChat v
@@ -2470,6 +2498,7 @@ instance AT.FromJSON Update where
       "updateSavedMessagesTags"                        -> parseUpdateSavedMessagesTags v
       "updateActiveLiveLocationMessages"               -> parseUpdateActiveLiveLocationMessages v
       "updateOwnedStarCount"                           -> parseUpdateOwnedStarCount v
+      "updateOwnedTonCount"                            -> parseUpdateOwnedTonCount v
       "updateChatRevenueAmount"                        -> parseUpdateChatRevenueAmount v
       "updateStarRevenueStatus"                        -> parseUpdateStarRevenueStatus v
       "updateSpeechRecognitionTrial"                   -> parseUpdateSpeechRecognitionTrial v
@@ -2623,6 +2652,16 @@ instance AT.FromJSON Update where
           { chat_id    = chat_id_
           , message_id = message_id_
           , fact_check = fact_check_
+          }
+      parseUpdateMessageSuggestedPostInfo :: A.Value -> AT.Parser Update
+      parseUpdateMessageSuggestedPostInfo = A.withObject "UpdateMessageSuggestedPostInfo" $ \o -> do
+        chat_id_             <- o A..:?  "chat_id"
+        message_id_          <- o A..:?  "message_id"
+        suggested_post_info_ <- o A..:?  "suggested_post_info"
+        pure $ UpdateMessageSuggestedPostInfo
+          { chat_id             = chat_id_
+          , message_id          = message_id_
+          , suggested_post_info = suggested_post_info_
           }
       parseUpdateMessageLiveLocationViewed :: A.Value -> AT.Parser Update
       parseUpdateMessageLiveLocationViewed = A.withObject "UpdateMessageLiveLocationViewed" $ \o -> do
@@ -3557,6 +3596,12 @@ instance AT.FromJSON Update where
         star_amount_ <- o A..:?  "star_amount"
         pure $ UpdateOwnedStarCount
           { star_amount = star_amount_
+          }
+      parseUpdateOwnedTonCount :: A.Value -> AT.Parser Update
+      parseUpdateOwnedTonCount = A.withObject "UpdateOwnedTonCount" $ \o -> do
+        ton_amount_ <- o A..:?  "ton_amount"
+        pure $ UpdateOwnedTonCount
+          { ton_amount = ton_amount_
           }
       parseUpdateChatRevenueAmount :: A.Value -> AT.Parser Update
       parseUpdateChatRevenueAmount = A.withObject "UpdateChatRevenueAmount" $ \o -> do
