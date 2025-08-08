@@ -16,8 +16,8 @@ data SearchSavedMessages
     , tag                     :: Maybe ReactionType.ReactionType -- ^ Tag to search for; pass null to return all suitable messages
     , query                   :: Maybe T.Text                    -- ^ Query to search for
     , from_message_id         :: Maybe Int                       -- ^ Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
-    , offset                  :: Maybe Int                       -- ^ Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
-    , limit                   :: Maybe Int                       -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    , offset                  :: Maybe Int                       -- ^ Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+    , limit                   :: Maybe Int                       -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     }
   deriving (Eq, Show)
 

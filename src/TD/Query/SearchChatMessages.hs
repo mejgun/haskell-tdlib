@@ -19,8 +19,8 @@ data SearchChatMessages
     , query           :: Maybe T.Text                                    -- ^ Query to search for
     , sender_id       :: Maybe MessageSender.MessageSender               -- ^ Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
     , from_message_id :: Maybe Int                                       -- ^ Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-    , offset          :: Maybe Int                                       -- ^ Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
-    , limit           :: Maybe Int                                       -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    , offset          :: Maybe Int                                       -- ^ Specify 0 to get results from exactly the message from_message_id or a negative number to get the specified message and some newer messages
+    , limit           :: Maybe Int                                       -- ^ The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, then the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     , _filter         :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Additional filter for messages to search; pass null to search for all messages
     }
   deriving (Eq, Show)
