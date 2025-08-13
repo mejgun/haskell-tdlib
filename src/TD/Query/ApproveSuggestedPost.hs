@@ -12,7 +12,7 @@ data ApproveSuggestedPost
   = ApproveSuggestedPost
     { chat_id    :: Maybe Int -- ^ Chat identifier of the channel direct messages chat
     , message_id :: Maybe Int -- ^ Identifier of the message with the suggested post. Use messageProperties.can_be_approved to check whether the suggested post can be approved
-    , send_date  :: Maybe Int -- ^ Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen
+    , send_date  :: Maybe Int -- ^ Point in time (Unix timestamp) when the post is expected to be published; pass 0 if the date has already been chosen. If specified, then the date must be in the future, but at most getOption("suggested_post_send_delay_max") seconds in the future
     }
   deriving (Eq, Show)
 
