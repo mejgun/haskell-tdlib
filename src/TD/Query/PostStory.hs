@@ -12,7 +12,7 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 import qualified TD.Data.StoryFullId as StoryFullId
 
--- | Posts a new story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story. Returns 'TD.Data.Story.Story'
+-- | Posts a new story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns a temporary story. Returns 'TD.Data.Story.Story'
 data PostStory
   = PostStory
     { chat_id                :: Maybe Int                                       -- ^ Identifier of the chat that will post the story. Pass Saved Messages chat identifier when posting a story on behalf of the current user

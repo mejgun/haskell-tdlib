@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat. Returns 'TD.Data.Ok.Ok'
+-- | Changes the list of pinned stories on a chat page; requires can_edit_stories administrator right in the chat. Returns 'TD.Data.Ok.Ok'
 data SetChatPinnedStories
   = SetChatPinnedStories
     { chat_id   :: Maybe Int   -- ^ Identifier of the chat that posted the stories

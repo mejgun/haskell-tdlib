@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right. Returns 'TD.Data.Ok.Ok'
+-- | Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members administrator right. Returns 'TD.Data.Ok.Ok'
 data SetChatSlowModeDelay
   = SetChatSlowModeDelay
     { chat_id         :: Maybe Int -- ^ Chat identifier

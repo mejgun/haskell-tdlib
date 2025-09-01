@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Checks whether the current user can post a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats. Returns 'TD.Data.CanPostStoryResult.CanPostStoryResult'
+-- | Checks whether the current user can post a story on behalf of a chat; requires can_post_stories administrator right for supergroup and channel chats. Returns 'TD.Data.CanPostStoryResult.CanPostStoryResult'
 data CanPostStory
   = CanPostStory
     { chat_id :: Maybe Int -- ^ Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
