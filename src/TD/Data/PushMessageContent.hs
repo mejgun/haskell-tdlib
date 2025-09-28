@@ -34,6 +34,8 @@ data PushMessageContent
     , is_pinned :: Maybe Bool   -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentContactRegistered -- ^ A contact has registered with Telegram
+    { as_premium_account :: Maybe Bool -- ^ True, if the user joined Telegram as a Telegram Premium account
+    }
   | PushMessageContentDocument -- ^ A document message (a general file)
     { document  :: Maybe Document.Document -- ^ Message content; may be null
     , is_pinned :: Maybe Bool              -- ^ True, if the message is a pinned message with the specified content
@@ -79,10 +81,12 @@ data PushMessageContent
     , is_pinned    :: Maybe Bool                        -- ^ True, if the message is a pinned message with the specified content
     }
   | PushMessageContentGift -- ^ A message with a gift
-    { star_count :: Maybe Int -- ^ Number of Telegram Stars that sender paid for the gift
+    { star_count         :: Maybe Int  -- ^ Number of Telegram Stars that sender paid for the gift
+    , is_prepaid_upgrade :: Maybe Bool -- ^ True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift
     }
   | PushMessageContentUpgradedGift -- ^ A message with an upgraded gift
-    { is_upgrade :: Maybe Bool -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
+    { is_upgrade         :: Maybe Bool -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, if is_prepaid_upgrade == false, then this is a transferred or resold gift
+    , is_prepaid_upgrade :: Maybe Bool -- ^ True, if the message is about completion of prepaid upgrade of the gift instead of actual receiving of a new gift
     }
   | PushMessageContentScreenshotTaken -- ^ A screenshot of a message in the chat has been taken
   | PushMessageContentSticker -- ^ A message with a sticker
@@ -135,7 +139,7 @@ data PushMessageContent
     { is_same :: Maybe Bool -- ^ True, if the set background is the same as the background of the current user
     }
   | PushMessageContentChatSetTheme -- ^ A chat theme was edited
-    { theme_name :: Maybe T.Text -- ^ If non-empty, name of a new theme, set for the chat. Otherwise, the chat theme was reset to the default one
+    { name :: Maybe T.Text -- ^ If non-empty, human-readable name of the new theme. Otherwise, the chat theme was reset to the default one
     }
   | PushMessageContentChatDeleteMember -- ^ A chat member was deleted
     { member_name     :: Maybe T.Text -- ^ Name of the deleted member
@@ -207,7 +211,12 @@ instance I.ShortShow PushMessageContent where
         , "is_pinned" `I.p` is_pinned_
         ]
   shortShow PushMessageContentContactRegistered
+    { as_premium_account = as_premium_account_
+    }
       = "PushMessageContentContactRegistered"
+        ++ I.cc
+        [ "as_premium_account" `I.p` as_premium_account_
+        ]
   shortShow PushMessageContentDocument
     { document  = document_
     , is_pinned = is_pinned_
@@ -307,18 +316,22 @@ instance I.ShortShow PushMessageContent where
         , "is_pinned"    `I.p` is_pinned_
         ]
   shortShow PushMessageContentGift
-    { star_count = star_count_
+    { star_count         = star_count_
+    , is_prepaid_upgrade = is_prepaid_upgrade_
     }
       = "PushMessageContentGift"
         ++ I.cc
-        [ "star_count" `I.p` star_count_
+        [ "star_count"         `I.p` star_count_
+        , "is_prepaid_upgrade" `I.p` is_prepaid_upgrade_
         ]
   shortShow PushMessageContentUpgradedGift
-    { is_upgrade = is_upgrade_
+    { is_upgrade         = is_upgrade_
+    , is_prepaid_upgrade = is_prepaid_upgrade_
     }
       = "PushMessageContentUpgradedGift"
         ++ I.cc
-        [ "is_upgrade" `I.p` is_upgrade_
+        [ "is_upgrade"         `I.p` is_upgrade_
+        , "is_prepaid_upgrade" `I.p` is_prepaid_upgrade_
         ]
   shortShow PushMessageContentScreenshotTaken
       = "PushMessageContentScreenshotTaken"
@@ -432,11 +445,11 @@ instance I.ShortShow PushMessageContent where
         [ "is_same" `I.p` is_same_
         ]
   shortShow PushMessageContentChatSetTheme
-    { theme_name = theme_name_
+    { name = name_
     }
       = "PushMessageContentChatSetTheme"
         ++ I.cc
-        [ "theme_name" `I.p` theme_name_
+        [ "name" `I.p` name_
         ]
   shortShow PushMessageContentChatDeleteMember
     { member_name     = member_name_
@@ -515,7 +528,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentAnimation"                   -> parsePushMessageContentAnimation v
       "pushMessageContentAudio"                       -> parsePushMessageContentAudio v
       "pushMessageContentContact"                     -> parsePushMessageContentContact v
-      "pushMessageContentContactRegistered"           -> pure PushMessageContentContactRegistered
+      "pushMessageContentContactRegistered"           -> parsePushMessageContentContactRegistered v
       "pushMessageContentDocument"                    -> parsePushMessageContentDocument v
       "pushMessageContentGame"                        -> parsePushMessageContentGame v
       "pushMessageContentGameScore"                   -> parsePushMessageContentGameScore v
@@ -589,6 +602,12 @@ instance AT.FromJSON PushMessageContent where
         pure $ PushMessageContentContact
           { name      = name_
           , is_pinned = is_pinned_
+          }
+      parsePushMessageContentContactRegistered :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentContactRegistered = A.withObject "PushMessageContentContactRegistered" $ \o -> do
+        as_premium_account_ <- o A..:?  "as_premium_account"
+        pure $ PushMessageContentContactRegistered
+          { as_premium_account = as_premium_account_
           }
       parsePushMessageContentDocument :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentDocument = A.withObject "PushMessageContentDocument" $ \o -> do
@@ -680,15 +699,19 @@ instance AT.FromJSON PushMessageContent where
           }
       parsePushMessageContentGift :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentGift = A.withObject "PushMessageContentGift" $ \o -> do
-        star_count_ <- o A..:?  "star_count"
+        star_count_         <- o A..:?  "star_count"
+        is_prepaid_upgrade_ <- o A..:?  "is_prepaid_upgrade"
         pure $ PushMessageContentGift
-          { star_count = star_count_
+          { star_count         = star_count_
+          , is_prepaid_upgrade = is_prepaid_upgrade_
           }
       parsePushMessageContentUpgradedGift :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentUpgradedGift = A.withObject "PushMessageContentUpgradedGift" $ \o -> do
-        is_upgrade_ <- o A..:?  "is_upgrade"
+        is_upgrade_         <- o A..:?  "is_upgrade"
+        is_prepaid_upgrade_ <- o A..:?  "is_prepaid_upgrade"
         pure $ PushMessageContentUpgradedGift
-          { is_upgrade = is_upgrade_
+          { is_upgrade         = is_upgrade_
+          , is_prepaid_upgrade = is_prepaid_upgrade_
           }
       parsePushMessageContentSticker :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentSticker = A.withObject "PushMessageContentSticker" $ \o -> do
@@ -782,9 +805,9 @@ instance AT.FromJSON PushMessageContent where
           }
       parsePushMessageContentChatSetTheme :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentChatSetTheme = A.withObject "PushMessageContentChatSetTheme" $ \o -> do
-        theme_name_ <- o A..:?  "theme_name"
+        name_ <- o A..:?  "name"
         pure $ PushMessageContentChatSetTheme
-          { theme_name = theme_name_
+          { name = name_
           }
       parsePushMessageContentChatDeleteMember :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentChatDeleteMember = A.withObject "PushMessageContentChatDeleteMember" $ \o -> do

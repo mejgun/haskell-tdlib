@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.VerificationStatus as VerificationStatus
-import qualified Data.Text as T
+import qualified TD.Data.RestrictionInfo as RestrictionInfo
 
 data Supergroup
   = Supergroup -- ^ Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
@@ -33,8 +33,7 @@ data Supergroup
     , verification_status                   :: Maybe VerificationStatus.VerificationStatus -- ^ Information about verification status of the supergroup or channel; may be null if none
     , has_direct_messages_group             :: Maybe Bool                                  -- ^ True, if the channel has direct messages group
     , has_forum_tabs                        :: Maybe Bool                                  -- ^ True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
-    , has_sensitive_content                 :: Maybe Bool                                  -- ^ True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
-    , restriction_reason                    :: Maybe T.Text                                -- ^ If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
+    , restriction_info                      :: Maybe RestrictionInfo.RestrictionInfo       -- ^ Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none
     , paid_message_star_count               :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
     , has_active_stories                    :: Maybe Bool                                  -- ^ True, if the supergroup or channel has non-expired stories available to the current user
     , has_unread_active_stories             :: Maybe Bool                                  -- ^ True, if the supergroup or channel has unread non-expired stories available to the current user
@@ -65,8 +64,7 @@ instance I.ShortShow Supergroup where
     , verification_status                   = verification_status_
     , has_direct_messages_group             = has_direct_messages_group_
     , has_forum_tabs                        = has_forum_tabs_
-    , has_sensitive_content                 = has_sensitive_content_
-    , restriction_reason                    = restriction_reason_
+    , restriction_info                      = restriction_info_
     , paid_message_star_count               = paid_message_star_count_
     , has_active_stories                    = has_active_stories_
     , has_unread_active_stories             = has_unread_active_stories_
@@ -95,8 +93,7 @@ instance I.ShortShow Supergroup where
         , "verification_status"                   `I.p` verification_status_
         , "has_direct_messages_group"             `I.p` has_direct_messages_group_
         , "has_forum_tabs"                        `I.p` has_forum_tabs_
-        , "has_sensitive_content"                 `I.p` has_sensitive_content_
-        , "restriction_reason"                    `I.p` restriction_reason_
+        , "restriction_info"                      `I.p` restriction_info_
         , "paid_message_star_count"               `I.p` paid_message_star_count_
         , "has_active_stories"                    `I.p` has_active_stories_
         , "has_unread_active_stories"             `I.p` has_unread_active_stories_
@@ -135,8 +132,7 @@ instance AT.FromJSON Supergroup where
         verification_status_                   <- o A..:?  "verification_status"
         has_direct_messages_group_             <- o A..:?  "has_direct_messages_group"
         has_forum_tabs_                        <- o A..:?  "has_forum_tabs"
-        has_sensitive_content_                 <- o A..:?  "has_sensitive_content"
-        restriction_reason_                    <- o A..:?  "restriction_reason"
+        restriction_info_                      <- o A..:?  "restriction_info"
         paid_message_star_count_               <- o A..:?  "paid_message_star_count"
         has_active_stories_                    <- o A..:?  "has_active_stories"
         has_unread_active_stories_             <- o A..:?  "has_unread_active_stories"
@@ -163,8 +159,7 @@ instance AT.FromJSON Supergroup where
           , verification_status                   = verification_status_
           , has_direct_messages_group             = has_direct_messages_group_
           , has_forum_tabs                        = has_forum_tabs_
-          , has_sensitive_content                 = has_sensitive_content_
-          , restriction_reason                    = restriction_reason_
+          , restriction_info                      = restriction_info_
           , paid_message_star_count               = paid_message_star_count_
           , has_active_stories                    = has_active_stories_
           , has_unread_active_stories             = has_unread_active_stories_

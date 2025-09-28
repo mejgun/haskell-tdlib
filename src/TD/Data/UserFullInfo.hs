@@ -10,6 +10,9 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.Birthdate as Birthdate
 import qualified TD.Data.GiftSettings as GiftSettings
 import qualified TD.Data.BotVerification as BotVerification
+import qualified TD.Data.ProfileTab as ProfileTab
+import qualified TD.Data.Audio as Audio
+import qualified TD.Data.UserRating as UserRating
 import qualified TD.Data.BusinessInfo as BusinessInfo
 import qualified TD.Data.BotInfo as BotInfo
 
@@ -37,6 +40,11 @@ data UserFullInfo
     , outgoing_paid_message_star_count             :: Maybe Int                             -- ^ Number of Telegram Stars that must be paid by the current user for each sent message to the user
     , gift_settings                                :: Maybe GiftSettings.GiftSettings       -- ^ Settings for gift receiving for the user
     , bot_verification                             :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the user provided by a bot; may be null if none or unknown
+    , main_profile_tab                             :: Maybe ProfileTab.ProfileTab           -- ^ The main tab chosen by the user; may be null if not chosen manually
+    , first_profile_audio                          :: Maybe Audio.Audio                     -- ^ The first audio file added to the user's profile; may be null if none
+    , rating                                       :: Maybe UserRating.UserRating           -- ^ The current rating of the user; may be null if none
+    , pending_rating                               :: Maybe UserRating.UserRating           -- ^ The rating of the user after the next change; may be null if the user isn't the current user or there are no pending rating changes
+    , pending_rating_date                          :: Maybe Int                             -- ^ Unix timestamp when rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes
     , business_info                                :: Maybe BusinessInfo.BusinessInfo       -- ^ Information about business settings for Telegram Business accounts; may be null if none
     , bot_info                                     :: Maybe BotInfo.BotInfo                 -- ^ For bots, information about the bot; may be null if the user isn't a bot
     }
@@ -66,6 +74,11 @@ instance I.ShortShow UserFullInfo where
     , outgoing_paid_message_star_count             = outgoing_paid_message_star_count_
     , gift_settings                                = gift_settings_
     , bot_verification                             = bot_verification_
+    , main_profile_tab                             = main_profile_tab_
+    , first_profile_audio                          = first_profile_audio_
+    , rating                                       = rating_
+    , pending_rating                               = pending_rating_
+    , pending_rating_date                          = pending_rating_date_
     , business_info                                = business_info_
     , bot_info                                     = bot_info_
     }
@@ -93,6 +106,11 @@ instance I.ShortShow UserFullInfo where
         , "outgoing_paid_message_star_count"             `I.p` outgoing_paid_message_star_count_
         , "gift_settings"                                `I.p` gift_settings_
         , "bot_verification"                             `I.p` bot_verification_
+        , "main_profile_tab"                             `I.p` main_profile_tab_
+        , "first_profile_audio"                          `I.p` first_profile_audio_
+        , "rating"                                       `I.p` rating_
+        , "pending_rating"                               `I.p` pending_rating_
+        , "pending_rating_date"                          `I.p` pending_rating_date_
         , "business_info"                                `I.p` business_info_
         , "bot_info"                                     `I.p` bot_info_
         ]
@@ -130,6 +148,11 @@ instance AT.FromJSON UserFullInfo where
         outgoing_paid_message_star_count_             <- o A..:?  "outgoing_paid_message_star_count"
         gift_settings_                                <- o A..:?  "gift_settings"
         bot_verification_                             <- o A..:?  "bot_verification"
+        main_profile_tab_                             <- o A..:?  "main_profile_tab"
+        first_profile_audio_                          <- o A..:?  "first_profile_audio"
+        rating_                                       <- o A..:?  "rating"
+        pending_rating_                               <- o A..:?  "pending_rating"
+        pending_rating_date_                          <- o A..:?  "pending_rating_date"
         business_info_                                <- o A..:?  "business_info"
         bot_info_                                     <- o A..:?  "bot_info"
         pure $ UserFullInfo
@@ -155,6 +178,11 @@ instance AT.FromJSON UserFullInfo where
           , outgoing_paid_message_star_count             = outgoing_paid_message_star_count_
           , gift_settings                                = gift_settings_
           , bot_verification                             = bot_verification_
+          , main_profile_tab                             = main_profile_tab_
+          , first_profile_audio                          = first_profile_audio_
+          , rating                                       = rating_
+          , pending_rating                               = pending_rating_
+          , pending_rating_date                          = pending_rating_date_
           , business_info                                = business_info_
           , bot_info                                     = bot_info_
           }

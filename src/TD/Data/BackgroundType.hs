@@ -22,8 +22,8 @@ data BackgroundType
   | BackgroundTypeFill -- ^ A filled background
     { fill :: Maybe BackgroundFill.BackgroundFill -- ^ The background fill
     }
-  | BackgroundTypeChatTheme -- ^ A background from a chat theme; can be used only as a chat background in channels
-    { theme_name :: Maybe T.Text -- ^ Name of the chat theme
+  | BackgroundTypeChatTheme -- ^ A background from a chat theme based on an emoji; can be used only as a chat background in channels
+    { theme_name :: Maybe T.Text -- ^ Name of the emoji chat theme
     }
   deriving (Eq, Show)
 

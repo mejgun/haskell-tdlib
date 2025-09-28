@@ -13,7 +13,7 @@ import qualified TD.Data.FormattedText as FormattedText
 data SendGift
   = SendGift
     { gift_id         :: Maybe Int                         -- ^ Identifier of the gift to send
-    , owner_id        :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that will receive the gift
+    , owner_id        :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that will receive the gift; limited gifts can't be sent to channel chats
     , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     , is_private      :: Maybe Bool                        -- ^ Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     , pay_for_upgrade :: Maybe Bool                        -- ^ Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free

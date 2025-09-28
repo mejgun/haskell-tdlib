@@ -10,6 +10,7 @@ import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
 import qualified TD.Data.Animations as Animations
 import qualified TD.Data.ArchiveChatListSettings as ArchiveChatListSettings
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
+import qualified TD.Data.Audios as Audios
 import qualified TD.Data.AuthenticationCodeInfo as AuthenticationCodeInfo
 import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.AutoDownloadSettingsPresets as AutoDownloadSettingsPresets
@@ -37,6 +38,7 @@ import qualified TD.Data.BusinessMessages as BusinessMessages
 import qualified TD.Data.CallId as CallId
 import qualified TD.Data.CallbackQueryAnswer as CallbackQueryAnswer
 import qualified TD.Data.CanPostStoryResult as CanPostStoryResult
+import qualified TD.Data.CanSendGiftResult as CanSendGiftResult
 import qualified TD.Data.CanSendMessageToUserResult as CanSendMessageToUserResult
 import qualified TD.Data.CanTransferOwnershipResult as CanTransferOwnershipResult
 import qualified TD.Data.Chat as Chat
@@ -107,10 +109,15 @@ import qualified TD.Data.FoundFileDownloads as FoundFileDownloads
 import qualified TD.Data.FoundMessages as FoundMessages
 import qualified TD.Data.FoundPosition as FoundPosition
 import qualified TD.Data.FoundPositions as FoundPositions
+import qualified TD.Data.FoundPublicPosts as FoundPublicPosts
 import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
+import qualified TD.Data.GiftChatThemes as GiftChatThemes
+import qualified TD.Data.GiftCollection as GiftCollection
+import qualified TD.Data.GiftCollections as GiftCollections
+import qualified TD.Data.GiftResaleResult as GiftResaleResult
 import qualified TD.Data.GiftUpgradePreview as GiftUpgradePreview
 import qualified TD.Data.GiftsForResale as GiftsForResale
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
@@ -179,6 +186,7 @@ import qualified TD.Data.PreparedInlineMessageId as PreparedInlineMessageId
 import qualified TD.Data.Proxies as Proxies
 import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.PublicForwards as PublicForwards
+import qualified TD.Data.PublicPostSearchLimits as PublicPostSearchLimits
 import qualified TD.Data.PushReceiverId as PushReceiverId
 import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
 import qualified TD.Data.QuickReplyMessages as QuickReplyMessages
@@ -217,6 +225,8 @@ import qualified TD.Data.StorageStatistics as StorageStatistics
 import qualified TD.Data.StorageStatisticsFast as StorageStatisticsFast
 import qualified TD.Data.Stories as Stories
 import qualified TD.Data.Story as Story
+import qualified TD.Data.StoryAlbum as StoryAlbum
+import qualified TD.Data.StoryAlbums as StoryAlbums
 import qualified TD.Data.StoryInteractions as StoryInteractions
 import qualified TD.Data.StoryStatistics as StoryStatistics
 import qualified TD.Data.Supergroup as Supergroup
@@ -233,12 +243,14 @@ import qualified TD.Data.TestVectorStringObject as TestVectorStringObject
 import qualified TD.Data.Text as Text
 import qualified TD.Data.TextEntities as TextEntities
 import qualified TD.Data.TimeZones as TimeZones
+import qualified TD.Data.TonRevenueStatistics as TonRevenueStatistics
 import qualified TD.Data.TonTransactions as TonTransactions
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
 import qualified TD.Data.UpgradeGiftResult as UpgradeGiftResult
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified TD.Data.UpgradedGiftValueInfo as UpgradedGiftValueInfo
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
 import qualified TD.Data.UserLink as UserLink
@@ -258,6 +270,7 @@ data GeneralResult
     | Animations                         Animations.Animations
     | ArchiveChatListSettings            ArchiveChatListSettings.ArchiveChatListSettings
     | AttachmentMenuBot                  AttachmentMenuBot.AttachmentMenuBot
+    | Audios                             Audios.Audios
     | AuthenticationCodeInfo             AuthenticationCodeInfo.AuthenticationCodeInfo
     | AuthorizationState                 AuthorizationState.AuthorizationState
     | AutoDownloadSettingsPresets        AutoDownloadSettingsPresets.AutoDownloadSettingsPresets
@@ -285,6 +298,7 @@ data GeneralResult
     | CallId                             CallId.CallId
     | CallbackQueryAnswer                CallbackQueryAnswer.CallbackQueryAnswer
     | CanPostStoryResult                 CanPostStoryResult.CanPostStoryResult
+    | CanSendGiftResult                  CanSendGiftResult.CanSendGiftResult
     | CanSendMessageToUserResult         CanSendMessageToUserResult.CanSendMessageToUserResult
     | CanTransferOwnershipResult         CanTransferOwnershipResult.CanTransferOwnershipResult
     | Chat                               Chat.Chat
@@ -355,10 +369,15 @@ data GeneralResult
     | FoundMessages                      FoundMessages.FoundMessages
     | FoundPosition                      FoundPosition.FoundPosition
     | FoundPositions                     FoundPositions.FoundPositions
+    | FoundPublicPosts                   FoundPublicPosts.FoundPublicPosts
     | FoundStories                       FoundStories.FoundStories
     | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
+    | GiftChatThemes                     GiftChatThemes.GiftChatThemes
+    | GiftCollection                     GiftCollection.GiftCollection
+    | GiftCollections                    GiftCollections.GiftCollections
+    | GiftResaleResult                   GiftResaleResult.GiftResaleResult
     | GiftUpgradePreview                 GiftUpgradePreview.GiftUpgradePreview
     | GiftsForResale                     GiftsForResale.GiftsForResale
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
@@ -427,6 +446,7 @@ data GeneralResult
     | Proxies                            Proxies.Proxies
     | Proxy                              Proxy.Proxy
     | PublicForwards                     PublicForwards.PublicForwards
+    | PublicPostSearchLimits             PublicPostSearchLimits.PublicPostSearchLimits
     | PushReceiverId                     PushReceiverId.PushReceiverId
     | QuickReplyMessage                  QuickReplyMessage.QuickReplyMessage
     | QuickReplyMessages                 QuickReplyMessages.QuickReplyMessages
@@ -465,6 +485,8 @@ data GeneralResult
     | StorageStatisticsFast              StorageStatisticsFast.StorageStatisticsFast
     | Stories                            Stories.Stories
     | Story                              Story.Story
+    | StoryAlbum                         StoryAlbum.StoryAlbum
+    | StoryAlbums                        StoryAlbums.StoryAlbums
     | StoryInteractions                  StoryInteractions.StoryInteractions
     | StoryStatistics                    StoryStatistics.StoryStatistics
     | Supergroup                         Supergroup.Supergroup
@@ -481,12 +503,14 @@ data GeneralResult
     | Text                               Text.Text
     | TextEntities                       TextEntities.TextEntities
     | TimeZones                          TimeZones.TimeZones
+    | TonRevenueStatistics               TonRevenueStatistics.TonRevenueStatistics
     | TonTransactions                    TonTransactions.TonTransactions
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
     | Updates                            Updates.Updates
     | UpgradeGiftResult                  UpgradeGiftResult.UpgradeGiftResult
     | UpgradedGift                       UpgradedGift.UpgradedGift
+    | UpgradedGiftValueInfo              UpgradedGiftValueInfo.UpgradedGiftValueInfo
     | User                               User.User
     | UserFullInfo                       UserFullInfo.UserFullInfo
     | UserLink                           UserLink.UserLink
@@ -513,6 +537,8 @@ instance I.ShortShow GeneralResult where
     = "ArchiveChatListSettings" <> " (" <> I.shortShow v <> ")"
   shortShow (AttachmentMenuBot v)
     = "AttachmentMenuBot" <> " (" <> I.shortShow v <> ")"
+  shortShow (Audios v)
+    = "Audios" <> " (" <> I.shortShow v <> ")"
   shortShow (AuthenticationCodeInfo v)
     = "AuthenticationCodeInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (AuthorizationState v)
@@ -567,6 +593,8 @@ instance I.ShortShow GeneralResult where
     = "CallbackQueryAnswer" <> " (" <> I.shortShow v <> ")"
   shortShow (CanPostStoryResult v)
     = "CanPostStoryResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (CanSendGiftResult v)
+    = "CanSendGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanSendMessageToUserResult v)
     = "CanSendMessageToUserResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CanTransferOwnershipResult v)
@@ -707,6 +735,8 @@ instance I.ShortShow GeneralResult where
     = "FoundPosition" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundPositions v)
     = "FoundPositions" <> " (" <> I.shortShow v <> ")"
+  shortShow (FoundPublicPosts v)
+    = "FoundPublicPosts" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundStories v)
     = "FoundStories" <> " (" <> I.shortShow v <> ")"
   shortShow (FoundUsers v)
@@ -715,6 +745,14 @@ instance I.ShortShow GeneralResult where
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftChatThemes v)
+    = "GiftChatThemes" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftCollection v)
+    = "GiftCollection" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftCollections v)
+    = "GiftCollections" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftResaleResult v)
+    = "GiftResaleResult" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftUpgradePreview v)
     = "GiftUpgradePreview" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftsForResale v)
@@ -851,6 +889,8 @@ instance I.ShortShow GeneralResult where
     = "Proxy" <> " (" <> I.shortShow v <> ")"
   shortShow (PublicForwards v)
     = "PublicForwards" <> " (" <> I.shortShow v <> ")"
+  shortShow (PublicPostSearchLimits v)
+    = "PublicPostSearchLimits" <> " (" <> I.shortShow v <> ")"
   shortShow (PushReceiverId v)
     = "PushReceiverId" <> " (" <> I.shortShow v <> ")"
   shortShow (QuickReplyMessage v)
@@ -927,6 +967,10 @@ instance I.ShortShow GeneralResult where
     = "Stories" <> " (" <> I.shortShow v <> ")"
   shortShow (Story v)
     = "Story" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryAlbum v)
+    = "StoryAlbum" <> " (" <> I.shortShow v <> ")"
+  shortShow (StoryAlbums v)
+    = "StoryAlbums" <> " (" <> I.shortShow v <> ")"
   shortShow (StoryInteractions v)
     = "StoryInteractions" <> " (" <> I.shortShow v <> ")"
   shortShow (StoryStatistics v)
@@ -959,6 +1003,8 @@ instance I.ShortShow GeneralResult where
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
     = "TimeZones" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonRevenueStatistics v)
+    = "TonRevenueStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (TonTransactions v)
     = "TonTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (TrendingStickerSets v)
@@ -971,6 +1017,8 @@ instance I.ShortShow GeneralResult where
     = "UpgradeGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (UpgradedGift v)
     = "UpgradedGift" <> " (" <> I.shortShow v <> ")"
+  shortShow (UpgradedGiftValueInfo v)
+    = "UpgradedGiftValueInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (User v)
     = "User" <> " (" <> I.shortShow v <> ")"
   shortShow (UserFullInfo v)
@@ -1002,6 +1050,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Animations                          <$> parseJSON v )
     <|> ( ArchiveChatListSettings             <$> parseJSON v )
     <|> ( AttachmentMenuBot                   <$> parseJSON v )
+    <|> ( Audios                              <$> parseJSON v )
     <|> ( AuthenticationCodeInfo              <$> parseJSON v )
     <|> ( AuthorizationState                  <$> parseJSON v )
     <|> ( AutoDownloadSettingsPresets         <$> parseJSON v )
@@ -1029,6 +1078,7 @@ instance T.FromJSON GeneralResult where
     <|> ( CallId                              <$> parseJSON v )
     <|> ( CallbackQueryAnswer                 <$> parseJSON v )
     <|> ( CanPostStoryResult                  <$> parseJSON v )
+    <|> ( CanSendGiftResult                   <$> parseJSON v )
     <|> ( CanSendMessageToUserResult          <$> parseJSON v )
     <|> ( CanTransferOwnershipResult          <$> parseJSON v )
     <|> ( Chat                                <$> parseJSON v )
@@ -1099,10 +1149,15 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundMessages                       <$> parseJSON v )
     <|> ( FoundPosition                       <$> parseJSON v )
     <|> ( FoundPositions                      <$> parseJSON v )
+    <|> ( FoundPublicPosts                    <$> parseJSON v )
     <|> ( FoundStories                        <$> parseJSON v )
     <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
+    <|> ( GiftChatThemes                      <$> parseJSON v )
+    <|> ( GiftCollection                      <$> parseJSON v )
+    <|> ( GiftCollections                     <$> parseJSON v )
+    <|> ( GiftResaleResult                    <$> parseJSON v )
     <|> ( GiftUpgradePreview                  <$> parseJSON v )
     <|> ( GiftsForResale                      <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
@@ -1171,6 +1226,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Proxies                             <$> parseJSON v )
     <|> ( Proxy                               <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )
+    <|> ( PublicPostSearchLimits              <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )
     <|> ( QuickReplyMessage                   <$> parseJSON v )
     <|> ( QuickReplyMessages                  <$> parseJSON v )
@@ -1209,6 +1265,8 @@ instance T.FromJSON GeneralResult where
     <|> ( StorageStatisticsFast               <$> parseJSON v )
     <|> ( Stories                             <$> parseJSON v )
     <|> ( Story                               <$> parseJSON v )
+    <|> ( StoryAlbum                          <$> parseJSON v )
+    <|> ( StoryAlbums                         <$> parseJSON v )
     <|> ( StoryInteractions                   <$> parseJSON v )
     <|> ( StoryStatistics                     <$> parseJSON v )
     <|> ( Supergroup                          <$> parseJSON v )
@@ -1225,12 +1283,14 @@ instance T.FromJSON GeneralResult where
     <|> ( Text                                <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
+    <|> ( TonRevenueStatistics                <$> parseJSON v )
     <|> ( TonTransactions                     <$> parseJSON v )
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )
     <|> ( UpgradeGiftResult                   <$> parseJSON v )
     <|> ( UpgradedGift                        <$> parseJSON v )
+    <|> ( UpgradedGiftValueInfo               <$> parseJSON v )
     <|> ( User                                <$> parseJSON v )
     <|> ( UserFullInfo                        <$> parseJSON v )
     <|> ( UserLink                            <$> parseJSON v )

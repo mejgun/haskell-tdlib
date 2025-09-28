@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.StarAmount as StarAmount
 
 data StarRevenueStatus
-  = StarRevenueStatus -- ^ Contains information about Telegram Stars earned by a bot or a chat
+  = StarRevenueStatus -- ^ Contains information about Telegram Stars earned by a user or a chat
     { total_amount       :: Maybe StarAmount.StarAmount -- ^ Total amount of Telegram Stars earned
     , current_amount     :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that aren't withdrawn yet
     , available_amount   :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that are available for withdrawal

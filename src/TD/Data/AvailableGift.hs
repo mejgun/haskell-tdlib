@@ -11,7 +11,7 @@ data AvailableGift
   = AvailableGift -- ^ Describes a gift that is available for purchase
     { gift                  :: Maybe Gift.Gift -- ^ The gift
     , resale_count          :: Maybe Int       -- ^ Number of gifts that are available for resale
-    , min_resale_star_count :: Maybe Int       -- ^ The minimum price for the gifts available for resale; 0 if there are no such gifts
+    , min_resale_star_count :: Maybe Int       -- ^ The minimum price for the gifts available for resale in Telegram Star equivalent; 0 if there are no such gifts
     , title                 :: Maybe T.Text    -- ^ The title of the upgraded gift; empty if the gift isn't available for resale
     }
   deriving (Eq, Show)

@@ -43,6 +43,7 @@ data StorePaymentPurpose
     { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
+    , chat_id    :: Maybe Int    -- ^ Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none
     }
   | StorePaymentPurposeGiftedStars -- ^ The user buying Telegram Stars for other users
     { user_id    :: Maybe Int    -- ^ Identifier of the user to which Telegram Stars are gifted
@@ -120,12 +121,14 @@ instance I.ShortShow StorePaymentPurpose where
     { currency   = currency_
     , amount     = amount_
     , star_count = star_count_
+    , chat_id    = chat_id_
     }
       = "StorePaymentPurposeStars"
         ++ I.cc
         [ "currency"   `I.p` currency_
         , "amount"     `I.p` amount_
         , "star_count" `I.p` star_count_
+        , "chat_id"    `I.p` chat_id_
         ]
   shortShow StorePaymentPurposeGiftedStars
     { user_id    = user_id_
@@ -219,10 +222,12 @@ instance AT.FromJSON StorePaymentPurpose where
         currency_   <- o A..:?  "currency"
         amount_     <- o A..:?  "amount"
         star_count_ <- o A..:?  "star_count"
+        chat_id_    <- o A..:?  "chat_id"
         pure $ StorePaymentPurposeStars
           { currency   = currency_
           , amount     = amount_
           , star_count = star_count_
+          , chat_id    = chat_id_
           }
       parseStorePaymentPurposeGiftedStars :: A.Value -> AT.Parser StorePaymentPurpose
       parseStorePaymentPurposeGiftedStars = A.withObject "StorePaymentPurposeGiftedStars" $ \o -> do
@@ -306,12 +311,14 @@ instance AT.ToJSON StorePaymentPurpose where
     { currency   = currency_
     , amount     = amount_
     , star_count = star_count_
+    , chat_id    = chat_id_
     }
       = A.object
         [ "@type"      A..= AT.String "storePaymentPurposeStars"
         , "currency"   A..= currency_
         , "amount"     A..= amount_
         , "star_count" A..= star_count_
+        , "chat_id"    A..= chat_id_
         ]
   toJSON StorePaymentPurposeGiftedStars
     { user_id    = user_id_

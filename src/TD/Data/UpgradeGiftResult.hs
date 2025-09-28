@@ -14,9 +14,9 @@ data UpgradeGiftResult
     , is_saved            :: Maybe Bool                      -- ^ True, if the gift is displayed on the user's or the channel's profile page
     , can_be_transferred  :: Maybe Bool                      -- ^ True, if the gift can be transferred to another owner
     , transfer_star_count :: Maybe Int                       -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift
-    , next_transfer_date  :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible
-    , next_resale_date    :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
-    , export_date         :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT
+    , next_transfer_date  :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible
+    , next_resale_date    :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
+    , export_date         :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past
     }
   deriving (Eq, Show)
 

@@ -12,6 +12,7 @@ data ChatActiveStories
     { chat_id           :: Maybe Int                   -- ^ Identifier of the chat that posted the stories
     , list              :: Maybe StoryList.StoryList   -- ^ Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list
     , order             :: Maybe Int                   -- ^ A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_poster_chat_id) in descending order
+    , can_be_archived   :: Maybe Bool                  -- ^ True, if the stories are shown in the main story list and can be archived; otherwise, the stories can be hidden from the main story list only by calling removeTopChat with topChatCategoryUsers and the chat_id. Stories of the current user can't be archived nor hidden using removeTopChat
     , max_read_story_id :: Maybe Int                   -- ^ Identifier of the last read active story
     , stories           :: Maybe [StoryInfo.StoryInfo] -- ^ Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)
     }
@@ -22,6 +23,7 @@ instance I.ShortShow ChatActiveStories where
     { chat_id           = chat_id_
     , list              = list_
     , order             = order_
+    , can_be_archived   = can_be_archived_
     , max_read_story_id = max_read_story_id_
     , stories           = stories_
     }
@@ -30,6 +32,7 @@ instance I.ShortShow ChatActiveStories where
         [ "chat_id"           `I.p` chat_id_
         , "list"              `I.p` list_
         , "order"             `I.p` order_
+        , "can_be_archived"   `I.p` can_be_archived_
         , "max_read_story_id" `I.p` max_read_story_id_
         , "stories"           `I.p` stories_
         ]
@@ -48,12 +51,14 @@ instance AT.FromJSON ChatActiveStories where
         chat_id_           <- o A..:?  "chat_id"
         list_              <- o A..:?  "list"
         order_             <- o A..:?  "order"
+        can_be_archived_   <- o A..:?  "can_be_archived"
         max_read_story_id_ <- o A..:?  "max_read_story_id"
         stories_           <- o A..:?  "stories"
         pure $ ChatActiveStories
           { chat_id           = chat_id_
           , list              = list_
           , order             = order_
+          , can_be_archived   = can_be_archived_
           , max_read_story_id = max_read_story_id_
           , stories           = stories_
           }

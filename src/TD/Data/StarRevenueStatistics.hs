@@ -8,7 +8,7 @@ import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
 
 data StarRevenueStatistics
-  = StarRevenueStatistics -- ^ A detailed statistics about Telegram Stars earned by a bot or a chat
+  = StarRevenueStatistics -- ^ A detailed statistics about Telegram Stars earned by a user or a chat
     { revenue_by_day_graph :: Maybe StatisticalGraph.StatisticalGraph   -- ^ A graph containing amount of revenue in a given day
     , status               :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ Telegram Star revenue status
     , usd_rate             :: Maybe Double                              -- ^ Current conversion rate of a Telegram Star to USD

@@ -24,6 +24,7 @@ data Story
     , is_edited                         :: Maybe Bool                                      -- ^ True, if the story was edited
     , is_posted_to_chat_page            :: Maybe Bool                                      -- ^ True, if the story is saved in the profile of the chat that posted it and will be available there after expiration
     , is_visible_only_for_self          :: Maybe Bool                                      -- ^ True, if the story is visible only for the current user
+    , can_be_added_to_album             :: Maybe Bool                                      -- ^ True, if the story can be added to an album
     , can_be_deleted                    :: Maybe Bool                                      -- ^ True, if the story can be deleted
     , can_be_edited                     :: Maybe Bool                                      -- ^ True, if the story can be edited
     , can_be_forwarded                  :: Maybe Bool                                      -- ^ True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
@@ -39,6 +40,7 @@ data Story
     , content                           :: Maybe StoryContent.StoryContent                 -- ^ Content of the story
     , areas                             :: Maybe [StoryArea.StoryArea]                     -- ^ Clickable areas to be shown on the story content
     , caption                           :: Maybe FormattedText.FormattedText               -- ^ Caption of the story
+    , album_ids                         :: Maybe [Int]                                     -- ^ Identifiers of story albums to which the story is added; only for manageable stories
     }
   deriving (Eq, Show)
 
@@ -53,6 +55,7 @@ instance I.ShortShow Story where
     , is_edited                         = is_edited_
     , is_posted_to_chat_page            = is_posted_to_chat_page_
     , is_visible_only_for_self          = is_visible_only_for_self_
+    , can_be_added_to_album             = can_be_added_to_album_
     , can_be_deleted                    = can_be_deleted_
     , can_be_edited                     = can_be_edited_
     , can_be_forwarded                  = can_be_forwarded_
@@ -68,6 +71,7 @@ instance I.ShortShow Story where
     , content                           = content_
     , areas                             = areas_
     , caption                           = caption_
+    , album_ids                         = album_ids_
     }
       = "Story"
         ++ I.cc
@@ -80,6 +84,7 @@ instance I.ShortShow Story where
         , "is_edited"                         `I.p` is_edited_
         , "is_posted_to_chat_page"            `I.p` is_posted_to_chat_page_
         , "is_visible_only_for_self"          `I.p` is_visible_only_for_self_
+        , "can_be_added_to_album"             `I.p` can_be_added_to_album_
         , "can_be_deleted"                    `I.p` can_be_deleted_
         , "can_be_edited"                     `I.p` can_be_edited_
         , "can_be_forwarded"                  `I.p` can_be_forwarded_
@@ -95,6 +100,7 @@ instance I.ShortShow Story where
         , "content"                           `I.p` content_
         , "areas"                             `I.p` areas_
         , "caption"                           `I.p` caption_
+        , "album_ids"                         `I.p` album_ids_
         ]
 
 instance AT.FromJSON Story where
@@ -117,6 +123,7 @@ instance AT.FromJSON Story where
         is_edited_                         <- o A..:?  "is_edited"
         is_posted_to_chat_page_            <- o A..:?  "is_posted_to_chat_page"
         is_visible_only_for_self_          <- o A..:?  "is_visible_only_for_self"
+        can_be_added_to_album_             <- o A..:?  "can_be_added_to_album"
         can_be_deleted_                    <- o A..:?  "can_be_deleted"
         can_be_edited_                     <- o A..:?  "can_be_edited"
         can_be_forwarded_                  <- o A..:?  "can_be_forwarded"
@@ -132,6 +139,7 @@ instance AT.FromJSON Story where
         content_                           <- o A..:?  "content"
         areas_                             <- o A..:?  "areas"
         caption_                           <- o A..:?  "caption"
+        album_ids_                         <- o A..:?  "album_ids"
         pure $ Story
           { _id                               = _id_
           , poster_chat_id                    = poster_chat_id_
@@ -142,6 +150,7 @@ instance AT.FromJSON Story where
           , is_edited                         = is_edited_
           , is_posted_to_chat_page            = is_posted_to_chat_page_
           , is_visible_only_for_self          = is_visible_only_for_self_
+          , can_be_added_to_album             = can_be_added_to_album_
           , can_be_deleted                    = can_be_deleted_
           , can_be_edited                     = can_be_edited_
           , can_be_forwarded                  = can_be_forwarded_
@@ -157,6 +166,7 @@ instance AT.FromJSON Story where
           , content                           = content_
           , areas                             = areas_
           , caption                           = caption_
+          , album_ids                         = album_ids_
           }
   parseJSON _ = mempty
 

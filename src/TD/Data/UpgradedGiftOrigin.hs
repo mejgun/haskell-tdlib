@@ -4,6 +4,7 @@ module TD.Data.UpgradedGiftOrigin
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.GiftResalePrice as GiftResalePrice
 
 -- | Describes origin from which the upgraded gift was obtained
 data UpgradedGiftOrigin
@@ -12,8 +13,9 @@ data UpgradedGiftOrigin
     }
   | UpgradedGiftOriginTransfer -- ^ The gift was transferred from another owner
   | UpgradedGiftOriginResale -- ^ The gift was bought from another user
-    { star_count :: Maybe Int -- ^ Number of Telegram Stars that were paid by the sender for the gift
+    { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid by the sender for the gift
     }
+  | UpgradedGiftOriginPrepaidUpgrade -- ^ The sender or receiver of the message has paid for upgraid of the gift, which has been completed
   deriving (Eq, Show)
 
 instance I.ShortShow UpgradedGiftOrigin where
@@ -27,22 +29,25 @@ instance I.ShortShow UpgradedGiftOrigin where
   shortShow UpgradedGiftOriginTransfer
       = "UpgradedGiftOriginTransfer"
   shortShow UpgradedGiftOriginResale
-    { star_count = star_count_
+    { price = price_
     }
       = "UpgradedGiftOriginResale"
         ++ I.cc
-        [ "star_count" `I.p` star_count_
+        [ "price" `I.p` price_
         ]
+  shortShow UpgradedGiftOriginPrepaidUpgrade
+      = "UpgradedGiftOriginPrepaidUpgrade"
 
 instance AT.FromJSON UpgradedGiftOrigin where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "upgradedGiftOriginUpgrade"  -> parseUpgradedGiftOriginUpgrade v
-      "upgradedGiftOriginTransfer" -> pure UpgradedGiftOriginTransfer
-      "upgradedGiftOriginResale"   -> parseUpgradedGiftOriginResale v
-      _                            -> mempty
+      "upgradedGiftOriginUpgrade"        -> parseUpgradedGiftOriginUpgrade v
+      "upgradedGiftOriginTransfer"       -> pure UpgradedGiftOriginTransfer
+      "upgradedGiftOriginResale"         -> parseUpgradedGiftOriginResale v
+      "upgradedGiftOriginPrepaidUpgrade" -> pure UpgradedGiftOriginPrepaidUpgrade
+      _                                  -> mempty
     
     where
       parseUpgradedGiftOriginUpgrade :: A.Value -> AT.Parser UpgradedGiftOrigin
@@ -53,9 +58,9 @@ instance AT.FromJSON UpgradedGiftOrigin where
           }
       parseUpgradedGiftOriginResale :: A.Value -> AT.Parser UpgradedGiftOrigin
       parseUpgradedGiftOriginResale = A.withObject "UpgradedGiftOriginResale" $ \o -> do
-        star_count_ <- o A..:?  "star_count"
+        price_ <- o A..:?  "price"
         pure $ UpgradedGiftOriginResale
-          { star_count = star_count_
+          { price = price_
           }
   parseJSON _ = mempty
 

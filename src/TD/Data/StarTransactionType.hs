@@ -103,14 +103,19 @@ data StarTransactionType
     { user_id :: Maybe Int                       -- ^ Identifier of the user that initially sent the gift
     , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
     }
+  | StarTransactionTypeGiftUpgradePurchase -- ^ The transaction is a purchase of an upgrade of a gift owned by another user or channel; for regular users only
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Owner of the upgraded gift
+    , gift     :: Maybe Gift.Gift                   -- ^ The gift
+    }
   | StarTransactionTypeUpgradedGiftPurchase -- ^ The transaction is a purchase of an upgraded gift for some user or channel; for regular users only
     { user_id :: Maybe Int                       -- ^ Identifier of the user that sold the gift
     , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | StarTransactionTypeUpgradedGiftSale -- ^ The transaction is a sale of an upgraded gift; for regular users only
-    { user_id   :: Maybe Int                         -- ^ Identifier of the user that bought the gift
-    , _gift     :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
-    , affiliate :: Maybe AffiliateInfo.AffiliateInfo -- ^ Information about commission received by Telegram from the transaction
+    { user_id                :: Maybe Int                       -- ^ Identifier of the user that bought the gift
+    , _gift                  :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+    , commission_per_mille   :: Maybe Int                       -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
+    , commission_star_amount :: Maybe StarAmount.StarAmount     -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
     }
   | StarTransactionTypeChannelPaidReactionSend -- ^ The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
     { chat_id    :: Maybe Int -- ^ Identifier of the channel chat
@@ -151,6 +156,7 @@ data StarTransactionType
   | StarTransactionTypeBusinessBotTransferReceive -- ^ The transaction is a transfer of Telegram Stars from a business account; for bots only
     { user_id :: Maybe Int -- ^ Identifier of the user that sent Telegram Stars
     }
+  | StarTransactionTypePublicPostSearch -- ^ The transaction is a payment for search of posts in public Telegram channels; for regular users only
   | StarTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type
   deriving (Eq, Show)
 
@@ -343,6 +349,15 @@ instance I.ShortShow StarTransactionType where
         [ "user_id" `I.p` user_id_
         , "_gift"   `I.p` _gift_
         ]
+  shortShow StarTransactionTypeGiftUpgradePurchase
+    { owner_id = owner_id_
+    , gift     = gift_
+    }
+      = "StarTransactionTypeGiftUpgradePurchase"
+        ++ I.cc
+        [ "owner_id" `I.p` owner_id_
+        , "gift"     `I.p` gift_
+        ]
   shortShow StarTransactionTypeUpgradedGiftPurchase
     { user_id = user_id_
     , _gift   = _gift_
@@ -353,15 +368,17 @@ instance I.ShortShow StarTransactionType where
         , "_gift"   `I.p` _gift_
         ]
   shortShow StarTransactionTypeUpgradedGiftSale
-    { user_id   = user_id_
-    , _gift     = _gift_
-    , affiliate = affiliate_
+    { user_id                = user_id_
+    , _gift                  = _gift_
+    , commission_per_mille   = commission_per_mille_
+    , commission_star_amount = commission_star_amount_
     }
       = "StarTransactionTypeUpgradedGiftSale"
         ++ I.cc
-        [ "user_id"   `I.p` user_id_
-        , "_gift"     `I.p` _gift_
-        , "affiliate" `I.p` affiliate_
+        [ "user_id"                `I.p` user_id_
+        , "_gift"                  `I.p` _gift_
+        , "commission_per_mille"   `I.p` commission_per_mille_
+        , "commission_star_amount" `I.p` commission_star_amount_
         ]
   shortShow StarTransactionTypeChannelPaidReactionSend
     { chat_id    = chat_id_
@@ -451,6 +468,8 @@ instance I.ShortShow StarTransactionType where
         ++ I.cc
         [ "user_id" `I.p` user_id_
         ]
+  shortShow StarTransactionTypePublicPostSearch
+      = "StarTransactionTypePublicPostSearch"
   shortShow StarTransactionTypeUnsupported
       = "StarTransactionTypeUnsupported"
 
@@ -482,6 +501,7 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypeGiftTransfer"                -> parseStarTransactionTypeGiftTransfer v
       "starTransactionTypeGiftSale"                    -> parseStarTransactionTypeGiftSale v
       "starTransactionTypeGiftUpgrade"                 -> parseStarTransactionTypeGiftUpgrade v
+      "starTransactionTypeGiftUpgradePurchase"         -> parseStarTransactionTypeGiftUpgradePurchase v
       "starTransactionTypeUpgradedGiftPurchase"        -> parseStarTransactionTypeUpgradedGiftPurchase v
       "starTransactionTypeUpgradedGiftSale"            -> parseStarTransactionTypeUpgradedGiftSale v
       "starTransactionTypeChannelPaidReactionSend"     -> parseStarTransactionTypeChannelPaidReactionSend v
@@ -494,6 +514,7 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypePremiumPurchase"             -> parseStarTransactionTypePremiumPurchase v
       "starTransactionTypeBusinessBotTransferSend"     -> parseStarTransactionTypeBusinessBotTransferSend v
       "starTransactionTypeBusinessBotTransferReceive"  -> parseStarTransactionTypeBusinessBotTransferReceive v
+      "starTransactionTypePublicPostSearch"            -> pure StarTransactionTypePublicPostSearch
       "starTransactionTypeUnsupported"                 -> pure StarTransactionTypeUnsupported
       _                                                -> mempty
     
@@ -658,6 +679,14 @@ instance AT.FromJSON StarTransactionType where
           { user_id = user_id_
           , _gift   = _gift_
           }
+      parseStarTransactionTypeGiftUpgradePurchase :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeGiftUpgradePurchase = A.withObject "StarTransactionTypeGiftUpgradePurchase" $ \o -> do
+        owner_id_ <- o A..:?  "owner_id"
+        gift_     <- o A..:?  "gift"
+        pure $ StarTransactionTypeGiftUpgradePurchase
+          { owner_id = owner_id_
+          , gift     = gift_
+          }
       parseStarTransactionTypeUpgradedGiftPurchase :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeUpgradedGiftPurchase = A.withObject "StarTransactionTypeUpgradedGiftPurchase" $ \o -> do
         user_id_ <- o A..:?  "user_id"
@@ -668,13 +697,15 @@ instance AT.FromJSON StarTransactionType where
           }
       parseStarTransactionTypeUpgradedGiftSale :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeUpgradedGiftSale = A.withObject "StarTransactionTypeUpgradedGiftSale" $ \o -> do
-        user_id_   <- o A..:?  "user_id"
-        _gift_     <- o A..:?  "gift"
-        affiliate_ <- o A..:?  "affiliate"
+        user_id_                <- o A..:?  "user_id"
+        _gift_                  <- o A..:?  "gift"
+        commission_per_mille_   <- o A..:?  "commission_per_mille"
+        commission_star_amount_ <- o A..:?  "commission_star_amount"
         pure $ StarTransactionTypeUpgradedGiftSale
-          { user_id   = user_id_
-          , _gift     = _gift_
-          , affiliate = affiliate_
+          { user_id                = user_id_
+          , _gift                  = _gift_
+          , commission_per_mille   = commission_per_mille_
+          , commission_star_amount = commission_star_amount_
           }
       parseStarTransactionTypeChannelPaidReactionSend :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeChannelPaidReactionSend = A.withObject "StarTransactionTypeChannelPaidReactionSend" $ \o -> do

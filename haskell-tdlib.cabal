@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.0.71.0
+version:        2.0.72.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -40,6 +40,7 @@ library
       TD.Data.AffiliateProgramParameters
       TD.Data.AffiliateProgramSortOrder
       TD.Data.AffiliateType
+      TD.Data.AgeVerificationParameters
       TD.Data.AlternativeVideo
       TD.Data.AnimatedChatPhoto
       TD.Data.AnimatedEmoji
@@ -49,6 +50,7 @@ library
       TD.Data.AttachmentMenuBot
       TD.Data.AttachmentMenuBotColor
       TD.Data.Audio
+      TD.Data.Audios
       TD.Data.AuthenticationCodeInfo
       TD.Data.AuthenticationCodeType
       TD.Data.AuthorizationState
@@ -82,6 +84,7 @@ library
       TD.Data.BotVerification
       TD.Data.BotVerificationParameters
       TD.Data.BotWriteAccessAllowReason
+      TD.Data.BuiltInTheme
       TD.Data.BusinessAwayMessageSchedule
       TD.Data.BusinessAwayMessageSettings
       TD.Data.BusinessBotManageBar
@@ -114,6 +117,7 @@ library
       TD.Data.CallServerType
       TD.Data.CallState
       TD.Data.CanPostStoryResult
+      TD.Data.CanSendGiftResult
       TD.Data.CanSendMessageToUserResult
       TD.Data.CanTransferOwnershipResult
       TD.Data.Chat
@@ -227,6 +231,7 @@ library
       TD.Data.EmojiCategory
       TD.Data.EmojiCategorySource
       TD.Data.EmojiCategoryType
+      TD.Data.EmojiChatTheme
       TD.Data.EmojiKeyword
       TD.Data.EmojiKeywords
       TD.Data.EmojiReaction
@@ -261,6 +266,7 @@ library
       TD.Data.FoundMessages
       TD.Data.FoundPosition
       TD.Data.FoundPositions
+      TD.Data.FoundPublicPosts
       TD.Data.FoundStories
       TD.Data.FoundUsers
       TD.Data.FoundWebApp
@@ -268,8 +274,16 @@ library
       TD.Data.GameHighScore
       TD.Data.GameHighScores
       TD.Data.Gift
+      TD.Data.GiftChatTheme
+      TD.Data.GiftChatThemes
+      TD.Data.GiftCollection
+      TD.Data.GiftCollections
       TD.Data.GiftForResale
       TD.Data.GiftForResaleOrder
+      TD.Data.GiftPurchaseLimits
+      TD.Data.GiftResaleParameters
+      TD.Data.GiftResalePrice
+      TD.Data.GiftResaleResult
       TD.Data.GiftSettings
       TD.Data.GiftsForResale
       TD.Data.GiftUpgradePreview
@@ -302,6 +316,7 @@ library
       TD.Data.InputBusinessChatLink
       TD.Data.InputBusinessStartPage
       TD.Data.InputChatPhoto
+      TD.Data.InputChatTheme
       TD.Data.InputChecklist
       TD.Data.InputChecklistTask
       TD.Data.InputCredentials
@@ -466,12 +481,14 @@ library
       TD.Data.ProfileAccentColor
       TD.Data.ProfileAccentColors
       TD.Data.ProfilePhoto
+      TD.Data.ProfileTab
       TD.Data.Proxies
       TD.Data.Proxy
       TD.Data.ProxyType
       TD.Data.PublicChatType
       TD.Data.PublicForward
       TD.Data.PublicForwards
+      TD.Data.PublicPostSearchLimits
       TD.Data.PushMessageContent
       TD.Data.PushReceiverId
       TD.Data.QuickReplyMessage
@@ -496,6 +513,7 @@ library
       TD.Data.ReportStoryResult
       TD.Data.ResendCodeReason
       TD.Data.ResetPasswordResult
+      TD.Data.RestrictionInfo
       TD.Data.RevenueWithdrawalState
       TD.Data.RichText
       TD.Data.RtmpUrl
@@ -558,6 +576,8 @@ library
       TD.Data.StoreTransaction
       TD.Data.Stories
       TD.Data.Story
+      TD.Data.StoryAlbum
+      TD.Data.StoryAlbums
       TD.Data.StoryArea
       TD.Data.StoryAreaPosition
       TD.Data.StoryAreaType
@@ -609,6 +629,8 @@ library
       TD.Data.TMeUrl
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
+      TD.Data.TonRevenueStatistics
+      TD.Data.TonRevenueStatus
       TD.Data.TonTransaction
       TD.Data.TonTransactions
       TD.Data.TonTransactionType
@@ -630,6 +652,7 @@ library
       TD.Data.UpgradedGiftOriginalDetails
       TD.Data.UpgradedGiftSymbol
       TD.Data.UpgradedGiftSymbolCount
+      TD.Data.UpgradedGiftValueInfo
       TD.Data.UpgradeGiftResult
       TD.Data.User
       TD.Data.UserFullInfo
@@ -638,6 +661,7 @@ library
       TD.Data.UserPrivacySetting
       TD.Data.UserPrivacySettingRule
       TD.Data.UserPrivacySettingRules
+      TD.Data.UserRating
       TD.Data.Users
       TD.Data.UserStatus
       TD.Data.UserSupportInfo
@@ -676,12 +700,14 @@ library
       TD.Query.AddCustomServerLanguagePack
       TD.Query.AddFavoriteSticker
       TD.Query.AddFileToDownloads
+      TD.Query.AddGiftCollectionGifts
       TD.Query.AddLocalMessage
       TD.Query.AddLogMessage
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
       TD.Query.AddOffer
       TD.Query.AddPendingPaidMessageReaction
+      TD.Query.AddProfileAudio
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
       TD.Query.AddQuickReplyShortcutMessage
@@ -691,6 +717,7 @@ library
       TD.Query.AddSavedAnimation
       TD.Query.AddSavedNotificationSound
       TD.Query.AddStickerToSet
+      TD.Query.AddStoryAlbumStories
       TD.Query.AllowBotToSendMessages
       TD.Query.AllowUnpaidMessagesFromUser
       TD.Query.AnswerCallbackQuery
@@ -706,6 +733,7 @@ library
       TD.Query.BanGroupCallParticipants
       TD.Query.BlockMessageSenderFromReplies
       TD.Query.BoostChat
+      TD.Query.BuyGiftUpgrade
       TD.Query.CanBotSendMessages
       TD.Query.CancelDownloadFile
       TD.Query.CancelPasswordReset
@@ -713,6 +741,7 @@ library
       TD.Query.CancelRecoveryEmailAddressVerification
       TD.Query.CanPostStory
       TD.Query.CanPurchaseFromStore
+      TD.Query.CanSendGift
       TD.Query.CanSendMessageToUser
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
@@ -766,6 +795,7 @@ library
       TD.Query.CreateChatInviteLink
       TD.Query.CreateChatSubscriptionInviteLink
       TD.Query.CreateForumTopic
+      TD.Query.CreateGiftCollection
       TD.Query.CreateGroupCall
       TD.Query.CreateInvoiceLink
       TD.Query.CreateNewBasicGroupChat
@@ -774,6 +804,7 @@ library
       TD.Query.CreateNewSupergroupChat
       TD.Query.CreatePrivateChat
       TD.Query.CreateSecretChat
+      TD.Query.CreateStoryAlbum
       TD.Query.CreateSupergroupChat
       TD.Query.CreateTemporaryPassword
       TD.Query.CreateVideoChat
@@ -802,6 +833,7 @@ library
       TD.Query.DeleteDirectMessagesChatTopicMessagesByDate
       TD.Query.DeleteFile
       TD.Query.DeleteForumTopic
+      TD.Query.DeleteGiftCollection
       TD.Query.DeleteLanguagePack
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
@@ -815,6 +847,7 @@ library
       TD.Query.DeleteSavedOrderInfo
       TD.Query.DeleteStickerSet
       TD.Query.DeleteStory
+      TD.Query.DeleteStoryAlbum
       TD.Query.Destroy
       TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
@@ -945,6 +978,7 @@ library
       TD.Query.GetChatSponsoredMessages
       TD.Query.GetChatStatistics
       TD.Query.GetChatsToPostStories
+      TD.Query.GetChatStoryAlbums
       TD.Query.GetChatStoryInteractions
       TD.Query.GetCloseFriends
       TD.Query.GetCollectibleItemInfo
@@ -989,6 +1023,8 @@ library
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
+      TD.Query.GetGiftChatThemes
+      TD.Query.GetGiftCollections
       TD.Query.GetGiftUpgradePreview
       TD.Query.GetGiveawayInfo
       TD.Query.GetGreetingStickers
@@ -1069,6 +1105,7 @@ library
       TD.Query.GetPreparedInlineMessage
       TD.Query.GetProxies
       TD.Query.GetProxyLink
+      TD.Query.GetPublicPostSearchLimits
       TD.Query.GetPushReceiverId
       TD.Query.GetReadDatePrivacySettings
       TD.Query.GetReceivedGift
@@ -1111,6 +1148,7 @@ library
       TD.Query.GetStorageStatistics
       TD.Query.GetStorageStatisticsFast
       TD.Query.GetStory
+      TD.Query.GetStoryAlbumStories
       TD.Query.GetStoryAvailableReactions
       TD.Query.GetStoryInteractions
       TD.Query.GetStoryNotificationSettingsExceptions
@@ -1131,17 +1169,21 @@ library
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTimeZones
+      TD.Query.GetTonRevenueStatistics
       TD.Query.GetTonTransactions
+      TD.Query.GetTonWithdrawalUrl
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUpgradedGift
       TD.Query.GetUpgradedGiftEmojiStatuses
+      TD.Query.GetUpgradedGiftValueInfo
       TD.Query.GetUpgradedGiftWithdrawalUrl
       TD.Query.GetUser
       TD.Query.GetUserChatBoosts
       TD.Query.GetUserFullInfo
       TD.Query.GetUserLink
       TD.Query.GetUserPrivacySettingRules
+      TD.Query.GetUserProfileAudios
       TD.Query.GetUserProfilePhotos
       TD.Query.GetUserSupportInfo
       TD.Query.GetVideoChatAvailableParticipants
@@ -1161,6 +1203,7 @@ library
       TD.Query.ImportMessages
       TD.Query.InviteGroupCallParticipant
       TD.Query.InviteVideoChatParticipants
+      TD.Query.IsProfileAudio
       TD.Query.JoinChat
       TD.Query.JoinChatByInviteLink
       TD.Query.JoinGroupCall
@@ -1217,12 +1260,14 @@ library
       TD.Query.RemoveContacts
       TD.Query.RemoveFavoriteSticker
       TD.Query.RemoveFileFromDownloads
+      TD.Query.RemoveGiftCollectionGifts
       TD.Query.RemoveInstalledBackground
       TD.Query.RemoveMessageReaction
       TD.Query.RemoveMessageSenderBotVerification
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
       TD.Query.RemovePendingPaidMessageReactions
+      TD.Query.RemoveProfileAudio
       TD.Query.RemoveProxy
       TD.Query.RemoveRecentHashtag
       TD.Query.RemoveRecentlyFoundChat
@@ -1231,13 +1276,18 @@ library
       TD.Query.RemoveSavedNotificationSound
       TD.Query.RemoveSearchedForTag
       TD.Query.RemoveStickerFromSet
+      TD.Query.RemoveStoryAlbumStories
       TD.Query.RemoveTopChat
       TD.Query.ReorderActiveUsernames
       TD.Query.ReorderBotActiveUsernames
       TD.Query.ReorderBotMediaPreviews
       TD.Query.ReorderChatFolders
+      TD.Query.ReorderGiftCollectionGifts
+      TD.Query.ReorderGiftCollections
       TD.Query.ReorderInstalledStickerSets
       TD.Query.ReorderQuickReplyShortcuts
+      TD.Query.ReorderStoryAlbums
+      TD.Query.ReorderStoryAlbumStories
       TD.Query.ReorderSupergroupActiveUsernames
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceStickerInSet
@@ -1292,6 +1342,7 @@ library
       TD.Query.SearchPublicChat
       TD.Query.SearchPublicChats
       TD.Query.SearchPublicMessagesByTag
+      TD.Query.SearchPublicPosts
       TD.Query.SearchPublicStoriesByLocation
       TD.Query.SearchPublicStoriesByTag
       TD.Query.SearchPublicStoriesByVenue
@@ -1400,6 +1451,7 @@ library
       TD.Query.SetFileGenerationProgress
       TD.Query.SetForumTopicNotificationSettings
       TD.Query.SetGameScore
+      TD.Query.SetGiftCollectionName
       TD.Query.SetGiftResalePrice
       TD.Query.SetGiftSettings
       TD.Query.SetGroupCallParticipantIsSpeaking
@@ -1410,6 +1462,7 @@ library
       TD.Query.SetLogStream
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
+      TD.Query.SetMainProfileTab
       TD.Query.SetMenuButton
       TD.Query.SetMessageFactCheck
       TD.Query.SetMessageReactions
@@ -1430,6 +1483,7 @@ library
       TD.Query.SetPinnedSavedMessagesTopics
       TD.Query.SetPollAnswer
       TD.Query.SetProfileAccentColor
+      TD.Query.SetProfileAudioPosition
       TD.Query.SetProfilePhoto
       TD.Query.SetQuickReplyShortcutName
       TD.Query.SetReactionNotificationSettings
@@ -1443,9 +1497,11 @@ library
       TD.Query.SetStickerPositionInSet
       TD.Query.SetStickerSetThumbnail
       TD.Query.SetStickerSetTitle
+      TD.Query.SetStoryAlbumName
       TD.Query.SetStoryPrivacySettings
       TD.Query.SetStoryReaction
       TD.Query.SetSupergroupCustomEmojiStickerSet
+      TD.Query.SetSupergroupMainProfileTab
       TD.Query.SetSupergroupStickerSet
       TD.Query.SetSupergroupUnrestrictBoostCount
       TD.Query.SetSupergroupUsername

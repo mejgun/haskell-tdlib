@@ -15,7 +15,9 @@ data AuthorizationState
   = AuthorizationStateWaitTdlibParameters -- ^ Initialization parameters are needed. Call setTdlibParameters to provide them
   | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
   | AuthorizationStateWaitPremiumPurchase -- ^ The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
-    { store_product_id :: Maybe T.Text -- ^ Identifier of the store product that must be bought
+    { store_product_id      :: Maybe T.Text -- ^ Identifier of the store product that must be bought
+    , support_email_address :: Maybe T.Text -- ^ Email address to use for support if the user has issues with Telegram Premium purchase
+    , support_email_subject :: Maybe T.Text -- ^ Subject for the email sent to the support email address
     }
   | AuthorizationStateWaitEmailAddress -- ^ TDLib needs the user's email address to authorize. Call setAuthenticationEmailAddress to provide the email address, or directly call checkAuthenticationEmailCode with Apple ID/Google ID token if allowed
     { allow_apple_id  :: Maybe Bool -- ^ True, if authorization through Apple ID is allowed
@@ -54,11 +56,15 @@ instance I.ShortShow AuthorizationState where
   shortShow AuthorizationStateWaitPhoneNumber
       = "AuthorizationStateWaitPhoneNumber"
   shortShow AuthorizationStateWaitPremiumPurchase
-    { store_product_id = store_product_id_
+    { store_product_id      = store_product_id_
+    , support_email_address = support_email_address_
+    , support_email_subject = support_email_subject_
     }
       = "AuthorizationStateWaitPremiumPurchase"
         ++ I.cc
-        [ "store_product_id" `I.p` store_product_id_
+        [ "store_product_id"      `I.p` store_product_id_
+        , "support_email_address" `I.p` support_email_address_
+        , "support_email_subject" `I.p` support_email_subject_
         ]
   shortShow AuthorizationStateWaitEmailAddress
     { allow_apple_id  = allow_apple_id_
@@ -148,9 +154,13 @@ instance AT.FromJSON AuthorizationState where
     where
       parseAuthorizationStateWaitPremiumPurchase :: A.Value -> AT.Parser AuthorizationState
       parseAuthorizationStateWaitPremiumPurchase = A.withObject "AuthorizationStateWaitPremiumPurchase" $ \o -> do
-        store_product_id_ <- o A..:?  "store_product_id"
+        store_product_id_      <- o A..:?  "store_product_id"
+        support_email_address_ <- o A..:?  "support_email_address"
+        support_email_subject_ <- o A..:?  "support_email_subject"
         pure $ AuthorizationStateWaitPremiumPurchase
-          { store_product_id = store_product_id_
+          { store_product_id      = store_product_id_
+          , support_email_address = support_email_address_
+          , support_email_subject = support_email_subject_
           }
       parseAuthorizationStateWaitEmailAddress :: A.Value -> AT.Parser AuthorizationState
       parseAuthorizationStateWaitEmailAddress = A.withObject "AuthorizationStateWaitEmailAddress" $ \o -> do

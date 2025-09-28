@@ -14,9 +14,9 @@ import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
 import qualified TD.Data.Sticker as Sticker
+import qualified TD.Data.Video as Video
 import qualified TD.Data.ThemeSettings as ThemeSettings
 import qualified TD.Data.UpgradedGift as UpgradedGift
-import qualified TD.Data.Video as Video
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
 
@@ -49,6 +49,9 @@ data LinkPreviewType
     { _type                :: Maybe InviteLinkChatType.InviteLinkChatType -- ^ Type of the chat
     , _photo               :: Maybe ChatPhoto.ChatPhoto                   -- ^ Photo of the chat; may be null
     , creates_join_request :: Maybe Bool                                  -- ^ True, if the link only creates join request
+    }
+  | LinkPreviewTypeDirectMessagesChat -- ^ The link is a link to a direct messages chat of a channel
+    { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the channel chat; may be null
     }
   | LinkPreviewTypeDocument -- ^ The link is a link to a general file
     { document :: Maybe Document.Document -- ^ The document description
@@ -86,6 +89,9 @@ data LinkPreviewType
     , height    :: Maybe Int    -- ^ Expected height of the video preview; 0 if unknown
     , duration  :: Maybe Int    -- ^ Duration of the video, in seconds; 0 if unknown
     }
+  | LinkPreviewTypeGiftCollection -- ^ The link is a link to a gift collection
+    { icons :: Maybe [Sticker.Sticker] -- ^ Icons for some gifts from the collection; may be empty
+    }
   | LinkPreviewTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat
   | LinkPreviewTypeInvoice -- ^ The link is a link to an invoice
   | LinkPreviewTypeMessage -- ^ The link is a link to a text or a poll Telegram message
@@ -103,6 +109,10 @@ data LinkPreviewType
   | LinkPreviewTypeStory -- ^ The link is a link to a story. Link preview description is unavailable
     { story_poster_chat_id :: Maybe Int -- ^ The identifier of the chat that posted the story
     , story_id             :: Maybe Int -- ^ Story identifier
+    }
+  | LinkPreviewTypeStoryAlbum -- ^ The link is a link to an album of stories
+    { photo_icon :: Maybe Photo.Photo -- ^ Icon of the album; may be null if none
+    , video_icon :: Maybe Video.Video -- ^ Video icon of the album; may be null if none
     }
   | LinkPreviewTypeSupergroupBoost -- ^ The link is a link to boost a supergroup chat
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat; may be null
@@ -205,6 +215,13 @@ instance I.ShortShow LinkPreviewType where
         , "_photo"               `I.p` _photo_
         , "creates_join_request" `I.p` creates_join_request_
         ]
+  shortShow LinkPreviewTypeDirectMessagesChat
+    { _photo = _photo_
+    }
+      = "LinkPreviewTypeDirectMessagesChat"
+        ++ I.cc
+        [ "_photo" `I.p` _photo_
+        ]
   shortShow LinkPreviewTypeDocument
     { document = document_
     }
@@ -283,6 +300,13 @@ instance I.ShortShow LinkPreviewType where
         , "height"    `I.p` height_
         , "duration"  `I.p` duration_
         ]
+  shortShow LinkPreviewTypeGiftCollection
+    { icons = icons_
+    }
+      = "LinkPreviewTypeGiftCollection"
+        ++ I.cc
+        [ "icons" `I.p` icons_
+        ]
   shortShow LinkPreviewTypeGroupCall
       = "LinkPreviewTypeGroupCall"
   shortShow LinkPreviewTypeInvoice
@@ -322,6 +346,15 @@ instance I.ShortShow LinkPreviewType where
         ++ I.cc
         [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
+        ]
+  shortShow LinkPreviewTypeStoryAlbum
+    { photo_icon = photo_icon_
+    , video_icon = video_icon_
+    }
+      = "LinkPreviewTypeStoryAlbum"
+        ++ I.cc
+        [ "photo_icon" `I.p` photo_icon_
+        , "video_icon" `I.p` video_icon_
         ]
   shortShow LinkPreviewTypeSupergroupBoost
     { _photo = _photo_
@@ -414,12 +447,14 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeBackground"              -> parseLinkPreviewTypeBackground v
       "linkPreviewTypeChannelBoost"            -> parseLinkPreviewTypeChannelBoost v
       "linkPreviewTypeChat"                    -> parseLinkPreviewTypeChat v
+      "linkPreviewTypeDirectMessagesChat"      -> parseLinkPreviewTypeDirectMessagesChat v
       "linkPreviewTypeDocument"                -> parseLinkPreviewTypeDocument v
       "linkPreviewTypeEmbeddedAnimationPlayer" -> parseLinkPreviewTypeEmbeddedAnimationPlayer v
       "linkPreviewTypeEmbeddedAudioPlayer"     -> parseLinkPreviewTypeEmbeddedAudioPlayer v
       "linkPreviewTypeEmbeddedVideoPlayer"     -> parseLinkPreviewTypeEmbeddedVideoPlayer v
       "linkPreviewTypeExternalAudio"           -> parseLinkPreviewTypeExternalAudio v
       "linkPreviewTypeExternalVideo"           -> parseLinkPreviewTypeExternalVideo v
+      "linkPreviewTypeGiftCollection"          -> parseLinkPreviewTypeGiftCollection v
       "linkPreviewTypeGroupCall"               -> pure LinkPreviewTypeGroupCall
       "linkPreviewTypeInvoice"                 -> pure LinkPreviewTypeInvoice
       "linkPreviewTypeMessage"                 -> pure LinkPreviewTypeMessage
@@ -429,6 +464,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeSticker"                 -> parseLinkPreviewTypeSticker v
       "linkPreviewTypeStickerSet"              -> parseLinkPreviewTypeStickerSet v
       "linkPreviewTypeStory"                   -> parseLinkPreviewTypeStory v
+      "linkPreviewTypeStoryAlbum"              -> parseLinkPreviewTypeStoryAlbum v
       "linkPreviewTypeSupergroupBoost"         -> parseLinkPreviewTypeSupergroupBoost v
       "linkPreviewTypeTheme"                   -> parseLinkPreviewTypeTheme v
       "linkPreviewTypeUnsupported"             -> pure LinkPreviewTypeUnsupported
@@ -497,6 +533,12 @@ instance AT.FromJSON LinkPreviewType where
           { _type                = _type_
           , _photo               = _photo_
           , creates_join_request = creates_join_request_
+          }
+      parseLinkPreviewTypeDirectMessagesChat :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeDirectMessagesChat = A.withObject "LinkPreviewTypeDirectMessagesChat" $ \o -> do
+        _photo_ <- o A..:?  "photo"
+        pure $ LinkPreviewTypeDirectMessagesChat
+          { _photo = _photo_
           }
       parseLinkPreviewTypeDocument :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeDocument = A.withObject "LinkPreviewTypeDocument" $ \o -> do
@@ -570,6 +612,12 @@ instance AT.FromJSON LinkPreviewType where
           , height    = height_
           , duration  = duration_
           }
+      parseLinkPreviewTypeGiftCollection :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeGiftCollection = A.withObject "LinkPreviewTypeGiftCollection" $ \o -> do
+        icons_ <- o A..:?  "icons"
+        pure $ LinkPreviewTypeGiftCollection
+          { icons = icons_
+          }
       parseLinkPreviewTypePhoto :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypePhoto = A.withObject "LinkPreviewTypePhoto" $ \o -> do
         photo_ <- o A..:?  "photo"
@@ -595,6 +643,14 @@ instance AT.FromJSON LinkPreviewType where
         pure $ LinkPreviewTypeStory
           { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
+          }
+      parseLinkPreviewTypeStoryAlbum :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeStoryAlbum = A.withObject "LinkPreviewTypeStoryAlbum" $ \o -> do
+        photo_icon_ <- o A..:?  "photo_icon"
+        video_icon_ <- o A..:?  "video_icon"
+        pure $ LinkPreviewTypeStoryAlbum
+          { photo_icon = photo_icon_
+          , video_icon = video_icon_
           }
       parseLinkPreviewTypeSupergroupBoost :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeSupergroupBoost = A.withObject "LinkPreviewTypeSupergroupBoost" $ \o -> do

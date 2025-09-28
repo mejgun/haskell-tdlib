@@ -17,6 +17,7 @@ import qualified TD.Data.MessageReplyTo as MessageReplyTo
 import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
+import qualified TD.Data.RestrictionInfo as RestrictionInfo
 import qualified TD.Data.MessageContent as MessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
@@ -57,8 +58,7 @@ data Message
     , author_signature            :: Maybe T.Text                                          -- ^ For channel posts and anonymous group messages, optional author signature
     , media_album_id              :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     , effect_id                   :: Maybe Int                                             -- ^ Unique identifier of the effect added to the message; 0 if none
-    , has_sensitive_content       :: Maybe Bool                                            -- ^ True, if media content of the message must be hidden with 18+ spoiler
-    , restriction_reason          :: Maybe T.Text                                          -- ^ If non-empty, contains a human-readable description of the reason why access to this message must be restricted
+    , restriction_info            :: Maybe RestrictionInfo.RestrictionInfo                 -- ^ Information about the restrictions that must be applied to the message content; may be null if none
     , content                     :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
     , reply_markup                :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
     }
@@ -101,8 +101,7 @@ instance I.ShortShow Message where
     , author_signature            = author_signature_
     , media_album_id              = media_album_id_
     , effect_id                   = effect_id_
-    , has_sensitive_content       = has_sensitive_content_
-    , restriction_reason          = restriction_reason_
+    , restriction_info            = restriction_info_
     , content                     = content_
     , reply_markup                = reply_markup_
     }
@@ -143,8 +142,7 @@ instance I.ShortShow Message where
         , "author_signature"            `I.p` author_signature_
         , "media_album_id"              `I.p` media_album_id_
         , "effect_id"                   `I.p` effect_id_
-        , "has_sensitive_content"       `I.p` has_sensitive_content_
-        , "restriction_reason"          `I.p` restriction_reason_
+        , "restriction_info"            `I.p` restriction_info_
         , "content"                     `I.p` content_
         , "reply_markup"                `I.p` reply_markup_
         ]
@@ -195,8 +193,7 @@ instance AT.FromJSON Message where
         author_signature_            <- o A..:?                       "author_signature"
         media_album_id_              <- fmap I.readInt64 <$> o A..:?  "media_album_id"
         effect_id_                   <- fmap I.readInt64 <$> o A..:?  "effect_id"
-        has_sensitive_content_       <- o A..:?                       "has_sensitive_content"
-        restriction_reason_          <- o A..:?                       "restriction_reason"
+        restriction_info_            <- o A..:?                       "restriction_info"
         content_                     <- o A..:?                       "content"
         reply_markup_                <- o A..:?                       "reply_markup"
         pure $ Message
@@ -235,8 +232,7 @@ instance AT.FromJSON Message where
           , author_signature            = author_signature_
           , media_album_id              = media_album_id_
           , effect_id                   = effect_id_
-          , has_sensitive_content       = has_sensitive_content_
-          , restriction_reason          = restriction_reason_
+          , restriction_info            = restriction_info_
           , content                     = content_
           , reply_markup                = reply_markup_
           }

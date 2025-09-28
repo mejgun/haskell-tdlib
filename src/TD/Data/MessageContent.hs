@@ -32,6 +32,7 @@ import qualified TD.Data.CallDiscardReason as CallDiscardReason
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatBackground as ChatBackground
+import qualified TD.Data.ChatTheme as ChatTheme
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
 import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
@@ -229,7 +230,7 @@ data MessageContent
     , only_for_self             :: Maybe Bool                          -- ^ True, if the background was set only for self
     }
   | MessageChatSetTheme -- ^ A theme in the chat has been changed
-    { theme_name :: Maybe T.Text -- ^ If non-empty, name of a new theme, set for the chat. Otherwise, chat theme was reset to the default one
+    { theme :: Maybe ChatTheme.ChatTheme -- ^ New theme for the chat; may be null if chat theme was reset to the default one
     }
   | MessageChatSetMessageAutoDeleteTime -- ^ The auto-delete or self-destruct timer for messages in the chat has been changed
     { message_auto_delete_time :: Maybe Int -- ^ New value auto-delete or self-destruct time, in seconds; 0 if disabled
@@ -374,19 +375,22 @@ data MessageContent
     }
   | MessageGift -- ^ A regular gift was received or sent by the current user, or the current user was notified about a channel gift
     { gift                       :: Maybe Gift.Gift                   -- ^ The gift
-    , sender_id                  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
+    , sender_id                  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users
     , receiver_id                :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
     , received_gift_id           :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
     , text                       :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , sell_star_count            :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     , prepaid_upgrade_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
+    , is_upgrade_separate        :: Maybe Bool                        -- ^ True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost
     , is_private                 :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     , is_saved                   :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    , is_prepaid_upgrade         :: Maybe Bool                        -- ^ True, if the message is about prepaid upgrade of the gift by another user
     , can_be_upgraded            :: Maybe Bool                        -- ^ True, if the gift can be upgraded to a unique gift; only for the receiver of the gift
     , was_converted              :: Maybe Bool                        -- ^ True, if the gift was converted to Telegram Stars; only for the receiver of the gift
     , was_upgraded               :: Maybe Bool                        -- ^ True, if the gift was upgraded to a unique gift
     , was_refunded               :: Maybe Bool                        -- ^ True, if the gift was refunded and isn't available anymore
     , upgraded_received_gift_id  :: Maybe T.Text                      -- ^ Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
+    , prepaid_upgrade_hash       :: Maybe T.Text                      -- ^ If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
     }
   | MessageUpgradedGift -- ^ An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
     { _gift               :: Maybe UpgradedGift.UpgradedGift             -- ^ The gift
@@ -398,15 +402,15 @@ data MessageContent
     , can_be_transferred  :: Maybe Bool                                  -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
     , was_transferred     :: Maybe Bool                                  -- ^ True, if the gift has already been transferred to another owner; only for the receiver of the gift
     , transfer_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
-    , next_transfer_date  :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
-    , next_resale_date    :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; 0 if the gift can't be resold; only for the receiver of the gift
-    , export_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    , next_transfer_date  :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    , next_resale_date    :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
+    , export_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
-    { gift        :: Maybe Gift.Gift                   -- ^ The gift
-    , sender_id   :: Maybe MessageSender.MessageSender -- ^ Sender of the gift
-    , receiver_id :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
-    , is_upgrade  :: Maybe Bool                        -- ^ True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred or resold gift
+    { gift        :: Maybe Gift.Gift                             -- ^ The gift
+    , sender_id   :: Maybe MessageSender.MessageSender           -- ^ Sender of the gift
+    , receiver_id :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
+    , origin      :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
     }
   | MessagePaidMessagesRefunded -- ^ Paid messages were refunded
     { message_count :: Maybe Int -- ^ The number of refunded messages
@@ -872,11 +876,11 @@ instance I.ShortShow MessageContent where
         , "only_for_self"             `I.p` only_for_self_
         ]
   shortShow MessageChatSetTheme
-    { theme_name = theme_name_
+    { theme = theme_
     }
       = "MessageChatSetTheme"
         ++ I.cc
-        [ "theme_name" `I.p` theme_name_
+        [ "theme" `I.p` theme_
         ]
   shortShow MessageChatSetMessageAutoDeleteTime
     { message_auto_delete_time = message_auto_delete_time_
@@ -1189,13 +1193,16 @@ instance I.ShortShow MessageContent where
     , text                       = text_
     , sell_star_count            = sell_star_count_
     , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
+    , is_upgrade_separate        = is_upgrade_separate_
     , is_private                 = is_private_
     , is_saved                   = is_saved_
+    , is_prepaid_upgrade         = is_prepaid_upgrade_
     , can_be_upgraded            = can_be_upgraded_
     , was_converted              = was_converted_
     , was_upgraded               = was_upgraded_
     , was_refunded               = was_refunded_
     , upgraded_received_gift_id  = upgraded_received_gift_id_
+    , prepaid_upgrade_hash       = prepaid_upgrade_hash_
     }
       = "MessageGift"
         ++ I.cc
@@ -1206,13 +1213,16 @@ instance I.ShortShow MessageContent where
         , "text"                       `I.p` text_
         , "sell_star_count"            `I.p` sell_star_count_
         , "prepaid_upgrade_star_count" `I.p` prepaid_upgrade_star_count_
+        , "is_upgrade_separate"        `I.p` is_upgrade_separate_
         , "is_private"                 `I.p` is_private_
         , "is_saved"                   `I.p` is_saved_
+        , "is_prepaid_upgrade"         `I.p` is_prepaid_upgrade_
         , "can_be_upgraded"            `I.p` can_be_upgraded_
         , "was_converted"              `I.p` was_converted_
         , "was_upgraded"               `I.p` was_upgraded_
         , "was_refunded"               `I.p` was_refunded_
         , "upgraded_received_gift_id"  `I.p` upgraded_received_gift_id_
+        , "prepaid_upgrade_hash"       `I.p` prepaid_upgrade_hash_
         ]
   shortShow MessageUpgradedGift
     { _gift               = _gift_
@@ -1247,14 +1257,14 @@ instance I.ShortShow MessageContent where
     { gift        = gift_
     , sender_id   = sender_id_
     , receiver_id = receiver_id_
-    , is_upgrade  = is_upgrade_
+    , origin      = origin_
     }
       = "MessageRefundedUpgradedGift"
         ++ I.cc
         [ "gift"        `I.p` gift_
         , "sender_id"   `I.p` sender_id_
         , "receiver_id" `I.p` receiver_id_
-        , "is_upgrade"  `I.p` is_upgrade_
+        , "origin"      `I.p` origin_
         ]
   shortShow MessagePaidMessagesRefunded
     { message_count = message_count_
@@ -1856,9 +1866,9 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageChatSetTheme :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetTheme = A.withObject "MessageChatSetTheme" $ \o -> do
-        theme_name_ <- o A..:?  "theme_name"
+        theme_ <- o A..:?  "theme"
         pure $ MessageChatSetTheme
-          { theme_name = theme_name_
+          { theme = theme_
           }
       parseMessageChatSetMessageAutoDeleteTime :: A.Value -> AT.Parser MessageContent
       parseMessageChatSetMessageAutoDeleteTime = A.withObject "MessageChatSetMessageAutoDeleteTime" $ \o -> do
@@ -2151,13 +2161,16 @@ instance AT.FromJSON MessageContent where
         text_                       <- o A..:?  "text"
         sell_star_count_            <- o A..:?  "sell_star_count"
         prepaid_upgrade_star_count_ <- o A..:?  "prepaid_upgrade_star_count"
+        is_upgrade_separate_        <- o A..:?  "is_upgrade_separate"
         is_private_                 <- o A..:?  "is_private"
         is_saved_                   <- o A..:?  "is_saved"
+        is_prepaid_upgrade_         <- o A..:?  "is_prepaid_upgrade"
         can_be_upgraded_            <- o A..:?  "can_be_upgraded"
         was_converted_              <- o A..:?  "was_converted"
         was_upgraded_               <- o A..:?  "was_upgraded"
         was_refunded_               <- o A..:?  "was_refunded"
         upgraded_received_gift_id_  <- o A..:?  "upgraded_received_gift_id"
+        prepaid_upgrade_hash_       <- o A..:?  "prepaid_upgrade_hash"
         pure $ MessageGift
           { gift                       = gift_
           , sender_id                  = sender_id_
@@ -2166,13 +2179,16 @@ instance AT.FromJSON MessageContent where
           , text                       = text_
           , sell_star_count            = sell_star_count_
           , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
+          , is_upgrade_separate        = is_upgrade_separate_
           , is_private                 = is_private_
           , is_saved                   = is_saved_
+          , is_prepaid_upgrade         = is_prepaid_upgrade_
           , can_be_upgraded            = can_be_upgraded_
           , was_converted              = was_converted_
           , was_upgraded               = was_upgraded_
           , was_refunded               = was_refunded_
           , upgraded_received_gift_id  = upgraded_received_gift_id_
+          , prepaid_upgrade_hash       = prepaid_upgrade_hash_
           }
       parseMessageUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageUpgradedGift = A.withObject "MessageUpgradedGift" $ \o -> do
@@ -2207,12 +2223,12 @@ instance AT.FromJSON MessageContent where
         gift_        <- o A..:?  "gift"
         sender_id_   <- o A..:?  "sender_id"
         receiver_id_ <- o A..:?  "receiver_id"
-        is_upgrade_  <- o A..:?  "is_upgrade"
+        origin_      <- o A..:?  "origin"
         pure $ MessageRefundedUpgradedGift
           { gift        = gift_
           , sender_id   = sender_id_
           , receiver_id = receiver_id_
-          , is_upgrade  = is_upgrade_
+          , origin      = origin_
           }
       parseMessagePaidMessagesRefunded :: A.Value -> AT.Parser MessageContent
       parseMessagePaidMessagesRefunded = A.withObject "MessagePaidMessagesRefunded" $ \o -> do

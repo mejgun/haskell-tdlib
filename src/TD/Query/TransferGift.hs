@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.MessageSender as MessageSender
 
--- | Sends an upgraded gift to another user or a channel chat. Returns 'TD.Data.Ok.Ok'
+-- | Sends an upgraded gift to another user or channel chat. Returns 'TD.Data.Ok.Ok'
 data TransferGift
   = TransferGift
     { business_connection_id :: Maybe T.Text                      -- ^ Unique identifier of business connection on behalf of which to send the request; for bots only

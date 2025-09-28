@@ -20,6 +20,7 @@ data PostStory
     , areas                  :: Maybe InputStoryAreas.InputStoryAreas           -- ^ Clickable rectangle areas to be shown on the story media; pass null if none
     , caption                :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
     , privacy_settings       :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
+    , album_ids              :: Maybe [Int]                                     -- ^ Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_story_count_max")
     , active_period          :: Maybe Int                                       -- ^ Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
     , from_story_full_id     :: Maybe StoryFullId.StoryFullId                   -- ^ Full identifier of the original story, which content was used to create the story; pass null if the story isn't repost of another story
     , is_posted_to_chat_page :: Maybe Bool                                      -- ^ Pass true to keep the story accessible after expiration
@@ -35,6 +36,7 @@ instance I.ShortShow PostStory where
       , areas                  = areas_
       , caption                = caption_
       , privacy_settings       = privacy_settings_
+      , album_ids              = album_ids_
       , active_period          = active_period_
       , from_story_full_id     = from_story_full_id_
       , is_posted_to_chat_page = is_posted_to_chat_page_
@@ -47,6 +49,7 @@ instance I.ShortShow PostStory where
           , "areas"                  `I.p` areas_
           , "caption"                `I.p` caption_
           , "privacy_settings"       `I.p` privacy_settings_
+          , "album_ids"              `I.p` album_ids_
           , "active_period"          `I.p` active_period_
           , "from_story_full_id"     `I.p` from_story_full_id_
           , "is_posted_to_chat_page" `I.p` is_posted_to_chat_page_
@@ -61,6 +64,7 @@ instance AT.ToJSON PostStory where
       , areas                  = areas_
       , caption                = caption_
       , privacy_settings       = privacy_settings_
+      , album_ids              = album_ids_
       , active_period          = active_period_
       , from_story_full_id     = from_story_full_id_
       , is_posted_to_chat_page = is_posted_to_chat_page_
@@ -73,6 +77,7 @@ instance AT.ToJSON PostStory where
           , "areas"                  A..= areas_
           , "caption"                A..= caption_
           , "privacy_settings"       A..= privacy_settings_
+          , "album_ids"              A..= album_ids_
           , "active_period"          A..= active_period_
           , "from_story_full_id"     A..= from_story_full_id_
           , "is_posted_to_chat_page" A..= is_posted_to_chat_page_
@@ -87,6 +92,7 @@ defaultPostStory =
     , areas                  = Nothing
     , caption                = Nothing
     , privacy_settings       = Nothing
+    , album_ids              = Nothing
     , active_period          = Nothing
     , from_story_full_id     = Nothing
     , is_posted_to_chat_page = Nothing

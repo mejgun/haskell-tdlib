@@ -10,6 +10,7 @@ import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotVerification as BotVerification
+import qualified TD.Data.ProfileTab as ProfileTab
 
 data SupergroupFullInfo
   = SupergroupFullInfo -- ^ Contains full information about a supergroup or channel
@@ -50,6 +51,7 @@ data SupergroupFullInfo
     , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink   -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
     , bot_commands                     :: Maybe [BotCommands.BotCommands]       -- ^ List of commands of bots in the group
     , bot_verification                 :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
+    , main_profile_tab                 :: Maybe ProfileTab.ProfileTab           -- ^ The main tab chosen by the administrators of the channel; may be null if not chosen manually
     , upgraded_from_basic_group_id     :: Maybe Int                             -- ^ Identifier of the basic group from which supergroup was upgraded; 0 if none
     , upgraded_from_max_message_id     :: Maybe Int                             -- ^ Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
     }
@@ -94,6 +96,7 @@ instance I.ShortShow SupergroupFullInfo where
     , invite_link                      = invite_link_
     , bot_commands                     = bot_commands_
     , bot_verification                 = bot_verification_
+    , main_profile_tab                 = main_profile_tab_
     , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
     , upgraded_from_max_message_id     = upgraded_from_max_message_id_
     }
@@ -136,6 +139,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "invite_link"                      `I.p` invite_link_
         , "bot_commands"                     `I.p` bot_commands_
         , "bot_verification"                 `I.p` bot_verification_
+        , "main_profile_tab"                 `I.p` main_profile_tab_
         , "upgraded_from_basic_group_id"     `I.p` upgraded_from_basic_group_id_
         , "upgraded_from_max_message_id"     `I.p` upgraded_from_max_message_id_
         ]
@@ -188,6 +192,7 @@ instance AT.FromJSON SupergroupFullInfo where
         invite_link_                      <- o A..:?                       "invite_link"
         bot_commands_                     <- o A..:?                       "bot_commands"
         bot_verification_                 <- o A..:?                       "bot_verification"
+        main_profile_tab_                 <- o A..:?                       "main_profile_tab"
         upgraded_from_basic_group_id_     <- o A..:?                       "upgraded_from_basic_group_id"
         upgraded_from_max_message_id_     <- o A..:?                       "upgraded_from_max_message_id"
         pure $ SupergroupFullInfo
@@ -228,6 +233,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , invite_link                      = invite_link_
           , bot_commands                     = bot_commands_
           , bot_verification                 = bot_verification_
+          , main_profile_tab                 = main_profile_tab_
           , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
           , upgraded_from_max_message_id     = upgraded_from_max_message_id_
           }

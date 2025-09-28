@@ -17,6 +17,7 @@ import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ChatBackground as ChatBackground
+import qualified TD.Data.ChatTheme as ChatTheme
 import qualified TD.Data.ChatActionBar as ChatActionBar
 import qualified TD.Data.BusinessBotManageBar as BusinessBotManageBar
 import qualified TD.Data.VideoChat as VideoChat
@@ -58,7 +59,7 @@ data Chat
     , message_auto_delete_time           :: Maybe Int                                               -- ^ Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
     , emoji_status                       :: Maybe EmojiStatus.EmojiStatus                           -- ^ Emoji status to be shown along with chat title; may be null
     , background                         :: Maybe ChatBackground.ChatBackground                     -- ^ Background set for the chat; may be null if none
-    , theme_name                         :: Maybe T.Text                                            -- ^ If non-empty, name of a theme, set for the chat
+    , theme                              :: Maybe ChatTheme.ChatTheme                               -- ^ Theme set for the chat; may be null if none
     , action_bar                         :: Maybe ChatActionBar.ChatActionBar                       -- ^ Information about actions which must be possible to do through the chat action bar; may be null if none
     , business_bot_manage_bar            :: Maybe BusinessBotManageBar.BusinessBotManageBar         -- ^ Information about bar for managing a business bot in the chat; may be null if none
     , video_chat                         :: Maybe VideoChat.VideoChat                               -- ^ Information about video chat of the chat
@@ -104,7 +105,7 @@ instance I.ShortShow Chat where
     , message_auto_delete_time           = message_auto_delete_time_
     , emoji_status                       = emoji_status_
     , background                         = background_
-    , theme_name                         = theme_name_
+    , theme                              = theme_
     , action_bar                         = action_bar_
     , business_bot_manage_bar            = business_bot_manage_bar_
     , video_chat                         = video_chat_
@@ -148,7 +149,7 @@ instance I.ShortShow Chat where
         , "message_auto_delete_time"           `I.p` message_auto_delete_time_
         , "emoji_status"                       `I.p` emoji_status_
         , "background"                         `I.p` background_
-        , "theme_name"                         `I.p` theme_name_
+        , "theme"                              `I.p` theme_
         , "action_bar"                         `I.p` action_bar_
         , "business_bot_manage_bar"            `I.p` business_bot_manage_bar_
         , "video_chat"                         `I.p` video_chat_
@@ -202,7 +203,7 @@ instance AT.FromJSON Chat where
         message_auto_delete_time_           <- o A..:?                       "message_auto_delete_time"
         emoji_status_                       <- o A..:?                       "emoji_status"
         background_                         <- o A..:?                       "background"
-        theme_name_                         <- o A..:?                       "theme_name"
+        theme_                              <- o A..:?                       "theme"
         action_bar_                         <- o A..:?                       "action_bar"
         business_bot_manage_bar_            <- o A..:?                       "business_bot_manage_bar"
         video_chat_                         <- o A..:?                       "video_chat"
@@ -244,7 +245,7 @@ instance AT.FromJSON Chat where
           , message_auto_delete_time           = message_auto_delete_time_
           , emoji_status                       = emoji_status_
           , background                         = background_
-          , theme_name                         = theme_name_
+          , theme                              = theme_
           , action_bar                         = action_bar_
           , business_bot_manage_bar            = business_bot_manage_bar_
           , video_chat                         = video_chat_

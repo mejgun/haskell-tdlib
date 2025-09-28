@@ -10,6 +10,7 @@ import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.VerificationStatus as VerificationStatus
+import qualified TD.Data.RestrictionInfo as RestrictionInfo
 import qualified TD.Data.UserType as UserType
 
 data User
@@ -32,7 +33,7 @@ data User
     , verification_status                :: Maybe VerificationStatus.VerificationStatus -- ^ Information about verification status of the user; may be null if none
     , is_premium                         :: Maybe Bool                                  -- ^ True, if the user is a Telegram Premium user
     , is_support                         :: Maybe Bool                                  -- ^ True, if the user is Telegram support account
-    , restriction_reason                 :: Maybe T.Text                                -- ^ If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
+    , restriction_info                   :: Maybe RestrictionInfo.RestrictionInfo       -- ^ Information about restrictions that must be applied to the corresponding private chat; may be null if none
     , has_active_stories                 :: Maybe Bool                                  -- ^ True, if the user has non-expired stories available to the current user
     , has_unread_active_stories          :: Maybe Bool                                  -- ^ True, if the user has unread non-expired stories available to the current user
     , restricts_new_chats                :: Maybe Bool                                  -- ^ True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
@@ -64,7 +65,7 @@ instance I.ShortShow User where
     , verification_status                = verification_status_
     , is_premium                         = is_premium_
     , is_support                         = is_support_
-    , restriction_reason                 = restriction_reason_
+    , restriction_info                   = restriction_info_
     , has_active_stories                 = has_active_stories_
     , has_unread_active_stories          = has_unread_active_stories_
     , restricts_new_chats                = restricts_new_chats_
@@ -94,7 +95,7 @@ instance I.ShortShow User where
         , "verification_status"                `I.p` verification_status_
         , "is_premium"                         `I.p` is_premium_
         , "is_support"                         `I.p` is_support_
-        , "restriction_reason"                 `I.p` restriction_reason_
+        , "restriction_info"                   `I.p` restriction_info_
         , "has_active_stories"                 `I.p` has_active_stories_
         , "has_unread_active_stories"          `I.p` has_unread_active_stories_
         , "restricts_new_chats"                `I.p` restricts_new_chats_
@@ -134,7 +135,7 @@ instance AT.FromJSON User where
         verification_status_                <- o A..:?                       "verification_status"
         is_premium_                         <- o A..:?                       "is_premium"
         is_support_                         <- o A..:?                       "is_support"
-        restriction_reason_                 <- o A..:?                       "restriction_reason"
+        restriction_info_                   <- o A..:?                       "restriction_info"
         has_active_stories_                 <- o A..:?                       "has_active_stories"
         has_unread_active_stories_          <- o A..:?                       "has_unread_active_stories"
         restricts_new_chats_                <- o A..:?                       "restricts_new_chats"
@@ -162,7 +163,7 @@ instance AT.FromJSON User where
           , verification_status                = verification_status_
           , is_premium                         = is_premium_
           , is_support                         = is_support_
-          , restriction_reason                 = restriction_reason_
+          , restriction_info                   = restriction_info_
           , has_active_stories                 = has_active_stories_
           , has_unread_active_stories          = has_unread_active_stories_
           , restricts_new_chats                = restricts_new_chats_

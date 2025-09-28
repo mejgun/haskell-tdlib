@@ -28,6 +28,7 @@ import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.ChatNotificationSettings as ChatNotificationSettings
 import qualified TD.Data.ChatJoinRequestsInfo as ChatJoinRequestsInfo
 import qualified TD.Data.ChatBackground as ChatBackground
+import qualified TD.Data.ChatTheme as ChatTheme
 import qualified TD.Data.VideoChat as VideoChat
 import qualified TD.Data.BlockList as BlockList
 import qualified TD.Data.ChatFolderInfo as ChatFolderInfo
@@ -70,11 +71,12 @@ import qualified TD.Data.StickerSet as StickerSet
 import qualified TD.Data.StickerType as StickerType
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Background as Background
-import qualified TD.Data.ChatTheme as ChatTheme
+import qualified TD.Data.EmojiChatTheme as EmojiChatTheme
 import qualified TD.Data.AccentColor as AccentColor
 import qualified TD.Data.ProfileAccentColor as ProfileAccentColor
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
+import qualified TD.Data.AgeVerificationParameters as AgeVerificationParameters
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
@@ -84,6 +86,7 @@ import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
+import qualified TD.Data.TonRevenueStatus as TonRevenueStatus
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
@@ -272,8 +275,8 @@ data Update
     , background :: Maybe ChatBackground.ChatBackground -- ^ The new chat background; may be null if background was reset to default
     }
   | UpdateChatTheme -- ^ The chat theme was changed
-    { chat_id    :: Maybe Int    -- ^ Chat identifier
-    , theme_name :: Maybe T.Text -- ^ The new name of the chat theme; may be empty if theme was reset to default
+    { chat_id :: Maybe Int                 -- ^ Chat identifier
+    , theme   :: Maybe ChatTheme.ChatTheme -- ^ The new theme of the chat; may be null if theme was reset to default
     }
   | UpdateChatUnreadMentionCount -- ^ The chat unread_mention_count has changed
     { chat_id              :: Maybe Int -- ^ Chat identifier
@@ -336,7 +339,7 @@ data Update
   | UpdateTopicMessageCount -- ^ Number of messages in a topic has changed; for Saved Messages and channel direct messages chat topics only
     { chat_id       :: Maybe Int                       -- ^ Identifier of the chat in topic of which the number of messages has changed
     , topic_id      :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic
-    , message_count :: Maybe Int                       -- ^ Approximate number of messages in the topics
+    , message_count :: Maybe Int                       -- ^ Approximate number of messages in the topic
     }
   | UpdateQuickReplyShortcut -- ^ Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
     { shortcut :: Maybe QuickReplyShortcut.QuickReplyShortcut -- ^ New data about the shortcut
@@ -576,8 +579,8 @@ data Update
     { for_dark_theme :: Maybe Bool                  -- ^ True, if default background for dark theme has changed
     , _background    :: Maybe Background.Background -- ^ The new default background; may be null
     }
-  | UpdateChatThemes -- ^ The list of available chat themes has changed
-    { chat_themes :: Maybe [ChatTheme.ChatTheme] -- ^ The new list of chat themes
+  | UpdateEmojiChatThemes -- ^ The list of available emoji chat themes has changed
+    { chat_themes :: Maybe [EmojiChatTheme.EmojiChatTheme] -- ^ The new list of emoji chat themes
     }
   | UpdateAccentColors -- ^ The list of supported accent colors has changed
     { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
@@ -600,6 +603,9 @@ data Update
     , freezing_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the account was frozen; 0 if the account isn't frozen
     , deletion_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the account will be deleted and can't be unfrozen; 0 if the account isn't frozen
     , appeal_link   :: Maybe T.Text -- ^ The link to open to send an appeal to unfreeze the account
+    }
+  | UpdateAgeVerificationParameters -- ^ The parameters for age verification of the current user's account has changed
+    { parameters :: Maybe AgeVerificationParameters.AgeVerificationParameters -- ^ Parameters for the age verification; may be null if age verification isn't needed
     }
   | UpdateTermsOfService -- ^ New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     { terms_of_service_id :: Maybe T.Text                        -- ^ Identifier of the terms of service
@@ -644,9 +650,12 @@ data Update
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
     , revenue_amount :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ New amount of earned revenue
     }
-  | UpdateStarRevenueStatus -- ^ The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+  | UpdateStarRevenueStatus -- ^ The Telegram Star revenue earned by a user or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
     { owner_id :: Maybe MessageSender.MessageSender         -- ^ Identifier of the owner of the Telegram Stars
     , _status  :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ New Telegram Star revenue status
+    }
+  | UpdateTonRevenueStatus -- ^ The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+    { __status :: Maybe TonRevenueStatus.TonRevenueStatus -- ^ New Toncoin revenue status
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
@@ -1177,13 +1186,13 @@ instance I.ShortShow Update where
         , "background" `I.p` background_
         ]
   shortShow UpdateChatTheme
-    { chat_id    = chat_id_
-    , theme_name = theme_name_
+    { chat_id = chat_id_
+    , theme   = theme_
     }
       = "UpdateChatTheme"
         ++ I.cc
-        [ "chat_id"    `I.p` chat_id_
-        , "theme_name" `I.p` theme_name_
+        [ "chat_id" `I.p` chat_id_
+        , "theme"   `I.p` theme_
         ]
   shortShow UpdateChatUnreadMentionCount
     { chat_id              = chat_id_
@@ -1860,10 +1869,10 @@ instance I.ShortShow Update where
         [ "for_dark_theme" `I.p` for_dark_theme_
         , "_background"    `I.p` _background_
         ]
-  shortShow UpdateChatThemes
+  shortShow UpdateEmojiChatThemes
     { chat_themes = chat_themes_
     }
-      = "UpdateChatThemes"
+      = "UpdateEmojiChatThemes"
         ++ I.cc
         [ "chat_themes" `I.p` chat_themes_
         ]
@@ -1915,6 +1924,13 @@ instance I.ShortShow Update where
         , "freezing_date" `I.p` freezing_date_
         , "deletion_date" `I.p` deletion_date_
         , "appeal_link"   `I.p` appeal_link_
+        ]
+  shortShow UpdateAgeVerificationParameters
+    { parameters = parameters_
+    }
+      = "UpdateAgeVerificationParameters"
+        ++ I.cc
+        [ "parameters" `I.p` parameters_
         ]
   shortShow UpdateTermsOfService
     { terms_of_service_id = terms_of_service_id_
@@ -2023,6 +2039,13 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "owner_id" `I.p` owner_id_
         , "_status"  `I.p` _status_
+        ]
+  shortShow UpdateTonRevenueStatus
+    { __status = __status_
+    }
+      = "UpdateTonRevenueStatus"
+        ++ I.cc
+        [ "__status" `I.p` __status_
         ]
   shortShow UpdateSpeechRecognitionTrial
     { max_media_duration = max_media_duration_
@@ -2481,12 +2504,13 @@ instance AT.FromJSON Update where
       "updateSavedAnimations"                          -> parseUpdateSavedAnimations v
       "updateSavedNotificationSounds"                  -> parseUpdateSavedNotificationSounds v
       "updateDefaultBackground"                        -> parseUpdateDefaultBackground v
-      "updateChatThemes"                               -> parseUpdateChatThemes v
+      "updateEmojiChatThemes"                          -> parseUpdateEmojiChatThemes v
       "updateAccentColors"                             -> parseUpdateAccentColors v
       "updateProfileAccentColors"                      -> parseUpdateProfileAccentColors v
       "updateLanguagePackStrings"                      -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                          -> parseUpdateConnectionState v
       "updateFreezeState"                              -> parseUpdateFreezeState v
+      "updateAgeVerificationParameters"                -> parseUpdateAgeVerificationParameters v
       "updateTermsOfService"                           -> parseUpdateTermsOfService v
       "updateUnconfirmedSession"                       -> parseUpdateUnconfirmedSession v
       "updateAttachmentMenuBots"                       -> parseUpdateAttachmentMenuBots v
@@ -2501,6 +2525,7 @@ instance AT.FromJSON Update where
       "updateOwnedTonCount"                            -> parseUpdateOwnedTonCount v
       "updateChatRevenueAmount"                        -> parseUpdateChatRevenueAmount v
       "updateStarRevenueStatus"                        -> parseUpdateStarRevenueStatus v
+      "updateTonRevenueStatus"                         -> parseUpdateTonRevenueStatus v
       "updateSpeechRecognitionTrial"                   -> parseUpdateSpeechRecognitionTrial v
       "updateDiceEmojis"                               -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"              -> parseUpdateAnimatedEmojiMessageClicked v
@@ -2867,11 +2892,11 @@ instance AT.FromJSON Update where
           }
       parseUpdateChatTheme :: A.Value -> AT.Parser Update
       parseUpdateChatTheme = A.withObject "UpdateChatTheme" $ \o -> do
-        chat_id_    <- o A..:?  "chat_id"
-        theme_name_ <- o A..:?  "theme_name"
+        chat_id_ <- o A..:?  "chat_id"
+        theme_   <- o A..:?  "theme"
         pure $ UpdateChatTheme
-          { chat_id    = chat_id_
-          , theme_name = theme_name_
+          { chat_id = chat_id_
+          , theme   = theme_
           }
       parseUpdateChatUnreadMentionCount :: A.Value -> AT.Parser Update
       parseUpdateChatUnreadMentionCount = A.withObject "UpdateChatUnreadMentionCount" $ \o -> do
@@ -3475,10 +3500,10 @@ instance AT.FromJSON Update where
           { for_dark_theme = for_dark_theme_
           , _background    = _background_
           }
-      parseUpdateChatThemes :: A.Value -> AT.Parser Update
-      parseUpdateChatThemes = A.withObject "UpdateChatThemes" $ \o -> do
+      parseUpdateEmojiChatThemes :: A.Value -> AT.Parser Update
+      parseUpdateEmojiChatThemes = A.withObject "UpdateEmojiChatThemes" $ \o -> do
         chat_themes_ <- o A..:?  "chat_themes"
-        pure $ UpdateChatThemes
+        pure $ UpdateEmojiChatThemes
           { chat_themes = chat_themes_
           }
       parseUpdateAccentColors :: A.Value -> AT.Parser Update
@@ -3524,6 +3549,12 @@ instance AT.FromJSON Update where
           , freezing_date = freezing_date_
           , deletion_date = deletion_date_
           , appeal_link   = appeal_link_
+          }
+      parseUpdateAgeVerificationParameters :: A.Value -> AT.Parser Update
+      parseUpdateAgeVerificationParameters = A.withObject "UpdateAgeVerificationParameters" $ \o -> do
+        parameters_ <- o A..:?  "parameters"
+        pure $ UpdateAgeVerificationParameters
+          { parameters = parameters_
           }
       parseUpdateTermsOfService :: A.Value -> AT.Parser Update
       parseUpdateTermsOfService = A.withObject "UpdateTermsOfService" $ \o -> do
@@ -3618,6 +3649,12 @@ instance AT.FromJSON Update where
         pure $ UpdateStarRevenueStatus
           { owner_id = owner_id_
           , _status  = _status_
+          }
+      parseUpdateTonRevenueStatus :: A.Value -> AT.Parser Update
+      parseUpdateTonRevenueStatus = A.withObject "UpdateTonRevenueStatus" $ \o -> do
+        __status_ <- o A..:?  "status"
+        pure $ UpdateTonRevenueStatus
+          { __status = __status_
           }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
       parseUpdateSpeechRecognitionTrial = A.withObject "UpdateSpeechRecognitionTrial" $ \o -> do

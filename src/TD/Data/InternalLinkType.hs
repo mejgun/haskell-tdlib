@@ -62,10 +62,17 @@ data InternalLinkType
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
   | InternalLinkTypeDefaultMessageAutoDeleteTimerSettings -- ^ The link is a link to the default message auto-delete timer settings section of the application settings
+  | InternalLinkTypeDirectMessagesChat -- ^ The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
+    { channel_username :: Maybe T.Text -- ^ Username of the channel
+    }
   | InternalLinkTypeEditProfileSettings -- ^ The link is a link to the edit profile section of the application settings
   | InternalLinkTypeGame -- ^ The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
+    }
+  | InternalLinkTypeGiftCollection -- ^ The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier and the given collection identifier, then show the collection if received
+    { gift_owner_username :: Maybe T.Text -- ^ Username of the owner of the gift collection
+    , collection_id       :: Maybe Int    -- ^ Gift collection identifier
     }
   | InternalLinkTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat. Use getGroupCallParticipants to get the list of group call participants and show them on the join group call screen. Call joinGroupCall with the given invite_link to join the call
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
@@ -136,6 +143,10 @@ data InternalLinkType
   | InternalLinkTypeStory -- ^ The link is a link to a story. Call searchPublicChat with the given poster username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
     { story_poster_username :: Maybe T.Text -- ^ Username of the poster of the story
     , story_id              :: Maybe Int    -- ^ Story identifier
+    }
+  | InternalLinkTypeStoryAlbum -- ^ The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier and the given story album identifier, then show the story album if received
+    { story_album_owner_username :: Maybe T.Text -- ^ Username of the owner of the story album
+    , story_album_id             :: Maybe Int    -- ^ Story album identifier
     }
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
@@ -280,6 +291,13 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
       = "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+  shortShow InternalLinkTypeDirectMessagesChat
+    { channel_username = channel_username_
+    }
+      = "InternalLinkTypeDirectMessagesChat"
+        ++ I.cc
+        [ "channel_username" `I.p` channel_username_
+        ]
   shortShow InternalLinkTypeEditProfileSettings
       = "InternalLinkTypeEditProfileSettings"
   shortShow InternalLinkTypeGame
@@ -290,6 +308,15 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "bot_username"    `I.p` bot_username_
         , "game_short_name" `I.p` game_short_name_
+        ]
+  shortShow InternalLinkTypeGiftCollection
+    { gift_owner_username = gift_owner_username_
+    , collection_id       = collection_id_
+    }
+      = "InternalLinkTypeGiftCollection"
+        ++ I.cc
+        [ "gift_owner_username" `I.p` gift_owner_username_
+        , "collection_id"       `I.p` collection_id_
         ]
   shortShow InternalLinkTypeGroupCall
     { invite_link = invite_link_
@@ -447,6 +474,15 @@ instance I.ShortShow InternalLinkType where
         [ "story_poster_username" `I.p` story_poster_username_
         , "story_id"              `I.p` story_id_
         ]
+  shortShow InternalLinkTypeStoryAlbum
+    { story_album_owner_username = story_album_owner_username_
+    , story_album_id             = story_album_id_
+    }
+      = "InternalLinkTypeStoryAlbum"
+        ++ I.cc
+        [ "story_album_owner_username" `I.p` story_album_owner_username_
+        , "story_album_id"             `I.p` story_album_id_
+        ]
   shortShow InternalLinkTypeTheme
     { theme_name = theme_name_
     }
@@ -536,8 +572,10 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeChatFolderSettings"                    -> pure InternalLinkTypeChatFolderSettings
       "internalLinkTypeChatInvite"                            -> parseInternalLinkTypeChatInvite v
       "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> pure InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+      "internalLinkTypeDirectMessagesChat"                    -> parseInternalLinkTypeDirectMessagesChat v
       "internalLinkTypeEditProfileSettings"                   -> pure InternalLinkTypeEditProfileSettings
       "internalLinkTypeGame"                                  -> parseInternalLinkTypeGame v
+      "internalLinkTypeGiftCollection"                        -> parseInternalLinkTypeGiftCollection v
       "internalLinkTypeGroupCall"                             -> parseInternalLinkTypeGroupCall v
       "internalLinkTypeInstantView"                           -> parseInternalLinkTypeInstantView v
       "internalLinkTypeInvoice"                               -> parseInternalLinkTypeInvoice v
@@ -561,6 +599,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeSettings"                              -> pure InternalLinkTypeSettings
       "internalLinkTypeStickerSet"                            -> parseInternalLinkTypeStickerSet v
       "internalLinkTypeStory"                                 -> parseInternalLinkTypeStory v
+      "internalLinkTypeStoryAlbum"                            -> parseInternalLinkTypeStoryAlbum v
       "internalLinkTypeTheme"                                 -> parseInternalLinkTypeTheme v
       "internalLinkTypeThemeSettings"                         -> pure InternalLinkTypeThemeSettings
       "internalLinkTypeUnknownDeepLink"                       -> parseInternalLinkTypeUnknownDeepLink v
@@ -663,6 +702,12 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeChatInvite
           { invite_link = invite_link_
           }
+      parseInternalLinkTypeDirectMessagesChat :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeDirectMessagesChat = A.withObject "InternalLinkTypeDirectMessagesChat" $ \o -> do
+        channel_username_ <- o A..:?  "channel_username"
+        pure $ InternalLinkTypeDirectMessagesChat
+          { channel_username = channel_username_
+          }
       parseInternalLinkTypeGame :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeGame = A.withObject "InternalLinkTypeGame" $ \o -> do
         bot_username_    <- o A..:?  "bot_username"
@@ -670,6 +715,14 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeGame
           { bot_username    = bot_username_
           , game_short_name = game_short_name_
+          }
+      parseInternalLinkTypeGiftCollection :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeGiftCollection = A.withObject "InternalLinkTypeGiftCollection" $ \o -> do
+        gift_owner_username_ <- o A..:?  "gift_owner_username"
+        collection_id_       <- o A..:?  "collection_id"
+        pure $ InternalLinkTypeGiftCollection
+          { gift_owner_username = gift_owner_username_
+          , collection_id       = collection_id_
           }
       parseInternalLinkTypeGroupCall :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeGroupCall = A.withObject "InternalLinkTypeGroupCall" $ \o -> do
@@ -796,6 +849,14 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeStory
           { story_poster_username = story_poster_username_
           , story_id              = story_id_
+          }
+      parseInternalLinkTypeStoryAlbum :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeStoryAlbum = A.withObject "InternalLinkTypeStoryAlbum" $ \o -> do
+        story_album_owner_username_ <- o A..:?  "story_album_owner_username"
+        story_album_id_             <- o A..:?  "story_album_id"
+        pure $ InternalLinkTypeStoryAlbum
+          { story_album_owner_username = story_album_owner_username_
+          , story_album_id             = story_album_id_
           }
       parseInternalLinkTypeTheme :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeTheme = A.withObject "InternalLinkTypeTheme" $ \o -> do
@@ -974,6 +1035,13 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
         ]
+  toJSON InternalLinkTypeDirectMessagesChat
+    { channel_username = channel_username_
+    }
+      = A.object
+        [ "@type"            A..= AT.String "internalLinkTypeDirectMessagesChat"
+        , "channel_username" A..= channel_username_
+        ]
   toJSON InternalLinkTypeEditProfileSettings
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeEditProfileSettings"
@@ -986,6 +1054,15 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"           A..= AT.String "internalLinkTypeGame"
         , "bot_username"    A..= bot_username_
         , "game_short_name" A..= game_short_name_
+        ]
+  toJSON InternalLinkTypeGiftCollection
+    { gift_owner_username = gift_owner_username_
+    , collection_id       = collection_id_
+    }
+      = A.object
+        [ "@type"               A..= AT.String "internalLinkTypeGiftCollection"
+        , "gift_owner_username" A..= gift_owner_username_
+        , "collection_id"       A..= collection_id_
         ]
   toJSON InternalLinkTypeGroupCall
     { invite_link = invite_link_
@@ -1156,6 +1233,15 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"                 A..= AT.String "internalLinkTypeStory"
         , "story_poster_username" A..= story_poster_username_
         , "story_id"              A..= story_id_
+        ]
+  toJSON InternalLinkTypeStoryAlbum
+    { story_album_owner_username = story_album_owner_username_
+    , story_album_id             = story_album_id_
+    }
+      = A.object
+        [ "@type"                      A..= AT.String "internalLinkTypeStoryAlbum"
+        , "story_album_owner_username" A..= story_album_owner_username_
+        , "story_album_id"             A..= story_album_id_
         ]
   toJSON InternalLinkTypeTheme
     { theme_name = theme_name_
