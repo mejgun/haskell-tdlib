@@ -9,6 +9,8 @@ module TD.Lib
     Client,
     Extra,
     ShortShow (shortShow),
+    createExtra,
+    sendWMyExtra,
   )
 where
 
@@ -50,26 +52,29 @@ send client json = B.useAsCString (enc json) (c_send client)
 
 sendWExtra :: (A.ToJSON a) => Client -> a -> IO Extra
 sendWExtra client json = do
-  extra <- makeExtra
-  send client (addExtra extra)
-  pure $ Extra extra
-  where
-    addExtra :: String -> KM.KeyMap A.Value
-    addExtra extra =
-      case A.toJSON json of
-        A.Object t ->
-          KM.insert (K.fromString "@extra") (A.String (T.pack extra)) t
-        _ ->
-          let enc = TL.unpack . TL.decodeUtf8 . A.encode
-           in error $ "error. not object: " <> enc extra
+  extra <- createExtra $ A.encode json
+  send client (addExtra json extra)
+  pure extra
 
-    makeExtra :: IO String
-    makeExtra = do
-      t <- Time.getSystemTime
-      let s = Time.systemSeconds t
-          ns = Time.systemNanoseconds t
-          h = H.hash $ A.encode json
-      pure $ intercalate "." [show s, show ns, show h]
+addExtra :: (A.ToJSON a) => a -> Extra -> KM.KeyMap A.Value
+addExtra json (Extra extra) =
+  case A.toJSON json of
+    A.Object t ->
+      KM.insert (K.fromString "@extra") (A.String (T.pack extra)) t
+    _ ->
+      let enc = TL.unpack . TL.decodeUtf8 . A.encode
+       in error $ "error. not object: " <> enc extra
+
+sendWMyExtra :: (A.ToJSON a) => Client -> a -> Extra -> IO ()
+sendWMyExtra client json extra = send client (addExtra json extra)
+
+createExtra :: (H.Hashable a) => a -> IO Extra
+createExtra str = do
+  t <- Time.getSystemTime
+  let s = Time.systemSeconds t
+      ns = Time.systemNanoseconds t
+      h = H.hash str
+   in pure . Extra $ intercalate "." [show s, show ns, show h]
 
 receive :: Client -> IO (Maybe (GeneralResult, Maybe Extra))
 receive c = dec $ c_receive c 1.0
