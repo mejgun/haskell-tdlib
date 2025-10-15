@@ -13,7 +13,7 @@ import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 data GetChatMessagePosition
   = GetChatMessagePosition
     { chat_id    :: Maybe Int                                       -- ^ Identifier of the chat in which to find message position
-    , topic_id   :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages
+    , topic_id   :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get position among messages only in specific topic; pass null to get position among all chat messages; message threads aren't supported
     , _filter    :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterFailedToSend are unsupported in this function
     , message_id :: Maybe Int                                       -- ^ Message identifier
     }

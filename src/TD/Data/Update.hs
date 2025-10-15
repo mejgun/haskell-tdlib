@@ -16,6 +16,7 @@ import qualified TD.Data.SuggestedPostInfo as SuggestedPostInfo
 import qualified TD.Data.Chat as Chat
 import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
+import qualified TD.Data.UpgradedGiftColors as UpgradedGiftColors
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.ChatPosition as ChatPosition
 import qualified TD.Data.ChatList as ChatList
@@ -45,6 +46,7 @@ import qualified TD.Data.Notification as Notification
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified TD.Data.NotificationGroup as NotificationGroup
 import qualified TD.Data.ChatAction as ChatAction
+import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.User as User
 import qualified TD.Data.BasicGroup as BasicGroup
@@ -193,11 +195,12 @@ data Update
     , photo   :: Maybe ChatPhotoInfo.ChatPhotoInfo -- ^ The new chat photo; may be null
     }
   | UpdateChatAccentColors -- ^ Chat accent colors have changed
-    { chat_id                            :: Maybe Int -- ^ Chat identifier
-    , accent_color_id                    :: Maybe Int -- ^ The new chat accent color identifier
-    , background_custom_emoji_id         :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
-    , profile_accent_color_id            :: Maybe Int -- ^ The new chat profile accent color identifier; -1 if none
-    , profile_background_custom_emoji_id :: Maybe Int -- ^ The new identifier of a custom emoji to be shown on the profile background; 0 if none
+    { chat_id                            :: Maybe Int                                   -- ^ Chat identifier
+    , accent_color_id                    :: Maybe Int                                   -- ^ The new chat accent color identifier
+    , background_custom_emoji_id         :: Maybe Int                                   -- ^ The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
+    , upgraded_gift_colors               :: Maybe UpgradedGiftColors.UpgradedGiftColors -- ^ Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
+    , profile_accent_color_id            :: Maybe Int                                   -- ^ The new chat profile accent color identifier; -1 if none
+    , profile_background_custom_emoji_id :: Maybe Int                                   -- ^ The new identifier of a custom emoji to be shown on the profile background; 0 if none
     }
   | UpdateChatPermissions -- ^ Chat permissions were changed
     { chat_id     :: Maybe Int                             -- ^ Chat identifier
@@ -359,7 +362,7 @@ data Update
     }
   | UpdateForumTopic -- ^ Information about a topic in a forum chat was changed
     { chat_id                     :: Maybe Int                                               -- ^ Chat identifier
-    , message_thread_id           :: Maybe Int                                               -- ^ Message thread identifier of the topic
+    , forum_topic_id              :: Maybe Int                                               -- ^ Forum topic identifier of the topic
     , is_pinned                   :: Maybe Bool                                              -- ^ True, if the topic is pinned in the topic list
     , last_read_inbox_message_id  :: Maybe Int                                               -- ^ Identifier of the last read incoming message
     , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
@@ -402,10 +405,16 @@ data Update
     , from_cache   :: Maybe Bool  -- ^ True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
     }
   | UpdateChatAction -- ^ A message sender activity in the chat has changed
-    { chat_id           :: Maybe Int                         -- ^ Chat identifier
-    , message_thread_id :: Maybe Int                         -- ^ If not 0, the message thread identifier in which the action was performed
-    , sender_id         :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender performing the action
-    , action            :: Maybe ChatAction.ChatAction       -- ^ The action
+    { chat_id   :: Maybe Int                         -- ^ Chat identifier
+    , topic_id  :: Maybe MessageTopic.MessageTopic   -- ^ Identifier of the specific topic in which the action was performed; may be null if none
+    , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender performing the action
+    , action    :: Maybe ChatAction.ChatAction       -- ^ The action
+    }
+  | UpdatePendingTextMessage -- ^ A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+    { chat_id        :: Maybe Int                         -- ^ Chat identifier
+    , forum_topic_id :: Maybe Int                         -- ^ The forum topic identifier in which the message will be sent; 0 if none
+    , draft_id       :: Maybe Int                         -- ^ Unique identifier of the message draft within the message thread
+    , text           :: Maybe FormattedText.FormattedText -- ^ Text of the pending message
     }
   | UpdateUserStatus -- ^ The user went online or offline
     { user_id :: Maybe Int                   -- ^ User identifier
@@ -498,6 +507,11 @@ data Update
     { group_call_id :: Maybe Int      -- ^ Identifier of the group call
     , generation    :: Maybe Int      -- ^ The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different
     , emojis        :: Maybe [T.Text] -- ^ Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet
+    }
+  | UpdateGroupCallNewMessage -- ^ A new message was received in a group call. It must be shown for at most getOption("group_call_message_show_time_max") seconds after receiving
+    { group_call_id :: Maybe Int                         -- ^ Identifier of the group call
+    , sender_id     :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
+    , text          :: Maybe FormattedText.FormattedText -- ^ Text of the message
     }
   | UpdateNewCallSignalingData -- ^ New call signaling data arrived
     { call_id :: Maybe Int           -- ^ The call identifier
@@ -1006,6 +1020,7 @@ instance I.ShortShow Update where
     { chat_id                            = chat_id_
     , accent_color_id                    = accent_color_id_
     , background_custom_emoji_id         = background_custom_emoji_id_
+    , upgraded_gift_colors               = upgraded_gift_colors_
     , profile_accent_color_id            = profile_accent_color_id_
     , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
     }
@@ -1014,6 +1029,7 @@ instance I.ShortShow Update where
         [ "chat_id"                            `I.p` chat_id_
         , "accent_color_id"                    `I.p` accent_color_id_
         , "background_custom_emoji_id"         `I.p` background_custom_emoji_id_
+        , "upgraded_gift_colors"               `I.p` upgraded_gift_colors_
         , "profile_accent_color_id"            `I.p` profile_accent_color_id_
         , "profile_background_custom_emoji_id" `I.p` profile_background_custom_emoji_id_
         ]
@@ -1375,7 +1391,7 @@ instance I.ShortShow Update where
         ]
   shortShow UpdateForumTopic
     { chat_id                     = chat_id_
-    , message_thread_id           = message_thread_id_
+    , forum_topic_id              = forum_topic_id_
     , is_pinned                   = is_pinned_
     , last_read_inbox_message_id  = last_read_inbox_message_id_
     , last_read_outbox_message_id = last_read_outbox_message_id_
@@ -1386,7 +1402,7 @@ instance I.ShortShow Update where
       = "UpdateForumTopic"
         ++ I.cc
         [ "chat_id"                     `I.p` chat_id_
-        , "message_thread_id"           `I.p` message_thread_id_
+        , "forum_topic_id"              `I.p` forum_topic_id_
         , "is_pinned"                   `I.p` is_pinned_
         , "last_read_inbox_message_id"  `I.p` last_read_inbox_message_id_
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
@@ -1470,17 +1486,30 @@ instance I.ShortShow Update where
         , "from_cache"   `I.p` from_cache_
         ]
   shortShow UpdateChatAction
-    { chat_id           = chat_id_
-    , message_thread_id = message_thread_id_
-    , sender_id         = sender_id_
-    , action            = action_
+    { chat_id   = chat_id_
+    , topic_id  = topic_id_
+    , sender_id = sender_id_
+    , action    = action_
     }
       = "UpdateChatAction"
         ++ I.cc
-        [ "chat_id"           `I.p` chat_id_
-        , "message_thread_id" `I.p` message_thread_id_
-        , "sender_id"         `I.p` sender_id_
-        , "action"            `I.p` action_
+        [ "chat_id"   `I.p` chat_id_
+        , "topic_id"  `I.p` topic_id_
+        , "sender_id" `I.p` sender_id_
+        , "action"    `I.p` action_
+        ]
+  shortShow UpdatePendingTextMessage
+    { chat_id        = chat_id_
+    , forum_topic_id = forum_topic_id_
+    , draft_id       = draft_id_
+    , text           = text_
+    }
+      = "UpdatePendingTextMessage"
+        ++ I.cc
+        [ "chat_id"        `I.p` chat_id_
+        , "forum_topic_id" `I.p` forum_topic_id_
+        , "draft_id"       `I.p` draft_id_
+        , "text"           `I.p` text_
         ]
   shortShow UpdateUserStatus
     { user_id = user_id_
@@ -1688,6 +1717,17 @@ instance I.ShortShow Update where
         [ "group_call_id" `I.p` group_call_id_
         , "generation"    `I.p` generation_
         , "emojis"        `I.p` emojis_
+        ]
+  shortShow UpdateGroupCallNewMessage
+    { group_call_id = group_call_id_
+    , sender_id     = sender_id_
+    , text          = text_
+    }
+      = "UpdateGroupCallNewMessage"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "sender_id"     `I.p` sender_id_
+        , "text"          `I.p` text_
         ]
   shortShow UpdateNewCallSignalingData
     { call_id = call_id_
@@ -2461,6 +2501,7 @@ instance AT.FromJSON Update where
       "updateHavePendingNotifications"                 -> parseUpdateHavePendingNotifications v
       "updateDeleteMessages"                           -> parseUpdateDeleteMessages v
       "updateChatAction"                               -> parseUpdateChatAction v
+      "updatePendingTextMessage"                       -> parseUpdatePendingTextMessage v
       "updateUserStatus"                               -> parseUpdateUserStatus v
       "updateUser"                                     -> parseUpdateUser v
       "updateBasicGroup"                               -> parseUpdateBasicGroup v
@@ -2484,6 +2525,7 @@ instance AT.FromJSON Update where
       "updateGroupCallParticipant"                     -> parseUpdateGroupCallParticipant v
       "updateGroupCallParticipants"                    -> parseUpdateGroupCallParticipants v
       "updateGroupCallVerificationState"               -> parseUpdateGroupCallVerificationState v
+      "updateGroupCallNewMessage"                      -> parseUpdateGroupCallNewMessage v
       "updateNewCallSignalingData"                     -> parseUpdateNewCallSignalingData v
       "updateUserPrivacySettingRules"                  -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount"                       -> parseUpdateUnreadMessageCount v
@@ -2731,12 +2773,14 @@ instance AT.FromJSON Update where
         chat_id_                            <- o A..:?                       "chat_id"
         accent_color_id_                    <- o A..:?                       "accent_color_id"
         background_custom_emoji_id_         <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        upgraded_gift_colors_               <- o A..:?                       "upgraded_gift_colors"
         profile_accent_color_id_            <- o A..:?                       "profile_accent_color_id"
         profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "profile_background_custom_emoji_id"
         pure $ UpdateChatAccentColors
           { chat_id                            = chat_id_
           , accent_color_id                    = accent_color_id_
           , background_custom_emoji_id         = background_custom_emoji_id_
+          , upgraded_gift_colors               = upgraded_gift_colors_
           , profile_accent_color_id            = profile_accent_color_id_
           , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
           }
@@ -3059,7 +3103,7 @@ instance AT.FromJSON Update where
       parseUpdateForumTopic :: A.Value -> AT.Parser Update
       parseUpdateForumTopic = A.withObject "UpdateForumTopic" $ \o -> do
         chat_id_                     <- o A..:?  "chat_id"
-        message_thread_id_           <- o A..:?  "message_thread_id"
+        forum_topic_id_              <- o A..:?  "forum_topic_id"
         is_pinned_                   <- o A..:?  "is_pinned"
         last_read_inbox_message_id_  <- o A..:?  "last_read_inbox_message_id"
         last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
@@ -3068,7 +3112,7 @@ instance AT.FromJSON Update where
         notification_settings_       <- o A..:?  "notification_settings"
         pure $ UpdateForumTopic
           { chat_id                     = chat_id_
-          , message_thread_id           = message_thread_id_
+          , forum_topic_id              = forum_topic_id_
           , is_pinned                   = is_pinned_
           , last_read_inbox_message_id  = last_read_inbox_message_id_
           , last_read_outbox_message_id = last_read_outbox_message_id_
@@ -3146,15 +3190,27 @@ instance AT.FromJSON Update where
           }
       parseUpdateChatAction :: A.Value -> AT.Parser Update
       parseUpdateChatAction = A.withObject "UpdateChatAction" $ \o -> do
-        chat_id_           <- o A..:?  "chat_id"
-        message_thread_id_ <- o A..:?  "message_thread_id"
-        sender_id_         <- o A..:?  "sender_id"
-        action_            <- o A..:?  "action"
+        chat_id_   <- o A..:?  "chat_id"
+        topic_id_  <- o A..:?  "topic_id"
+        sender_id_ <- o A..:?  "sender_id"
+        action_    <- o A..:?  "action"
         pure $ UpdateChatAction
-          { chat_id           = chat_id_
-          , message_thread_id = message_thread_id_
-          , sender_id         = sender_id_
-          , action            = action_
+          { chat_id   = chat_id_
+          , topic_id  = topic_id_
+          , sender_id = sender_id_
+          , action    = action_
+          }
+      parseUpdatePendingTextMessage :: A.Value -> AT.Parser Update
+      parseUpdatePendingTextMessage = A.withObject "UpdatePendingTextMessage" $ \o -> do
+        chat_id_        <- o A..:?                       "chat_id"
+        forum_topic_id_ <- o A..:?                       "forum_topic_id"
+        draft_id_       <- fmap I.readInt64 <$> o A..:?  "draft_id"
+        text_           <- o A..:?                       "text"
+        pure $ UpdatePendingTextMessage
+          { chat_id        = chat_id_
+          , forum_topic_id = forum_topic_id_
+          , draft_id       = draft_id_
+          , text           = text_
           }
       parseUpdateUserStatus :: A.Value -> AT.Parser Update
       parseUpdateUserStatus = A.withObject "UpdateUserStatus" $ \o -> do
@@ -3339,6 +3395,16 @@ instance AT.FromJSON Update where
           { group_call_id = group_call_id_
           , generation    = generation_
           , emojis        = emojis_
+          }
+      parseUpdateGroupCallNewMessage :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallNewMessage = A.withObject "UpdateGroupCallNewMessage" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        sender_id_     <- o A..:?  "sender_id"
+        text_          <- o A..:?  "text"
+        pure $ UpdateGroupCallNewMessage
+          { group_call_id = group_call_id_
+          , sender_id     = sender_id_
+          , text          = text_
           }
       parseUpdateNewCallSignalingData :: A.Value -> AT.Parser Update
       parseUpdateNewCallSignalingData = A.withObject "UpdateNewCallSignalingData" $ \o -> do

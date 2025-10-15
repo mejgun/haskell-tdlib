@@ -11,8 +11,7 @@ import qualified TD.Data.MessageSchedulingState as MessageSchedulingState
 
 data MessageSendOptions
   = MessageSendOptions -- ^ Options to be used when a message is sent
-    { direct_messages_chat_topic_id          :: Maybe Int                                           -- ^ Unique identifier of the topic in a channel direct messages chat administered by the current user; pass 0 if the chat isn't a channel direct messages chat administered by the current user
-    , suggested_post_info                    :: Maybe InputSuggestedPostInfo.InputSuggestedPostInfo -- ^ Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer
+    { suggested_post_info                    :: Maybe InputSuggestedPostInfo.InputSuggestedPostInfo -- ^ Information about the suggested post; pass null if none. For messages to channel direct messages chat only. Applicable only to sendMessage and addOffer
     , disable_notification                   :: Maybe Bool                                          -- ^ Pass true to disable notification for the message
     , from_background                        :: Maybe Bool                                          -- ^ Pass true if the message is sent from the background
     , protect_content                        :: Maybe Bool                                          -- ^ Pass true if the content of the message must be protected from forwarding and saving; for bots only
@@ -28,8 +27,7 @@ data MessageSendOptions
 
 instance I.ShortShow MessageSendOptions where
   shortShow MessageSendOptions
-    { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
-    , suggested_post_info                    = suggested_post_info_
+    { suggested_post_info                    = suggested_post_info_
     , disable_notification                   = disable_notification_
     , from_background                        = from_background_
     , protect_content                        = protect_content_
@@ -43,8 +41,7 @@ instance I.ShortShow MessageSendOptions where
     }
       = "MessageSendOptions"
         ++ I.cc
-        [ "direct_messages_chat_topic_id"          `I.p` direct_messages_chat_topic_id_
-        , "suggested_post_info"                    `I.p` suggested_post_info_
+        [ "suggested_post_info"                    `I.p` suggested_post_info_
         , "disable_notification"                   `I.p` disable_notification_
         , "from_background"                        `I.p` from_background_
         , "protect_content"                        `I.p` protect_content_
@@ -68,7 +65,6 @@ instance AT.FromJSON MessageSendOptions where
     where
       parseMessageSendOptions :: A.Value -> AT.Parser MessageSendOptions
       parseMessageSendOptions = A.withObject "MessageSendOptions" $ \o -> do
-        direct_messages_chat_topic_id_          <- o A..:?                       "direct_messages_chat_topic_id"
         suggested_post_info_                    <- o A..:?                       "suggested_post_info"
         disable_notification_                   <- o A..:?                       "disable_notification"
         from_background_                        <- o A..:?                       "from_background"
@@ -81,8 +77,7 @@ instance AT.FromJSON MessageSendOptions where
         sending_id_                             <- o A..:?                       "sending_id"
         only_preview_                           <- o A..:?                       "only_preview"
         pure $ MessageSendOptions
-          { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
-          , suggested_post_info                    = suggested_post_info_
+          { suggested_post_info                    = suggested_post_info_
           , disable_notification                   = disable_notification_
           , from_background                        = from_background_
           , protect_content                        = protect_content_
@@ -98,8 +93,7 @@ instance AT.FromJSON MessageSendOptions where
 
 instance AT.ToJSON MessageSendOptions where
   toJSON MessageSendOptions
-    { direct_messages_chat_topic_id          = direct_messages_chat_topic_id_
-    , suggested_post_info                    = suggested_post_info_
+    { suggested_post_info                    = suggested_post_info_
     , disable_notification                   = disable_notification_
     , from_background                        = from_background_
     , protect_content                        = protect_content_
@@ -113,7 +107,6 @@ instance AT.ToJSON MessageSendOptions where
     }
       = A.object
         [ "@type"                                  A..= AT.String "messageSendOptions"
-        , "direct_messages_chat_topic_id"          A..= direct_messages_chat_topic_id_
         , "suggested_post_info"                    A..= suggested_post_info_
         , "disable_notification"                   A..= disable_notification_
         , "from_background"                        A..= from_background_
@@ -130,8 +123,7 @@ instance AT.ToJSON MessageSendOptions where
 defaultMessageSendOptions :: MessageSendOptions
 defaultMessageSendOptions =
   MessageSendOptions
-    { direct_messages_chat_topic_id          = Nothing
-    , suggested_post_info                    = Nothing
+    { suggested_post_info                    = Nothing
     , disable_notification                   = Nothing
     , from_background                        = Nothing
     , protect_content                        = Nothing

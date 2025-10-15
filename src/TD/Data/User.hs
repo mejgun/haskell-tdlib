@@ -8,6 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.ProfilePhoto as ProfilePhoto
+import qualified TD.Data.UpgradedGiftColors as UpgradedGiftColors
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.VerificationStatus as VerificationStatus
 import qualified TD.Data.RestrictionInfo as RestrictionInfo
@@ -24,6 +25,7 @@ data User
     , profile_photo                      :: Maybe ProfilePhoto.ProfilePhoto             -- ^ Profile photo of the user; may be null
     , accent_color_id                    :: Maybe Int                                   -- ^ Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
     , background_custom_emoji_id         :: Maybe Int                                   -- ^ Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
+    , upgraded_gift_colors               :: Maybe UpgradedGiftColors.UpgradedGiftColors -- ^ Color scheme based on an upgraded gift to be used for the user instead of accent_color_id and background_custom_emoji_id; may be null if none
     , profile_accent_color_id            :: Maybe Int                                   -- ^ Identifier of the accent color for the user's profile; -1 if none
     , profile_background_custom_emoji_id :: Maybe Int                                   -- ^ Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none
     , emoji_status                       :: Maybe EmojiStatus.EmojiStatus               -- ^ Emoji status to be shown instead of the default Telegram Premium badge; may be null
@@ -56,6 +58,7 @@ instance I.ShortShow User where
     , profile_photo                      = profile_photo_
     , accent_color_id                    = accent_color_id_
     , background_custom_emoji_id         = background_custom_emoji_id_
+    , upgraded_gift_colors               = upgraded_gift_colors_
     , profile_accent_color_id            = profile_accent_color_id_
     , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
     , emoji_status                       = emoji_status_
@@ -86,6 +89,7 @@ instance I.ShortShow User where
         , "profile_photo"                      `I.p` profile_photo_
         , "accent_color_id"                    `I.p` accent_color_id_
         , "background_custom_emoji_id"         `I.p` background_custom_emoji_id_
+        , "upgraded_gift_colors"               `I.p` upgraded_gift_colors_
         , "profile_accent_color_id"            `I.p` profile_accent_color_id_
         , "profile_background_custom_emoji_id" `I.p` profile_background_custom_emoji_id_
         , "emoji_status"                       `I.p` emoji_status_
@@ -126,6 +130,7 @@ instance AT.FromJSON User where
         profile_photo_                      <- o A..:?                       "profile_photo"
         accent_color_id_                    <- o A..:?                       "accent_color_id"
         background_custom_emoji_id_         <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        upgraded_gift_colors_               <- o A..:?                       "upgraded_gift_colors"
         profile_accent_color_id_            <- o A..:?                       "profile_accent_color_id"
         profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "profile_background_custom_emoji_id"
         emoji_status_                       <- o A..:?                       "emoji_status"
@@ -154,6 +159,7 @@ instance AT.FromJSON User where
           , profile_photo                      = profile_photo_
           , accent_color_id                    = accent_color_id_
           , background_custom_emoji_id         = background_custom_emoji_id_
+          , upgraded_gift_colors               = upgraded_gift_colors_
           , profile_accent_color_id            = profile_accent_color_id_
           , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
           , emoji_status                       = emoji_status_

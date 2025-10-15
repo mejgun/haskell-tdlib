@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.0.0
+version:        2.1.1.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -287,6 +287,7 @@ library
       TD.Data.GiftSettings
       TD.Data.GiftsForResale
       TD.Data.GiftUpgradePreview
+      TD.Data.GiftUpgradePrice
       TD.Data.GiveawayInfo
       TD.Data.GiveawayParameters
       TD.Data.GiveawayParticipantStatus
@@ -305,6 +306,7 @@ library
       TD.Data.Hashtags
       TD.Data.HttpUrl
       TD.Data.IdentityDocument
+      TD.Data.ImportedContact
       TD.Data.ImportedContacts
       TD.Data.InlineKeyboardButton
       TD.Data.InlineKeyboardButtonType
@@ -646,6 +648,7 @@ library
       TD.Data.UpgradedGiftBackdrop
       TD.Data.UpgradedGiftBackdropColors
       TD.Data.UpgradedGiftBackdropCount
+      TD.Data.UpgradedGiftColors
       TD.Data.UpgradedGiftModel
       TD.Data.UpgradedGiftModelCount
       TD.Data.UpgradedGiftOrigin
@@ -856,6 +859,7 @@ library
       TD.Query.DisconnectAllWebsites
       TD.Query.DisconnectWebsite
       TD.Query.DownloadFile
+      TD.Query.DropGiftOriginalDetails
       TD.Query.EditBotMediaPreview
       TD.Query.EditBusinessChatLink
       TD.Query.EditBusinessMessageCaption
@@ -1020,6 +1024,7 @@ library
       TD.Query.GetFileMimeType
       TD.Query.GetForumTopic
       TD.Query.GetForumTopicDefaultIcons
+      TD.Query.GetForumTopicHistory
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
@@ -1242,8 +1247,8 @@ library
       TD.Query.ReadAllChatMentions
       TD.Query.ReadAllChatReactions
       TD.Query.ReadAllDirectMessagesChatTopicReactions
-      TD.Query.ReadAllMessageThreadMentions
-      TD.Query.ReadAllMessageThreadReactions
+      TD.Query.ReadAllForumTopicMentions
+      TD.Query.ReadAllForumTopicReactions
       TD.Query.ReadBusinessMessage
       TD.Query.ReadChatList
       TD.Query.ReaddQuickReplyShortcutMessages
@@ -1370,6 +1375,7 @@ library
       TD.Query.SendCustomRequest
       TD.Query.SendEmailAddressVerificationCode
       TD.Query.SendGift
+      TD.Query.SendGroupCallMessage
       TD.Query.SendInlineQueryResultMessage
       TD.Query.SendMessage
       TD.Query.SendMessageAlbum
@@ -1379,6 +1385,7 @@ library
       TD.Query.SendPhoneNumberFirebaseSms
       TD.Query.SendQuickReplyShortcutMessages
       TD.Query.SendResoldGift
+      TD.Query.SendTextMessageDraft
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
       TD.Query.SetAccentColor
@@ -1445,7 +1452,6 @@ library
       TD.Query.SetDefaultGroupAdministratorRights
       TD.Query.SetDefaultMessageAutoDeleteTime
       TD.Query.SetDefaultReactionType
-      TD.Query.SetDirectMessagesChatTopicDraftMessage
       TD.Query.SetDirectMessagesChatTopicIsMarkedAsUnread
       TD.Query.SetEmojiStatus
       TD.Query.SetFileGenerationProgress
@@ -1506,8 +1512,10 @@ library
       TD.Query.SetSupergroupUnrestrictBoostCount
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
+      TD.Query.SetUpgradedGiftColors
       TD.Query.SetUserEmojiStatus
       TD.Query.SetUsername
+      TD.Query.SetUserNote
       TD.Query.SetUserPersonalProfilePhoto
       TD.Query.SetUserPrivacySettingRules
       TD.Query.SetUserSupportInfo
@@ -1521,6 +1529,7 @@ library
       TD.Query.StartScheduledVideoChat
       TD.Query.StopBusinessPoll
       TD.Query.StopPoll
+      TD.Query.SuggestUserBirthdate
       TD.Query.SuggestUserProfilePhoto
       TD.Query.SynchronizeLanguagePack
       TD.Query.TerminateAllOtherSessions
@@ -1557,6 +1566,7 @@ library
       TD.Query.ToggleForumTopicIsPinned
       TD.Query.ToggleGeneralForumTopicIsHidden
       TD.Query.ToggleGiftIsSaved
+      TD.Query.ToggleGroupCallCanSendMessages
       TD.Query.ToggleGroupCallIsMyVideoEnabled
       TD.Query.ToggleGroupCallIsMyVideoPaused
       TD.Query.ToggleGroupCallParticipantIsHandRaised
@@ -1588,7 +1598,7 @@ library
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
       TD.Query.UnpinAllDirectMessagesChatTopicMessages
-      TD.Query.UnpinAllMessageThreadMessages
+      TD.Query.UnpinAllForumTopicMessages
       TD.Query.UnpinChatMessage
       TD.Query.UpgradeBasicGroupChatToSupergroupChat
       TD.Query.UpgradeGift

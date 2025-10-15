@@ -6,6 +6,7 @@ module TD.Query.SendMessageAlbum
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.InputMessageContent as InputMessageContent
@@ -14,7 +15,7 @@ import qualified TD.Data.InputMessageContent as InputMessageContent
 data SendMessageAlbum
   = SendMessageAlbum
     { chat_id                :: Maybe Int                                       -- ^ Target chat
-    , message_thread_id      :: Maybe Int                                       -- ^ If not 0, the message thread identifier in which the messages will be sent
+    , topic_id               :: Maybe MessageTopic.MessageTopic                 -- ^ Topic in which the messages will be sent; pass null if none
     , reply_to               :: Maybe InputMessageReplyTo.InputMessageReplyTo   -- ^ Information about the message or story to be replied; pass null if none
     , options                :: Maybe MessageSendOptions.MessageSendOptions     -- ^ Options to be used to send the messages; pass null to use default options
     , input_message_contents :: Maybe [InputMessageContent.InputMessageContent] -- ^ Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
@@ -25,7 +26,7 @@ instance I.ShortShow SendMessageAlbum where
   shortShow
     SendMessageAlbum
       { chat_id                = chat_id_
-      , message_thread_id      = message_thread_id_
+      , topic_id               = topic_id_
       , reply_to               = reply_to_
       , options                = options_
       , input_message_contents = input_message_contents_
@@ -33,7 +34,7 @@ instance I.ShortShow SendMessageAlbum where
         = "SendMessageAlbum"
           ++ I.cc
           [ "chat_id"                `I.p` chat_id_
-          , "message_thread_id"      `I.p` message_thread_id_
+          , "topic_id"               `I.p` topic_id_
           , "reply_to"               `I.p` reply_to_
           , "options"                `I.p` options_
           , "input_message_contents" `I.p` input_message_contents_
@@ -43,7 +44,7 @@ instance AT.ToJSON SendMessageAlbum where
   toJSON
     SendMessageAlbum
       { chat_id                = chat_id_
-      , message_thread_id      = message_thread_id_
+      , topic_id               = topic_id_
       , reply_to               = reply_to_
       , options                = options_
       , input_message_contents = input_message_contents_
@@ -51,7 +52,7 @@ instance AT.ToJSON SendMessageAlbum where
         = A.object
           [ "@type"                  A..= AT.String "sendMessageAlbum"
           , "chat_id"                A..= chat_id_
-          , "message_thread_id"      A..= message_thread_id_
+          , "topic_id"               A..= topic_id_
           , "reply_to"               A..= reply_to_
           , "options"                A..= options_
           , "input_message_contents" A..= input_message_contents_
@@ -61,7 +62,7 @@ defaultSendMessageAlbum :: SendMessageAlbum
 defaultSendMessageAlbum =
   SendMessageAlbum
     { chat_id                = Nothing
-    , message_thread_id      = Nothing
+    , topic_id               = Nothing
     , reply_to               = Nothing
     , options                = Nothing
     , input_message_contents = Nothing

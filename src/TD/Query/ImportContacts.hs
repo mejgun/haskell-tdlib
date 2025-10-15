@@ -5,12 +5,12 @@ module TD.Query.ImportContacts
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.Contact as Contact
+import qualified TD.Data.ImportedContact as ImportedContact
 
 -- | Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored. Returns 'TD.Data.ImportedContacts.ImportedContacts'
 data ImportContacts
   = ImportContacts
-    { contacts :: Maybe [Contact.Contact] -- ^ The list of contacts to import or edit; contacts' vCard are ignored and are not imported
+    { contacts :: Maybe [ImportedContact.ImportedContact] -- ^ The list of contacts to import or edit
     }
   deriving (Eq, Show)
 

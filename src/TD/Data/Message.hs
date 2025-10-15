@@ -46,7 +46,6 @@ data Message
     , fact_check                  :: Maybe FactCheck.FactCheck                             -- ^ Information about fact-check added to the message; may be null if none
     , suggested_post_info         :: Maybe SuggestedPostInfo.SuggestedPostInfo             -- ^ Information about the suggested post; may be null if the message isn't a suggested post
     , reply_to                    :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
-    , message_thread_id           :: Maybe Int                                             -- ^ If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     , topic_id                    :: Maybe MessageTopic.MessageTopic                       -- ^ Identifier of the topic within the chat to which the message belongs; may be null if none
     , self_destruct_type          :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in            :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
@@ -89,7 +88,6 @@ instance I.ShortShow Message where
     , fact_check                  = fact_check_
     , suggested_post_info         = suggested_post_info_
     , reply_to                    = reply_to_
-    , message_thread_id           = message_thread_id_
     , topic_id                    = topic_id_
     , self_destruct_type          = self_destruct_type_
     , self_destruct_in            = self_destruct_in_
@@ -130,7 +128,6 @@ instance I.ShortShow Message where
         , "fact_check"                  `I.p` fact_check_
         , "suggested_post_info"         `I.p` suggested_post_info_
         , "reply_to"                    `I.p` reply_to_
-        , "message_thread_id"           `I.p` message_thread_id_
         , "topic_id"                    `I.p` topic_id_
         , "self_destruct_type"          `I.p` self_destruct_type_
         , "self_destruct_in"            `I.p` self_destruct_in_
@@ -181,7 +178,6 @@ instance AT.FromJSON Message where
         fact_check_                  <- o A..:?                       "fact_check"
         suggested_post_info_         <- o A..:?                       "suggested_post_info"
         reply_to_                    <- o A..:?                       "reply_to"
-        message_thread_id_           <- o A..:?                       "message_thread_id"
         topic_id_                    <- o A..:?                       "topic_id"
         self_destruct_type_          <- o A..:?                       "self_destruct_type"
         self_destruct_in_            <- o A..:?                       "self_destruct_in"
@@ -220,7 +216,6 @@ instance AT.FromJSON Message where
           , fact_check                  = fact_check_
           , suggested_post_info         = suggested_post_info_
           , reply_to                    = reply_to_
-          , message_thread_id           = message_thread_id_
           , topic_id                    = topic_id_
           , self_destruct_type          = self_destruct_type_
           , self_destruct_in            = self_destruct_in_

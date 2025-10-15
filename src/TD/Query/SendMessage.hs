@@ -6,6 +6,7 @@ module TD.Query.SendMessage
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.InputMessageReplyTo as InputMessageReplyTo
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
@@ -15,7 +16,7 @@ import qualified TD.Data.InputMessageContent as InputMessageContent
 data SendMessage
   = SendMessage
     { chat_id               :: Maybe Int                                     -- ^ Target chat
-    , message_thread_id     :: Maybe Int                                     -- ^ If not 0, the message thread identifier in which the message will be sent
+    , topic_id              :: Maybe MessageTopic.MessageTopic               -- ^ Topic in which the message will be sent; pass null if none
     , reply_to              :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message or story to be replied; pass null if none
     , options               :: Maybe MessageSendOptions.MessageSendOptions   -- ^ Options to be used to send the message; pass null to use default options
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only
@@ -27,7 +28,7 @@ instance I.ShortShow SendMessage where
   shortShow
     SendMessage
       { chat_id               = chat_id_
-      , message_thread_id     = message_thread_id_
+      , topic_id              = topic_id_
       , reply_to              = reply_to_
       , options               = options_
       , reply_markup          = reply_markup_
@@ -36,7 +37,7 @@ instance I.ShortShow SendMessage where
         = "SendMessage"
           ++ I.cc
           [ "chat_id"               `I.p` chat_id_
-          , "message_thread_id"     `I.p` message_thread_id_
+          , "topic_id"              `I.p` topic_id_
           , "reply_to"              `I.p` reply_to_
           , "options"               `I.p` options_
           , "reply_markup"          `I.p` reply_markup_
@@ -47,7 +48,7 @@ instance AT.ToJSON SendMessage where
   toJSON
     SendMessage
       { chat_id               = chat_id_
-      , message_thread_id     = message_thread_id_
+      , topic_id              = topic_id_
       , reply_to              = reply_to_
       , options               = options_
       , reply_markup          = reply_markup_
@@ -56,7 +57,7 @@ instance AT.ToJSON SendMessage where
         = A.object
           [ "@type"                 A..= AT.String "sendMessage"
           , "chat_id"               A..= chat_id_
-          , "message_thread_id"     A..= message_thread_id_
+          , "topic_id"              A..= topic_id_
           , "reply_to"              A..= reply_to_
           , "options"               A..= options_
           , "reply_markup"          A..= reply_markup_
@@ -67,7 +68,7 @@ defaultSendMessage :: SendMessage
 defaultSendMessage =
   SendMessage
     { chat_id               = Nothing
-    , message_thread_id     = Nothing
+    , topic_id              = Nothing
     , reply_to              = Nothing
     , options               = Nothing
     , reply_markup          = Nothing

@@ -10,6 +10,7 @@ import qualified TD.Data.UpgradedGiftModel as UpgradedGiftModel
 import qualified TD.Data.UpgradedGiftSymbol as UpgradedGiftSymbol
 import qualified TD.Data.UpgradedGiftBackdrop as UpgradedGiftBackdrop
 import qualified TD.Data.UpgradedGiftOriginalDetails as UpgradedGiftOriginalDetails
+import qualified TD.Data.UpgradedGiftColors as UpgradedGiftColors
 import qualified TD.Data.GiftResaleParameters as GiftResaleParameters
 
 data UpgradedGift
@@ -25,6 +26,7 @@ data UpgradedGift
     , is_premium           :: Maybe Bool                                                    -- ^ True, if the original gift could have been bought only by Telegram Premium subscribers
     , is_theme_available   :: Maybe Bool                                                    -- ^ True, if the gift can be used to set a theme in a chat
     , used_theme_chat_id   :: Maybe Int                                                     -- ^ Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user
+    , host_id              :: Maybe MessageSender.MessageSender                             -- ^ Identifier of the user or the chat to which the upgraded gift was assigned from blockchain; may be null if none or unknown
     , owner_id             :: Maybe MessageSender.MessageSender                             -- ^ Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown
     , owner_address        :: Maybe T.Text                                                  -- ^ Address of the gift NFT owner in TON blockchain; may be empty if none. Append the address to getOption("ton_blockchain_explorer_url") to get a link with information about the address
     , owner_name           :: Maybe T.Text                                                  -- ^ Name of the owner for the case when owner identifier and address aren't known
@@ -33,6 +35,7 @@ data UpgradedGift
     , symbol               :: Maybe UpgradedGiftSymbol.UpgradedGiftSymbol                   -- ^ Symbol of the upgraded gift
     , backdrop             :: Maybe UpgradedGiftBackdrop.UpgradedGiftBackdrop               -- ^ Backdrop of the upgraded gift
     , original_details     :: Maybe UpgradedGiftOriginalDetails.UpgradedGiftOriginalDetails -- ^ Information about the originally sent gift; may be null if unknown
+    , colors               :: Maybe UpgradedGiftColors.UpgradedGiftColors                   -- ^ Colors that can be set for user's name, background of empty chat photo, replies to messages and link previews; may be null if none
     , resale_parameters    :: Maybe GiftResaleParameters.GiftResaleParameters               -- ^ Resale parameters of the gift; may be null if resale isn't possible
     , value_currency       :: Maybe T.Text                                                  -- ^ ISO 4217 currency code of the currency in which value of the gift is represented; may be empty if unavailable
     , value_amount         :: Maybe Int                                                     -- ^ Estimated value of the gift; in the smallest units of the currency; 0 if unavailable
@@ -52,6 +55,7 @@ instance I.ShortShow UpgradedGift where
     , is_premium           = is_premium_
     , is_theme_available   = is_theme_available_
     , used_theme_chat_id   = used_theme_chat_id_
+    , host_id              = host_id_
     , owner_id             = owner_id_
     , owner_address        = owner_address_
     , owner_name           = owner_name_
@@ -60,6 +64,7 @@ instance I.ShortShow UpgradedGift where
     , symbol               = symbol_
     , backdrop             = backdrop_
     , original_details     = original_details_
+    , colors               = colors_
     , resale_parameters    = resale_parameters_
     , value_currency       = value_currency_
     , value_amount         = value_amount_
@@ -77,6 +82,7 @@ instance I.ShortShow UpgradedGift where
         , "is_premium"           `I.p` is_premium_
         , "is_theme_available"   `I.p` is_theme_available_
         , "used_theme_chat_id"   `I.p` used_theme_chat_id_
+        , "host_id"              `I.p` host_id_
         , "owner_id"             `I.p` owner_id_
         , "owner_address"        `I.p` owner_address_
         , "owner_name"           `I.p` owner_name_
@@ -85,6 +91,7 @@ instance I.ShortShow UpgradedGift where
         , "symbol"               `I.p` symbol_
         , "backdrop"             `I.p` backdrop_
         , "original_details"     `I.p` original_details_
+        , "colors"               `I.p` colors_
         , "resale_parameters"    `I.p` resale_parameters_
         , "value_currency"       `I.p` value_currency_
         , "value_amount"         `I.p` value_amount_
@@ -112,6 +119,7 @@ instance AT.FromJSON UpgradedGift where
         is_premium_           <- o A..:?                       "is_premium"
         is_theme_available_   <- o A..:?                       "is_theme_available"
         used_theme_chat_id_   <- o A..:?                       "used_theme_chat_id"
+        host_id_              <- o A..:?                       "host_id"
         owner_id_             <- o A..:?                       "owner_id"
         owner_address_        <- o A..:?                       "owner_address"
         owner_name_           <- o A..:?                       "owner_name"
@@ -120,6 +128,7 @@ instance AT.FromJSON UpgradedGift where
         symbol_               <- o A..:?                       "symbol"
         backdrop_             <- o A..:?                       "backdrop"
         original_details_     <- o A..:?                       "original_details"
+        colors_               <- o A..:?                       "colors"
         resale_parameters_    <- o A..:?                       "resale_parameters"
         value_currency_       <- o A..:?                       "value_currency"
         value_amount_         <- o A..:?                       "value_amount"
@@ -135,6 +144,7 @@ instance AT.FromJSON UpgradedGift where
           , is_premium           = is_premium_
           , is_theme_available   = is_theme_available_
           , used_theme_chat_id   = used_theme_chat_id_
+          , host_id              = host_id_
           , owner_id             = owner_id_
           , owner_address        = owner_address_
           , owner_name           = owner_name_
@@ -143,6 +153,7 @@ instance AT.FromJSON UpgradedGift where
           , symbol               = symbol_
           , backdrop             = backdrop_
           , original_details     = original_details_
+          , colors               = colors_
           , resale_parameters    = resale_parameters_
           , value_currency       = value_currency_
           , value_amount         = value_amount_

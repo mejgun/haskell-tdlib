@@ -15,7 +15,7 @@ data DirectMessagesChatTopic
     , sender_id                   :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that sends the messages to the topic
     , order                       :: Maybe Int                         -- ^ A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
     , can_send_unpaid_messages    :: Maybe Bool                        -- ^ True, if the other party can send unpaid messages even if the chat has paid messages enabled
-    , is_marked_as_unread         :: Maybe Bool                        -- ^ True, if the forum topic is marked as unread
+    , is_marked_as_unread         :: Maybe Bool                        -- ^ True, if the topic is marked as unread
     , unread_count                :: Maybe Int                         -- ^ Number of unread messages in the chat
     , last_read_inbox_message_id  :: Maybe Int                         -- ^ Identifier of the last read incoming message
     , last_read_outbox_message_id :: Maybe Int                         -- ^ Identifier of the last read outgoing message

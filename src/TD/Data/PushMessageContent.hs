@@ -152,6 +152,7 @@ data PushMessageContent
     { amount :: Maybe T.Text -- ^ The paid amount
     }
   | PushMessageContentSuggestProfilePhoto -- ^ A profile photo was suggested to the user
+  | PushMessageContentSuggestBirthdate -- ^ A birthdate was suggested to be set
   | PushMessageContentProximityAlertTriggered -- ^ A user in the chat came within proximity alert range from the current user
     { distance :: Maybe Int -- ^ The distance to the user
     }
@@ -475,6 +476,8 @@ instance I.ShortShow PushMessageContent where
         ]
   shortShow PushMessageContentSuggestProfilePhoto
       = "PushMessageContentSuggestProfilePhoto"
+  shortShow PushMessageContentSuggestBirthdate
+      = "PushMessageContentSuggestBirthdate"
   shortShow PushMessageContentProximityAlertTriggered
     { distance = distance_
     }
@@ -563,6 +566,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentChatJoinByRequest"           -> pure PushMessageContentChatJoinByRequest
       "pushMessageContentRecurringPayment"            -> parsePushMessageContentRecurringPayment v
       "pushMessageContentSuggestProfilePhoto"         -> pure PushMessageContentSuggestProfilePhoto
+      "pushMessageContentSuggestBirthdate"            -> pure PushMessageContentSuggestBirthdate
       "pushMessageContentProximityAlertTriggered"     -> parsePushMessageContentProximityAlertTriggered v
       "pushMessageContentChecklistTasksAdded"         -> parsePushMessageContentChecklistTasksAdded v
       "pushMessageContentChecklistTasksDone"          -> parsePushMessageContentChecklistTasksDone v

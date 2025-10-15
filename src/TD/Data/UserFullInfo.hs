@@ -45,6 +45,7 @@ data UserFullInfo
     , rating                                       :: Maybe UserRating.UserRating           -- ^ The current rating of the user; may be null if none
     , pending_rating                               :: Maybe UserRating.UserRating           -- ^ The rating of the user after the next change; may be null if the user isn't the current user or there are no pending rating changes
     , pending_rating_date                          :: Maybe Int                             -- ^ Unix timestamp when rating of the user will change to pending_rating; 0 if the user isn't the current user or there are no pending rating changes
+    , note                                         :: Maybe FormattedText.FormattedText     -- ^ Note added to the user's contact; may be null if none
     , business_info                                :: Maybe BusinessInfo.BusinessInfo       -- ^ Information about business settings for Telegram Business accounts; may be null if none
     , bot_info                                     :: Maybe BotInfo.BotInfo                 -- ^ For bots, information about the bot; may be null if the user isn't a bot
     }
@@ -79,6 +80,7 @@ instance I.ShortShow UserFullInfo where
     , rating                                       = rating_
     , pending_rating                               = pending_rating_
     , pending_rating_date                          = pending_rating_date_
+    , note                                         = note_
     , business_info                                = business_info_
     , bot_info                                     = bot_info_
     }
@@ -111,6 +113,7 @@ instance I.ShortShow UserFullInfo where
         , "rating"                                       `I.p` rating_
         , "pending_rating"                               `I.p` pending_rating_
         , "pending_rating_date"                          `I.p` pending_rating_date_
+        , "note"                                         `I.p` note_
         , "business_info"                                `I.p` business_info_
         , "bot_info"                                     `I.p` bot_info_
         ]
@@ -153,6 +156,7 @@ instance AT.FromJSON UserFullInfo where
         rating_                                       <- o A..:?  "rating"
         pending_rating_                               <- o A..:?  "pending_rating"
         pending_rating_date_                          <- o A..:?  "pending_rating_date"
+        note_                                         <- o A..:?  "note"
         business_info_                                <- o A..:?  "business_info"
         bot_info_                                     <- o A..:?  "bot_info"
         pure $ UserFullInfo
@@ -183,6 +187,7 @@ instance AT.FromJSON UserFullInfo where
           , rating                                       = rating_
           , pending_rating                               = pending_rating_
           , pending_rating_date                          = pending_rating_date_
+          , note                                         = note_
           , business_info                                = business_info_
           , bot_info                                     = bot_info_
           }

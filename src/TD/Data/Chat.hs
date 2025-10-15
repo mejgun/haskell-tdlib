@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ChatType as ChatType
 import qualified Data.Text as T
 import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
+import qualified TD.Data.UpgradedGiftColors as UpgradedGiftColors
 import qualified TD.Data.ChatPermissions as ChatPermissions
 import qualified TD.Data.Message as Message
 import qualified TD.Data.ChatPosition as ChatPosition
@@ -32,6 +33,7 @@ data Chat
     , photo                              :: Maybe ChatPhotoInfo.ChatPhotoInfo                       -- ^ Chat photo; may be null
     , accent_color_id                    :: Maybe Int                                               -- ^ Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
     , background_custom_emoji_id         :: Maybe Int                                               -- ^ Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none
+    , upgraded_gift_colors               :: Maybe UpgradedGiftColors.UpgradedGiftColors             -- ^ Color scheme based on an upgraded gift to be used for the chat instead of accent_color_id and background_custom_emoji_id; may be null if none
     , profile_accent_color_id            :: Maybe Int                                               -- ^ Identifier of the profile accent color for the chat's profile; -1 if none
     , profile_background_custom_emoji_id :: Maybe Int                                               -- ^ Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
     , permissions                        :: Maybe ChatPermissions.ChatPermissions                   -- ^ Actions that non-administrator chat members are allowed to take in the chat
@@ -78,6 +80,7 @@ instance I.ShortShow Chat where
     , photo                              = photo_
     , accent_color_id                    = accent_color_id_
     , background_custom_emoji_id         = background_custom_emoji_id_
+    , upgraded_gift_colors               = upgraded_gift_colors_
     , profile_accent_color_id            = profile_accent_color_id_
     , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
     , permissions                        = permissions_
@@ -122,6 +125,7 @@ instance I.ShortShow Chat where
         , "photo"                              `I.p` photo_
         , "accent_color_id"                    `I.p` accent_color_id_
         , "background_custom_emoji_id"         `I.p` background_custom_emoji_id_
+        , "upgraded_gift_colors"               `I.p` upgraded_gift_colors_
         , "profile_accent_color_id"            `I.p` profile_accent_color_id_
         , "profile_background_custom_emoji_id" `I.p` profile_background_custom_emoji_id_
         , "permissions"                        `I.p` permissions_
@@ -176,6 +180,7 @@ instance AT.FromJSON Chat where
         photo_                              <- o A..:?                       "photo"
         accent_color_id_                    <- o A..:?                       "accent_color_id"
         background_custom_emoji_id_         <- fmap I.readInt64 <$> o A..:?  "background_custom_emoji_id"
+        upgraded_gift_colors_               <- o A..:?                       "upgraded_gift_colors"
         profile_accent_color_id_            <- o A..:?                       "profile_accent_color_id"
         profile_background_custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "profile_background_custom_emoji_id"
         permissions_                        <- o A..:?                       "permissions"
@@ -218,6 +223,7 @@ instance AT.FromJSON Chat where
           , photo                              = photo_
           , accent_color_id                    = accent_color_id_
           , background_custom_emoji_id         = background_custom_emoji_id_
+          , upgraded_gift_colors               = upgraded_gift_colors_
           , profile_accent_color_id            = profile_accent_color_id_
           , profile_background_custom_emoji_id = profile_background_custom_emoji_id_
           , permissions                        = permissions_

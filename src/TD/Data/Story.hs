@@ -27,7 +27,7 @@ data Story
     , can_be_added_to_album             :: Maybe Bool                                      -- ^ True, if the story can be added to an album
     , can_be_deleted                    :: Maybe Bool                                      -- ^ True, if the story can be deleted
     , can_be_edited                     :: Maybe Bool                                      -- ^ True, if the story can be edited
-    , can_be_forwarded                  :: Maybe Bool                                      -- ^ True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
+    , can_be_forwarded                  :: Maybe Bool                                      -- ^ True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
     , can_be_replied                    :: Maybe Bool                                      -- ^ True, if the story can be replied in the chat with the user that posted the story
     , can_toggle_is_posted_to_chat_page :: Maybe Bool                                      -- ^ True, if the story's is_posted_to_chat_page value can be changed
     , can_get_statistics                :: Maybe Bool                                      -- ^ True, if the story statistics are available through getStoryStatistics

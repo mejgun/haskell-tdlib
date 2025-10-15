@@ -30,6 +30,8 @@ data GroupCall
     , can_enable_video                 :: Maybe Bool                                            -- ^ True, if the current user can broadcast video or share screen
     , mute_new_participants            :: Maybe Bool                                            -- ^ True, if only group call administrators can unmute new participants; for video chats only
     , can_toggle_mute_new_participants :: Maybe Bool                                            -- ^ True, if the current user can enable or disable mute_new_participants setting; for video chats only
+    , can_send_messages                :: Maybe Bool                                            -- ^ True, if users can send messages to the group call
+    , can_toggle_can_send_messages     :: Maybe Bool                                            -- ^ True, if the current user can enable or disable sending messages in the group call
     , record_duration                  :: Maybe Int                                             -- ^ Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
     , is_video_recorded                :: Maybe Bool                                            -- ^ True, if a video file is being recorded for the call
     , duration                         :: Maybe Int                                             -- ^ Call duration, in seconds; for ended calls only
@@ -59,6 +61,8 @@ instance I.ShortShow GroupCall where
     , can_enable_video                 = can_enable_video_
     , mute_new_participants            = mute_new_participants_
     , can_toggle_mute_new_participants = can_toggle_mute_new_participants_
+    , can_send_messages                = can_send_messages_
+    , can_toggle_can_send_messages     = can_toggle_can_send_messages_
     , record_duration                  = record_duration_
     , is_video_recorded                = is_video_recorded_
     , duration                         = duration_
@@ -86,6 +90,8 @@ instance I.ShortShow GroupCall where
         , "can_enable_video"                 `I.p` can_enable_video_
         , "mute_new_participants"            `I.p` mute_new_participants_
         , "can_toggle_mute_new_participants" `I.p` can_toggle_mute_new_participants_
+        , "can_send_messages"                `I.p` can_send_messages_
+        , "can_toggle_can_send_messages"     `I.p` can_toggle_can_send_messages_
         , "record_duration"                  `I.p` record_duration_
         , "is_video_recorded"                `I.p` is_video_recorded_
         , "duration"                         `I.p` duration_
@@ -123,6 +129,8 @@ instance AT.FromJSON GroupCall where
         can_enable_video_                 <- o A..:?  "can_enable_video"
         mute_new_participants_            <- o A..:?  "mute_new_participants"
         can_toggle_mute_new_participants_ <- o A..:?  "can_toggle_mute_new_participants"
+        can_send_messages_                <- o A..:?  "can_send_messages"
+        can_toggle_can_send_messages_     <- o A..:?  "can_toggle_can_send_messages"
         record_duration_                  <- o A..:?  "record_duration"
         is_video_recorded_                <- o A..:?  "is_video_recorded"
         duration_                         <- o A..:?  "duration"
@@ -148,6 +156,8 @@ instance AT.FromJSON GroupCall where
           , can_enable_video                 = can_enable_video_
           , mute_new_participants            = mute_new_participants_
           , can_toggle_mute_new_participants = can_toggle_mute_new_participants_
+          , can_send_messages                = can_send_messages_
+          , can_toggle_can_send_messages     = can_toggle_can_send_messages_
           , record_duration                  = record_duration_
           , is_video_recorded                = is_video_recorded_
           , duration                         = duration_

@@ -13,7 +13,7 @@ import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 data GetChatMessageCount
   = GetChatMessageCount
     { chat_id      :: Maybe Int                                       -- ^ Identifier of the chat in which to count messages
-    , topic_id     :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics
+    , topic_id     :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get number of messages only in specific topic; pass null to get number of messages in all topics; message threads aren't supported
     , _filter      :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content; searchMessagesFilterEmpty is unsupported in this function
     , return_local :: Maybe Bool                                      -- ^ Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
     }

@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data SetChatSlowModeDelay
   = SetChatSlowModeDelay
     { chat_id         :: Maybe Int -- ^ Chat identifier
-    , slow_mode_delay :: Maybe Int -- ^ New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
+    , slow_mode_delay :: Maybe Int -- ^ New slow mode delay for the chat, in seconds; must be one of 0, 5, 10, 30, 60, 300, 900, 3600
     }
   deriving (Eq, Show)
 

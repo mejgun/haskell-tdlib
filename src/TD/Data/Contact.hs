@@ -9,10 +9,10 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data Contact
-  = Contact -- ^ Describes a user contact
+  = Contact -- ^ Describes a contact of a user
     { phone_number :: Maybe T.Text -- ^ Phone number of the user
-    , first_name   :: Maybe T.Text -- ^ First name of the user; 1-255 characters in length
-    , last_name    :: Maybe T.Text -- ^ Last name of the user
+    , first_name   :: Maybe T.Text -- ^ First name of the user; 1-64 characters
+    , last_name    :: Maybe T.Text -- ^ Last name of the user; 0-64 characters
     , vcard        :: Maybe T.Text -- ^ Additional data about the user in a form of vCard; 0-2048 bytes in length
     , user_id      :: Maybe Int    -- ^ Identifier of the user, if known; 0 otherwise
     }

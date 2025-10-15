@@ -15,6 +15,7 @@ data UpgradedGiftOrigin
   | UpgradedGiftOriginResale -- ^ The gift was bought from another user
     { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid by the sender for the gift
     }
+  | UpgradedGiftOriginBlockchain -- ^ The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold or withdrawn to blockchain
   | UpgradedGiftOriginPrepaidUpgrade -- ^ The sender or receiver of the message has paid for upgraid of the gift, which has been completed
   deriving (Eq, Show)
 
@@ -35,6 +36,8 @@ instance I.ShortShow UpgradedGiftOrigin where
         ++ I.cc
         [ "price" `I.p` price_
         ]
+  shortShow UpgradedGiftOriginBlockchain
+      = "UpgradedGiftOriginBlockchain"
   shortShow UpgradedGiftOriginPrepaidUpgrade
       = "UpgradedGiftOriginPrepaidUpgrade"
 
@@ -46,6 +49,7 @@ instance AT.FromJSON UpgradedGiftOrigin where
       "upgradedGiftOriginUpgrade"        -> parseUpgradedGiftOriginUpgrade v
       "upgradedGiftOriginTransfer"       -> pure UpgradedGiftOriginTransfer
       "upgradedGiftOriginResale"         -> parseUpgradedGiftOriginResale v
+      "upgradedGiftOriginBlockchain"     -> pure UpgradedGiftOriginBlockchain
       "upgradedGiftOriginPrepaidUpgrade" -> pure UpgradedGiftOriginPrepaidUpgrade
       _                                  -> mempty
     

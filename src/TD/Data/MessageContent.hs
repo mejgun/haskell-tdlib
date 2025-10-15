@@ -34,6 +34,7 @@ import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.ChatBackground as ChatBackground
 import qualified TD.Data.ChatTheme as ChatTheme
 import qualified TD.Data.ForumTopicIcon as ForumTopicIcon
+import qualified TD.Data.Birthdate as Birthdate
 import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
@@ -240,8 +241,9 @@ data MessageContent
     { boost_count :: Maybe Int -- ^ Number of times the chat was boosted
     }
   | MessageForumTopicCreated -- ^ A forum topic has been created
-    { name :: Maybe T.Text                        -- ^ Name of the topic
-    , icon :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
+    { name             :: Maybe T.Text                        -- ^ Name of the topic
+    , is_name_implicit :: Maybe Bool                          -- ^ True, if the name of the topic wasn't added explicitly
+    , icon             :: Maybe ForumTopicIcon.ForumTopicIcon -- ^ Icon of the topic
     }
   | MessageForumTopicEdited -- ^ A forum topic has been edited
     { name                      :: Maybe T.Text -- ^ If non-empty, the new name of the topic
@@ -256,6 +258,9 @@ data MessageContent
     }
   | MessageSuggestProfilePhoto -- ^ A profile photo was suggested to a user in a private chat
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ The suggested chat photo. Use the method setProfilePhoto with inputChatPhotoPrevious to apply the photo
+    }
+  | MessageSuggestBirthdate -- ^ A birthdate was suggested to be set
+    { birthdate :: Maybe Birthdate.Birthdate -- ^ The suggested birthdate. Use the method setBirthdate to apply the birthdate
     }
   | MessageCustomServiceAction -- ^ A non-standard action has happened in the chat
     { _text :: Maybe T.Text -- ^ Message text to be shown in the chat
@@ -393,18 +398,19 @@ data MessageContent
     , prepaid_upgrade_hash       :: Maybe T.Text                      -- ^ If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
     }
   | MessageUpgradedGift -- ^ An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
-    { _gift               :: Maybe UpgradedGift.UpgradedGift             -- ^ The gift
-    , sender_id           :: Maybe MessageSender.MessageSender           -- ^ Sender of the gift; may be null for anonymous gifts
-    , receiver_id         :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
-    , origin              :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
-    , received_gift_id    :: Maybe T.Text                                -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
-    , is_saved            :: Maybe Bool                                  -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
-    , can_be_transferred  :: Maybe Bool                                  -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
-    , was_transferred     :: Maybe Bool                                  -- ^ True, if the gift has already been transferred to another owner; only for the receiver of the gift
-    , transfer_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
-    , next_transfer_date  :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
-    , next_resale_date    :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
-    , export_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
+    { _gift                            :: Maybe UpgradedGift.UpgradedGift             -- ^ The gift
+    , sender_id                        :: Maybe MessageSender.MessageSender           -- ^ Sender of the gift; may be null for anonymous gifts
+    , receiver_id                      :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
+    , origin                           :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
+    , received_gift_id                 :: Maybe T.Text                                -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
+    , is_saved                         :: Maybe Bool                                  -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    , can_be_transferred               :: Maybe Bool                                  -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
+    , was_transferred                  :: Maybe Bool                                  -- ^ True, if the gift has already been transferred to another owner; only for the receiver of the gift
+    , transfer_star_count              :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    , drop_original_details_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to drop original details of the upgraded gift; 0 if not available; only for the receiver of the gift
+    , next_transfer_date               :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
+    , next_resale_date                 :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
+    , export_date                      :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
     { gift        :: Maybe Gift.Gift                             -- ^ The gift
@@ -899,13 +905,15 @@ instance I.ShortShow MessageContent where
         [ "boost_count" `I.p` boost_count_
         ]
   shortShow MessageForumTopicCreated
-    { name = name_
-    , icon = icon_
+    { name             = name_
+    , is_name_implicit = is_name_implicit_
+    , icon             = icon_
     }
       = "MessageForumTopicCreated"
         ++ I.cc
-        [ "name" `I.p` name_
-        , "icon" `I.p` icon_
+        [ "name"             `I.p` name_
+        , "is_name_implicit" `I.p` is_name_implicit_
+        , "icon"             `I.p` icon_
         ]
   shortShow MessageForumTopicEdited
     { name                      = name_
@@ -938,6 +946,13 @@ instance I.ShortShow MessageContent where
       = "MessageSuggestProfilePhoto"
         ++ I.cc
         [ "_photo" `I.p` _photo_
+        ]
+  shortShow MessageSuggestBirthdate
+    { birthdate = birthdate_
+    }
+      = "MessageSuggestBirthdate"
+        ++ I.cc
+        [ "birthdate" `I.p` birthdate_
         ]
   shortShow MessageCustomServiceAction
     { _text = _text_
@@ -1225,33 +1240,35 @@ instance I.ShortShow MessageContent where
         , "prepaid_upgrade_hash"       `I.p` prepaid_upgrade_hash_
         ]
   shortShow MessageUpgradedGift
-    { _gift               = _gift_
-    , sender_id           = sender_id_
-    , receiver_id         = receiver_id_
-    , origin              = origin_
-    , received_gift_id    = received_gift_id_
-    , is_saved            = is_saved_
-    , can_be_transferred  = can_be_transferred_
-    , was_transferred     = was_transferred_
-    , transfer_star_count = transfer_star_count_
-    , next_transfer_date  = next_transfer_date_
-    , next_resale_date    = next_resale_date_
-    , export_date         = export_date_
+    { _gift                            = _gift_
+    , sender_id                        = sender_id_
+    , receiver_id                      = receiver_id_
+    , origin                           = origin_
+    , received_gift_id                 = received_gift_id_
+    , is_saved                         = is_saved_
+    , can_be_transferred               = can_be_transferred_
+    , was_transferred                  = was_transferred_
+    , transfer_star_count              = transfer_star_count_
+    , drop_original_details_star_count = drop_original_details_star_count_
+    , next_transfer_date               = next_transfer_date_
+    , next_resale_date                 = next_resale_date_
+    , export_date                      = export_date_
     }
       = "MessageUpgradedGift"
         ++ I.cc
-        [ "_gift"               `I.p` _gift_
-        , "sender_id"           `I.p` sender_id_
-        , "receiver_id"         `I.p` receiver_id_
-        , "origin"              `I.p` origin_
-        , "received_gift_id"    `I.p` received_gift_id_
-        , "is_saved"            `I.p` is_saved_
-        , "can_be_transferred"  `I.p` can_be_transferred_
-        , "was_transferred"     `I.p` was_transferred_
-        , "transfer_star_count" `I.p` transfer_star_count_
-        , "next_transfer_date"  `I.p` next_transfer_date_
-        , "next_resale_date"    `I.p` next_resale_date_
-        , "export_date"         `I.p` export_date_
+        [ "_gift"                            `I.p` _gift_
+        , "sender_id"                        `I.p` sender_id_
+        , "receiver_id"                      `I.p` receiver_id_
+        , "origin"                           `I.p` origin_
+        , "received_gift_id"                 `I.p` received_gift_id_
+        , "is_saved"                         `I.p` is_saved_
+        , "can_be_transferred"               `I.p` can_be_transferred_
+        , "was_transferred"                  `I.p` was_transferred_
+        , "transfer_star_count"              `I.p` transfer_star_count_
+        , "drop_original_details_star_count" `I.p` drop_original_details_star_count_
+        , "next_transfer_date"               `I.p` next_transfer_date_
+        , "next_resale_date"                 `I.p` next_resale_date_
+        , "export_date"                      `I.p` export_date_
         ]
   shortShow MessageRefundedUpgradedGift
     { gift        = gift_
@@ -1490,6 +1507,7 @@ instance AT.FromJSON MessageContent where
       "messageForumTopicIsClosedToggled"    -> parseMessageForumTopicIsClosedToggled v
       "messageForumTopicIsHiddenToggled"    -> parseMessageForumTopicIsHiddenToggled v
       "messageSuggestProfilePhoto"          -> parseMessageSuggestProfilePhoto v
+      "messageSuggestBirthdate"             -> parseMessageSuggestBirthdate v
       "messageCustomServiceAction"          -> parseMessageCustomServiceAction v
       "messageGameScore"                    -> parseMessageGameScore v
       "messagePaymentSuccessful"            -> parseMessagePaymentSuccessful v
@@ -1886,11 +1904,13 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageForumTopicCreated :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicCreated = A.withObject "MessageForumTopicCreated" $ \o -> do
-        name_ <- o A..:?  "name"
-        icon_ <- o A..:?  "icon"
+        name_             <- o A..:?  "name"
+        is_name_implicit_ <- o A..:?  "is_name_implicit"
+        icon_             <- o A..:?  "icon"
         pure $ MessageForumTopicCreated
-          { name = name_
-          , icon = icon_
+          { name             = name_
+          , is_name_implicit = is_name_implicit_
+          , icon             = icon_
           }
       parseMessageForumTopicEdited :: A.Value -> AT.Parser MessageContent
       parseMessageForumTopicEdited = A.withObject "MessageForumTopicEdited" $ \o -> do
@@ -1919,6 +1939,12 @@ instance AT.FromJSON MessageContent where
         _photo_ <- o A..:?  "photo"
         pure $ MessageSuggestProfilePhoto
           { _photo = _photo_
+          }
+      parseMessageSuggestBirthdate :: A.Value -> AT.Parser MessageContent
+      parseMessageSuggestBirthdate = A.withObject "MessageSuggestBirthdate" $ \o -> do
+        birthdate_ <- o A..:?  "birthdate"
+        pure $ MessageSuggestBirthdate
+          { birthdate = birthdate_
           }
       parseMessageCustomServiceAction :: A.Value -> AT.Parser MessageContent
       parseMessageCustomServiceAction = A.withObject "MessageCustomServiceAction" $ \o -> do
@@ -2192,31 +2218,33 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageUpgradedGift = A.withObject "MessageUpgradedGift" $ \o -> do
-        _gift_               <- o A..:?  "gift"
-        sender_id_           <- o A..:?  "sender_id"
-        receiver_id_         <- o A..:?  "receiver_id"
-        origin_              <- o A..:?  "origin"
-        received_gift_id_    <- o A..:?  "received_gift_id"
-        is_saved_            <- o A..:?  "is_saved"
-        can_be_transferred_  <- o A..:?  "can_be_transferred"
-        was_transferred_     <- o A..:?  "was_transferred"
-        transfer_star_count_ <- o A..:?  "transfer_star_count"
-        next_transfer_date_  <- o A..:?  "next_transfer_date"
-        next_resale_date_    <- o A..:?  "next_resale_date"
-        export_date_         <- o A..:?  "export_date"
+        _gift_                            <- o A..:?  "gift"
+        sender_id_                        <- o A..:?  "sender_id"
+        receiver_id_                      <- o A..:?  "receiver_id"
+        origin_                           <- o A..:?  "origin"
+        received_gift_id_                 <- o A..:?  "received_gift_id"
+        is_saved_                         <- o A..:?  "is_saved"
+        can_be_transferred_               <- o A..:?  "can_be_transferred"
+        was_transferred_                  <- o A..:?  "was_transferred"
+        transfer_star_count_              <- o A..:?  "transfer_star_count"
+        drop_original_details_star_count_ <- o A..:?  "drop_original_details_star_count"
+        next_transfer_date_               <- o A..:?  "next_transfer_date"
+        next_resale_date_                 <- o A..:?  "next_resale_date"
+        export_date_                      <- o A..:?  "export_date"
         pure $ MessageUpgradedGift
-          { _gift               = _gift_
-          , sender_id           = sender_id_
-          , receiver_id         = receiver_id_
-          , origin              = origin_
-          , received_gift_id    = received_gift_id_
-          , is_saved            = is_saved_
-          , can_be_transferred  = can_be_transferred_
-          , was_transferred     = was_transferred_
-          , transfer_star_count = transfer_star_count_
-          , next_transfer_date  = next_transfer_date_
-          , next_resale_date    = next_resale_date_
-          , export_date         = export_date_
+          { _gift                            = _gift_
+          , sender_id                        = sender_id_
+          , receiver_id                      = receiver_id_
+          , origin                           = origin_
+          , received_gift_id                 = received_gift_id_
+          , is_saved                         = is_saved_
+          , can_be_transferred               = can_be_transferred_
+          , was_transferred                  = was_transferred_
+          , transfer_star_count              = transfer_star_count_
+          , drop_original_details_star_count = drop_original_details_star_count_
+          , next_transfer_date               = next_transfer_date_
+          , next_resale_date                 = next_resale_date_
+          , export_date                      = export_date_
           }
       parseMessageRefundedUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageRefundedUpgradedGift = A.withObject "MessageRefundedUpgradedGift" $ \o -> do

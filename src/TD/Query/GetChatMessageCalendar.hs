@@ -13,7 +13,7 @@ import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 data GetChatMessageCalendar
   = GetChatMessageCalendar
     { chat_id         :: Maybe Int                                       -- ^ Identifier of the chat in which to return information about messages
-    , topic_id        :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics aren't supported
+    , topic_id        :: Maybe MessageTopic.MessageTopic                 -- ^ Pass topic identifier to get the result only in specific topic; pass null to get the result in all topics; forum topics and message threads aren't supported
     , _filter         :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     , from_message_id :: Maybe Int                                       -- ^ The message identifier from which to return information about messages; use 0 to get results from the last message
     }

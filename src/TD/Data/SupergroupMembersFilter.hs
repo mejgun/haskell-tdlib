@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.MessageTopic as MessageTopic
 
 -- | Specifies the kind of chat members to return in getSupergroupMembers
 data SupergroupMembersFilter
@@ -23,8 +24,8 @@ data SupergroupMembersFilter
     { query :: Maybe T.Text -- ^ Query to search for
     }
   | SupergroupMembersFilterMention -- ^ Returns users which can be mentioned in the supergroup
-    { query             :: Maybe T.Text -- ^ Query to search for
-    , message_thread_id :: Maybe Int    -- ^ If non-zero, the identifier of the current message thread
+    { query    :: Maybe T.Text                    -- ^ Query to search for
+    , topic_id :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the users will be mentioned; pass null if none
     }
   | SupergroupMembersFilterBots -- ^ Returns bot members of the supergroup or channel
   deriving (Eq, Show)
@@ -63,13 +64,13 @@ instance I.ShortShow SupergroupMembersFilter where
         [ "query" `I.p` query_
         ]
   shortShow SupergroupMembersFilterMention
-    { query             = query_
-    , message_thread_id = message_thread_id_
+    { query    = query_
+    , topic_id = topic_id_
     }
       = "SupergroupMembersFilterMention"
         ++ I.cc
-        [ "query"             `I.p` query_
-        , "message_thread_id" `I.p` message_thread_id_
+        [ "query"    `I.p` query_
+        , "topic_id" `I.p` topic_id_
         ]
   shortShow SupergroupMembersFilterBots
       = "SupergroupMembersFilterBots"
@@ -116,11 +117,11 @@ instance AT.FromJSON SupergroupMembersFilter where
           }
       parseSupergroupMembersFilterMention :: A.Value -> AT.Parser SupergroupMembersFilter
       parseSupergroupMembersFilterMention = A.withObject "SupergroupMembersFilterMention" $ \o -> do
-        query_             <- o A..:?  "query"
-        message_thread_id_ <- o A..:?  "message_thread_id"
+        query_    <- o A..:?  "query"
+        topic_id_ <- o A..:?  "topic_id"
         pure $ SupergroupMembersFilterMention
-          { query             = query_
-          , message_thread_id = message_thread_id_
+          { query    = query_
+          , topic_id = topic_id_
           }
   parseJSON _ = mempty
 
@@ -162,13 +163,13 @@ instance AT.ToJSON SupergroupMembersFilter where
         , "query" A..= query_
         ]
   toJSON SupergroupMembersFilterMention
-    { query             = query_
-    , message_thread_id = message_thread_id_
+    { query    = query_
+    , topic_id = topic_id_
     }
       = A.object
-        [ "@type"             A..= AT.String "supergroupMembersFilterMention"
-        , "query"             A..= query_
-        , "message_thread_id" A..= message_thread_id_
+        [ "@type"    A..= AT.String "supergroupMembersFilterMention"
+        , "query"    A..= query_
+        , "topic_id" A..= topic_id_
         ]
   toJSON SupergroupMembersFilterBots
       = A.object

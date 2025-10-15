@@ -4,6 +4,7 @@ module TD.Data.ChatMembersFilter
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.MessageTopic as MessageTopic
 
 -- | Specifies the kind of chat members to return in searchChatMembers
 data ChatMembersFilter
@@ -11,7 +12,7 @@ data ChatMembersFilter
   | ChatMembersFilterAdministrators -- ^ Returns the owner and administrators
   | ChatMembersFilterMembers -- ^ Returns all chat members, including restricted chat members
   | ChatMembersFilterMention -- ^ Returns users which can be mentioned in the chat
-    { message_thread_id :: Maybe Int -- ^ If non-zero, the identifier of the current message thread
+    { topic_id :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the users will be mentioned; pass null if none
     }
   | ChatMembersFilterRestricted -- ^ Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
   | ChatMembersFilterBanned -- ^ Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
@@ -26,11 +27,11 @@ instance I.ShortShow ChatMembersFilter where
   shortShow ChatMembersFilterMembers
       = "ChatMembersFilterMembers"
   shortShow ChatMembersFilterMention
-    { message_thread_id = message_thread_id_
+    { topic_id = topic_id_
     }
       = "ChatMembersFilterMention"
         ++ I.cc
-        [ "message_thread_id" `I.p` message_thread_id_
+        [ "topic_id" `I.p` topic_id_
         ]
   shortShow ChatMembersFilterRestricted
       = "ChatMembersFilterRestricted"
@@ -56,9 +57,9 @@ instance AT.FromJSON ChatMembersFilter where
     where
       parseChatMembersFilterMention :: A.Value -> AT.Parser ChatMembersFilter
       parseChatMembersFilterMention = A.withObject "ChatMembersFilterMention" $ \o -> do
-        message_thread_id_ <- o A..:?  "message_thread_id"
+        topic_id_ <- o A..:?  "topic_id"
         pure $ ChatMembersFilterMention
-          { message_thread_id = message_thread_id_
+          { topic_id = topic_id_
           }
   parseJSON _ = mempty
 
@@ -76,11 +77,11 @@ instance AT.ToJSON ChatMembersFilter where
         [ "@type" A..= AT.String "chatMembersFilterMembers"
         ]
   toJSON ChatMembersFilterMention
-    { message_thread_id = message_thread_id_
+    { topic_id = topic_id_
     }
       = A.object
-        [ "@type"             A..= AT.String "chatMembersFilterMention"
-        , "message_thread_id" A..= message_thread_id_
+        [ "@type"    A..= AT.String "chatMembersFilterMention"
+        , "topic_id" A..= topic_id_
         ]
   toJSON ChatMembersFilterRestricted
       = A.object

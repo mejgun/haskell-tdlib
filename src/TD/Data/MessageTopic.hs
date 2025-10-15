@@ -7,8 +7,11 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes a topic of messages in a chat
 data MessageTopic
-  = MessageTopicForum -- ^ A topic in a forum supergroup chat
-    { forum_topic_id :: Maybe Int -- ^ Unique identifier of the forum topic; all messages in a non-forum supergroup chats belongs to the General topic
+  = MessageTopicThread -- ^ A topic in a non-forum supergroup chat
+    { message_thread_id :: Maybe Int -- ^ Unique identifier of the message thread
+    }
+  | MessageTopicForum -- ^ A topic in a forum supergroup chat or a chat with a bot
+    { forum_topic_id :: Maybe Int -- ^ Unique identifier of the forum topic
     }
   | MessageTopicDirectMessages -- ^ A topic in a channel direct messages chat administered by the current user
     { direct_messages_chat_topic_id :: Maybe Int -- ^ Unique identifier of the topic
@@ -19,6 +22,13 @@ data MessageTopic
   deriving (Eq, Show)
 
 instance I.ShortShow MessageTopic where
+  shortShow MessageTopicThread
+    { message_thread_id = message_thread_id_
+    }
+      = "MessageTopicThread"
+        ++ I.cc
+        [ "message_thread_id" `I.p` message_thread_id_
+        ]
   shortShow MessageTopicForum
     { forum_topic_id = forum_topic_id_
     }
@@ -46,12 +56,19 @@ instance AT.FromJSON MessageTopic where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
+      "messageTopicThread"         -> parseMessageTopicThread v
       "messageTopicForum"          -> parseMessageTopicForum v
       "messageTopicDirectMessages" -> parseMessageTopicDirectMessages v
       "messageTopicSavedMessages"  -> parseMessageTopicSavedMessages v
       _                            -> mempty
     
     where
+      parseMessageTopicThread :: A.Value -> AT.Parser MessageTopic
+      parseMessageTopicThread = A.withObject "MessageTopicThread" $ \o -> do
+        message_thread_id_ <- o A..:?  "message_thread_id"
+        pure $ MessageTopicThread
+          { message_thread_id = message_thread_id_
+          }
       parseMessageTopicForum :: A.Value -> AT.Parser MessageTopic
       parseMessageTopicForum = A.withObject "MessageTopicForum" $ \o -> do
         forum_topic_id_ <- o A..:?  "forum_topic_id"
@@ -73,6 +90,13 @@ instance AT.FromJSON MessageTopic where
   parseJSON _ = mempty
 
 instance AT.ToJSON MessageTopic where
+  toJSON MessageTopicThread
+    { message_thread_id = message_thread_id_
+    }
+      = A.object
+        [ "@type"             A..= AT.String "messageTopicThread"
+        , "message_thread_id" A..= message_thread_id_
+        ]
   toJSON MessageTopicForum
     { forum_topic_id = forum_topic_id_
     }

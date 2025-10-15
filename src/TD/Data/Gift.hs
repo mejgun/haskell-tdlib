@@ -15,6 +15,7 @@ data Gift
     , star_count              :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     , upgrade_star_count      :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
+    , has_colors              :: Maybe Bool                                  -- ^ True, if the gift can be used to customize the user's name, and backgrounds of profile photo, reply header, and link preview
     , is_for_birthday         :: Maybe Bool                                  -- ^ True, if the gift is a birthday gift
     , is_premium              :: Maybe Bool                                  -- ^ True, if the gift can be bought only by Telegram Premium subscribers
     , next_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
@@ -33,6 +34,7 @@ instance I.ShortShow Gift where
     , star_count              = star_count_
     , default_sell_star_count = default_sell_star_count_
     , upgrade_star_count      = upgrade_star_count_
+    , has_colors              = has_colors_
     , is_for_birthday         = is_for_birthday_
     , is_premium              = is_premium_
     , next_send_date          = next_send_date_
@@ -49,6 +51,7 @@ instance I.ShortShow Gift where
         , "star_count"              `I.p` star_count_
         , "default_sell_star_count" `I.p` default_sell_star_count_
         , "upgrade_star_count"      `I.p` upgrade_star_count_
+        , "has_colors"              `I.p` has_colors_
         , "is_for_birthday"         `I.p` is_for_birthday_
         , "is_premium"              `I.p` is_premium_
         , "next_send_date"          `I.p` next_send_date_
@@ -75,6 +78,7 @@ instance AT.FromJSON Gift where
         star_count_              <- o A..:?                       "star_count"
         default_sell_star_count_ <- o A..:?                       "default_sell_star_count"
         upgrade_star_count_      <- o A..:?                       "upgrade_star_count"
+        has_colors_              <- o A..:?                       "has_colors"
         is_for_birthday_         <- o A..:?                       "is_for_birthday"
         is_premium_              <- o A..:?                       "is_premium"
         next_send_date_          <- o A..:?                       "next_send_date"
@@ -89,6 +93,7 @@ instance AT.FromJSON Gift where
           , star_count              = star_count_
           , default_sell_star_count = default_sell_star_count_
           , upgrade_star_count      = upgrade_star_count_
+          , has_colors              = has_colors_
           , is_for_birthday         = is_for_birthday_
           , is_premium              = is_premium_
           , next_send_date          = next_send_date_
