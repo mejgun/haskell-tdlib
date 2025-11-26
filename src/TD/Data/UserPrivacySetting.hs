@@ -13,6 +13,7 @@ data UserPrivacySetting
   | UserPrivacySettingShowPhoneNumber -- ^ A privacy setting for managing whether the user's phone number is visible
   | UserPrivacySettingShowBio -- ^ A privacy setting for managing whether the user's bio is visible
   | UserPrivacySettingShowBirthdate -- ^ A privacy setting for managing whether the user's birthdate is visible
+  | UserPrivacySettingShowProfileAudio -- ^ A privacy setting for managing whether the user's profile audio files are visible
   | UserPrivacySettingAllowChatInvites -- ^ A privacy setting for managing whether the user can be invited to chats
   | UserPrivacySettingAllowCalls -- ^ A privacy setting for managing whether the user can be called
   | UserPrivacySettingAllowPeerToPeerCalls -- ^ A privacy setting for managing whether peer-to-peer connections can be used for calls
@@ -35,6 +36,8 @@ instance I.ShortShow UserPrivacySetting where
       = "UserPrivacySettingShowBio"
   shortShow UserPrivacySettingShowBirthdate
       = "UserPrivacySettingShowBirthdate"
+  shortShow UserPrivacySettingShowProfileAudio
+      = "UserPrivacySettingShowProfileAudio"
   shortShow UserPrivacySettingAllowChatInvites
       = "UserPrivacySettingAllowChatInvites"
   shortShow UserPrivacySettingAllowCalls
@@ -61,6 +64,7 @@ instance AT.FromJSON UserPrivacySetting where
       "userPrivacySettingShowPhoneNumber"                       -> pure UserPrivacySettingShowPhoneNumber
       "userPrivacySettingShowBio"                               -> pure UserPrivacySettingShowBio
       "userPrivacySettingShowBirthdate"                         -> pure UserPrivacySettingShowBirthdate
+      "userPrivacySettingShowProfileAudio"                      -> pure UserPrivacySettingShowProfileAudio
       "userPrivacySettingAllowChatInvites"                      -> pure UserPrivacySettingAllowChatInvites
       "userPrivacySettingAllowCalls"                            -> pure UserPrivacySettingAllowCalls
       "userPrivacySettingAllowPeerToPeerCalls"                  -> pure UserPrivacySettingAllowPeerToPeerCalls
@@ -96,6 +100,10 @@ instance AT.ToJSON UserPrivacySetting where
   toJSON UserPrivacySettingShowBirthdate
       = A.object
         [ "@type" A..= AT.String "userPrivacySettingShowBirthdate"
+        ]
+  toJSON UserPrivacySettingShowProfileAudio
+      = A.object
+        [ "@type" A..= AT.String "userPrivacySettingShowProfileAudio"
         ]
   toJSON UserPrivacySettingAllowChatInvites
       = A.object

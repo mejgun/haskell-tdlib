@@ -308,7 +308,8 @@ data MessageContent
     , amount                :: Maybe Int                         -- ^ The paid amount, in the smallest units of the currency
     , cryptocurrency        :: Maybe T.Text                      -- ^ Cryptocurrency used to pay for the gift; may be empty if none
     , cryptocurrency_amount :: Maybe Int                         -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if none
-    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active
+    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
+    , day_count             :: Maybe Int                         -- ^ Number of days the Telegram Premium subscription will be active
     , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
@@ -320,7 +321,8 @@ data MessageContent
     , amount                :: Maybe Int                         -- ^ The paid amount, in the smallest units of the currency; 0 if unknown
     , cryptocurrency        :: Maybe T.Text                      -- ^ Cryptocurrency used to pay for the gift; may be empty if none or unknown
     , cryptocurrency_amount :: Maybe Int                         -- ^ The paid amount, in the smallest units of the cryptocurrency; 0 if unknown
-    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation
+    , month_count           :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
+    , day_count             :: Maybe Int                         -- ^ Number of days the Telegram Premium subscription will be active after code activation
     , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
     , code                  :: Maybe T.Text                      -- ^ The gift code
     }
@@ -1044,6 +1046,7 @@ instance I.ShortShow MessageContent where
     , cryptocurrency        = cryptocurrency_
     , cryptocurrency_amount = cryptocurrency_amount_
     , month_count           = month_count_
+    , day_count             = day_count_
     , sticker               = sticker_
     }
       = "MessageGiftedPremium"
@@ -1056,6 +1059,7 @@ instance I.ShortShow MessageContent where
         , "cryptocurrency"        `I.p` cryptocurrency_
         , "cryptocurrency_amount" `I.p` cryptocurrency_amount_
         , "month_count"           `I.p` month_count_
+        , "day_count"             `I.p` day_count_
         , "sticker"               `I.p` sticker_
         ]
   shortShow MessagePremiumGiftCode
@@ -1068,6 +1072,7 @@ instance I.ShortShow MessageContent where
     , cryptocurrency        = cryptocurrency_
     , cryptocurrency_amount = cryptocurrency_amount_
     , month_count           = month_count_
+    , day_count             = day_count_
     , sticker               = sticker_
     , code                  = code_
     }
@@ -1082,6 +1087,7 @@ instance I.ShortShow MessageContent where
         , "cryptocurrency"        `I.p` cryptocurrency_
         , "cryptocurrency_amount" `I.p` cryptocurrency_amount_
         , "month_count"           `I.p` month_count_
+        , "day_count"             `I.p` day_count_
         , "sticker"               `I.p` sticker_
         , "code"                  `I.p` code_
         ]
@@ -2032,6 +2038,7 @@ instance AT.FromJSON MessageContent where
         cryptocurrency_        <- o A..:?                       "cryptocurrency"
         cryptocurrency_amount_ <- fmap I.readInt64 <$> o A..:?  "cryptocurrency_amount"
         month_count_           <- o A..:?                       "month_count"
+        day_count_             <- o A..:?                       "day_count"
         sticker_               <- o A..:?                       "sticker"
         pure $ MessageGiftedPremium
           { gifter_user_id        = gifter_user_id_
@@ -2042,6 +2049,7 @@ instance AT.FromJSON MessageContent where
           , cryptocurrency        = cryptocurrency_
           , cryptocurrency_amount = cryptocurrency_amount_
           , month_count           = month_count_
+          , day_count             = day_count_
           , sticker               = sticker_
           }
       parseMessagePremiumGiftCode :: A.Value -> AT.Parser MessageContent
@@ -2055,6 +2063,7 @@ instance AT.FromJSON MessageContent where
         cryptocurrency_        <- o A..:?                       "cryptocurrency"
         cryptocurrency_amount_ <- fmap I.readInt64 <$> o A..:?  "cryptocurrency_amount"
         month_count_           <- o A..:?                       "month_count"
+        day_count_             <- o A..:?                       "day_count"
         sticker_               <- o A..:?                       "sticker"
         code_                  <- o A..:?                       "code"
         pure $ MessagePremiumGiftCode
@@ -2067,6 +2076,7 @@ instance AT.FromJSON MessageContent where
           , cryptocurrency        = cryptocurrency_
           , cryptocurrency_amount = cryptocurrency_amount_
           , month_count           = month_count_
+          , day_count             = day_count_
           , sticker               = sticker_
           , code                  = code_
           }

@@ -13,7 +13,7 @@ data CreateStoryAlbum
   = CreateStoryAlbum
     { story_poster_chat_id :: Maybe Int    -- ^ Identifier of the chat that posted the stories
     , name                 :: Maybe T.Text -- ^ Name of the album; 1-12 characters
-    , story_ids            :: Maybe [Int]  -- ^ Identifiers of stories to add to the album; 0-getOption("story_album_story_count_max") identifiers
+    , story_ids            :: Maybe [Int]  -- ^ Identifiers of stories to add to the album; 0-getOption("story_album_size_max") identifiers
     }
   deriving (Eq, Show)
 

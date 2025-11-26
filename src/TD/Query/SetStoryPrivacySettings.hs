@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 
--- | Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true. Returns 'TD.Data.Ok.Ok'
+-- | Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_set_privacy_settings == true. Returns 'TD.Data.Ok.Ok'
 data SetStoryPrivacySettings
   = SetStoryPrivacySettings
     { story_id         :: Maybe Int                                       -- ^ Identifier of the story

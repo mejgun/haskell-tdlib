@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSendOptions as MessageSendOptions
 
--- | Sent a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message. Returns 'TD.Data.Message.Message'
+-- | Sends a suggested post based on a previously sent message in a channel direct messages chat. Can be also used to suggest price or time change for an existing suggested post. Returns the sent message. Returns 'TD.Data.Message.Message'
 data AddOffer
   = AddOffer
     { chat_id    :: Maybe Int                                   -- ^ Identifier of the channel direct messages chat

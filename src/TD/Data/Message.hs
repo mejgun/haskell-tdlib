@@ -46,7 +46,7 @@ data Message
     , fact_check                  :: Maybe FactCheck.FactCheck                             -- ^ Information about fact-check added to the message; may be null if none
     , suggested_post_info         :: Maybe SuggestedPostInfo.SuggestedPostInfo             -- ^ Information about the suggested post; may be null if the message isn't a suggested post
     , reply_to                    :: Maybe MessageReplyTo.MessageReplyTo                   -- ^ Information about the message or the story this message is replying to; may be null if none
-    , topic_id                    :: Maybe MessageTopic.MessageTopic                       -- ^ Identifier of the topic within the chat to which the message belongs; may be null if none
+    , topic_id                    :: Maybe MessageTopic.MessageTopic                       -- ^ Identifier of the topic within the chat to which the message belongs; may be null if none; may change when the chat is converted to a forum or back
     , self_destruct_type          :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ The message's self-destruct type; may be null if none
     , self_destruct_in            :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in              :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never

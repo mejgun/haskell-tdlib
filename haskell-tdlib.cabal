@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.2.0
+version:        2.1.3.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -31,6 +31,7 @@ library
       TD.Data.AcceptedGiftTypes
       TD.Data.AccountInfo
       TD.Data.AccountTtl
+      TD.Data.ActiveStoryState
       TD.Data.AddedReaction
       TD.Data.AddedReactions
       TD.Data.Address
@@ -297,10 +298,14 @@ library
       TD.Data.GroupCallId
       TD.Data.GroupCallInfo
       TD.Data.GroupCallJoinParameters
+      TD.Data.GroupCallMessage
+      TD.Data.GroupCallMessageLevel
       TD.Data.GroupCallParticipant
       TD.Data.GroupCallParticipants
       TD.Data.GroupCallParticipantVideoInfo
       TD.Data.GroupCallRecentSpeaker
+      TD.Data.GroupCallStream
+      TD.Data.GroupCallStreams
       TD.Data.GroupCallVideoQuality
       TD.Data.GroupCallVideoSourceGroup
       TD.Data.Hashtags
@@ -360,6 +365,7 @@ library
       TD.Data.LinkPreviewAlbumMedia
       TD.Data.LinkPreviewOptions
       TD.Data.LinkPreviewType
+      TD.Data.LiveStoryDonors
       TD.Data.LocalFile
       TD.Data.LocalizationTargetInfo
       TD.Data.Location
@@ -557,6 +563,7 @@ library
       TD.Data.StarSubscriptionPricing
       TD.Data.StarSubscriptions
       TD.Data.StarSubscriptionType
+      TD.Data.StartLiveStoryResult
       TD.Data.StarTransaction
       TD.Data.StarTransactions
       TD.Data.StarTransactionType
@@ -675,8 +682,6 @@ library
       TD.Data.VerificationStatus
       TD.Data.Video
       TD.Data.VideoChat
-      TD.Data.VideoChatStream
-      TD.Data.VideoChatStreams
       TD.Data.VideoMessageAdvertisement
       TD.Data.VideoMessageAdvertisements
       TD.Data.VideoNote
@@ -709,6 +714,7 @@ library
       TD.Query.AddMessageReaction
       TD.Query.AddNetworkStatistics
       TD.Query.AddOffer
+      TD.Query.AddPendingLiveStoryReaction
       TD.Query.AddPendingPaidMessageReaction
       TD.Query.AddProfileAudio
       TD.Query.AddProxy
@@ -786,6 +792,7 @@ library
       TD.Query.CloseSecretChat
       TD.Query.CloseStory
       TD.Query.CloseWebApp
+      TD.Query.CommitPendingLiveStoryReactions
       TD.Query.CommitPendingPaidMessageReactions
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
@@ -837,6 +844,8 @@ library
       TD.Query.DeleteFile
       TD.Query.DeleteForumTopic
       TD.Query.DeleteGiftCollection
+      TD.Query.DeleteGroupCallMessages
+      TD.Query.DeleteGroupCallMessagesBySender
       TD.Query.DeleteLanguagePack
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
@@ -1036,6 +1045,8 @@ library
       TD.Query.GetGrossingWebAppBots
       TD.Query.GetGroupCall
       TD.Query.GetGroupCallParticipants
+      TD.Query.GetGroupCallStreams
+      TD.Query.GetGroupCallStreamSegment
       TD.Query.GetGroupsInCommon
       TD.Query.GetImportedContactCount
       TD.Query.GetInactiveSupergroupChats
@@ -1052,6 +1063,10 @@ library
       TD.Query.GetLanguagePackString
       TD.Query.GetLanguagePackStrings
       TD.Query.GetLinkPreview
+      TD.Query.GetLiveStoryAvailableMessageSenders
+      TD.Query.GetLiveStoryRtmpUrl
+      TD.Query.GetLiveStoryStreamer
+      TD.Query.GetLiveStoryTopDonors
       TD.Query.GetLocalizationTargetInfo
       TD.Query.GetLoginUrl
       TD.Query.GetLoginUrlInfo
@@ -1194,8 +1209,6 @@ library
       TD.Query.GetVideoChatAvailableParticipants
       TD.Query.GetVideoChatInviteLink
       TD.Query.GetVideoChatRtmpUrl
-      TD.Query.GetVideoChatStreams
-      TD.Query.GetVideoChatStreamSegment
       TD.Query.GetVideoMessageAdvertisements
       TD.Query.GetWebAppLinkUrl
       TD.Query.GetWebAppPlaceholder
@@ -1208,10 +1221,12 @@ library
       TD.Query.ImportMessages
       TD.Query.InviteGroupCallParticipant
       TD.Query.InviteVideoChatParticipants
+      TD.Query.IsLoginEmailAddressRequired
       TD.Query.IsProfileAudio
       TD.Query.JoinChat
       TD.Query.JoinChatByInviteLink
       TD.Query.JoinGroupCall
+      TD.Query.JoinLiveStory
       TD.Query.JoinVideoChat
       TD.Query.LaunchPrepaidGiveaway
       TD.Query.LeaveChat
@@ -1271,6 +1286,7 @@ library
       TD.Query.RemoveMessageSenderBotVerification
       TD.Query.RemoveNotification
       TD.Query.RemoveNotificationGroup
+      TD.Query.RemovePendingLiveStoryReactions
       TD.Query.RemovePendingPaidMessageReactions
       TD.Query.RemoveProfileAudio
       TD.Query.RemoveProxy
@@ -1294,6 +1310,7 @@ library
       TD.Query.ReorderStoryAlbums
       TD.Query.ReorderStoryAlbumStories
       TD.Query.ReorderSupergroupActiveUsernames
+      TD.Query.ReplaceLiveStoryRtmpUrl
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceStickerInSet
       TD.Query.ReplaceVideoChatRtmpUrl
@@ -1460,10 +1477,12 @@ library
       TD.Query.SetGiftCollectionName
       TD.Query.SetGiftResalePrice
       TD.Query.SetGiftSettings
+      TD.Query.SetGroupCallPaidMessageStarCount
       TD.Query.SetGroupCallParticipantIsSpeaking
       TD.Query.SetGroupCallParticipantVolumeLevel
       TD.Query.SetInactiveSessionTtl
       TD.Query.SetInlineGameScore
+      TD.Query.SetLiveStoryMessageSender
       TD.Query.SetLoginEmailAddress
       TD.Query.SetLogStream
       TD.Query.SetLogTagVerbosityLevel
@@ -1526,6 +1545,7 @@ library
       TD.Query.ShareUsersWithBot
       TD.Query.StartGroupCallRecording
       TD.Query.StartGroupCallScreenSharing
+      TD.Query.StartLiveStory
       TD.Query.StartScheduledVideoChat
       TD.Query.StopBusinessPoll
       TD.Query.StopPoll
@@ -1566,7 +1586,7 @@ library
       TD.Query.ToggleForumTopicIsPinned
       TD.Query.ToggleGeneralForumTopicIsHidden
       TD.Query.ToggleGiftIsSaved
-      TD.Query.ToggleGroupCallCanSendMessages
+      TD.Query.ToggleGroupCallAreMessagesAllowed
       TD.Query.ToggleGroupCallIsMyVideoEnabled
       TD.Query.ToggleGroupCallIsMyVideoPaused
       TD.Query.ToggleGroupCallParticipantIsHandRaised

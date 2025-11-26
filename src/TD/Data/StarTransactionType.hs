@@ -143,6 +143,22 @@ data StarTransactionType
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
     }
+  | StarTransactionTypePaidGroupCallMessageSend -- ^ The transaction is a sending of a paid group call message; for regular users only
+    { chat_id :: Maybe Int -- ^ Identifier of the chat that received the payment
+    }
+  | StarTransactionTypePaidGroupCallMessageReceive -- ^ The transaction is a receiving of a paid group call message; for regular users and channel chats only
+    { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
+    , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    }
+  | StarTransactionTypePaidGroupCallReactionSend -- ^ The transaction is a sending of a paid group reaction; for regular users only
+    { chat_id :: Maybe Int -- ^ Identifier of the chat that received the payment
+    }
+  | StarTransactionTypePaidGroupCallReactionReceive -- ^ The transaction is a receiving of a paid group call reaction; for regular users and channel chats only
+    { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the reaction
+    , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for reaction sending
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    }
   | StarTransactionTypeSuggestedPostPaymentSend -- ^ The transaction is a payment for a suggested post; for regular users only
     { chat_id :: Maybe Int -- ^ Identifier of the channel chat that posted the post
     }
@@ -442,6 +458,42 @@ instance I.ShortShow StarTransactionType where
         , "commission_per_mille"   `I.p` commission_per_mille_
         , "commission_star_amount" `I.p` commission_star_amount_
         ]
+  shortShow StarTransactionTypePaidGroupCallMessageSend
+    { chat_id = chat_id_
+    }
+      = "StarTransactionTypePaidGroupCallMessageSend"
+        ++ I.cc
+        [ "chat_id" `I.p` chat_id_
+        ]
+  shortShow StarTransactionTypePaidGroupCallMessageReceive
+    { sender_id              = sender_id_
+    , commission_per_mille   = commission_per_mille_
+    , commission_star_amount = commission_star_amount_
+    }
+      = "StarTransactionTypePaidGroupCallMessageReceive"
+        ++ I.cc
+        [ "sender_id"              `I.p` sender_id_
+        , "commission_per_mille"   `I.p` commission_per_mille_
+        , "commission_star_amount" `I.p` commission_star_amount_
+        ]
+  shortShow StarTransactionTypePaidGroupCallReactionSend
+    { chat_id = chat_id_
+    }
+      = "StarTransactionTypePaidGroupCallReactionSend"
+        ++ I.cc
+        [ "chat_id" `I.p` chat_id_
+        ]
+  shortShow StarTransactionTypePaidGroupCallReactionReceive
+    { sender_id              = sender_id_
+    , commission_per_mille   = commission_per_mille_
+    , commission_star_amount = commission_star_amount_
+    }
+      = "StarTransactionTypePaidGroupCallReactionReceive"
+        ++ I.cc
+        [ "sender_id"              `I.p` sender_id_
+        , "commission_per_mille"   `I.p` commission_per_mille_
+        , "commission_star_amount" `I.p` commission_star_amount_
+        ]
   shortShow StarTransactionTypeSuggestedPostPaymentSend
     { chat_id = chat_id_
     }
@@ -491,46 +543,50 @@ instance AT.FromJSON StarTransactionType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "starTransactionTypePremiumBotDeposit"           -> pure StarTransactionTypePremiumBotDeposit
-      "starTransactionTypeAppStoreDeposit"             -> pure StarTransactionTypeAppStoreDeposit
-      "starTransactionTypeGooglePlayDeposit"           -> pure StarTransactionTypeGooglePlayDeposit
-      "starTransactionTypeFragmentDeposit"             -> pure StarTransactionTypeFragmentDeposit
-      "starTransactionTypeUserDeposit"                 -> parseStarTransactionTypeUserDeposit v
-      "starTransactionTypeGiveawayDeposit"             -> parseStarTransactionTypeGiveawayDeposit v
-      "starTransactionTypeFragmentWithdrawal"          -> parseStarTransactionTypeFragmentWithdrawal v
-      "starTransactionTypeTelegramAdsWithdrawal"       -> pure StarTransactionTypeTelegramAdsWithdrawal
-      "starTransactionTypeTelegramApiUsage"            -> parseStarTransactionTypeTelegramApiUsage v
-      "starTransactionTypeBotPaidMediaPurchase"        -> parseStarTransactionTypeBotPaidMediaPurchase v
-      "starTransactionTypeBotPaidMediaSale"            -> parseStarTransactionTypeBotPaidMediaSale v
-      "starTransactionTypeChannelPaidMediaPurchase"    -> parseStarTransactionTypeChannelPaidMediaPurchase v
-      "starTransactionTypeChannelPaidMediaSale"        -> parseStarTransactionTypeChannelPaidMediaSale v
-      "starTransactionTypeBotInvoicePurchase"          -> parseStarTransactionTypeBotInvoicePurchase v
-      "starTransactionTypeBotInvoiceSale"              -> parseStarTransactionTypeBotInvoiceSale v
-      "starTransactionTypeBotSubscriptionPurchase"     -> parseStarTransactionTypeBotSubscriptionPurchase v
-      "starTransactionTypeBotSubscriptionSale"         -> parseStarTransactionTypeBotSubscriptionSale v
-      "starTransactionTypeChannelSubscriptionPurchase" -> parseStarTransactionTypeChannelSubscriptionPurchase v
-      "starTransactionTypeChannelSubscriptionSale"     -> parseStarTransactionTypeChannelSubscriptionSale v
-      "starTransactionTypeGiftPurchase"                -> parseStarTransactionTypeGiftPurchase v
-      "starTransactionTypeGiftTransfer"                -> parseStarTransactionTypeGiftTransfer v
-      "starTransactionTypeGiftOriginalDetailsDrop"     -> parseStarTransactionTypeGiftOriginalDetailsDrop v
-      "starTransactionTypeGiftSale"                    -> parseStarTransactionTypeGiftSale v
-      "starTransactionTypeGiftUpgrade"                 -> parseStarTransactionTypeGiftUpgrade v
-      "starTransactionTypeGiftUpgradePurchase"         -> parseStarTransactionTypeGiftUpgradePurchase v
-      "starTransactionTypeUpgradedGiftPurchase"        -> parseStarTransactionTypeUpgradedGiftPurchase v
-      "starTransactionTypeUpgradedGiftSale"            -> parseStarTransactionTypeUpgradedGiftSale v
-      "starTransactionTypeChannelPaidReactionSend"     -> parseStarTransactionTypeChannelPaidReactionSend v
-      "starTransactionTypeChannelPaidReactionReceive"  -> parseStarTransactionTypeChannelPaidReactionReceive v
-      "starTransactionTypeAffiliateProgramCommission"  -> parseStarTransactionTypeAffiliateProgramCommission v
-      "starTransactionTypePaidMessageSend"             -> parseStarTransactionTypePaidMessageSend v
-      "starTransactionTypePaidMessageReceive"          -> parseStarTransactionTypePaidMessageReceive v
-      "starTransactionTypeSuggestedPostPaymentSend"    -> parseStarTransactionTypeSuggestedPostPaymentSend v
-      "starTransactionTypeSuggestedPostPaymentReceive" -> parseStarTransactionTypeSuggestedPostPaymentReceive v
-      "starTransactionTypePremiumPurchase"             -> parseStarTransactionTypePremiumPurchase v
-      "starTransactionTypeBusinessBotTransferSend"     -> parseStarTransactionTypeBusinessBotTransferSend v
-      "starTransactionTypeBusinessBotTransferReceive"  -> parseStarTransactionTypeBusinessBotTransferReceive v
-      "starTransactionTypePublicPostSearch"            -> pure StarTransactionTypePublicPostSearch
-      "starTransactionTypeUnsupported"                 -> pure StarTransactionTypeUnsupported
-      _                                                -> mempty
+      "starTransactionTypePremiumBotDeposit"            -> pure StarTransactionTypePremiumBotDeposit
+      "starTransactionTypeAppStoreDeposit"              -> pure StarTransactionTypeAppStoreDeposit
+      "starTransactionTypeGooglePlayDeposit"            -> pure StarTransactionTypeGooglePlayDeposit
+      "starTransactionTypeFragmentDeposit"              -> pure StarTransactionTypeFragmentDeposit
+      "starTransactionTypeUserDeposit"                  -> parseStarTransactionTypeUserDeposit v
+      "starTransactionTypeGiveawayDeposit"              -> parseStarTransactionTypeGiveawayDeposit v
+      "starTransactionTypeFragmentWithdrawal"           -> parseStarTransactionTypeFragmentWithdrawal v
+      "starTransactionTypeTelegramAdsWithdrawal"        -> pure StarTransactionTypeTelegramAdsWithdrawal
+      "starTransactionTypeTelegramApiUsage"             -> parseStarTransactionTypeTelegramApiUsage v
+      "starTransactionTypeBotPaidMediaPurchase"         -> parseStarTransactionTypeBotPaidMediaPurchase v
+      "starTransactionTypeBotPaidMediaSale"             -> parseStarTransactionTypeBotPaidMediaSale v
+      "starTransactionTypeChannelPaidMediaPurchase"     -> parseStarTransactionTypeChannelPaidMediaPurchase v
+      "starTransactionTypeChannelPaidMediaSale"         -> parseStarTransactionTypeChannelPaidMediaSale v
+      "starTransactionTypeBotInvoicePurchase"           -> parseStarTransactionTypeBotInvoicePurchase v
+      "starTransactionTypeBotInvoiceSale"               -> parseStarTransactionTypeBotInvoiceSale v
+      "starTransactionTypeBotSubscriptionPurchase"      -> parseStarTransactionTypeBotSubscriptionPurchase v
+      "starTransactionTypeBotSubscriptionSale"          -> parseStarTransactionTypeBotSubscriptionSale v
+      "starTransactionTypeChannelSubscriptionPurchase"  -> parseStarTransactionTypeChannelSubscriptionPurchase v
+      "starTransactionTypeChannelSubscriptionSale"      -> parseStarTransactionTypeChannelSubscriptionSale v
+      "starTransactionTypeGiftPurchase"                 -> parseStarTransactionTypeGiftPurchase v
+      "starTransactionTypeGiftTransfer"                 -> parseStarTransactionTypeGiftTransfer v
+      "starTransactionTypeGiftOriginalDetailsDrop"      -> parseStarTransactionTypeGiftOriginalDetailsDrop v
+      "starTransactionTypeGiftSale"                     -> parseStarTransactionTypeGiftSale v
+      "starTransactionTypeGiftUpgrade"                  -> parseStarTransactionTypeGiftUpgrade v
+      "starTransactionTypeGiftUpgradePurchase"          -> parseStarTransactionTypeGiftUpgradePurchase v
+      "starTransactionTypeUpgradedGiftPurchase"         -> parseStarTransactionTypeUpgradedGiftPurchase v
+      "starTransactionTypeUpgradedGiftSale"             -> parseStarTransactionTypeUpgradedGiftSale v
+      "starTransactionTypeChannelPaidReactionSend"      -> parseStarTransactionTypeChannelPaidReactionSend v
+      "starTransactionTypeChannelPaidReactionReceive"   -> parseStarTransactionTypeChannelPaidReactionReceive v
+      "starTransactionTypeAffiliateProgramCommission"   -> parseStarTransactionTypeAffiliateProgramCommission v
+      "starTransactionTypePaidMessageSend"              -> parseStarTransactionTypePaidMessageSend v
+      "starTransactionTypePaidMessageReceive"           -> parseStarTransactionTypePaidMessageReceive v
+      "starTransactionTypePaidGroupCallMessageSend"     -> parseStarTransactionTypePaidGroupCallMessageSend v
+      "starTransactionTypePaidGroupCallMessageReceive"  -> parseStarTransactionTypePaidGroupCallMessageReceive v
+      "starTransactionTypePaidGroupCallReactionSend"    -> parseStarTransactionTypePaidGroupCallReactionSend v
+      "starTransactionTypePaidGroupCallReactionReceive" -> parseStarTransactionTypePaidGroupCallReactionReceive v
+      "starTransactionTypeSuggestedPostPaymentSend"     -> parseStarTransactionTypeSuggestedPostPaymentSend v
+      "starTransactionTypeSuggestedPostPaymentReceive"  -> parseStarTransactionTypeSuggestedPostPaymentReceive v
+      "starTransactionTypePremiumPurchase"              -> parseStarTransactionTypePremiumPurchase v
+      "starTransactionTypeBusinessBotTransferSend"      -> parseStarTransactionTypeBusinessBotTransferSend v
+      "starTransactionTypeBusinessBotTransferReceive"   -> parseStarTransactionTypeBusinessBotTransferReceive v
+      "starTransactionTypePublicPostSearch"             -> pure StarTransactionTypePublicPostSearch
+      "starTransactionTypeUnsupported"                  -> pure StarTransactionTypeUnsupported
+      _                                                 -> mempty
     
     where
       parseStarTransactionTypeUserDeposit :: A.Value -> AT.Parser StarTransactionType
@@ -770,6 +826,38 @@ instance AT.FromJSON StarTransactionType where
         pure $ StarTransactionTypePaidMessageReceive
           { sender_id              = sender_id_
           , message_count          = message_count_
+          , commission_per_mille   = commission_per_mille_
+          , commission_star_amount = commission_star_amount_
+          }
+      parseStarTransactionTypePaidGroupCallMessageSend :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidGroupCallMessageSend = A.withObject "StarTransactionTypePaidGroupCallMessageSend" $ \o -> do
+        chat_id_ <- o A..:?  "chat_id"
+        pure $ StarTransactionTypePaidGroupCallMessageSend
+          { chat_id = chat_id_
+          }
+      parseStarTransactionTypePaidGroupCallMessageReceive :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidGroupCallMessageReceive = A.withObject "StarTransactionTypePaidGroupCallMessageReceive" $ \o -> do
+        sender_id_              <- o A..:?  "sender_id"
+        commission_per_mille_   <- o A..:?  "commission_per_mille"
+        commission_star_amount_ <- o A..:?  "commission_star_amount"
+        pure $ StarTransactionTypePaidGroupCallMessageReceive
+          { sender_id              = sender_id_
+          , commission_per_mille   = commission_per_mille_
+          , commission_star_amount = commission_star_amount_
+          }
+      parseStarTransactionTypePaidGroupCallReactionSend :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidGroupCallReactionSend = A.withObject "StarTransactionTypePaidGroupCallReactionSend" $ \o -> do
+        chat_id_ <- o A..:?  "chat_id"
+        pure $ StarTransactionTypePaidGroupCallReactionSend
+          { chat_id = chat_id_
+          }
+      parseStarTransactionTypePaidGroupCallReactionReceive :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypePaidGroupCallReactionReceive = A.withObject "StarTransactionTypePaidGroupCallReactionReceive" $ \o -> do
+        sender_id_              <- o A..:?  "sender_id"
+        commission_per_mille_   <- o A..:?  "commission_per_mille"
+        commission_star_amount_ <- o A..:?  "commission_star_amount"
+        pure $ StarTransactionTypePaidGroupCallReactionReceive
+          { sender_id              = sender_id_
           , commission_per_mille   = commission_per_mille_
           , commission_star_amount = commission_star_amount_
           }

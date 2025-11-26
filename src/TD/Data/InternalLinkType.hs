@@ -88,6 +88,10 @@ data InternalLinkType
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
   | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the application settings
+  | InternalLinkTypeLiveStory -- ^ The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
+    { story_poster_username :: Maybe T.Text -- ^ Username of the poster of the story
+    }
+  | InternalLinkTypeLoginEmailSettings -- ^ The link is a link to the login email set up section of the application settings, forcing set up of the login email
   | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     { bot_username    :: Maybe T.Text                        -- ^ Username of the bot
     , start_parameter :: Maybe T.Text                        -- ^ Start parameter to be passed to getMainWebApp
@@ -109,10 +113,12 @@ data InternalLinkType
     , nonce        :: Maybe T.Text -- ^ Unique request identifier provided by the service
     , callback_url :: Maybe T.Text -- ^ An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
     }
+  | InternalLinkTypePasswordSettings -- ^ The link is a link to the password section of the application settings
   | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     { hash         :: Maybe T.Text -- ^ Hash value from the link
     , phone_number :: Maybe T.Text -- ^ Phone number value from the link
     }
+  | InternalLinkTypePhoneNumberPrivacySettings -- ^ The link is a link to the phone number privacy settings section of the application settings
   | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
@@ -350,6 +356,15 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeLanguageSettings
       = "InternalLinkTypeLanguageSettings"
+  shortShow InternalLinkTypeLiveStory
+    { story_poster_username = story_poster_username_
+    }
+      = "InternalLinkTypeLiveStory"
+        ++ I.cc
+        [ "story_poster_username" `I.p` story_poster_username_
+        ]
+  shortShow InternalLinkTypeLoginEmailSettings
+      = "InternalLinkTypeLoginEmailSettings"
   shortShow InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
@@ -396,6 +411,8 @@ instance I.ShortShow InternalLinkType where
         , "nonce"        `I.p` nonce_
         , "callback_url" `I.p` callback_url_
         ]
+  shortShow InternalLinkTypePasswordSettings
+      = "InternalLinkTypePasswordSettings"
   shortShow InternalLinkTypePhoneNumberConfirmation
     { hash         = hash_
     , phone_number = phone_number_
@@ -405,6 +422,8 @@ instance I.ShortShow InternalLinkType where
         [ "hash"         `I.p` hash_
         , "phone_number" `I.p` phone_number_
         ]
+  shortShow InternalLinkTypePhoneNumberPrivacySettings
+      = "InternalLinkTypePhoneNumberPrivacySettings"
   shortShow InternalLinkTypePremiumFeatures
     { referrer = referrer_
     }
@@ -581,13 +600,17 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeInvoice"                               -> parseInternalLinkTypeInvoice v
       "internalLinkTypeLanguagePack"                          -> parseInternalLinkTypeLanguagePack v
       "internalLinkTypeLanguageSettings"                      -> pure InternalLinkTypeLanguageSettings
+      "internalLinkTypeLiveStory"                             -> parseInternalLinkTypeLiveStory v
+      "internalLinkTypeLoginEmailSettings"                    -> pure InternalLinkTypeLoginEmailSettings
       "internalLinkTypeMainWebApp"                            -> parseInternalLinkTypeMainWebApp v
       "internalLinkTypeMessage"                               -> parseInternalLinkTypeMessage v
       "internalLinkTypeMessageDraft"                          -> parseInternalLinkTypeMessageDraft v
       "internalLinkTypeMyStars"                               -> pure InternalLinkTypeMyStars
       "internalLinkTypeMyToncoins"                            -> pure InternalLinkTypeMyToncoins
       "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
+      "internalLinkTypePasswordSettings"                      -> pure InternalLinkTypePasswordSettings
       "internalLinkTypePhoneNumberConfirmation"               -> parseInternalLinkTypePhoneNumberConfirmation v
+      "internalLinkTypePhoneNumberPrivacySettings"            -> pure InternalLinkTypePhoneNumberPrivacySettings
       "internalLinkTypePremiumFeatures"                       -> parseInternalLinkTypePremiumFeatures v
       "internalLinkTypePremiumGift"                           -> parseInternalLinkTypePremiumGift v
       "internalLinkTypePremiumGiftCode"                       -> parseInternalLinkTypePremiumGiftCode v
@@ -749,6 +772,12 @@ instance AT.FromJSON InternalLinkType where
         language_pack_id_ <- o A..:?  "language_pack_id"
         pure $ InternalLinkTypeLanguagePack
           { language_pack_id = language_pack_id_
+          }
+      parseInternalLinkTypeLiveStory :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeLiveStory = A.withObject "InternalLinkTypeLiveStory" $ \o -> do
+        story_poster_username_ <- o A..:?  "story_poster_username"
+        pure $ InternalLinkTypeLiveStory
+          { story_poster_username = story_poster_username_
           }
       parseInternalLinkTypeMainWebApp :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeMainWebApp = A.withObject "InternalLinkTypeMainWebApp" $ \o -> do
@@ -1098,6 +1127,17 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeLanguageSettings"
         ]
+  toJSON InternalLinkTypeLiveStory
+    { story_poster_username = story_poster_username_
+    }
+      = A.object
+        [ "@type"                 A..= AT.String "internalLinkTypeLiveStory"
+        , "story_poster_username" A..= story_poster_username_
+        ]
+  toJSON InternalLinkTypeLoginEmailSettings
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeLoginEmailSettings"
+        ]
   toJSON InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
@@ -1148,6 +1188,10 @@ instance AT.ToJSON InternalLinkType where
         , "nonce"        A..= nonce_
         , "callback_url" A..= callback_url_
         ]
+  toJSON InternalLinkTypePasswordSettings
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypePasswordSettings"
+        ]
   toJSON InternalLinkTypePhoneNumberConfirmation
     { hash         = hash_
     , phone_number = phone_number_
@@ -1156,6 +1200,10 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"        A..= AT.String "internalLinkTypePhoneNumberConfirmation"
         , "hash"         A..= hash_
         , "phone_number" A..= phone_number_
+        ]
+  toJSON InternalLinkTypePhoneNumberPrivacySettings
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypePhoneNumberPrivacySettings"
         ]
   toJSON InternalLinkTypePremiumFeatures
     { referrer = referrer_

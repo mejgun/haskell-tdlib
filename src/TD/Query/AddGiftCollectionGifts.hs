@@ -14,7 +14,7 @@ data AddGiftCollectionGifts
   = AddGiftCollectionGifts
     { owner_id          :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that owns the collection
     , collection_id     :: Maybe Int                         -- ^ Identifier of the gift collection
-    , received_gift_ids :: Maybe [T.Text]                    -- ^ Identifier of the gifts to add to the collection; 1-getOption("gift_collection_gift_count_max") identifiers. If after addition the collection has more than getOption("gift_collection_gift_count_max") gifts, then the last one are removed from the collection
+    , received_gift_ids :: Maybe [T.Text]                    -- ^ Identifier of the gifts to add to the collection; 1-getOption("gift_collection_size_max") identifiers. If after addition the collection has more than getOption("gift_collection_size_max") gifts, then the last one are removed from the collection
     }
   deriving (Eq, Show)
 

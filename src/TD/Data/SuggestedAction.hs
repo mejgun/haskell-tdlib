@@ -35,6 +35,9 @@ data SuggestedAction
     , description :: Maybe FormattedText.FormattedText -- ^ Description of the suggestion
     , url         :: Maybe T.Text                      -- ^ The link to open when the suggestion is clicked
     }
+  | SuggestedActionSetLoginEmailAddress -- ^ Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
+    { can_be_hidden :: Maybe Bool -- ^ True, if the suggested action can be hidden using hideSuggestedAction. Otherwise, the user must not be able to use the app without setting up the email address
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -94,6 +97,13 @@ instance I.ShortShow SuggestedAction where
         , "description" `I.p` description_
         , "url"         `I.p` url_
         ]
+  shortShow SuggestedActionSetLoginEmailAddress
+    { can_be_hidden = can_be_hidden_
+    }
+      = "SuggestedActionSetLoginEmailAddress"
+        ++ I.cc
+        [ "can_be_hidden" `I.p` can_be_hidden_
+        ]
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -115,6 +125,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
       "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
       "suggestedActionCustom"                       -> parseSuggestedActionCustom v
+      "suggestedActionSetLoginEmailAddress"         -> parseSuggestedActionSetLoginEmailAddress v
       _                                             -> mempty
     
     where
@@ -147,6 +158,12 @@ instance AT.FromJSON SuggestedAction where
           , title       = title_
           , description = description_
           , url         = url_
+          }
+      parseSuggestedActionSetLoginEmailAddress :: A.Value -> AT.Parser SuggestedAction
+      parseSuggestedActionSetLoginEmailAddress = A.withObject "SuggestedActionSetLoginEmailAddress" $ \o -> do
+        can_be_hidden_ <- o A..:?  "can_be_hidden"
+        pure $ SuggestedActionSetLoginEmailAddress
+          { can_be_hidden = can_be_hidden_
           }
   parseJSON _ = mempty
 
@@ -228,5 +245,12 @@ instance AT.ToJSON SuggestedAction where
         , "title"       A..= title_
         , "description" A..= description_
         , "url"         A..= url_
+        ]
+  toJSON SuggestedActionSetLoginEmailAddress
+    { can_be_hidden = can_be_hidden_
+    }
+      = A.object
+        [ "@type"         A..= AT.String "suggestedActionSetLoginEmailAddress"
+        , "can_be_hidden" A..= can_be_hidden_
         ]
 

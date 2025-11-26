@@ -24,11 +24,12 @@ data Story
     , is_edited                         :: Maybe Bool                                      -- ^ True, if the story was edited
     , is_posted_to_chat_page            :: Maybe Bool                                      -- ^ True, if the story is saved in the profile of the chat that posted it and will be available there after expiration
     , is_visible_only_for_self          :: Maybe Bool                                      -- ^ True, if the story is visible only for the current user
-    , can_be_added_to_album             :: Maybe Bool                                      -- ^ True, if the story can be added to an album
+    , can_be_added_to_album             :: Maybe Bool                                      -- ^ True, if the story can be added to an album using createStoryAlbum and addStoryAlbumStories
     , can_be_deleted                    :: Maybe Bool                                      -- ^ True, if the story can be deleted
     , can_be_edited                     :: Maybe Bool                                      -- ^ True, if the story can be edited
     , can_be_forwarded                  :: Maybe Bool                                      -- ^ True, if the story can be forwarded as a message or reposted as a story. Otherwise, screenshotting and saving of the story content must be also forbidden
     , can_be_replied                    :: Maybe Bool                                      -- ^ True, if the story can be replied in the chat with the user that posted the story
+    , can_set_privacy_settings          :: Maybe Bool                                      -- ^ True, if the story privacy settings can be changed
     , can_toggle_is_posted_to_chat_page :: Maybe Bool                                      -- ^ True, if the story's is_posted_to_chat_page value can be changed
     , can_get_statistics                :: Maybe Bool                                      -- ^ True, if the story statistics are available through getStoryStatistics
     , can_get_interactions              :: Maybe Bool                                      -- ^ True, if interactions with the story can be received through getStoryInteractions
@@ -60,6 +61,7 @@ instance I.ShortShow Story where
     , can_be_edited                     = can_be_edited_
     , can_be_forwarded                  = can_be_forwarded_
     , can_be_replied                    = can_be_replied_
+    , can_set_privacy_settings          = can_set_privacy_settings_
     , can_toggle_is_posted_to_chat_page = can_toggle_is_posted_to_chat_page_
     , can_get_statistics                = can_get_statistics_
     , can_get_interactions              = can_get_interactions_
@@ -89,6 +91,7 @@ instance I.ShortShow Story where
         , "can_be_edited"                     `I.p` can_be_edited_
         , "can_be_forwarded"                  `I.p` can_be_forwarded_
         , "can_be_replied"                    `I.p` can_be_replied_
+        , "can_set_privacy_settings"          `I.p` can_set_privacy_settings_
         , "can_toggle_is_posted_to_chat_page" `I.p` can_toggle_is_posted_to_chat_page_
         , "can_get_statistics"                `I.p` can_get_statistics_
         , "can_get_interactions"              `I.p` can_get_interactions_
@@ -128,6 +131,7 @@ instance AT.FromJSON Story where
         can_be_edited_                     <- o A..:?  "can_be_edited"
         can_be_forwarded_                  <- o A..:?  "can_be_forwarded"
         can_be_replied_                    <- o A..:?  "can_be_replied"
+        can_set_privacy_settings_          <- o A..:?  "can_set_privacy_settings"
         can_toggle_is_posted_to_chat_page_ <- o A..:?  "can_toggle_is_posted_to_chat_page"
         can_get_statistics_                <- o A..:?  "can_get_statistics"
         can_get_interactions_              <- o A..:?  "can_get_interactions"
@@ -155,6 +159,7 @@ instance AT.FromJSON Story where
           , can_be_edited                     = can_be_edited_
           , can_be_forwarded                  = can_be_forwarded_
           , can_be_replied                    = can_be_replied_
+          , can_set_privacy_settings          = can_set_privacy_settings_
           , can_toggle_is_posted_to_chat_page = can_toggle_is_posted_to_chat_page_
           , can_get_statistics                = can_get_statistics_
           , can_get_interactions              = can_get_interactions_

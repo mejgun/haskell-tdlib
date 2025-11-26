@@ -12,7 +12,7 @@ data AddStoryAlbumStories
   = AddStoryAlbumStories
     { chat_id        :: Maybe Int   -- ^ Identifier of the chat that owns the stories
     , story_album_id :: Maybe Int   -- ^ Identifier of the story album
-    , story_ids      :: Maybe [Int] -- ^ Identifier of the stories to add to the album; 1-getOption("story_album_story_count_max") identifiers. If after addition the album has more than getOption("story_album_story_count_max") stories, then the last one are removed from the album
+    , story_ids      :: Maybe [Int] -- ^ Identifier of the stories to add to the album; 1-getOption("story_album_size_max") identifiers. If after addition the album has more than getOption("story_album_size_max") stories, then the last one are removed from the album
     }
   deriving (Eq, Show)
 

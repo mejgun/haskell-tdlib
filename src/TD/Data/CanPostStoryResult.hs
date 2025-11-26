@@ -19,6 +19,9 @@ data CanPostStoryResult
   | CanPostStoryResultMonthlyLimitExceeded -- ^ The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
     { retry_after :: Maybe Int -- ^ Time left before the user can post the next story
     }
+  | CanPostStoryResultLiveStoryIsActive -- ^ The user or the chat has an active live story. The live story must be deleted first
+    { story_id :: Maybe Int -- ^ Identifier of the active live story
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow CanPostStoryResult where
@@ -49,6 +52,13 @@ instance I.ShortShow CanPostStoryResult where
         ++ I.cc
         [ "retry_after" `I.p` retry_after_
         ]
+  shortShow CanPostStoryResultLiveStoryIsActive
+    { story_id = story_id_
+    }
+      = "CanPostStoryResultLiveStoryIsActive"
+        ++ I.cc
+        [ "story_id" `I.p` story_id_
+        ]
 
 instance AT.FromJSON CanPostStoryResult where
   parseJSON v@(AT.Object obj) = do
@@ -61,6 +71,7 @@ instance AT.FromJSON CanPostStoryResult where
       "canPostStoryResultActiveStoryLimitExceeded" -> pure CanPostStoryResultActiveStoryLimitExceeded
       "canPostStoryResultWeeklyLimitExceeded"      -> parseCanPostStoryResultWeeklyLimitExceeded v
       "canPostStoryResultMonthlyLimitExceeded"     -> parseCanPostStoryResultMonthlyLimitExceeded v
+      "canPostStoryResultLiveStoryIsActive"        -> parseCanPostStoryResultLiveStoryIsActive v
       _                                            -> mempty
     
     where
@@ -81,6 +92,12 @@ instance AT.FromJSON CanPostStoryResult where
         retry_after_ <- o A..:?  "retry_after"
         pure $ CanPostStoryResultMonthlyLimitExceeded
           { retry_after = retry_after_
+          }
+      parseCanPostStoryResultLiveStoryIsActive :: A.Value -> AT.Parser CanPostStoryResult
+      parseCanPostStoryResultLiveStoryIsActive = A.withObject "CanPostStoryResultLiveStoryIsActive" $ \o -> do
+        story_id_ <- o A..:?  "story_id"
+        pure $ CanPostStoryResultLiveStoryIsActive
+          { story_id = story_id_
           }
   parseJSON _ = mempty
 

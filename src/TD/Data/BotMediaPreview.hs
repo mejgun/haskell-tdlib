@@ -9,7 +9,7 @@ import qualified TD.Data.StoryContent as StoryContent
 data BotMediaPreview
   = BotMediaPreview -- ^ Describes media previews of a bot
     { date    :: Maybe Int                       -- ^ Point in time (Unix timestamp) when the preview was added or changed last time
-    , content :: Maybe StoryContent.StoryContent -- ^ Content of the preview
+    , content :: Maybe StoryContent.StoryContent -- ^ Content of the preview; may only be of the types storyContentPhoto, storyContentVideo, or storyContentUnsupported
     }
   deriving (Eq, Show)
 

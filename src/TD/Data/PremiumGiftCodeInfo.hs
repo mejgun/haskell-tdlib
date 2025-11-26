@@ -12,7 +12,8 @@ data PremiumGiftCodeInfo
     , creation_date       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the code was created
     , is_from_giveaway    :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
     , giveaway_message_id :: Maybe Int                         -- ^ Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
-    , month_count         :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation
+    , month_count         :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
+    , day_count           :: Maybe Int                         -- ^ Number of days the Telegram Premium subscription will be active after code activation
     , user_id             :: Maybe Int                         -- ^ Identifier of a user for which the code was created; 0 if none
     , use_date            :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the code was activated; 0 if none
     }
@@ -25,6 +26,7 @@ instance I.ShortShow PremiumGiftCodeInfo where
     , is_from_giveaway    = is_from_giveaway_
     , giveaway_message_id = giveaway_message_id_
     , month_count         = month_count_
+    , day_count           = day_count_
     , user_id             = user_id_
     , use_date            = use_date_
     }
@@ -35,6 +37,7 @@ instance I.ShortShow PremiumGiftCodeInfo where
         , "is_from_giveaway"    `I.p` is_from_giveaway_
         , "giveaway_message_id" `I.p` giveaway_message_id_
         , "month_count"         `I.p` month_count_
+        , "day_count"           `I.p` day_count_
         , "user_id"             `I.p` user_id_
         , "use_date"            `I.p` use_date_
         ]
@@ -55,6 +58,7 @@ instance AT.FromJSON PremiumGiftCodeInfo where
         is_from_giveaway_    <- o A..:?  "is_from_giveaway"
         giveaway_message_id_ <- o A..:?  "giveaway_message_id"
         month_count_         <- o A..:?  "month_count"
+        day_count_           <- o A..:?  "day_count"
         user_id_             <- o A..:?  "user_id"
         use_date_            <- o A..:?  "use_date"
         pure $ PremiumGiftCodeInfo
@@ -63,6 +67,7 @@ instance AT.FromJSON PremiumGiftCodeInfo where
           , is_from_giveaway    = is_from_giveaway_
           , giveaway_message_id = giveaway_message_id_
           , month_count         = month_count_
+          , day_count           = day_count_
           , user_id             = user_id_
           , use_date            = use_date_
           }

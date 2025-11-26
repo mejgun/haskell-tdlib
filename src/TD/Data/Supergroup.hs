@@ -8,6 +8,7 @@ import qualified TD.Data.Usernames as Usernames
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.VerificationStatus as VerificationStatus
 import qualified TD.Data.RestrictionInfo as RestrictionInfo
+import qualified TD.Data.ActiveStoryState as ActiveStoryState
 
 data Supergroup
   = Supergroup -- ^ Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
@@ -35,8 +36,7 @@ data Supergroup
     , has_forum_tabs                        :: Maybe Bool                                  -- ^ True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
     , restriction_info                      :: Maybe RestrictionInfo.RestrictionInfo       -- ^ Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none
     , paid_message_star_count               :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
-    , has_active_stories                    :: Maybe Bool                                  -- ^ True, if the supergroup or channel has non-expired stories available to the current user
-    , has_unread_active_stories             :: Maybe Bool                                  -- ^ True, if the supergroup or channel has unread non-expired stories available to the current user
+    , active_story_state                    :: Maybe ActiveStoryState.ActiveStoryState     -- ^ State of active stories of the supergroup or channel; may be null if there are no active stories
     }
   deriving (Eq, Show)
 
@@ -66,8 +66,7 @@ instance I.ShortShow Supergroup where
     , has_forum_tabs                        = has_forum_tabs_
     , restriction_info                      = restriction_info_
     , paid_message_star_count               = paid_message_star_count_
-    , has_active_stories                    = has_active_stories_
-    , has_unread_active_stories             = has_unread_active_stories_
+    , active_story_state                    = active_story_state_
     }
       = "Supergroup"
         ++ I.cc
@@ -95,8 +94,7 @@ instance I.ShortShow Supergroup where
         , "has_forum_tabs"                        `I.p` has_forum_tabs_
         , "restriction_info"                      `I.p` restriction_info_
         , "paid_message_star_count"               `I.p` paid_message_star_count_
-        , "has_active_stories"                    `I.p` has_active_stories_
-        , "has_unread_active_stories"             `I.p` has_unread_active_stories_
+        , "active_story_state"                    `I.p` active_story_state_
         ]
 
 instance AT.FromJSON Supergroup where
@@ -134,8 +132,7 @@ instance AT.FromJSON Supergroup where
         has_forum_tabs_                        <- o A..:?  "has_forum_tabs"
         restriction_info_                      <- o A..:?  "restriction_info"
         paid_message_star_count_               <- o A..:?  "paid_message_star_count"
-        has_active_stories_                    <- o A..:?  "has_active_stories"
-        has_unread_active_stories_             <- o A..:?  "has_unread_active_stories"
+        active_story_state_                    <- o A..:?  "active_story_state"
         pure $ Supergroup
           { _id                                   = _id_
           , usernames                             = usernames_
@@ -161,8 +158,7 @@ instance AT.FromJSON Supergroup where
           , has_forum_tabs                        = has_forum_tabs_
           , restriction_info                      = restriction_info_
           , paid_message_star_count               = paid_message_star_count_
-          , has_active_stories                    = has_active_stories_
-          , has_unread_active_stories             = has_unread_active_stories_
+          , active_story_state                    = active_story_state_
           }
   parseJSON _ = mempty
 

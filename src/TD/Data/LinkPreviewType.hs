@@ -94,6 +94,10 @@ data LinkPreviewType
     }
   | LinkPreviewTypeGroupCall -- ^ The link is a link to a group call that isn't bound to a chat
   | LinkPreviewTypeInvoice -- ^ The link is a link to an invoice
+  | LinkPreviewTypeLiveStory -- ^ The link is a link to a live story group call
+    { story_poster_chat_id :: Maybe Int -- ^ The identifier of the chat that posted the story
+    , story_id             :: Maybe Int -- ^ Story identifier
+    }
   | LinkPreviewTypeMessage -- ^ The link is a link to a text or a poll Telegram message
   | LinkPreviewTypePhoto -- ^ The link is a link to a photo
     { photo :: Maybe Photo.Photo -- ^ The photo
@@ -311,6 +315,15 @@ instance I.ShortShow LinkPreviewType where
       = "LinkPreviewTypeGroupCall"
   shortShow LinkPreviewTypeInvoice
       = "LinkPreviewTypeInvoice"
+  shortShow LinkPreviewTypeLiveStory
+    { story_poster_chat_id = story_poster_chat_id_
+    , story_id             = story_id_
+    }
+      = "LinkPreviewTypeLiveStory"
+        ++ I.cc
+        [ "story_poster_chat_id" `I.p` story_poster_chat_id_
+        , "story_id"             `I.p` story_id_
+        ]
   shortShow LinkPreviewTypeMessage
       = "LinkPreviewTypeMessage"
   shortShow LinkPreviewTypePhoto
@@ -457,6 +470,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeGiftCollection"          -> parseLinkPreviewTypeGiftCollection v
       "linkPreviewTypeGroupCall"               -> pure LinkPreviewTypeGroupCall
       "linkPreviewTypeInvoice"                 -> pure LinkPreviewTypeInvoice
+      "linkPreviewTypeLiveStory"               -> parseLinkPreviewTypeLiveStory v
       "linkPreviewTypeMessage"                 -> pure LinkPreviewTypeMessage
       "linkPreviewTypePhoto"                   -> parseLinkPreviewTypePhoto v
       "linkPreviewTypePremiumGiftCode"         -> pure LinkPreviewTypePremiumGiftCode
@@ -617,6 +631,14 @@ instance AT.FromJSON LinkPreviewType where
         icons_ <- o A..:?  "icons"
         pure $ LinkPreviewTypeGiftCollection
           { icons = icons_
+          }
+      parseLinkPreviewTypeLiveStory :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeLiveStory = A.withObject "LinkPreviewTypeLiveStory" $ \o -> do
+        story_poster_chat_id_ <- o A..:?  "story_poster_chat_id"
+        story_id_             <- o A..:?  "story_id"
+        pure $ LinkPreviewTypeLiveStory
+          { story_poster_chat_id = story_poster_chat_id_
+          , story_id             = story_id_
           }
       parseLinkPreviewTypePhoto :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypePhoto = A.withObject "LinkPreviewTypePhoto" $ \o -> do

@@ -61,6 +61,8 @@ import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
 import qualified TD.Data.Call as Call
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
+import qualified TD.Data.GroupCallMessage as GroupCallMessage
+import qualified TD.Data.LiveStoryDonors as LiveStoryDonors
 import qualified Data.ByteString as BS
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
@@ -89,6 +91,7 @@ import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
 import qualified TD.Data.TonRevenueStatus as TonRevenueStatus
+import qualified TD.Data.GroupCallMessageLevel as GroupCallMessageLevel
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
@@ -369,6 +372,7 @@ data Update
     , unread_mention_count        :: Maybe Int                                               -- ^ Number of unread messages with a mention/reply in the topic
     , unread_reaction_count       :: Maybe Int                                               -- ^ Number of messages with unread reactions in the topic
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
+    , draft_message               :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the topic; may be null if none
     }
   | UpdateScopeNotificationSettings -- ^ Notification settings for some type of chats were updated
     { scope                  :: Maybe NotificationSettingsScope.NotificationSettingsScope -- ^ Types of chats for which notification settings were updated
@@ -508,10 +512,27 @@ data Update
     , generation    :: Maybe Int      -- ^ The call state generation to which the emoji corresponds. If generation is different for two users, then their emoji may be also different
     , emojis        :: Maybe [T.Text] -- ^ Group call state fingerprint represented as 4 emoji; may be empty if the state isn't verified yet
     }
-  | UpdateGroupCallNewMessage -- ^ A new message was received in a group call. It must be shown for at most getOption("group_call_message_show_time_max") seconds after receiving
+  | UpdateNewGroupCallMessage -- ^ A new message was received in a group call
+    { group_call_id :: Maybe Int                               -- ^ Identifier of the group call
+    , _message      :: Maybe GroupCallMessage.GroupCallMessage -- ^ The message
+    }
+  | UpdateNewGroupCallPaidReaction -- ^ A new paid reaction was received in a live story group call
     { group_call_id :: Maybe Int                         -- ^ Identifier of the group call
-    , sender_id     :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
-    , text          :: Maybe FormattedText.FormattedText -- ^ Text of the message
+    , sender_id     :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the reaction
+    , star_count    :: Maybe Int                         -- ^ The number of Telegram Stars that were paid to send the reaction
+    }
+  | UpdateGroupCallMessageSendFailed -- ^ A group call message failed to send
+    { group_call_id :: Maybe Int         -- ^ Identifier of the group call
+    , _message_id   :: Maybe Int         -- ^ Message identifier
+    , _error        :: Maybe Error.Error -- ^ The cause of the message sending failure
+    }
+  | UpdateGroupCallMessagesDeleted -- ^ Some group call messages were deleted
+    { group_call_id :: Maybe Int   -- ^ Identifier of the group call
+    , _message_ids  :: Maybe [Int] -- ^ Identifiers of the deleted messages
+    }
+  | UpdateLiveStoryTopDonors -- ^ The list of top donors in live story group call has changed
+    { group_call_id :: Maybe Int                             -- ^ Identifier of the group call
+    , donors        :: Maybe LiveStoryDonors.LiveStoryDonors -- ^ New list of live story donors
     }
   | UpdateNewCallSignalingData -- ^ New call signaling data arrived
     { call_id :: Maybe Int           -- ^ The call identifier
@@ -560,6 +581,9 @@ data Update
   | UpdateStoryStealthMode -- ^ Story stealth mode settings have changed
     { active_until_date   :: Maybe Int -- ^ Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
     , cooldown_until_date :: Maybe Int -- ^ Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
+    }
+  | UpdateTrustedMiniAppBots -- ^ Lists of bots which Mini Apps must be allowed to read text from clipboard and must be opened without a warning
+    { bot_user_ids :: Maybe [Int] -- ^ List of user identifiers of the bots; the corresponding users may not be sent using updateUser updates and may not be accessible
     }
   | UpdateOption -- ^ An option changed its value
     { name  :: Maybe T.Text                  -- ^ The option name
@@ -677,6 +701,9 @@ data Update
     , left_count         :: Maybe Int -- ^ Number of left speech recognition attempts this week
     , next_reset_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
     }
+  | UpdateGroupCallMessageLevels -- ^ The levels of live story group call messages have changed
+    { levels :: Maybe [GroupCallMessageLevel.GroupCallMessageLevel] -- ^ New description of the levels in decreasing order of groupCallMessageLevel.min_star_count
+    }
   | UpdateDiceEmojis -- ^ The list of supported dice emojis has changed
     { emojis :: Maybe [T.Text] -- ^ The new list of supported dice emojis
     }
@@ -708,11 +735,11 @@ data Update
     }
   | UpdateNewBusinessMessage -- ^ A new message was added to a business account; for bots only
     { connection_id :: Maybe T.Text                          -- ^ Unique identifier of the business connection
-    , _message      :: Maybe BusinessMessage.BusinessMessage -- ^ The new message
+    , __message     :: Maybe BusinessMessage.BusinessMessage -- ^ The new message
     }
   | UpdateBusinessMessageEdited -- ^ A message in a business account was edited; for bots only
     { connection_id :: Maybe T.Text                          -- ^ Unique identifier of the business connection
-    , _message      :: Maybe BusinessMessage.BusinessMessage -- ^ The edited message
+    , __message     :: Maybe BusinessMessage.BusinessMessage -- ^ The edited message
     }
   | UpdateBusinessMessagesDeleted -- ^ Messages in a business account were deleted; for bots only
     { connection_id :: Maybe T.Text -- ^ Unique identifier of the business connection
@@ -753,7 +780,7 @@ data Update
     { _id            :: Maybe Int                                       -- ^ Unique query identifier
     , sender_user_id :: Maybe Int                                       -- ^ Identifier of the user who sent the query
     , connection_id  :: Maybe T.Text                                    -- ^ Unique identifier of the business connection
-    , _message       :: Maybe BusinessMessage.BusinessMessage           -- ^ The message from the business account from which the query originated
+    , __message      :: Maybe BusinessMessage.BusinessMessage           -- ^ The message from the business account from which the query originated
     , chat_instance  :: Maybe Int                                       -- ^ An identifier uniquely corresponding to the chat a message was sent to
     , payload        :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
     }
@@ -1398,6 +1425,7 @@ instance I.ShortShow Update where
     , unread_mention_count        = unread_mention_count_
     , unread_reaction_count       = unread_reaction_count_
     , notification_settings       = notification_settings_
+    , draft_message               = draft_message_
     }
       = "UpdateForumTopic"
         ++ I.cc
@@ -1409,6 +1437,7 @@ instance I.ShortShow Update where
         , "unread_mention_count"        `I.p` unread_mention_count_
         , "unread_reaction_count"       `I.p` unread_reaction_count_
         , "notification_settings"       `I.p` notification_settings_
+        , "draft_message"               `I.p` draft_message_
         ]
   shortShow UpdateScopeNotificationSettings
     { scope                  = scope_
@@ -1718,16 +1747,54 @@ instance I.ShortShow Update where
         , "generation"    `I.p` generation_
         , "emojis"        `I.p` emojis_
         ]
-  shortShow UpdateGroupCallNewMessage
+  shortShow UpdateNewGroupCallMessage
+    { group_call_id = group_call_id_
+    , _message      = _message_
+    }
+      = "UpdateNewGroupCallMessage"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "_message"      `I.p` _message_
+        ]
+  shortShow UpdateNewGroupCallPaidReaction
     { group_call_id = group_call_id_
     , sender_id     = sender_id_
-    , text          = text_
+    , star_count    = star_count_
     }
-      = "UpdateGroupCallNewMessage"
+      = "UpdateNewGroupCallPaidReaction"
         ++ I.cc
         [ "group_call_id" `I.p` group_call_id_
         , "sender_id"     `I.p` sender_id_
-        , "text"          `I.p` text_
+        , "star_count"    `I.p` star_count_
+        ]
+  shortShow UpdateGroupCallMessageSendFailed
+    { group_call_id = group_call_id_
+    , _message_id   = _message_id_
+    , _error        = _error_
+    }
+      = "UpdateGroupCallMessageSendFailed"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "_message_id"   `I.p` _message_id_
+        , "_error"        `I.p` _error_
+        ]
+  shortShow UpdateGroupCallMessagesDeleted
+    { group_call_id = group_call_id_
+    , _message_ids  = _message_ids_
+    }
+      = "UpdateGroupCallMessagesDeleted"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "_message_ids"  `I.p` _message_ids_
+        ]
+  shortShow UpdateLiveStoryTopDonors
+    { group_call_id = group_call_id_
+    , donors        = donors_
+    }
+      = "UpdateLiveStoryTopDonors"
+        ++ I.cc
+        [ "group_call_id" `I.p` group_call_id_
+        , "donors"        `I.p` donors_
         ]
   shortShow UpdateNewCallSignalingData
     { call_id = call_id_
@@ -1835,6 +1902,13 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "active_until_date"   `I.p` active_until_date_
         , "cooldown_until_date" `I.p` cooldown_until_date_
+        ]
+  shortShow UpdateTrustedMiniAppBots
+    { bot_user_ids = bot_user_ids_
+    }
+      = "UpdateTrustedMiniAppBots"
+        ++ I.cc
+        [ "bot_user_ids" `I.p` bot_user_ids_
         ]
   shortShow UpdateOption
     { name  = name_
@@ -2100,6 +2174,13 @@ instance I.ShortShow Update where
         , "left_count"         `I.p` left_count_
         , "next_reset_date"    `I.p` next_reset_date_
         ]
+  shortShow UpdateGroupCallMessageLevels
+    { levels = levels_
+    }
+      = "UpdateGroupCallMessageLevels"
+        ++ I.cc
+        [ "levels" `I.p` levels_
+        ]
   shortShow UpdateDiceEmojis
     { emojis = emojis_
     }
@@ -2168,21 +2249,21 @@ instance I.ShortShow Update where
         ]
   shortShow UpdateNewBusinessMessage
     { connection_id = connection_id_
-    , _message      = _message_
+    , __message     = __message_
     }
       = "UpdateNewBusinessMessage"
         ++ I.cc
         [ "connection_id" `I.p` connection_id_
-        , "_message"      `I.p` _message_
+        , "__message"     `I.p` __message_
         ]
   shortShow UpdateBusinessMessageEdited
     { connection_id = connection_id_
-    , _message      = _message_
+    , __message     = __message_
     }
       = "UpdateBusinessMessageEdited"
         ++ I.cc
         [ "connection_id" `I.p` connection_id_
-        , "_message"      `I.p` _message_
+        , "__message"     `I.p` __message_
         ]
   shortShow UpdateBusinessMessagesDeleted
     { connection_id = connection_id_
@@ -2263,7 +2344,7 @@ instance I.ShortShow Update where
     { _id            = _id_
     , sender_user_id = sender_user_id_
     , connection_id  = connection_id_
-    , _message       = _message_
+    , __message      = __message_
     , chat_instance  = chat_instance_
     , payload        = payload_
     }
@@ -2272,7 +2353,7 @@ instance I.ShortShow Update where
         [ "_id"            `I.p` _id_
         , "sender_user_id" `I.p` sender_user_id_
         , "connection_id"  `I.p` connection_id_
-        , "_message"       `I.p` _message_
+        , "__message"      `I.p` __message_
         , "chat_instance"  `I.p` chat_instance_
         , "payload"        `I.p` payload_
         ]
@@ -2525,7 +2606,11 @@ instance AT.FromJSON Update where
       "updateGroupCallParticipant"                     -> parseUpdateGroupCallParticipant v
       "updateGroupCallParticipants"                    -> parseUpdateGroupCallParticipants v
       "updateGroupCallVerificationState"               -> parseUpdateGroupCallVerificationState v
-      "updateGroupCallNewMessage"                      -> parseUpdateGroupCallNewMessage v
+      "updateNewGroupCallMessage"                      -> parseUpdateNewGroupCallMessage v
+      "updateNewGroupCallPaidReaction"                 -> parseUpdateNewGroupCallPaidReaction v
+      "updateGroupCallMessageSendFailed"               -> parseUpdateGroupCallMessageSendFailed v
+      "updateGroupCallMessagesDeleted"                 -> parseUpdateGroupCallMessagesDeleted v
+      "updateLiveStoryTopDonors"                       -> parseUpdateLiveStoryTopDonors v
       "updateNewCallSignalingData"                     -> parseUpdateNewCallSignalingData v
       "updateUserPrivacySettingRules"                  -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount"                       -> parseUpdateUnreadMessageCount v
@@ -2537,6 +2622,7 @@ instance AT.FromJSON Update where
       "updateChatActiveStories"                        -> parseUpdateChatActiveStories v
       "updateStoryListChatCount"                       -> parseUpdateStoryListChatCount v
       "updateStoryStealthMode"                         -> parseUpdateStoryStealthMode v
+      "updateTrustedMiniAppBots"                       -> parseUpdateTrustedMiniAppBots v
       "updateOption"                                   -> parseUpdateOption v
       "updateStickerSet"                               -> parseUpdateStickerSet v
       "updateInstalledStickerSets"                     -> parseUpdateInstalledStickerSets v
@@ -2569,6 +2655,7 @@ instance AT.FromJSON Update where
       "updateStarRevenueStatus"                        -> parseUpdateStarRevenueStatus v
       "updateTonRevenueStatus"                         -> parseUpdateTonRevenueStatus v
       "updateSpeechRecognitionTrial"                   -> parseUpdateSpeechRecognitionTrial v
+      "updateGroupCallMessageLevels"                   -> parseUpdateGroupCallMessageLevels v
       "updateDiceEmojis"                               -> parseUpdateDiceEmojis v
       "updateAnimatedEmojiMessageClicked"              -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"                -> parseUpdateAnimationSearchParameters v
@@ -3110,6 +3197,7 @@ instance AT.FromJSON Update where
         unread_mention_count_        <- o A..:?  "unread_mention_count"
         unread_reaction_count_       <- o A..:?  "unread_reaction_count"
         notification_settings_       <- o A..:?  "notification_settings"
+        draft_message_               <- o A..:?  "draft_message"
         pure $ UpdateForumTopic
           { chat_id                     = chat_id_
           , forum_topic_id              = forum_topic_id_
@@ -3119,6 +3207,7 @@ instance AT.FromJSON Update where
           , unread_mention_count        = unread_mention_count_
           , unread_reaction_count       = unread_reaction_count_
           , notification_settings       = notification_settings_
+          , draft_message               = draft_message_
           }
       parseUpdateScopeNotificationSettings :: A.Value -> AT.Parser Update
       parseUpdateScopeNotificationSettings = A.withObject "UpdateScopeNotificationSettings" $ \o -> do
@@ -3396,15 +3485,49 @@ instance AT.FromJSON Update where
           , generation    = generation_
           , emojis        = emojis_
           }
-      parseUpdateGroupCallNewMessage :: A.Value -> AT.Parser Update
-      parseUpdateGroupCallNewMessage = A.withObject "UpdateGroupCallNewMessage" $ \o -> do
+      parseUpdateNewGroupCallMessage :: A.Value -> AT.Parser Update
+      parseUpdateNewGroupCallMessage = A.withObject "UpdateNewGroupCallMessage" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        _message_      <- o A..:?  "message"
+        pure $ UpdateNewGroupCallMessage
+          { group_call_id = group_call_id_
+          , _message      = _message_
+          }
+      parseUpdateNewGroupCallPaidReaction :: A.Value -> AT.Parser Update
+      parseUpdateNewGroupCallPaidReaction = A.withObject "UpdateNewGroupCallPaidReaction" $ \o -> do
         group_call_id_ <- o A..:?  "group_call_id"
         sender_id_     <- o A..:?  "sender_id"
-        text_          <- o A..:?  "text"
-        pure $ UpdateGroupCallNewMessage
+        star_count_    <- o A..:?  "star_count"
+        pure $ UpdateNewGroupCallPaidReaction
           { group_call_id = group_call_id_
           , sender_id     = sender_id_
-          , text          = text_
+          , star_count    = star_count_
+          }
+      parseUpdateGroupCallMessageSendFailed :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallMessageSendFailed = A.withObject "UpdateGroupCallMessageSendFailed" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        _message_id_   <- o A..:?  "message_id"
+        _error_        <- o A..:?  "error"
+        pure $ UpdateGroupCallMessageSendFailed
+          { group_call_id = group_call_id_
+          , _message_id   = _message_id_
+          , _error        = _error_
+          }
+      parseUpdateGroupCallMessagesDeleted :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallMessagesDeleted = A.withObject "UpdateGroupCallMessagesDeleted" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        _message_ids_  <- o A..:?  "message_ids"
+        pure $ UpdateGroupCallMessagesDeleted
+          { group_call_id = group_call_id_
+          , _message_ids  = _message_ids_
+          }
+      parseUpdateLiveStoryTopDonors :: A.Value -> AT.Parser Update
+      parseUpdateLiveStoryTopDonors = A.withObject "UpdateLiveStoryTopDonors" $ \o -> do
+        group_call_id_ <- o A..:?  "group_call_id"
+        donors_        <- o A..:?  "donors"
+        pure $ UpdateLiveStoryTopDonors
+          { group_call_id = group_call_id_
+          , donors        = donors_
           }
       parseUpdateNewCallSignalingData :: A.Value -> AT.Parser Update
       parseUpdateNewCallSignalingData = A.withObject "UpdateNewCallSignalingData" $ \o -> do
@@ -3501,6 +3624,12 @@ instance AT.FromJSON Update where
         pure $ UpdateStoryStealthMode
           { active_until_date   = active_until_date_
           , cooldown_until_date = cooldown_until_date_
+          }
+      parseUpdateTrustedMiniAppBots :: A.Value -> AT.Parser Update
+      parseUpdateTrustedMiniAppBots = A.withObject "UpdateTrustedMiniAppBots" $ \o -> do
+        bot_user_ids_ <- o A..:?  "bot_user_ids"
+        pure $ UpdateTrustedMiniAppBots
+          { bot_user_ids = bot_user_ids_
           }
       parseUpdateOption :: A.Value -> AT.Parser Update
       parseUpdateOption = A.withObject "UpdateOption" $ \o -> do
@@ -3734,6 +3863,12 @@ instance AT.FromJSON Update where
           , left_count         = left_count_
           , next_reset_date    = next_reset_date_
           }
+      parseUpdateGroupCallMessageLevels :: A.Value -> AT.Parser Update
+      parseUpdateGroupCallMessageLevels = A.withObject "UpdateGroupCallMessageLevels" $ \o -> do
+        levels_ <- o A..:?  "levels"
+        pure $ UpdateGroupCallMessageLevels
+          { levels = levels_
+          }
       parseUpdateDiceEmojis :: A.Value -> AT.Parser Update
       parseUpdateDiceEmojis = A.withObject "UpdateDiceEmojis" $ \o -> do
         emojis_ <- o A..:?  "emojis"
@@ -3795,18 +3930,18 @@ instance AT.FromJSON Update where
       parseUpdateNewBusinessMessage :: A.Value -> AT.Parser Update
       parseUpdateNewBusinessMessage = A.withObject "UpdateNewBusinessMessage" $ \o -> do
         connection_id_ <- o A..:?  "connection_id"
-        _message_      <- o A..:?  "message"
+        __message_     <- o A..:?  "message"
         pure $ UpdateNewBusinessMessage
           { connection_id = connection_id_
-          , _message      = _message_
+          , __message     = __message_
           }
       parseUpdateBusinessMessageEdited :: A.Value -> AT.Parser Update
       parseUpdateBusinessMessageEdited = A.withObject "UpdateBusinessMessageEdited" $ \o -> do
         connection_id_ <- o A..:?  "connection_id"
-        _message_      <- o A..:?  "message"
+        __message_     <- o A..:?  "message"
         pure $ UpdateBusinessMessageEdited
           { connection_id = connection_id_
-          , _message      = _message_
+          , __message     = __message_
           }
       parseUpdateBusinessMessagesDeleted :: A.Value -> AT.Parser Update
       parseUpdateBusinessMessagesDeleted = A.withObject "UpdateBusinessMessagesDeleted" $ \o -> do
@@ -3883,14 +4018,14 @@ instance AT.FromJSON Update where
         _id_            <- fmap I.readInt64 <$> o A..:?  "id"
         sender_user_id_ <- o A..:?                       "sender_user_id"
         connection_id_  <- o A..:?                       "connection_id"
-        _message_       <- o A..:?                       "message"
+        __message_      <- o A..:?                       "message"
         chat_instance_  <- fmap I.readInt64 <$> o A..:?  "chat_instance"
         payload_        <- o A..:?                       "payload"
         pure $ UpdateNewBusinessCallbackQuery
           { _id            = _id_
           , sender_user_id = sender_user_id_
           , connection_id  = connection_id_
-          , _message       = _message_
+          , __message      = __message_
           , chat_instance  = chat_instance_
           , payload        = payload_
           }

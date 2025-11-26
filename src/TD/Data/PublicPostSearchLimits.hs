@@ -43,11 +43,11 @@ instance AT.FromJSON PublicPostSearchLimits where
     where
       parsePublicPostSearchLimits :: A.Value -> AT.Parser PublicPostSearchLimits
       parsePublicPostSearchLimits = A.withObject "PublicPostSearchLimits" $ \o -> do
-        daily_free_query_count_     <- o A..:?                       "daily_free_query_count"
-        remaining_free_query_count_ <- o A..:?                       "remaining_free_query_count"
-        next_free_query_in_         <- o A..:?                       "next_free_query_in"
-        star_count_                 <- fmap I.readInt64 <$> o A..:?  "star_count"
-        is_current_query_free_      <- o A..:?                       "is_current_query_free"
+        daily_free_query_count_     <- o A..:?  "daily_free_query_count"
+        remaining_free_query_count_ <- o A..:?  "remaining_free_query_count"
+        next_free_query_in_         <- o A..:?  "next_free_query_in"
+        star_count_                 <- o A..:?  "star_count"
+        is_current_query_free_      <- o A..:?  "is_current_query_free"
         pure $ PublicPostSearchLimits
           { daily_free_query_count     = daily_free_query_count_
           , remaining_free_query_count = remaining_free_query_count_

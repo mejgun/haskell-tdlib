@@ -124,7 +124,9 @@ import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
 import qualified TD.Data.GroupCallInfo as GroupCallInfo
+import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
 import qualified TD.Data.GroupCallParticipants as GroupCallParticipants
+import qualified TD.Data.GroupCallStreams as GroupCallStreams
 import qualified TD.Data.Hashtags as Hashtags
 import qualified TD.Data.HttpUrl as HttpUrl
 import qualified TD.Data.ImportedContacts as ImportedContacts
@@ -136,6 +138,7 @@ import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
 import qualified TD.Data.LanguagePackStrings as LanguagePackStrings
 import qualified TD.Data.LinkPreview as LinkPreview
+import qualified TD.Data.LiveStoryDonors as LiveStoryDonors
 import qualified TD.Data.LocalizationTargetInfo as LocalizationTargetInfo
 import qualified TD.Data.LogStream as LogStream
 import qualified TD.Data.LogTags as LogTags
@@ -216,6 +219,7 @@ import qualified TD.Data.StarPaymentOptions as StarPaymentOptions
 import qualified TD.Data.StarRevenueStatistics as StarRevenueStatistics
 import qualified TD.Data.StarSubscriptions as StarSubscriptions
 import qualified TD.Data.StarTransactions as StarTransactions
+import qualified TD.Data.StartLiveStoryResult as StartLiveStoryResult
 import qualified TD.Data.StatisticalGraph as StatisticalGraph
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.StickerSet as StickerSet
@@ -258,7 +262,6 @@ import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
-import qualified TD.Data.VideoChatStreams as VideoChatStreams
 import qualified TD.Data.VideoMessageAdvertisements as VideoMessageAdvertisements
 import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
@@ -384,7 +387,9 @@ data GeneralResult
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
     | GroupCallInfo                      GroupCallInfo.GroupCallInfo
+    | GroupCallParticipant               GroupCallParticipant.GroupCallParticipant
     | GroupCallParticipants              GroupCallParticipants.GroupCallParticipants
+    | GroupCallStreams                   GroupCallStreams.GroupCallStreams
     | Hashtags                           Hashtags.Hashtags
     | HttpUrl                            HttpUrl.HttpUrl
     | ImportedContacts                   ImportedContacts.ImportedContacts
@@ -396,6 +401,7 @@ data GeneralResult
     | LanguagePackStringValue            LanguagePackStringValue.LanguagePackStringValue
     | LanguagePackStrings                LanguagePackStrings.LanguagePackStrings
     | LinkPreview                        LinkPreview.LinkPreview
+    | LiveStoryDonors                    LiveStoryDonors.LiveStoryDonors
     | LocalizationTargetInfo             LocalizationTargetInfo.LocalizationTargetInfo
     | LogStream                          LogStream.LogStream
     | LogTags                            LogTags.LogTags
@@ -476,6 +482,7 @@ data GeneralResult
     | StarRevenueStatistics              StarRevenueStatistics.StarRevenueStatistics
     | StarSubscriptions                  StarSubscriptions.StarSubscriptions
     | StarTransactions                   StarTransactions.StarTransactions
+    | StartLiveStoryResult               StartLiveStoryResult.StartLiveStoryResult
     | StatisticalGraph                   StatisticalGraph.StatisticalGraph
     | Sticker                            Sticker.Sticker
     | StickerSet                         StickerSet.StickerSet
@@ -518,7 +525,6 @@ data GeneralResult
     | UserSupportInfo                    UserSupportInfo.UserSupportInfo
     | Users                              Users.Users
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
-    | VideoChatStreams                   VideoChatStreams.VideoChatStreams
     | VideoMessageAdvertisements         VideoMessageAdvertisements.VideoMessageAdvertisements
     | WebAppInfo                         WebAppInfo.WebAppInfo
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
@@ -765,8 +771,12 @@ instance I.ShortShow GeneralResult where
     = "GroupCallId" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCallInfo v)
     = "GroupCallInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (GroupCallParticipant v)
+    = "GroupCallParticipant" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCallParticipants v)
     = "GroupCallParticipants" <> " (" <> I.shortShow v <> ")"
+  shortShow (GroupCallStreams v)
+    = "GroupCallStreams" <> " (" <> I.shortShow v <> ")"
   shortShow (Hashtags v)
     = "Hashtags" <> " (" <> I.shortShow v <> ")"
   shortShow (HttpUrl v)
@@ -789,6 +799,8 @@ instance I.ShortShow GeneralResult where
     = "LanguagePackStrings" <> " (" <> I.shortShow v <> ")"
   shortShow (LinkPreview v)
     = "LinkPreview" <> " (" <> I.shortShow v <> ")"
+  shortShow (LiveStoryDonors v)
+    = "LiveStoryDonors" <> " (" <> I.shortShow v <> ")"
   shortShow (LocalizationTargetInfo v)
     = "LocalizationTargetInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (LogStream v)
@@ -949,6 +961,8 @@ instance I.ShortShow GeneralResult where
     = "StarSubscriptions" <> " (" <> I.shortShow v <> ")"
   shortShow (StarTransactions v)
     = "StarTransactions" <> " (" <> I.shortShow v <> ")"
+  shortShow (StartLiveStoryResult v)
+    = "StartLiveStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (StatisticalGraph v)
     = "StatisticalGraph" <> " (" <> I.shortShow v <> ")"
   shortShow (Sticker v)
@@ -1033,8 +1047,6 @@ instance I.ShortShow GeneralResult where
     = "Users" <> " (" <> I.shortShow v <> ")"
   shortShow (ValidatedOrderInfo v)
     = "ValidatedOrderInfo" <> " (" <> I.shortShow v <> ")"
-  shortShow (VideoChatStreams v)
-    = "VideoChatStreams" <> " (" <> I.shortShow v <> ")"
   shortShow (VideoMessageAdvertisements v)
     = "VideoMessageAdvertisements" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
@@ -1164,7 +1176,9 @@ instance T.FromJSON GeneralResult where
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )
     <|> ( GroupCallInfo                       <$> parseJSON v )
+    <|> ( GroupCallParticipant                <$> parseJSON v )
     <|> ( GroupCallParticipants               <$> parseJSON v )
+    <|> ( GroupCallStreams                    <$> parseJSON v )
     <|> ( Hashtags                            <$> parseJSON v )
     <|> ( HttpUrl                             <$> parseJSON v )
     <|> ( ImportedContacts                    <$> parseJSON v )
@@ -1176,6 +1190,7 @@ instance T.FromJSON GeneralResult where
     <|> ( LanguagePackStringValue             <$> parseJSON v )
     <|> ( LanguagePackStrings                 <$> parseJSON v )
     <|> ( LinkPreview                         <$> parseJSON v )
+    <|> ( LiveStoryDonors                     <$> parseJSON v )
     <|> ( LocalizationTargetInfo              <$> parseJSON v )
     <|> ( LogStream                           <$> parseJSON v )
     <|> ( LogTags                             <$> parseJSON v )
@@ -1256,6 +1271,7 @@ instance T.FromJSON GeneralResult where
     <|> ( StarRevenueStatistics               <$> parseJSON v )
     <|> ( StarSubscriptions                   <$> parseJSON v )
     <|> ( StarTransactions                    <$> parseJSON v )
+    <|> ( StartLiveStoryResult                <$> parseJSON v )
     <|> ( StatisticalGraph                    <$> parseJSON v )
     <|> ( Sticker                             <$> parseJSON v )
     <|> ( StickerSet                          <$> parseJSON v )
@@ -1298,7 +1314,6 @@ instance T.FromJSON GeneralResult where
     <|> ( UserSupportInfo                     <$> parseJSON v )
     <|> ( Users                               <$> parseJSON v )
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
-    <|> ( VideoChatStreams                    <$> parseJSON v )
     <|> ( VideoMessageAdvertisements          <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )

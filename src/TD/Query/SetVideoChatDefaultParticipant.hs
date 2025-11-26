@@ -12,7 +12,7 @@ import qualified TD.Data.MessageSender as MessageSender
 data SetVideoChatDefaultParticipant
   = SetVideoChatDefaultParticipant
     { chat_id                :: Maybe Int                         -- ^ Chat identifier
-    , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chats
+    , default_participant_id :: Maybe MessageSender.MessageSender -- ^ Default group call participant identifier to join the video chats in the chat
     }
   deriving (Eq, Show)
 

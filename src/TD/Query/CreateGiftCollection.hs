@@ -14,7 +14,7 @@ data CreateGiftCollection
   = CreateGiftCollection
     { owner_id          :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that received the gifts
     , name              :: Maybe T.Text                      -- ^ Name of the collection; 1-12 characters
-    , received_gift_ids :: Maybe [T.Text]                    -- ^ Identifier of the gifts to add to the collection; 0-getOption("gift_collection_gift_count_max") identifiers
+    , received_gift_ids :: Maybe [T.Text]                    -- ^ Identifier of the gifts to add to the collection; 0-getOption("gift_collection_size_max") identifiers
     }
   deriving (Eq, Show)
 

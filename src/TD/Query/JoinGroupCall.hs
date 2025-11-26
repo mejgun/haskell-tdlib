@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputGroupCall as InputGroupCall
 import qualified TD.Data.GroupCallJoinParameters as GroupCallJoinParameters
 
--- | Joins a group call that is not bound to a chat. Returns 'TD.Data.GroupCallInfo.GroupCallInfo'
+-- | Joins a regular group call that is not bound to a chat. Returns 'TD.Data.GroupCallInfo.GroupCallInfo'
 data JoinGroupCall
   = JoinGroupCall
     { input_group_call :: Maybe InputGroupCall.InputGroupCall                   -- ^ The group call to join

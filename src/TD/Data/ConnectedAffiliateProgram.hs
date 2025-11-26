@@ -57,7 +57,7 @@ instance AT.FromJSON ConnectedAffiliateProgram where
         connection_date_    <- o A..:?                       "connection_date"
         is_disconnected_    <- o A..:?                       "is_disconnected"
         user_count_         <- fmap I.readInt64 <$> o A..:?  "user_count"
-        revenue_star_count_ <- fmap I.readInt64 <$> o A..:?  "revenue_star_count"
+        revenue_star_count_ <- o A..:?                       "revenue_star_count"
         pure $ ConnectedAffiliateProgram
           { url                = url_
           , bot_user_id        = bot_user_id_

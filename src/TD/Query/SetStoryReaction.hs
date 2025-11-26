@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionType as ReactionType
 
--- | Changes chosen reaction on a story that has already been sent. Returns 'TD.Data.Ok.Ok'
+-- | Changes chosen reaction on a story that has already been sent; not supported for live stories. Returns 'TD.Data.Ok.Ok'
 data SetStoryReaction
   = SetStoryReaction
     { story_poster_chat_id    :: Maybe Int                       -- ^ The identifier of the poster of the story

@@ -12,6 +12,7 @@ import qualified TD.Data.UpgradedGiftColors as UpgradedGiftColors
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.VerificationStatus as VerificationStatus
 import qualified TD.Data.RestrictionInfo as RestrictionInfo
+import qualified TD.Data.ActiveStoryState as ActiveStoryState
 import qualified TD.Data.UserType as UserType
 
 data User
@@ -36,8 +37,7 @@ data User
     , is_premium                         :: Maybe Bool                                  -- ^ True, if the user is a Telegram Premium user
     , is_support                         :: Maybe Bool                                  -- ^ True, if the user is Telegram support account
     , restriction_info                   :: Maybe RestrictionInfo.RestrictionInfo       -- ^ Information about restrictions that must be applied to the corresponding private chat; may be null if none
-    , has_active_stories                 :: Maybe Bool                                  -- ^ True, if the user has non-expired stories available to the current user
-    , has_unread_active_stories          :: Maybe Bool                                  -- ^ True, if the user has unread non-expired stories available to the current user
+    , active_story_state                 :: Maybe ActiveStoryState.ActiveStoryState     -- ^ State of active stories of the user; may be null if the user has no active stories
     , restricts_new_chats                :: Maybe Bool                                  -- ^ True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
     , paid_message_star_count            :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
     , have_access                        :: Maybe Bool                                  -- ^ If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
@@ -69,8 +69,7 @@ instance I.ShortShow User where
     , is_premium                         = is_premium_
     , is_support                         = is_support_
     , restriction_info                   = restriction_info_
-    , has_active_stories                 = has_active_stories_
-    , has_unread_active_stories          = has_unread_active_stories_
+    , active_story_state                 = active_story_state_
     , restricts_new_chats                = restricts_new_chats_
     , paid_message_star_count            = paid_message_star_count_
     , have_access                        = have_access_
@@ -100,8 +99,7 @@ instance I.ShortShow User where
         , "is_premium"                         `I.p` is_premium_
         , "is_support"                         `I.p` is_support_
         , "restriction_info"                   `I.p` restriction_info_
-        , "has_active_stories"                 `I.p` has_active_stories_
-        , "has_unread_active_stories"          `I.p` has_unread_active_stories_
+        , "active_story_state"                 `I.p` active_story_state_
         , "restricts_new_chats"                `I.p` restricts_new_chats_
         , "paid_message_star_count"            `I.p` paid_message_star_count_
         , "have_access"                        `I.p` have_access_
@@ -141,8 +139,7 @@ instance AT.FromJSON User where
         is_premium_                         <- o A..:?                       "is_premium"
         is_support_                         <- o A..:?                       "is_support"
         restriction_info_                   <- o A..:?                       "restriction_info"
-        has_active_stories_                 <- o A..:?                       "has_active_stories"
-        has_unread_active_stories_          <- o A..:?                       "has_unread_active_stories"
+        active_story_state_                 <- o A..:?                       "active_story_state"
         restricts_new_chats_                <- o A..:?                       "restricts_new_chats"
         paid_message_star_count_            <- o A..:?                       "paid_message_star_count"
         have_access_                        <- o A..:?                       "have_access"
@@ -170,8 +167,7 @@ instance AT.FromJSON User where
           , is_premium                         = is_premium_
           , is_support                         = is_support_
           , restriction_info                   = restriction_info_
-          , has_active_stories                 = has_active_stories_
-          , has_unread_active_stories          = has_unread_active_stories_
+          , active_story_state                 = active_story_state_
           , restricts_new_chats                = restricts_new_chats_
           , paid_message_star_count            = paid_message_star_count_
           , have_access                        = have_access_

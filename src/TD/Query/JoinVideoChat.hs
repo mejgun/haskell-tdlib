@@ -14,7 +14,7 @@ import qualified Data.Text as T
 data JoinVideoChat
   = JoinVideoChat
     { group_call_id   :: Maybe Int                                             -- ^ Group call identifier
-    , participant_id  :: Maybe MessageSender.MessageSender                     -- ^ Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
+    , participant_id  :: Maybe MessageSender.MessageSender                     -- ^ Identifier of a group call participant, which will be used to join the call; pass null to join as self
     , join_parameters :: Maybe GroupCallJoinParameters.GroupCallJoinParameters -- ^ Parameters to join the call
     , invite_hash     :: Maybe T.Text                                          -- ^ Invite hash as received from internalLinkTypeVideoChat
     }
