@@ -64,6 +64,7 @@ import qualified TD.Data.GroupCallParticipant as GroupCallParticipant
 import qualified TD.Data.GroupCallMessage as GroupCallMessage
 import qualified TD.Data.LiveStoryDonors as LiveStoryDonors
 import qualified Data.ByteString as BS
+import qualified TD.Data.GiftAuctionState as GiftAuctionState
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.Story as Story
@@ -538,6 +539,12 @@ data Update
     { call_id :: Maybe Int           -- ^ The call identifier
     , _data   :: Maybe BS.ByteString -- ^ The data
     }
+  | UpdateGiftAuctionState -- ^ State of a gift auction was updated
+    { state :: Maybe GiftAuctionState.GiftAuctionState -- ^ New state of the auction
+    }
+  | UpdateActiveGiftAuctions -- ^ The list of auctions in which participate the current user has changed
+    { states :: Maybe [GiftAuctionState.GiftAuctionState] -- ^ New states of the auctions
+    }
   | UpdateUserPrivacySettingRules -- ^ Some privacy setting rules have been changed
     { setting :: Maybe UserPrivacySetting.UserPrivacySetting           -- ^ The privacy setting
     , rules   :: Maybe UserPrivacySettingRules.UserPrivacySettingRules -- ^ New privacy rules
@@ -634,7 +641,7 @@ data Update
     , strings             :: Maybe [LanguagePackString.LanguagePackString] -- ^ List of changed language pack strings; empty if all strings have changed
     }
   | UpdateConnectionState -- ^ The connection state has changed. This update must be used only to show a human-readable description of the connection state
-    { state :: Maybe ConnectionState.ConnectionState -- ^ The new connection state
+    { _state :: Maybe ConnectionState.ConnectionState -- ^ The new connection state
     }
   | UpdateFreezeState -- ^ The freeze state of the current user's account has changed
     { is_frozen     :: Maybe Bool   -- ^ True, if the account is frozen
@@ -1805,6 +1812,20 @@ instance I.ShortShow Update where
         [ "call_id" `I.p` call_id_
         , "_data"   `I.p` _data_
         ]
+  shortShow UpdateGiftAuctionState
+    { state = state_
+    }
+      = "UpdateGiftAuctionState"
+        ++ I.cc
+        [ "state" `I.p` state_
+        ]
+  shortShow UpdateActiveGiftAuctions
+    { states = states_
+    }
+      = "UpdateActiveGiftAuctions"
+        ++ I.cc
+        [ "states" `I.p` states_
+        ]
   shortShow UpdateUserPrivacySettingRules
     { setting = setting_
     , rules   = rules_
@@ -2020,11 +2041,11 @@ instance I.ShortShow Update where
         , "strings"             `I.p` strings_
         ]
   shortShow UpdateConnectionState
-    { state = state_
+    { _state = _state_
     }
       = "UpdateConnectionState"
         ++ I.cc
-        [ "state" `I.p` state_
+        [ "_state" `I.p` _state_
         ]
   shortShow UpdateFreezeState
     { is_frozen     = is_frozen_
@@ -2612,6 +2633,8 @@ instance AT.FromJSON Update where
       "updateGroupCallMessagesDeleted"                 -> parseUpdateGroupCallMessagesDeleted v
       "updateLiveStoryTopDonors"                       -> parseUpdateLiveStoryTopDonors v
       "updateNewCallSignalingData"                     -> parseUpdateNewCallSignalingData v
+      "updateGiftAuctionState"                         -> parseUpdateGiftAuctionState v
+      "updateActiveGiftAuctions"                       -> parseUpdateActiveGiftAuctions v
       "updateUserPrivacySettingRules"                  -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount"                       -> parseUpdateUnreadMessageCount v
       "updateUnreadChatCount"                          -> parseUpdateUnreadChatCount v
@@ -3537,6 +3560,18 @@ instance AT.FromJSON Update where
           { call_id = call_id_
           , _data   = _data_
           }
+      parseUpdateGiftAuctionState :: A.Value -> AT.Parser Update
+      parseUpdateGiftAuctionState = A.withObject "UpdateGiftAuctionState" $ \o -> do
+        state_ <- o A..:?  "state"
+        pure $ UpdateGiftAuctionState
+          { state = state_
+          }
+      parseUpdateActiveGiftAuctions :: A.Value -> AT.Parser Update
+      parseUpdateActiveGiftAuctions = A.withObject "UpdateActiveGiftAuctions" $ \o -> do
+        states_ <- o A..:?  "states"
+        pure $ UpdateActiveGiftAuctions
+          { states = states_
+          }
       parseUpdateUserPrivacySettingRules :: A.Value -> AT.Parser Update
       parseUpdateUserPrivacySettingRules = A.withObject "UpdateUserPrivacySettingRules" $ \o -> do
         setting_ <- o A..:?  "setting"
@@ -3729,9 +3764,9 @@ instance AT.FromJSON Update where
           }
       parseUpdateConnectionState :: A.Value -> AT.Parser Update
       parseUpdateConnectionState = A.withObject "UpdateConnectionState" $ \o -> do
-        state_ <- o A..:?  "state"
+        _state_ <- o A..:?  "state"
         pure $ UpdateConnectionState
-          { state = state_
+          { _state = _state_
           }
       parseUpdateFreezeState :: A.Value -> AT.Parser Update
       parseUpdateFreezeState = A.withObject "UpdateFreezeState" $ \o -> do

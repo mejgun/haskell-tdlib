@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.3.0
+version:        2.1.4.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -50,6 +50,8 @@ library
       TD.Data.ArchiveChatListSettings
       TD.Data.AttachmentMenuBot
       TD.Data.AttachmentMenuBotColor
+      TD.Data.AuctionBid
+      TD.Data.AuctionState
       TD.Data.Audio
       TD.Data.Audios
       TD.Data.AuthenticationCodeInfo
@@ -275,6 +277,11 @@ library
       TD.Data.GameHighScore
       TD.Data.GameHighScores
       TD.Data.Gift
+      TD.Data.GiftAuction
+      TD.Data.GiftAuctionAcquiredGift
+      TD.Data.GiftAuctionAcquiredGifts
+      TD.Data.GiftAuctionState
+      TD.Data.GiftBackground
       TD.Data.GiftChatTheme
       TD.Data.GiftChatThemes
       TD.Data.GiftCollection
@@ -665,6 +672,7 @@ library
       TD.Data.UpgradedGiftValueInfo
       TD.Data.UpgradeGiftResult
       TD.Data.User
+      TD.Data.UserAuctionBid
       TD.Data.UserFullInfo
       TD.Data.UserLink
       TD.Data.Usernames
@@ -789,6 +797,7 @@ library
       TD.Query.ClickVideoMessageAdvertisement
       TD.Query.Close
       TD.Query.CloseChat
+      TD.Query.CloseGiftAuction
       TD.Query.CloseSecretChat
       TD.Query.CloseStory
       TD.Query.CloseWebApp
@@ -1037,6 +1046,8 @@ library
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
       TD.Query.GetGameHighScores
+      TD.Query.GetGiftAuctionAcquiredGifts
+      TD.Query.GetGiftAuctionState
       TD.Query.GetGiftChatThemes
       TD.Query.GetGiftCollections
       TD.Query.GetGiftUpgradePreview
@@ -1219,6 +1230,7 @@ library
       TD.Query.HideSuggestedAction
       TD.Query.ImportContacts
       TD.Query.ImportMessages
+      TD.Query.IncreaseGiftAuctionBid
       TD.Query.InviteGroupCallParticipant
       TD.Query.InviteVideoChatParticipants
       TD.Query.IsLoginEmailAddressRequired
@@ -1243,6 +1255,7 @@ library
       TD.Query.OpenBotSimilarBot
       TD.Query.OpenChat
       TD.Query.OpenChatSimilarChat
+      TD.Query.OpenGiftAuction
       TD.Query.OpenMessageContent
       TD.Query.OpenSponsoredChat
       TD.Query.OpenStory
@@ -1252,6 +1265,7 @@ library
       TD.Query.ParseTextEntities
       TD.Query.PinChatMessage
       TD.Query.PingProxy
+      TD.Query.PlaceGiftAuctionBid
       TD.Query.PostStory
       TD.Query.PreliminaryUploadFile
       TD.Query.ProcessChatFolderNewChats

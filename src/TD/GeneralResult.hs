@@ -114,6 +114,8 @@ import qualified TD.Data.FoundStories as FoundStories
 import qualified TD.Data.FoundUsers as FoundUsers
 import qualified TD.Data.FoundWebApp as FoundWebApp
 import qualified TD.Data.GameHighScores as GameHighScores
+import qualified TD.Data.GiftAuctionAcquiredGifts as GiftAuctionAcquiredGifts
+import qualified TD.Data.GiftAuctionState as GiftAuctionState
 import qualified TD.Data.GiftChatThemes as GiftChatThemes
 import qualified TD.Data.GiftCollection as GiftCollection
 import qualified TD.Data.GiftCollections as GiftCollections
@@ -377,6 +379,8 @@ data GeneralResult
     | FoundUsers                         FoundUsers.FoundUsers
     | FoundWebApp                        FoundWebApp.FoundWebApp
     | GameHighScores                     GameHighScores.GameHighScores
+    | GiftAuctionAcquiredGifts           GiftAuctionAcquiredGifts.GiftAuctionAcquiredGifts
+    | GiftAuctionState                   GiftAuctionState.GiftAuctionState
     | GiftChatThemes                     GiftChatThemes.GiftChatThemes
     | GiftCollection                     GiftCollection.GiftCollection
     | GiftCollections                    GiftCollections.GiftCollections
@@ -751,6 +755,10 @@ instance I.ShortShow GeneralResult where
     = "FoundWebApp" <> " (" <> I.shortShow v <> ")"
   shortShow (GameHighScores v)
     = "GameHighScores" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftAuctionAcquiredGifts v)
+    = "GiftAuctionAcquiredGifts" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftAuctionState v)
+    = "GiftAuctionState" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftChatThemes v)
     = "GiftChatThemes" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftCollection v)
@@ -1166,6 +1174,8 @@ instance T.FromJSON GeneralResult where
     <|> ( FoundUsers                          <$> parseJSON v )
     <|> ( FoundWebApp                         <$> parseJSON v )
     <|> ( GameHighScores                      <$> parseJSON v )
+    <|> ( GiftAuctionAcquiredGifts            <$> parseJSON v )
+    <|> ( GiftAuctionState                    <$> parseJSON v )
     <|> ( GiftChatThemes                      <$> parseJSON v )
     <|> ( GiftCollection                      <$> parseJSON v )
     <|> ( GiftCollections                     <$> parseJSON v )

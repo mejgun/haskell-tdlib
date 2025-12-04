@@ -389,6 +389,7 @@ data MessageContent
     , sell_star_count            :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     , prepaid_upgrade_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     , is_upgrade_separate        :: Maybe Bool                        -- ^ True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost
+    , is_from_auction            :: Maybe Bool                        -- ^ True, if the message is a notification about a gift won on an auction
     , is_private                 :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     , is_saved                   :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     , is_prepaid_upgrade         :: Maybe Bool                        -- ^ True, if the message is about prepaid upgrade of the gift by another user
@@ -1215,6 +1216,7 @@ instance I.ShortShow MessageContent where
     , sell_star_count            = sell_star_count_
     , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
     , is_upgrade_separate        = is_upgrade_separate_
+    , is_from_auction            = is_from_auction_
     , is_private                 = is_private_
     , is_saved                   = is_saved_
     , is_prepaid_upgrade         = is_prepaid_upgrade_
@@ -1235,6 +1237,7 @@ instance I.ShortShow MessageContent where
         , "sell_star_count"            `I.p` sell_star_count_
         , "prepaid_upgrade_star_count" `I.p` prepaid_upgrade_star_count_
         , "is_upgrade_separate"        `I.p` is_upgrade_separate_
+        , "is_from_auction"            `I.p` is_from_auction_
         , "is_private"                 `I.p` is_private_
         , "is_saved"                   `I.p` is_saved_
         , "is_prepaid_upgrade"         `I.p` is_prepaid_upgrade_
@@ -2198,6 +2201,7 @@ instance AT.FromJSON MessageContent where
         sell_star_count_            <- o A..:?  "sell_star_count"
         prepaid_upgrade_star_count_ <- o A..:?  "prepaid_upgrade_star_count"
         is_upgrade_separate_        <- o A..:?  "is_upgrade_separate"
+        is_from_auction_            <- o A..:?  "is_from_auction"
         is_private_                 <- o A..:?  "is_private"
         is_saved_                   <- o A..:?  "is_saved"
         is_prepaid_upgrade_         <- o A..:?  "is_prepaid_upgrade"
@@ -2216,6 +2220,7 @@ instance AT.FromJSON MessageContent where
           , sell_star_count            = sell_star_count_
           , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
           , is_upgrade_separate        = is_upgrade_separate_
+          , is_from_auction            = is_from_auction_
           , is_private                 = is_private_
           , is_saved                   = is_saved_
           , is_prepaid_upgrade         = is_prepaid_upgrade_

@@ -87,6 +87,10 @@ data StarTransactionType
     { user_id             :: Maybe Int -- ^ Identifier of the user that bought the subscription
     , subscription_period :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debitings
     }
+  | StarTransactionTypeGiftAuctionBid -- ^ The transaction is a bid on a gift auction; for regular users only
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user that will receive the gift
+    , gift     :: Maybe Gift.Gift                   -- ^ The gift
+    }
   | StarTransactionTypeGiftPurchase -- ^ The transaction is a purchase of a regular gift; for regular users and bots only
     { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel that received the gift
     , gift     :: Maybe Gift.Gift                   -- ^ The gift
@@ -333,6 +337,15 @@ instance I.ShortShow StarTransactionType where
         [ "user_id"             `I.p` user_id_
         , "subscription_period" `I.p` subscription_period_
         ]
+  shortShow StarTransactionTypeGiftAuctionBid
+    { owner_id = owner_id_
+    , gift     = gift_
+    }
+      = "StarTransactionTypeGiftAuctionBid"
+        ++ I.cc
+        [ "owner_id" `I.p` owner_id_
+        , "gift"     `I.p` gift_
+        ]
   shortShow StarTransactionTypeGiftPurchase
     { owner_id = owner_id_
     , gift     = gift_
@@ -562,6 +575,7 @@ instance AT.FromJSON StarTransactionType where
       "starTransactionTypeBotSubscriptionSale"          -> parseStarTransactionTypeBotSubscriptionSale v
       "starTransactionTypeChannelSubscriptionPurchase"  -> parseStarTransactionTypeChannelSubscriptionPurchase v
       "starTransactionTypeChannelSubscriptionSale"      -> parseStarTransactionTypeChannelSubscriptionSale v
+      "starTransactionTypeGiftAuctionBid"               -> parseStarTransactionTypeGiftAuctionBid v
       "starTransactionTypeGiftPurchase"                 -> parseStarTransactionTypeGiftPurchase v
       "starTransactionTypeGiftTransfer"                 -> parseStarTransactionTypeGiftTransfer v
       "starTransactionTypeGiftOriginalDetailsDrop"      -> parseStarTransactionTypeGiftOriginalDetailsDrop v
@@ -716,6 +730,14 @@ instance AT.FromJSON StarTransactionType where
         pure $ StarTransactionTypeChannelSubscriptionSale
           { user_id             = user_id_
           , subscription_period = subscription_period_
+          }
+      parseStarTransactionTypeGiftAuctionBid :: A.Value -> AT.Parser StarTransactionType
+      parseStarTransactionTypeGiftAuctionBid = A.withObject "StarTransactionTypeGiftAuctionBid" $ \o -> do
+        owner_id_ <- o A..:?  "owner_id"
+        gift_     <- o A..:?  "gift"
+        pure $ StarTransactionTypeGiftAuctionBid
+          { owner_id = owner_id_
+          , gift     = gift_
           }
       parseStarTransactionTypeGiftPurchase :: A.Value -> AT.Parser StarTransactionType
       parseStarTransactionTypeGiftPurchase = A.withObject "StarTransactionTypeGiftPurchase" $ \o -> do

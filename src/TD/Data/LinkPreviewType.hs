@@ -13,6 +13,8 @@ import qualified TD.Data.Document as Document
 import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
+import qualified TD.Data.Gift as Gift
+import qualified TD.Data.GiftBackground as GiftBackground
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
 import qualified TD.Data.ThemeSettings as ThemeSettings
@@ -89,6 +91,11 @@ data LinkPreviewType
     , height    :: Maybe Int    -- ^ Expected height of the video preview; 0 if unknown
     , duration  :: Maybe Int    -- ^ Duration of the video, in seconds; 0 if unknown
     }
+  | LinkPreviewTypeGiftAuction -- ^ The link is a link to a gift auction
+    { gift             :: Maybe Gift.Gift                     -- ^ The gift
+    , gift_background  :: Maybe GiftBackground.GiftBackground -- ^ Background of the gift
+    , auction_end_date :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the auction will be ended
+    }
   | LinkPreviewTypeGiftCollection -- ^ The link is a link to a gift collection
     { icons :: Maybe [Sticker.Sticker] -- ^ Icons for some gifts from the collection; may be empty
     }
@@ -127,7 +134,7 @@ data LinkPreviewType
     }
   | LinkPreviewTypeUnsupported -- ^ The link preview type is unsupported yet
   | LinkPreviewTypeUpgradedGift -- ^ The link is a link to an upgraded gift
-    { gift :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+    { _gift :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | LinkPreviewTypeUser -- ^ The link is a link to a user
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the user; may be null if none
@@ -304,6 +311,17 @@ instance I.ShortShow LinkPreviewType where
         , "height"    `I.p` height_
         , "duration"  `I.p` duration_
         ]
+  shortShow LinkPreviewTypeGiftAuction
+    { gift             = gift_
+    , gift_background  = gift_background_
+    , auction_end_date = auction_end_date_
+    }
+      = "LinkPreviewTypeGiftAuction"
+        ++ I.cc
+        [ "gift"             `I.p` gift_
+        , "gift_background"  `I.p` gift_background_
+        , "auction_end_date" `I.p` auction_end_date_
+        ]
   shortShow LinkPreviewTypeGiftCollection
     { icons = icons_
     }
@@ -388,11 +406,11 @@ instance I.ShortShow LinkPreviewType where
   shortShow LinkPreviewTypeUnsupported
       = "LinkPreviewTypeUnsupported"
   shortShow LinkPreviewTypeUpgradedGift
-    { gift = gift_
+    { _gift = _gift_
     }
       = "LinkPreviewTypeUpgradedGift"
         ++ I.cc
-        [ "gift" `I.p` gift_
+        [ "_gift" `I.p` _gift_
         ]
   shortShow LinkPreviewTypeUser
     { _photo = _photo_
@@ -467,6 +485,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeEmbeddedVideoPlayer"     -> parseLinkPreviewTypeEmbeddedVideoPlayer v
       "linkPreviewTypeExternalAudio"           -> parseLinkPreviewTypeExternalAudio v
       "linkPreviewTypeExternalVideo"           -> parseLinkPreviewTypeExternalVideo v
+      "linkPreviewTypeGiftAuction"             -> parseLinkPreviewTypeGiftAuction v
       "linkPreviewTypeGiftCollection"          -> parseLinkPreviewTypeGiftCollection v
       "linkPreviewTypeGroupCall"               -> pure LinkPreviewTypeGroupCall
       "linkPreviewTypeInvoice"                 -> pure LinkPreviewTypeInvoice
@@ -626,6 +645,16 @@ instance AT.FromJSON LinkPreviewType where
           , height    = height_
           , duration  = duration_
           }
+      parseLinkPreviewTypeGiftAuction :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeGiftAuction = A.withObject "LinkPreviewTypeGiftAuction" $ \o -> do
+        gift_             <- o A..:?  "gift"
+        gift_background_  <- o A..:?  "gift_background"
+        auction_end_date_ <- o A..:?  "auction_end_date"
+        pure $ LinkPreviewTypeGiftAuction
+          { gift             = gift_
+          , gift_background  = gift_background_
+          , auction_end_date = auction_end_date_
+          }
       parseLinkPreviewTypeGiftCollection :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeGiftCollection = A.withObject "LinkPreviewTypeGiftCollection" $ \o -> do
         icons_ <- o A..:?  "icons"
@@ -690,9 +719,9 @@ instance AT.FromJSON LinkPreviewType where
           }
       parseLinkPreviewTypeUpgradedGift :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeUpgradedGift = A.withObject "LinkPreviewTypeUpgradedGift" $ \o -> do
-        gift_ <- o A..:?  "gift"
+        _gift_ <- o A..:?  "gift"
         pure $ LinkPreviewTypeUpgradedGift
-          { gift = gift_
+          { _gift = _gift_
           }
       parseLinkPreviewTypeUser :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeUser = A.withObject "LinkPreviewTypeUser" $ \o -> do

@@ -70,6 +70,9 @@ data InternalLinkType
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
     }
+  | InternalLinkTypeGiftAuction -- ^ The link is a link to a gift auction. Call getGiftAuctionState with the given auction identifier to process the link
+    { auction_id :: Maybe T.Text -- ^ Unique identifier of the auction
+    }
   | InternalLinkTypeGiftCollection -- ^ The link is a link to a gift collection. Call searchPublicChat with the given username, then call getReceivedGifts with the received gift owner identifier and the given collection identifier, then show the collection if received
     { gift_owner_username :: Maybe T.Text -- ^ Username of the owner of the gift collection
     , collection_id       :: Maybe Int    -- ^ Gift collection identifier
@@ -314,6 +317,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "bot_username"    `I.p` bot_username_
         , "game_short_name" `I.p` game_short_name_
+        ]
+  shortShow InternalLinkTypeGiftAuction
+    { auction_id = auction_id_
+    }
+      = "InternalLinkTypeGiftAuction"
+        ++ I.cc
+        [ "auction_id" `I.p` auction_id_
         ]
   shortShow InternalLinkTypeGiftCollection
     { gift_owner_username = gift_owner_username_
@@ -594,6 +604,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeDirectMessagesChat"                    -> parseInternalLinkTypeDirectMessagesChat v
       "internalLinkTypeEditProfileSettings"                   -> pure InternalLinkTypeEditProfileSettings
       "internalLinkTypeGame"                                  -> parseInternalLinkTypeGame v
+      "internalLinkTypeGiftAuction"                           -> parseInternalLinkTypeGiftAuction v
       "internalLinkTypeGiftCollection"                        -> parseInternalLinkTypeGiftCollection v
       "internalLinkTypeGroupCall"                             -> parseInternalLinkTypeGroupCall v
       "internalLinkTypeInstantView"                           -> parseInternalLinkTypeInstantView v
@@ -738,6 +749,12 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeGame
           { bot_username    = bot_username_
           , game_short_name = game_short_name_
+          }
+      parseInternalLinkTypeGiftAuction :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeGiftAuction = A.withObject "InternalLinkTypeGiftAuction" $ \o -> do
+        auction_id_ <- o A..:?  "auction_id"
+        pure $ InternalLinkTypeGiftAuction
+          { auction_id = auction_id_
           }
       parseInternalLinkTypeGiftCollection :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeGiftCollection = A.withObject "InternalLinkTypeGiftCollection" $ \o -> do
@@ -1083,6 +1100,13 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"           A..= AT.String "internalLinkTypeGame"
         , "bot_username"    A..= bot_username_
         , "game_short_name" A..= game_short_name_
+        ]
+  toJSON InternalLinkTypeGiftAuction
+    { auction_id = auction_id_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "internalLinkTypeGiftAuction"
+        , "auction_id" A..= auction_id_
         ]
   toJSON InternalLinkTypeGiftCollection
     { gift_owner_username = gift_owner_username_
