@@ -12,7 +12,7 @@ data AlternativeVideo
     { _id      :: Maybe Int       -- ^ Unique identifier of the alternative video, which is used in the HLS file
     , width    :: Maybe Int       -- ^ Video width
     , height   :: Maybe Int       -- ^ Video height
-    , codec    :: Maybe T.Text    -- ^ Codec used for video file encoding, for example, "h264", "h265", or "av1"
+    , codec    :: Maybe T.Text    -- ^ Codec used for video file encoding, for example, "h264", "h265", "av1", or "av01"
     , hls_file :: Maybe File.File -- ^ HLS file describing the video
     , video    :: Maybe File.File -- ^ File containing the video
     }

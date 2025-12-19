@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Delete media previews from the list of media previews of a bot. Returns 'TD.Data.Ok.Ok'
+-- | Deletes media previews from the list of media previews of a bot. Returns 'TD.Data.Ok.Ok'
 data DeleteBotMediaPreviews
   = DeleteBotMediaPreviews
     { bot_user_id   :: Maybe Int    -- ^ Identifier of the target bot. The bot must be owned and must have the main Web App

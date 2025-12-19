@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.AccountTtl as AccountTtl
 import qualified TD.Data.AddedReactions as AddedReactions
 import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
+import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Animations as Animations
 import qualified TD.Data.ArchiveChatListSettings as ArchiveChatListSettings
 import qualified TD.Data.AttachmentMenuBot as AttachmentMenuBot
@@ -121,6 +122,7 @@ import qualified TD.Data.GiftCollection as GiftCollection
 import qualified TD.Data.GiftCollections as GiftCollections
 import qualified TD.Data.GiftResaleResult as GiftResaleResult
 import qualified TD.Data.GiftUpgradePreview as GiftUpgradePreview
+import qualified TD.Data.GiftUpgradeVariants as GiftUpgradeVariants
 import qualified TD.Data.GiftsForResale as GiftsForResale
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
@@ -171,6 +173,8 @@ import qualified TD.Data.Ok as Ok
 import qualified TD.Data.OptionValue as OptionValue
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.Outline as Outline
+import qualified TD.Data.Passkey as Passkey
+import qualified TD.Data.Passkeys as Passkeys
 import qualified TD.Data.PassportAuthorizationForm as PassportAuthorizationForm
 import qualified TD.Data.PassportElement as PassportElement
 import qualified TD.Data.PassportElements as PassportElements
@@ -272,6 +276,7 @@ data GeneralResult
     = AccountTtl                         AccountTtl.AccountTtl
     | AddedReactions                     AddedReactions.AddedReactions
     | AnimatedEmoji                      AnimatedEmoji.AnimatedEmoji
+    | Animation                          Animation.Animation
     | Animations                         Animations.Animations
     | ArchiveChatListSettings            ArchiveChatListSettings.ArchiveChatListSettings
     | AttachmentMenuBot                  AttachmentMenuBot.AttachmentMenuBot
@@ -386,6 +391,7 @@ data GeneralResult
     | GiftCollections                    GiftCollections.GiftCollections
     | GiftResaleResult                   GiftResaleResult.GiftResaleResult
     | GiftUpgradePreview                 GiftUpgradePreview.GiftUpgradePreview
+    | GiftUpgradeVariants                GiftUpgradeVariants.GiftUpgradeVariants
     | GiftsForResale                     GiftsForResale.GiftsForResale
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
@@ -436,6 +442,8 @@ data GeneralResult
     | OptionValue                        OptionValue.OptionValue
     | OrderInfo                          OrderInfo.OrderInfo
     | Outline                            Outline.Outline
+    | Passkey                            Passkey.Passkey
+    | Passkeys                           Passkeys.Passkeys
     | PassportAuthorizationForm          PassportAuthorizationForm.PassportAuthorizationForm
     | PassportElement                    PassportElement.PassportElement
     | PassportElements                   PassportElements.PassportElements
@@ -541,6 +549,8 @@ instance I.ShortShow GeneralResult where
     = "AddedReactions" <> " (" <> I.shortShow v <> ")"
   shortShow (AnimatedEmoji v)
     = "AnimatedEmoji" <> " (" <> I.shortShow v <> ")"
+  shortShow (Animation v)
+    = "Animation" <> " (" <> I.shortShow v <> ")"
   shortShow (Animations v)
     = "Animations" <> " (" <> I.shortShow v <> ")"
   shortShow (ArchiveChatListSettings v)
@@ -769,6 +779,8 @@ instance I.ShortShow GeneralResult where
     = "GiftResaleResult" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftUpgradePreview v)
     = "GiftUpgradePreview" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftUpgradeVariants v)
+    = "GiftUpgradeVariants" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftsForResale v)
     = "GiftsForResale" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
@@ -869,6 +881,10 @@ instance I.ShortShow GeneralResult where
     = "OrderInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (Outline v)
     = "Outline" <> " (" <> I.shortShow v <> ")"
+  shortShow (Passkey v)
+    = "Passkey" <> " (" <> I.shortShow v <> ")"
+  shortShow (Passkeys v)
+    = "Passkeys" <> " (" <> I.shortShow v <> ")"
   shortShow (PassportAuthorizationForm v)
     = "PassportAuthorizationForm" <> " (" <> I.shortShow v <> ")"
   shortShow (PassportElement v)
@@ -1067,6 +1083,7 @@ instance T.FromJSON GeneralResult where
         ( AccountTtl                          <$> parseJSON v )
     <|> ( AddedReactions                      <$> parseJSON v )
     <|> ( AnimatedEmoji                       <$> parseJSON v )
+    <|> ( Animation                           <$> parseJSON v )
     <|> ( Animations                          <$> parseJSON v )
     <|> ( ArchiveChatListSettings             <$> parseJSON v )
     <|> ( AttachmentMenuBot                   <$> parseJSON v )
@@ -1181,6 +1198,7 @@ instance T.FromJSON GeneralResult where
     <|> ( GiftCollections                     <$> parseJSON v )
     <|> ( GiftResaleResult                    <$> parseJSON v )
     <|> ( GiftUpgradePreview                  <$> parseJSON v )
+    <|> ( GiftUpgradeVariants                 <$> parseJSON v )
     <|> ( GiftsForResale                      <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -1231,6 +1249,8 @@ instance T.FromJSON GeneralResult where
     <|> ( OptionValue                         <$> parseJSON v )
     <|> ( OrderInfo                           <$> parseJSON v )
     <|> ( Outline                             <$> parseJSON v )
+    <|> ( Passkey                             <$> parseJSON v )
+    <|> ( Passkeys                            <$> parseJSON v )
     <|> ( PassportAuthorizationForm           <$> parseJSON v )
     <|> ( PassportElement                     <$> parseJSON v )
     <|> ( PassportElements                    <$> parseJSON v )

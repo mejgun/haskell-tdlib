@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Return information about a Telegram Premium gift code. Returns 'TD.Data.PremiumGiftCodeInfo.PremiumGiftCodeInfo'
+-- | Returns information about a Telegram Premium gift code. Returns 'TD.Data.PremiumGiftCodeInfo.PremiumGiftCodeInfo'
 data CheckPremiumGiftCode
   = CheckPremiumGiftCode
     { code :: Maybe T.Text -- ^ The code to check

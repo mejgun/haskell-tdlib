@@ -14,6 +14,7 @@ data GiftAuctionAcquiredGift
     , star_count             :: Maybe Int                         -- ^ The number of Telegram Stars that were paid for the gift
     , auction_round_number   :: Maybe Int                         -- ^ Identifier of the auction round in which the gift was acquired
     , auction_round_position :: Maybe Int                         -- ^ Position of the user in the round among all auction participants
+    , unique_gift_number     :: Maybe Int                         -- ^ Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
     , text                   :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , is_private             :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     }
@@ -26,6 +27,7 @@ instance I.ShortShow GiftAuctionAcquiredGift where
     , star_count             = star_count_
     , auction_round_number   = auction_round_number_
     , auction_round_position = auction_round_position_
+    , unique_gift_number     = unique_gift_number_
     , text                   = text_
     , is_private             = is_private_
     }
@@ -36,6 +38,7 @@ instance I.ShortShow GiftAuctionAcquiredGift where
         , "star_count"             `I.p` star_count_
         , "auction_round_number"   `I.p` auction_round_number_
         , "auction_round_position" `I.p` auction_round_position_
+        , "unique_gift_number"     `I.p` unique_gift_number_
         , "text"                   `I.p` text_
         , "is_private"             `I.p` is_private_
         ]
@@ -56,6 +59,7 @@ instance AT.FromJSON GiftAuctionAcquiredGift where
         star_count_             <- o A..:?  "star_count"
         auction_round_number_   <- o A..:?  "auction_round_number"
         auction_round_position_ <- o A..:?  "auction_round_position"
+        unique_gift_number_     <- o A..:?  "unique_gift_number"
         text_                   <- o A..:?  "text"
         is_private_             <- o A..:?  "is_private"
         pure $ GiftAuctionAcquiredGift
@@ -64,6 +68,7 @@ instance AT.FromJSON GiftAuctionAcquiredGift where
           , star_count             = star_count_
           , auction_round_number   = auction_round_number_
           , auction_round_position = auction_round_position_
+          , unique_gift_number     = unique_gift_number_
           , text                   = text_
           , is_private             = is_private_
           }

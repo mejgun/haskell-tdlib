@@ -42,6 +42,8 @@ import qualified TD.Data.GiveawayPrize as GiveawayPrize
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
 import qualified TD.Data.UpgradedGiftOrigin as UpgradedGiftOrigin
+import qualified TD.Data.GiftPurchaseOfferState as GiftPurchaseOfferState
+import qualified TD.Data.GiftResalePrice as GiftResalePrice
 import qualified TD.Data.ChecklistTask as ChecklistTask
 import qualified TD.Data.SuggestedPostPrice as SuggestedPostPrice
 import qualified TD.Data.StarAmount as StarAmount
@@ -272,7 +274,7 @@ data MessageContent
     }
   | MessagePaymentSuccessful -- ^ A payment has been sent to a bot or a business account
     { invoice_chat_id         :: Maybe Int    -- ^ Identifier of the chat, containing the corresponding invoice message
-    , invoice_message_id      :: Maybe Int    -- ^ Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
+    , invoice_message_id      :: Maybe Int    -- ^ Identifier of the message with the corresponding invoice; may be 0 or an identifier of a deleted message
     , currency                :: Maybe T.Text -- ^ Currency for the price of the product
     , total_amount            :: Maybe Int    -- ^ Total price for the product, in the smallest units of the currency
     , subscription_until_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
@@ -336,7 +338,7 @@ data MessageContent
     , sticker      :: Maybe Sticker.Sticker                       -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessageGiveawayCompleted -- ^ A giveaway without public winners has been completed for the chat
-    { giveaway_message_id   :: Maybe Int  -- ^ Identifier of the message with the giveaway; can be 0 if the message was deleted
+    { giveaway_message_id   :: Maybe Int  -- ^ Identifier of the message with the giveaway; may be 0 or an identifier of a deleted message
     , winner_count          :: Maybe Int  -- ^ Number of winners in the giveaway
     , is_star_giveaway      :: Maybe Bool -- ^ True, if the giveaway is a Telegram Star giveaway
     , unclaimed_prize_count :: Maybe Int  -- ^ Number of undistributed prizes; for Telegram Premium giveaways only
@@ -376,7 +378,7 @@ data MessageContent
     { star_count          :: Maybe Int             -- ^ Number of Telegram Stars that were received
     , transaction_id      :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars credit
     , boosted_chat_id     :: Maybe Int             -- ^ Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
-    , giveaway_message_id :: Maybe Int             -- ^ Identifier of the message with the giveaway in the boosted chat; can be 0 if the message was deleted
+    , giveaway_message_id :: Maybe Int             -- ^ Identifier of the message with the giveaway in the boosted chat; may be 0 or an identifier of a deleted message
     , is_unclaimed        :: Maybe Bool            -- ^ True, if the corresponding winner wasn't chosen and the Telegram Stars were received by the owner of the boosted chat
     , sticker             :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
@@ -386,6 +388,7 @@ data MessageContent
     , receiver_id                :: Maybe MessageSender.MessageSender -- ^ Receiver of the gift
     , received_gift_id           :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
     , text                       :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
+    , unique_gift_number         :: Maybe Int                         -- ^ Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
     , sell_star_count            :: Maybe Int                         -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
     , prepaid_upgrade_star_count :: Maybe Int                         -- ^ Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
     , is_upgrade_separate        :: Maybe Bool                        -- ^ True, if the upgrade was bought after the gift was sent. In this case, prepaid upgrade cost must not be added to the gift cost
@@ -421,6 +424,18 @@ data MessageContent
     , receiver_id :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
     , origin      :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
     }
+  | MessageUpgradedGiftPurchaseOffer -- ^ An offer to purchase an upgraded gift was sent or received
+    { _gift           :: Maybe UpgradedGift.UpgradedGift                     -- ^ The gift
+    , state           :: Maybe GiftPurchaseOfferState.GiftPurchaseOfferState -- ^ State of the offer
+    , price           :: Maybe GiftResalePrice.GiftResalePrice               -- ^ The proposed price
+    , expiration_date :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the offer will expire or has expired
+    }
+  | MessageUpgradedGiftPurchaseOfferDeclined -- ^ An offer to purchase a gift was declined or expired
+    { _gift            :: Maybe UpgradedGift.UpgradedGift       -- ^ The gift
+    , price            :: Maybe GiftResalePrice.GiftResalePrice -- ^ The proposed price
+    , offer_message_id :: Maybe Int                             -- ^ Identifier of the message with purchase offer which was declined or expired; may be 0 or an identifier of a deleted message
+    , was_expired      :: Maybe Bool                            -- ^ True, if the offer has expired; otherwise, the offer was explicitly declined
+    }
   | MessagePaidMessagesRefunded -- ^ Paid messages were refunded
     { message_count :: Maybe Int -- ^ The number of refunded messages
     , star_count    :: Maybe Int -- ^ The number of refunded Telegram Stars
@@ -433,34 +448,34 @@ data MessageContent
     , paid_message_star_count :: Maybe Int  -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
     }
   | MessageChecklistTasksDone -- ^ Some tasks from a checklist were marked as done or not done
-    { checklist_message_id        :: Maybe Int   -- ^ Identifier of the message with the checklist; can be 0 if the message was deleted
+    { checklist_message_id        :: Maybe Int   -- ^ Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     , marked_as_done_task_ids     :: Maybe [Int] -- ^ Identifiers of tasks that were marked as done
     , marked_as_not_done_task_ids :: Maybe [Int] -- ^ Identifiers of tasks that were marked as not done
     }
   | MessageChecklistTasksAdded -- ^ Some tasks were added to a checklist
-    { checklist_message_id :: Maybe Int                           -- ^ Identifier of the message with the checklist; can be 0 if the message was deleted
+    { checklist_message_id :: Maybe Int                           -- ^ Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     , tasks                :: Maybe [ChecklistTask.ChecklistTask] -- ^ List of tasks added to the checklist
     }
   | MessageSuggestedPostApprovalFailed -- ^ Approval of suggested post has failed, because the user which proposed the post had no enough funds
-    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
-    , price                     :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post
+    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
+    , _price                    :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post
     }
   | MessageSuggestedPostApproved -- ^ A suggested post was approved
-    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
-    , price                     :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post; may be null if the post is non-paid
+    { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
+    , _price                    :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post; may be null if the post is non-paid
     , send_date                 :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the post is expected to be published
     }
   | MessageSuggestedPostDeclined -- ^ A suggested post was declined
-    { suggested_post_message_id :: Maybe Int    -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    { suggested_post_message_id :: Maybe Int    -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     , comment                   :: Maybe T.Text -- ^ Comment added by administrator of the channel when the post was declined
     }
   | MessageSuggestedPostPaid -- ^ A suggested post was published for getOption("suggested_post_lifetime_min") seconds and payment for the post was received
-    { suggested_post_message_id :: Maybe Int                   -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    { suggested_post_message_id :: Maybe Int                   -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     , star_amount               :: Maybe StarAmount.StarAmount -- ^ The amount of received Telegram Stars
     , ton_amount                :: Maybe Int                   -- ^ The amount of received Toncoins; in the smallest units of the cryptocurrency
     }
   | MessageSuggestedPostRefunded -- ^ A suggested post was refunded
-    { suggested_post_message_id :: Maybe Int                                                 -- ^ Identifier of the message with the suggested post; can be 0 if the message was deleted
+    { suggested_post_message_id :: Maybe Int                                                 -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     , reason                    :: Maybe SuggestedPostRefundReason.SuggestedPostRefundReason -- ^ Reason of the refund
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
@@ -1213,6 +1228,7 @@ instance I.ShortShow MessageContent where
     , receiver_id                = receiver_id_
     , received_gift_id           = received_gift_id_
     , text                       = text_
+    , unique_gift_number         = unique_gift_number_
     , sell_star_count            = sell_star_count_
     , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
     , is_upgrade_separate        = is_upgrade_separate_
@@ -1234,6 +1250,7 @@ instance I.ShortShow MessageContent where
         , "receiver_id"                `I.p` receiver_id_
         , "received_gift_id"           `I.p` received_gift_id_
         , "text"                       `I.p` text_
+        , "unique_gift_number"         `I.p` unique_gift_number_
         , "sell_star_count"            `I.p` sell_star_count_
         , "prepaid_upgrade_star_count" `I.p` prepaid_upgrade_star_count_
         , "is_upgrade_separate"        `I.p` is_upgrade_separate_
@@ -1292,6 +1309,32 @@ instance I.ShortShow MessageContent where
         , "receiver_id" `I.p` receiver_id_
         , "origin"      `I.p` origin_
         ]
+  shortShow MessageUpgradedGiftPurchaseOffer
+    { _gift           = _gift_
+    , state           = state_
+    , price           = price_
+    , expiration_date = expiration_date_
+    }
+      = "MessageUpgradedGiftPurchaseOffer"
+        ++ I.cc
+        [ "_gift"           `I.p` _gift_
+        , "state"           `I.p` state_
+        , "price"           `I.p` price_
+        , "expiration_date" `I.p` expiration_date_
+        ]
+  shortShow MessageUpgradedGiftPurchaseOfferDeclined
+    { _gift            = _gift_
+    , price            = price_
+    , offer_message_id = offer_message_id_
+    , was_expired      = was_expired_
+    }
+      = "MessageUpgradedGiftPurchaseOfferDeclined"
+        ++ I.cc
+        [ "_gift"            `I.p` _gift_
+        , "price"            `I.p` price_
+        , "offer_message_id" `I.p` offer_message_id_
+        , "was_expired"      `I.p` was_expired_
+        ]
   shortShow MessagePaidMessagesRefunded
     { message_count = message_count_
     , star_count    = star_count_
@@ -1339,22 +1382,22 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessageSuggestedPostApprovalFailed
     { suggested_post_message_id = suggested_post_message_id_
-    , price                     = price_
+    , _price                    = _price_
     }
       = "MessageSuggestedPostApprovalFailed"
         ++ I.cc
         [ "suggested_post_message_id" `I.p` suggested_post_message_id_
-        , "price"                     `I.p` price_
+        , "_price"                    `I.p` _price_
         ]
   shortShow MessageSuggestedPostApproved
     { suggested_post_message_id = suggested_post_message_id_
-    , price                     = price_
+    , _price                    = _price_
     , send_date                 = send_date_
     }
       = "MessageSuggestedPostApproved"
         ++ I.cc
         [ "suggested_post_message_id" `I.p` suggested_post_message_id_
-        , "price"                     `I.p` price_
+        , "_price"                    `I.p` _price_
         , "send_date"                 `I.p` send_date_
         ]
   shortShow MessageSuggestedPostDeclined
@@ -1464,97 +1507,99 @@ instance AT.FromJSON MessageContent where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "messageText"                         -> parseMessageText v
-      "messageAnimation"                    -> parseMessageAnimation v
-      "messageAudio"                        -> parseMessageAudio v
-      "messageDocument"                     -> parseMessageDocument v
-      "messagePaidMedia"                    -> parseMessagePaidMedia v
-      "messagePhoto"                        -> parseMessagePhoto v
-      "messageSticker"                      -> parseMessageSticker v
-      "messageVideo"                        -> parseMessageVideo v
-      "messageVideoNote"                    -> parseMessageVideoNote v
-      "messageVoiceNote"                    -> parseMessageVoiceNote v
-      "messageExpiredPhoto"                 -> pure MessageExpiredPhoto
-      "messageExpiredVideo"                 -> pure MessageExpiredVideo
-      "messageExpiredVideoNote"             -> pure MessageExpiredVideoNote
-      "messageExpiredVoiceNote"             -> pure MessageExpiredVoiceNote
-      "messageLocation"                     -> parseMessageLocation v
-      "messageVenue"                        -> parseMessageVenue v
-      "messageContact"                      -> parseMessageContact v
-      "messageAnimatedEmoji"                -> parseMessageAnimatedEmoji v
-      "messageDice"                         -> parseMessageDice v
-      "messageGame"                         -> parseMessageGame v
-      "messagePoll"                         -> parseMessagePoll v
-      "messageStory"                        -> parseMessageStory v
-      "messageChecklist"                    -> parseMessageChecklist v
-      "messageInvoice"                      -> parseMessageInvoice v
-      "messageCall"                         -> parseMessageCall v
-      "messageGroupCall"                    -> parseMessageGroupCall v
-      "messageVideoChatScheduled"           -> parseMessageVideoChatScheduled v
-      "messageVideoChatStarted"             -> parseMessageVideoChatStarted v
-      "messageVideoChatEnded"               -> parseMessageVideoChatEnded v
-      "messageInviteVideoChatParticipants"  -> parseMessageInviteVideoChatParticipants v
-      "messageBasicGroupChatCreate"         -> parseMessageBasicGroupChatCreate v
-      "messageSupergroupChatCreate"         -> parseMessageSupergroupChatCreate v
-      "messageChatChangeTitle"              -> parseMessageChatChangeTitle v
-      "messageChatChangePhoto"              -> parseMessageChatChangePhoto v
-      "messageChatDeletePhoto"              -> pure MessageChatDeletePhoto
-      "messageChatAddMembers"               -> parseMessageChatAddMembers v
-      "messageChatJoinByLink"               -> pure MessageChatJoinByLink
-      "messageChatJoinByRequest"            -> pure MessageChatJoinByRequest
-      "messageChatDeleteMember"             -> parseMessageChatDeleteMember v
-      "messageChatUpgradeTo"                -> parseMessageChatUpgradeTo v
-      "messageChatUpgradeFrom"              -> parseMessageChatUpgradeFrom v
-      "messagePinMessage"                   -> parseMessagePinMessage v
-      "messageScreenshotTaken"              -> pure MessageScreenshotTaken
-      "messageChatSetBackground"            -> parseMessageChatSetBackground v
-      "messageChatSetTheme"                 -> parseMessageChatSetTheme v
-      "messageChatSetMessageAutoDeleteTime" -> parseMessageChatSetMessageAutoDeleteTime v
-      "messageChatBoost"                    -> parseMessageChatBoost v
-      "messageForumTopicCreated"            -> parseMessageForumTopicCreated v
-      "messageForumTopicEdited"             -> parseMessageForumTopicEdited v
-      "messageForumTopicIsClosedToggled"    -> parseMessageForumTopicIsClosedToggled v
-      "messageForumTopicIsHiddenToggled"    -> parseMessageForumTopicIsHiddenToggled v
-      "messageSuggestProfilePhoto"          -> parseMessageSuggestProfilePhoto v
-      "messageSuggestBirthdate"             -> parseMessageSuggestBirthdate v
-      "messageCustomServiceAction"          -> parseMessageCustomServiceAction v
-      "messageGameScore"                    -> parseMessageGameScore v
-      "messagePaymentSuccessful"            -> parseMessagePaymentSuccessful v
-      "messagePaymentSuccessfulBot"         -> parseMessagePaymentSuccessfulBot v
-      "messagePaymentRefunded"              -> parseMessagePaymentRefunded v
-      "messageGiftedPremium"                -> parseMessageGiftedPremium v
-      "messagePremiumGiftCode"              -> parseMessagePremiumGiftCode v
-      "messageGiveawayCreated"              -> parseMessageGiveawayCreated v
-      "messageGiveaway"                     -> parseMessageGiveaway v
-      "messageGiveawayCompleted"            -> parseMessageGiveawayCompleted v
-      "messageGiveawayWinners"              -> parseMessageGiveawayWinners v
-      "messageGiftedStars"                  -> parseMessageGiftedStars v
-      "messageGiftedTon"                    -> parseMessageGiftedTon v
-      "messageGiveawayPrizeStars"           -> parseMessageGiveawayPrizeStars v
-      "messageGift"                         -> parseMessageGift v
-      "messageUpgradedGift"                 -> parseMessageUpgradedGift v
-      "messageRefundedUpgradedGift"         -> parseMessageRefundedUpgradedGift v
-      "messagePaidMessagesRefunded"         -> parseMessagePaidMessagesRefunded v
-      "messagePaidMessagePriceChanged"      -> parseMessagePaidMessagePriceChanged v
-      "messageDirectMessagePriceChanged"    -> parseMessageDirectMessagePriceChanged v
-      "messageChecklistTasksDone"           -> parseMessageChecklistTasksDone v
-      "messageChecklistTasksAdded"          -> parseMessageChecklistTasksAdded v
-      "messageSuggestedPostApprovalFailed"  -> parseMessageSuggestedPostApprovalFailed v
-      "messageSuggestedPostApproved"        -> parseMessageSuggestedPostApproved v
-      "messageSuggestedPostDeclined"        -> parseMessageSuggestedPostDeclined v
-      "messageSuggestedPostPaid"            -> parseMessageSuggestedPostPaid v
-      "messageSuggestedPostRefunded"        -> parseMessageSuggestedPostRefunded v
-      "messageContactRegistered"            -> pure MessageContactRegistered
-      "messageUsersShared"                  -> parseMessageUsersShared v
-      "messageChatShared"                   -> parseMessageChatShared v
-      "messageBotWriteAccessAllowed"        -> parseMessageBotWriteAccessAllowed v
-      "messageWebAppDataSent"               -> parseMessageWebAppDataSent v
-      "messageWebAppDataReceived"           -> parseMessageWebAppDataReceived v
-      "messagePassportDataSent"             -> parseMessagePassportDataSent v
-      "messagePassportDataReceived"         -> parseMessagePassportDataReceived v
-      "messageProximityAlertTriggered"      -> parseMessageProximityAlertTriggered v
-      "messageUnsupported"                  -> pure MessageUnsupported
-      _                                     -> mempty
+      "messageText"                              -> parseMessageText v
+      "messageAnimation"                         -> parseMessageAnimation v
+      "messageAudio"                             -> parseMessageAudio v
+      "messageDocument"                          -> parseMessageDocument v
+      "messagePaidMedia"                         -> parseMessagePaidMedia v
+      "messagePhoto"                             -> parseMessagePhoto v
+      "messageSticker"                           -> parseMessageSticker v
+      "messageVideo"                             -> parseMessageVideo v
+      "messageVideoNote"                         -> parseMessageVideoNote v
+      "messageVoiceNote"                         -> parseMessageVoiceNote v
+      "messageExpiredPhoto"                      -> pure MessageExpiredPhoto
+      "messageExpiredVideo"                      -> pure MessageExpiredVideo
+      "messageExpiredVideoNote"                  -> pure MessageExpiredVideoNote
+      "messageExpiredVoiceNote"                  -> pure MessageExpiredVoiceNote
+      "messageLocation"                          -> parseMessageLocation v
+      "messageVenue"                             -> parseMessageVenue v
+      "messageContact"                           -> parseMessageContact v
+      "messageAnimatedEmoji"                     -> parseMessageAnimatedEmoji v
+      "messageDice"                              -> parseMessageDice v
+      "messageGame"                              -> parseMessageGame v
+      "messagePoll"                              -> parseMessagePoll v
+      "messageStory"                             -> parseMessageStory v
+      "messageChecklist"                         -> parseMessageChecklist v
+      "messageInvoice"                           -> parseMessageInvoice v
+      "messageCall"                              -> parseMessageCall v
+      "messageGroupCall"                         -> parseMessageGroupCall v
+      "messageVideoChatScheduled"                -> parseMessageVideoChatScheduled v
+      "messageVideoChatStarted"                  -> parseMessageVideoChatStarted v
+      "messageVideoChatEnded"                    -> parseMessageVideoChatEnded v
+      "messageInviteVideoChatParticipants"       -> parseMessageInviteVideoChatParticipants v
+      "messageBasicGroupChatCreate"              -> parseMessageBasicGroupChatCreate v
+      "messageSupergroupChatCreate"              -> parseMessageSupergroupChatCreate v
+      "messageChatChangeTitle"                   -> parseMessageChatChangeTitle v
+      "messageChatChangePhoto"                   -> parseMessageChatChangePhoto v
+      "messageChatDeletePhoto"                   -> pure MessageChatDeletePhoto
+      "messageChatAddMembers"                    -> parseMessageChatAddMembers v
+      "messageChatJoinByLink"                    -> pure MessageChatJoinByLink
+      "messageChatJoinByRequest"                 -> pure MessageChatJoinByRequest
+      "messageChatDeleteMember"                  -> parseMessageChatDeleteMember v
+      "messageChatUpgradeTo"                     -> parseMessageChatUpgradeTo v
+      "messageChatUpgradeFrom"                   -> parseMessageChatUpgradeFrom v
+      "messagePinMessage"                        -> parseMessagePinMessage v
+      "messageScreenshotTaken"                   -> pure MessageScreenshotTaken
+      "messageChatSetBackground"                 -> parseMessageChatSetBackground v
+      "messageChatSetTheme"                      -> parseMessageChatSetTheme v
+      "messageChatSetMessageAutoDeleteTime"      -> parseMessageChatSetMessageAutoDeleteTime v
+      "messageChatBoost"                         -> parseMessageChatBoost v
+      "messageForumTopicCreated"                 -> parseMessageForumTopicCreated v
+      "messageForumTopicEdited"                  -> parseMessageForumTopicEdited v
+      "messageForumTopicIsClosedToggled"         -> parseMessageForumTopicIsClosedToggled v
+      "messageForumTopicIsHiddenToggled"         -> parseMessageForumTopicIsHiddenToggled v
+      "messageSuggestProfilePhoto"               -> parseMessageSuggestProfilePhoto v
+      "messageSuggestBirthdate"                  -> parseMessageSuggestBirthdate v
+      "messageCustomServiceAction"               -> parseMessageCustomServiceAction v
+      "messageGameScore"                         -> parseMessageGameScore v
+      "messagePaymentSuccessful"                 -> parseMessagePaymentSuccessful v
+      "messagePaymentSuccessfulBot"              -> parseMessagePaymentSuccessfulBot v
+      "messagePaymentRefunded"                   -> parseMessagePaymentRefunded v
+      "messageGiftedPremium"                     -> parseMessageGiftedPremium v
+      "messagePremiumGiftCode"                   -> parseMessagePremiumGiftCode v
+      "messageGiveawayCreated"                   -> parseMessageGiveawayCreated v
+      "messageGiveaway"                          -> parseMessageGiveaway v
+      "messageGiveawayCompleted"                 -> parseMessageGiveawayCompleted v
+      "messageGiveawayWinners"                   -> parseMessageGiveawayWinners v
+      "messageGiftedStars"                       -> parseMessageGiftedStars v
+      "messageGiftedTon"                         -> parseMessageGiftedTon v
+      "messageGiveawayPrizeStars"                -> parseMessageGiveawayPrizeStars v
+      "messageGift"                              -> parseMessageGift v
+      "messageUpgradedGift"                      -> parseMessageUpgradedGift v
+      "messageRefundedUpgradedGift"              -> parseMessageRefundedUpgradedGift v
+      "messageUpgradedGiftPurchaseOffer"         -> parseMessageUpgradedGiftPurchaseOffer v
+      "messageUpgradedGiftPurchaseOfferDeclined" -> parseMessageUpgradedGiftPurchaseOfferDeclined v
+      "messagePaidMessagesRefunded"              -> parseMessagePaidMessagesRefunded v
+      "messagePaidMessagePriceChanged"           -> parseMessagePaidMessagePriceChanged v
+      "messageDirectMessagePriceChanged"         -> parseMessageDirectMessagePriceChanged v
+      "messageChecklistTasksDone"                -> parseMessageChecklistTasksDone v
+      "messageChecklistTasksAdded"               -> parseMessageChecklistTasksAdded v
+      "messageSuggestedPostApprovalFailed"       -> parseMessageSuggestedPostApprovalFailed v
+      "messageSuggestedPostApproved"             -> parseMessageSuggestedPostApproved v
+      "messageSuggestedPostDeclined"             -> parseMessageSuggestedPostDeclined v
+      "messageSuggestedPostPaid"                 -> parseMessageSuggestedPostPaid v
+      "messageSuggestedPostRefunded"             -> parseMessageSuggestedPostRefunded v
+      "messageContactRegistered"                 -> pure MessageContactRegistered
+      "messageUsersShared"                       -> parseMessageUsersShared v
+      "messageChatShared"                        -> parseMessageChatShared v
+      "messageBotWriteAccessAllowed"             -> parseMessageBotWriteAccessAllowed v
+      "messageWebAppDataSent"                    -> parseMessageWebAppDataSent v
+      "messageWebAppDataReceived"                -> parseMessageWebAppDataReceived v
+      "messagePassportDataSent"                  -> parseMessagePassportDataSent v
+      "messagePassportDataReceived"              -> parseMessagePassportDataReceived v
+      "messageProximityAlertTriggered"           -> parseMessageProximityAlertTriggered v
+      "messageUnsupported"                       -> pure MessageUnsupported
+      _                                          -> mempty
     
     where
       parseMessageText :: A.Value -> AT.Parser MessageContent
@@ -2198,6 +2243,7 @@ instance AT.FromJSON MessageContent where
         receiver_id_                <- o A..:?  "receiver_id"
         received_gift_id_           <- o A..:?  "received_gift_id"
         text_                       <- o A..:?  "text"
+        unique_gift_number_         <- o A..:?  "unique_gift_number"
         sell_star_count_            <- o A..:?  "sell_star_count"
         prepaid_upgrade_star_count_ <- o A..:?  "prepaid_upgrade_star_count"
         is_upgrade_separate_        <- o A..:?  "is_upgrade_separate"
@@ -2217,6 +2263,7 @@ instance AT.FromJSON MessageContent where
           , receiver_id                = receiver_id_
           , received_gift_id           = received_gift_id_
           , text                       = text_
+          , unique_gift_number         = unique_gift_number_
           , sell_star_count            = sell_star_count_
           , prepaid_upgrade_star_count = prepaid_upgrade_star_count_
           , is_upgrade_separate        = is_upgrade_separate_
@@ -2273,6 +2320,30 @@ instance AT.FromJSON MessageContent where
           , receiver_id = receiver_id_
           , origin      = origin_
           }
+      parseMessageUpgradedGiftPurchaseOffer :: A.Value -> AT.Parser MessageContent
+      parseMessageUpgradedGiftPurchaseOffer = A.withObject "MessageUpgradedGiftPurchaseOffer" $ \o -> do
+        _gift_           <- o A..:?  "gift"
+        state_           <- o A..:?  "state"
+        price_           <- o A..:?  "price"
+        expiration_date_ <- o A..:?  "expiration_date"
+        pure $ MessageUpgradedGiftPurchaseOffer
+          { _gift           = _gift_
+          , state           = state_
+          , price           = price_
+          , expiration_date = expiration_date_
+          }
+      parseMessageUpgradedGiftPurchaseOfferDeclined :: A.Value -> AT.Parser MessageContent
+      parseMessageUpgradedGiftPurchaseOfferDeclined = A.withObject "MessageUpgradedGiftPurchaseOfferDeclined" $ \o -> do
+        _gift_            <- o A..:?  "gift"
+        price_            <- o A..:?  "price"
+        offer_message_id_ <- o A..:?  "offer_message_id"
+        was_expired_      <- o A..:?  "was_expired"
+        pure $ MessageUpgradedGiftPurchaseOfferDeclined
+          { _gift            = _gift_
+          , price            = price_
+          , offer_message_id = offer_message_id_
+          , was_expired      = was_expired_
+          }
       parseMessagePaidMessagesRefunded :: A.Value -> AT.Parser MessageContent
       parseMessagePaidMessagesRefunded = A.withObject "MessagePaidMessagesRefunded" $ \o -> do
         message_count_ <- o A..:?  "message_count"
@@ -2316,19 +2387,19 @@ instance AT.FromJSON MessageContent where
       parseMessageSuggestedPostApprovalFailed :: A.Value -> AT.Parser MessageContent
       parseMessageSuggestedPostApprovalFailed = A.withObject "MessageSuggestedPostApprovalFailed" $ \o -> do
         suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
-        price_                     <- o A..:?  "price"
+        _price_                    <- o A..:?  "price"
         pure $ MessageSuggestedPostApprovalFailed
           { suggested_post_message_id = suggested_post_message_id_
-          , price                     = price_
+          , _price                    = _price_
           }
       parseMessageSuggestedPostApproved :: A.Value -> AT.Parser MessageContent
       parseMessageSuggestedPostApproved = A.withObject "MessageSuggestedPostApproved" $ \o -> do
         suggested_post_message_id_ <- o A..:?  "suggested_post_message_id"
-        price_                     <- o A..:?  "price"
+        _price_                    <- o A..:?  "price"
         send_date_                 <- o A..:?  "send_date"
         pure $ MessageSuggestedPostApproved
           { suggested_post_message_id = suggested_post_message_id_
-          , price                     = price_
+          , _price                    = _price_
           , send_date                 = send_date_
           }
       parseMessageSuggestedPostDeclined :: A.Value -> AT.Parser MessageContent

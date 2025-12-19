@@ -32,6 +32,7 @@ data PremiumFeature
   | PremiumFeatureBusiness -- ^ The ability to use Business features
   | PremiumFeatureMessageEffects -- ^ The ability to use all available message effects
   | PremiumFeatureChecklists -- ^ The ability to create and use checklist messages
+  | PremiumFeaturePaidMessages -- ^ The ability to require a payment for incoming messages in new chats
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -85,6 +86,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureMessageEffects"
   shortShow PremiumFeatureChecklists
       = "PremiumFeatureChecklists"
+  shortShow PremiumFeaturePaidMessages
+      = "PremiumFeaturePaidMessages"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -116,6 +119,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureBusiness"                -> pure PremiumFeatureBusiness
       "premiumFeatureMessageEffects"          -> pure PremiumFeatureMessageEffects
       "premiumFeatureChecklists"              -> pure PremiumFeatureChecklists
+      "premiumFeaturePaidMessages"            -> pure PremiumFeaturePaidMessages
       _                                       -> mempty
     
   parseJSON _ = mempty
@@ -220,5 +224,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureChecklists
       = A.object
         [ "@type" A..= AT.String "premiumFeatureChecklists"
+        ]
+  toJSON PremiumFeaturePaidMessages
+      = A.object
+        [ "@type" A..= AT.String "premiumFeaturePaidMessages"
         ]
 

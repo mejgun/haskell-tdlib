@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Check whether the current user can message another user or try to create a chat with them. Returns 'TD.Data.CanSendMessageToUserResult.CanSendMessageToUserResult'
+-- | Checks whether the current user can message another user or try to create a chat with them. Returns 'TD.Data.CanSendMessageToUserResult.CanSendMessageToUserResult'
 data CanSendMessageToUser
   = CanSendMessageToUser
     { user_id    :: Maybe Int  -- ^ Identifier of the other user

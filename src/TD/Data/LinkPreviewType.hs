@@ -14,7 +14,6 @@ import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
 import qualified TD.Data.Gift as Gift
-import qualified TD.Data.GiftBackground as GiftBackground
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.Video as Video
 import qualified TD.Data.ThemeSettings as ThemeSettings
@@ -92,9 +91,8 @@ data LinkPreviewType
     , duration  :: Maybe Int    -- ^ Duration of the video, in seconds; 0 if unknown
     }
   | LinkPreviewTypeGiftAuction -- ^ The link is a link to a gift auction
-    { gift             :: Maybe Gift.Gift                     -- ^ The gift
-    , gift_background  :: Maybe GiftBackground.GiftBackground -- ^ Background of the gift
-    , auction_end_date :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the auction will be ended
+    { gift             :: Maybe Gift.Gift -- ^ The gift
+    , auction_end_date :: Maybe Int       -- ^ Point in time (Unix timestamp) when the auction will be ended
     }
   | LinkPreviewTypeGiftCollection -- ^ The link is a link to a gift collection
     { icons :: Maybe [Sticker.Sticker] -- ^ Icons for some gifts from the collection; may be empty
@@ -313,13 +311,11 @@ instance I.ShortShow LinkPreviewType where
         ]
   shortShow LinkPreviewTypeGiftAuction
     { gift             = gift_
-    , gift_background  = gift_background_
     , auction_end_date = auction_end_date_
     }
       = "LinkPreviewTypeGiftAuction"
         ++ I.cc
         [ "gift"             `I.p` gift_
-        , "gift_background"  `I.p` gift_background_
         , "auction_end_date" `I.p` auction_end_date_
         ]
   shortShow LinkPreviewTypeGiftCollection
@@ -648,11 +644,9 @@ instance AT.FromJSON LinkPreviewType where
       parseLinkPreviewTypeGiftAuction :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeGiftAuction = A.withObject "LinkPreviewTypeGiftAuction" $ \o -> do
         gift_             <- o A..:?  "gift"
-        gift_background_  <- o A..:?  "gift_background"
         auction_end_date_ <- o A..:?  "auction_end_date"
         pure $ LinkPreviewTypeGiftAuction
           { gift             = gift_
-          , gift_background  = gift_background_
           , auction_end_date = auction_end_date_
           }
       parseLinkPreviewTypeGiftCollection :: A.Value -> AT.Parser LinkPreviewType

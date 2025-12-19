@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Check the authentication code and completes the request for which the code was sent if appropriate. Returns 'TD.Data.Ok.Ok'
+-- | Checks the authentication code and completes the request for which the code was sent if appropriate. Returns 'TD.Data.Ok.Ok'
 data CheckPhoneNumberCode
   = CheckPhoneNumberCode
     { code :: Maybe T.Text -- ^ Authentication code to check

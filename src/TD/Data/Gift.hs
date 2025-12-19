@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.GiftAuction as GiftAuction
 import qualified TD.Data.GiftPurchaseLimits as GiftPurchaseLimits
+import qualified TD.Data.GiftBackground as GiftBackground
 
 data Gift
   = Gift -- ^ Describes a gift that can be sent to another user or channel chat
@@ -16,13 +17,15 @@ data Gift
     , star_count              :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid for the gift
     , default_sell_star_count :: Maybe Int                                   -- ^ Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
     , upgrade_star_count      :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
+    , upgrade_variant_count   :: Maybe Int                                   -- ^ Number of unique gift variants that are available for the upgraded gift; 0 if unknown
     , has_colors              :: Maybe Bool                                  -- ^ True, if the gift can be used to customize the user's name, and backgrounds of profile photo, reply header, and link preview
     , is_for_birthday         :: Maybe Bool                                  -- ^ True, if the gift is a birthday gift
     , is_premium              :: Maybe Bool                                  -- ^ True, if the gift can be bought only by Telegram Premium subscribers
     , auction_info            :: Maybe GiftAuction.GiftAuction               -- ^ Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
-    , next_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be sent next time by the current user; can be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
+    , next_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be sent next time by the current user; may be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
     , user_limits             :: Maybe GiftPurchaseLimits.GiftPurchaseLimits -- ^ Number of times the gift can be purchased by the current user; may be null if not limited
     , overall_limits          :: Maybe GiftPurchaseLimits.GiftPurchaseLimits -- ^ Number of times the gift can be purchased all users; may be null if not limited
+    , background              :: Maybe GiftBackground.GiftBackground         -- ^ Background of the gift
     , first_send_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
     , last_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
     }
@@ -36,6 +39,7 @@ instance I.ShortShow Gift where
     , star_count              = star_count_
     , default_sell_star_count = default_sell_star_count_
     , upgrade_star_count      = upgrade_star_count_
+    , upgrade_variant_count   = upgrade_variant_count_
     , has_colors              = has_colors_
     , is_for_birthday         = is_for_birthday_
     , is_premium              = is_premium_
@@ -43,6 +47,7 @@ instance I.ShortShow Gift where
     , next_send_date          = next_send_date_
     , user_limits             = user_limits_
     , overall_limits          = overall_limits_
+    , background              = background_
     , first_send_date         = first_send_date_
     , last_send_date          = last_send_date_
     }
@@ -54,6 +59,7 @@ instance I.ShortShow Gift where
         , "star_count"              `I.p` star_count_
         , "default_sell_star_count" `I.p` default_sell_star_count_
         , "upgrade_star_count"      `I.p` upgrade_star_count_
+        , "upgrade_variant_count"   `I.p` upgrade_variant_count_
         , "has_colors"              `I.p` has_colors_
         , "is_for_birthday"         `I.p` is_for_birthday_
         , "is_premium"              `I.p` is_premium_
@@ -61,6 +67,7 @@ instance I.ShortShow Gift where
         , "next_send_date"          `I.p` next_send_date_
         , "user_limits"             `I.p` user_limits_
         , "overall_limits"          `I.p` overall_limits_
+        , "background"              `I.p` background_
         , "first_send_date"         `I.p` first_send_date_
         , "last_send_date"          `I.p` last_send_date_
         ]
@@ -82,6 +89,7 @@ instance AT.FromJSON Gift where
         star_count_              <- o A..:?                       "star_count"
         default_sell_star_count_ <- o A..:?                       "default_sell_star_count"
         upgrade_star_count_      <- o A..:?                       "upgrade_star_count"
+        upgrade_variant_count_   <- o A..:?                       "upgrade_variant_count"
         has_colors_              <- o A..:?                       "has_colors"
         is_for_birthday_         <- o A..:?                       "is_for_birthday"
         is_premium_              <- o A..:?                       "is_premium"
@@ -89,6 +97,7 @@ instance AT.FromJSON Gift where
         next_send_date_          <- o A..:?                       "next_send_date"
         user_limits_             <- o A..:?                       "user_limits"
         overall_limits_          <- o A..:?                       "overall_limits"
+        background_              <- o A..:?                       "background"
         first_send_date_         <- o A..:?                       "first_send_date"
         last_send_date_          <- o A..:?                       "last_send_date"
         pure $ Gift
@@ -98,6 +107,7 @@ instance AT.FromJSON Gift where
           , star_count              = star_count_
           , default_sell_star_count = default_sell_star_count_
           , upgrade_star_count      = upgrade_star_count_
+          , upgrade_variant_count   = upgrade_variant_count_
           , has_colors              = has_colors_
           , is_for_birthday         = is_for_birthday_
           , is_premium              = is_premium_
@@ -105,6 +115,7 @@ instance AT.FromJSON Gift where
           , next_send_date          = next_send_date_
           , user_limits             = user_limits_
           , overall_limits          = overall_limits_
+          , background              = background_
           , first_send_date         = first_send_date_
           , last_send_date          = last_send_date_
           }

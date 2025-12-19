@@ -13,7 +13,7 @@ import qualified TD.Data.TermsOfService as TermsOfService
 -- | Represents the current authorization state of the TDLib client
 data AuthorizationState
   = AuthorizationStateWaitTdlibParameters -- ^ Initialization parameters are needed. Call setTdlibParameters to provide them
-  | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
+  | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication, getAuthenticationPasskeyParameters, or checkAuthenticationBotToken for other authentication options
   | AuthorizationStateWaitPremiumPurchase -- ^ The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
     { store_product_id      :: Maybe T.Text -- ^ Identifier of the store product that must be bought
     , support_email_address :: Maybe T.Text -- ^ Email address to use for support if the user has issues with Telegram Premium purchase

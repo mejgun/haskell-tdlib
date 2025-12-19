@@ -38,6 +38,7 @@ data SuggestedAction
   | SuggestedActionSetLoginEmailAddress -- ^ Suggests the user to add login email address. Call isLoginEmailAddressRequired, and then setLoginEmailAddress or checkLoginEmailAddressCode to change the login email address
     { can_be_hidden :: Maybe Bool -- ^ True, if the suggested action can be hidden using hideSuggestedAction. Otherwise, the user must not be able to use the app without setting up the email address
     }
+  | SuggestedActionAddLoginPasskey -- ^ Suggests the user to add a passkey for login using addLoginPasskey
   deriving (Eq, Show)
 
 instance I.ShortShow SuggestedAction where
@@ -104,6 +105,8 @@ instance I.ShortShow SuggestedAction where
         ++ I.cc
         [ "can_be_hidden" `I.p` can_be_hidden_
         ]
+  shortShow SuggestedActionAddLoginPasskey
+      = "SuggestedActionAddLoginPasskey"
 
 instance AT.FromJSON SuggestedAction where
   parseJSON v@(AT.Object obj) = do
@@ -126,6 +129,7 @@ instance AT.FromJSON SuggestedAction where
       "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
       "suggestedActionCustom"                       -> parseSuggestedActionCustom v
       "suggestedActionSetLoginEmailAddress"         -> parseSuggestedActionSetLoginEmailAddress v
+      "suggestedActionAddLoginPasskey"              -> pure SuggestedActionAddLoginPasskey
       _                                             -> mempty
     
     where
@@ -252,5 +256,9 @@ instance AT.ToJSON SuggestedAction where
       = A.object
         [ "@type"         A..= AT.String "suggestedActionSetLoginEmailAddress"
         , "can_be_hidden" A..= can_be_hidden_
+        ]
+  toJSON SuggestedActionAddLoginPasskey
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionAddLoginPasskey"
         ]
 

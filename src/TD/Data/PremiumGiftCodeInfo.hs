@@ -11,7 +11,7 @@ data PremiumGiftCodeInfo
     { creator_id          :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
     , creation_date       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the code was created
     , is_from_giveaway    :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
-    , giveaway_message_id :: Maybe Int                         -- ^ Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
+    , giveaway_message_id :: Maybe Int                         -- ^ Identifier of the corresponding giveaway message in the creator_id chat; may be 0 or an identifier of a deleted message
     , month_count         :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active after code activation; 0 if the number of months isn't integer
     , day_count           :: Maybe Int                         -- ^ Number of days the Telegram Premium subscription will be active after code activation
     , user_id             :: Maybe Int                         -- ^ Identifier of a user for which the code was created; 0 if none

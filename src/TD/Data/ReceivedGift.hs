@@ -14,6 +14,7 @@ data ReceivedGift
     { received_gift_id                 :: Maybe T.Text                      -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
     , sender_id                        :: Maybe MessageSender.MessageSender -- ^ Identifier of a user or a chat that sent the gift; may be null if unknown
     , text                             :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
+    , unique_gift_number               :: Maybe Int                         -- ^ Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
     , is_private                       :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them
     , is_saved                         :: Maybe Bool                        -- ^ True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
     , is_pinned                        :: Maybe Bool                        -- ^ True, if the gift is pinned to the top of the chat's profile page
@@ -40,6 +41,7 @@ instance I.ShortShow ReceivedGift where
     { received_gift_id                 = received_gift_id_
     , sender_id                        = sender_id_
     , text                             = text_
+    , unique_gift_number               = unique_gift_number_
     , is_private                       = is_private_
     , is_saved                         = is_saved_
     , is_pinned                        = is_pinned_
@@ -64,6 +66,7 @@ instance I.ShortShow ReceivedGift where
         [ "received_gift_id"                 `I.p` received_gift_id_
         , "sender_id"                        `I.p` sender_id_
         , "text"                             `I.p` text_
+        , "unique_gift_number"               `I.p` unique_gift_number_
         , "is_private"                       `I.p` is_private_
         , "is_saved"                         `I.p` is_saved_
         , "is_pinned"                        `I.p` is_pinned_
@@ -98,6 +101,7 @@ instance AT.FromJSON ReceivedGift where
         received_gift_id_                 <- o A..:?  "received_gift_id"
         sender_id_                        <- o A..:?  "sender_id"
         text_                             <- o A..:?  "text"
+        unique_gift_number_               <- o A..:?  "unique_gift_number"
         is_private_                       <- o A..:?  "is_private"
         is_saved_                         <- o A..:?  "is_saved"
         is_pinned_                        <- o A..:?  "is_pinned"
@@ -120,6 +124,7 @@ instance AT.FromJSON ReceivedGift where
           { received_gift_id                 = received_gift_id_
           , sender_id                        = sender_id_
           , text                             = text_
+          , unique_gift_number               = unique_gift_number_
           , is_private                       = is_private_
           , is_saved                         = is_saved_
           , is_pinned                        = is_pinned_

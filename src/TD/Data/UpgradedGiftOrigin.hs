@@ -9,14 +9,17 @@ import qualified TD.Data.GiftResalePrice as GiftResalePrice
 -- | Describes origin from which the upgraded gift was obtained
 data UpgradedGiftOrigin
   = UpgradedGiftOriginUpgrade -- ^ The gift was obtained by upgrading of a previously received gift
-    { gift_message_id :: Maybe Int -- ^ Identifier of the message with the regular gift that was upgraded; can be 0 or an identifier of a deleted message
+    { gift_message_id :: Maybe Int -- ^ Identifier of the message with the regular gift that was upgraded; may be 0 or an identifier of a deleted message
     }
   | UpgradedGiftOriginTransfer -- ^ The gift was transferred from another owner
   | UpgradedGiftOriginResale -- ^ The gift was bought from another user
-    { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid by the sender for the gift
+    { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid for the gift
     }
   | UpgradedGiftOriginBlockchain -- ^ The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold or withdrawn to blockchain
   | UpgradedGiftOriginPrepaidUpgrade -- ^ The sender or receiver of the message has paid for upgraid of the gift, which has been completed
+  | UpgradedGiftOriginOffer -- ^ The gift was bought through an offer
+    { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid for the gift
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow UpgradedGiftOrigin where
@@ -40,6 +43,13 @@ instance I.ShortShow UpgradedGiftOrigin where
       = "UpgradedGiftOriginBlockchain"
   shortShow UpgradedGiftOriginPrepaidUpgrade
       = "UpgradedGiftOriginPrepaidUpgrade"
+  shortShow UpgradedGiftOriginOffer
+    { price = price_
+    }
+      = "UpgradedGiftOriginOffer"
+        ++ I.cc
+        [ "price" `I.p` price_
+        ]
 
 instance AT.FromJSON UpgradedGiftOrigin where
   parseJSON v@(AT.Object obj) = do
@@ -51,6 +61,7 @@ instance AT.FromJSON UpgradedGiftOrigin where
       "upgradedGiftOriginResale"         -> parseUpgradedGiftOriginResale v
       "upgradedGiftOriginBlockchain"     -> pure UpgradedGiftOriginBlockchain
       "upgradedGiftOriginPrepaidUpgrade" -> pure UpgradedGiftOriginPrepaidUpgrade
+      "upgradedGiftOriginOffer"          -> parseUpgradedGiftOriginOffer v
       _                                  -> mempty
     
     where
@@ -64,6 +75,12 @@ instance AT.FromJSON UpgradedGiftOrigin where
       parseUpgradedGiftOriginResale = A.withObject "UpgradedGiftOriginResale" $ \o -> do
         price_ <- o A..:?  "price"
         pure $ UpgradedGiftOriginResale
+          { price = price_
+          }
+      parseUpgradedGiftOriginOffer :: A.Value -> AT.Parser UpgradedGiftOrigin
+      parseUpgradedGiftOriginOffer = A.withObject "UpgradedGiftOriginOffer" $ \o -> do
+        price_ <- o A..:?  "price"
+        pure $ UpgradedGiftOriginOffer
           { price = price_
           }
   parseJSON _ = mempty

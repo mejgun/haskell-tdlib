@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified. Returns 'TD.Data.Emojis.Emojis'
+-- | Returns emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified. Returns 'TD.Data.Emojis.Emojis'
 data GetKeywordEmojis
   = GetKeywordEmojis
     { text                 :: Maybe T.Text   -- ^ Text to search for
