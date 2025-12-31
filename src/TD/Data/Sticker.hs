@@ -16,7 +16,7 @@ data Sticker
     , set_id    :: Maybe Int                             -- ^ Identifier of the sticker set to which the sticker belongs; 0 if none
     , width     :: Maybe Int                             -- ^ Sticker width; as defined by the sender
     , height    :: Maybe Int                             -- ^ Sticker height; as defined by the sender
-    , emoji     :: Maybe T.Text                          -- ^ Emoji corresponding to the sticker
+    , emoji     :: Maybe T.Text                          -- ^ Emoji corresponding to the sticker; may be empty if unknown
     , format    :: Maybe StickerFormat.StickerFormat     -- ^ Sticker format
     , full_type :: Maybe StickerFullType.StickerFullType -- ^ Sticker's full type
     , thumbnail :: Maybe Thumbnail.Thumbnail             -- ^ Sticker thumbnail in WEBP or JPEG format; may be null
