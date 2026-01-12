@@ -14,7 +14,7 @@ data UpgradeGift
     { business_connection_id :: Maybe T.Text -- ^ Unique identifier of business connection on behalf of which to send the request; for bots only
     , received_gift_id       :: Maybe T.Text -- ^ Identifier of the gift
     , keep_original_details  :: Maybe Bool   -- ^ Pass true to keep the original gift text, sender and receiver in the upgraded gift
-    , star_count             :: Maybe Int    -- ^ The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+    , star_count             :: Maybe Int    -- ^ The Telegram Star amount required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
     }
   deriving (Eq, Show)
 

@@ -10,7 +10,7 @@ data AffiliateInfo
   = AffiliateInfo -- ^ Contains information about an affiliate that received commission from a Telegram Star transaction
     { commission_per_mille :: Maybe Int                   -- ^ The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner
     , affiliate_chat_id    :: Maybe Int                   -- ^ Identifier of the chat which received the commission
-    , star_amount          :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that were received by the affiliate; can be negative for refunds
+    , star_amount          :: Maybe StarAmount.StarAmount -- ^ The Telegram Star amount that was received by the affiliate; can be negative for refunds
     }
   deriving (Eq, Show)
 

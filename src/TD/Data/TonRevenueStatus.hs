@@ -7,9 +7,9 @@ import qualified TD.Lib.Internal as I
 
 data TonRevenueStatus
   = TonRevenueStatus -- ^ Contains information about Toncoins earned by the current user
-    { total_amount       :: Maybe Int  -- ^ Total amount of Toncoins earned; in the smallest units of the cryptocurrency
-    , balance_amount     :: Maybe Int  -- ^ Amount of Toncoins that aren't withdrawn yet; in the smallest units of the cryptocurrency
-    , available_amount   :: Maybe Int  -- ^ Amount of Toncoins that are available for withdrawal; in the smallest units of the cryptocurrency
+    { total_amount       :: Maybe Int  -- ^ Total Toncoin amount earned; in the smallest units of the cryptocurrency
+    , balance_amount     :: Maybe Int  -- ^ The Toncoin amount that isn't withdrawn yet; in the smallest units of the cryptocurrency
+    , available_amount   :: Maybe Int  -- ^ The Toncoin amount that is available for withdrawal; in the smallest units of the cryptocurrency
     , withdrawal_enabled :: Maybe Bool -- ^ True, if Toncoins can be withdrawn
     }
   deriving (Eq, Show)

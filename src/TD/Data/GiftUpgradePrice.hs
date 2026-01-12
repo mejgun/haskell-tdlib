@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 data GiftUpgradePrice
   = GiftUpgradePrice -- ^ Describes a price required to pay to upgrade a gift
     { date       :: Maybe Int -- ^ Point in time (Unix timestamp) when the price will be in effect
-    , star_count :: Maybe Int -- ^ The amount of Telegram Stars required to pay to upgrade the gift
+    , star_count :: Maybe Int -- ^ The Telegram Star amount required to pay to upgrade the gift
     }
   deriving (Eq, Show)
 

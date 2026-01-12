@@ -218,6 +218,7 @@ import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredChats as SponsoredChats
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
+import qualified TD.Data.StakeDiceState as StakeDiceState
 import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.StarCount as StarCount
 import qualified TD.Data.StarGiveawayPaymentOptions as StarGiveawayPaymentOptions
@@ -487,6 +488,7 @@ data GeneralResult
     | Sessions                           Sessions.Sessions
     | SponsoredChats                     SponsoredChats.SponsoredChats
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
+    | StakeDiceState                     StakeDiceState.StakeDiceState
     | StarAmount                         StarAmount.StarAmount
     | StarCount                          StarCount.StarCount
     | StarGiveawayPaymentOptions         StarGiveawayPaymentOptions.StarGiveawayPaymentOptions
@@ -971,6 +973,8 @@ instance I.ShortShow GeneralResult where
     = "SponsoredChats" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
     = "SponsoredMessages" <> " (" <> I.shortShow v <> ")"
+  shortShow (StakeDiceState v)
+    = "StakeDiceState" <> " (" <> I.shortShow v <> ")"
   shortShow (StarAmount v)
     = "StarAmount" <> " (" <> I.shortShow v <> ")"
   shortShow (StarCount v)
@@ -1294,6 +1298,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredChats                      <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
+    <|> ( StakeDiceState                      <$> parseJSON v )
     <|> ( StarAmount                          <$> parseJSON v )
     <|> ( StarCount                           <$> parseJSON v )
     <|> ( StarGiveawayPaymentOptions          <$> parseJSON v )

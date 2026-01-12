@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages. Returns 'TD.Data.Ok.Ok'
+-- | Changes the Telegram Star amount that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages. Returns 'TD.Data.Ok.Ok'
 data SetChatPaidMessageStarCount
   = SetChatPaidMessageStarCount
     { chat_id                 :: Maybe Int -- ^ Identifier of the supergroup chat

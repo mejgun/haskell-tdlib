@@ -8,9 +8,9 @@ import qualified TD.Data.StarAmount as StarAmount
 
 data StarRevenueStatus
   = StarRevenueStatus -- ^ Contains information about Telegram Stars earned by a user or a chat
-    { total_amount       :: Maybe StarAmount.StarAmount -- ^ Total amount of Telegram Stars earned
-    , current_amount     :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that aren't withdrawn yet
-    , available_amount   :: Maybe StarAmount.StarAmount -- ^ The amount of Telegram Stars that are available for withdrawal
+    { total_amount       :: Maybe StarAmount.StarAmount -- ^ Total Telegram Star amount earned
+    , current_amount     :: Maybe StarAmount.StarAmount -- ^ The Telegram Star amount that isn't withdrawn yet
+    , available_amount   :: Maybe StarAmount.StarAmount -- ^ The Telegram Star amount that is available for withdrawal
     , withdrawal_enabled :: Maybe Bool                  -- ^ True, if Telegram Stars can be withdrawn now or later
     , next_withdrawal_in :: Maybe Int                   -- ^ Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
     }

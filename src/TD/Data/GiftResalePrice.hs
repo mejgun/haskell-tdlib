@@ -8,10 +8,10 @@ import qualified TD.Lib.Internal as I
 -- | Describes price of a resold gift
 data GiftResalePrice
   = GiftResalePriceStar -- ^ Describes price of a resold gift in Telegram Stars
-    { star_count :: Maybe Int -- ^ The amount of Telegram Stars expected to be paid for the gift. Must be in range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale
+    { star_count :: Maybe Int -- ^ The Telegram Star amount expected to be paid for the gift. Must be in the range getOption("gift_resale_star_count_min")-getOption("gift_resale_star_count_max") for gifts put for resale
     }
   | GiftResalePriceTon -- ^ Describes price of a resold gift in Toncoins
-    { toncoin_cent_count :: Maybe Int -- ^ The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max")
+    { toncoin_cent_count :: Maybe Int -- ^ The amount of 1/100 of Toncoin expected to be paid for the gift. Must be in the range getOption("gift_resale_toncoin_cent_count_min")-getOption("gift_resale_toncoin_cent_count_max")
     }
   deriving (Eq, Show)
 

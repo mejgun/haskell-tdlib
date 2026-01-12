@@ -22,7 +22,7 @@ data GiveawayInfo
     , winner_count                  :: Maybe Int    -- ^ Number of winners in the giveaway
     , activation_count              :: Maybe Int    -- ^ Number of winners, which activated their gift codes; for Telegram Premium giveaways only
     , gift_code                     :: Maybe T.Text -- ^ Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway
-    , won_star_count                :: Maybe Int    -- ^ The amount of Telegram Stars won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway
+    , won_star_count                :: Maybe Int    -- ^ The Telegram Star amount won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway
     }
   deriving (Eq, Show)
 

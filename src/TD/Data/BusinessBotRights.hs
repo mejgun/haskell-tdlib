@@ -17,7 +17,7 @@ data BusinessBotRights
     , can_edit_bio                   :: Maybe Bool -- ^ True, if the bot can edit bio of the business account
     , can_edit_profile_photo         :: Maybe Bool -- ^ True, if the bot can edit profile photo of the business account
     , can_edit_username              :: Maybe Bool -- ^ True, if the bot can edit username of the business account
-    , can_view_gifts_and_stars       :: Maybe Bool -- ^ True, if the bot can view gifts and amount of Telegram Stars owned by the business account
+    , can_view_gifts_and_stars       :: Maybe Bool -- ^ True, if the bot can view gifts and Telegram Star amount owned by the business account
     , can_sell_gifts                 :: Maybe Bool -- ^ True, if the bot can sell regular gifts received by the business account
     , can_change_gift_settings       :: Maybe Bool -- ^ True, if the bot can change gift receiving settings of the business account
     , can_transfer_and_upgrade_gifts :: Maybe Bool -- ^ True, if the bot can transfer and upgrade gifts received by the business account

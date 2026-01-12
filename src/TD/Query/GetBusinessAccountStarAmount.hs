@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns the amount of Telegram Stars owned by a business account; for bots only. Returns 'TD.Data.StarAmount.StarAmount'
+-- | Returns the Telegram Star amount owned by a business account; for bots only. Returns 'TD.Data.StarAmount.StarAmount'
 data GetBusinessAccountStarAmount
   = GetBusinessAccountStarAmount
     { business_connection_id :: Maybe T.Text -- ^ Unique identifier of business connection

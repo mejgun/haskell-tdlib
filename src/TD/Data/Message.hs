@@ -58,6 +58,7 @@ data Message
     , media_album_id              :: Maybe Int                                             -- ^ Unique identifier of an album this message belongs to; 0 if none. Only audios, documents, photos and videos can be grouped together in albums
     , effect_id                   :: Maybe Int                                             -- ^ Unique identifier of the effect added to the message; 0 if none
     , restriction_info            :: Maybe RestrictionInfo.RestrictionInfo                 -- ^ Information about the restrictions that must be applied to the message content; may be null if none
+    , summary_language_code       :: Maybe T.Text                                          -- ^ IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
     , content                     :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
     , reply_markup                :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
     }
@@ -100,6 +101,7 @@ instance I.ShortShow Message where
     , media_album_id              = media_album_id_
     , effect_id                   = effect_id_
     , restriction_info            = restriction_info_
+    , summary_language_code       = summary_language_code_
     , content                     = content_
     , reply_markup                = reply_markup_
     }
@@ -140,6 +142,7 @@ instance I.ShortShow Message where
         , "media_album_id"              `I.p` media_album_id_
         , "effect_id"                   `I.p` effect_id_
         , "restriction_info"            `I.p` restriction_info_
+        , "summary_language_code"       `I.p` summary_language_code_
         , "content"                     `I.p` content_
         , "reply_markup"                `I.p` reply_markup_
         ]
@@ -190,6 +193,7 @@ instance AT.FromJSON Message where
         media_album_id_              <- fmap I.readInt64 <$> o A..:?  "media_album_id"
         effect_id_                   <- fmap I.readInt64 <$> o A..:?  "effect_id"
         restriction_info_            <- o A..:?                       "restriction_info"
+        summary_language_code_       <- o A..:?                       "summary_language_code"
         content_                     <- o A..:?                       "content"
         reply_markup_                <- o A..:?                       "reply_markup"
         pure $ Message
@@ -228,6 +232,7 @@ instance AT.FromJSON Message where
           , media_album_id              = media_album_id_
           , effect_id                   = effect_id_
           , restriction_info            = restriction_info_
+          , summary_language_code       = summary_language_code_
           , content                     = content_
           , reply_markup                = reply_markup_
           }

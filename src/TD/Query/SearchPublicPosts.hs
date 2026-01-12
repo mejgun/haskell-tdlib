@@ -14,7 +14,7 @@ data SearchPublicPosts
     { query      :: Maybe T.Text -- ^ Query to search for
     , offset     :: Maybe T.Text -- ^ Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     , limit      :: Maybe Int    -- ^ The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    , star_count :: Maybe Int    -- ^ The amount of Telegram Stars the user agreed to pay for the search; pass 0 for free searches
+    , star_count :: Maybe Int    -- ^ The Telegram Star amount the user agreed to pay for the search; pass 0 for free searches
     }
   deriving (Eq, Show)
 

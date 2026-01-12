@@ -25,7 +25,7 @@ data InputMessageContent
   = InputMessageText -- ^ A text message
     { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
-    , clear_draft          :: Maybe Bool                                  -- ^ True, if a chat message draft must be deleted
+    , clear_draft          :: Maybe Bool                                  -- ^ True, if the chat message draft must be deleted
     }
   | InputMessageAnimation -- ^ An animation message (GIF-style).
     { animation                :: Maybe InputFile.InputFile           -- ^ Animation file to be sent
@@ -149,6 +149,11 @@ data InputMessageContent
     , open_period  :: Maybe Int                           -- ^ Amount of time the poll will be active after creation, in seconds; for bots only
     , close_date   :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
     , is_closed    :: Maybe Bool                          -- ^ True, if the poll needs to be sent already closed; for bots only
+    }
+  | InputMessageStakeDice -- ^ A stake dice message
+    { state_hash           :: Maybe T.Text -- ^ Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
+    , stake_toncoin_amount :: Maybe Int    -- ^ The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
+    , clear_draft          :: Maybe Bool   -- ^ True, if the chat message draft must be deleted
     }
   | InputMessageStory -- ^ A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     { story_poster_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
@@ -441,6 +446,17 @@ instance I.ShortShow InputMessageContent where
         , "close_date"   `I.p` close_date_
         , "is_closed"    `I.p` is_closed_
         ]
+  shortShow InputMessageStakeDice
+    { state_hash           = state_hash_
+    , stake_toncoin_amount = stake_toncoin_amount_
+    , clear_draft          = clear_draft_
+    }
+      = "InputMessageStakeDice"
+        ++ I.cc
+        [ "state_hash"           `I.p` state_hash_
+        , "stake_toncoin_amount" `I.p` stake_toncoin_amount_
+        , "clear_draft"          `I.p` clear_draft_
+        ]
   shortShow InputMessageStory
     { story_poster_chat_id = story_poster_chat_id_
     , story_id             = story_id_
@@ -497,6 +513,7 @@ instance AT.FromJSON InputMessageContent where
       "inputMessageGame"      -> parseInputMessageGame v
       "inputMessageInvoice"   -> parseInputMessageInvoice v
       "inputMessagePoll"      -> parseInputMessagePoll v
+      "inputMessageStakeDice" -> parseInputMessageStakeDice v
       "inputMessageStory"     -> parseInputMessageStory v
       "inputMessageChecklist" -> parseInputMessageChecklist v
       "inputMessageForwarded" -> parseInputMessageForwarded v
@@ -758,6 +775,16 @@ instance AT.FromJSON InputMessageContent where
           , open_period  = open_period_
           , close_date   = close_date_
           , is_closed    = is_closed_
+          }
+      parseInputMessageStakeDice :: A.Value -> AT.Parser InputMessageContent
+      parseInputMessageStakeDice = A.withObject "InputMessageStakeDice" $ \o -> do
+        state_hash_           <- o A..:?  "state_hash"
+        stake_toncoin_amount_ <- o A..:?  "stake_toncoin_amount"
+        clear_draft_          <- o A..:?  "clear_draft"
+        pure $ InputMessageStakeDice
+          { state_hash           = state_hash_
+          , stake_toncoin_amount = stake_toncoin_amount_
+          , clear_draft          = clear_draft_
           }
       parseInputMessageStory :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageStory = A.withObject "InputMessageStory" $ \o -> do
@@ -1064,6 +1091,17 @@ instance AT.ToJSON InputMessageContent where
         , "open_period"  A..= open_period_
         , "close_date"   A..= close_date_
         , "is_closed"    A..= is_closed_
+        ]
+  toJSON InputMessageStakeDice
+    { state_hash           = state_hash_
+    , stake_toncoin_amount = stake_toncoin_amount_
+    , clear_draft          = clear_draft_
+    }
+      = A.object
+        [ "@type"                A..= AT.String "inputMessageStakeDice"
+        , "state_hash"           A..= state_hash_
+        , "stake_toncoin_amount" A..= stake_toncoin_amount_
+        , "clear_draft"          A..= clear_draft_
         ]
   toJSON InputMessageStory
     { story_poster_chat_id = story_poster_chat_id_

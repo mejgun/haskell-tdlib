@@ -12,7 +12,7 @@ data UpgradedGiftValueInfo
     , value                      :: Maybe Int    -- ^ Estimated value of the gift; in the smallest units of the currency
     , is_value_average           :: Maybe Bool   -- ^ True, if the value is calculated as average value of similar sold gifts. Otherwise, it is based on the sale price of the gift
     , initial_sale_date          :: Maybe Int    -- ^ Point in time (Unix timestamp) when the corresponding regular gift was originally purchased
-    , initial_sale_star_count    :: Maybe Int    -- ^ Amount of Telegram Stars that were paid for the gift
+    , initial_sale_star_count    :: Maybe Int    -- ^ The Telegram Star amount that was paid for the gift
     , initial_sale_price         :: Maybe Int    -- ^ Initial price of the gift; in the smallest units of the currency
     , last_sale_date             :: Maybe Int    -- ^ Point in time (Unix timestamp) when the upgraded gift was purchased last time; 0 if never
     , last_sale_price            :: Maybe Int    -- ^ Last purchase price of the gift; in the smallest units of the currency; 0 if the gift has never been resold

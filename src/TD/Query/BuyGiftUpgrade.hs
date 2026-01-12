@@ -14,7 +14,7 @@ data BuyGiftUpgrade
   = BuyGiftUpgrade
     { owner_id             :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that owns the gift
     , prepaid_upgrade_hash :: Maybe T.Text                      -- ^ Prepaid upgrade hash as received along with the gift
-    , star_count           :: Maybe Int                         -- ^ The amount of Telegram Stars the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
+    , star_count           :: Maybe Int                         -- ^ The Telegram Star amount the user agreed to pay for the upgrade; must be equal to gift.upgrade_star_count
     }
   deriving (Eq, Show)
 

@@ -12,7 +12,7 @@ import qualified Data.Text as T
 data DropGiftOriginalDetails
   = DropGiftOriginalDetails
     { received_gift_id :: Maybe T.Text -- ^ Identifier of the gift
-    , star_count       :: Maybe Int    -- ^ The amount of Telegram Stars required to pay for the operation
+    , star_count       :: Maybe Int    -- ^ The Telegram Star amount required to pay for the operation
     }
   deriving (Eq, Show)
 

@@ -93,6 +93,7 @@ import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
 import qualified TD.Data.TonRevenueStatus as TonRevenueStatus
 import qualified TD.Data.GroupCallMessageLevel as GroupCallMessageLevel
+import qualified TD.Data.StakeDiceState as StakeDiceState
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
@@ -713,6 +714,9 @@ data Update
     }
   | UpdateDiceEmojis -- ^ The list of supported dice emojis has changed
     { emojis :: Maybe [T.Text] -- ^ The new list of supported dice emojis
+    }
+  | UpdateStakeDiceState -- ^ The stake dice state has changed
+    { __state :: Maybe StakeDiceState.StakeDiceState -- ^ The new state. The state can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
     }
   | UpdateAnimatedEmojiMessageClicked -- ^ Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     { chat_id    :: Maybe Int             -- ^ Chat identifier
@@ -2209,6 +2213,13 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "emojis" `I.p` emojis_
         ]
+  shortShow UpdateStakeDiceState
+    { __state = __state_
+    }
+      = "UpdateStakeDiceState"
+        ++ I.cc
+        [ "__state" `I.p` __state_
+        ]
   shortShow UpdateAnimatedEmojiMessageClicked
     { chat_id    = chat_id_
     , message_id = message_id_
@@ -2680,6 +2691,7 @@ instance AT.FromJSON Update where
       "updateSpeechRecognitionTrial"                   -> parseUpdateSpeechRecognitionTrial v
       "updateGroupCallMessageLevels"                   -> parseUpdateGroupCallMessageLevels v
       "updateDiceEmojis"                               -> parseUpdateDiceEmojis v
+      "updateStakeDiceState"                           -> parseUpdateStakeDiceState v
       "updateAnimatedEmojiMessageClicked"              -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"                -> parseUpdateAnimationSearchParameters v
       "updateSuggestedActions"                         -> parseUpdateSuggestedActions v
@@ -3909,6 +3921,12 @@ instance AT.FromJSON Update where
         emojis_ <- o A..:?  "emojis"
         pure $ UpdateDiceEmojis
           { emojis = emojis_
+          }
+      parseUpdateStakeDiceState :: A.Value -> AT.Parser Update
+      parseUpdateStakeDiceState = A.withObject "UpdateStakeDiceState" $ \o -> do
+        __state_ <- o A..:?  "state"
+        pure $ UpdateStakeDiceState
+          { __state = __state_
           }
       parseUpdateAnimatedEmojiMessageClicked :: A.Value -> AT.Parser Update
       parseUpdateAnimatedEmojiMessageClicked = A.withObject "UpdateAnimatedEmojiMessageClicked" $ \o -> do

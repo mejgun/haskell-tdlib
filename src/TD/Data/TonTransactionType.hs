@@ -31,7 +31,7 @@ data TonTransactionType
     { user_id                   :: Maybe Int                       -- ^ Identifier of the user that bought the gift
     , gift                      :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     , commission_per_mille      :: Maybe Int                       -- ^ The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
-    , commission_toncoin_amount :: Maybe Int                       -- ^ The amount of Toncoins that were received by the Telegram; in the smallest units of the currency
+    , commission_toncoin_amount :: Maybe Int                       -- ^ The Toncoin amount that was received by the Telegram; in the smallest units of the currency
     , via_offer                 :: Maybe Bool                      -- ^ True, if the gift was sold through a purchase offer
     }
   | TonTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type

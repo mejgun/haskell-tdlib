@@ -126,7 +126,7 @@ data StarTransactionType
     { user_id                :: Maybe Int                       -- ^ Identifier of the user that bought the gift
     , _gift                  :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     , commission_per_mille   :: Maybe Int                       -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
-    , commission_star_amount :: Maybe StarAmount.StarAmount     -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    , commission_star_amount :: Maybe StarAmount.StarAmount     -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
     , via_offer              :: Maybe Bool                      -- ^ True, if the gift was sold through a purchase offer
     }
   | StarTransactionTypeChannelPaidReactionSend -- ^ The transaction is a sending of a paid reaction to a message in a channel chat by the current user; relevant for regular users only
@@ -149,7 +149,7 @@ data StarTransactionType
     { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
     , message_count          :: Maybe Int                         -- ^ Number of received paid messages
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
-    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
     }
   | StarTransactionTypePaidGroupCallMessageSend -- ^ The transaction is a sending of a paid group call message; relevant for regular users only
     { chat_id :: Maybe Int -- ^ Identifier of the chat that received the payment
@@ -157,7 +157,7 @@ data StarTransactionType
   | StarTransactionTypePaidGroupCallMessageReceive -- ^ The transaction is a receiving of a paid group call message; relevant for regular users and channel chats only
     { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the message
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
-    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
     }
   | StarTransactionTypePaidGroupCallReactionSend -- ^ The transaction is a sending of a paid group reaction; relevant for regular users only
     { chat_id :: Maybe Int -- ^ Identifier of the chat that received the payment
@@ -165,7 +165,7 @@ data StarTransactionType
   | StarTransactionTypePaidGroupCallReactionReceive -- ^ The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only
     { sender_id              :: Maybe MessageSender.MessageSender -- ^ Identifier of the sender of the reaction
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for reaction sending
-    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
     }
   | StarTransactionTypeSuggestedPostPaymentSend -- ^ The transaction is a payment for a suggested post; relevant for regular users only
     { chat_id :: Maybe Int -- ^ Identifier of the channel chat that posted the post

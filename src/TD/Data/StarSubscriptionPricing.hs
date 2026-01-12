@@ -10,7 +10,7 @@ import qualified TD.Lib.Internal as I
 data StarSubscriptionPricing
   = StarSubscriptionPricing -- ^ Describes subscription plan paid in Telegram Stars
     { period     :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debiting
-    , star_count :: Maybe Int -- ^ The amount of Telegram Stars that must be paid for each period
+    , star_count :: Maybe Int -- ^ The Telegram Star amount that must be paid for each period
     }
   deriving (Eq, Show)
 

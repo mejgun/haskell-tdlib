@@ -11,7 +11,7 @@ data PremiumGiftPaymentOption
   = PremiumGiftPaymentOption -- ^ Describes an option for gifting Telegram Premium to a user. Use telegramPaymentPurposePremiumGift for out-of-store payments or payments in Telegram Stars
     { currency            :: Maybe T.Text          -- ^ ISO 4217 currency code for the payment
     , amount              :: Maybe Int             -- ^ The amount to pay, in the smallest units of the currency
-    , star_count          :: Maybe Int             -- ^ The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible
+    , star_count          :: Maybe Int             -- ^ The alternative Telegram Star amount to pay; 0 if payment in Telegram Stars is not possible
     , discount_percentage :: Maybe Int             -- ^ The discount associated with this option, as a percentage
     , month_count         :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
     , store_product_id    :: Maybe T.Text          -- ^ Identifier of the store product associated with the option

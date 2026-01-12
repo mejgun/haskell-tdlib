@@ -15,7 +15,7 @@ data TransferGift
     { business_connection_id :: Maybe T.Text                      -- ^ Unique identifier of business connection on behalf of which to send the request; for bots only
     , received_gift_id       :: Maybe T.Text                      -- ^ Identifier of the gift
     , new_owner_id           :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the channel chat that will receive the gift
-    , star_count             :: Maybe Int                         -- ^ The amount of Telegram Stars required to pay for the transfer
+    , star_count             :: Maybe Int                         -- ^ The Telegram Star amount required to pay for the transfer
     }
   deriving (Eq, Show)
 
