@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
 data FailedToAddMember
-  = FailedToAddMember -- ^ Contains information about a user that has failed to be added to a chat
+  = FailedToAddMember -- ^ Contains information about a user who has failed to be added to a chat
     { user_id                           :: Maybe Int  -- ^ User identifier
     , premium_would_allow_invite        :: Maybe Bool -- ^ True, if subscription to Telegram Premium would have allowed to add the user to the chat
     , premium_required_to_send_messages :: Maybe Bool -- ^ True, if subscription to Telegram Premium is required to send the user chat invite link

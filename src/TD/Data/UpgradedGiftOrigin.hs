@@ -20,6 +20,7 @@ data UpgradedGiftOrigin
   | UpgradedGiftOriginOffer -- ^ The gift was bought through an offer
     { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid for the gift
     }
+  | UpgradedGiftOriginCraft -- ^ The gift was crafted from other gifts
   deriving (Eq, Show)
 
 instance I.ShortShow UpgradedGiftOrigin where
@@ -50,6 +51,8 @@ instance I.ShortShow UpgradedGiftOrigin where
         ++ I.cc
         [ "price" `I.p` price_
         ]
+  shortShow UpgradedGiftOriginCraft
+      = "UpgradedGiftOriginCraft"
 
 instance AT.FromJSON UpgradedGiftOrigin where
   parseJSON v@(AT.Object obj) = do
@@ -62,6 +65,7 @@ instance AT.FromJSON UpgradedGiftOrigin where
       "upgradedGiftOriginBlockchain"     -> pure UpgradedGiftOriginBlockchain
       "upgradedGiftOriginPrepaidUpgrade" -> pure UpgradedGiftOriginPrepaidUpgrade
       "upgradedGiftOriginOffer"          -> parseUpgradedGiftOriginOffer v
+      "upgradedGiftOriginCraft"          -> pure UpgradedGiftOriginCraft
       _                                  -> mempty
     
     where

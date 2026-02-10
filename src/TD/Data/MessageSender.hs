@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 -- | Contains information about the sender of a message
 data MessageSender
   = MessageSenderUser -- ^ The message was sent by a known user
-    { user_id :: Maybe Int -- ^ Identifier of the user that sent the message
+    { user_id :: Maybe Int -- ^ Identifier of the user who sent the message
     }
   | MessageSenderChat -- ^ The message was sent on behalf of a chat
     { chat_id :: Maybe Int -- ^ Identifier of the chat that sent the message

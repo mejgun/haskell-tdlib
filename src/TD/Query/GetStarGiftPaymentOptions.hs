@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 -- | Returns available options for Telegram Stars gifting. Returns 'TD.Data.StarPaymentOptions.StarPaymentOptions'
 data GetStarGiftPaymentOptions
   = GetStarGiftPaymentOptions
-    { user_id :: Maybe Int -- ^ Identifier of the user that will receive Telegram Stars; pass 0 to get options for an unspecified user
+    { user_id :: Maybe Int -- ^ Identifier of the user who will receive Telegram Stars; pass 0 to get options for an unspecified user
     }
   deriving (Eq, Show)
 

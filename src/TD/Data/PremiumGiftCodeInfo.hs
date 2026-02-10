@@ -8,7 +8,7 @@ import qualified TD.Data.MessageSender as MessageSender
 
 data PremiumGiftCodeInfo
   = PremiumGiftCodeInfo -- ^ Contains information about a Telegram Premium gift code
-    { creator_id          :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
+    { creator_id          :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user who created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
     , creation_date       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the code was created
     , is_from_giveaway    :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
     , giveaway_message_id :: Maybe Int                         -- ^ Identifier of the corresponding giveaway message in the creator_id chat; may be 0 or an identifier of a deleted message

@@ -9,12 +9,13 @@ import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.WebAppOpenMode as WebAppOpenMode
 import qualified TD.Data.FormattedText as FormattedText
-import qualified TD.Data.ProxyType as ProxyType
+import qualified TD.Data.StoryContentType as StoryContentType
+import qualified TD.Data.Proxy as Proxy
+import qualified TD.Data.SettingsSection as SettingsSection
 
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
-  = InternalLinkTypeActiveSessions -- ^ The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
-  | InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+  = InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
     , url          :: Maybe T.Text                -- ^ URL to be passed to openWebApp
@@ -42,11 +43,9 @@ data InternalLinkType
   | InternalLinkTypeBusinessChat -- ^ The link is a link to a business chat. Use getBusinessChatLinkInfo with the provided link name to get information about the link, then open received private chat and replace chat draft with the provided text
     { link_name :: Maybe T.Text -- ^ Name of the link
     }
-  | InternalLinkTypeBuyStars -- ^ The link is a link to the Telegram Star purchase section of the application
-    { star_count :: Maybe Int    -- ^ The number of Telegram Stars that must be owned by the user
-    , purpose    :: Maybe T.Text -- ^ Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+  | InternalLinkTypeCallsPage -- ^ The link is a link to the Call tab or page
+    { section :: Maybe T.Text -- ^ Section of the page; may be one of "", "all", "missed", "edit", "show-tab", "start-call"
     }
-  | InternalLinkTypeChangePhoneNumber -- ^ The link is a link to the change phone number section of the application
   | InternalLinkTypeChatAffiliateProgram -- ^ The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
     { username :: Maybe T.Text -- ^ Username to be passed to searchChatAffiliateProgram
     , referrer :: Maybe T.Text -- ^ Referrer to be passed to searchChatAffiliateProgram
@@ -57,15 +56,16 @@ data InternalLinkType
   | InternalLinkTypeChatFolderInvite -- ^ The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
-  | InternalLinkTypeChatFolderSettings -- ^ The link is a link to the folder section of the application settings
   | InternalLinkTypeChatInvite -- ^ The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
     { invite_link :: Maybe T.Text -- ^ Internal representation of the invite link
     }
-  | InternalLinkTypeDefaultMessageAutoDeleteTimerSettings -- ^ The link is a link to the default message auto-delete timer settings section of the application settings
+  | InternalLinkTypeChatSelection -- ^ The link is a link that allows to select some chats
+  | InternalLinkTypeContactsPage -- ^ The link is a link to the Contacts tab or page
+    { section :: Maybe T.Text -- ^ Section of the page; may be one of "", "search", "sort", "new", "invite", "manage"
+    }
   | InternalLinkTypeDirectMessagesChat -- ^ The link is a link to a channel direct messages chat by username of the channel. Call searchPublicChat with the given chat username to process the link. If the chat is found and is channel, open the direct messages chat of the channel
     { channel_username :: Maybe T.Text -- ^ Username of the channel
     }
-  | InternalLinkTypeEditProfileSettings -- ^ The link is a link to the edit profile section of the application settings
   | InternalLinkTypeGame -- ^ The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     { bot_username    :: Maybe T.Text -- ^ Username of the bot that owns the game
     , game_short_name :: Maybe T.Text -- ^ Short name of the game
@@ -90,11 +90,9 @@ data InternalLinkType
   | InternalLinkTypeLanguagePack -- ^ The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
     { language_pack_id :: Maybe T.Text -- ^ Language pack identifier
     }
-  | InternalLinkTypeLanguageSettings -- ^ The link is a link to the language section of the application settings
   | InternalLinkTypeLiveStory -- ^ The link is a link to a live story. Call searchPublicChat with the given chat username, then getChatActiveStories to get active stories in the chat, then find a live story among active stories of the chat, and then joinLiveStory to join the live story
     { story_poster_username :: Maybe T.Text -- ^ Username of the poster of the story
     }
-  | InternalLinkTypeLoginEmailSettings -- ^ The link is a link to the login email set up section of the application settings, forcing set up of the login email
   | InternalLinkTypeMainWebApp -- ^ The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
     { bot_username    :: Maybe T.Text                        -- ^ Username of the bot
     , start_parameter :: Maybe T.Text                        -- ^ Start parameter to be passed to getMainWebApp
@@ -107,8 +105,15 @@ data InternalLinkType
     { text          :: Maybe FormattedText.FormattedText -- ^ Message draft text
     , contains_link :: Maybe Bool                        -- ^ True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     }
-  | InternalLinkTypeMyStars -- ^ The link is a link to the screen with information about Telegram Star balance and transactions of the current user
-  | InternalLinkTypeMyToncoins -- ^ The link is a link to the screen with information about Toncoin balance and transactions of the current user
+  | InternalLinkTypeMyProfilePage -- ^ The link is a link to the My Profile application page
+    { section :: Maybe T.Text -- ^ Section of the page; may be one of "", "posts", "posts/all-stories", "posts/add-album", "gifts", "archived-posts"
+    }
+  | InternalLinkTypeNewChannelChat -- ^ The link is a link to the screen for creating a new channel chat
+  | InternalLinkTypeNewGroupChat -- ^ The link is a link to the screen for creating a new group chat
+  | InternalLinkTypeNewPrivateChat -- ^ The link is a link to the screen for creating a new private chat with a contact
+  | InternalLinkTypeNewStory -- ^ The link is a link to open the story posting interface
+    { content_type :: Maybe StoryContentType.StoryContentType -- ^ The type of the content of the story to post; may be null if unspecified
+    }
   | InternalLinkTypePassportDataRequest -- ^ The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     { bot_user_id  :: Maybe Int    -- ^ User identifier of the service's bot; the corresponding user may be unknown yet
     , scope        :: Maybe T.Text -- ^ Telegram Passport element types requested by the service
@@ -116,26 +121,21 @@ data InternalLinkType
     , nonce        :: Maybe T.Text -- ^ Unique request identifier provided by the service
     , callback_url :: Maybe T.Text -- ^ An HTTP URL to open once the request is finished, canceled, or failed with the parameters tg_passport=success, tg_passport=cancel, or tg_passport=error&error=... respectively. If empty, then onActivityResult method must be used to return response on Android, or the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel must be opened otherwise
     }
-  | InternalLinkTypePasswordSettings -- ^ The link is a link to the password section of the application settings
   | InternalLinkTypePhoneNumberConfirmation -- ^ The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberCode with the given phone number and with phoneNumberCodeTypeConfirmOwnership with the given hash to process the link. If succeeded, call checkPhoneNumberCode to check entered by the user code, or resendPhoneNumberCode to resend it
     { hash         :: Maybe T.Text -- ^ Hash value from the link
     , phone_number :: Maybe T.Text -- ^ Phone number value from the link
     }
-  | InternalLinkTypePhoneNumberPrivacySettings -- ^ The link is a link to the phone number privacy settings section of the application settings
-  | InternalLinkTypePremiumFeatures -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
-    { referrer :: Maybe T.Text -- ^ Referrer specified in the link
-    }
-  | InternalLinkTypePremiumGift -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
+  | InternalLinkTypePremiumFeaturesPage -- ^ The link is a link to the Premium features screen of the application from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
     { referrer :: Maybe T.Text -- ^ Referrer specified in the link
     }
   | InternalLinkTypePremiumGiftCode -- ^ The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
     { code :: Maybe T.Text -- ^ The Telegram Premium gift code
     }
-  | InternalLinkTypePrivacyAndSecuritySettings -- ^ The link is a link to the privacy and security section of the application settings
+  | InternalLinkTypePremiumGiftPurchase -- ^ The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
+    { referrer :: Maybe T.Text -- ^ Referrer specified in the link
+    }
   | InternalLinkTypeProxy -- ^ The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
-    { server :: Maybe T.Text              -- ^ Proxy server domain or IP address
-    , port   :: Maybe Int                 -- ^ Proxy server port
-    , _type  :: Maybe ProxyType.ProxyType -- ^ Type of the proxy
+    { proxy :: Maybe Proxy.Proxy -- ^ The proxy; may be null if the proxy is unsupported, in which case an alert can be shown to the user
     }
   | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
     { chat_username :: Maybe T.Text -- ^ Username of the chat
@@ -144,7 +144,15 @@ data InternalLinkType
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
+  | InternalLinkTypeSavedMessages -- ^ The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
+  | InternalLinkTypeSearch -- ^ The link is a link to the global chat and messages search field
   | InternalLinkTypeSettings -- ^ The link is a link to application settings
+    { _section :: Maybe SettingsSection.SettingsSection -- ^ Section of the application settings to open; may be null if none
+    }
+  | InternalLinkTypeStarPurchase -- ^ The link is a link to the Telegram Star purchase section of the application
+    { star_count :: Maybe Int    -- ^ The number of Telegram Stars that must be owned by the user
+    , purpose    :: Maybe T.Text -- ^ Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    }
   | InternalLinkTypeStickerSet -- ^ The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
     { sticker_set_name    :: Maybe T.Text -- ^ Name of the sticker set
     , expect_custom_emoji :: Maybe Bool   -- ^ True, if the sticker set is expected to contain custom emoji
@@ -160,11 +168,9 @@ data InternalLinkType
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
     }
-  | InternalLinkTypeThemeSettings -- ^ The link is a link to the theme section of the application settings
   | InternalLinkTypeUnknownDeepLink -- ^ The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
-  | InternalLinkTypeUnsupportedProxy -- ^ The link is a link to an unsupported proxy. An alert can be shown to the user
   | InternalLinkTypeUpgradedGift -- ^ The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
     { name :: Maybe T.Text -- ^ Name of the unique gift
     }
@@ -190,8 +196,6 @@ data InternalLinkType
   deriving (Eq, Show)
 
 instance I.ShortShow InternalLinkType where
-  shortShow InternalLinkTypeActiveSessions
-      = "InternalLinkTypeActiveSessions"
   shortShow InternalLinkTypeAttachmentMenuBot
     { target_chat  = target_chat_
     , bot_username = bot_username_
@@ -255,17 +259,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "link_name" `I.p` link_name_
         ]
-  shortShow InternalLinkTypeBuyStars
-    { star_count = star_count_
-    , purpose    = purpose_
+  shortShow InternalLinkTypeCallsPage
+    { section = section_
     }
-      = "InternalLinkTypeBuyStars"
+      = "InternalLinkTypeCallsPage"
         ++ I.cc
-        [ "star_count" `I.p` star_count_
-        , "purpose"    `I.p` purpose_
+        [ "section" `I.p` section_
         ]
-  shortShow InternalLinkTypeChangePhoneNumber
-      = "InternalLinkTypeChangePhoneNumber"
   shortShow InternalLinkTypeChatAffiliateProgram
     { username = username_
     , referrer = referrer_
@@ -289,8 +289,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  shortShow InternalLinkTypeChatFolderSettings
-      = "InternalLinkTypeChatFolderSettings"
   shortShow InternalLinkTypeChatInvite
     { invite_link = invite_link_
     }
@@ -298,8 +296,15 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "invite_link" `I.p` invite_link_
         ]
-  shortShow InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
-      = "InternalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+  shortShow InternalLinkTypeChatSelection
+      = "InternalLinkTypeChatSelection"
+  shortShow InternalLinkTypeContactsPage
+    { section = section_
+    }
+      = "InternalLinkTypeContactsPage"
+        ++ I.cc
+        [ "section" `I.p` section_
+        ]
   shortShow InternalLinkTypeDirectMessagesChat
     { channel_username = channel_username_
     }
@@ -307,8 +312,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "channel_username" `I.p` channel_username_
         ]
-  shortShow InternalLinkTypeEditProfileSettings
-      = "InternalLinkTypeEditProfileSettings"
   shortShow InternalLinkTypeGame
     { bot_username    = bot_username_
     , game_short_name = game_short_name_
@@ -364,8 +367,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "language_pack_id" `I.p` language_pack_id_
         ]
-  shortShow InternalLinkTypeLanguageSettings
-      = "InternalLinkTypeLanguageSettings"
   shortShow InternalLinkTypeLiveStory
     { story_poster_username = story_poster_username_
     }
@@ -373,8 +374,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "story_poster_username" `I.p` story_poster_username_
         ]
-  shortShow InternalLinkTypeLoginEmailSettings
-      = "InternalLinkTypeLoginEmailSettings"
   shortShow InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
     , start_parameter = start_parameter_
@@ -402,10 +401,26 @@ instance I.ShortShow InternalLinkType where
         [ "text"          `I.p` text_
         , "contains_link" `I.p` contains_link_
         ]
-  shortShow InternalLinkTypeMyStars
-      = "InternalLinkTypeMyStars"
-  shortShow InternalLinkTypeMyToncoins
-      = "InternalLinkTypeMyToncoins"
+  shortShow InternalLinkTypeMyProfilePage
+    { section = section_
+    }
+      = "InternalLinkTypeMyProfilePage"
+        ++ I.cc
+        [ "section" `I.p` section_
+        ]
+  shortShow InternalLinkTypeNewChannelChat
+      = "InternalLinkTypeNewChannelChat"
+  shortShow InternalLinkTypeNewGroupChat
+      = "InternalLinkTypeNewGroupChat"
+  shortShow InternalLinkTypeNewPrivateChat
+      = "InternalLinkTypeNewPrivateChat"
+  shortShow InternalLinkTypeNewStory
+    { content_type = content_type_
+    }
+      = "InternalLinkTypeNewStory"
+        ++ I.cc
+        [ "content_type" `I.p` content_type_
+        ]
   shortShow InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_
     , scope        = scope_
@@ -421,8 +436,6 @@ instance I.ShortShow InternalLinkType where
         , "nonce"        `I.p` nonce_
         , "callback_url" `I.p` callback_url_
         ]
-  shortShow InternalLinkTypePasswordSettings
-      = "InternalLinkTypePasswordSettings"
   shortShow InternalLinkTypePhoneNumberConfirmation
     { hash         = hash_
     , phone_number = phone_number_
@@ -432,19 +445,10 @@ instance I.ShortShow InternalLinkType where
         [ "hash"         `I.p` hash_
         , "phone_number" `I.p` phone_number_
         ]
-  shortShow InternalLinkTypePhoneNumberPrivacySettings
-      = "InternalLinkTypePhoneNumberPrivacySettings"
-  shortShow InternalLinkTypePremiumFeatures
+  shortShow InternalLinkTypePremiumFeaturesPage
     { referrer = referrer_
     }
-      = "InternalLinkTypePremiumFeatures"
-        ++ I.cc
-        [ "referrer" `I.p` referrer_
-        ]
-  shortShow InternalLinkTypePremiumGift
-    { referrer = referrer_
-    }
-      = "InternalLinkTypePremiumGift"
+      = "InternalLinkTypePremiumFeaturesPage"
         ++ I.cc
         [ "referrer" `I.p` referrer_
         ]
@@ -455,18 +459,19 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "code" `I.p` code_
         ]
-  shortShow InternalLinkTypePrivacyAndSecuritySettings
-      = "InternalLinkTypePrivacyAndSecuritySettings"
+  shortShow InternalLinkTypePremiumGiftPurchase
+    { referrer = referrer_
+    }
+      = "InternalLinkTypePremiumGiftPurchase"
+        ++ I.cc
+        [ "referrer" `I.p` referrer_
+        ]
   shortShow InternalLinkTypeProxy
-    { server = server_
-    , port   = port_
-    , _type  = _type_
+    { proxy = proxy_
     }
       = "InternalLinkTypeProxy"
         ++ I.cc
-        [ "server" `I.p` server_
-        , "port"   `I.p` port_
-        , "_type"  `I.p` _type_
+        [ "proxy" `I.p` proxy_
         ]
   shortShow InternalLinkTypePublicChat
     { chat_username = chat_username_
@@ -483,8 +488,26 @@ instance I.ShortShow InternalLinkType where
       = "InternalLinkTypeQrCodeAuthentication"
   shortShow InternalLinkTypeRestorePurchases
       = "InternalLinkTypeRestorePurchases"
+  shortShow InternalLinkTypeSavedMessages
+      = "InternalLinkTypeSavedMessages"
+  shortShow InternalLinkTypeSearch
+      = "InternalLinkTypeSearch"
   shortShow InternalLinkTypeSettings
+    { _section = _section_
+    }
       = "InternalLinkTypeSettings"
+        ++ I.cc
+        [ "_section" `I.p` _section_
+        ]
+  shortShow InternalLinkTypeStarPurchase
+    { star_count = star_count_
+    , purpose    = purpose_
+    }
+      = "InternalLinkTypeStarPurchase"
+        ++ I.cc
+        [ "star_count" `I.p` star_count_
+        , "purpose"    `I.p` purpose_
+        ]
   shortShow InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
     , expect_custom_emoji = expect_custom_emoji_
@@ -519,8 +542,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "theme_name" `I.p` theme_name_
         ]
-  shortShow InternalLinkTypeThemeSettings
-      = "InternalLinkTypeThemeSettings"
   shortShow InternalLinkTypeUnknownDeepLink
     { link = link_
     }
@@ -528,8 +549,6 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "link" `I.p` link_
         ]
-  shortShow InternalLinkTypeUnsupportedProxy
-      = "InternalLinkTypeUnsupportedProxy"
   shortShow InternalLinkTypeUpgradedGift
     { name = name_
     }
@@ -585,65 +604,61 @@ instance AT.FromJSON InternalLinkType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "internalLinkTypeActiveSessions"                        -> pure InternalLinkTypeActiveSessions
-      "internalLinkTypeAttachmentMenuBot"                     -> parseInternalLinkTypeAttachmentMenuBot v
-      "internalLinkTypeAuthenticationCode"                    -> parseInternalLinkTypeAuthenticationCode v
-      "internalLinkTypeBackground"                            -> parseInternalLinkTypeBackground v
-      "internalLinkTypeBotAddToChannel"                       -> parseInternalLinkTypeBotAddToChannel v
-      "internalLinkTypeBotStart"                              -> parseInternalLinkTypeBotStart v
-      "internalLinkTypeBotStartInGroup"                       -> parseInternalLinkTypeBotStartInGroup v
-      "internalLinkTypeBusinessChat"                          -> parseInternalLinkTypeBusinessChat v
-      "internalLinkTypeBuyStars"                              -> parseInternalLinkTypeBuyStars v
-      "internalLinkTypeChangePhoneNumber"                     -> pure InternalLinkTypeChangePhoneNumber
-      "internalLinkTypeChatAffiliateProgram"                  -> parseInternalLinkTypeChatAffiliateProgram v
-      "internalLinkTypeChatBoost"                             -> parseInternalLinkTypeChatBoost v
-      "internalLinkTypeChatFolderInvite"                      -> parseInternalLinkTypeChatFolderInvite v
-      "internalLinkTypeChatFolderSettings"                    -> pure InternalLinkTypeChatFolderSettings
-      "internalLinkTypeChatInvite"                            -> parseInternalLinkTypeChatInvite v
-      "internalLinkTypeDefaultMessageAutoDeleteTimerSettings" -> pure InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
-      "internalLinkTypeDirectMessagesChat"                    -> parseInternalLinkTypeDirectMessagesChat v
-      "internalLinkTypeEditProfileSettings"                   -> pure InternalLinkTypeEditProfileSettings
-      "internalLinkTypeGame"                                  -> parseInternalLinkTypeGame v
-      "internalLinkTypeGiftAuction"                           -> parseInternalLinkTypeGiftAuction v
-      "internalLinkTypeGiftCollection"                        -> parseInternalLinkTypeGiftCollection v
-      "internalLinkTypeGroupCall"                             -> parseInternalLinkTypeGroupCall v
-      "internalLinkTypeInstantView"                           -> parseInternalLinkTypeInstantView v
-      "internalLinkTypeInvoice"                               -> parseInternalLinkTypeInvoice v
-      "internalLinkTypeLanguagePack"                          -> parseInternalLinkTypeLanguagePack v
-      "internalLinkTypeLanguageSettings"                      -> pure InternalLinkTypeLanguageSettings
-      "internalLinkTypeLiveStory"                             -> parseInternalLinkTypeLiveStory v
-      "internalLinkTypeLoginEmailSettings"                    -> pure InternalLinkTypeLoginEmailSettings
-      "internalLinkTypeMainWebApp"                            -> parseInternalLinkTypeMainWebApp v
-      "internalLinkTypeMessage"                               -> parseInternalLinkTypeMessage v
-      "internalLinkTypeMessageDraft"                          -> parseInternalLinkTypeMessageDraft v
-      "internalLinkTypeMyStars"                               -> pure InternalLinkTypeMyStars
-      "internalLinkTypeMyToncoins"                            -> pure InternalLinkTypeMyToncoins
-      "internalLinkTypePassportDataRequest"                   -> parseInternalLinkTypePassportDataRequest v
-      "internalLinkTypePasswordSettings"                      -> pure InternalLinkTypePasswordSettings
-      "internalLinkTypePhoneNumberConfirmation"               -> parseInternalLinkTypePhoneNumberConfirmation v
-      "internalLinkTypePhoneNumberPrivacySettings"            -> pure InternalLinkTypePhoneNumberPrivacySettings
-      "internalLinkTypePremiumFeatures"                       -> parseInternalLinkTypePremiumFeatures v
-      "internalLinkTypePremiumGift"                           -> parseInternalLinkTypePremiumGift v
-      "internalLinkTypePremiumGiftCode"                       -> parseInternalLinkTypePremiumGiftCode v
-      "internalLinkTypePrivacyAndSecuritySettings"            -> pure InternalLinkTypePrivacyAndSecuritySettings
-      "internalLinkTypeProxy"                                 -> parseInternalLinkTypeProxy v
-      "internalLinkTypePublicChat"                            -> parseInternalLinkTypePublicChat v
-      "internalLinkTypeQrCodeAuthentication"                  -> pure InternalLinkTypeQrCodeAuthentication
-      "internalLinkTypeRestorePurchases"                      -> pure InternalLinkTypeRestorePurchases
-      "internalLinkTypeSettings"                              -> pure InternalLinkTypeSettings
-      "internalLinkTypeStickerSet"                            -> parseInternalLinkTypeStickerSet v
-      "internalLinkTypeStory"                                 -> parseInternalLinkTypeStory v
-      "internalLinkTypeStoryAlbum"                            -> parseInternalLinkTypeStoryAlbum v
-      "internalLinkTypeTheme"                                 -> parseInternalLinkTypeTheme v
-      "internalLinkTypeThemeSettings"                         -> pure InternalLinkTypeThemeSettings
-      "internalLinkTypeUnknownDeepLink"                       -> parseInternalLinkTypeUnknownDeepLink v
-      "internalLinkTypeUnsupportedProxy"                      -> pure InternalLinkTypeUnsupportedProxy
-      "internalLinkTypeUpgradedGift"                          -> parseInternalLinkTypeUpgradedGift v
-      "internalLinkTypeUserPhoneNumber"                       -> parseInternalLinkTypeUserPhoneNumber v
-      "internalLinkTypeUserToken"                             -> parseInternalLinkTypeUserToken v
-      "internalLinkTypeVideoChat"                             -> parseInternalLinkTypeVideoChat v
-      "internalLinkTypeWebApp"                                -> parseInternalLinkTypeWebApp v
-      _                                                       -> mempty
+      "internalLinkTypeAttachmentMenuBot"       -> parseInternalLinkTypeAttachmentMenuBot v
+      "internalLinkTypeAuthenticationCode"      -> parseInternalLinkTypeAuthenticationCode v
+      "internalLinkTypeBackground"              -> parseInternalLinkTypeBackground v
+      "internalLinkTypeBotAddToChannel"         -> parseInternalLinkTypeBotAddToChannel v
+      "internalLinkTypeBotStart"                -> parseInternalLinkTypeBotStart v
+      "internalLinkTypeBotStartInGroup"         -> parseInternalLinkTypeBotStartInGroup v
+      "internalLinkTypeBusinessChat"            -> parseInternalLinkTypeBusinessChat v
+      "internalLinkTypeCallsPage"               -> parseInternalLinkTypeCallsPage v
+      "internalLinkTypeChatAffiliateProgram"    -> parseInternalLinkTypeChatAffiliateProgram v
+      "internalLinkTypeChatBoost"               -> parseInternalLinkTypeChatBoost v
+      "internalLinkTypeChatFolderInvite"        -> parseInternalLinkTypeChatFolderInvite v
+      "internalLinkTypeChatInvite"              -> parseInternalLinkTypeChatInvite v
+      "internalLinkTypeChatSelection"           -> pure InternalLinkTypeChatSelection
+      "internalLinkTypeContactsPage"            -> parseInternalLinkTypeContactsPage v
+      "internalLinkTypeDirectMessagesChat"      -> parseInternalLinkTypeDirectMessagesChat v
+      "internalLinkTypeGame"                    -> parseInternalLinkTypeGame v
+      "internalLinkTypeGiftAuction"             -> parseInternalLinkTypeGiftAuction v
+      "internalLinkTypeGiftCollection"          -> parseInternalLinkTypeGiftCollection v
+      "internalLinkTypeGroupCall"               -> parseInternalLinkTypeGroupCall v
+      "internalLinkTypeInstantView"             -> parseInternalLinkTypeInstantView v
+      "internalLinkTypeInvoice"                 -> parseInternalLinkTypeInvoice v
+      "internalLinkTypeLanguagePack"            -> parseInternalLinkTypeLanguagePack v
+      "internalLinkTypeLiveStory"               -> parseInternalLinkTypeLiveStory v
+      "internalLinkTypeMainWebApp"              -> parseInternalLinkTypeMainWebApp v
+      "internalLinkTypeMessage"                 -> parseInternalLinkTypeMessage v
+      "internalLinkTypeMessageDraft"            -> parseInternalLinkTypeMessageDraft v
+      "internalLinkTypeMyProfilePage"           -> parseInternalLinkTypeMyProfilePage v
+      "internalLinkTypeNewChannelChat"          -> pure InternalLinkTypeNewChannelChat
+      "internalLinkTypeNewGroupChat"            -> pure InternalLinkTypeNewGroupChat
+      "internalLinkTypeNewPrivateChat"          -> pure InternalLinkTypeNewPrivateChat
+      "internalLinkTypeNewStory"                -> parseInternalLinkTypeNewStory v
+      "internalLinkTypePassportDataRequest"     -> parseInternalLinkTypePassportDataRequest v
+      "internalLinkTypePhoneNumberConfirmation" -> parseInternalLinkTypePhoneNumberConfirmation v
+      "internalLinkTypePremiumFeaturesPage"     -> parseInternalLinkTypePremiumFeaturesPage v
+      "internalLinkTypePremiumGiftCode"         -> parseInternalLinkTypePremiumGiftCode v
+      "internalLinkTypePremiumGiftPurchase"     -> parseInternalLinkTypePremiumGiftPurchase v
+      "internalLinkTypeProxy"                   -> parseInternalLinkTypeProxy v
+      "internalLinkTypePublicChat"              -> parseInternalLinkTypePublicChat v
+      "internalLinkTypeQrCodeAuthentication"    -> pure InternalLinkTypeQrCodeAuthentication
+      "internalLinkTypeRestorePurchases"        -> pure InternalLinkTypeRestorePurchases
+      "internalLinkTypeSavedMessages"           -> pure InternalLinkTypeSavedMessages
+      "internalLinkTypeSearch"                  -> pure InternalLinkTypeSearch
+      "internalLinkTypeSettings"                -> parseInternalLinkTypeSettings v
+      "internalLinkTypeStarPurchase"            -> parseInternalLinkTypeStarPurchase v
+      "internalLinkTypeStickerSet"              -> parseInternalLinkTypeStickerSet v
+      "internalLinkTypeStory"                   -> parseInternalLinkTypeStory v
+      "internalLinkTypeStoryAlbum"              -> parseInternalLinkTypeStoryAlbum v
+      "internalLinkTypeTheme"                   -> parseInternalLinkTypeTheme v
+      "internalLinkTypeUnknownDeepLink"         -> parseInternalLinkTypeUnknownDeepLink v
+      "internalLinkTypeUpgradedGift"            -> parseInternalLinkTypeUpgradedGift v
+      "internalLinkTypeUserPhoneNumber"         -> parseInternalLinkTypeUserPhoneNumber v
+      "internalLinkTypeUserToken"               -> parseInternalLinkTypeUserToken v
+      "internalLinkTypeVideoChat"               -> parseInternalLinkTypeVideoChat v
+      "internalLinkTypeWebApp"                  -> parseInternalLinkTypeWebApp v
+      _                                         -> mempty
     
     where
       parseInternalLinkTypeAttachmentMenuBot :: A.Value -> AT.Parser InternalLinkType
@@ -702,13 +717,11 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeBusinessChat
           { link_name = link_name_
           }
-      parseInternalLinkTypeBuyStars :: A.Value -> AT.Parser InternalLinkType
-      parseInternalLinkTypeBuyStars = A.withObject "InternalLinkTypeBuyStars" $ \o -> do
-        star_count_ <- o A..:?  "star_count"
-        purpose_    <- o A..:?  "purpose"
-        pure $ InternalLinkTypeBuyStars
-          { star_count = star_count_
-          , purpose    = purpose_
+      parseInternalLinkTypeCallsPage :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeCallsPage = A.withObject "InternalLinkTypeCallsPage" $ \o -> do
+        section_ <- o A..:?  "section"
+        pure $ InternalLinkTypeCallsPage
+          { section = section_
           }
       parseInternalLinkTypeChatAffiliateProgram :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeChatAffiliateProgram = A.withObject "InternalLinkTypeChatAffiliateProgram" $ \o -> do
@@ -735,6 +748,12 @@ instance AT.FromJSON InternalLinkType where
         invite_link_ <- o A..:?  "invite_link"
         pure $ InternalLinkTypeChatInvite
           { invite_link = invite_link_
+          }
+      parseInternalLinkTypeContactsPage :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeContactsPage = A.withObject "InternalLinkTypeContactsPage" $ \o -> do
+        section_ <- o A..:?  "section"
+        pure $ InternalLinkTypeContactsPage
+          { section = section_
           }
       parseInternalLinkTypeDirectMessagesChat :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeDirectMessagesChat = A.withObject "InternalLinkTypeDirectMessagesChat" $ \o -> do
@@ -820,6 +839,18 @@ instance AT.FromJSON InternalLinkType where
           { text          = text_
           , contains_link = contains_link_
           }
+      parseInternalLinkTypeMyProfilePage :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeMyProfilePage = A.withObject "InternalLinkTypeMyProfilePage" $ \o -> do
+        section_ <- o A..:?  "section"
+        pure $ InternalLinkTypeMyProfilePage
+          { section = section_
+          }
+      parseInternalLinkTypeNewStory :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeNewStory = A.withObject "InternalLinkTypeNewStory" $ \o -> do
+        content_type_ <- o A..:?  "content_type"
+        pure $ InternalLinkTypeNewStory
+          { content_type = content_type_
+          }
       parseInternalLinkTypePassportDataRequest :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypePassportDataRequest = A.withObject "InternalLinkTypePassportDataRequest" $ \o -> do
         bot_user_id_  <- o A..:?  "bot_user_id"
@@ -842,16 +873,10 @@ instance AT.FromJSON InternalLinkType where
           { hash         = hash_
           , phone_number = phone_number_
           }
-      parseInternalLinkTypePremiumFeatures :: A.Value -> AT.Parser InternalLinkType
-      parseInternalLinkTypePremiumFeatures = A.withObject "InternalLinkTypePremiumFeatures" $ \o -> do
+      parseInternalLinkTypePremiumFeaturesPage :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypePremiumFeaturesPage = A.withObject "InternalLinkTypePremiumFeaturesPage" $ \o -> do
         referrer_ <- o A..:?  "referrer"
-        pure $ InternalLinkTypePremiumFeatures
-          { referrer = referrer_
-          }
-      parseInternalLinkTypePremiumGift :: A.Value -> AT.Parser InternalLinkType
-      parseInternalLinkTypePremiumGift = A.withObject "InternalLinkTypePremiumGift" $ \o -> do
-        referrer_ <- o A..:?  "referrer"
-        pure $ InternalLinkTypePremiumGift
+        pure $ InternalLinkTypePremiumFeaturesPage
           { referrer = referrer_
           }
       parseInternalLinkTypePremiumGiftCode :: A.Value -> AT.Parser InternalLinkType
@@ -860,15 +885,17 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypePremiumGiftCode
           { code = code_
           }
+      parseInternalLinkTypePremiumGiftPurchase :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypePremiumGiftPurchase = A.withObject "InternalLinkTypePremiumGiftPurchase" $ \o -> do
+        referrer_ <- o A..:?  "referrer"
+        pure $ InternalLinkTypePremiumGiftPurchase
+          { referrer = referrer_
+          }
       parseInternalLinkTypeProxy :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeProxy = A.withObject "InternalLinkTypeProxy" $ \o -> do
-        server_ <- o A..:?  "server"
-        port_   <- o A..:?  "port"
-        _type_  <- o A..:?  "type"
+        proxy_ <- o A..:?  "proxy"
         pure $ InternalLinkTypeProxy
-          { server = server_
-          , port   = port_
-          , _type  = _type_
+          { proxy = proxy_
           }
       parseInternalLinkTypePublicChat :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypePublicChat = A.withObject "InternalLinkTypePublicChat" $ \o -> do
@@ -879,6 +906,20 @@ instance AT.FromJSON InternalLinkType where
           { chat_username = chat_username_
           , draft_text    = draft_text_
           , open_profile  = open_profile_
+          }
+      parseInternalLinkTypeSettings :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeSettings = A.withObject "InternalLinkTypeSettings" $ \o -> do
+        _section_ <- o A..:?  "section"
+        pure $ InternalLinkTypeSettings
+          { _section = _section_
+          }
+      parseInternalLinkTypeStarPurchase :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeStarPurchase = A.withObject "InternalLinkTypeStarPurchase" $ \o -> do
+        star_count_ <- o A..:?  "star_count"
+        purpose_    <- o A..:?  "purpose"
+        pure $ InternalLinkTypeStarPurchase
+          { star_count = star_count_
+          , purpose    = purpose_
           }
       parseInternalLinkTypeStickerSet :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeStickerSet = A.withObject "InternalLinkTypeStickerSet" $ \o -> do
@@ -963,10 +1004,6 @@ instance AT.FromJSON InternalLinkType where
   parseJSON _ = mempty
 
 instance AT.ToJSON InternalLinkType where
-  toJSON InternalLinkTypeActiveSessions
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeActiveSessions"
-        ]
   toJSON InternalLinkTypeAttachmentMenuBot
     { target_chat  = target_chat_
     , bot_username = bot_username_
@@ -1030,18 +1067,12 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"     A..= AT.String "internalLinkTypeBusinessChat"
         , "link_name" A..= link_name_
         ]
-  toJSON InternalLinkTypeBuyStars
-    { star_count = star_count_
-    , purpose    = purpose_
+  toJSON InternalLinkTypeCallsPage
+    { section = section_
     }
       = A.object
-        [ "@type"      A..= AT.String "internalLinkTypeBuyStars"
-        , "star_count" A..= star_count_
-        , "purpose"    A..= purpose_
-        ]
-  toJSON InternalLinkTypeChangePhoneNumber
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeChangePhoneNumber"
+        [ "@type"   A..= AT.String "internalLinkTypeCallsPage"
+        , "section" A..= section_
         ]
   toJSON InternalLinkTypeChatAffiliateProgram
     { username = username_
@@ -1066,10 +1097,6 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"       A..= AT.String "internalLinkTypeChatFolderInvite"
         , "invite_link" A..= invite_link_
         ]
-  toJSON InternalLinkTypeChatFolderSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeChatFolderSettings"
-        ]
   toJSON InternalLinkTypeChatInvite
     { invite_link = invite_link_
     }
@@ -1077,9 +1104,16 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"       A..= AT.String "internalLinkTypeChatInvite"
         , "invite_link" A..= invite_link_
         ]
-  toJSON InternalLinkTypeDefaultMessageAutoDeleteTimerSettings
+  toJSON InternalLinkTypeChatSelection
       = A.object
-        [ "@type" A..= AT.String "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+        [ "@type" A..= AT.String "internalLinkTypeChatSelection"
+        ]
+  toJSON InternalLinkTypeContactsPage
+    { section = section_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "internalLinkTypeContactsPage"
+        , "section" A..= section_
         ]
   toJSON InternalLinkTypeDirectMessagesChat
     { channel_username = channel_username_
@@ -1087,10 +1121,6 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"            A..= AT.String "internalLinkTypeDirectMessagesChat"
         , "channel_username" A..= channel_username_
-        ]
-  toJSON InternalLinkTypeEditProfileSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeEditProfileSettings"
         ]
   toJSON InternalLinkTypeGame
     { bot_username    = bot_username_
@@ -1147,20 +1177,12 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"            A..= AT.String "internalLinkTypeLanguagePack"
         , "language_pack_id" A..= language_pack_id_
         ]
-  toJSON InternalLinkTypeLanguageSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeLanguageSettings"
-        ]
   toJSON InternalLinkTypeLiveStory
     { story_poster_username = story_poster_username_
     }
       = A.object
         [ "@type"                 A..= AT.String "internalLinkTypeLiveStory"
         , "story_poster_username" A..= story_poster_username_
-        ]
-  toJSON InternalLinkTypeLoginEmailSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeLoginEmailSettings"
         ]
   toJSON InternalLinkTypeMainWebApp
     { bot_username    = bot_username_
@@ -1189,13 +1211,31 @@ instance AT.ToJSON InternalLinkType where
         , "text"          A..= text_
         , "contains_link" A..= contains_link_
         ]
-  toJSON InternalLinkTypeMyStars
+  toJSON InternalLinkTypeMyProfilePage
+    { section = section_
+    }
       = A.object
-        [ "@type" A..= AT.String "internalLinkTypeMyStars"
+        [ "@type"   A..= AT.String "internalLinkTypeMyProfilePage"
+        , "section" A..= section_
         ]
-  toJSON InternalLinkTypeMyToncoins
+  toJSON InternalLinkTypeNewChannelChat
       = A.object
-        [ "@type" A..= AT.String "internalLinkTypeMyToncoins"
+        [ "@type" A..= AT.String "internalLinkTypeNewChannelChat"
+        ]
+  toJSON InternalLinkTypeNewGroupChat
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeNewGroupChat"
+        ]
+  toJSON InternalLinkTypeNewPrivateChat
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeNewPrivateChat"
+        ]
+  toJSON InternalLinkTypeNewStory
+    { content_type = content_type_
+    }
+      = A.object
+        [ "@type"        A..= AT.String "internalLinkTypeNewStory"
+        , "content_type" A..= content_type_
         ]
   toJSON InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_
@@ -1212,10 +1252,6 @@ instance AT.ToJSON InternalLinkType where
         , "nonce"        A..= nonce_
         , "callback_url" A..= callback_url_
         ]
-  toJSON InternalLinkTypePasswordSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypePasswordSettings"
-        ]
   toJSON InternalLinkTypePhoneNumberConfirmation
     { hash         = hash_
     , phone_number = phone_number_
@@ -1225,22 +1261,11 @@ instance AT.ToJSON InternalLinkType where
         , "hash"         A..= hash_
         , "phone_number" A..= phone_number_
         ]
-  toJSON InternalLinkTypePhoneNumberPrivacySettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypePhoneNumberPrivacySettings"
-        ]
-  toJSON InternalLinkTypePremiumFeatures
+  toJSON InternalLinkTypePremiumFeaturesPage
     { referrer = referrer_
     }
       = A.object
-        [ "@type"    A..= AT.String "internalLinkTypePremiumFeatures"
-        , "referrer" A..= referrer_
-        ]
-  toJSON InternalLinkTypePremiumGift
-    { referrer = referrer_
-    }
-      = A.object
-        [ "@type"    A..= AT.String "internalLinkTypePremiumGift"
+        [ "@type"    A..= AT.String "internalLinkTypePremiumFeaturesPage"
         , "referrer" A..= referrer_
         ]
   toJSON InternalLinkTypePremiumGiftCode
@@ -1250,20 +1275,19 @@ instance AT.ToJSON InternalLinkType where
         [ "@type" A..= AT.String "internalLinkTypePremiumGiftCode"
         , "code"  A..= code_
         ]
-  toJSON InternalLinkTypePrivacyAndSecuritySettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypePrivacyAndSecuritySettings"
-        ]
-  toJSON InternalLinkTypeProxy
-    { server = server_
-    , port   = port_
-    , _type  = _type_
+  toJSON InternalLinkTypePremiumGiftPurchase
+    { referrer = referrer_
     }
       = A.object
-        [ "@type"  A..= AT.String "internalLinkTypeProxy"
-        , "server" A..= server_
-        , "port"   A..= port_
-        , "type"   A..= _type_
+        [ "@type"    A..= AT.String "internalLinkTypePremiumGiftPurchase"
+        , "referrer" A..= referrer_
+        ]
+  toJSON InternalLinkTypeProxy
+    { proxy = proxy_
+    }
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeProxy"
+        , "proxy" A..= proxy_
         ]
   toJSON InternalLinkTypePublicChat
     { chat_username = chat_username_
@@ -1284,9 +1308,29 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeRestorePurchases"
         ]
-  toJSON InternalLinkTypeSettings
+  toJSON InternalLinkTypeSavedMessages
       = A.object
-        [ "@type" A..= AT.String "internalLinkTypeSettings"
+        [ "@type" A..= AT.String "internalLinkTypeSavedMessages"
+        ]
+  toJSON InternalLinkTypeSearch
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeSearch"
+        ]
+  toJSON InternalLinkTypeSettings
+    { _section = _section_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "internalLinkTypeSettings"
+        , "section" A..= _section_
+        ]
+  toJSON InternalLinkTypeStarPurchase
+    { star_count = star_count_
+    , purpose    = purpose_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "internalLinkTypeStarPurchase"
+        , "star_count" A..= star_count_
+        , "purpose"    A..= purpose_
         ]
   toJSON InternalLinkTypeStickerSet
     { sticker_set_name    = sticker_set_name_
@@ -1322,20 +1366,12 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"      A..= AT.String "internalLinkTypeTheme"
         , "theme_name" A..= theme_name_
         ]
-  toJSON InternalLinkTypeThemeSettings
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeThemeSettings"
-        ]
   toJSON InternalLinkTypeUnknownDeepLink
     { link = link_
     }
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeUnknownDeepLink"
         , "link"  A..= link_
-        ]
-  toJSON InternalLinkTypeUnsupportedProxy
-      = A.object
-        [ "@type" A..= AT.String "internalLinkTypeUnsupportedProxy"
         ]
   toJSON InternalLinkTypeUpgradedGift
     { name = name_

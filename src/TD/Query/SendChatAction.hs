@@ -14,7 +14,7 @@ import qualified TD.Data.ChatAction as ChatAction
 data SendChatAction
   = SendChatAction
     { chat_id                :: Maybe Int                       -- ^ Chat identifier
-    , topic_id               :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the action is performed
+    , topic_id               :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the action is performed; pass null if none
     , business_connection_id :: Maybe T.Text                    -- ^ Unique identifier of business connection on behalf of which to send the request; for bots only
     , action                 :: Maybe ChatAction.ChatAction     -- ^ The action description; pass null to cancel the currently active action
     }

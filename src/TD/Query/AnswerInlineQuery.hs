@@ -14,7 +14,7 @@ import qualified Data.Text as T
 data AnswerInlineQuery
   = AnswerInlineQuery
     { inline_query_id :: Maybe Int                                               -- ^ Identifier of the inline query
-    , is_personal     :: Maybe Bool                                              -- ^ Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+    , is_personal     :: Maybe Bool                                              -- ^ Pass true if results may be cached and returned only for the user who sent the query. By default, results may be returned to any user who sends the same query
     , button          :: Maybe InlineQueryResultsButton.InlineQueryResultsButton -- ^ Button to be shown above inline query results; pass null if none
     , results         :: Maybe [InputInlineQueryResult.InputInlineQueryResult]   -- ^ The results of the query
     , cache_time      :: Maybe Int                                               -- ^ Allowed time to cache the results of the query, in seconds

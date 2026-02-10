@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data ChatJoinRequest
-  = ChatJoinRequest -- ^ Describes a user that sent a join request and waits for administrator approval
+  = ChatJoinRequest -- ^ Describes a user who sent a join request and waits for administrator approval
     { user_id :: Maybe Int    -- ^ User identifier
     , date    :: Maybe Int    -- ^ Point in time (Unix timestamp) when the user sent the join request
     , bio     :: Maybe T.Text -- ^ A short bio of the user

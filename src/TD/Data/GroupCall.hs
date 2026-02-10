@@ -11,6 +11,7 @@ import qualified TD.Data.GroupCallRecentSpeaker as GroupCallRecentSpeaker
 data GroupCall
   = GroupCall -- ^ Describes a group call
     { _id                              :: Maybe Int                                             -- ^ Group call identifier
+    , unique_id                        :: Maybe Int                                             -- ^ Persistent unique group call identifier
     , title                            :: Maybe T.Text                                          -- ^ Group call title; for video chats only
     , invite_link                      :: Maybe T.Text                                          -- ^ Invite link for the group call; for group calls that aren't bound to a chat. For video chats call getVideoChatInviteLink to get the link. For live stories in chats with username call getInternalLink with internalLinkTypeLiveStory
     , paid_message_star_count          :: Maybe Int                                             -- ^ The minimum number of Telegram Stars that must be paid by general participant for each sent message to the call; for live stories only
@@ -47,6 +48,7 @@ data GroupCall
 instance I.ShortShow GroupCall where
   shortShow GroupCall
     { _id                              = _id_
+    , unique_id                        = unique_id_
     , title                            = title_
     , invite_link                      = invite_link_
     , paid_message_star_count          = paid_message_star_count_
@@ -81,6 +83,7 @@ instance I.ShortShow GroupCall where
       = "GroupCall"
         ++ I.cc
         [ "_id"                              `I.p` _id_
+        , "unique_id"                        `I.p` unique_id_
         , "title"                            `I.p` title_
         , "invite_link"                      `I.p` invite_link_
         , "paid_message_star_count"          `I.p` paid_message_star_count_
@@ -124,39 +127,41 @@ instance AT.FromJSON GroupCall where
     where
       parseGroupCall :: A.Value -> AT.Parser GroupCall
       parseGroupCall = A.withObject "GroupCall" $ \o -> do
-        _id_                              <- o A..:?  "id"
-        title_                            <- o A..:?  "title"
-        invite_link_                      <- o A..:?  "invite_link"
-        paid_message_star_count_          <- o A..:?  "paid_message_star_count"
-        scheduled_start_date_             <- o A..:?  "scheduled_start_date"
-        enabled_start_notification_       <- o A..:?  "enabled_start_notification"
-        is_active_                        <- o A..:?  "is_active"
-        is_video_chat_                    <- o A..:?  "is_video_chat"
-        is_live_story_                    <- o A..:?  "is_live_story"
-        is_rtmp_stream_                   <- o A..:?  "is_rtmp_stream"
-        is_joined_                        <- o A..:?  "is_joined"
-        need_rejoin_                      <- o A..:?  "need_rejoin"
-        is_owned_                         <- o A..:?  "is_owned"
-        can_be_managed_                   <- o A..:?  "can_be_managed"
-        participant_count_                <- o A..:?  "participant_count"
-        has_hidden_listeners_             <- o A..:?  "has_hidden_listeners"
-        loaded_all_participants_          <- o A..:?  "loaded_all_participants"
-        message_sender_id_                <- o A..:?  "message_sender_id"
-        recent_speakers_                  <- o A..:?  "recent_speakers"
-        is_my_video_enabled_              <- o A..:?  "is_my_video_enabled"
-        is_my_video_paused_               <- o A..:?  "is_my_video_paused"
-        can_enable_video_                 <- o A..:?  "can_enable_video"
-        mute_new_participants_            <- o A..:?  "mute_new_participants"
-        can_toggle_mute_new_participants_ <- o A..:?  "can_toggle_mute_new_participants"
-        can_send_messages_                <- o A..:?  "can_send_messages"
-        are_messages_allowed_             <- o A..:?  "are_messages_allowed"
-        can_toggle_are_messages_allowed_  <- o A..:?  "can_toggle_are_messages_allowed"
-        can_delete_messages_              <- o A..:?  "can_delete_messages"
-        record_duration_                  <- o A..:?  "record_duration"
-        is_video_recorded_                <- o A..:?  "is_video_recorded"
-        duration_                         <- o A..:?  "duration"
+        _id_                              <- o A..:?                       "id"
+        unique_id_                        <- fmap I.readInt64 <$> o A..:?  "unique_id"
+        title_                            <- o A..:?                       "title"
+        invite_link_                      <- o A..:?                       "invite_link"
+        paid_message_star_count_          <- o A..:?                       "paid_message_star_count"
+        scheduled_start_date_             <- o A..:?                       "scheduled_start_date"
+        enabled_start_notification_       <- o A..:?                       "enabled_start_notification"
+        is_active_                        <- o A..:?                       "is_active"
+        is_video_chat_                    <- o A..:?                       "is_video_chat"
+        is_live_story_                    <- o A..:?                       "is_live_story"
+        is_rtmp_stream_                   <- o A..:?                       "is_rtmp_stream"
+        is_joined_                        <- o A..:?                       "is_joined"
+        need_rejoin_                      <- o A..:?                       "need_rejoin"
+        is_owned_                         <- o A..:?                       "is_owned"
+        can_be_managed_                   <- o A..:?                       "can_be_managed"
+        participant_count_                <- o A..:?                       "participant_count"
+        has_hidden_listeners_             <- o A..:?                       "has_hidden_listeners"
+        loaded_all_participants_          <- o A..:?                       "loaded_all_participants"
+        message_sender_id_                <- o A..:?                       "message_sender_id"
+        recent_speakers_                  <- o A..:?                       "recent_speakers"
+        is_my_video_enabled_              <- o A..:?                       "is_my_video_enabled"
+        is_my_video_paused_               <- o A..:?                       "is_my_video_paused"
+        can_enable_video_                 <- o A..:?                       "can_enable_video"
+        mute_new_participants_            <- o A..:?                       "mute_new_participants"
+        can_toggle_mute_new_participants_ <- o A..:?                       "can_toggle_mute_new_participants"
+        can_send_messages_                <- o A..:?                       "can_send_messages"
+        are_messages_allowed_             <- o A..:?                       "are_messages_allowed"
+        can_toggle_are_messages_allowed_  <- o A..:?                       "can_toggle_are_messages_allowed"
+        can_delete_messages_              <- o A..:?                       "can_delete_messages"
+        record_duration_                  <- o A..:?                       "record_duration"
+        is_video_recorded_                <- o A..:?                       "is_video_recorded"
+        duration_                         <- o A..:?                       "duration"
         pure $ GroupCall
           { _id                              = _id_
+          , unique_id                        = unique_id_
           , title                            = title_
           , invite_link                      = invite_link_
           , paid_message_star_count          = paid_message_star_count_

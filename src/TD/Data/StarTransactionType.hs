@@ -23,7 +23,7 @@ data StarTransactionType
   | StarTransactionTypeGooglePlayDeposit -- ^ The transaction is a deposit of Telegram Stars from Google Play; relevant for regular users only
   | StarTransactionTypeFragmentDeposit -- ^ The transaction is a deposit of Telegram Stars from Fragment; relevant for regular users and bots only
   | StarTransactionTypeUserDeposit -- ^ The transaction is a deposit of Telegram Stars by another user; relevant for regular users only
-    { user_id :: Maybe Int             -- ^ Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous
+    { user_id :: Maybe Int             -- ^ Identifier of the user who gifted Telegram Stars; 0 if the user was anonymous
     , sticker :: Maybe Sticker.Sticker -- ^ The sticker to be shown in the transaction information; may be null if unknown
     }
   | StarTransactionTypeGiveawayDeposit -- ^ The transaction is a deposit of Telegram Stars from a giveaway; relevant for regular users only
@@ -38,11 +38,11 @@ data StarTransactionType
     { request_count :: Maybe Int -- ^ The number of billed requests
     }
   | StarTransactionTypeBotPaidMediaPurchase -- ^ The transaction is a purchase of paid media from a bot or a business account by the current user; relevant for regular users only
-    { user_id :: Maybe Int                   -- ^ Identifier of the bot or the business account user that sent the paid media
+    { user_id :: Maybe Int                   -- ^ Identifier of the bot or the business account user who sent the paid media
     , media   :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the transaction wasn't refunded
     }
   | StarTransactionTypeBotPaidMediaSale -- ^ The transaction is a sale of paid media by the bot or a business account managed by the bot; relevant for bots only
-    { user_id   :: Maybe Int                         -- ^ Identifier of the user that bought the media
+    { user_id   :: Maybe Int                         -- ^ Identifier of the user who bought the media
     , media     :: Maybe [PaidMedia.PaidMedia]       -- ^ The bought media
     , payload   :: Maybe T.Text                      -- ^ Bot-provided payload
     , affiliate :: Maybe AffiliateInfo.AffiliateInfo -- ^ Information about the affiliate which received commission from the transaction; may be null if none
@@ -53,27 +53,27 @@ data StarTransactionType
     , media      :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media if the transaction wasn't refunded
     }
   | StarTransactionTypeChannelPaidMediaSale -- ^ The transaction is a sale of paid media by the channel chat; relevant for channel chats only
-    { user_id    :: Maybe Int                   -- ^ Identifier of the user that bought the media
+    { user_id    :: Maybe Int                   -- ^ Identifier of the user who bought the media
     , message_id :: Maybe Int                   -- ^ Identifier of the corresponding message with paid media; may be 0 or an identifier of a deleted message
     , media      :: Maybe [PaidMedia.PaidMedia] -- ^ The bought media
     }
   | StarTransactionTypeBotInvoicePurchase -- ^ The transaction is a purchase of a product from a bot or a business account by the current user; relevant for regular users only
-    { user_id      :: Maybe Int                     -- ^ Identifier of the bot or the business account user that created the invoice
+    { user_id      :: Maybe Int                     -- ^ Identifier of the bot or the business account user who created the invoice
     , product_info :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought product
     }
   | StarTransactionTypeBotInvoiceSale -- ^ The transaction is a sale of a product by the bot; relevant for bots only
-    { user_id         :: Maybe Int                         -- ^ Identifier of the user that bought the product
+    { user_id         :: Maybe Int                         -- ^ Identifier of the user who bought the product
     , product_info    :: Maybe ProductInfo.ProductInfo     -- ^ Information about the bought product
     , invoice_payload :: Maybe BS.ByteString               -- ^ Invoice payload
     , affiliate       :: Maybe AffiliateInfo.AffiliateInfo -- ^ Information about the affiliate which received commission from the transaction; may be null if none
     }
   | StarTransactionTypeBotSubscriptionPurchase -- ^ The transaction is a purchase of a subscription from a bot or a business account by the current user; relevant for regular users only
-    { user_id             :: Maybe Int                     -- ^ Identifier of the bot or the business account user that created the subscription link
+    { user_id             :: Maybe Int                     -- ^ Identifier of the bot or the business account user who created the subscription link
     , subscription_period :: Maybe Int                     -- ^ The number of seconds between consecutive Telegram Star debitings
     , product_info        :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought subscription
     }
   | StarTransactionTypeBotSubscriptionSale -- ^ The transaction is a sale of a subscription by the bot; relevant for bots only
-    { user_id             :: Maybe Int                         -- ^ Identifier of the user that bought the subscription
+    { user_id             :: Maybe Int                         -- ^ Identifier of the user who bought the subscription
     , subscription_period :: Maybe Int                         -- ^ The number of seconds between consecutive Telegram Star debitings
     , product_info        :: Maybe ProductInfo.ProductInfo     -- ^ Information about the bought subscription
     , invoice_payload     :: Maybe BS.ByteString               -- ^ Invoice payload
@@ -84,11 +84,11 @@ data StarTransactionType
     , subscription_period :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debitings
     }
   | StarTransactionTypeChannelSubscriptionSale -- ^ The transaction is a sale of a subscription by the channel chat; relevant for channel chats only
-    { user_id             :: Maybe Int -- ^ Identifier of the user that bought the subscription
+    { user_id             :: Maybe Int -- ^ Identifier of the user who bought the subscription
     , subscription_period :: Maybe Int -- ^ The number of seconds between consecutive Telegram Star debitings
     }
   | StarTransactionTypeGiftAuctionBid -- ^ The transaction is a bid on a gift auction; relevant for regular users only
-    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user that will receive the gift
+    { owner_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the user who will receive the gift
     , gift     :: Maybe Gift.Gift                   -- ^ The gift
     }
   | StarTransactionTypeGiftPurchase -- ^ The transaction is a purchase of a regular gift; relevant for regular users and bots only
@@ -107,11 +107,11 @@ data StarTransactionType
     , _gift    :: Maybe UpgradedGift.UpgradedGift   -- ^ The gift
     }
   | StarTransactionTypeGiftSale -- ^ The transaction is a sale of a received gift; relevant for regular users and channel chats only
-    { user_id :: Maybe Int       -- ^ Identifier of the user that sent the gift
+    { user_id :: Maybe Int       -- ^ Identifier of the user who sent the gift
     , gift    :: Maybe Gift.Gift -- ^ The gift
     }
   | StarTransactionTypeGiftUpgrade -- ^ The transaction is an upgrade of a gift; relevant for regular users only
-    { user_id :: Maybe Int                       -- ^ Identifier of the user that initially sent the gift
+    { user_id :: Maybe Int                       -- ^ Identifier of the user who initially sent the gift
     , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The upgraded gift
     }
   | StarTransactionTypeGiftUpgradePurchase -- ^ The transaction is a purchase of an upgrade of a gift owned by another user or channel; relevant for regular users only
@@ -119,11 +119,11 @@ data StarTransactionType
     , gift     :: Maybe Gift.Gift                   -- ^ The gift
     }
   | StarTransactionTypeUpgradedGiftPurchase -- ^ The transaction is a purchase of an upgraded gift for some user or channel; relevant for regular users only
-    { user_id :: Maybe Int                       -- ^ Identifier of the user that sold the gift
+    { user_id :: Maybe Int                       -- ^ Identifier of the user who sold the gift
     , _gift   :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | StarTransactionTypeUpgradedGiftSale -- ^ The transaction is a sale of an upgraded gift; relevant for regular users only
-    { user_id                :: Maybe Int                       -- ^ Identifier of the user that bought the gift
+    { user_id                :: Maybe Int                       -- ^ Identifier of the user who bought the gift
     , _gift                  :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     , commission_per_mille   :: Maybe Int                       -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars received by the seller of the gift
     , commission_star_amount :: Maybe StarAmount.StarAmount     -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
@@ -134,7 +134,7 @@ data StarTransactionType
     , message_id :: Maybe Int -- ^ Identifier of the reacted message; may be 0 or an identifier of a deleted message
     }
   | StarTransactionTypeChannelPaidReactionReceive -- ^ The transaction is a receiving of a paid reaction to a message by the channel chat; relevant for channel chats only
-    { user_id    :: Maybe Int -- ^ Identifier of the user that added the paid reaction
+    { user_id    :: Maybe Int -- ^ Identifier of the user who added the paid reaction
     , message_id :: Maybe Int -- ^ Identifier of the reacted message; may be 0 or an identifier of a deleted message
     }
   | StarTransactionTypeAffiliateProgramCommission -- ^ The transaction is a receiving of a commission from an affiliate program; relevant for regular users, bots and channel chats only
@@ -171,10 +171,10 @@ data StarTransactionType
     { chat_id :: Maybe Int -- ^ Identifier of the channel chat that posted the post
     }
   | StarTransactionTypeSuggestedPostPaymentReceive -- ^ The transaction is a receiving of a payment for a suggested post by the channel chat; relevant for channel chats only
-    { user_id :: Maybe Int -- ^ Identifier of the user that paid for the suggested post
+    { user_id :: Maybe Int -- ^ Identifier of the user who paid for the suggested post
     }
   | StarTransactionTypePremiumPurchase -- ^ The transaction is a purchase of Telegram Premium subscription; relevant for regular users and bots only
-    { user_id     :: Maybe Int             -- ^ Identifier of the user that received the Telegram Premium subscription
+    { user_id     :: Maybe Int             -- ^ Identifier of the user who received the Telegram Premium subscription
     , month_count :: Maybe Int             -- ^ Number of months the Telegram Premium subscription will be active
     , sticker     :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the transaction information; may be null if unknown
     }
@@ -182,7 +182,7 @@ data StarTransactionType
     { user_id :: Maybe Int -- ^ Identifier of the bot that received Telegram Stars
     }
   | StarTransactionTypeBusinessBotTransferReceive -- ^ The transaction is a transfer of Telegram Stars from a business account; relevant for bots only
-    { user_id :: Maybe Int -- ^ Identifier of the user that sent Telegram Stars
+    { user_id :: Maybe Int -- ^ Identifier of the user who sent Telegram Stars
     }
   | StarTransactionTypePublicPostSearch -- ^ The transaction is a payment for search of posts in public Telegram channels; relevant for regular users only
   | StarTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type

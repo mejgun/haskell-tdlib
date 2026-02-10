@@ -9,7 +9,7 @@ import qualified Data.Text as T
 -- | Contains information about the origin of a message
 data MessageOrigin
   = MessageOriginUser -- ^ The message was originally sent by a known user
-    { sender_user_id :: Maybe Int -- ^ Identifier of the user that originally sent the message
+    { sender_user_id :: Maybe Int -- ^ Identifier of the user who originally sent the message
     }
   | MessageOriginHiddenUser -- ^ The message was originally sent by a user, which is hidden by their privacy settings
     { sender_name :: Maybe T.Text -- ^ Name of the sender

@@ -16,6 +16,7 @@ data UserType
     , can_read_all_group_messages     :: Maybe Bool   -- ^ True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
     , has_main_web_app                :: Maybe Bool   -- ^ True, if the bot has the main Web App
     , has_topics                      :: Maybe Bool   -- ^ True, if the bot has topics
+    , allows_users_to_create_topics   :: Maybe Bool   -- ^ True, if users can create and delete topics in the chat with the bot
     , is_inline                       :: Maybe Bool   -- ^ True, if the bot supports inline queries
     , inline_query_placeholder        :: Maybe T.Text -- ^ Placeholder for inline queries (displayed on the application input field)
     , need_location                   :: Maybe Bool   -- ^ True, if the location of the user is expected to be sent with every inline query to this bot
@@ -37,6 +38,7 @@ instance I.ShortShow UserType where
     , can_read_all_group_messages     = can_read_all_group_messages_
     , has_main_web_app                = has_main_web_app_
     , has_topics                      = has_topics_
+    , allows_users_to_create_topics   = allows_users_to_create_topics_
     , is_inline                       = is_inline_
     , inline_query_placeholder        = inline_query_placeholder_
     , need_location                   = need_location_
@@ -51,6 +53,7 @@ instance I.ShortShow UserType where
         , "can_read_all_group_messages"     `I.p` can_read_all_group_messages_
         , "has_main_web_app"                `I.p` has_main_web_app_
         , "has_topics"                      `I.p` has_topics_
+        , "allows_users_to_create_topics"   `I.p` allows_users_to_create_topics_
         , "is_inline"                       `I.p` is_inline_
         , "inline_query_placeholder"        `I.p` inline_query_placeholder_
         , "need_location"                   `I.p` need_location_
@@ -80,6 +83,7 @@ instance AT.FromJSON UserType where
         can_read_all_group_messages_     <- o A..:?  "can_read_all_group_messages"
         has_main_web_app_                <- o A..:?  "has_main_web_app"
         has_topics_                      <- o A..:?  "has_topics"
+        allows_users_to_create_topics_   <- o A..:?  "allows_users_to_create_topics"
         is_inline_                       <- o A..:?  "is_inline"
         inline_query_placeholder_        <- o A..:?  "inline_query_placeholder"
         need_location_                   <- o A..:?  "need_location"
@@ -92,6 +96,7 @@ instance AT.FromJSON UserType where
           , can_read_all_group_messages     = can_read_all_group_messages_
           , has_main_web_app                = has_main_web_app_
           , has_topics                      = has_topics_
+          , allows_users_to_create_topics   = allows_users_to_create_topics_
           , is_inline                       = is_inline_
           , inline_query_placeholder        = inline_query_placeholder_
           , need_location                   = need_location_

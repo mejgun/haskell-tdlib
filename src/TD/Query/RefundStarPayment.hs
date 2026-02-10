@@ -11,7 +11,7 @@ import qualified Data.Text as T
 -- | Refunds a previously done payment in Telegram Stars; for bots only. Returns 'TD.Data.Ok.Ok'
 data RefundStarPayment
   = RefundStarPayment
-    { user_id                    :: Maybe Int    -- ^ Identifier of the user that did the payment
+    { user_id                    :: Maybe Int    -- ^ Identifier of the user who did the payment
     , telegram_payment_charge_id :: Maybe T.Text -- ^ Telegram payment identifier
     }
   deriving (Eq, Show)

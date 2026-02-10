@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.Birthdate as Birthdate
 
 data CloseBirthdayUser
-  = CloseBirthdayUser -- ^ Describes a user that had or will have a birthday soon
+  = CloseBirthdayUser -- ^ Describes a user who had or will have a birthday soon
     { user_id   :: Maybe Int                 -- ^ User identifier
     , birthdate :: Maybe Birthdate.Birthdate -- ^ Birthdate of the user
     }

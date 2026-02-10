@@ -14,7 +14,7 @@ data ChatRevenueTransactionType
     , end_date   :: Maybe Int -- ^ Point in time (Unix timestamp) when the earnings ended
     }
   | ChatRevenueTransactionTypeSuggestedPostEarnings -- ^ Describes earnings from a published suggested post
-    { user_id :: Maybe Int -- ^ Identifier of the user that paid for the suggested post
+    { user_id :: Maybe Int -- ^ Identifier of the user who paid for the suggested post
     }
   | ChatRevenueTransactionTypeFragmentWithdrawal -- ^ Describes a withdrawal of earnings through Fragment
     { withdrawal_date :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the earnings withdrawal started

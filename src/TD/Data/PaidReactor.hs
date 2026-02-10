@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
 
 data PaidReactor
-  = PaidReactor -- ^ Contains information about a user that added paid reactions
+  = PaidReactor -- ^ Contains information about a user who added paid reactions
     { sender_id    :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user
     , star_count   :: Maybe Int                         -- ^ Number of Telegram Stars added
     , is_top       :: Maybe Bool                        -- ^ True, if the reactor is one of the most active reactors; may be false if the reactor is the current user

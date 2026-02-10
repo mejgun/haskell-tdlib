@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.38.1.
+-- This file has been generated from package.yaml by hpack version 0.39.1.
 --
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.9.0
+version:        2.1.10.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -32,6 +32,8 @@ library
       TD.Data.AccountInfo
       TD.Data.AccountTtl
       TD.Data.ActiveStoryState
+      TD.Data.AddedProxies
+      TD.Data.AddedProxy
       TD.Data.AddedReaction
       TD.Data.AddedReactions
       TD.Data.Address
@@ -50,6 +52,7 @@ library
       TD.Data.ArchiveChatListSettings
       TD.Data.AttachmentMenuBot
       TD.Data.AttachmentMenuBotColor
+      TD.Data.AttributeCraftPersistenceProbability
       TD.Data.AuctionBid
       TD.Data.AuctionRound
       TD.Data.AuctionState
@@ -110,6 +113,7 @@ library
       TD.Data.BusinessOpeningHoursInterval
       TD.Data.BusinessRecipients
       TD.Data.BusinessStartPage
+      TD.Data.ButtonStyle
       TD.Data.Call
       TD.Data.CallbackQueryAnswer
       TD.Data.CallbackQueryPayload
@@ -213,6 +217,7 @@ library
       TD.Data.Count
       TD.Data.Countries
       TD.Data.CountryInfo
+      TD.Data.CraftGiftResult
       TD.Data.CreatedBasicGroupChat
       TD.Data.CurrentWeather
       TD.Data.CustomRequestResult
@@ -295,6 +300,7 @@ library
       TD.Data.GiftResalePrice
       TD.Data.GiftResaleResult
       TD.Data.GiftSettings
+      TD.Data.GiftsForCrafting
       TD.Data.GiftsForResale
       TD.Data.GiftUpgradePreview
       TD.Data.GiftUpgradePrice
@@ -502,7 +508,6 @@ library
       TD.Data.ProfileAccentColors
       TD.Data.ProfilePhoto
       TD.Data.ProfileTab
-      TD.Data.Proxies
       TD.Data.Proxy
       TD.Data.ProxyType
       TD.Data.PublicChatType
@@ -554,6 +559,7 @@ library
       TD.Data.Session
       TD.Data.Sessions
       TD.Data.SessionType
+      TD.Data.SettingsSection
       TD.Data.SharedChat
       TD.Data.SharedUser
       TD.Data.ShippingOption
@@ -604,6 +610,7 @@ library
       TD.Data.StoryAreaPosition
       TD.Data.StoryAreaType
       TD.Data.StoryContent
+      TD.Data.StoryContentType
       TD.Data.StoryFullId
       TD.Data.StoryInfo
       TD.Data.StoryInteraction
@@ -665,6 +672,7 @@ library
       TD.Data.Updates
       TD.Data.UpgradedGift
       TD.Data.UpgradedGiftAttributeId
+      TD.Data.UpgradedGiftAttributeRarity
       TD.Data.UpgradedGiftBackdrop
       TD.Data.UpgradedGiftBackdropColors
       TD.Data.UpgradedGiftBackdropCount
@@ -814,6 +822,7 @@ library
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
       TD.Query.ConnectAffiliateProgram
+      TD.Query.CraftGift
       TD.Query.CreateBasicGroupChat
       TD.Query.CreateBusinessChatLink
       TD.Query.CreateCall
@@ -995,6 +1004,7 @@ library
       TD.Query.GetChatMessageCount
       TD.Query.GetChatMessagePosition
       TD.Query.GetChatNotificationSettingsExceptions
+      TD.Query.GetChatOwnerAfterLeaving
       TD.Query.GetChatPinnedMessage
       TD.Query.GetChatPostedToChatPageStories
       TD.Query.GetChatRevenueStatistics
@@ -1059,8 +1069,8 @@ library
       TD.Query.GetGiftAuctionState
       TD.Query.GetGiftChatThemes
       TD.Query.GetGiftCollections
+      TD.Query.GetGiftsForCrafting
       TD.Query.GetGiftUpgradePreview
-      TD.Query.GetGiftUpgradeVariants
       TD.Query.GetGiveawayInfo
       TD.Query.GetGreetingStickers
       TD.Query.GetGrossingWebAppBots
@@ -1147,7 +1157,6 @@ library
       TD.Query.GetPremiumStickers
       TD.Query.GetPreparedInlineMessage
       TD.Query.GetProxies
-      TD.Query.GetProxyLink
       TD.Query.GetPublicPostSearchLimits
       TD.Query.GetPushReceiverId
       TD.Query.GetReadDatePrivacySettings
@@ -1223,6 +1232,7 @@ library
       TD.Query.GetUpgradedGiftEmojiStatuses
       TD.Query.GetUpgradedGiftsPromotionalAnimation
       TD.Query.GetUpgradedGiftValueInfo
+      TD.Query.GetUpgradedGiftVariants
       TD.Query.GetUpgradedGiftWithdrawalUrl
       TD.Query.GetUser
       TD.Query.GetUserChatBoosts

@@ -24,16 +24,18 @@ data TonTransactionType
     { gift :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | TonTransactionTypeUpgradedGiftPurchase -- ^ The transaction is a purchase of an upgraded gift for some user or channel
-    { user_id :: Maybe Int                       -- ^ Identifier of the user that sold the gift
+    { user_id :: Maybe Int                       -- ^ Identifier of the user who sold the gift
     , gift    :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | TonTransactionTypeUpgradedGiftSale -- ^ The transaction is a sale of an upgraded gift
-    { user_id                   :: Maybe Int                       -- ^ Identifier of the user that bought the gift
+    { user_id                   :: Maybe Int                       -- ^ Identifier of the user who bought the gift
     , gift                      :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     , commission_per_mille      :: Maybe Int                       -- ^ The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
     , commission_toncoin_amount :: Maybe Int                       -- ^ The Toncoin amount that was received by the Telegram; in the smallest units of the currency
     , via_offer                 :: Maybe Bool                      -- ^ True, if the gift was sold through a purchase offer
     }
+  | TonTransactionTypeStakeDiceStake -- ^ The transaction is a payment for stake dice throw
+  | TonTransactionTypeStakeDicePayout -- ^ The transaction is a payment for successful stake dice throw
   | TonTransactionTypeUnsupported -- ^ The transaction is a transaction of an unsupported type
   deriving (Eq, Show)
 
@@ -92,6 +94,10 @@ instance I.ShortShow TonTransactionType where
         , "commission_toncoin_amount" `I.p` commission_toncoin_amount_
         , "via_offer"                 `I.p` via_offer_
         ]
+  shortShow TonTransactionTypeStakeDiceStake
+      = "TonTransactionTypeStakeDiceStake"
+  shortShow TonTransactionTypeStakeDicePayout
+      = "TonTransactionTypeStakeDicePayout"
   shortShow TonTransactionTypeUnsupported
       = "TonTransactionTypeUnsupported"
 
@@ -106,6 +112,8 @@ instance AT.FromJSON TonTransactionType where
       "tonTransactionTypeGiftPurchaseOffer"    -> parseTonTransactionTypeGiftPurchaseOffer v
       "tonTransactionTypeUpgradedGiftPurchase" -> parseTonTransactionTypeUpgradedGiftPurchase v
       "tonTransactionTypeUpgradedGiftSale"     -> parseTonTransactionTypeUpgradedGiftSale v
+      "tonTransactionTypeStakeDiceStake"       -> pure TonTransactionTypeStakeDiceStake
+      "tonTransactionTypeStakeDicePayout"      -> pure TonTransactionTypeStakeDicePayout
       "tonTransactionTypeUnsupported"          -> pure TonTransactionTypeUnsupported
       _                                        -> mempty
     

@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data ProcessChatJoinRequest
   = ProcessChatJoinRequest
     { chat_id :: Maybe Int  -- ^ Chat identifier
-    , user_id :: Maybe Int  -- ^ Identifier of the user that sent the request
+    , user_id :: Maybe Int  -- ^ Identifier of the user who sent the request
     , approve :: Maybe Bool -- ^ Pass true to approve the request; pass false to decline it
     }
   deriving (Eq, Show)

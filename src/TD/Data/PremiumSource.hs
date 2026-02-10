@@ -24,7 +24,7 @@ data PremiumSource
   | PremiumSourceStoryFeature -- ^ A user tried to use a Premium story feature
     { __feature :: Maybe PremiumStoryFeature.PremiumStoryFeature -- ^ The used feature
     }
-  | PremiumSourceLink -- ^ A user opened an internal link of the type internalLinkTypePremiumFeatures
+  | PremiumSourceLink -- ^ A user opened an internal link of the type internalLinkTypePremiumFeaturesPage
     { referrer :: Maybe T.Text -- ^ The referrer from the link
     }
   | PremiumSourceSettings -- ^ A user opened the Premium features screen from settings

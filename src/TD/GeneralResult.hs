@@ -5,6 +5,8 @@ import Data.Aeson (FromJSON (parseJSON))
 import qualified Data.Aeson.Types as T
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.AccountTtl as AccountTtl
+import qualified TD.Data.AddedProxies as AddedProxies
+import qualified TD.Data.AddedProxy as AddedProxy
 import qualified TD.Data.AddedReactions as AddedReactions
 import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
 import qualified TD.Data.Animation as Animation
@@ -81,6 +83,7 @@ import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliateProgram
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
+import qualified TD.Data.CraftGiftResult as CraftGiftResult
 import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
 import qualified TD.Data.CurrentWeather as CurrentWeather
 import qualified TD.Data.CustomRequestResult as CustomRequestResult
@@ -123,6 +126,7 @@ import qualified TD.Data.GiftCollections as GiftCollections
 import qualified TD.Data.GiftResaleResult as GiftResaleResult
 import qualified TD.Data.GiftUpgradePreview as GiftUpgradePreview
 import qualified TD.Data.GiftUpgradeVariants as GiftUpgradeVariants
+import qualified TD.Data.GiftsForCrafting as GiftsForCrafting
 import qualified TD.Data.GiftsForResale as GiftsForResale
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
 import qualified TD.Data.GroupCall as GroupCall
@@ -192,8 +196,6 @@ import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.PreparedInlineMessage as PreparedInlineMessage
 import qualified TD.Data.PreparedInlineMessageId as PreparedInlineMessageId
-import qualified TD.Data.Proxies as Proxies
-import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.PublicForwards as PublicForwards
 import qualified TD.Data.PublicPostSearchLimits as PublicPostSearchLimits
 import qualified TD.Data.PushReceiverId as PushReceiverId
@@ -275,6 +277,8 @@ import qualified TD.Data.WebPageInstantView as WebPageInstantView
 
 data GeneralResult
     = AccountTtl                         AccountTtl.AccountTtl
+    | AddedProxies                       AddedProxies.AddedProxies
+    | AddedProxy                         AddedProxy.AddedProxy
     | AddedReactions                     AddedReactions.AddedReactions
     | AnimatedEmoji                      AnimatedEmoji.AnimatedEmoji
     | Animation                          Animation.Animation
@@ -351,6 +355,7 @@ data GeneralResult
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
     | Count                              Count.Count
     | Countries                          Countries.Countries
+    | CraftGiftResult                    CraftGiftResult.CraftGiftResult
     | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
     | CurrentWeather                     CurrentWeather.CurrentWeather
     | CustomRequestResult                CustomRequestResult.CustomRequestResult
@@ -393,6 +398,7 @@ data GeneralResult
     | GiftResaleResult                   GiftResaleResult.GiftResaleResult
     | GiftUpgradePreview                 GiftUpgradePreview.GiftUpgradePreview
     | GiftUpgradeVariants                GiftUpgradeVariants.GiftUpgradeVariants
+    | GiftsForCrafting                   GiftsForCrafting.GiftsForCrafting
     | GiftsForResale                     GiftsForResale.GiftsForResale
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
     | GroupCall                          GroupCall.GroupCall
@@ -462,8 +468,6 @@ data GeneralResult
     | PremiumState                       PremiumState.PremiumState
     | PreparedInlineMessage              PreparedInlineMessage.PreparedInlineMessage
     | PreparedInlineMessageId            PreparedInlineMessageId.PreparedInlineMessageId
-    | Proxies                            Proxies.Proxies
-    | Proxy                              Proxy.Proxy
     | PublicForwards                     PublicForwards.PublicForwards
     | PublicPostSearchLimits             PublicPostSearchLimits.PublicPostSearchLimits
     | PushReceiverId                     PushReceiverId.PushReceiverId
@@ -547,6 +551,10 @@ data GeneralResult
 instance I.ShortShow GeneralResult where
   shortShow (AccountTtl v)
     = "AccountTtl" <> " (" <> I.shortShow v <> ")"
+  shortShow (AddedProxies v)
+    = "AddedProxies" <> " (" <> I.shortShow v <> ")"
+  shortShow (AddedProxy v)
+    = "AddedProxy" <> " (" <> I.shortShow v <> ")"
   shortShow (AddedReactions v)
     = "AddedReactions" <> " (" <> I.shortShow v <> ")"
   shortShow (AnimatedEmoji v)
@@ -699,6 +707,8 @@ instance I.ShortShow GeneralResult where
     = "Count" <> " (" <> I.shortShow v <> ")"
   shortShow (Countries v)
     = "Countries" <> " (" <> I.shortShow v <> ")"
+  shortShow (CraftGiftResult v)
+    = "CraftGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CreatedBasicGroupChat v)
     = "CreatedBasicGroupChat" <> " (" <> I.shortShow v <> ")"
   shortShow (CurrentWeather v)
@@ -783,6 +793,8 @@ instance I.ShortShow GeneralResult where
     = "GiftUpgradePreview" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftUpgradeVariants v)
     = "GiftUpgradeVariants" <> " (" <> I.shortShow v <> ")"
+  shortShow (GiftsForCrafting v)
+    = "GiftsForCrafting" <> " (" <> I.shortShow v <> ")"
   shortShow (GiftsForResale v)
     = "GiftsForResale" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
@@ -921,10 +933,6 @@ instance I.ShortShow GeneralResult where
     = "PreparedInlineMessage" <> " (" <> I.shortShow v <> ")"
   shortShow (PreparedInlineMessageId v)
     = "PreparedInlineMessageId" <> " (" <> I.shortShow v <> ")"
-  shortShow (Proxies v)
-    = "Proxies" <> " (" <> I.shortShow v <> ")"
-  shortShow (Proxy v)
-    = "Proxy" <> " (" <> I.shortShow v <> ")"
   shortShow (PublicForwards v)
     = "PublicForwards" <> " (" <> I.shortShow v <> ")"
   shortShow (PublicPostSearchLimits v)
@@ -1085,6 +1093,8 @@ instance I.ShortShow GeneralResult where
 instance T.FromJSON GeneralResult where
  parseJSON v =
         ( AccountTtl                          <$> parseJSON v )
+    <|> ( AddedProxies                        <$> parseJSON v )
+    <|> ( AddedProxy                          <$> parseJSON v )
     <|> ( AddedReactions                      <$> parseJSON v )
     <|> ( AnimatedEmoji                       <$> parseJSON v )
     <|> ( Animation                           <$> parseJSON v )
@@ -1161,6 +1171,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ConnectedWebsites                   <$> parseJSON v )
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
+    <|> ( CraftGiftResult                     <$> parseJSON v )
     <|> ( CreatedBasicGroupChat               <$> parseJSON v )
     <|> ( CurrentWeather                      <$> parseJSON v )
     <|> ( CustomRequestResult                 <$> parseJSON v )
@@ -1203,6 +1214,7 @@ instance T.FromJSON GeneralResult where
     <|> ( GiftResaleResult                    <$> parseJSON v )
     <|> ( GiftUpgradePreview                  <$> parseJSON v )
     <|> ( GiftUpgradeVariants                 <$> parseJSON v )
+    <|> ( GiftsForCrafting                    <$> parseJSON v )
     <|> ( GiftsForResale                      <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
@@ -1272,8 +1284,6 @@ instance T.FromJSON GeneralResult where
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( PreparedInlineMessage               <$> parseJSON v )
     <|> ( PreparedInlineMessageId             <$> parseJSON v )
-    <|> ( Proxies                             <$> parseJSON v )
-    <|> ( Proxy                               <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )
     <|> ( PublicPostSearchLimits              <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )

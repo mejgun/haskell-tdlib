@@ -14,10 +14,10 @@ data CanPostStoryResult
   | CanPostStoryResultBoostNeeded -- ^ The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
   | CanPostStoryResultActiveStoryLimitExceeded -- ^ The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
   | CanPostStoryResultWeeklyLimitExceeded -- ^ The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
-    { retry_after :: Maybe Int -- ^ Time left before the user can post the next story
+    { retry_after :: Maybe Int -- ^ Time left before the user can post the next story, in seconds
     }
   | CanPostStoryResultMonthlyLimitExceeded -- ^ The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
-    { retry_after :: Maybe Int -- ^ Time left before the user can post the next story
+    { retry_after :: Maybe Int -- ^ Time left before the user can post the next story, in seconds
     }
   | CanPostStoryResultLiveStoryIsActive -- ^ The user or the chat has an active live story. The live story must be deleted first
     { story_id :: Maybe Int -- ^ Identifier of the active live story

@@ -9,6 +9,7 @@ import qualified TD.Data.CallState as CallState
 data Call
   = Call -- ^ Describes a call
     { _id         :: Maybe Int                 -- ^ Call identifier, not persistent
+    , unique_id   :: Maybe Int                 -- ^ Persistent unique call identifier; 0 if isn't assigned yet by the server
     , user_id     :: Maybe Int                 -- ^ User identifier of the other call participant
     , is_outgoing :: Maybe Bool                -- ^ True, if the call is outgoing
     , is_video    :: Maybe Bool                -- ^ True, if the call is a video call
@@ -19,6 +20,7 @@ data Call
 instance I.ShortShow Call where
   shortShow Call
     { _id         = _id_
+    , unique_id   = unique_id_
     , user_id     = user_id_
     , is_outgoing = is_outgoing_
     , is_video    = is_video_
@@ -27,6 +29,7 @@ instance I.ShortShow Call where
       = "Call"
         ++ I.cc
         [ "_id"         `I.p` _id_
+        , "unique_id"   `I.p` unique_id_
         , "user_id"     `I.p` user_id_
         , "is_outgoing" `I.p` is_outgoing_
         , "is_video"    `I.p` is_video_
@@ -44,13 +47,15 @@ instance AT.FromJSON Call where
     where
       parseCall :: A.Value -> AT.Parser Call
       parseCall = A.withObject "Call" $ \o -> do
-        _id_         <- o A..:?  "id"
-        user_id_     <- o A..:?  "user_id"
-        is_outgoing_ <- o A..:?  "is_outgoing"
-        is_video_    <- o A..:?  "is_video"
-        state_       <- o A..:?  "state"
+        _id_         <- o A..:?                       "id"
+        unique_id_   <- fmap I.readInt64 <$> o A..:?  "unique_id"
+        user_id_     <- o A..:?                       "user_id"
+        is_outgoing_ <- o A..:?                       "is_outgoing"
+        is_video_    <- o A..:?                       "is_video"
+        state_       <- o A..:?                       "state"
         pure $ Call
           { _id         = _id_
+          , unique_id   = unique_id_
           , user_id     = user_id_
           , is_outgoing = is_outgoing_
           , is_video    = is_video_

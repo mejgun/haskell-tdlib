@@ -13,7 +13,7 @@ data GetLoginUrl
     { chat_id            :: Maybe Int  -- ^ Chat identifier of the message with the button
     , message_id         :: Maybe Int  -- ^ Message identifier of the message with the button
     , button_id          :: Maybe Int  -- ^ Button identifier
-    , allow_write_access :: Maybe Bool -- ^ Pass true to allow the bot to send messages to the current user
+    , allow_write_access :: Maybe Bool -- ^ Pass true to allow the bot to send messages to the current user. Phone number access can't be requested using the button
     }
   deriving (Eq, Show)
 

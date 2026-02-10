@@ -181,7 +181,8 @@ data MessageContent
     , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
     }
   | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
-    { is_active             :: Maybe Bool                          -- ^ True, if the call is active, i.e. the called user joined the call
+    { unique_id             :: Maybe Int                           -- ^ Persistent unique group call identifier
+    , is_active             :: Maybe Bool                          -- ^ True, if the call is active, i.e. the called user joined the call
     , was_missed            :: Maybe Bool                          -- ^ True, if the called user missed or declined the call
     , is_video              :: Maybe Bool                          -- ^ True, if the call is a video call
     , duration              :: Maybe Int                           -- ^ Call duration, in seconds; for left calls only
@@ -215,6 +216,12 @@ data MessageContent
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ New chat photo
     }
   | MessageChatDeletePhoto -- ^ A deleted chat photo
+  | MessageChatOwnerLeft -- ^ The owner of the chat has left
+    { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who will become the new owner of the chat if the previous owner isn't return; 0 if none
+    }
+  | MessageChatOwnerChanged -- ^ The owner of the chat has changed
+    { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who is the new owner of the chat
+    }
   | MessageChatAddMembers -- ^ New chat members were added
     { member_user_ids :: Maybe [Int] -- ^ User identifiers of the new members
     }
@@ -310,8 +317,8 @@ data MessageContent
     , provider_payment_charge_id :: Maybe T.Text                      -- ^ Provider payment identifier
     }
   | MessageGiftedPremium -- ^ Telegram Premium was gifted to a user
-    { gifter_user_id        :: Maybe Int                         -- ^ The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
-    , receiver_user_id      :: Maybe Int                         -- ^ The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+    { gifter_user_id        :: Maybe Int                         -- ^ The identifier of a user who gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id      :: Maybe Int                         -- ^ The identifier of a user who received Telegram Premium; 0 if the gift is incoming
     , text                  :: Maybe FormattedText.FormattedText -- ^ Message added to the gifted Telegram Premium by the sender
     , currency              :: Maybe T.Text                      -- ^ Currency for the paid amount
     , amount                :: Maybe Int                         -- ^ The paid amount, in the smallest units of the currency
@@ -322,7 +329,7 @@ data MessageContent
     , sticker               :: Maybe Sticker.Sticker             -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessagePremiumGiftCode -- ^ A Telegram Premium gift code was created for the user
-    { creator_id            :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user that created the gift code; may be null if unknown
+    { creator_id            :: Maybe MessageSender.MessageSender -- ^ Identifier of a chat or a user who created the gift code; may be null if unknown
     , text                  :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , is_from_giveaway      :: Maybe Bool                        -- ^ True, if the gift code was created for a giveaway
     , is_unclaimed          :: Maybe Bool                        -- ^ True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
@@ -364,8 +371,8 @@ data MessageContent
     , unclaimed_prize_count         :: Maybe Int                         -- ^ Number of undistributed prizes; for Telegram Premium giveaways only
     }
   | MessageGiftedStars -- ^ Telegram Stars were gifted to a user
-    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
-    , receiver_user_id      :: Maybe Int             -- ^ The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+    { gifter_user_id        :: Maybe Int             -- ^ The identifier of a user who gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id      :: Maybe Int             -- ^ The identifier of a user who received Telegram Stars; 0 if the gift is incoming
     , currency              :: Maybe T.Text          -- ^ Currency for the paid amount
     , amount                :: Maybe Int             -- ^ The paid amount, in the smallest units of the currency
     , cryptocurrency        :: Maybe T.Text          -- ^ Cryptocurrency used to pay for the gift; may be empty if none
@@ -375,8 +382,8 @@ data MessageContent
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
   | MessageGiftedTon -- ^ Toncoins were gifted to a user
-    { gifter_user_id   :: Maybe Int             -- ^ The identifier of a user that gifted Toncoins; 0 if the gift was anonymous or is outgoing
-    , receiver_user_id :: Maybe Int             -- ^ The identifier of a user that received Toncoins; 0 if the gift is incoming
+    { gifter_user_id   :: Maybe Int             -- ^ The identifier of a user who gifted Toncoins; 0 if the gift was anonymous or is outgoing
+    , receiver_user_id :: Maybe Int             -- ^ The identifier of a user who received Toncoins; 0 if the gift is incoming
     , ton_amount       :: Maybe Int             -- ^ The received Toncoin amount, in the smallest units of the cryptocurrency
     , transaction_id   :: Maybe T.Text          -- ^ Identifier of the transaction for Toncoin credit; for receiver only
     , sticker          :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
@@ -424,6 +431,7 @@ data MessageContent
     , next_transfer_date               :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
     , next_resale_date                 :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     , export_date                      :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
+    , craft_date                       :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
     { gift        :: Maybe Gift.Gift                             -- ^ The gift
@@ -789,7 +797,8 @@ instance I.ShortShow MessageContent where
         , "duration"       `I.p` duration_
         ]
   shortShow MessageGroupCall
-    { is_active             = is_active_
+    { unique_id             = unique_id_
+    , is_active             = is_active_
     , was_missed            = was_missed_
     , is_video              = is_video_
     , duration              = duration_
@@ -797,7 +806,8 @@ instance I.ShortShow MessageContent where
     }
       = "MessageGroupCall"
         ++ I.cc
-        [ "is_active"             `I.p` is_active_
+        [ "unique_id"             `I.p` unique_id_
+        , "is_active"             `I.p` is_active_
         , "was_missed"            `I.p` was_missed_
         , "is_video"              `I.p` is_video_
         , "duration"              `I.p` duration_
@@ -867,6 +877,20 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessageChatDeletePhoto
       = "MessageChatDeletePhoto"
+  shortShow MessageChatOwnerLeft
+    { new_owner_user_id = new_owner_user_id_
+    }
+      = "MessageChatOwnerLeft"
+        ++ I.cc
+        [ "new_owner_user_id" `I.p` new_owner_user_id_
+        ]
+  shortShow MessageChatOwnerChanged
+    { new_owner_user_id = new_owner_user_id_
+    }
+      = "MessageChatOwnerChanged"
+        ++ I.cc
+        [ "new_owner_user_id" `I.p` new_owner_user_id_
+        ]
   shortShow MessageChatAddMembers
     { member_user_ids = member_user_ids_
     }
@@ -1301,6 +1325,7 @@ instance I.ShortShow MessageContent where
     , next_transfer_date               = next_transfer_date_
     , next_resale_date                 = next_resale_date_
     , export_date                      = export_date_
+    , craft_date                       = craft_date_
     }
       = "MessageUpgradedGift"
         ++ I.cc
@@ -1317,6 +1342,7 @@ instance I.ShortShow MessageContent where
         , "next_transfer_date"               `I.p` next_transfer_date_
         , "next_resale_date"                 `I.p` next_resale_date_
         , "export_date"                      `I.p` export_date_
+        , "craft_date"                       `I.p` craft_date_
         ]
   shortShow MessageRefundedUpgradedGift
     { gift        = gift_
@@ -1565,6 +1591,8 @@ instance AT.FromJSON MessageContent where
       "messageChatChangeTitle"                   -> parseMessageChatChangeTitle v
       "messageChatChangePhoto"                   -> parseMessageChatChangePhoto v
       "messageChatDeletePhoto"                   -> pure MessageChatDeletePhoto
+      "messageChatOwnerLeft"                     -> parseMessageChatOwnerLeft v
+      "messageChatOwnerChanged"                  -> parseMessageChatOwnerChanged v
       "messageChatAddMembers"                    -> parseMessageChatAddMembers v
       "messageChatJoinByLink"                    -> pure MessageChatJoinByLink
       "messageChatJoinByRequest"                 -> pure MessageChatJoinByRequest
@@ -1865,13 +1893,15 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageGroupCall :: A.Value -> AT.Parser MessageContent
       parseMessageGroupCall = A.withObject "MessageGroupCall" $ \o -> do
-        is_active_             <- o A..:?  "is_active"
-        was_missed_            <- o A..:?  "was_missed"
-        is_video_              <- o A..:?  "is_video"
-        duration_              <- o A..:?  "duration"
-        other_participant_ids_ <- o A..:?  "other_participant_ids"
+        unique_id_             <- fmap I.readInt64 <$> o A..:?  "unique_id"
+        is_active_             <- o A..:?                       "is_active"
+        was_missed_            <- o A..:?                       "was_missed"
+        is_video_              <- o A..:?                       "is_video"
+        duration_              <- o A..:?                       "duration"
+        other_participant_ids_ <- o A..:?                       "other_participant_ids"
         pure $ MessageGroupCall
-          { is_active             = is_active_
+          { unique_id             = unique_id_
+          , is_active             = is_active_
           , was_missed            = was_missed_
           , is_video              = is_video_
           , duration              = duration_
@@ -1930,6 +1960,18 @@ instance AT.FromJSON MessageContent where
         _photo_ <- o A..:?  "photo"
         pure $ MessageChatChangePhoto
           { _photo = _photo_
+          }
+      parseMessageChatOwnerLeft :: A.Value -> AT.Parser MessageContent
+      parseMessageChatOwnerLeft = A.withObject "MessageChatOwnerLeft" $ \o -> do
+        new_owner_user_id_ <- o A..:?  "new_owner_user_id"
+        pure $ MessageChatOwnerLeft
+          { new_owner_user_id = new_owner_user_id_
+          }
+      parseMessageChatOwnerChanged :: A.Value -> AT.Parser MessageContent
+      parseMessageChatOwnerChanged = A.withObject "MessageChatOwnerChanged" $ \o -> do
+        new_owner_user_id_ <- o A..:?  "new_owner_user_id"
+        pure $ MessageChatOwnerChanged
+          { new_owner_user_id = new_owner_user_id_
           }
       parseMessageChatAddMembers :: A.Value -> AT.Parser MessageContent
       parseMessageChatAddMembers = A.withObject "MessageChatAddMembers" $ \o -> do
@@ -2330,6 +2372,7 @@ instance AT.FromJSON MessageContent where
         next_transfer_date_               <- o A..:?  "next_transfer_date"
         next_resale_date_                 <- o A..:?  "next_resale_date"
         export_date_                      <- o A..:?  "export_date"
+        craft_date_                       <- o A..:?  "craft_date"
         pure $ MessageUpgradedGift
           { _gift                            = _gift_
           , sender_id                        = sender_id_
@@ -2344,6 +2387,7 @@ instance AT.FromJSON MessageContent where
           , next_transfer_date               = next_transfer_date_
           , next_resale_date                 = next_resale_date_
           , export_date                      = export_date_
+          , craft_date                       = craft_date_
           }
       parseMessageRefundedUpgradedGift :: A.Value -> AT.Parser MessageContent
       parseMessageRefundedUpgradedGift = A.withObject "MessageRefundedUpgradedGift" $ \o -> do

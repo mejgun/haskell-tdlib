@@ -33,6 +33,7 @@ data ReceivedGift
     , next_resale_date                 :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     , export_date                      :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     , prepaid_upgrade_hash             :: Maybe T.Text                      -- ^ If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
+    , craft_date                       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
     }
   deriving (Eq, Show)
 
@@ -60,6 +61,7 @@ instance I.ShortShow ReceivedGift where
     , next_resale_date                 = next_resale_date_
     , export_date                      = export_date_
     , prepaid_upgrade_hash             = prepaid_upgrade_hash_
+    , craft_date                       = craft_date_
     }
       = "ReceivedGift"
         ++ I.cc
@@ -85,6 +87,7 @@ instance I.ShortShow ReceivedGift where
         , "next_resale_date"                 `I.p` next_resale_date_
         , "export_date"                      `I.p` export_date_
         , "prepaid_upgrade_hash"             `I.p` prepaid_upgrade_hash_
+        , "craft_date"                       `I.p` craft_date_
         ]
 
 instance AT.FromJSON ReceivedGift where
@@ -120,6 +123,7 @@ instance AT.FromJSON ReceivedGift where
         next_resale_date_                 <- o A..:?  "next_resale_date"
         export_date_                      <- o A..:?  "export_date"
         prepaid_upgrade_hash_             <- o A..:?  "prepaid_upgrade_hash"
+        craft_date_                       <- o A..:?  "craft_date"
         pure $ ReceivedGift
           { received_gift_id                 = received_gift_id_
           , sender_id                        = sender_id_
@@ -143,6 +147,7 @@ instance AT.FromJSON ReceivedGift where
           , next_resale_date                 = next_resale_date_
           , export_date                      = export_date_
           , prepaid_upgrade_hash             = prepaid_upgrade_hash_
+          , craft_date                       = craft_date_
           }
   parseJSON _ = mempty
 

@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
 data AccountInfo
-  = AccountInfo -- ^ Contains basic information about another user that started a chat with the current user
+  = AccountInfo -- ^ Contains basic information about another user who started a chat with the current user
     { registration_month        :: Maybe Int    -- ^ Month when the user was registered in Telegram; 0-12; may be 0 if unknown
     , registration_year         :: Maybe Int    -- ^ Year when the user was registered in Telegram; 0-9999; may be 0 if unknown
     , phone_number_country_code :: Maybe T.Text -- ^ A two-letter ISO 3166-1 alpha-2 country code based on the phone number of the user; may be empty if unknown
