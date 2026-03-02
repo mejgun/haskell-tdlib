@@ -33,6 +33,7 @@ data PremiumFeature
   | PremiumFeatureMessageEffects -- ^ The ability to use all available message effects
   | PremiumFeatureChecklists -- ^ The ability to create and use checklist messages
   | PremiumFeaturePaidMessages -- ^ The ability to require a payment for incoming messages in new chats
+  | PremiumFeatureProtectPrivateChatContent -- ^ The ability to enable content protection in private chats
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -88,39 +89,42 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureChecklists"
   shortShow PremiumFeaturePaidMessages
       = "PremiumFeaturePaidMessages"
+  shortShow PremiumFeatureProtectPrivateChatContent
+      = "PremiumFeatureProtectPrivateChatContent"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "premiumFeatureIncreasedLimits"         -> pure PremiumFeatureIncreasedLimits
-      "premiumFeatureIncreasedUploadFileSize" -> pure PremiumFeatureIncreasedUploadFileSize
-      "premiumFeatureImprovedDownloadSpeed"   -> pure PremiumFeatureImprovedDownloadSpeed
-      "premiumFeatureVoiceRecognition"        -> pure PremiumFeatureVoiceRecognition
-      "premiumFeatureDisabledAds"             -> pure PremiumFeatureDisabledAds
-      "premiumFeatureUniqueReactions"         -> pure PremiumFeatureUniqueReactions
-      "premiumFeatureUniqueStickers"          -> pure PremiumFeatureUniqueStickers
-      "premiumFeatureCustomEmoji"             -> pure PremiumFeatureCustomEmoji
-      "premiumFeatureAdvancedChatManagement"  -> pure PremiumFeatureAdvancedChatManagement
-      "premiumFeatureProfileBadge"            -> pure PremiumFeatureProfileBadge
-      "premiumFeatureEmojiStatus"             -> pure PremiumFeatureEmojiStatus
-      "premiumFeatureAnimatedProfilePhoto"    -> pure PremiumFeatureAnimatedProfilePhoto
-      "premiumFeatureForumTopicIcon"          -> pure PremiumFeatureForumTopicIcon
-      "premiumFeatureAppIcons"                -> pure PremiumFeatureAppIcons
-      "premiumFeatureRealTimeChatTranslation" -> pure PremiumFeatureRealTimeChatTranslation
-      "premiumFeatureUpgradedStories"         -> pure PremiumFeatureUpgradedStories
-      "premiumFeatureChatBoost"               -> pure PremiumFeatureChatBoost
-      "premiumFeatureAccentColor"             -> pure PremiumFeatureAccentColor
-      "premiumFeatureBackgroundForBoth"       -> pure PremiumFeatureBackgroundForBoth
-      "premiumFeatureSavedMessagesTags"       -> pure PremiumFeatureSavedMessagesTags
-      "premiumFeatureMessagePrivacy"          -> pure PremiumFeatureMessagePrivacy
-      "premiumFeatureLastSeenTimes"           -> pure PremiumFeatureLastSeenTimes
-      "premiumFeatureBusiness"                -> pure PremiumFeatureBusiness
-      "premiumFeatureMessageEffects"          -> pure PremiumFeatureMessageEffects
-      "premiumFeatureChecklists"              -> pure PremiumFeatureChecklists
-      "premiumFeaturePaidMessages"            -> pure PremiumFeaturePaidMessages
-      _                                       -> mempty
+      "premiumFeatureIncreasedLimits"           -> pure PremiumFeatureIncreasedLimits
+      "premiumFeatureIncreasedUploadFileSize"   -> pure PremiumFeatureIncreasedUploadFileSize
+      "premiumFeatureImprovedDownloadSpeed"     -> pure PremiumFeatureImprovedDownloadSpeed
+      "premiumFeatureVoiceRecognition"          -> pure PremiumFeatureVoiceRecognition
+      "premiumFeatureDisabledAds"               -> pure PremiumFeatureDisabledAds
+      "premiumFeatureUniqueReactions"           -> pure PremiumFeatureUniqueReactions
+      "premiumFeatureUniqueStickers"            -> pure PremiumFeatureUniqueStickers
+      "premiumFeatureCustomEmoji"               -> pure PremiumFeatureCustomEmoji
+      "premiumFeatureAdvancedChatManagement"    -> pure PremiumFeatureAdvancedChatManagement
+      "premiumFeatureProfileBadge"              -> pure PremiumFeatureProfileBadge
+      "premiumFeatureEmojiStatus"               -> pure PremiumFeatureEmojiStatus
+      "premiumFeatureAnimatedProfilePhoto"      -> pure PremiumFeatureAnimatedProfilePhoto
+      "premiumFeatureForumTopicIcon"            -> pure PremiumFeatureForumTopicIcon
+      "premiumFeatureAppIcons"                  -> pure PremiumFeatureAppIcons
+      "premiumFeatureRealTimeChatTranslation"   -> pure PremiumFeatureRealTimeChatTranslation
+      "premiumFeatureUpgradedStories"           -> pure PremiumFeatureUpgradedStories
+      "premiumFeatureChatBoost"                 -> pure PremiumFeatureChatBoost
+      "premiumFeatureAccentColor"               -> pure PremiumFeatureAccentColor
+      "premiumFeatureBackgroundForBoth"         -> pure PremiumFeatureBackgroundForBoth
+      "premiumFeatureSavedMessagesTags"         -> pure PremiumFeatureSavedMessagesTags
+      "premiumFeatureMessagePrivacy"            -> pure PremiumFeatureMessagePrivacy
+      "premiumFeatureLastSeenTimes"             -> pure PremiumFeatureLastSeenTimes
+      "premiumFeatureBusiness"                  -> pure PremiumFeatureBusiness
+      "premiumFeatureMessageEffects"            -> pure PremiumFeatureMessageEffects
+      "premiumFeatureChecklists"                -> pure PremiumFeatureChecklists
+      "premiumFeaturePaidMessages"              -> pure PremiumFeaturePaidMessages
+      "premiumFeatureProtectPrivateChatContent" -> pure PremiumFeatureProtectPrivateChatContent
+      _                                         -> mempty
     
   parseJSON _ = mempty
 
@@ -228,5 +232,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeaturePaidMessages
       = A.object
         [ "@type" A..= AT.String "premiumFeaturePaidMessages"
+        ]
+  toJSON PremiumFeatureProtectPrivateChatContent
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureProtectPrivateChatContent"
         ]
 

@@ -24,6 +24,7 @@ data ChatAdministratorRights
     , can_edit_stories           :: Maybe Bool -- ^ True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access story archive; applicable to supergroups and channels only
     , can_delete_stories         :: Maybe Bool -- ^ True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only
     , can_manage_direct_messages :: Maybe Bool -- ^ True, if the administrator can answer to channel direct messages; applicable to channels only
+    , can_manage_tags            :: Maybe Bool -- ^ True, if the administrator can change tags of other users; applicable to basic groups and supergroups only
     , is_anonymous               :: Maybe Bool -- ^ True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     }
   deriving (Eq, Show)
@@ -45,6 +46,7 @@ instance I.ShortShow ChatAdministratorRights where
     , can_edit_stories           = can_edit_stories_
     , can_delete_stories         = can_delete_stories_
     , can_manage_direct_messages = can_manage_direct_messages_
+    , can_manage_tags            = can_manage_tags_
     , is_anonymous               = is_anonymous_
     }
       = "ChatAdministratorRights"
@@ -64,6 +66,7 @@ instance I.ShortShow ChatAdministratorRights where
         , "can_edit_stories"           `I.p` can_edit_stories_
         , "can_delete_stories"         `I.p` can_delete_stories_
         , "can_manage_direct_messages" `I.p` can_manage_direct_messages_
+        , "can_manage_tags"            `I.p` can_manage_tags_
         , "is_anonymous"               `I.p` is_anonymous_
         ]
 
@@ -93,6 +96,7 @@ instance AT.FromJSON ChatAdministratorRights where
         can_edit_stories_           <- o A..:?  "can_edit_stories"
         can_delete_stories_         <- o A..:?  "can_delete_stories"
         can_manage_direct_messages_ <- o A..:?  "can_manage_direct_messages"
+        can_manage_tags_            <- o A..:?  "can_manage_tags"
         is_anonymous_               <- o A..:?  "is_anonymous"
         pure $ ChatAdministratorRights
           { can_manage_chat            = can_manage_chat_
@@ -110,6 +114,7 @@ instance AT.FromJSON ChatAdministratorRights where
           , can_edit_stories           = can_edit_stories_
           , can_delete_stories         = can_delete_stories_
           , can_manage_direct_messages = can_manage_direct_messages_
+          , can_manage_tags            = can_manage_tags_
           , is_anonymous               = is_anonymous_
           }
   parseJSON _ = mempty
@@ -131,6 +136,7 @@ instance AT.ToJSON ChatAdministratorRights where
     , can_edit_stories           = can_edit_stories_
     , can_delete_stories         = can_delete_stories_
     , can_manage_direct_messages = can_manage_direct_messages_
+    , can_manage_tags            = can_manage_tags_
     , is_anonymous               = is_anonymous_
     }
       = A.object
@@ -150,6 +156,7 @@ instance AT.ToJSON ChatAdministratorRights where
         , "can_edit_stories"           A..= can_edit_stories_
         , "can_delete_stories"         A..= can_delete_stories_
         , "can_manage_direct_messages" A..= can_manage_direct_messages_
+        , "can_manage_tags"            A..= can_manage_tags_
         , "is_anonymous"               A..= is_anonymous_
         ]
 
@@ -171,6 +178,7 @@ defaultChatAdministratorRights =
     , can_edit_stories           = Nothing
     , can_delete_stories         = Nothing
     , can_manage_direct_messages = Nothing
+    , can_manage_tags            = Nothing
     , is_anonymous               = Nothing
     }
 

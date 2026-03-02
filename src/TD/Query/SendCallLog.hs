@@ -6,12 +6,13 @@ module TD.Query.SendCallLog
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.InputCall as InputCall
 import qualified TD.Data.InputFile as InputFile
 
 -- | Sends log file for a call to Telegram servers. Returns 'TD.Data.Ok.Ok'
 data SendCallLog
   = SendCallLog
-    { call_id  :: Maybe Int                 -- ^ Call identifier
+    { call_id  :: Maybe InputCall.InputCall -- ^ Call identifier
     , log_file :: Maybe InputFile.InputFile -- ^ Call log file. Only inputFileLocal and inputFileGenerated are supported
     }
   deriving (Eq, Show)

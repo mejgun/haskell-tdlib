@@ -13,9 +13,9 @@ import qualified TD.Data.Document as Document
 import qualified TD.Data.BackgroundType as BackgroundType
 import qualified TD.Data.ChatPhoto as ChatPhoto
 import qualified TD.Data.InviteLinkChatType as InviteLinkChatType
+import qualified TD.Data.Video as Video
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.Sticker as Sticker
-import qualified TD.Data.Video as Video
 import qualified TD.Data.ThemeSettings as ThemeSettings
 import qualified TD.Data.UpgradedGift as UpgradedGift
 import qualified TD.Data.VideoNote as VideoNote
@@ -58,14 +58,16 @@ data LinkPreviewType
     { document :: Maybe Document.Document -- ^ The document description
     }
   | LinkPreviewTypeEmbeddedAnimationPlayer -- ^ The link is a link to an animation player
-    { url       :: Maybe T.Text      -- ^ URL of the external animation player
-    , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the animation; may be null if unknown
-    , duration  :: Maybe Int         -- ^ Duration of the animation, in seconds
-    , width     :: Maybe Int         -- ^ Expected width of the embedded player
-    , height    :: Maybe Int         -- ^ Expected height of the embedded player
+    { url       :: Maybe T.Text              -- ^ URL of the external animation player
+    , animation :: Maybe Animation.Animation -- ^ The cached animation; may be null if unknown
+    , thumbnail :: Maybe Photo.Photo         -- ^ Thumbnail of the animation; may be null if unknown
+    , duration  :: Maybe Int                 -- ^ Duration of the animation, in seconds
+    , width     :: Maybe Int                 -- ^ Expected width of the embedded player
+    , height    :: Maybe Int                 -- ^ Expected height of the embedded player
     }
   | LinkPreviewTypeEmbeddedAudioPlayer -- ^ The link is a link to an audio player
     { url       :: Maybe T.Text      -- ^ URL of the external audio player
+    , audio     :: Maybe Audio.Audio -- ^ The cached audio; may be null if unknown
     , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the audio; may be null if unknown
     , duration  :: Maybe Int         -- ^ Duration of the audio, in seconds
     , width     :: Maybe Int         -- ^ Expected width of the embedded player
@@ -73,6 +75,7 @@ data LinkPreviewType
     }
   | LinkPreviewTypeEmbeddedVideoPlayer -- ^ The link is a link to a video player
     { url       :: Maybe T.Text      -- ^ URL of the external video player
+    , video     :: Maybe Video.Video -- ^ The cached video; may be null if unknown
     , thumbnail :: Maybe Photo.Photo -- ^ Thumbnail of the video; may be null if unknown
     , duration  :: Maybe Int         -- ^ Duration of the video, in seconds
     , width     :: Maybe Int         -- ^ Expected width of the embedded player
@@ -240,6 +243,7 @@ instance I.ShortShow LinkPreviewType where
         ]
   shortShow LinkPreviewTypeEmbeddedAnimationPlayer
     { url       = url_
+    , animation = animation_
     , thumbnail = thumbnail_
     , duration  = duration_
     , width     = width_
@@ -248,6 +252,7 @@ instance I.ShortShow LinkPreviewType where
       = "LinkPreviewTypeEmbeddedAnimationPlayer"
         ++ I.cc
         [ "url"       `I.p` url_
+        , "animation" `I.p` animation_
         , "thumbnail" `I.p` thumbnail_
         , "duration"  `I.p` duration_
         , "width"     `I.p` width_
@@ -255,6 +260,7 @@ instance I.ShortShow LinkPreviewType where
         ]
   shortShow LinkPreviewTypeEmbeddedAudioPlayer
     { url       = url_
+    , audio     = audio_
     , thumbnail = thumbnail_
     , duration  = duration_
     , width     = width_
@@ -263,6 +269,7 @@ instance I.ShortShow LinkPreviewType where
       = "LinkPreviewTypeEmbeddedAudioPlayer"
         ++ I.cc
         [ "url"       `I.p` url_
+        , "audio"     `I.p` audio_
         , "thumbnail" `I.p` thumbnail_
         , "duration"  `I.p` duration_
         , "width"     `I.p` width_
@@ -270,6 +277,7 @@ instance I.ShortShow LinkPreviewType where
         ]
   shortShow LinkPreviewTypeEmbeddedVideoPlayer
     { url       = url_
+    , video     = video_
     , thumbnail = thumbnail_
     , duration  = duration_
     , width     = width_
@@ -278,6 +286,7 @@ instance I.ShortShow LinkPreviewType where
       = "LinkPreviewTypeEmbeddedVideoPlayer"
         ++ I.cc
         [ "url"       `I.p` url_
+        , "video"     `I.p` video_
         , "thumbnail" `I.p` thumbnail_
         , "duration"  `I.p` duration_
         , "width"     `I.p` width_
@@ -578,12 +587,14 @@ instance AT.FromJSON LinkPreviewType where
       parseLinkPreviewTypeEmbeddedAnimationPlayer :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeEmbeddedAnimationPlayer = A.withObject "LinkPreviewTypeEmbeddedAnimationPlayer" $ \o -> do
         url_       <- o A..:?  "url"
+        animation_ <- o A..:?  "animation"
         thumbnail_ <- o A..:?  "thumbnail"
         duration_  <- o A..:?  "duration"
         width_     <- o A..:?  "width"
         height_    <- o A..:?  "height"
         pure $ LinkPreviewTypeEmbeddedAnimationPlayer
           { url       = url_
+          , animation = animation_
           , thumbnail = thumbnail_
           , duration  = duration_
           , width     = width_
@@ -592,12 +603,14 @@ instance AT.FromJSON LinkPreviewType where
       parseLinkPreviewTypeEmbeddedAudioPlayer :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeEmbeddedAudioPlayer = A.withObject "LinkPreviewTypeEmbeddedAudioPlayer" $ \o -> do
         url_       <- o A..:?  "url"
+        audio_     <- o A..:?  "audio"
         thumbnail_ <- o A..:?  "thumbnail"
         duration_  <- o A..:?  "duration"
         width_     <- o A..:?  "width"
         height_    <- o A..:?  "height"
         pure $ LinkPreviewTypeEmbeddedAudioPlayer
           { url       = url_
+          , audio     = audio_
           , thumbnail = thumbnail_
           , duration  = duration_
           , width     = width_
@@ -606,12 +619,14 @@ instance AT.FromJSON LinkPreviewType where
       parseLinkPreviewTypeEmbeddedVideoPlayer :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeEmbeddedVideoPlayer = A.withObject "LinkPreviewTypeEmbeddedVideoPlayer" $ \o -> do
         url_       <- o A..:?  "url"
+        video_     <- o A..:?  "video"
         thumbnail_ <- o A..:?  "thumbnail"
         duration_  <- o A..:?  "duration"
         width_     <- o A..:?  "width"
         height_    <- o A..:?  "height"
         pure $ LinkPreviewTypeEmbeddedVideoPlayer
           { url       = url_
+          , video     = video_
           , thumbnail = thumbnail_
           , duration  = duration_
           , width     = width_

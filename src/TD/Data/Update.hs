@@ -274,9 +274,9 @@ data Update
     { chat_id               :: Maybe Int                                       -- ^ Chat identifier
     , pending_join_requests :: Maybe ChatJoinRequestsInfo.ChatJoinRequestsInfo -- ^ The new data about pending join requests; may be null
     }
-  | UpdateChatReplyMarkup -- ^ The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
-    { chat_id                 :: Maybe Int -- ^ Chat identifier
-    , reply_markup_message_id :: Maybe Int -- ^ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+  | UpdateChatReplyMarkup -- ^ The chat reply markup was changed
+    { chat_id              :: Maybe Int             -- ^ Chat identifier
+    , reply_markup_message :: Maybe Message.Message -- ^ The message from which the reply markup must be used; may be null if there is no default reply markup in the chat
     }
   | UpdateChatBackground -- ^ The chat background was changed
     { chat_id    :: Maybe Int                           -- ^ Chat identifier
@@ -453,6 +453,11 @@ data Update
   | UpdateServiceNotification -- ^ A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     { __type  :: Maybe T.Text                        -- ^ Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
     , content :: Maybe MessageContent.MessageContent -- ^ Notification content
+    }
+  | UpdateNewOauthRequest -- ^ An OAuth authorization request was received
+    { domain   :: Maybe T.Text -- ^ A domain of the URL where the user authorizes
+    , location :: Maybe T.Text -- ^ Human-readable description of a country and a region from which the authorization is performed, based on the IP address
+    , url      :: Maybe T.Text -- ^ The URL to pass to getOauthLinkInfo; the link is valid for 60 seconds
     }
   | UpdateFile -- ^ Information about a file was updated
     { file :: Maybe File.File -- ^ New data about the file
@@ -1222,13 +1227,13 @@ instance I.ShortShow Update where
         , "pending_join_requests" `I.p` pending_join_requests_
         ]
   shortShow UpdateChatReplyMarkup
-    { chat_id                 = chat_id_
-    , reply_markup_message_id = reply_markup_message_id_
+    { chat_id              = chat_id_
+    , reply_markup_message = reply_markup_message_
     }
       = "UpdateChatReplyMarkup"
         ++ I.cc
-        [ "chat_id"                 `I.p` chat_id_
-        , "reply_markup_message_id" `I.p` reply_markup_message_id_
+        [ "chat_id"              `I.p` chat_id_
+        , "reply_markup_message" `I.p` reply_markup_message_
         ]
   shortShow UpdateChatBackground
     { chat_id    = chat_id_
@@ -1623,6 +1628,17 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "__type"  `I.p` __type_
         , "content" `I.p` content_
+        ]
+  shortShow UpdateNewOauthRequest
+    { domain   = domain_
+    , location = location_
+    , url      = url_
+    }
+      = "UpdateNewOauthRequest"
+        ++ I.cc
+        [ "domain"   `I.p` domain_
+        , "location" `I.p` location_
+        , "url"      `I.p` url_
         ]
   shortShow UpdateFile
     { file = file_
@@ -2624,6 +2640,7 @@ instance AT.FromJSON Update where
       "updateBasicGroupFullInfo"                       -> parseUpdateBasicGroupFullInfo v
       "updateSupergroupFullInfo"                       -> parseUpdateSupergroupFullInfo v
       "updateServiceNotification"                      -> parseUpdateServiceNotification v
+      "updateNewOauthRequest"                          -> parseUpdateNewOauthRequest v
       "updateFile"                                     -> parseUpdateFile v
       "updateFileGenerationStart"                      -> parseUpdateFileGenerationStart v
       "updateFileGenerationStop"                       -> parseUpdateFileGenerationStop v
@@ -3042,11 +3059,11 @@ instance AT.FromJSON Update where
           }
       parseUpdateChatReplyMarkup :: A.Value -> AT.Parser Update
       parseUpdateChatReplyMarkup = A.withObject "UpdateChatReplyMarkup" $ \o -> do
-        chat_id_                 <- o A..:?  "chat_id"
-        reply_markup_message_id_ <- o A..:?  "reply_markup_message_id"
+        chat_id_              <- o A..:?  "chat_id"
+        reply_markup_message_ <- o A..:?  "reply_markup_message"
         pure $ UpdateChatReplyMarkup
-          { chat_id                 = chat_id_
-          , reply_markup_message_id = reply_markup_message_id_
+          { chat_id              = chat_id_
+          , reply_markup_message = reply_markup_message_
           }
       parseUpdateChatBackground :: A.Value -> AT.Parser Update
       parseUpdateChatBackground = A.withObject "UpdateChatBackground" $ \o -> do
@@ -3399,6 +3416,16 @@ instance AT.FromJSON Update where
         pure $ UpdateServiceNotification
           { __type  = __type_
           , content = content_
+          }
+      parseUpdateNewOauthRequest :: A.Value -> AT.Parser Update
+      parseUpdateNewOauthRequest = A.withObject "UpdateNewOauthRequest" $ \o -> do
+        domain_   <- o A..:?  "domain"
+        location_ <- o A..:?  "location"
+        url_      <- o A..:?  "url"
+        pure $ UpdateNewOauthRequest
+          { domain   = domain_
+          , location = location_
+          , url      = url_
           }
       parseUpdateFile :: A.Value -> AT.Parser Update
       parseUpdateFile = A.withObject "UpdateFile" $ \o -> do

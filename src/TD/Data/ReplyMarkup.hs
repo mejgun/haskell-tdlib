@@ -10,7 +10,7 @@ import qualified TD.Data.InlineKeyboardButton as InlineKeyboardButton
 
 -- | Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 data ReplyMarkup
-  = ReplyMarkupRemoveKeyboard -- ^ Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with message_id == 0 will be sent
+  = ReplyMarkupRemoveKeyboard -- ^ Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, updateChatReplyMarkup with reply_markup_message == null will be sent
     { is_personal :: Maybe Bool -- ^ True, if the keyboard is removed only for the mentioned users or the target user of a reply
     }
   | ReplyMarkupForceReply -- ^ Instructs application to force a reply to this message

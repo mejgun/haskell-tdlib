@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
+import qualified TD.Data.DateTimeFormattingType as DateTimeFormattingType
 
 -- | Represents a part of the text which must be formatted differently
 data TextEntityType
@@ -39,6 +40,10 @@ data TextEntityType
     }
   | TextEntityTypeMediaTimestamp -- ^ A media timestamp
     { media_timestamp :: Maybe Int -- ^ Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied message
+    }
+  | TextEntityTypeDateTime -- ^ A data and time
+    { unix_time       :: Maybe Int                                           -- ^ Point in time (Unix timestamp) representing the data and time
+    , formatting_type :: Maybe DateTimeFormattingType.DateTimeFormattingType -- ^ Date and time formatting type; may be null if none and the original text must not be changed
     }
   deriving (Eq, Show)
 
@@ -112,6 +117,15 @@ instance I.ShortShow TextEntityType where
         ++ I.cc
         [ "media_timestamp" `I.p` media_timestamp_
         ]
+  shortShow TextEntityTypeDateTime
+    { unix_time       = unix_time_
+    , formatting_type = formatting_type_
+    }
+      = "TextEntityTypeDateTime"
+        ++ I.cc
+        [ "unix_time"       `I.p` unix_time_
+        , "formatting_type" `I.p` formatting_type_
+        ]
 
 instance AT.FromJSON TextEntityType where
   parseJSON v@(AT.Object obj) = do
@@ -140,6 +154,7 @@ instance AT.FromJSON TextEntityType where
       "textEntityTypeMentionName"          -> parseTextEntityTypeMentionName v
       "textEntityTypeCustomEmoji"          -> parseTextEntityTypeCustomEmoji v
       "textEntityTypeMediaTimestamp"       -> parseTextEntityTypeMediaTimestamp v
+      "textEntityTypeDateTime"             -> parseTextEntityTypeDateTime v
       _                                    -> mempty
     
     where
@@ -172,6 +187,14 @@ instance AT.FromJSON TextEntityType where
         media_timestamp_ <- o A..:?  "media_timestamp"
         pure $ TextEntityTypeMediaTimestamp
           { media_timestamp = media_timestamp_
+          }
+      parseTextEntityTypeDateTime :: A.Value -> AT.Parser TextEntityType
+      parseTextEntityTypeDateTime = A.withObject "TextEntityTypeDateTime" $ \o -> do
+        unix_time_       <- o A..:?  "unix_time"
+        formatting_type_ <- o A..:?  "formatting_type"
+        pure $ TextEntityTypeDateTime
+          { unix_time       = unix_time_
+          , formatting_type = formatting_type_
           }
   parseJSON _ = mempty
 
@@ -278,5 +301,14 @@ instance AT.ToJSON TextEntityType where
       = A.object
         [ "@type"           A..= AT.String "textEntityTypeMediaTimestamp"
         , "media_timestamp" A..= media_timestamp_
+        ]
+  toJSON TextEntityTypeDateTime
+    { unix_time       = unix_time_
+    , formatting_type = formatting_type_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "textEntityTypeDateTime"
+        , "unix_time"       A..= unix_time_
+        , "formatting_type" A..= formatting_type_
         ]
 

@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges. Returns 'TD.Data.Ok.Ok'
+-- | Changes the ability of users to save, forward, or copy chat content. Requires owner privileges in basic groups, supergroups and channels. Requires Telegram Premium to enable protected content in private chats. Not available in Saved Messages and private chats with bots or support accounts. Returns 'TD.Data.Ok.Ok'
 data ToggleChatHasProtectedContent
   = ToggleChatHasProtectedContent
     { chat_id               :: Maybe Int  -- ^ Chat identifier

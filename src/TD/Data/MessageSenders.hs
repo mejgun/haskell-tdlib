@@ -8,7 +8,7 @@ import qualified TD.Data.MessageSender as MessageSender
 
 data MessageSenders
   = MessageSenders -- ^ Represents a list of message senders
-    { total_count :: Maybe Int                           -- ^ Approximate total number of messages senders found
+    { total_count :: Maybe Int                           -- ^ Approximate total number of message senders found
     , senders     :: Maybe [MessageSender.MessageSender] -- ^ List of message senders
     }
   deriving (Eq, Show)

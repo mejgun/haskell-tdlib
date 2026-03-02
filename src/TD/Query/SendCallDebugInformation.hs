@@ -6,13 +6,14 @@ module TD.Query.SendCallDebugInformation
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.InputCall as InputCall
 import qualified Data.Text as T
 
 -- | Sends debug information for a call to Telegram servers. Returns 'TD.Data.Ok.Ok'
 data SendCallDebugInformation
   = SendCallDebugInformation
-    { call_id           :: Maybe Int    -- ^ Call identifier
-    , debug_information :: Maybe T.Text -- ^ Debug information in application-specific format
+    { call_id           :: Maybe InputCall.InputCall -- ^ Call identifier
+    , debug_information :: Maybe T.Text              -- ^ Debug information in application-specific format
     }
   deriving (Eq, Show)
 

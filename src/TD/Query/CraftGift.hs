@@ -10,7 +10,7 @@ import qualified Data.Text as T
 -- | Crafts a new gift from other gifts that will be permanently lost. Returns 'TD.Data.CraftGiftResult.CraftGiftResult'
 data CraftGift
   = CraftGift
-    { received_gift_ids :: Maybe [T.Text] -- ^ Identifier of the gifts to use for crafting
+    { received_gift_ids :: Maybe [T.Text] -- ^ Identifier of the gifts to use for crafting. In the case of a successful craft, the resulting gift will have the number of the first gift. Consequently, the first gift must not have been withdrawn to the TON blockchain as an NFT and must have an empty gift_address
     }
   deriving (Eq, Show)
 

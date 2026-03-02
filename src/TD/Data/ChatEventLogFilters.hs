@@ -17,6 +17,7 @@ data ChatEventLogFilters
     , member_invites          :: Maybe Bool -- ^ True, if invited member events need to be returned
     , member_promotions       :: Maybe Bool -- ^ True, if member promotion/demotion events need to be returned
     , member_restrictions     :: Maybe Bool -- ^ True, if member restricted/unrestricted/banned/unbanned events need to be returned
+    , member_tag_changes      :: Maybe Bool -- ^ True, if member tag and custom title change events need to be returned
     , info_changes            :: Maybe Bool -- ^ True, if changes in chat information need to be returned
     , setting_changes         :: Maybe Bool -- ^ True, if changes in chat settings need to be returned
     , invite_link_changes     :: Maybe Bool -- ^ True, if changes to invite links need to be returned
@@ -36,6 +37,7 @@ instance I.ShortShow ChatEventLogFilters where
     , member_invites          = member_invites_
     , member_promotions       = member_promotions_
     , member_restrictions     = member_restrictions_
+    , member_tag_changes      = member_tag_changes_
     , info_changes            = info_changes_
     , setting_changes         = setting_changes_
     , invite_link_changes     = invite_link_changes_
@@ -53,6 +55,7 @@ instance I.ShortShow ChatEventLogFilters where
         , "member_invites"          `I.p` member_invites_
         , "member_promotions"       `I.p` member_promotions_
         , "member_restrictions"     `I.p` member_restrictions_
+        , "member_tag_changes"      `I.p` member_tag_changes_
         , "info_changes"            `I.p` info_changes_
         , "setting_changes"         `I.p` setting_changes_
         , "invite_link_changes"     `I.p` invite_link_changes_
@@ -80,6 +83,7 @@ instance AT.FromJSON ChatEventLogFilters where
         member_invites_          <- o A..:?  "member_invites"
         member_promotions_       <- o A..:?  "member_promotions"
         member_restrictions_     <- o A..:?  "member_restrictions"
+        member_tag_changes_      <- o A..:?  "member_tag_changes"
         info_changes_            <- o A..:?  "info_changes"
         setting_changes_         <- o A..:?  "setting_changes"
         invite_link_changes_     <- o A..:?  "invite_link_changes"
@@ -95,6 +99,7 @@ instance AT.FromJSON ChatEventLogFilters where
           , member_invites          = member_invites_
           , member_promotions       = member_promotions_
           , member_restrictions     = member_restrictions_
+          , member_tag_changes      = member_tag_changes_
           , info_changes            = info_changes_
           , setting_changes         = setting_changes_
           , invite_link_changes     = invite_link_changes_
@@ -114,6 +119,7 @@ instance AT.ToJSON ChatEventLogFilters where
     , member_invites          = member_invites_
     , member_promotions       = member_promotions_
     , member_restrictions     = member_restrictions_
+    , member_tag_changes      = member_tag_changes_
     , info_changes            = info_changes_
     , setting_changes         = setting_changes_
     , invite_link_changes     = invite_link_changes_
@@ -131,6 +137,7 @@ instance AT.ToJSON ChatEventLogFilters where
         , "member_invites"          A..= member_invites_
         , "member_promotions"       A..= member_promotions_
         , "member_restrictions"     A..= member_restrictions_
+        , "member_tag_changes"      A..= member_tag_changes_
         , "info_changes"            A..= info_changes_
         , "setting_changes"         A..= setting_changes_
         , "invite_link_changes"     A..= invite_link_changes_
@@ -150,6 +157,7 @@ defaultChatEventLogFilters =
     , member_invites          = Nothing
     , member_promotions       = Nothing
     , member_restrictions     = Nothing
+    , member_tag_changes      = Nothing
     , info_changes            = Nothing
     , setting_changes         = Nothing
     , invite_link_changes     = Nothing

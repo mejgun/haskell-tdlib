@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.10.0
+version:        2.1.11.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -226,6 +226,8 @@ library
       TD.Data.Date
       TD.Data.DatedFile
       TD.Data.DateRange
+      TD.Data.DateTimeFormattingType
+      TD.Data.DateTimePartPrecision
       TD.Data.DeepLinkInfo
       TD.Data.DeviceToken
       TD.Data.DiceStickers
@@ -338,6 +340,7 @@ library
       TD.Data.InputBackground
       TD.Data.InputBusinessChatLink
       TD.Data.InputBusinessStartPage
+      TD.Data.InputCall
       TD.Data.InputChatPhoto
       TD.Data.InputChatTheme
       TD.Data.InputChecklist
@@ -441,6 +444,7 @@ library
       TD.Data.NotificationSound
       TD.Data.NotificationSounds
       TD.Data.NotificationType
+      TD.Data.OauthLinkInfo
       TD.Data.Ok
       TD.Data.OptionValue
       TD.Data.OrderInfo
@@ -485,6 +489,8 @@ library
       TD.Data.Poll
       TD.Data.PollOption
       TD.Data.PollType
+      TD.Data.PollVoter
+      TD.Data.PollVoters
       TD.Data.PremiumFeature
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
@@ -718,6 +724,7 @@ library
       TD.Lib
       TD.Lib.Internal
       TD.Query.AcceptCall
+      TD.Query.AcceptOauthRequest
       TD.Query.AcceptTermsOfService
       TD.Query.ActivateStoryStealthMode
       TD.Query.AddBotMediaPreview
@@ -791,6 +798,7 @@ library
       TD.Query.CheckCreatedPublicChatsLimit
       TD.Query.CheckEmailAddressVerificationCode
       TD.Query.CheckLoginEmailAddressCode
+      TD.Query.CheckOauthRequestMatchCode
       TD.Query.CheckPasswordRecoveryCode
       TD.Query.CheckPhoneNumberCode
       TD.Query.CheckPremiumGiftCode
@@ -845,6 +853,7 @@ library
       TD.Query.CreateTemporaryPassword
       TD.Query.CreateVideoChat
       TD.Query.DeclineGroupCallInvitation
+      TD.Query.DeclineOauthRequest
       TD.Query.DeclineSuggestedPost
       TD.Query.DecryptGroupCallData
       TD.Query.DeleteAccount
@@ -1132,6 +1141,7 @@ library
       TD.Query.GetMessageViewers
       TD.Query.GetNetworkStatistics
       TD.Query.GetNewChatPrivacySettings
+      TD.Query.GetOauthLinkInfo
       TD.Query.GetOption
       TD.Query.GetOwnedBots
       TD.Query.GetOwnedStickerSets
@@ -1294,6 +1304,7 @@ library
       TD.Query.PostStory
       TD.Query.PreliminaryUploadFile
       TD.Query.ProcessChatFolderNewChats
+      TD.Query.ProcessChatHasProtectedContentDisableRequest
       TD.Query.ProcessChatJoinRequest
       TD.Query.ProcessChatJoinRequests
       TD.Query.ProcessGiftPurchaseOffer
@@ -1489,6 +1500,7 @@ library
       TD.Query.SetChatEmojiStatus
       TD.Query.SetChatLocation
       TD.Query.SetChatMemberStatus
+      TD.Query.SetChatMemberTag
       TD.Query.SetChatMessageAutoDeleteTime
       TD.Query.SetChatMessageSender
       TD.Query.SetChatNotificationSettings

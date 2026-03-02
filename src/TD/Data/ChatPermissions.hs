@@ -19,6 +19,7 @@ data ChatPermissions
     , can_send_polls          :: Maybe Bool -- ^ True, if the user can send polls and checklists
     , can_send_other_messages :: Maybe Bool -- ^ True, if the user can send animations, games, stickers, and dice and use inline bots
     , can_add_link_previews   :: Maybe Bool -- ^ True, if the user may add a link preview to their messages
+    , can_edit_tag            :: Maybe Bool -- ^ True, if the user may change the tag of self
     , can_change_info         :: Maybe Bool -- ^ True, if the user can change the chat title, photo, and other settings
     , can_invite_users        :: Maybe Bool -- ^ True, if the user can invite new users to the chat
     , can_pin_messages        :: Maybe Bool -- ^ True, if the user can pin messages
@@ -38,6 +39,7 @@ instance I.ShortShow ChatPermissions where
     , can_send_polls          = can_send_polls_
     , can_send_other_messages = can_send_other_messages_
     , can_add_link_previews   = can_add_link_previews_
+    , can_edit_tag            = can_edit_tag_
     , can_change_info         = can_change_info_
     , can_invite_users        = can_invite_users_
     , can_pin_messages        = can_pin_messages_
@@ -55,6 +57,7 @@ instance I.ShortShow ChatPermissions where
         , "can_send_polls"          `I.p` can_send_polls_
         , "can_send_other_messages" `I.p` can_send_other_messages_
         , "can_add_link_previews"   `I.p` can_add_link_previews_
+        , "can_edit_tag"            `I.p` can_edit_tag_
         , "can_change_info"         `I.p` can_change_info_
         , "can_invite_users"        `I.p` can_invite_users_
         , "can_pin_messages"        `I.p` can_pin_messages_
@@ -82,6 +85,7 @@ instance AT.FromJSON ChatPermissions where
         can_send_polls_          <- o A..:?  "can_send_polls"
         can_send_other_messages_ <- o A..:?  "can_send_other_messages"
         can_add_link_previews_   <- o A..:?  "can_add_link_previews"
+        can_edit_tag_            <- o A..:?  "can_edit_tag"
         can_change_info_         <- o A..:?  "can_change_info"
         can_invite_users_        <- o A..:?  "can_invite_users"
         can_pin_messages_        <- o A..:?  "can_pin_messages"
@@ -97,6 +101,7 @@ instance AT.FromJSON ChatPermissions where
           , can_send_polls          = can_send_polls_
           , can_send_other_messages = can_send_other_messages_
           , can_add_link_previews   = can_add_link_previews_
+          , can_edit_tag            = can_edit_tag_
           , can_change_info         = can_change_info_
           , can_invite_users        = can_invite_users_
           , can_pin_messages        = can_pin_messages_
@@ -116,6 +121,7 @@ instance AT.ToJSON ChatPermissions where
     , can_send_polls          = can_send_polls_
     , can_send_other_messages = can_send_other_messages_
     , can_add_link_previews   = can_add_link_previews_
+    , can_edit_tag            = can_edit_tag_
     , can_change_info         = can_change_info_
     , can_invite_users        = can_invite_users_
     , can_pin_messages        = can_pin_messages_
@@ -133,6 +139,7 @@ instance AT.ToJSON ChatPermissions where
         , "can_send_polls"          A..= can_send_polls_
         , "can_send_other_messages" A..= can_send_other_messages_
         , "can_add_link_previews"   A..= can_add_link_previews_
+        , "can_edit_tag"            A..= can_edit_tag_
         , "can_change_info"         A..= can_change_info_
         , "can_invite_users"        A..= can_invite_users_
         , "can_pin_messages"        A..= can_pin_messages_
@@ -152,6 +159,7 @@ defaultChatPermissions =
     , can_send_polls          = Nothing
     , can_send_other_messages = Nothing
     , can_add_link_previews   = Nothing
+    , can_edit_tag            = Nothing
     , can_change_info         = Nothing
     , can_invite_users        = Nothing
     , can_pin_messages        = Nothing

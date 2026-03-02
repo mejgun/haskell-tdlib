@@ -7,119 +7,125 @@ import qualified TD.Lib.Internal as I
 
 data MessageProperties
   = MessageProperties -- ^ Contains properties of a message and describes actions that can be done with the message right now
-    { can_add_offer                  :: Maybe Bool -- ^ True, if an offer can be added to the message using addOffer
-    , can_add_tasks                  :: Maybe Bool -- ^ True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
-    , can_be_approved                :: Maybe Bool -- ^ True, if the message is a suggested post that can be approved by the user using approveSuggestedPost
-    , can_be_copied                  :: Maybe Bool -- ^ True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
-    , can_be_copied_to_secret_chat   :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
-    , can_be_declined                :: Maybe Bool -- ^ True, if the message is a suggested post that can be declined by the user using declineSuggestedPost
-    , can_be_deleted_only_for_self   :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
-    , can_be_deleted_for_all_users   :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
-    , can_be_edited                  :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
-    , can_be_forwarded               :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
-    , can_be_paid                    :: Maybe Bool -- ^ True, if the message can be paid using inputInvoiceMessage
-    , can_be_pinned                  :: Maybe Bool -- ^ True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
-    , can_be_replied                 :: Maybe Bool -- ^ True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage
-    , can_be_replied_in_another_chat :: Maybe Bool -- ^ True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
-    , can_be_saved                   :: Maybe Bool -- ^ True, if content of the message can be saved locally
-    , can_be_shared_in_story         :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
-    , can_edit_media                 :: Maybe Bool -- ^ True, if the message can be edited using the method editMessageMedia
-    , can_edit_scheduling_state      :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
-    , can_edit_suggested_post_info   :: Maybe Bool -- ^ True, if another price or post send time can be suggested using addOffer
-    , can_get_author                 :: Maybe Bool -- ^ True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
-    , can_get_embedding_code         :: Maybe Bool -- ^ True, if code for message embedding can be received using getMessageEmbeddingCode
-    , can_get_link                   :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
-    , can_get_media_timestamp_links  :: Maybe Bool -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
-    , can_get_message_thread         :: Maybe Bool -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
-    , can_get_read_date              :: Maybe Bool -- ^ True, if read date of the message can be received through getMessageReadDate
-    , can_get_statistics             :: Maybe Bool -- ^ True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
-    , can_get_video_advertisements   :: Maybe Bool -- ^ True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
-    , can_get_viewers                :: Maybe Bool -- ^ True, if chat members already viewed the message can be received through getMessageViewers
-    , can_mark_tasks_as_done         :: Maybe Bool -- ^ True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
-    , can_recognize_speech           :: Maybe Bool -- ^ True, if speech can be recognized for the message through recognizeSpeech
-    , can_report_chat                :: Maybe Bool -- ^ True, if the message can be reported using reportChat
-    , can_report_reactions           :: Maybe Bool -- ^ True, if reactions on the message can be reported through reportMessageReactions
-    , can_report_supergroup_spam     :: Maybe Bool -- ^ True, if the message can be reported using reportSupergroupSpam
-    , can_set_fact_check             :: Maybe Bool -- ^ True, if fact check for the message can be changed through setMessageFactCheck
-    , need_show_statistics           :: Maybe Bool -- ^ True, if message statistics must be available from context menu of the message
+    { can_add_offer                         :: Maybe Bool -- ^ True, if an offer can be added to the message using addOffer
+    , can_add_tasks                         :: Maybe Bool -- ^ True, if tasks can be added to the message's checklist using addChecklistTasks if the current user has Telegram Premium subscription
+    , can_be_approved                       :: Maybe Bool -- ^ True, if the message is a suggested post that can be approved by the user using approveSuggestedPost
+    , can_be_copied                         :: Maybe Bool -- ^ True, if content of the message can be copied using inputMessageForwarded or forwardMessages with copy options
+    , can_be_copied_to_secret_chat          :: Maybe Bool -- ^ True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    , can_be_declined                       :: Maybe Bool -- ^ True, if the message is a suggested post that can be declined by the user using declineSuggestedPost
+    , can_be_deleted_only_for_self          :: Maybe Bool -- ^ True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
+    , can_be_deleted_for_all_users          :: Maybe Bool -- ^ True, if the message can be deleted for all users using the method deleteMessages with revoke == true
+    , can_be_edited                         :: Maybe Bool -- ^ True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location, poll, and checklist messages this fields shows whether editMessageLiveLocation, stopPoll, or editMessageChecklist respectively can be used with this message
+    , can_be_forwarded                      :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
+    , can_be_paid                           :: Maybe Bool -- ^ True, if the message can be paid using inputInvoiceMessage
+    , can_be_pinned                         :: Maybe Bool -- ^ True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
+    , can_be_replied                        :: Maybe Bool -- ^ True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage
+    , can_be_replied_in_another_chat        :: Maybe Bool -- ^ True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
+    , can_be_saved                          :: Maybe Bool -- ^ True, if content of the message can be saved locally
+    , can_be_shared_in_story                :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
+    , can_edit_media                        :: Maybe Bool -- ^ True, if the message can be edited using the method editMessageMedia
+    , can_edit_scheduling_state             :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
+    , can_edit_suggested_post_info          :: Maybe Bool -- ^ True, if another price or post send time can be suggested using addOffer
+    , can_get_author                        :: Maybe Bool -- ^ True, if author of the message sent on behalf of a chat can be received through getMessageAuthor
+    , can_get_embedding_code                :: Maybe Bool -- ^ True, if code for message embedding can be received using getMessageEmbeddingCode
+    , can_get_link                          :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
+    , can_get_media_timestamp_links         :: Maybe Bool -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
+    , can_get_message_thread                :: Maybe Bool -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
+    , can_get_read_date                     :: Maybe Bool -- ^ True, if read date of the message can be received through getMessageReadDate
+    , can_get_statistics                    :: Maybe Bool -- ^ True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
+    , can_get_video_advertisements          :: Maybe Bool -- ^ True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
+    , can_get_viewers                       :: Maybe Bool -- ^ True, if chat members already viewed the message can be received through getMessageViewers
+    , can_mark_tasks_as_done                :: Maybe Bool -- ^ True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
+    , can_recognize_speech                  :: Maybe Bool -- ^ True, if speech can be recognized for the message through recognizeSpeech
+    , can_report_chat                       :: Maybe Bool -- ^ True, if the message can be reported using reportChat
+    , can_report_reactions                  :: Maybe Bool -- ^ True, if reactions on the message can be reported through reportMessageReactions
+    , can_report_supergroup_spam            :: Maybe Bool -- ^ True, if the message can be reported using reportSupergroupSpam
+    , can_set_fact_check                    :: Maybe Bool -- ^ True, if fact check for the message can be changed through setMessageFactCheck
+    , has_protected_content_by_current_user :: Maybe Bool -- ^ True, if content of the message can't be saved locally, because it is protected by the current user; if true, then can_be_saved is false
+    , has_protected_content_by_other_user   :: Maybe Bool -- ^ True, if content of the message can't be saved locally, because it is protected by the other user; if true, then can_be_saved is false
+    , need_show_statistics                  :: Maybe Bool -- ^ True, if message statistics must be available from context menu of the message
     }
   deriving (Eq, Show)
 
 instance I.ShortShow MessageProperties where
   shortShow MessageProperties
-    { can_add_offer                  = can_add_offer_
-    , can_add_tasks                  = can_add_tasks_
-    , can_be_approved                = can_be_approved_
-    , can_be_copied                  = can_be_copied_
-    , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
-    , can_be_declined                = can_be_declined_
-    , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
-    , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
-    , can_be_edited                  = can_be_edited_
-    , can_be_forwarded               = can_be_forwarded_
-    , can_be_paid                    = can_be_paid_
-    , can_be_pinned                  = can_be_pinned_
-    , can_be_replied                 = can_be_replied_
-    , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
-    , can_be_saved                   = can_be_saved_
-    , can_be_shared_in_story         = can_be_shared_in_story_
-    , can_edit_media                 = can_edit_media_
-    , can_edit_scheduling_state      = can_edit_scheduling_state_
-    , can_edit_suggested_post_info   = can_edit_suggested_post_info_
-    , can_get_author                 = can_get_author_
-    , can_get_embedding_code         = can_get_embedding_code_
-    , can_get_link                   = can_get_link_
-    , can_get_media_timestamp_links  = can_get_media_timestamp_links_
-    , can_get_message_thread         = can_get_message_thread_
-    , can_get_read_date              = can_get_read_date_
-    , can_get_statistics             = can_get_statistics_
-    , can_get_video_advertisements   = can_get_video_advertisements_
-    , can_get_viewers                = can_get_viewers_
-    , can_mark_tasks_as_done         = can_mark_tasks_as_done_
-    , can_recognize_speech           = can_recognize_speech_
-    , can_report_chat                = can_report_chat_
-    , can_report_reactions           = can_report_reactions_
-    , can_report_supergroup_spam     = can_report_supergroup_spam_
-    , can_set_fact_check             = can_set_fact_check_
-    , need_show_statistics           = need_show_statistics_
+    { can_add_offer                         = can_add_offer_
+    , can_add_tasks                         = can_add_tasks_
+    , can_be_approved                       = can_be_approved_
+    , can_be_copied                         = can_be_copied_
+    , can_be_copied_to_secret_chat          = can_be_copied_to_secret_chat_
+    , can_be_declined                       = can_be_declined_
+    , can_be_deleted_only_for_self          = can_be_deleted_only_for_self_
+    , can_be_deleted_for_all_users          = can_be_deleted_for_all_users_
+    , can_be_edited                         = can_be_edited_
+    , can_be_forwarded                      = can_be_forwarded_
+    , can_be_paid                           = can_be_paid_
+    , can_be_pinned                         = can_be_pinned_
+    , can_be_replied                        = can_be_replied_
+    , can_be_replied_in_another_chat        = can_be_replied_in_another_chat_
+    , can_be_saved                          = can_be_saved_
+    , can_be_shared_in_story                = can_be_shared_in_story_
+    , can_edit_media                        = can_edit_media_
+    , can_edit_scheduling_state             = can_edit_scheduling_state_
+    , can_edit_suggested_post_info          = can_edit_suggested_post_info_
+    , can_get_author                        = can_get_author_
+    , can_get_embedding_code                = can_get_embedding_code_
+    , can_get_link                          = can_get_link_
+    , can_get_media_timestamp_links         = can_get_media_timestamp_links_
+    , can_get_message_thread                = can_get_message_thread_
+    , can_get_read_date                     = can_get_read_date_
+    , can_get_statistics                    = can_get_statistics_
+    , can_get_video_advertisements          = can_get_video_advertisements_
+    , can_get_viewers                       = can_get_viewers_
+    , can_mark_tasks_as_done                = can_mark_tasks_as_done_
+    , can_recognize_speech                  = can_recognize_speech_
+    , can_report_chat                       = can_report_chat_
+    , can_report_reactions                  = can_report_reactions_
+    , can_report_supergroup_spam            = can_report_supergroup_spam_
+    , can_set_fact_check                    = can_set_fact_check_
+    , has_protected_content_by_current_user = has_protected_content_by_current_user_
+    , has_protected_content_by_other_user   = has_protected_content_by_other_user_
+    , need_show_statistics                  = need_show_statistics_
     }
       = "MessageProperties"
         ++ I.cc
-        [ "can_add_offer"                  `I.p` can_add_offer_
-        , "can_add_tasks"                  `I.p` can_add_tasks_
-        , "can_be_approved"                `I.p` can_be_approved_
-        , "can_be_copied"                  `I.p` can_be_copied_
-        , "can_be_copied_to_secret_chat"   `I.p` can_be_copied_to_secret_chat_
-        , "can_be_declined"                `I.p` can_be_declined_
-        , "can_be_deleted_only_for_self"   `I.p` can_be_deleted_only_for_self_
-        , "can_be_deleted_for_all_users"   `I.p` can_be_deleted_for_all_users_
-        , "can_be_edited"                  `I.p` can_be_edited_
-        , "can_be_forwarded"               `I.p` can_be_forwarded_
-        , "can_be_paid"                    `I.p` can_be_paid_
-        , "can_be_pinned"                  `I.p` can_be_pinned_
-        , "can_be_replied"                 `I.p` can_be_replied_
-        , "can_be_replied_in_another_chat" `I.p` can_be_replied_in_another_chat_
-        , "can_be_saved"                   `I.p` can_be_saved_
-        , "can_be_shared_in_story"         `I.p` can_be_shared_in_story_
-        , "can_edit_media"                 `I.p` can_edit_media_
-        , "can_edit_scheduling_state"      `I.p` can_edit_scheduling_state_
-        , "can_edit_suggested_post_info"   `I.p` can_edit_suggested_post_info_
-        , "can_get_author"                 `I.p` can_get_author_
-        , "can_get_embedding_code"         `I.p` can_get_embedding_code_
-        , "can_get_link"                   `I.p` can_get_link_
-        , "can_get_media_timestamp_links"  `I.p` can_get_media_timestamp_links_
-        , "can_get_message_thread"         `I.p` can_get_message_thread_
-        , "can_get_read_date"              `I.p` can_get_read_date_
-        , "can_get_statistics"             `I.p` can_get_statistics_
-        , "can_get_video_advertisements"   `I.p` can_get_video_advertisements_
-        , "can_get_viewers"                `I.p` can_get_viewers_
-        , "can_mark_tasks_as_done"         `I.p` can_mark_tasks_as_done_
-        , "can_recognize_speech"           `I.p` can_recognize_speech_
-        , "can_report_chat"                `I.p` can_report_chat_
-        , "can_report_reactions"           `I.p` can_report_reactions_
-        , "can_report_supergroup_spam"     `I.p` can_report_supergroup_spam_
-        , "can_set_fact_check"             `I.p` can_set_fact_check_
-        , "need_show_statistics"           `I.p` need_show_statistics_
+        [ "can_add_offer"                         `I.p` can_add_offer_
+        , "can_add_tasks"                         `I.p` can_add_tasks_
+        , "can_be_approved"                       `I.p` can_be_approved_
+        , "can_be_copied"                         `I.p` can_be_copied_
+        , "can_be_copied_to_secret_chat"          `I.p` can_be_copied_to_secret_chat_
+        , "can_be_declined"                       `I.p` can_be_declined_
+        , "can_be_deleted_only_for_self"          `I.p` can_be_deleted_only_for_self_
+        , "can_be_deleted_for_all_users"          `I.p` can_be_deleted_for_all_users_
+        , "can_be_edited"                         `I.p` can_be_edited_
+        , "can_be_forwarded"                      `I.p` can_be_forwarded_
+        , "can_be_paid"                           `I.p` can_be_paid_
+        , "can_be_pinned"                         `I.p` can_be_pinned_
+        , "can_be_replied"                        `I.p` can_be_replied_
+        , "can_be_replied_in_another_chat"        `I.p` can_be_replied_in_another_chat_
+        , "can_be_saved"                          `I.p` can_be_saved_
+        , "can_be_shared_in_story"                `I.p` can_be_shared_in_story_
+        , "can_edit_media"                        `I.p` can_edit_media_
+        , "can_edit_scheduling_state"             `I.p` can_edit_scheduling_state_
+        , "can_edit_suggested_post_info"          `I.p` can_edit_suggested_post_info_
+        , "can_get_author"                        `I.p` can_get_author_
+        , "can_get_embedding_code"                `I.p` can_get_embedding_code_
+        , "can_get_link"                          `I.p` can_get_link_
+        , "can_get_media_timestamp_links"         `I.p` can_get_media_timestamp_links_
+        , "can_get_message_thread"                `I.p` can_get_message_thread_
+        , "can_get_read_date"                     `I.p` can_get_read_date_
+        , "can_get_statistics"                    `I.p` can_get_statistics_
+        , "can_get_video_advertisements"          `I.p` can_get_video_advertisements_
+        , "can_get_viewers"                       `I.p` can_get_viewers_
+        , "can_mark_tasks_as_done"                `I.p` can_mark_tasks_as_done_
+        , "can_recognize_speech"                  `I.p` can_recognize_speech_
+        , "can_report_chat"                       `I.p` can_report_chat_
+        , "can_report_reactions"                  `I.p` can_report_reactions_
+        , "can_report_supergroup_spam"            `I.p` can_report_supergroup_spam_
+        , "can_set_fact_check"                    `I.p` can_set_fact_check_
+        , "has_protected_content_by_current_user" `I.p` has_protected_content_by_current_user_
+        , "has_protected_content_by_other_user"   `I.p` has_protected_content_by_other_user_
+        , "need_show_statistics"                  `I.p` need_show_statistics_
         ]
 
 instance AT.FromJSON MessageProperties where
@@ -133,77 +139,81 @@ instance AT.FromJSON MessageProperties where
     where
       parseMessageProperties :: A.Value -> AT.Parser MessageProperties
       parseMessageProperties = A.withObject "MessageProperties" $ \o -> do
-        can_add_offer_                  <- o A..:?  "can_add_offer"
-        can_add_tasks_                  <- o A..:?  "can_add_tasks"
-        can_be_approved_                <- o A..:?  "can_be_approved"
-        can_be_copied_                  <- o A..:?  "can_be_copied"
-        can_be_copied_to_secret_chat_   <- o A..:?  "can_be_copied_to_secret_chat"
-        can_be_declined_                <- o A..:?  "can_be_declined"
-        can_be_deleted_only_for_self_   <- o A..:?  "can_be_deleted_only_for_self"
-        can_be_deleted_for_all_users_   <- o A..:?  "can_be_deleted_for_all_users"
-        can_be_edited_                  <- o A..:?  "can_be_edited"
-        can_be_forwarded_               <- o A..:?  "can_be_forwarded"
-        can_be_paid_                    <- o A..:?  "can_be_paid"
-        can_be_pinned_                  <- o A..:?  "can_be_pinned"
-        can_be_replied_                 <- o A..:?  "can_be_replied"
-        can_be_replied_in_another_chat_ <- o A..:?  "can_be_replied_in_another_chat"
-        can_be_saved_                   <- o A..:?  "can_be_saved"
-        can_be_shared_in_story_         <- o A..:?  "can_be_shared_in_story"
-        can_edit_media_                 <- o A..:?  "can_edit_media"
-        can_edit_scheduling_state_      <- o A..:?  "can_edit_scheduling_state"
-        can_edit_suggested_post_info_   <- o A..:?  "can_edit_suggested_post_info"
-        can_get_author_                 <- o A..:?  "can_get_author"
-        can_get_embedding_code_         <- o A..:?  "can_get_embedding_code"
-        can_get_link_                   <- o A..:?  "can_get_link"
-        can_get_media_timestamp_links_  <- o A..:?  "can_get_media_timestamp_links"
-        can_get_message_thread_         <- o A..:?  "can_get_message_thread"
-        can_get_read_date_              <- o A..:?  "can_get_read_date"
-        can_get_statistics_             <- o A..:?  "can_get_statistics"
-        can_get_video_advertisements_   <- o A..:?  "can_get_video_advertisements"
-        can_get_viewers_                <- o A..:?  "can_get_viewers"
-        can_mark_tasks_as_done_         <- o A..:?  "can_mark_tasks_as_done"
-        can_recognize_speech_           <- o A..:?  "can_recognize_speech"
-        can_report_chat_                <- o A..:?  "can_report_chat"
-        can_report_reactions_           <- o A..:?  "can_report_reactions"
-        can_report_supergroup_spam_     <- o A..:?  "can_report_supergroup_spam"
-        can_set_fact_check_             <- o A..:?  "can_set_fact_check"
-        need_show_statistics_           <- o A..:?  "need_show_statistics"
+        can_add_offer_                         <- o A..:?  "can_add_offer"
+        can_add_tasks_                         <- o A..:?  "can_add_tasks"
+        can_be_approved_                       <- o A..:?  "can_be_approved"
+        can_be_copied_                         <- o A..:?  "can_be_copied"
+        can_be_copied_to_secret_chat_          <- o A..:?  "can_be_copied_to_secret_chat"
+        can_be_declined_                       <- o A..:?  "can_be_declined"
+        can_be_deleted_only_for_self_          <- o A..:?  "can_be_deleted_only_for_self"
+        can_be_deleted_for_all_users_          <- o A..:?  "can_be_deleted_for_all_users"
+        can_be_edited_                         <- o A..:?  "can_be_edited"
+        can_be_forwarded_                      <- o A..:?  "can_be_forwarded"
+        can_be_paid_                           <- o A..:?  "can_be_paid"
+        can_be_pinned_                         <- o A..:?  "can_be_pinned"
+        can_be_replied_                        <- o A..:?  "can_be_replied"
+        can_be_replied_in_another_chat_        <- o A..:?  "can_be_replied_in_another_chat"
+        can_be_saved_                          <- o A..:?  "can_be_saved"
+        can_be_shared_in_story_                <- o A..:?  "can_be_shared_in_story"
+        can_edit_media_                        <- o A..:?  "can_edit_media"
+        can_edit_scheduling_state_             <- o A..:?  "can_edit_scheduling_state"
+        can_edit_suggested_post_info_          <- o A..:?  "can_edit_suggested_post_info"
+        can_get_author_                        <- o A..:?  "can_get_author"
+        can_get_embedding_code_                <- o A..:?  "can_get_embedding_code"
+        can_get_link_                          <- o A..:?  "can_get_link"
+        can_get_media_timestamp_links_         <- o A..:?  "can_get_media_timestamp_links"
+        can_get_message_thread_                <- o A..:?  "can_get_message_thread"
+        can_get_read_date_                     <- o A..:?  "can_get_read_date"
+        can_get_statistics_                    <- o A..:?  "can_get_statistics"
+        can_get_video_advertisements_          <- o A..:?  "can_get_video_advertisements"
+        can_get_viewers_                       <- o A..:?  "can_get_viewers"
+        can_mark_tasks_as_done_                <- o A..:?  "can_mark_tasks_as_done"
+        can_recognize_speech_                  <- o A..:?  "can_recognize_speech"
+        can_report_chat_                       <- o A..:?  "can_report_chat"
+        can_report_reactions_                  <- o A..:?  "can_report_reactions"
+        can_report_supergroup_spam_            <- o A..:?  "can_report_supergroup_spam"
+        can_set_fact_check_                    <- o A..:?  "can_set_fact_check"
+        has_protected_content_by_current_user_ <- o A..:?  "has_protected_content_by_current_user"
+        has_protected_content_by_other_user_   <- o A..:?  "has_protected_content_by_other_user"
+        need_show_statistics_                  <- o A..:?  "need_show_statistics"
         pure $ MessageProperties
-          { can_add_offer                  = can_add_offer_
-          , can_add_tasks                  = can_add_tasks_
-          , can_be_approved                = can_be_approved_
-          , can_be_copied                  = can_be_copied_
-          , can_be_copied_to_secret_chat   = can_be_copied_to_secret_chat_
-          , can_be_declined                = can_be_declined_
-          , can_be_deleted_only_for_self   = can_be_deleted_only_for_self_
-          , can_be_deleted_for_all_users   = can_be_deleted_for_all_users_
-          , can_be_edited                  = can_be_edited_
-          , can_be_forwarded               = can_be_forwarded_
-          , can_be_paid                    = can_be_paid_
-          , can_be_pinned                  = can_be_pinned_
-          , can_be_replied                 = can_be_replied_
-          , can_be_replied_in_another_chat = can_be_replied_in_another_chat_
-          , can_be_saved                   = can_be_saved_
-          , can_be_shared_in_story         = can_be_shared_in_story_
-          , can_edit_media                 = can_edit_media_
-          , can_edit_scheduling_state      = can_edit_scheduling_state_
-          , can_edit_suggested_post_info   = can_edit_suggested_post_info_
-          , can_get_author                 = can_get_author_
-          , can_get_embedding_code         = can_get_embedding_code_
-          , can_get_link                   = can_get_link_
-          , can_get_media_timestamp_links  = can_get_media_timestamp_links_
-          , can_get_message_thread         = can_get_message_thread_
-          , can_get_read_date              = can_get_read_date_
-          , can_get_statistics             = can_get_statistics_
-          , can_get_video_advertisements   = can_get_video_advertisements_
-          , can_get_viewers                = can_get_viewers_
-          , can_mark_tasks_as_done         = can_mark_tasks_as_done_
-          , can_recognize_speech           = can_recognize_speech_
-          , can_report_chat                = can_report_chat_
-          , can_report_reactions           = can_report_reactions_
-          , can_report_supergroup_spam     = can_report_supergroup_spam_
-          , can_set_fact_check             = can_set_fact_check_
-          , need_show_statistics           = need_show_statistics_
+          { can_add_offer                         = can_add_offer_
+          , can_add_tasks                         = can_add_tasks_
+          , can_be_approved                       = can_be_approved_
+          , can_be_copied                         = can_be_copied_
+          , can_be_copied_to_secret_chat          = can_be_copied_to_secret_chat_
+          , can_be_declined                       = can_be_declined_
+          , can_be_deleted_only_for_self          = can_be_deleted_only_for_self_
+          , can_be_deleted_for_all_users          = can_be_deleted_for_all_users_
+          , can_be_edited                         = can_be_edited_
+          , can_be_forwarded                      = can_be_forwarded_
+          , can_be_paid                           = can_be_paid_
+          , can_be_pinned                         = can_be_pinned_
+          , can_be_replied                        = can_be_replied_
+          , can_be_replied_in_another_chat        = can_be_replied_in_another_chat_
+          , can_be_saved                          = can_be_saved_
+          , can_be_shared_in_story                = can_be_shared_in_story_
+          , can_edit_media                        = can_edit_media_
+          , can_edit_scheduling_state             = can_edit_scheduling_state_
+          , can_edit_suggested_post_info          = can_edit_suggested_post_info_
+          , can_get_author                        = can_get_author_
+          , can_get_embedding_code                = can_get_embedding_code_
+          , can_get_link                          = can_get_link_
+          , can_get_media_timestamp_links         = can_get_media_timestamp_links_
+          , can_get_message_thread                = can_get_message_thread_
+          , can_get_read_date                     = can_get_read_date_
+          , can_get_statistics                    = can_get_statistics_
+          , can_get_video_advertisements          = can_get_video_advertisements_
+          , can_get_viewers                       = can_get_viewers_
+          , can_mark_tasks_as_done                = can_mark_tasks_as_done_
+          , can_recognize_speech                  = can_recognize_speech_
+          , can_report_chat                       = can_report_chat_
+          , can_report_reactions                  = can_report_reactions_
+          , can_report_supergroup_spam            = can_report_supergroup_spam_
+          , can_set_fact_check                    = can_set_fact_check_
+          , has_protected_content_by_current_user = has_protected_content_by_current_user_
+          , has_protected_content_by_other_user   = has_protected_content_by_other_user_
+          , need_show_statistics                  = need_show_statistics_
           }
   parseJSON _ = mempty
 

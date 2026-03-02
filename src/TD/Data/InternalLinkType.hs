@@ -114,6 +114,9 @@ data InternalLinkType
   | InternalLinkTypeNewStory -- ^ The link is a link to open the story posting interface
     { content_type :: Maybe StoryContentType.StoryContentType -- ^ The type of the content of the story to post; may be null if unspecified
     }
+  | InternalLinkTypeOauth -- ^ The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest
+    { url :: Maybe T.Text -- ^ URL to be passed to getOauthLinkInfo
+    }
   | InternalLinkTypePassportDataRequest -- ^ The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
     { bot_user_id  :: Maybe Int    -- ^ User identifier of the service's bot; the corresponding user may be unknown yet
     , scope        :: Maybe T.Text -- ^ Telegram Passport element types requested by the service
@@ -421,6 +424,13 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "content_type" `I.p` content_type_
         ]
+  shortShow InternalLinkTypeOauth
+    { url = url_
+    }
+      = "InternalLinkTypeOauth"
+        ++ I.cc
+        [ "url" `I.p` url_
+        ]
   shortShow InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_
     , scope        = scope_
@@ -635,6 +645,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeNewGroupChat"            -> pure InternalLinkTypeNewGroupChat
       "internalLinkTypeNewPrivateChat"          -> pure InternalLinkTypeNewPrivateChat
       "internalLinkTypeNewStory"                -> parseInternalLinkTypeNewStory v
+      "internalLinkTypeOauth"                   -> parseInternalLinkTypeOauth v
       "internalLinkTypePassportDataRequest"     -> parseInternalLinkTypePassportDataRequest v
       "internalLinkTypePhoneNumberConfirmation" -> parseInternalLinkTypePhoneNumberConfirmation v
       "internalLinkTypePremiumFeaturesPage"     -> parseInternalLinkTypePremiumFeaturesPage v
@@ -850,6 +861,12 @@ instance AT.FromJSON InternalLinkType where
         content_type_ <- o A..:?  "content_type"
         pure $ InternalLinkTypeNewStory
           { content_type = content_type_
+          }
+      parseInternalLinkTypeOauth :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeOauth = A.withObject "InternalLinkTypeOauth" $ \o -> do
+        url_ <- o A..:?  "url"
+        pure $ InternalLinkTypeOauth
+          { url = url_
           }
       parseInternalLinkTypePassportDataRequest :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypePassportDataRequest = A.withObject "InternalLinkTypePassportDataRequest" $ \o -> do
@@ -1236,6 +1253,13 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"        A..= AT.String "internalLinkTypeNewStory"
         , "content_type" A..= content_type_
+        ]
+  toJSON InternalLinkTypeOauth
+    { url = url_
+    }
+      = A.object
+        [ "@type" A..= AT.String "internalLinkTypeOauth"
+        , "url"   A..= url_
         ]
   toJSON InternalLinkTypePassportDataRequest
     { bot_user_id  = bot_user_id_

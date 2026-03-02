@@ -176,7 +176,8 @@ data MessageContent
     , paid_media_caption    :: Maybe FormattedText.FormattedText -- ^ Extended media caption; may be null if none
     }
   | MessageCall -- ^ A message with information about an ended call
-    { is_video       :: Maybe Bool                                -- ^ True, if the call was a video call
+    { unique_id      :: Maybe Int                                 -- ^ Persistent unique call identifier; 0 for calls from other devices, which can't be passed as inputCallFromMessage
+    , is_video       :: Maybe Bool                                -- ^ True, if the call was a video call
     , discard_reason :: Maybe CallDiscardReason.CallDiscardReason -- ^ Reason why the call was discarded
     , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
     }
@@ -221,6 +222,14 @@ data MessageContent
     }
   | MessageChatOwnerChanged -- ^ The owner of the chat has changed
     { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who is the new owner of the chat
+    }
+  | MessageChatHasProtectedContentToggled -- ^ Chat has_protected_content setting was changed or request to change it was rejected
+    { request_message_id        :: Maybe Int  -- ^ Identifier of the message with the request to change the setting; can be an identifier of a deleted message or 0
+    , old_has_protected_content :: Maybe Bool -- ^ Previous value of the setting
+    , new_has_protected_content :: Maybe Bool -- ^ New value of the setting
+    }
+  | MessageChatHasProtectedContentDisableRequested -- ^ Chat has_protected_content setting was requested to be disabled
+    { is_expired :: Maybe Bool -- ^ True, if the request has expired
     }
   | MessageChatAddMembers -- ^ New chat members were added
     { member_user_ids :: Maybe [Int] -- ^ User identifiers of the new members
@@ -786,13 +795,15 @@ instance I.ShortShow MessageContent where
         , "paid_media_caption"    `I.p` paid_media_caption_
         ]
   shortShow MessageCall
-    { is_video       = is_video_
+    { unique_id      = unique_id_
+    , is_video       = is_video_
     , discard_reason = discard_reason_
     , duration       = duration_
     }
       = "MessageCall"
         ++ I.cc
-        [ "is_video"       `I.p` is_video_
+        [ "unique_id"      `I.p` unique_id_
+        , "is_video"       `I.p` is_video_
         , "discard_reason" `I.p` discard_reason_
         , "duration"       `I.p` duration_
         ]
@@ -890,6 +901,24 @@ instance I.ShortShow MessageContent where
       = "MessageChatOwnerChanged"
         ++ I.cc
         [ "new_owner_user_id" `I.p` new_owner_user_id_
+        ]
+  shortShow MessageChatHasProtectedContentToggled
+    { request_message_id        = request_message_id_
+    , old_has_protected_content = old_has_protected_content_
+    , new_has_protected_content = new_has_protected_content_
+    }
+      = "MessageChatHasProtectedContentToggled"
+        ++ I.cc
+        [ "request_message_id"        `I.p` request_message_id_
+        , "old_has_protected_content" `I.p` old_has_protected_content_
+        , "new_has_protected_content" `I.p` new_has_protected_content_
+        ]
+  shortShow MessageChatHasProtectedContentDisableRequested
+    { is_expired = is_expired_
+    }
+      = "MessageChatHasProtectedContentDisableRequested"
+        ++ I.cc
+        [ "is_expired" `I.p` is_expired_
         ]
   shortShow MessageChatAddMembers
     { member_user_ids = member_user_ids_
@@ -1555,102 +1584,104 @@ instance AT.FromJSON MessageContent where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "messageText"                              -> parseMessageText v
-      "messageAnimation"                         -> parseMessageAnimation v
-      "messageAudio"                             -> parseMessageAudio v
-      "messageDocument"                          -> parseMessageDocument v
-      "messagePaidMedia"                         -> parseMessagePaidMedia v
-      "messagePhoto"                             -> parseMessagePhoto v
-      "messageSticker"                           -> parseMessageSticker v
-      "messageVideo"                             -> parseMessageVideo v
-      "messageVideoNote"                         -> parseMessageVideoNote v
-      "messageVoiceNote"                         -> parseMessageVoiceNote v
-      "messageExpiredPhoto"                      -> pure MessageExpiredPhoto
-      "messageExpiredVideo"                      -> pure MessageExpiredVideo
-      "messageExpiredVideoNote"                  -> pure MessageExpiredVideoNote
-      "messageExpiredVoiceNote"                  -> pure MessageExpiredVoiceNote
-      "messageLocation"                          -> parseMessageLocation v
-      "messageVenue"                             -> parseMessageVenue v
-      "messageContact"                           -> parseMessageContact v
-      "messageAnimatedEmoji"                     -> parseMessageAnimatedEmoji v
-      "messageDice"                              -> parseMessageDice v
-      "messageGame"                              -> parseMessageGame v
-      "messagePoll"                              -> parseMessagePoll v
-      "messageStakeDice"                         -> parseMessageStakeDice v
-      "messageStory"                             -> parseMessageStory v
-      "messageChecklist"                         -> parseMessageChecklist v
-      "messageInvoice"                           -> parseMessageInvoice v
-      "messageCall"                              -> parseMessageCall v
-      "messageGroupCall"                         -> parseMessageGroupCall v
-      "messageVideoChatScheduled"                -> parseMessageVideoChatScheduled v
-      "messageVideoChatStarted"                  -> parseMessageVideoChatStarted v
-      "messageVideoChatEnded"                    -> parseMessageVideoChatEnded v
-      "messageInviteVideoChatParticipants"       -> parseMessageInviteVideoChatParticipants v
-      "messageBasicGroupChatCreate"              -> parseMessageBasicGroupChatCreate v
-      "messageSupergroupChatCreate"              -> parseMessageSupergroupChatCreate v
-      "messageChatChangeTitle"                   -> parseMessageChatChangeTitle v
-      "messageChatChangePhoto"                   -> parseMessageChatChangePhoto v
-      "messageChatDeletePhoto"                   -> pure MessageChatDeletePhoto
-      "messageChatOwnerLeft"                     -> parseMessageChatOwnerLeft v
-      "messageChatOwnerChanged"                  -> parseMessageChatOwnerChanged v
-      "messageChatAddMembers"                    -> parseMessageChatAddMembers v
-      "messageChatJoinByLink"                    -> pure MessageChatJoinByLink
-      "messageChatJoinByRequest"                 -> pure MessageChatJoinByRequest
-      "messageChatDeleteMember"                  -> parseMessageChatDeleteMember v
-      "messageChatUpgradeTo"                     -> parseMessageChatUpgradeTo v
-      "messageChatUpgradeFrom"                   -> parseMessageChatUpgradeFrom v
-      "messagePinMessage"                        -> parseMessagePinMessage v
-      "messageScreenshotTaken"                   -> pure MessageScreenshotTaken
-      "messageChatSetBackground"                 -> parseMessageChatSetBackground v
-      "messageChatSetTheme"                      -> parseMessageChatSetTheme v
-      "messageChatSetMessageAutoDeleteTime"      -> parseMessageChatSetMessageAutoDeleteTime v
-      "messageChatBoost"                         -> parseMessageChatBoost v
-      "messageForumTopicCreated"                 -> parseMessageForumTopicCreated v
-      "messageForumTopicEdited"                  -> parseMessageForumTopicEdited v
-      "messageForumTopicIsClosedToggled"         -> parseMessageForumTopicIsClosedToggled v
-      "messageForumTopicIsHiddenToggled"         -> parseMessageForumTopicIsHiddenToggled v
-      "messageSuggestProfilePhoto"               -> parseMessageSuggestProfilePhoto v
-      "messageSuggestBirthdate"                  -> parseMessageSuggestBirthdate v
-      "messageCustomServiceAction"               -> parseMessageCustomServiceAction v
-      "messageGameScore"                         -> parseMessageGameScore v
-      "messagePaymentSuccessful"                 -> parseMessagePaymentSuccessful v
-      "messagePaymentSuccessfulBot"              -> parseMessagePaymentSuccessfulBot v
-      "messagePaymentRefunded"                   -> parseMessagePaymentRefunded v
-      "messageGiftedPremium"                     -> parseMessageGiftedPremium v
-      "messagePremiumGiftCode"                   -> parseMessagePremiumGiftCode v
-      "messageGiveawayCreated"                   -> parseMessageGiveawayCreated v
-      "messageGiveaway"                          -> parseMessageGiveaway v
-      "messageGiveawayCompleted"                 -> parseMessageGiveawayCompleted v
-      "messageGiveawayWinners"                   -> parseMessageGiveawayWinners v
-      "messageGiftedStars"                       -> parseMessageGiftedStars v
-      "messageGiftedTon"                         -> parseMessageGiftedTon v
-      "messageGiveawayPrizeStars"                -> parseMessageGiveawayPrizeStars v
-      "messageGift"                              -> parseMessageGift v
-      "messageUpgradedGift"                      -> parseMessageUpgradedGift v
-      "messageRefundedUpgradedGift"              -> parseMessageRefundedUpgradedGift v
-      "messageUpgradedGiftPurchaseOffer"         -> parseMessageUpgradedGiftPurchaseOffer v
-      "messageUpgradedGiftPurchaseOfferRejected" -> parseMessageUpgradedGiftPurchaseOfferRejected v
-      "messagePaidMessagesRefunded"              -> parseMessagePaidMessagesRefunded v
-      "messagePaidMessagePriceChanged"           -> parseMessagePaidMessagePriceChanged v
-      "messageDirectMessagePriceChanged"         -> parseMessageDirectMessagePriceChanged v
-      "messageChecklistTasksDone"                -> parseMessageChecklistTasksDone v
-      "messageChecklistTasksAdded"               -> parseMessageChecklistTasksAdded v
-      "messageSuggestedPostApprovalFailed"       -> parseMessageSuggestedPostApprovalFailed v
-      "messageSuggestedPostApproved"             -> parseMessageSuggestedPostApproved v
-      "messageSuggestedPostDeclined"             -> parseMessageSuggestedPostDeclined v
-      "messageSuggestedPostPaid"                 -> parseMessageSuggestedPostPaid v
-      "messageSuggestedPostRefunded"             -> parseMessageSuggestedPostRefunded v
-      "messageContactRegistered"                 -> pure MessageContactRegistered
-      "messageUsersShared"                       -> parseMessageUsersShared v
-      "messageChatShared"                        -> parseMessageChatShared v
-      "messageBotWriteAccessAllowed"             -> parseMessageBotWriteAccessAllowed v
-      "messageWebAppDataSent"                    -> parseMessageWebAppDataSent v
-      "messageWebAppDataReceived"                -> parseMessageWebAppDataReceived v
-      "messagePassportDataSent"                  -> parseMessagePassportDataSent v
-      "messagePassportDataReceived"              -> parseMessagePassportDataReceived v
-      "messageProximityAlertTriggered"           -> parseMessageProximityAlertTriggered v
-      "messageUnsupported"                       -> pure MessageUnsupported
-      _                                          -> mempty
+      "messageText"                                    -> parseMessageText v
+      "messageAnimation"                               -> parseMessageAnimation v
+      "messageAudio"                                   -> parseMessageAudio v
+      "messageDocument"                                -> parseMessageDocument v
+      "messagePaidMedia"                               -> parseMessagePaidMedia v
+      "messagePhoto"                                   -> parseMessagePhoto v
+      "messageSticker"                                 -> parseMessageSticker v
+      "messageVideo"                                   -> parseMessageVideo v
+      "messageVideoNote"                               -> parseMessageVideoNote v
+      "messageVoiceNote"                               -> parseMessageVoiceNote v
+      "messageExpiredPhoto"                            -> pure MessageExpiredPhoto
+      "messageExpiredVideo"                            -> pure MessageExpiredVideo
+      "messageExpiredVideoNote"                        -> pure MessageExpiredVideoNote
+      "messageExpiredVoiceNote"                        -> pure MessageExpiredVoiceNote
+      "messageLocation"                                -> parseMessageLocation v
+      "messageVenue"                                   -> parseMessageVenue v
+      "messageContact"                                 -> parseMessageContact v
+      "messageAnimatedEmoji"                           -> parseMessageAnimatedEmoji v
+      "messageDice"                                    -> parseMessageDice v
+      "messageGame"                                    -> parseMessageGame v
+      "messagePoll"                                    -> parseMessagePoll v
+      "messageStakeDice"                               -> parseMessageStakeDice v
+      "messageStory"                                   -> parseMessageStory v
+      "messageChecklist"                               -> parseMessageChecklist v
+      "messageInvoice"                                 -> parseMessageInvoice v
+      "messageCall"                                    -> parseMessageCall v
+      "messageGroupCall"                               -> parseMessageGroupCall v
+      "messageVideoChatScheduled"                      -> parseMessageVideoChatScheduled v
+      "messageVideoChatStarted"                        -> parseMessageVideoChatStarted v
+      "messageVideoChatEnded"                          -> parseMessageVideoChatEnded v
+      "messageInviteVideoChatParticipants"             -> parseMessageInviteVideoChatParticipants v
+      "messageBasicGroupChatCreate"                    -> parseMessageBasicGroupChatCreate v
+      "messageSupergroupChatCreate"                    -> parseMessageSupergroupChatCreate v
+      "messageChatChangeTitle"                         -> parseMessageChatChangeTitle v
+      "messageChatChangePhoto"                         -> parseMessageChatChangePhoto v
+      "messageChatDeletePhoto"                         -> pure MessageChatDeletePhoto
+      "messageChatOwnerLeft"                           -> parseMessageChatOwnerLeft v
+      "messageChatOwnerChanged"                        -> parseMessageChatOwnerChanged v
+      "messageChatHasProtectedContentToggled"          -> parseMessageChatHasProtectedContentToggled v
+      "messageChatHasProtectedContentDisableRequested" -> parseMessageChatHasProtectedContentDisableRequested v
+      "messageChatAddMembers"                          -> parseMessageChatAddMembers v
+      "messageChatJoinByLink"                          -> pure MessageChatJoinByLink
+      "messageChatJoinByRequest"                       -> pure MessageChatJoinByRequest
+      "messageChatDeleteMember"                        -> parseMessageChatDeleteMember v
+      "messageChatUpgradeTo"                           -> parseMessageChatUpgradeTo v
+      "messageChatUpgradeFrom"                         -> parseMessageChatUpgradeFrom v
+      "messagePinMessage"                              -> parseMessagePinMessage v
+      "messageScreenshotTaken"                         -> pure MessageScreenshotTaken
+      "messageChatSetBackground"                       -> parseMessageChatSetBackground v
+      "messageChatSetTheme"                            -> parseMessageChatSetTheme v
+      "messageChatSetMessageAutoDeleteTime"            -> parseMessageChatSetMessageAutoDeleteTime v
+      "messageChatBoost"                               -> parseMessageChatBoost v
+      "messageForumTopicCreated"                       -> parseMessageForumTopicCreated v
+      "messageForumTopicEdited"                        -> parseMessageForumTopicEdited v
+      "messageForumTopicIsClosedToggled"               -> parseMessageForumTopicIsClosedToggled v
+      "messageForumTopicIsHiddenToggled"               -> parseMessageForumTopicIsHiddenToggled v
+      "messageSuggestProfilePhoto"                     -> parseMessageSuggestProfilePhoto v
+      "messageSuggestBirthdate"                        -> parseMessageSuggestBirthdate v
+      "messageCustomServiceAction"                     -> parseMessageCustomServiceAction v
+      "messageGameScore"                               -> parseMessageGameScore v
+      "messagePaymentSuccessful"                       -> parseMessagePaymentSuccessful v
+      "messagePaymentSuccessfulBot"                    -> parseMessagePaymentSuccessfulBot v
+      "messagePaymentRefunded"                         -> parseMessagePaymentRefunded v
+      "messageGiftedPremium"                           -> parseMessageGiftedPremium v
+      "messagePremiumGiftCode"                         -> parseMessagePremiumGiftCode v
+      "messageGiveawayCreated"                         -> parseMessageGiveawayCreated v
+      "messageGiveaway"                                -> parseMessageGiveaway v
+      "messageGiveawayCompleted"                       -> parseMessageGiveawayCompleted v
+      "messageGiveawayWinners"                         -> parseMessageGiveawayWinners v
+      "messageGiftedStars"                             -> parseMessageGiftedStars v
+      "messageGiftedTon"                               -> parseMessageGiftedTon v
+      "messageGiveawayPrizeStars"                      -> parseMessageGiveawayPrizeStars v
+      "messageGift"                                    -> parseMessageGift v
+      "messageUpgradedGift"                            -> parseMessageUpgradedGift v
+      "messageRefundedUpgradedGift"                    -> parseMessageRefundedUpgradedGift v
+      "messageUpgradedGiftPurchaseOffer"               -> parseMessageUpgradedGiftPurchaseOffer v
+      "messageUpgradedGiftPurchaseOfferRejected"       -> parseMessageUpgradedGiftPurchaseOfferRejected v
+      "messagePaidMessagesRefunded"                    -> parseMessagePaidMessagesRefunded v
+      "messagePaidMessagePriceChanged"                 -> parseMessagePaidMessagePriceChanged v
+      "messageDirectMessagePriceChanged"               -> parseMessageDirectMessagePriceChanged v
+      "messageChecklistTasksDone"                      -> parseMessageChecklistTasksDone v
+      "messageChecklistTasksAdded"                     -> parseMessageChecklistTasksAdded v
+      "messageSuggestedPostApprovalFailed"             -> parseMessageSuggestedPostApprovalFailed v
+      "messageSuggestedPostApproved"                   -> parseMessageSuggestedPostApproved v
+      "messageSuggestedPostDeclined"                   -> parseMessageSuggestedPostDeclined v
+      "messageSuggestedPostPaid"                       -> parseMessageSuggestedPostPaid v
+      "messageSuggestedPostRefunded"                   -> parseMessageSuggestedPostRefunded v
+      "messageContactRegistered"                       -> pure MessageContactRegistered
+      "messageUsersShared"                             -> parseMessageUsersShared v
+      "messageChatShared"                              -> parseMessageChatShared v
+      "messageBotWriteAccessAllowed"                   -> parseMessageBotWriteAccessAllowed v
+      "messageWebAppDataSent"                          -> parseMessageWebAppDataSent v
+      "messageWebAppDataReceived"                      -> parseMessageWebAppDataReceived v
+      "messagePassportDataSent"                        -> parseMessagePassportDataSent v
+      "messagePassportDataReceived"                    -> parseMessagePassportDataReceived v
+      "messageProximityAlertTriggered"                 -> parseMessageProximityAlertTriggered v
+      "messageUnsupported"                             -> pure MessageUnsupported
+      _                                                -> mempty
     
     where
       parseMessageText :: A.Value -> AT.Parser MessageContent
@@ -1883,11 +1914,13 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageCall :: A.Value -> AT.Parser MessageContent
       parseMessageCall = A.withObject "MessageCall" $ \o -> do
-        is_video_       <- o A..:?  "is_video"
-        discard_reason_ <- o A..:?  "discard_reason"
-        duration_       <- o A..:?  "duration"
+        unique_id_      <- fmap I.readInt64 <$> o A..:?  "unique_id"
+        is_video_       <- o A..:?                       "is_video"
+        discard_reason_ <- o A..:?                       "discard_reason"
+        duration_       <- o A..:?                       "duration"
         pure $ MessageCall
-          { is_video       = is_video_
+          { unique_id      = unique_id_
+          , is_video       = is_video_
           , discard_reason = discard_reason_
           , duration       = duration_
           }
@@ -1972,6 +2005,22 @@ instance AT.FromJSON MessageContent where
         new_owner_user_id_ <- o A..:?  "new_owner_user_id"
         pure $ MessageChatOwnerChanged
           { new_owner_user_id = new_owner_user_id_
+          }
+      parseMessageChatHasProtectedContentToggled :: A.Value -> AT.Parser MessageContent
+      parseMessageChatHasProtectedContentToggled = A.withObject "MessageChatHasProtectedContentToggled" $ \o -> do
+        request_message_id_        <- o A..:?  "request_message_id"
+        old_has_protected_content_ <- o A..:?  "old_has_protected_content"
+        new_has_protected_content_ <- o A..:?  "new_has_protected_content"
+        pure $ MessageChatHasProtectedContentToggled
+          { request_message_id        = request_message_id_
+          , old_has_protected_content = old_has_protected_content_
+          , new_has_protected_content = new_has_protected_content_
+          }
+      parseMessageChatHasProtectedContentDisableRequested :: A.Value -> AT.Parser MessageContent
+      parseMessageChatHasProtectedContentDisableRequested = A.withObject "MessageChatHasProtectedContentDisableRequested" $ \o -> do
+        is_expired_ <- o A..:?  "is_expired"
+        pure $ MessageChatHasProtectedContentDisableRequested
+          { is_expired = is_expired_
           }
       parseMessageChatAddMembers :: A.Value -> AT.Parser MessageContent
       parseMessageChatAddMembers = A.withObject "MessageChatAddMembers" $ \o -> do

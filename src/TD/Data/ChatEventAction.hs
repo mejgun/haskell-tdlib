@@ -8,9 +8,9 @@ import qualified TD.Data.Message as Message
 import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.ChatMemberStatus as ChatMemberStatus
 import qualified TD.Data.MessageSender as MessageSender
+import qualified Data.Text as T
 import qualified TD.Data.ChatAvailableReactions as ChatAvailableReactions
 import qualified TD.Data.ChatBackground as ChatBackground
-import qualified Data.Text as T
 import qualified TD.Data.EmojiStatus as EmojiStatus
 import qualified TD.Data.ChatLocation as ChatLocation
 import qualified TD.Data.ChatPermissions as ChatPermissions
@@ -59,6 +59,11 @@ data ChatEventAction
     { member_id  :: Maybe MessageSender.MessageSender       -- ^ Affected chat member identifier
     , old_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ Previous status of the chat member
     , new_status :: Maybe ChatMemberStatus.ChatMemberStatus -- ^ New status of the chat member
+    }
+  | ChatEventMemberTagChanged -- ^ A chat member tag has been changed
+    { user_id :: Maybe Int    -- ^ Affected chat member user identifier
+    , old_tag :: Maybe T.Text -- ^ Previous tag of the chat member
+    , new_tag :: Maybe T.Text -- ^ New tag of the chat member
     }
   | ChatEventMemberSubscriptionExtended -- ^ A chat member extended their subscription to the chat
     { user_id    :: Maybe Int                               -- ^ Affected chat member user identifier
@@ -302,6 +307,17 @@ instance I.ShortShow ChatEventAction where
         [ "member_id"  `I.p` member_id_
         , "old_status" `I.p` old_status_
         , "new_status" `I.p` new_status_
+        ]
+  shortShow ChatEventMemberTagChanged
+    { user_id = user_id_
+    , old_tag = old_tag_
+    , new_tag = new_tag_
+    }
+      = "ChatEventMemberTagChanged"
+        ++ I.cc
+        [ "user_id" `I.p` user_id_
+        , "old_tag" `I.p` old_tag_
+        , "new_tag" `I.p` new_tag_
         ]
   shortShow ChatEventMemberSubscriptionExtended
     { user_id    = user_id_
@@ -657,6 +673,7 @@ instance AT.FromJSON ChatEventAction where
       "chatEventMemberLeft"                             -> pure ChatEventMemberLeft
       "chatEventMemberPromoted"                         -> parseChatEventMemberPromoted v
       "chatEventMemberRestricted"                       -> parseChatEventMemberRestricted v
+      "chatEventMemberTagChanged"                       -> parseChatEventMemberTagChanged v
       "chatEventMemberSubscriptionExtended"             -> parseChatEventMemberSubscriptionExtended v
       "chatEventAvailableReactionsChanged"              -> parseChatEventAvailableReactionsChanged v
       "chatEventBackgroundChanged"                      -> parseChatEventBackgroundChanged v
@@ -777,6 +794,16 @@ instance AT.FromJSON ChatEventAction where
           { member_id  = member_id_
           , old_status = old_status_
           , new_status = new_status_
+          }
+      parseChatEventMemberTagChanged :: A.Value -> AT.Parser ChatEventAction
+      parseChatEventMemberTagChanged = A.withObject "ChatEventMemberTagChanged" $ \o -> do
+        user_id_ <- o A..:?  "user_id"
+        old_tag_ <- o A..:?  "old_tag"
+        new_tag_ <- o A..:?  "new_tag"
+        pure $ ChatEventMemberTagChanged
+          { user_id = user_id_
+          , old_tag = old_tag_
+          , new_tag = new_tag_
           }
       parseChatEventMemberSubscriptionExtended :: A.Value -> AT.Parser ChatEventAction
       parseChatEventMemberSubscriptionExtended = A.withObject "ChatEventMemberSubscriptionExtended" $ \o -> do

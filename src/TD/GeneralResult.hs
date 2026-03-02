@@ -173,6 +173,7 @@ import qualified TD.Data.NetworkStatistics as NetworkStatistics
 import qualified TD.Data.NewChatPrivacySettings as NewChatPrivacySettings
 import qualified TD.Data.NotificationSound as NotificationSound
 import qualified TD.Data.NotificationSounds as NotificationSounds
+import qualified TD.Data.OauthLinkInfo as OauthLinkInfo
 import qualified TD.Data.Ok as Ok
 import qualified TD.Data.OptionValue as OptionValue
 import qualified TD.Data.OrderInfo as OrderInfo
@@ -188,6 +189,7 @@ import qualified TD.Data.PaymentForm as PaymentForm
 import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
 import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
+import qualified TD.Data.PollVoters as PollVoters
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
 import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
 import qualified TD.Data.PremiumGiftPaymentOptions as PremiumGiftPaymentOptions
@@ -445,6 +447,7 @@ data GeneralResult
     | NewChatPrivacySettings             NewChatPrivacySettings.NewChatPrivacySettings
     | NotificationSound                  NotificationSound.NotificationSound
     | NotificationSounds                 NotificationSounds.NotificationSounds
+    | OauthLinkInfo                      OauthLinkInfo.OauthLinkInfo
     | Ok                                 Ok.Ok
     | OptionValue                        OptionValue.OptionValue
     | OrderInfo                          OrderInfo.OrderInfo
@@ -460,6 +463,7 @@ data GeneralResult
     | PaymentReceipt                     PaymentReceipt.PaymentReceipt
     | PaymentResult                      PaymentResult.PaymentResult
     | PhoneNumberInfo                    PhoneNumberInfo.PhoneNumberInfo
+    | PollVoters                         PollVoters.PollVoters
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
     | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
     | PremiumGiftPaymentOptions          PremiumGiftPaymentOptions.PremiumGiftPaymentOptions
@@ -887,6 +891,8 @@ instance I.ShortShow GeneralResult where
     = "NotificationSound" <> " (" <> I.shortShow v <> ")"
   shortShow (NotificationSounds v)
     = "NotificationSounds" <> " (" <> I.shortShow v <> ")"
+  shortShow (OauthLinkInfo v)
+    = "OauthLinkInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (Ok v)
     = "Ok" <> " (" <> I.shortShow v <> ")"
   shortShow (OptionValue v)
@@ -917,6 +923,8 @@ instance I.ShortShow GeneralResult where
     = "PaymentResult" <> " (" <> I.shortShow v <> ")"
   shortShow (PhoneNumberInfo v)
     = "PhoneNumberInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (PollVoters v)
+    = "PollVoters" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumFeatures v)
     = "PremiumFeatures" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumGiftCodeInfo v)
@@ -1261,6 +1269,7 @@ instance T.FromJSON GeneralResult where
     <|> ( NewChatPrivacySettings              <$> parseJSON v )
     <|> ( NotificationSound                   <$> parseJSON v )
     <|> ( NotificationSounds                  <$> parseJSON v )
+    <|> ( OauthLinkInfo                       <$> parseJSON v )
     <|> ( Ok                                  <$> parseJSON v )
     <|> ( OptionValue                         <$> parseJSON v )
     <|> ( OrderInfo                           <$> parseJSON v )
@@ -1276,6 +1285,7 @@ instance T.FromJSON GeneralResult where
     <|> ( PaymentReceipt                      <$> parseJSON v )
     <|> ( PaymentResult                       <$> parseJSON v )
     <|> ( PhoneNumberInfo                     <$> parseJSON v )
+    <|> ( PollVoters                          <$> parseJSON v )
     <|> ( PremiumFeatures                     <$> parseJSON v )
     <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )
     <|> ( PremiumGiftPaymentOptions           <$> parseJSON v )

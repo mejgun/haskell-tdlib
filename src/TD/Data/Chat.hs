@@ -66,7 +66,7 @@ data Chat
     , business_bot_manage_bar            :: Maybe BusinessBotManageBar.BusinessBotManageBar         -- ^ Information about bar for managing a business bot in the chat; may be null if none
     , video_chat                         :: Maybe VideoChat.VideoChat                               -- ^ Information about video chat of the chat
     , pending_join_requests              :: Maybe ChatJoinRequestsInfo.ChatJoinRequestsInfo         -- ^ Information about pending join requests; may be null if none
-    , reply_markup_message_id            :: Maybe Int                                               -- ^ Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+    , reply_markup_message_id            :: Maybe Int                                               -- ^ Identifier of the message from which reply markup needs to be used; 0 if there is no reply markup in the chat
     , draft_message                      :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the chat; may be null if none
     , client_data                        :: Maybe T.Text                                            -- ^ Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     }

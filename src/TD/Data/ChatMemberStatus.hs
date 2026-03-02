@@ -4,20 +4,17 @@ module TD.Data.ChatMemberStatus
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
 import qualified TD.Data.ChatAdministratorRights as ChatAdministratorRights
 import qualified TD.Data.ChatPermissions as ChatPermissions
 
 -- | Provides information about the status of a member in a chat
 data ChatMemberStatus
   = ChatMemberStatusCreator -- ^ The user is the owner of the chat and has all the administrator privileges
-    { custom_title :: Maybe T.Text -- ^ A custom title of the owner; 0-16 characters without emoji; applicable to supergroups only
-    , is_anonymous :: Maybe Bool   -- ^ True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
-    , is_member    :: Maybe Bool   -- ^ True, if the user is a member of the chat
+    { is_anonymous :: Maybe Bool -- ^ True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
+    , is_member    :: Maybe Bool -- ^ True, if the user is a member of the chat
     }
   | ChatMemberStatusAdministrator -- ^ The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
-    { custom_title  :: Maybe T.Text                                          -- ^ A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only
-    , can_be_edited :: Maybe Bool                                            -- ^ True, if the current user can edit the administrator privileges for the called user
+    { can_be_edited :: Maybe Bool                                            -- ^ True, if the current user can edit the administrator privileges for the called user
     , rights        :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Rights of the administrator
     }
   | ChatMemberStatusMember -- ^ The user is a member of the chat, without any additional privileges or restrictions
@@ -36,25 +33,21 @@ data ChatMemberStatus
 
 instance I.ShortShow ChatMemberStatus where
   shortShow ChatMemberStatusCreator
-    { custom_title = custom_title_
-    , is_anonymous = is_anonymous_
+    { is_anonymous = is_anonymous_
     , is_member    = is_member_
     }
       = "ChatMemberStatusCreator"
         ++ I.cc
-        [ "custom_title" `I.p` custom_title_
-        , "is_anonymous" `I.p` is_anonymous_
+        [ "is_anonymous" `I.p` is_anonymous_
         , "is_member"    `I.p` is_member_
         ]
   shortShow ChatMemberStatusAdministrator
-    { custom_title  = custom_title_
-    , can_be_edited = can_be_edited_
+    { can_be_edited = can_be_edited_
     , rights        = rights_
     }
       = "ChatMemberStatusAdministrator"
         ++ I.cc
-        [ "custom_title"  `I.p` custom_title_
-        , "can_be_edited" `I.p` can_be_edited_
+        [ "can_be_edited" `I.p` can_be_edited_
         , "rights"        `I.p` rights_
         ]
   shortShow ChatMemberStatusMember
@@ -101,22 +94,18 @@ instance AT.FromJSON ChatMemberStatus where
     where
       parseChatMemberStatusCreator :: A.Value -> AT.Parser ChatMemberStatus
       parseChatMemberStatusCreator = A.withObject "ChatMemberStatusCreator" $ \o -> do
-        custom_title_ <- o A..:?  "custom_title"
         is_anonymous_ <- o A..:?  "is_anonymous"
         is_member_    <- o A..:?  "is_member"
         pure $ ChatMemberStatusCreator
-          { custom_title = custom_title_
-          , is_anonymous = is_anonymous_
+          { is_anonymous = is_anonymous_
           , is_member    = is_member_
           }
       parseChatMemberStatusAdministrator :: A.Value -> AT.Parser ChatMemberStatus
       parseChatMemberStatusAdministrator = A.withObject "ChatMemberStatusAdministrator" $ \o -> do
-        custom_title_  <- o A..:?  "custom_title"
         can_be_edited_ <- o A..:?  "can_be_edited"
         rights_        <- o A..:?  "rights"
         pure $ ChatMemberStatusAdministrator
-          { custom_title  = custom_title_
-          , can_be_edited = can_be_edited_
+          { can_be_edited = can_be_edited_
           , rights        = rights_
           }
       parseChatMemberStatusMember :: A.Value -> AT.Parser ChatMemberStatus
@@ -145,24 +134,20 @@ instance AT.FromJSON ChatMemberStatus where
 
 instance AT.ToJSON ChatMemberStatus where
   toJSON ChatMemberStatusCreator
-    { custom_title = custom_title_
-    , is_anonymous = is_anonymous_
+    { is_anonymous = is_anonymous_
     , is_member    = is_member_
     }
       = A.object
         [ "@type"        A..= AT.String "chatMemberStatusCreator"
-        , "custom_title" A..= custom_title_
         , "is_anonymous" A..= is_anonymous_
         , "is_member"    A..= is_member_
         ]
   toJSON ChatMemberStatusAdministrator
-    { custom_title  = custom_title_
-    , can_be_edited = can_be_edited_
+    { can_be_edited = can_be_edited_
     , rights        = rights_
     }
       = A.object
         [ "@type"         A..= AT.String "chatMemberStatusAdministrator"
-        , "custom_title"  A..= custom_title_
         , "can_be_edited" A..= can_be_edited_
         , "rights"        A..= rights_
         ]
