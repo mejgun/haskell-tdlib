@@ -41,8 +41,8 @@ data TextEntityType
   | TextEntityTypeMediaTimestamp -- ^ A media timestamp
     { media_timestamp :: Maybe Int -- ^ Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied message
     }
-  | TextEntityTypeDateTime -- ^ A data and time
-    { unix_time       :: Maybe Int                                           -- ^ Point in time (Unix timestamp) representing the data and time
+  | TextEntityTypeDateTime -- ^ A date and time
+    { unix_time       :: Maybe Int                                           -- ^ Point in time (Unix timestamp) representing the date and time
     , formatting_type :: Maybe DateTimeFormattingType.DateTimeFormattingType -- ^ Date and time formatting type; may be null if none and the original text must not be changed
     }
   deriving (Eq, Show)
