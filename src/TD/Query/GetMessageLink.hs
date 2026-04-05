@@ -6,15 +6,18 @@ module TD.Query.GetMessageLink
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified Data.Text as T
 
 -- | Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method. Returns 'TD.Data.MessageLink.MessageLink'
 data GetMessageLink
   = GetMessageLink
-    { chat_id           :: Maybe Int  -- ^ Identifier of the chat to which the message belongs
-    , message_id        :: Maybe Int  -- ^ Identifier of the message
-    , media_timestamp   :: Maybe Int  -- ^ If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
-    , for_album         :: Maybe Bool -- ^ Pass true to create a link for the whole media album
-    , in_message_thread :: Maybe Bool -- ^ Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
+    { chat_id           :: Maybe Int    -- ^ Identifier of the chat to which the message belongs
+    , message_id        :: Maybe Int    -- ^ Identifier of the message
+    , media_timestamp   :: Maybe Int    -- ^ If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
+    , checklist_task_id :: Maybe Int    -- ^ If not 0, identifier of the checklist task in the message to be linked
+    , poll_option_id    :: Maybe T.Text -- ^ If not empty, identifier of the poll option in the message to be linked
+    , for_album         :: Maybe Bool   -- ^ Pass true to create a link for the whole media album
+    , in_message_thread :: Maybe Bool   -- ^ Pass true to create a link to the message as a channel post comment, in a message thread, or a forum topic
     }
   deriving (Eq, Show)
 
@@ -24,6 +27,8 @@ instance I.ShortShow GetMessageLink where
       { chat_id           = chat_id_
       , message_id        = message_id_
       , media_timestamp   = media_timestamp_
+      , checklist_task_id = checklist_task_id_
+      , poll_option_id    = poll_option_id_
       , for_album         = for_album_
       , in_message_thread = in_message_thread_
       }
@@ -32,6 +37,8 @@ instance I.ShortShow GetMessageLink where
           [ "chat_id"           `I.p` chat_id_
           , "message_id"        `I.p` message_id_
           , "media_timestamp"   `I.p` media_timestamp_
+          , "checklist_task_id" `I.p` checklist_task_id_
+          , "poll_option_id"    `I.p` poll_option_id_
           , "for_album"         `I.p` for_album_
           , "in_message_thread" `I.p` in_message_thread_
           ]
@@ -42,6 +49,8 @@ instance AT.ToJSON GetMessageLink where
       { chat_id           = chat_id_
       , message_id        = message_id_
       , media_timestamp   = media_timestamp_
+      , checklist_task_id = checklist_task_id_
+      , poll_option_id    = poll_option_id_
       , for_album         = for_album_
       , in_message_thread = in_message_thread_
       }
@@ -50,6 +59,8 @@ instance AT.ToJSON GetMessageLink where
           , "chat_id"           A..= chat_id_
           , "message_id"        A..= message_id_
           , "media_timestamp"   A..= media_timestamp_
+          , "checklist_task_id" A..= checklist_task_id_
+          , "poll_option_id"    A..= poll_option_id_
           , "for_album"         A..= for_album_
           , "in_message_thread" A..= in_message_thread_
           ]
@@ -60,6 +71,8 @@ defaultGetMessageLink =
     { chat_id           = Nothing
     , message_id        = Nothing
     , media_timestamp   = Nothing
+    , checklist_task_id = Nothing
+    , poll_option_id    = Nothing
     , for_album         = Nothing
     , in_message_thread = Nothing
     }

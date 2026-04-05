@@ -9,9 +9,10 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReactionNotificationSource as ReactionNotificationSource
 
 data ReactionNotificationSettings
-  = ReactionNotificationSettings -- ^ Contains information about notification settings for reactions
+  = ReactionNotificationSettings -- ^ Contains information about notification settings for reactions and poll votes
     { message_reaction_source :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of message reactions for which notifications are shown
     , story_reaction_source   :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of story reactions for which notifications are shown
+    , poll_vote_source        :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of poll votes for which notifications are shown
     , sound_id                :: Maybe Int                                                   -- ^ Identifier of the notification sound to be played; 0 if sound is disabled
     , show_preview            :: Maybe Bool                                                  -- ^ True, if reaction sender and emoji must be displayed in notifications
     }
@@ -21,6 +22,7 @@ instance I.ShortShow ReactionNotificationSettings where
   shortShow ReactionNotificationSettings
     { message_reaction_source = message_reaction_source_
     , story_reaction_source   = story_reaction_source_
+    , poll_vote_source        = poll_vote_source_
     , sound_id                = sound_id_
     , show_preview            = show_preview_
     }
@@ -28,6 +30,7 @@ instance I.ShortShow ReactionNotificationSettings where
         ++ I.cc
         [ "message_reaction_source" `I.p` message_reaction_source_
         , "story_reaction_source"   `I.p` story_reaction_source_
+        , "poll_vote_source"        `I.p` poll_vote_source_
         , "sound_id"                `I.p` sound_id_
         , "show_preview"            `I.p` show_preview_
         ]
@@ -45,11 +48,13 @@ instance AT.FromJSON ReactionNotificationSettings where
       parseReactionNotificationSettings = A.withObject "ReactionNotificationSettings" $ \o -> do
         message_reaction_source_ <- o A..:?                       "message_reaction_source"
         story_reaction_source_   <- o A..:?                       "story_reaction_source"
+        poll_vote_source_        <- o A..:?                       "poll_vote_source"
         sound_id_                <- fmap I.readInt64 <$> o A..:?  "sound_id"
         show_preview_            <- o A..:?                       "show_preview"
         pure $ ReactionNotificationSettings
           { message_reaction_source = message_reaction_source_
           , story_reaction_source   = story_reaction_source_
+          , poll_vote_source        = poll_vote_source_
           , sound_id                = sound_id_
           , show_preview            = show_preview_
           }
@@ -59,6 +64,7 @@ instance AT.ToJSON ReactionNotificationSettings where
   toJSON ReactionNotificationSettings
     { message_reaction_source = message_reaction_source_
     , story_reaction_source   = story_reaction_source_
+    , poll_vote_source        = poll_vote_source_
     , sound_id                = sound_id_
     , show_preview            = show_preview_
     }
@@ -66,6 +72,7 @@ instance AT.ToJSON ReactionNotificationSettings where
         [ "@type"                   A..= AT.String "reactionNotificationSettings"
         , "message_reaction_source" A..= message_reaction_source_
         , "story_reaction_source"   A..= story_reaction_source_
+        , "poll_vote_source"        A..= poll_vote_source_
         , "sound_id"                A..= fmap I.writeInt64  sound_id_
         , "show_preview"            A..= show_preview_
         ]
@@ -75,6 +82,7 @@ defaultReactionNotificationSettings =
   ReactionNotificationSettings
     { message_reaction_source = Nothing
     , story_reaction_source   = Nothing
+    , poll_vote_source        = Nothing
     , sound_id                = Nothing
     , show_preview            = Nothing
     }

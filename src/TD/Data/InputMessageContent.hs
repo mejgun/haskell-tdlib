@@ -16,14 +16,15 @@ import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Invoice as Invoice
-import qualified TD.Data.PollType as PollType
+import qualified TD.Data.InputPollOption as InputPollOption
+import qualified TD.Data.InputPollType as InputPollType
 import qualified TD.Data.InputChecklist as InputChecklist
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 
 -- | The content of a message to send
 data InputMessageContent
   = InputMessageText -- ^ A text message
-    { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    { text                 :: Maybe FormattedText.FormattedText           -- ^ Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl, MentionName, and DateTime entities are allowed to be specified manually
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     , clear_draft          :: Maybe Bool                                  -- ^ True, if the chat message draft must be deleted
     }
@@ -62,6 +63,7 @@ data InputMessageContent
   | InputMessagePhoto -- ^ A photo message
     { photo                    :: Maybe InputFile.InputFile                             -- ^ Photo to send. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
     , thumbnail                :: Maybe InputThumbnail.InputThumbnail                   -- ^ Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
+    , video                    :: Maybe InputFile.InputFile                             -- ^ Video of the live photo; not supported in secret chats; pass null if the photo isn't a live photo
     , added_sticker_file_ids   :: Maybe [Int]                                           -- ^ File identifiers of the stickers added to the photo, if applicable
     , width                    :: Maybe Int                                             -- ^ Photo width
     , height                   :: Maybe Int                                             -- ^ Photo height
@@ -142,13 +144,18 @@ data InputMessageContent
     , paid_media_caption :: Maybe FormattedText.FormattedText   -- ^ Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     }
   | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats and channel direct messages chats. Polls can be sent to a private chat only if the chat is a chat with a bot or the Saved Messages chat
-    { question     :: Maybe FormattedText.FormattedText   -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
-    , options      :: Maybe [FormattedText.FormattedText] -- ^ List of poll answer options, 2-getOption("poll_answer_count_max") strings 1-100 characters each. Only custom emoji entities are allowed to be added and only by Premium users
-    , is_anonymous :: Maybe Bool                          -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
-    , _type        :: Maybe PollType.PollType             -- ^ Type of the poll
-    , open_period  :: Maybe Int                           -- ^ Amount of time the poll will be active after creation, in seconds; for bots only
-    , close_date   :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
-    , is_closed    :: Maybe Bool                          -- ^ True, if the poll needs to be sent already closed; for bots only
+    { question                  :: Maybe FormattedText.FormattedText       -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
+    , options                   :: Maybe [InputPollOption.InputPollOption] -- ^ List of poll answer options; 2-getOption("poll_answer_count_max") options
+    , _description              :: Maybe FormattedText.FormattedText       -- ^ Poll description; pass null to use an empty description; 0-getOption("message_caption_length_max") characters
+    , is_anonymous              :: Maybe Bool                              -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
+    , allows_multiple_answers   :: Maybe Bool                              -- ^ True, if multiple answer options can be chosen simultaneously
+    , allows_revoting           :: Maybe Bool                              -- ^ True, if the poll can be answered multiple times
+    , shuffle_options           :: Maybe Bool                              -- ^ True, if poll options must be shown in a fixed random order
+    , hide_results_until_closes :: Maybe Bool                              -- ^ True, if the poll results will appear only after the poll closes
+    , _type                     :: Maybe InputPollType.InputPollType       -- ^ Type of the poll
+    , open_period               :: Maybe Int                               -- ^ Amount of time the poll will be active after creation, in seconds; 0-getOption("poll_open_period_max"); pass 0 if not specified
+    , close_date                :: Maybe Int                               -- ^ Point in time (Unix timestamp) when the poll will automatically be closed; must be 0-getOption("poll_open_period_max") seconds in the future; pass 0 if not specified
+    , is_closed                 :: Maybe Bool                              -- ^ True, if the poll needs to be sent already closed; for bots only
     }
   | InputMessageStakeDice -- ^ A stake dice message
     { state_hash           :: Maybe T.Text -- ^ Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
@@ -255,6 +262,7 @@ instance I.ShortShow InputMessageContent where
   shortShow InputMessagePhoto
     { photo                    = photo_
     , thumbnail                = thumbnail_
+    , video                    = video_
     , added_sticker_file_ids   = added_sticker_file_ids_
     , width                    = width_
     , height                   = height_
@@ -267,6 +275,7 @@ instance I.ShortShow InputMessageContent where
         ++ I.cc
         [ "photo"                    `I.p` photo_
         , "thumbnail"                `I.p` thumbnail_
+        , "video"                    `I.p` video_
         , "added_sticker_file_ids"   `I.p` added_sticker_file_ids_
         , "width"                    `I.p` width_
         , "height"                   `I.p` height_
@@ -428,23 +437,33 @@ instance I.ShortShow InputMessageContent where
         , "paid_media_caption" `I.p` paid_media_caption_
         ]
   shortShow InputMessagePoll
-    { question     = question_
-    , options      = options_
-    , is_anonymous = is_anonymous_
-    , _type        = _type_
-    , open_period  = open_period_
-    , close_date   = close_date_
-    , is_closed    = is_closed_
+    { question                  = question_
+    , options                   = options_
+    , _description              = _description_
+    , is_anonymous              = is_anonymous_
+    , allows_multiple_answers   = allows_multiple_answers_
+    , allows_revoting           = allows_revoting_
+    , shuffle_options           = shuffle_options_
+    , hide_results_until_closes = hide_results_until_closes_
+    , _type                     = _type_
+    , open_period               = open_period_
+    , close_date                = close_date_
+    , is_closed                 = is_closed_
     }
       = "InputMessagePoll"
         ++ I.cc
-        [ "question"     `I.p` question_
-        , "options"      `I.p` options_
-        , "is_anonymous" `I.p` is_anonymous_
-        , "_type"        `I.p` _type_
-        , "open_period"  `I.p` open_period_
-        , "close_date"   `I.p` close_date_
-        , "is_closed"    `I.p` is_closed_
+        [ "question"                  `I.p` question_
+        , "options"                   `I.p` options_
+        , "_description"              `I.p` _description_
+        , "is_anonymous"              `I.p` is_anonymous_
+        , "allows_multiple_answers"   `I.p` allows_multiple_answers_
+        , "allows_revoting"           `I.p` allows_revoting_
+        , "shuffle_options"           `I.p` shuffle_options_
+        , "hide_results_until_closes" `I.p` hide_results_until_closes_
+        , "_type"                     `I.p` _type_
+        , "open_period"               `I.p` open_period_
+        , "close_date"                `I.p` close_date_
+        , "is_closed"                 `I.p` is_closed_
         ]
   shortShow InputMessageStakeDice
     { state_hash           = state_hash_
@@ -598,6 +617,7 @@ instance AT.FromJSON InputMessageContent where
       parseInputMessagePhoto = A.withObject "InputMessagePhoto" $ \o -> do
         photo_                    <- o A..:?  "photo"
         thumbnail_                <- o A..:?  "thumbnail"
+        video_                    <- o A..:?  "video"
         added_sticker_file_ids_   <- o A..:?  "added_sticker_file_ids"
         width_                    <- o A..:?  "width"
         height_                   <- o A..:?  "height"
@@ -608,6 +628,7 @@ instance AT.FromJSON InputMessageContent where
         pure $ InputMessagePhoto
           { photo                    = photo_
           , thumbnail                = thumbnail_
+          , video                    = video_
           , added_sticker_file_ids   = added_sticker_file_ids_
           , width                    = width_
           , height                   = height_
@@ -760,21 +781,31 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessagePoll :: A.Value -> AT.Parser InputMessageContent
       parseInputMessagePoll = A.withObject "InputMessagePoll" $ \o -> do
-        question_     <- o A..:?  "question"
-        options_      <- o A..:?  "options"
-        is_anonymous_ <- o A..:?  "is_anonymous"
-        _type_        <- o A..:?  "type"
-        open_period_  <- o A..:?  "open_period"
-        close_date_   <- o A..:?  "close_date"
-        is_closed_    <- o A..:?  "is_closed"
+        question_                  <- o A..:?  "question"
+        options_                   <- o A..:?  "options"
+        _description_              <- o A..:?  "description"
+        is_anonymous_              <- o A..:?  "is_anonymous"
+        allows_multiple_answers_   <- o A..:?  "allows_multiple_answers"
+        allows_revoting_           <- o A..:?  "allows_revoting"
+        shuffle_options_           <- o A..:?  "shuffle_options"
+        hide_results_until_closes_ <- o A..:?  "hide_results_until_closes"
+        _type_                     <- o A..:?  "type"
+        open_period_               <- o A..:?  "open_period"
+        close_date_                <- o A..:?  "close_date"
+        is_closed_                 <- o A..:?  "is_closed"
         pure $ InputMessagePoll
-          { question     = question_
-          , options      = options_
-          , is_anonymous = is_anonymous_
-          , _type        = _type_
-          , open_period  = open_period_
-          , close_date   = close_date_
-          , is_closed    = is_closed_
+          { question                  = question_
+          , options                   = options_
+          , _description              = _description_
+          , is_anonymous              = is_anonymous_
+          , allows_multiple_answers   = allows_multiple_answers_
+          , allows_revoting           = allows_revoting_
+          , shuffle_options           = shuffle_options_
+          , hide_results_until_closes = hide_results_until_closes_
+          , _type                     = _type_
+          , open_period               = open_period_
+          , close_date                = close_date_
+          , is_closed                 = is_closed_
           }
       parseInputMessageStakeDice :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageStakeDice = A.withObject "InputMessageStakeDice" $ \o -> do
@@ -901,6 +932,7 @@ instance AT.ToJSON InputMessageContent where
   toJSON InputMessagePhoto
     { photo                    = photo_
     , thumbnail                = thumbnail_
+    , video                    = video_
     , added_sticker_file_ids   = added_sticker_file_ids_
     , width                    = width_
     , height                   = height_
@@ -913,6 +945,7 @@ instance AT.ToJSON InputMessageContent where
         [ "@type"                    A..= AT.String "inputMessagePhoto"
         , "photo"                    A..= photo_
         , "thumbnail"                A..= thumbnail_
+        , "video"                    A..= video_
         , "added_sticker_file_ids"   A..= added_sticker_file_ids_
         , "width"                    A..= width_
         , "height"                   A..= height_
@@ -1074,23 +1107,33 @@ instance AT.ToJSON InputMessageContent where
         , "paid_media_caption" A..= paid_media_caption_
         ]
   toJSON InputMessagePoll
-    { question     = question_
-    , options      = options_
-    , is_anonymous = is_anonymous_
-    , _type        = _type_
-    , open_period  = open_period_
-    , close_date   = close_date_
-    , is_closed    = is_closed_
+    { question                  = question_
+    , options                   = options_
+    , _description              = _description_
+    , is_anonymous              = is_anonymous_
+    , allows_multiple_answers   = allows_multiple_answers_
+    , allows_revoting           = allows_revoting_
+    , shuffle_options           = shuffle_options_
+    , hide_results_until_closes = hide_results_until_closes_
+    , _type                     = _type_
+    , open_period               = open_period_
+    , close_date                = close_date_
+    , is_closed                 = is_closed_
     }
       = A.object
-        [ "@type"        A..= AT.String "inputMessagePoll"
-        , "question"     A..= question_
-        , "options"      A..= options_
-        , "is_anonymous" A..= is_anonymous_
-        , "type"         A..= _type_
-        , "open_period"  A..= open_period_
-        , "close_date"   A..= close_date_
-        , "is_closed"    A..= is_closed_
+        [ "@type"                     A..= AT.String "inputMessagePoll"
+        , "question"                  A..= question_
+        , "options"                   A..= options_
+        , "description"               A..= _description_
+        , "is_anonymous"              A..= is_anonymous_
+        , "allows_multiple_answers"   A..= allows_multiple_answers_
+        , "allows_revoting"           A..= allows_revoting_
+        , "shuffle_options"           A..= shuffle_options_
+        , "hide_results_until_closes" A..= hide_results_until_closes_
+        , "type"                      A..= _type_
+        , "open_period"               A..= open_period_
+        , "close_date"                A..= close_date_
+        , "is_closed"                 A..= is_closed_
         ]
   toJSON InputMessageStakeDice
     { state_hash           = state_hash_

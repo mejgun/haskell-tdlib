@@ -11,7 +11,7 @@ import qualified TD.Data.FormattedText as FormattedText
 data InputChecklistTask
   = InputChecklistTask -- ^ Describes a task in a checklist to be sent
     { _id  :: Maybe Int                         -- ^ Unique identifier of the task; must be positive
-    , text :: Maybe FormattedText.FormattedText -- ^ Text of the task; 1-getOption("checklist_task_text_length_max") characters without line feeds. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities
+    , text :: Maybe FormattedText.FormattedText -- ^ Text of the task; 1-getOption("checklist_task_text_length_max") characters without line feeds. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities
     }
   deriving (Eq, Show)
 

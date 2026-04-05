@@ -146,6 +146,11 @@ data InternalLinkType
     , open_profile  :: Maybe Bool   -- ^ True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
+  | InternalLinkTypeRequestManagedBot -- ^ The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
+    { manager_bot_username   :: Maybe T.Text -- ^ Username of the bot which will manage the new bot
+    , suggested_bot_username :: Maybe T.Text -- ^ Suggested username for the bot
+    , suggested_bot_name     :: Maybe T.Text -- ^ Suggested name for the bot; may be empty if not specified
+    }
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
   | InternalLinkTypeSavedMessages -- ^ The link is a link to the Saved Messages chat. Call createPrivateChat with getOption("my_id") and open the chat
   | InternalLinkTypeSearch -- ^ The link is a link to the global chat and messages search field
@@ -496,6 +501,17 @@ instance I.ShortShow InternalLinkType where
         ]
   shortShow InternalLinkTypeQrCodeAuthentication
       = "InternalLinkTypeQrCodeAuthentication"
+  shortShow InternalLinkTypeRequestManagedBot
+    { manager_bot_username   = manager_bot_username_
+    , suggested_bot_username = suggested_bot_username_
+    , suggested_bot_name     = suggested_bot_name_
+    }
+      = "InternalLinkTypeRequestManagedBot"
+        ++ I.cc
+        [ "manager_bot_username"   `I.p` manager_bot_username_
+        , "suggested_bot_username" `I.p` suggested_bot_username_
+        , "suggested_bot_name"     `I.p` suggested_bot_name_
+        ]
   shortShow InternalLinkTypeRestorePurchases
       = "InternalLinkTypeRestorePurchases"
   shortShow InternalLinkTypeSavedMessages
@@ -654,6 +670,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeProxy"                   -> parseInternalLinkTypeProxy v
       "internalLinkTypePublicChat"              -> parseInternalLinkTypePublicChat v
       "internalLinkTypeQrCodeAuthentication"    -> pure InternalLinkTypeQrCodeAuthentication
+      "internalLinkTypeRequestManagedBot"       -> parseInternalLinkTypeRequestManagedBot v
       "internalLinkTypeRestorePurchases"        -> pure InternalLinkTypeRestorePurchases
       "internalLinkTypeSavedMessages"           -> pure InternalLinkTypeSavedMessages
       "internalLinkTypeSearch"                  -> pure InternalLinkTypeSearch
@@ -923,6 +940,16 @@ instance AT.FromJSON InternalLinkType where
           { chat_username = chat_username_
           , draft_text    = draft_text_
           , open_profile  = open_profile_
+          }
+      parseInternalLinkTypeRequestManagedBot :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeRequestManagedBot = A.withObject "InternalLinkTypeRequestManagedBot" $ \o -> do
+        manager_bot_username_   <- o A..:?  "manager_bot_username"
+        suggested_bot_username_ <- o A..:?  "suggested_bot_username"
+        suggested_bot_name_     <- o A..:?  "suggested_bot_name"
+        pure $ InternalLinkTypeRequestManagedBot
+          { manager_bot_username   = manager_bot_username_
+          , suggested_bot_username = suggested_bot_username_
+          , suggested_bot_name     = suggested_bot_name_
           }
       parseInternalLinkTypeSettings :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeSettings = A.withObject "InternalLinkTypeSettings" $ \o -> do
@@ -1327,6 +1354,17 @@ instance AT.ToJSON InternalLinkType where
   toJSON InternalLinkTypeQrCodeAuthentication
       = A.object
         [ "@type" A..= AT.String "internalLinkTypeQrCodeAuthentication"
+        ]
+  toJSON InternalLinkTypeRequestManagedBot
+    { manager_bot_username   = manager_bot_username_
+    , suggested_bot_username = suggested_bot_username_
+    , suggested_bot_name     = suggested_bot_name_
+    }
+      = A.object
+        [ "@type"                  A..= AT.String "internalLinkTypeRequestManagedBot"
+        , "manager_bot_username"   A..= manager_bot_username_
+        , "suggested_bot_username" A..= suggested_bot_username_
+        , "suggested_bot_name"     A..= suggested_bot_name_
         ]
   toJSON InternalLinkTypeRestorePurchases
       = A.object

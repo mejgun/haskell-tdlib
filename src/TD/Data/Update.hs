@@ -95,6 +95,7 @@ import qualified TD.Data.TonRevenueStatus as TonRevenueStatus
 import qualified TD.Data.GroupCallMessageLevel as GroupCallMessageLevel
 import qualified TD.Data.StakeDiceState as StakeDiceState
 import qualified TD.Data.Sticker as Sticker
+import qualified TD.Data.TextCompositionStyle as TextCompositionStyle
 import qualified TD.Data.SuggestedAction as SuggestedAction
 import qualified TD.Data.CloseBirthdayUser as CloseBirthdayUser
 import qualified TD.Data.AutosaveSettingsScope as AutosaveSettingsScope
@@ -294,6 +295,10 @@ data Update
     { chat_id               :: Maybe Int -- ^ Chat identifier
     , unread_reaction_count :: Maybe Int -- ^ The number of messages with unread reactions left in the chat
     }
+  | UpdateChatUnreadPollVoteCount -- ^ The chat unread_poll_vote_count has changed
+    { chat_id                :: Maybe Int -- ^ Chat identifier
+    , unread_poll_vote_count :: Maybe Int -- ^ The number of messages with unread poll votes left in the chat
+    }
   | UpdateChatVideoChat -- ^ A chat video chat state has changed
     { chat_id    :: Maybe Int                 -- ^ Chat identifier
     , video_chat :: Maybe VideoChat.VideoChat -- ^ New value of video_chat
@@ -373,6 +378,7 @@ data Update
     , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
     , unread_mention_count        :: Maybe Int                                               -- ^ Number of unread messages with a mention/reply in the topic
     , unread_reaction_count       :: Maybe Int                                               -- ^ Number of messages with unread reactions in the topic
+    , unread_poll_vote_count      :: Maybe Int                                               -- ^ Number of messages with unread poll votes in the topic
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     , draft_message               :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the topic; may be null if none
     }
@@ -634,7 +640,7 @@ data Update
     { chat_themes :: Maybe [EmojiChatTheme.EmojiChatTheme] -- ^ The new list of emoji chat themes
     }
   | UpdateAccentColors -- ^ The list of supported accent colors has changed
-    { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
+    { colors                     :: Maybe [AccentColor.AccentColor] -- ^ Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the application theme
     , available_accent_color_ids :: Maybe [Int]                     -- ^ The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
     }
   | UpdateProfileAccentColors -- ^ The list of supported accent colors for user profiles has changed
@@ -732,6 +738,9 @@ data Update
     { provider :: Maybe T.Text   -- ^ Name of the animation search provider
     , emojis   :: Maybe [T.Text] -- ^ The new list of emojis suggested for searching
     }
+  | UpdateTextCompositionStyles -- ^ The styles supported for text composition have changed
+    { styles :: Maybe [TextCompositionStyle.TextCompositionStyle] -- ^ The new list of supported styles
+    }
   | UpdateSuggestedActions -- ^ The list of suggested to the user actions has changed
     { added_actions   :: Maybe [SuggestedAction.SuggestedAction] -- ^ Added suggested actions
     , removed_actions :: Maybe [SuggestedAction.SuggestedAction] -- ^ Removed suggested actions
@@ -827,9 +836,14 @@ data Update
     { poll :: Maybe Poll.Poll -- ^ New data about the poll
     }
   | UpdatePollAnswer -- ^ A user changed the answer to a poll; for bots only
-    { poll_id    :: Maybe Int                         -- ^ Unique poll identifier
-    , voter_id   :: Maybe MessageSender.MessageSender -- ^ Identifier of the message sender that changed the answer to the poll
-    , option_ids :: Maybe [Int]                       -- ^ 0-based identifiers of answer options, chosen by the user
+    { poll_id          :: Maybe Int                         -- ^ Unique poll identifier
+    , voter_id         :: Maybe MessageSender.MessageSender -- ^ Identifier of the message sender that changed the answer to the poll
+    , option_ids       :: Maybe [T.Text]                    -- ^ Unique identifiers of answer options, that were chosen by the user
+    , option_positions :: Maybe [Int]                       -- ^ 0-based identifiers of answer options, that were chosen by the user
+    }
+  | UpdateManagedBot -- ^ A bot that can be managed by the current bot was created or updated; for bots only
+    { user_id     :: Maybe Int -- ^ Identifier of the user who created the bot
+    , bot_user_id :: Maybe Int -- ^ Identifier of the created managed bot
     }
   | UpdateChatMember -- ^ User rights changed in a chat; for bots only
     { chat_id                     :: Maybe Int                           -- ^ Chat identifier
@@ -1271,6 +1285,15 @@ instance I.ShortShow Update where
         [ "chat_id"               `I.p` chat_id_
         , "unread_reaction_count" `I.p` unread_reaction_count_
         ]
+  shortShow UpdateChatUnreadPollVoteCount
+    { chat_id                = chat_id_
+    , unread_poll_vote_count = unread_poll_vote_count_
+    }
+      = "UpdateChatUnreadPollVoteCount"
+        ++ I.cc
+        [ "chat_id"                `I.p` chat_id_
+        , "unread_poll_vote_count" `I.p` unread_poll_vote_count_
+        ]
   shortShow UpdateChatVideoChat
     { chat_id    = chat_id_
     , video_chat = video_chat_
@@ -1440,6 +1463,7 @@ instance I.ShortShow Update where
     , last_read_outbox_message_id = last_read_outbox_message_id_
     , unread_mention_count        = unread_mention_count_
     , unread_reaction_count       = unread_reaction_count_
+    , unread_poll_vote_count      = unread_poll_vote_count_
     , notification_settings       = notification_settings_
     , draft_message               = draft_message_
     }
@@ -1452,6 +1476,7 @@ instance I.ShortShow Update where
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
         , "unread_mention_count"        `I.p` unread_mention_count_
         , "unread_reaction_count"       `I.p` unread_reaction_count_
+        , "unread_poll_vote_count"      `I.p` unread_poll_vote_count_
         , "notification_settings"       `I.p` notification_settings_
         , "draft_message"               `I.p` draft_message_
         ]
@@ -2256,6 +2281,13 @@ instance I.ShortShow Update where
         [ "provider" `I.p` provider_
         , "emojis"   `I.p` emojis_
         ]
+  shortShow UpdateTextCompositionStyles
+    { styles = styles_
+    }
+      = "UpdateTextCompositionStyles"
+        ++ I.cc
+        [ "styles" `I.p` styles_
+        ]
   shortShow UpdateSuggestedActions
     { added_actions   = added_actions_
     , removed_actions = removed_actions_
@@ -2463,15 +2495,26 @@ instance I.ShortShow Update where
         [ "poll" `I.p` poll_
         ]
   shortShow UpdatePollAnswer
-    { poll_id    = poll_id_
-    , voter_id   = voter_id_
-    , option_ids = option_ids_
+    { poll_id          = poll_id_
+    , voter_id         = voter_id_
+    , option_ids       = option_ids_
+    , option_positions = option_positions_
     }
       = "UpdatePollAnswer"
         ++ I.cc
-        [ "poll_id"    `I.p` poll_id_
-        , "voter_id"   `I.p` voter_id_
-        , "option_ids" `I.p` option_ids_
+        [ "poll_id"          `I.p` poll_id_
+        , "voter_id"         `I.p` voter_id_
+        , "option_ids"       `I.p` option_ids_
+        , "option_positions" `I.p` option_positions_
+        ]
+  shortShow UpdateManagedBot
+    { user_id     = user_id_
+    , bot_user_id = bot_user_id_
+    }
+      = "UpdateManagedBot"
+        ++ I.cc
+        [ "user_id"     `I.p` user_id_
+        , "bot_user_id" `I.p` bot_user_id_
         ]
   shortShow UpdateChatMember
     { chat_id                     = chat_id_
@@ -2602,6 +2645,7 @@ instance AT.FromJSON Update where
       "updateChatTheme"                                -> parseUpdateChatTheme v
       "updateChatUnreadMentionCount"                   -> parseUpdateChatUnreadMentionCount v
       "updateChatUnreadReactionCount"                  -> parseUpdateChatUnreadReactionCount v
+      "updateChatUnreadPollVoteCount"                  -> parseUpdateChatUnreadPollVoteCount v
       "updateChatVideoChat"                            -> parseUpdateChatVideoChat v
       "updateChatDefaultDisableNotification"           -> parseUpdateChatDefaultDisableNotification v
       "updateChatHasProtectedContent"                  -> parseUpdateChatHasProtectedContent v
@@ -2711,6 +2755,7 @@ instance AT.FromJSON Update where
       "updateStakeDiceState"                           -> parseUpdateStakeDiceState v
       "updateAnimatedEmojiMessageClicked"              -> parseUpdateAnimatedEmojiMessageClicked v
       "updateAnimationSearchParameters"                -> parseUpdateAnimationSearchParameters v
+      "updateTextCompositionStyles"                    -> parseUpdateTextCompositionStyles v
       "updateSuggestedActions"                         -> parseUpdateSuggestedActions v
       "updateSpeedLimitNotification"                   -> parseUpdateSpeedLimitNotification v
       "updateContactCloseBirthdays"                    -> parseUpdateContactCloseBirthdays v
@@ -2730,6 +2775,7 @@ instance AT.FromJSON Update where
       "updateNewCustomQuery"                           -> parseUpdateNewCustomQuery v
       "updatePoll"                                     -> parseUpdatePoll v
       "updatePollAnswer"                               -> parseUpdatePollAnswer v
+      "updateManagedBot"                               -> parseUpdateManagedBot v
       "updateChatMember"                               -> parseUpdateChatMember v
       "updateNewChatJoinRequest"                       -> parseUpdateNewChatJoinRequest v
       "updateChatBoost"                                -> parseUpdateChatBoost v
@@ -3097,6 +3143,14 @@ instance AT.FromJSON Update where
           { chat_id               = chat_id_
           , unread_reaction_count = unread_reaction_count_
           }
+      parseUpdateChatUnreadPollVoteCount :: A.Value -> AT.Parser Update
+      parseUpdateChatUnreadPollVoteCount = A.withObject "UpdateChatUnreadPollVoteCount" $ \o -> do
+        chat_id_                <- o A..:?  "chat_id"
+        unread_poll_vote_count_ <- o A..:?  "unread_poll_vote_count"
+        pure $ UpdateChatUnreadPollVoteCount
+          { chat_id                = chat_id_
+          , unread_poll_vote_count = unread_poll_vote_count_
+          }
       parseUpdateChatVideoChat :: A.Value -> AT.Parser Update
       parseUpdateChatVideoChat = A.withObject "UpdateChatVideoChat" $ \o -> do
         chat_id_    <- o A..:?  "chat_id"
@@ -3248,6 +3302,7 @@ instance AT.FromJSON Update where
         last_read_outbox_message_id_ <- o A..:?  "last_read_outbox_message_id"
         unread_mention_count_        <- o A..:?  "unread_mention_count"
         unread_reaction_count_       <- o A..:?  "unread_reaction_count"
+        unread_poll_vote_count_      <- o A..:?  "unread_poll_vote_count"
         notification_settings_       <- o A..:?  "notification_settings"
         draft_message_               <- o A..:?  "draft_message"
         pure $ UpdateForumTopic
@@ -3258,6 +3313,7 @@ instance AT.FromJSON Update where
           , last_read_outbox_message_id = last_read_outbox_message_id_
           , unread_mention_count        = unread_mention_count_
           , unread_reaction_count       = unread_reaction_count_
+          , unread_poll_vote_count      = unread_poll_vote_count_
           , notification_settings       = notification_settings_
           , draft_message               = draft_message_
           }
@@ -3973,6 +4029,12 @@ instance AT.FromJSON Update where
           { provider = provider_
           , emojis   = emojis_
           }
+      parseUpdateTextCompositionStyles :: A.Value -> AT.Parser Update
+      parseUpdateTextCompositionStyles = A.withObject "UpdateTextCompositionStyles" $ \o -> do
+        styles_ <- o A..:?  "styles"
+        pure $ UpdateTextCompositionStyles
+          { styles = styles_
+          }
       parseUpdateSuggestedActions :: A.Value -> AT.Parser Update
       parseUpdateSuggestedActions = A.withObject "UpdateSuggestedActions" $ \o -> do
         added_actions_   <- o A..:?  "added_actions"
@@ -4163,13 +4225,23 @@ instance AT.FromJSON Update where
           }
       parseUpdatePollAnswer :: A.Value -> AT.Parser Update
       parseUpdatePollAnswer = A.withObject "UpdatePollAnswer" $ \o -> do
-        poll_id_    <- fmap I.readInt64 <$> o A..:?  "poll_id"
-        voter_id_   <- o A..:?                       "voter_id"
-        option_ids_ <- o A..:?                       "option_ids"
+        poll_id_          <- fmap I.readInt64 <$> o A..:?  "poll_id"
+        voter_id_         <- o A..:?                       "voter_id"
+        option_ids_       <- o A..:?                       "option_ids"
+        option_positions_ <- o A..:?                       "option_positions"
         pure $ UpdatePollAnswer
-          { poll_id    = poll_id_
-          , voter_id   = voter_id_
-          , option_ids = option_ids_
+          { poll_id          = poll_id_
+          , voter_id         = voter_id_
+          , option_ids       = option_ids_
+          , option_positions = option_positions_
+          }
+      parseUpdateManagedBot :: A.Value -> AT.Parser Update
+      parseUpdateManagedBot = A.withObject "UpdateManagedBot" $ \o -> do
+        user_id_     <- o A..:?  "user_id"
+        bot_user_id_ <- o A..:?  "bot_user_id"
+        pure $ UpdateManagedBot
+          { user_id     = user_id_
+          , bot_user_id = bot_user_id_
           }
       parseUpdateChatMember :: A.Value -> AT.Parser Update
       parseUpdateChatMember = A.withObject "UpdateChatMember" $ \o -> do

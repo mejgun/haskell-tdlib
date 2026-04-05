@@ -8,12 +8,13 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved. Returns 'TD.Data.FormattedText.FormattedText'
+-- | Extracts text or caption of the given message and translates it to the given language; must not be used in secret chats. If the current user is a Telegram Premium user, then text formatting is preserved. Returns 'TD.Data.FormattedText.FormattedText'
 data TranslateMessageText
   = TranslateMessageText
     { chat_id          :: Maybe Int    -- ^ Identifier of the chat to which the message belongs
     , message_id       :: Maybe Int    -- ^ Identifier of the message
     , to_language_code :: Maybe T.Text -- ^ Language code of the language to which the message is translated. See translateText.to_language_code for the list of supported values
+    , tone             :: Maybe T.Text -- ^ Tone of the translation; see translateText.tone for the list of supported values
     }
   deriving (Eq, Show)
 
@@ -23,12 +24,14 @@ instance I.ShortShow TranslateMessageText where
       { chat_id          = chat_id_
       , message_id       = message_id_
       , to_language_code = to_language_code_
+      , tone             = tone_
       }
         = "TranslateMessageText"
           ++ I.cc
           [ "chat_id"          `I.p` chat_id_
           , "message_id"       `I.p` message_id_
           , "to_language_code" `I.p` to_language_code_
+          , "tone"             `I.p` tone_
           ]
 
 instance AT.ToJSON TranslateMessageText where
@@ -37,12 +40,14 @@ instance AT.ToJSON TranslateMessageText where
       { chat_id          = chat_id_
       , message_id       = message_id_
       , to_language_code = to_language_code_
+      , tone             = tone_
       }
         = A.object
           [ "@type"            A..= AT.String "translateMessageText"
           , "chat_id"          A..= chat_id_
           , "message_id"       A..= message_id_
           , "to_language_code" A..= to_language_code_
+          , "tone"             A..= tone_
           ]
 
 defaultTranslateMessageText :: TranslateMessageText
@@ -51,5 +56,6 @@ defaultTranslateMessageText =
     { chat_id          = Nothing
     , message_id       = Nothing
     , to_language_code = Nothing
+    , tone             = Nothing
     }
 

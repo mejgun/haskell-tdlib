@@ -56,6 +56,7 @@ data Chat
     , last_read_outbox_message_id        :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
     , unread_mention_count               :: Maybe Int                                               -- ^ Number of unread messages with a mention/reply in the chat
     , unread_reaction_count              :: Maybe Int                                               -- ^ Number of messages with unread reactions in the chat
+    , unread_poll_vote_count             :: Maybe Int                                               -- ^ Number of messages with unread poll votes in the chat
     , notification_settings              :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the chat
     , available_reactions                :: Maybe ChatAvailableReactions.ChatAvailableReactions     -- ^ Types of reaction, available in the chat
     , message_auto_delete_time           :: Maybe Int                                               -- ^ Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
@@ -103,6 +104,7 @@ instance I.ShortShow Chat where
     , last_read_outbox_message_id        = last_read_outbox_message_id_
     , unread_mention_count               = unread_mention_count_
     , unread_reaction_count              = unread_reaction_count_
+    , unread_poll_vote_count             = unread_poll_vote_count_
     , notification_settings              = notification_settings_
     , available_reactions                = available_reactions_
     , message_auto_delete_time           = message_auto_delete_time_
@@ -148,6 +150,7 @@ instance I.ShortShow Chat where
         , "last_read_outbox_message_id"        `I.p` last_read_outbox_message_id_
         , "unread_mention_count"               `I.p` unread_mention_count_
         , "unread_reaction_count"              `I.p` unread_reaction_count_
+        , "unread_poll_vote_count"             `I.p` unread_poll_vote_count_
         , "notification_settings"              `I.p` notification_settings_
         , "available_reactions"                `I.p` available_reactions_
         , "message_auto_delete_time"           `I.p` message_auto_delete_time_
@@ -203,6 +206,7 @@ instance AT.FromJSON Chat where
         last_read_outbox_message_id_        <- o A..:?                       "last_read_outbox_message_id"
         unread_mention_count_               <- o A..:?                       "unread_mention_count"
         unread_reaction_count_              <- o A..:?                       "unread_reaction_count"
+        unread_poll_vote_count_             <- o A..:?                       "unread_poll_vote_count"
         notification_settings_              <- o A..:?                       "notification_settings"
         available_reactions_                <- o A..:?                       "available_reactions"
         message_auto_delete_time_           <- o A..:?                       "message_auto_delete_time"
@@ -246,6 +250,7 @@ instance AT.FromJSON Chat where
           , last_read_outbox_message_id        = last_read_outbox_message_id_
           , unread_mention_count               = unread_mention_count_
           , unread_reaction_count              = unread_reaction_count_
+          , unread_poll_vote_count             = unread_poll_vote_count_
           , notification_settings              = notification_settings_
           , available_reactions                = available_reactions_
           , message_auto_delete_time           = message_auto_delete_time_

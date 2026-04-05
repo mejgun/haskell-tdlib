@@ -10,7 +10,7 @@ import qualified TD.Data.MessageSender as MessageSender
 data ChecklistTask
   = ChecklistTask -- ^ Describes a task in a checklist
     { _id             :: Maybe Int                         -- ^ Unique identifier of the task
-    , text            :: Maybe FormattedText.FormattedText -- ^ Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Url, EmailAddress, Mention, Hashtag, Cashtag and PhoneNumber entities
+    , text            :: Maybe FormattedText.FormattedText -- ^ Text of the task; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, DateTime and automatically found entities
     , completed_by    :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or chat that completed the task; may be null if the task isn't completed yet
     , completion_date :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the task was completed; 0 if the task isn't completed
     }

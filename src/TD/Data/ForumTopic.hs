@@ -20,6 +20,7 @@ data ForumTopic
     , last_read_outbox_message_id :: Maybe Int                                               -- ^ Identifier of the last read outgoing message
     , unread_mention_count        :: Maybe Int                                               -- ^ Number of unread messages with a mention/reply in the topic
     , unread_reaction_count       :: Maybe Int                                               -- ^ Number of messages with unread reactions in the topic
+    , unread_poll_vote_count      :: Maybe Int                                               -- ^ Number of messages with unread poll votes in the topic
     , notification_settings       :: Maybe ChatNotificationSettings.ChatNotificationSettings -- ^ Notification settings for the topic
     , draft_message               :: Maybe DraftMessage.DraftMessage                         -- ^ A draft of a message in the topic; may be null if none
     }
@@ -36,6 +37,7 @@ instance I.ShortShow ForumTopic where
     , last_read_outbox_message_id = last_read_outbox_message_id_
     , unread_mention_count        = unread_mention_count_
     , unread_reaction_count       = unread_reaction_count_
+    , unread_poll_vote_count      = unread_poll_vote_count_
     , notification_settings       = notification_settings_
     , draft_message               = draft_message_
     }
@@ -50,6 +52,7 @@ instance I.ShortShow ForumTopic where
         , "last_read_outbox_message_id" `I.p` last_read_outbox_message_id_
         , "unread_mention_count"        `I.p` unread_mention_count_
         , "unread_reaction_count"       `I.p` unread_reaction_count_
+        , "unread_poll_vote_count"      `I.p` unread_poll_vote_count_
         , "notification_settings"       `I.p` notification_settings_
         , "draft_message"               `I.p` draft_message_
         ]
@@ -74,6 +77,7 @@ instance AT.FromJSON ForumTopic where
         last_read_outbox_message_id_ <- o A..:?                       "last_read_outbox_message_id"
         unread_mention_count_        <- o A..:?                       "unread_mention_count"
         unread_reaction_count_       <- o A..:?                       "unread_reaction_count"
+        unread_poll_vote_count_      <- o A..:?                       "unread_poll_vote_count"
         notification_settings_       <- o A..:?                       "notification_settings"
         draft_message_               <- o A..:?                       "draft_message"
         pure $ ForumTopic
@@ -86,6 +90,7 @@ instance AT.FromJSON ForumTopic where
           , last_read_outbox_message_id = last_read_outbox_message_id_
           , unread_mention_count        = unread_mention_count_
           , unread_reaction_count       = unread_reaction_count_
+          , unread_poll_vote_count      = unread_poll_vote_count_
           , notification_settings       = notification_settings_
           , draft_message               = draft_message_
           }

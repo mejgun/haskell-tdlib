@@ -12,6 +12,7 @@ data SearchMessagesFilter
   | SearchMessagesFilterAudio -- ^ Returns only audio messages
   | SearchMessagesFilterDocument -- ^ Returns only document messages
   | SearchMessagesFilterPhoto -- ^ Returns only photo messages
+  | SearchMessagesFilterPoll -- ^ Returns only poll messages
   | SearchMessagesFilterVideo -- ^ Returns only video messages
   | SearchMessagesFilterVoiceNote -- ^ Returns only voice note messages
   | SearchMessagesFilterPhotoAndVideo -- ^ Returns only photo and video messages
@@ -20,8 +21,9 @@ data SearchMessagesFilter
   | SearchMessagesFilterVideoNote -- ^ Returns only video note messages
   | SearchMessagesFilterVoiceAndVideoNote -- ^ Returns only voice and video note messages
   | SearchMessagesFilterMention -- ^ Returns only messages with mentions of the current user, or messages that are replies to their messages
-  | SearchMessagesFilterUnreadMention -- ^ Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
-  | SearchMessagesFilterUnreadReaction -- ^ Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+  | SearchMessagesFilterUnreadMention -- ^ Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
+  | SearchMessagesFilterUnreadReaction -- ^ Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
+  | SearchMessagesFilterUnreadPollVote -- ^ Returns only messages with unread poll votes for the current user. When using this filter the results can't be additionally filtered by a query or by the sending user
   | SearchMessagesFilterFailedToSend -- ^ Returns only failed to send messages. This filter can be used only if the message database is used
   | SearchMessagesFilterPinned -- ^ Returns only pinned messages
   deriving (Eq, Show)
@@ -37,6 +39,8 @@ instance I.ShortShow SearchMessagesFilter where
       = "SearchMessagesFilterDocument"
   shortShow SearchMessagesFilterPhoto
       = "SearchMessagesFilterPhoto"
+  shortShow SearchMessagesFilterPoll
+      = "SearchMessagesFilterPoll"
   shortShow SearchMessagesFilterVideo
       = "SearchMessagesFilterVideo"
   shortShow SearchMessagesFilterVoiceNote
@@ -57,6 +61,8 @@ instance I.ShortShow SearchMessagesFilter where
       = "SearchMessagesFilterUnreadMention"
   shortShow SearchMessagesFilterUnreadReaction
       = "SearchMessagesFilterUnreadReaction"
+  shortShow SearchMessagesFilterUnreadPollVote
+      = "SearchMessagesFilterUnreadPollVote"
   shortShow SearchMessagesFilterFailedToSend
       = "SearchMessagesFilterFailedToSend"
   shortShow SearchMessagesFilterPinned
@@ -72,6 +78,7 @@ instance AT.FromJSON SearchMessagesFilter where
       "searchMessagesFilterAudio"             -> pure SearchMessagesFilterAudio
       "searchMessagesFilterDocument"          -> pure SearchMessagesFilterDocument
       "searchMessagesFilterPhoto"             -> pure SearchMessagesFilterPhoto
+      "searchMessagesFilterPoll"              -> pure SearchMessagesFilterPoll
       "searchMessagesFilterVideo"             -> pure SearchMessagesFilterVideo
       "searchMessagesFilterVoiceNote"         -> pure SearchMessagesFilterVoiceNote
       "searchMessagesFilterPhotoAndVideo"     -> pure SearchMessagesFilterPhotoAndVideo
@@ -82,6 +89,7 @@ instance AT.FromJSON SearchMessagesFilter where
       "searchMessagesFilterMention"           -> pure SearchMessagesFilterMention
       "searchMessagesFilterUnreadMention"     -> pure SearchMessagesFilterUnreadMention
       "searchMessagesFilterUnreadReaction"    -> pure SearchMessagesFilterUnreadReaction
+      "searchMessagesFilterUnreadPollVote"    -> pure SearchMessagesFilterUnreadPollVote
       "searchMessagesFilterFailedToSend"      -> pure SearchMessagesFilterFailedToSend
       "searchMessagesFilterPinned"            -> pure SearchMessagesFilterPinned
       _                                       -> mempty
@@ -108,6 +116,10 @@ instance AT.ToJSON SearchMessagesFilter where
   toJSON SearchMessagesFilterPhoto
       = A.object
         [ "@type" A..= AT.String "searchMessagesFilterPhoto"
+        ]
+  toJSON SearchMessagesFilterPoll
+      = A.object
+        [ "@type" A..= AT.String "searchMessagesFilterPoll"
         ]
   toJSON SearchMessagesFilterVideo
       = A.object
@@ -148,6 +160,10 @@ instance AT.ToJSON SearchMessagesFilter where
   toJSON SearchMessagesFilterUnreadReaction
       = A.object
         [ "@type" A..= AT.String "searchMessagesFilterUnreadReaction"
+        ]
+  toJSON SearchMessagesFilterUnreadPollVote
+      = A.object
+        [ "@type" A..= AT.String "searchMessagesFilterUnreadPollVote"
         ]
   toJSON SearchMessagesFilterFailedToSend
       = A.object

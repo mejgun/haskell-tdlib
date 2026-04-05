@@ -162,6 +162,9 @@ data PushMessageContent
   | PushMessageContentChecklistTasksDone -- ^ Some tasks from a checklist were marked as done or not done
     { task_count :: Maybe Int -- ^ Number of changed tasks
     }
+  | PushMessageContentPollOptionAdded -- ^ An option was added to a poll
+    { text :: Maybe T.Text -- ^ Text of the option
+    }
   | PushMessageContentMessageForwards -- ^ A forwarded messages
     { total_count :: Maybe Int -- ^ Number of forwarded messages
     }
@@ -499,6 +502,13 @@ instance I.ShortShow PushMessageContent where
         ++ I.cc
         [ "task_count" `I.p` task_count_
         ]
+  shortShow PushMessageContentPollOptionAdded
+    { text = text_
+    }
+      = "PushMessageContentPollOptionAdded"
+        ++ I.cc
+        [ "text" `I.p` text_
+        ]
   shortShow PushMessageContentMessageForwards
     { total_count = total_count_
     }
@@ -570,6 +580,7 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentProximityAlertTriggered"     -> parsePushMessageContentProximityAlertTriggered v
       "pushMessageContentChecklistTasksAdded"         -> parsePushMessageContentChecklistTasksAdded v
       "pushMessageContentChecklistTasksDone"          -> parsePushMessageContentChecklistTasksDone v
+      "pushMessageContentPollOptionAdded"             -> parsePushMessageContentPollOptionAdded v
       "pushMessageContentMessageForwards"             -> parsePushMessageContentMessageForwards v
       "pushMessageContentMediaAlbum"                  -> parsePushMessageContentMediaAlbum v
       _                                               -> mempty
@@ -846,6 +857,12 @@ instance AT.FromJSON PushMessageContent where
         task_count_ <- o A..:?  "task_count"
         pure $ PushMessageContentChecklistTasksDone
           { task_count = task_count_
+          }
+      parsePushMessageContentPollOptionAdded :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentPollOptionAdded = A.withObject "PushMessageContentPollOptionAdded" $ \o -> do
+        text_ <- o A..:?  "text"
+        pure $ PushMessageContentPollOptionAdded
+          { text = text_
           }
       parsePushMessageContentMessageForwards :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentMessageForwards = A.withObject "PushMessageContentMessageForwards" $ \o -> do

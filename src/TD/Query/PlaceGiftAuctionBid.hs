@@ -14,7 +14,7 @@ data PlaceGiftAuctionBid
     { gift_id    :: Maybe Int                         -- ^ Identifier of the gift to place the bid on
     , star_count :: Maybe Int                         -- ^ The number of Telegram Stars to place in the bid
     , user_id    :: Maybe Int                         -- ^ Identifier of the user who will receive the gift
-    , text       :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
+    , text       :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages
     , is_private :: Maybe Bool                        -- ^ Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     }
   deriving (Eq, Show)

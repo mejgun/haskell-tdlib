@@ -31,6 +31,7 @@ data UserFullInfo
     , has_sponsored_messages_enabled               :: Maybe Bool                            -- ^ True, if the user always enabled sponsored messages; known only for the current user
     , need_phone_number_privacy_exception          :: Maybe Bool                            -- ^ True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     , set_chat_background                          :: Maybe Bool                            -- ^ True, if the user set chat background for both chat users and it wasn't reverted yet
+    , uses_unofficial_app                          :: Maybe Bool                            -- ^ True, if the user uses an unofficial application that poses a security risk
     , bio                                          :: Maybe FormattedText.FormattedText     -- ^ A short user bio; may be null for bots
     , birthdate                                    :: Maybe Birthdate.Birthdate             -- ^ Birthdate of the user; may be null if unknown
     , personal_chat_id                             :: Maybe Int                             -- ^ Identifier of the personal chat of the user; 0 if none
@@ -66,6 +67,7 @@ instance I.ShortShow UserFullInfo where
     , has_sponsored_messages_enabled               = has_sponsored_messages_enabled_
     , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
     , set_chat_background                          = set_chat_background_
+    , uses_unofficial_app                          = uses_unofficial_app_
     , bio                                          = bio_
     , birthdate                                    = birthdate_
     , personal_chat_id                             = personal_chat_id_
@@ -99,6 +101,7 @@ instance I.ShortShow UserFullInfo where
         , "has_sponsored_messages_enabled"               `I.p` has_sponsored_messages_enabled_
         , "need_phone_number_privacy_exception"          `I.p` need_phone_number_privacy_exception_
         , "set_chat_background"                          `I.p` set_chat_background_
+        , "uses_unofficial_app"                          `I.p` uses_unofficial_app_
         , "bio"                                          `I.p` bio_
         , "birthdate"                                    `I.p` birthdate_
         , "personal_chat_id"                             `I.p` personal_chat_id_
@@ -142,6 +145,7 @@ instance AT.FromJSON UserFullInfo where
         has_sponsored_messages_enabled_               <- o A..:?  "has_sponsored_messages_enabled"
         need_phone_number_privacy_exception_          <- o A..:?  "need_phone_number_privacy_exception"
         set_chat_background_                          <- o A..:?  "set_chat_background"
+        uses_unofficial_app_                          <- o A..:?  "uses_unofficial_app"
         bio_                                          <- o A..:?  "bio"
         birthdate_                                    <- o A..:?  "birthdate"
         personal_chat_id_                             <- o A..:?  "personal_chat_id"
@@ -173,6 +177,7 @@ instance AT.FromJSON UserFullInfo where
           , has_sponsored_messages_enabled               = has_sponsored_messages_enabled_
           , need_phone_number_privacy_exception          = need_phone_number_privacy_exception_
           , set_chat_background                          = set_chat_background_
+          , uses_unofficial_app                          = uses_unofficial_app_
           , bio                                          = bio_
           , birthdate                                    = birthdate_
           , personal_chat_id                             = personal_chat_id_

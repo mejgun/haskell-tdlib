@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.12.0
+version:        2.1.14.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -231,6 +231,9 @@ library
       TD.Data.DeepLinkInfo
       TD.Data.DeviceToken
       TD.Data.DiceStickers
+      TD.Data.DiffEntity
+      TD.Data.DiffEntityType
+      TD.Data.DiffText
       TD.Data.DirectMessagesChatTopic
       TD.Data.Document
       TD.Data.DownloadedFileCounts
@@ -263,6 +266,7 @@ library
       TD.Data.FileType
       TD.Data.FirebaseAuthenticationSettings
       TD.Data.FirebaseDeviceVerificationParameters
+      TD.Data.FixedText
       TD.Data.FormattedText
       TD.Data.ForumTopic
       TD.Data.ForumTopicIcon
@@ -359,6 +363,8 @@ library
       TD.Data.InputPassportElementError
       TD.Data.InputPassportElementErrorSource
       TD.Data.InputPersonalDocument
+      TD.Data.InputPollOption
+      TD.Data.InputPollType
       TD.Data.InputSticker
       TD.Data.InputStoryArea
       TD.Data.InputStoryAreas
@@ -374,6 +380,7 @@ library
       TD.Data.JsonObjectMember
       TD.Data.JsonValue
       TD.Data.KeyboardButton
+      TD.Data.KeyboardButtonSource
       TD.Data.KeyboardButtonType
       TD.Data.LabeledPricePart
       TD.Data.LanguagePackInfo
@@ -488,6 +495,7 @@ library
       TD.Data.Point
       TD.Data.Poll
       TD.Data.PollOption
+      TD.Data.PollOptionProperties
       TD.Data.PollType
       TD.Data.PollVoter
       TD.Data.PollVoters
@@ -650,6 +658,7 @@ library
       TD.Data.TestVectorString
       TD.Data.TestVectorStringObject
       TD.Data.Text
+      TD.Data.TextCompositionStyle
       TD.Data.TextEntities
       TD.Data.TextEntity
       TD.Data.TextEntityType
@@ -746,6 +755,7 @@ library
       TD.Query.AddOffer
       TD.Query.AddPendingLiveStoryReaction
       TD.Query.AddPendingPaidMessageReaction
+      TD.Query.AddPollOption
       TD.Query.AddProfileAudio
       TD.Query.AddProxy
       TD.Query.AddQuickReplyShortcutInlineQueryResultMessage
@@ -792,6 +802,7 @@ library
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
       TD.Query.CheckAuthenticationPremiumPurchase
+      TD.Query.CheckBotUsername
       TD.Query.CheckChatFolderInviteLink
       TD.Query.CheckChatInviteLink
       TD.Query.CheckChatUsername
@@ -827,11 +838,13 @@ library
       TD.Query.CloseWebApp
       TD.Query.CommitPendingLiveStoryReactions
       TD.Query.CommitPendingPaidMessageReactions
+      TD.Query.ComposeTextWithAi
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
       TD.Query.ConnectAffiliateProgram
       TD.Query.CraftGift
       TD.Query.CreateBasicGroupChat
+      TD.Query.CreateBot
       TD.Query.CreateBusinessChatLink
       TD.Query.CreateCall
       TD.Query.CreateChatFolder
@@ -884,6 +897,7 @@ library
       TD.Query.DeleteLanguagePack
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
+      TD.Query.DeletePollOption
       TD.Query.DeleteProfilePhoto
       TD.Query.DeleteQuickReplyShortcut
       TD.Query.DeleteQuickReplyShortcutMessages
@@ -943,6 +957,7 @@ library
       TD.Query.EndGroupCallRecording
       TD.Query.EndGroupCallScreenSharing
       TD.Query.FinishFileGeneration
+      TD.Query.FixTextWithAi
       TD.Query.ForwardMessages
       TD.Query.GetAccountTtl
       TD.Query.GetActiveSessions
@@ -973,6 +988,7 @@ library
       TD.Query.GetBotName
       TD.Query.GetBotSimilarBotCount
       TD.Query.GetBotSimilarBots
+      TD.Query.GetBotToken
       TD.Query.GetBusinessAccountStarAmount
       TD.Query.GetBusinessChatLinkInfo
       TD.Query.GetBusinessChatLinks
@@ -1155,6 +1171,7 @@ library
       TD.Query.GetPaymentReceipt
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
+      TD.Query.GetPollOptionProperties
       TD.Query.GetPollVoters
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
@@ -1166,6 +1183,7 @@ library
       TD.Query.GetPremiumStickerExamples
       TD.Query.GetPremiumStickers
       TD.Query.GetPreparedInlineMessage
+      TD.Query.GetPreparedKeyboardButton
       TD.Query.GetProxies
       TD.Query.GetPublicPostSearchLimits
       TD.Query.GetPushReceiverId
@@ -1278,6 +1296,7 @@ library
       TD.Query.LaunchPrepaidGiveaway
       TD.Query.LeaveChat
       TD.Query.LeaveGroupCall
+      TD.Query.ListenToAudio
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
       TD.Query.LoadDirectMessagesChatTopics
@@ -1311,9 +1330,11 @@ library
       TD.Query.ProcessPushNotification
       TD.Query.RateSpeechRecognition
       TD.Query.ReadAllChatMentions
+      TD.Query.ReadAllChatPollVotes
       TD.Query.ReadAllChatReactions
       TD.Query.ReadAllDirectMessagesChatTopicReactions
       TD.Query.ReadAllForumTopicMentions
+      TD.Query.ReadAllForumTopicPollVotes
       TD.Query.ReadAllForumTopicReactions
       TD.Query.ReadBusinessMessage
       TD.Query.ReadChatList
@@ -1396,6 +1417,7 @@ library
       TD.Query.RevokeGroupCallInviteLink
       TD.Query.SaveApplicationLogEvent
       TD.Query.SavePreparedInlineMessage
+      TD.Query.SavePreparedKeyboardButton
       TD.Query.SearchAffiliatePrograms
       TD.Query.SearchBackground
       TD.Query.SearchCallMessages
@@ -1449,6 +1471,7 @@ library
       TD.Query.SendInlineQueryResultMessage
       TD.Query.SendMessage
       TD.Query.SendMessageAlbum
+      TD.Query.SendMessageViewMetrics
       TD.Query.SendPassportAuthorizationForm
       TD.Query.SendPaymentForm
       TD.Query.SendPhoneNumberCode

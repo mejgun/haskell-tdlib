@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.TextQuote as TextQuote
+import qualified Data.Text as T
 import qualified TD.Data.MessageOrigin as MessageOrigin
 import qualified TD.Data.MessageContent as MessageContent
 
@@ -15,6 +16,7 @@ data MessageReplyTo
     , message_id        :: Maybe Int                           -- ^ The identifier of the message; may be 0 if the replied message is in unknown chat
     , quote             :: Maybe TextQuote.TextQuote           -- ^ Chosen quote from the replied message; may be null if none
     , checklist_task_id :: Maybe Int                           -- ^ Identifier of the checklist task in the original message that was replied; 0 if none
+    , poll_option_id    :: Maybe T.Text                        -- ^ Identifier of the poll option in the original message that was replied; empty if none
     , origin            :: Maybe MessageOrigin.MessageOrigin   -- ^ Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat
     , origin_send_date  :: Maybe Int                           -- ^ Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
     , content           :: Maybe MessageContent.MessageContent -- ^ Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageChecklist, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageStakeDice, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
@@ -31,6 +33,7 @@ instance I.ShortShow MessageReplyTo where
     , message_id        = message_id_
     , quote             = quote_
     , checklist_task_id = checklist_task_id_
+    , poll_option_id    = poll_option_id_
     , origin            = origin_
     , origin_send_date  = origin_send_date_
     , content           = content_
@@ -41,6 +44,7 @@ instance I.ShortShow MessageReplyTo where
         , "message_id"        `I.p` message_id_
         , "quote"             `I.p` quote_
         , "checklist_task_id" `I.p` checklist_task_id_
+        , "poll_option_id"    `I.p` poll_option_id_
         , "origin"            `I.p` origin_
         , "origin_send_date"  `I.p` origin_send_date_
         , "content"           `I.p` content_
@@ -71,6 +75,7 @@ instance AT.FromJSON MessageReplyTo where
         message_id_        <- o A..:?  "message_id"
         quote_             <- o A..:?  "quote"
         checklist_task_id_ <- o A..:?  "checklist_task_id"
+        poll_option_id_    <- o A..:?  "poll_option_id"
         origin_            <- o A..:?  "origin"
         origin_send_date_  <- o A..:?  "origin_send_date"
         content_           <- o A..:?  "content"
@@ -79,6 +84,7 @@ instance AT.FromJSON MessageReplyTo where
           , message_id        = message_id_
           , quote             = quote_
           , checklist_task_id = checklist_task_id_
+          , poll_option_id    = poll_option_id_
           , origin            = origin_
           , origin_send_date  = origin_send_date_
           , content           = content_

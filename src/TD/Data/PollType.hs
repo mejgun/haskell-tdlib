@@ -5,34 +5,31 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
+import {-# SOURCE #-} qualified TD.Data.MessageContent as MessageContent
 
 -- | Describes the type of poll
 data PollType
   = PollTypeRegular -- ^ A regular poll
-    { allow_multiple_answers :: Maybe Bool -- ^ True, if multiple answer options can be chosen simultaneously
-    }
-  | PollTypeQuiz -- ^ A poll in quiz mode, which has exactly one correct answer option and can be answered only once
-    { correct_option_id :: Maybe Int                         -- ^ 0-based identifier of the correct answer option; -1 for a yet unanswered poll
-    , explanation       :: Maybe FormattedText.FormattedText -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
+  | PollTypeQuiz -- ^ A poll in quiz mode, which has predefined correct answers
+    { correct_option_ids :: Maybe [Int]                         -- ^ Increasing list of 0-based identifiers of the correct answer options; empty for a yet unanswered poll
+    , explanation        :: Maybe FormattedText.FormattedText   -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll
+    , explanation_media  :: Maybe MessageContent.MessageContent -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
     }
   deriving (Eq, Show)
 
 instance I.ShortShow PollType where
   shortShow PollTypeRegular
-    { allow_multiple_answers = allow_multiple_answers_
-    }
       = "PollTypeRegular"
-        ++ I.cc
-        [ "allow_multiple_answers" `I.p` allow_multiple_answers_
-        ]
   shortShow PollTypeQuiz
-    { correct_option_id = correct_option_id_
-    , explanation       = explanation_
+    { correct_option_ids = correct_option_ids_
+    , explanation        = explanation_
+    , explanation_media  = explanation_media_
     }
       = "PollTypeQuiz"
         ++ I.cc
-        [ "correct_option_id" `I.p` correct_option_id_
-        , "explanation"       `I.p` explanation_
+        [ "correct_option_ids" `I.p` correct_option_ids_
+        , "explanation"        `I.p` explanation_
+        , "explanation_media"  `I.p` explanation_media_
         ]
 
 instance AT.FromJSON PollType where
@@ -40,42 +37,20 @@ instance AT.FromJSON PollType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "pollTypeRegular" -> parsePollTypeRegular v
+      "pollTypeRegular" -> pure PollTypeRegular
       "pollTypeQuiz"    -> parsePollTypeQuiz v
       _                 -> mempty
     
     where
-      parsePollTypeRegular :: A.Value -> AT.Parser PollType
-      parsePollTypeRegular = A.withObject "PollTypeRegular" $ \o -> do
-        allow_multiple_answers_ <- o A..:?  "allow_multiple_answers"
-        pure $ PollTypeRegular
-          { allow_multiple_answers = allow_multiple_answers_
-          }
       parsePollTypeQuiz :: A.Value -> AT.Parser PollType
       parsePollTypeQuiz = A.withObject "PollTypeQuiz" $ \o -> do
-        correct_option_id_ <- o A..:?  "correct_option_id"
-        explanation_       <- o A..:?  "explanation"
+        correct_option_ids_ <- o A..:?  "correct_option_ids"
+        explanation_        <- o A..:?  "explanation"
+        explanation_media_  <- o A..:?  "explanation_media"
         pure $ PollTypeQuiz
-          { correct_option_id = correct_option_id_
-          , explanation       = explanation_
+          { correct_option_ids = correct_option_ids_
+          , explanation        = explanation_
+          , explanation_media  = explanation_media_
           }
   parseJSON _ = mempty
-
-instance AT.ToJSON PollType where
-  toJSON PollTypeRegular
-    { allow_multiple_answers = allow_multiple_answers_
-    }
-      = A.object
-        [ "@type"                  A..= AT.String "pollTypeRegular"
-        , "allow_multiple_answers" A..= allow_multiple_answers_
-        ]
-  toJSON PollTypeQuiz
-    { correct_option_id = correct_option_id_
-    , explanation       = explanation_
-    }
-      = A.object
-        [ "@type"             A..= AT.String "pollTypeQuiz"
-        , "correct_option_id" A..= correct_option_id_
-        , "explanation"       A..= explanation_
-        ]
 

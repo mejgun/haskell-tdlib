@@ -10,7 +10,7 @@ import qualified TD.Data.FormattedText as FormattedText
 
 data InputTextQuote
   = InputTextQuote -- ^ Describes manually chosen quote from another message
-    { text     :: Maybe FormattedText.FormattedText -- ^ Text of the quote; 0-getOption("message_reply_quote_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed to be kept and must be kept in the quote
+    { text     :: Maybe FormattedText.FormattedText -- ^ Text of the quote; 0-getOption("message_reply_quote_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed to be kept and must be kept in the quote
     , position :: Maybe Int                         -- ^ Quote position in the original message in UTF-16 code units
     }
   deriving (Eq, Show)

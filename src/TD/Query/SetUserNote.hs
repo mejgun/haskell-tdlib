@@ -12,7 +12,7 @@ import qualified TD.Data.FormattedText as FormattedText
 data SetUserNote
   = SetUserNote
     { user_id :: Maybe Int                         -- ^ User identifier
-    , note    :: Maybe FormattedText.FormattedText -- ^ Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    , note    :: Maybe FormattedText.FormattedText -- ^ Note to set for the user; 0-getOption("user_note_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
   deriving (Eq, Show)
 

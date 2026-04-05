@@ -34,6 +34,7 @@ data PremiumFeature
   | PremiumFeatureChecklists -- ^ The ability to create and use checklist messages
   | PremiumFeaturePaidMessages -- ^ The ability to require a payment for incoming messages in new chats
   | PremiumFeatureProtectPrivateChatContent -- ^ The ability to enable content protection in private chats
+  | PremiumFeatureTextComposition -- ^ The ability to compose text with AI
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -91,6 +92,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeaturePaidMessages"
   shortShow PremiumFeatureProtectPrivateChatContent
       = "PremiumFeatureProtectPrivateChatContent"
+  shortShow PremiumFeatureTextComposition
+      = "PremiumFeatureTextComposition"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -124,6 +127,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeatureChecklists"                -> pure PremiumFeatureChecklists
       "premiumFeaturePaidMessages"              -> pure PremiumFeaturePaidMessages
       "premiumFeatureProtectPrivateChatContent" -> pure PremiumFeatureProtectPrivateChatContent
+      "premiumFeatureTextComposition"           -> pure PremiumFeatureTextComposition
       _                                         -> mempty
     
   parseJSON _ = mempty
@@ -236,5 +240,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureProtectPrivateChatContent
       = A.object
         [ "@type" A..= AT.String "premiumFeatureProtectPrivateChatContent"
+        ]
+  toJSON PremiumFeatureTextComposition
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureTextComposition"
         ]
 

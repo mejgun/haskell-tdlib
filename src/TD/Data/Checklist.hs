@@ -9,7 +9,7 @@ import qualified TD.Data.ChecklistTask as ChecklistTask
 
 data Checklist
   = Checklist -- ^ Describes a checklist
-    { title                         :: Maybe FormattedText.FormattedText   -- ^ Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities
+    { title                         :: Maybe FormattedText.FormattedText   -- ^ Title of the checklist; may contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities
     , tasks                         :: Maybe [ChecklistTask.ChecklistTask] -- ^ List of tasks in the checklist
     , others_can_add_tasks          :: Maybe Bool                          -- ^ True, if users other than creator of the list can add tasks to the list
     , can_add_tasks                 :: Maybe Bool                          -- ^ True, if the current user can add tasks to the list if they have Telegram Premium subscription

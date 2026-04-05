@@ -8,9 +8,11 @@ import qualified Data.Text as T
 
 data OauthLinkInfo
   = OauthLinkInfo -- ^ Information about the OAuth authorization
-    { user_id                     :: Maybe Int      -- ^ Identifier of the user for which the link was generated; may be 0 if unknown. The corresponding user may be unknown. If the user is logged in the app, then they must be chosen for authorization by default
+    { user_id                     :: Maybe Int      -- ^ Identifier of the user for which the link was generated; may be 0 if unknown. The corresponding user may be unknown. If the user is logged in the application, then they must be chosen for authorization by default
     , url                         :: Maybe T.Text   -- ^ An HTTP URL where the user authorizes
     , domain                      :: Maybe T.Text   -- ^ A domain of the URL
+    , from_app                    :: Maybe Bool     -- ^ True, if the authorization originates from an application
+    , verified_app_name           :: Maybe T.Text   -- ^ Verified name of the application; if empty, then "Unverified App" must be shown instead
     , bot_user_id                 :: Maybe Int      -- ^ User identifier of a bot linked with the website
     , request_write_access        :: Maybe Bool     -- ^ True, if the user must be asked for the permission to the bot to send them messages
     , request_phone_number_access :: Maybe Bool     -- ^ True, if the user must be asked for the permission to share their phone number
@@ -28,6 +30,8 @@ instance I.ShortShow OauthLinkInfo where
     { user_id                     = user_id_
     , url                         = url_
     , domain                      = domain_
+    , from_app                    = from_app_
+    , verified_app_name           = verified_app_name_
     , bot_user_id                 = bot_user_id_
     , request_write_access        = request_write_access_
     , request_phone_number_access = request_phone_number_access_
@@ -43,6 +47,8 @@ instance I.ShortShow OauthLinkInfo where
         [ "user_id"                     `I.p` user_id_
         , "url"                         `I.p` url_
         , "domain"                      `I.p` domain_
+        , "from_app"                    `I.p` from_app_
+        , "verified_app_name"           `I.p` verified_app_name_
         , "bot_user_id"                 `I.p` bot_user_id_
         , "request_write_access"        `I.p` request_write_access_
         , "request_phone_number_access" `I.p` request_phone_number_access_
@@ -68,6 +74,8 @@ instance AT.FromJSON OauthLinkInfo where
         user_id_                     <- o A..:?  "user_id"
         url_                         <- o A..:?  "url"
         domain_                      <- o A..:?  "domain"
+        from_app_                    <- o A..:?  "from_app"
+        verified_app_name_           <- o A..:?  "verified_app_name"
         bot_user_id_                 <- o A..:?  "bot_user_id"
         request_write_access_        <- o A..:?  "request_write_access"
         request_phone_number_access_ <- o A..:?  "request_phone_number_access"
@@ -81,6 +89,8 @@ instance AT.FromJSON OauthLinkInfo where
           { user_id                     = user_id_
           , url                         = url_
           , domain                      = domain_
+          , from_app                    = from_app_
+          , verified_app_name           = verified_app_name_
           , bot_user_id                 = bot_user_id_
           , request_write_access        = request_write_access_
           , request_phone_number_access = request_phone_number_access_

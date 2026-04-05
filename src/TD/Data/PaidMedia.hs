@@ -18,6 +18,7 @@ data PaidMedia
     }
   | PaidMediaPhoto -- ^ The media is a photo
     { photo :: Maybe Photo.Photo -- ^ The photo
+    , video :: Maybe Video.Video -- ^ The video representing the live photo; may be null if the photo is static
     }
   | PaidMediaVideo -- ^ The media is a video
     { video           :: Maybe Video.Video -- ^ The video
@@ -43,10 +44,12 @@ instance I.ShortShow PaidMedia where
         ]
   shortShow PaidMediaPhoto
     { photo = photo_
+    , video = video_
     }
       = "PaidMediaPhoto"
         ++ I.cc
         [ "photo" `I.p` photo_
+        , "video" `I.p` video_
         ]
   shortShow PaidMediaVideo
     { video           = video_
@@ -89,8 +92,10 @@ instance AT.FromJSON PaidMedia where
       parsePaidMediaPhoto :: A.Value -> AT.Parser PaidMedia
       parsePaidMediaPhoto = A.withObject "PaidMediaPhoto" $ \o -> do
         photo_ <- o A..:?  "photo"
+        video_ <- o A..:?  "video"
         pure $ PaidMediaPhoto
           { photo = photo_
+          , video = video_
           }
       parsePaidMediaVideo :: A.Value -> AT.Parser PaidMedia
       parsePaidMediaVideo = A.withObject "PaidMediaVideo" $ \o -> do

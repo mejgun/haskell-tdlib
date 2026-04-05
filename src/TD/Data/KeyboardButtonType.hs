@@ -42,6 +42,11 @@ data KeyboardButtonType
     , request_username           :: Maybe Bool                                            -- ^ Pass true to request username of the chat; bots only
     , request_photo              :: Maybe Bool                                            -- ^ Pass true to request photo of the chat; bots only
     }
+  | KeyboardButtonTypeRequestManagedBot -- ^ A button that requests creation of a managed bot by the current user; available only in private chats. Use the method createBot to complete the request
+    { _id                :: Maybe Int    -- ^ Unique button identifier
+    , suggested_name     :: Maybe T.Text -- ^ Suggested name for the bot; may be empty if not specified
+    , suggested_username :: Maybe T.Text -- ^ Suggested username for the bot; may be empty if not specified
+    }
   | KeyboardButtonTypeWebApp -- ^ A button that opens a Web App by calling getWebAppUrl
     { url :: Maybe T.Text -- ^ An HTTP URL to pass to getWebAppUrl
     }
@@ -117,6 +122,17 @@ instance I.ShortShow KeyboardButtonType where
         , "request_username"           `I.p` request_username_
         , "request_photo"              `I.p` request_photo_
         ]
+  shortShow KeyboardButtonTypeRequestManagedBot
+    { _id                = _id_
+    , suggested_name     = suggested_name_
+    , suggested_username = suggested_username_
+    }
+      = "KeyboardButtonTypeRequestManagedBot"
+        ++ I.cc
+        [ "_id"                `I.p` _id_
+        , "suggested_name"     `I.p` suggested_name_
+        , "suggested_username" `I.p` suggested_username_
+        ]
   shortShow KeyboardButtonTypeWebApp
     { url = url_
     }
@@ -136,6 +152,7 @@ instance AT.FromJSON KeyboardButtonType where
       "keyboardButtonTypeRequestPoll"        -> parseKeyboardButtonTypeRequestPoll v
       "keyboardButtonTypeRequestUsers"       -> parseKeyboardButtonTypeRequestUsers v
       "keyboardButtonTypeRequestChat"        -> parseKeyboardButtonTypeRequestChat v
+      "keyboardButtonTypeRequestManagedBot"  -> parseKeyboardButtonTypeRequestManagedBot v
       "keyboardButtonTypeWebApp"             -> parseKeyboardButtonTypeWebApp v
       _                                      -> mempty
     
@@ -199,6 +216,16 @@ instance AT.FromJSON KeyboardButtonType where
           , request_title              = request_title_
           , request_username           = request_username_
           , request_photo              = request_photo_
+          }
+      parseKeyboardButtonTypeRequestManagedBot :: A.Value -> AT.Parser KeyboardButtonType
+      parseKeyboardButtonTypeRequestManagedBot = A.withObject "KeyboardButtonTypeRequestManagedBot" $ \o -> do
+        _id_                <- o A..:?  "id"
+        suggested_name_     <- o A..:?  "suggested_name"
+        suggested_username_ <- o A..:?  "suggested_username"
+        pure $ KeyboardButtonTypeRequestManagedBot
+          { _id                = _id_
+          , suggested_name     = suggested_name_
+          , suggested_username = suggested_username_
           }
       parseKeyboardButtonTypeWebApp :: A.Value -> AT.Parser KeyboardButtonType
       parseKeyboardButtonTypeWebApp = A.withObject "KeyboardButtonTypeWebApp" $ \o -> do
@@ -283,6 +310,17 @@ instance AT.ToJSON KeyboardButtonType where
         , "request_title"              A..= request_title_
         , "request_username"           A..= request_username_
         , "request_photo"              A..= request_photo_
+        ]
+  toJSON KeyboardButtonTypeRequestManagedBot
+    { _id                = _id_
+    , suggested_name     = suggested_name_
+    , suggested_username = suggested_username_
+    }
+      = A.object
+        [ "@type"              A..= AT.String "keyboardButtonTypeRequestManagedBot"
+        , "id"                 A..= _id_
+        , "suggested_name"     A..= suggested_name_
+        , "suggested_username" A..= suggested_username_
         ]
   toJSON KeyboardButtonTypeWebApp
     { url = url_

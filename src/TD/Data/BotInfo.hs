@@ -20,6 +20,7 @@ data BotInfo
     , description                          :: Maybe T.Text                                              -- ^ The text shown in the chat with the bot if the chat is empty
     , photo                                :: Maybe Photo.Photo                                         -- ^ Photo shown in the chat with the bot if the chat is empty; may be null
     , animation                            :: Maybe Animation.Animation                                 -- ^ Animation shown in the chat with the bot if the chat is empty; may be null
+    , manager_bot_user_id                  :: Maybe Int                                                 -- ^ Identifier of the bot, which manages the bot; 0 if none or unknown; for owner of the bot only
     , menu_button                          :: Maybe BotMenuButton.BotMenuButton                         -- ^ Information about a button to show instead of the bot commands menu button; may be null if ordinary bot commands menu must be shown
     , commands                             :: Maybe [BotCommand.BotCommand]                             -- ^ List of the bot commands
     , privacy_policy_url                   :: Maybe T.Text                                              -- ^ The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
@@ -47,6 +48,7 @@ instance I.ShortShow BotInfo where
     , description                          = description_
     , photo                                = photo_
     , animation                            = animation_
+    , manager_bot_user_id                  = manager_bot_user_id_
     , menu_button                          = menu_button_
     , commands                             = commands_
     , privacy_policy_url                   = privacy_policy_url_
@@ -72,6 +74,7 @@ instance I.ShortShow BotInfo where
         , "description"                          `I.p` description_
         , "photo"                                `I.p` photo_
         , "animation"                            `I.p` animation_
+        , "manager_bot_user_id"                  `I.p` manager_bot_user_id_
         , "menu_button"                          `I.p` menu_button_
         , "commands"                             `I.p` commands_
         , "privacy_policy_url"                   `I.p` privacy_policy_url_
@@ -107,6 +110,7 @@ instance AT.FromJSON BotInfo where
         description_                          <- o A..:?  "description"
         photo_                                <- o A..:?  "photo"
         animation_                            <- o A..:?  "animation"
+        manager_bot_user_id_                  <- o A..:?  "manager_bot_user_id"
         menu_button_                          <- o A..:?  "menu_button"
         commands_                             <- o A..:?  "commands"
         privacy_policy_url_                   <- o A..:?  "privacy_policy_url"
@@ -130,6 +134,7 @@ instance AT.FromJSON BotInfo where
           , description                          = description_
           , photo                                = photo_
           , animation                            = animation_
+          , manager_bot_user_id                  = manager_bot_user_id_
           , menu_button                          = menu_button_
           , commands                             = commands_
           , privacy_policy_url                   = privacy_policy_url_

@@ -14,7 +14,7 @@ data GiftPremiumWithStars
     { user_id     :: Maybe Int                         -- ^ Identifier of the user which will receive Telegram Premium
     , star_count  :: Maybe Int                         -- ^ The number of Telegram Stars to pay for subscription
     , month_count :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the user
-    , text        :: Maybe FormattedText.FormattedText -- ^ Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    , text        :: Maybe FormattedText.FormattedText -- ^ Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
   deriving (Eq, Show)
 

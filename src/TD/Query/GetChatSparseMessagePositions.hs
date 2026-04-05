@@ -12,7 +12,7 @@ import qualified TD.Data.SearchMessagesFilter as SearchMessagesFilter
 data GetChatSparseMessagePositions
   = GetChatSparseMessagePositions
     { chat_id                 :: Maybe Int                                       -- ^ Identifier of the chat in which to return information about message positions
-    , _filter                 :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
+    , _filter                 :: Maybe SearchMessagesFilter.SearchMessagesFilter -- ^ Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, and searchMessagesFilterUnreadPollVote are unsupported in this function
     , from_message_id         :: Maybe Int                                       -- ^ The message identifier from which to return information about message positions
     , limit                   :: Maybe Int                                       -- ^ The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     , saved_messages_topic_id :: Maybe Int                                       -- ^ If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages

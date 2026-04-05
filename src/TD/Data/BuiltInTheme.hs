@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes a built-in theme of an official app
+-- | Describes a built-in theme of an official application
 data BuiltInTheme
   = BuiltInThemeClassic -- ^ Classic light theme
   | BuiltInThemeDay -- ^ Regular light theme

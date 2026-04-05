@@ -9,6 +9,8 @@ import qualified TD.Data.InputFile as InputFile
 -- | Describes type of paid media to sent
 data InputPaidMediaType
   = InputPaidMediaTypePhoto -- ^ The media is a photo. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+    { video :: Maybe InputFile.InputFile -- ^ Video of the live photo; pass null if the photo isn't a live photo
+    }
   | InputPaidMediaTypeVideo -- ^ The media is a video
     { cover              :: Maybe InputFile.InputFile -- ^ Cover of the video; pass null to skip cover uploading
     , start_timestamp    :: Maybe Int                 -- ^ Timestamp from which the video playing must start, in seconds
@@ -19,7 +21,12 @@ data InputPaidMediaType
 
 instance I.ShortShow InputPaidMediaType where
   shortShow InputPaidMediaTypePhoto
+    { video = video_
+    }
       = "InputPaidMediaTypePhoto"
+        ++ I.cc
+        [ "video" `I.p` video_
+        ]
   shortShow InputPaidMediaTypeVideo
     { cover              = cover_
     , start_timestamp    = start_timestamp_
@@ -39,11 +46,17 @@ instance AT.FromJSON InputPaidMediaType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "inputPaidMediaTypePhoto" -> pure InputPaidMediaTypePhoto
+      "inputPaidMediaTypePhoto" -> parseInputPaidMediaTypePhoto v
       "inputPaidMediaTypeVideo" -> parseInputPaidMediaTypeVideo v
       _                         -> mempty
     
     where
+      parseInputPaidMediaTypePhoto :: A.Value -> AT.Parser InputPaidMediaType
+      parseInputPaidMediaTypePhoto = A.withObject "InputPaidMediaTypePhoto" $ \o -> do
+        video_ <- o A..:?  "video"
+        pure $ InputPaidMediaTypePhoto
+          { video = video_
+          }
       parseInputPaidMediaTypeVideo :: A.Value -> AT.Parser InputPaidMediaType
       parseInputPaidMediaTypeVideo = A.withObject "InputPaidMediaTypeVideo" $ \o -> do
         cover_              <- o A..:?  "cover"
@@ -60,8 +73,11 @@ instance AT.FromJSON InputPaidMediaType where
 
 instance AT.ToJSON InputPaidMediaType where
   toJSON InputPaidMediaTypePhoto
+    { video = video_
+    }
       = A.object
         [ "@type" A..= AT.String "inputPaidMediaTypePhoto"
+        , "video" A..= video_
         ]
   toJSON InputPaidMediaTypeVideo
     { cover              = cover_

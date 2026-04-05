@@ -18,14 +18,14 @@ data StorePaymentPurpose
     { currency :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
     , amount   :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
     , user_id  :: Maybe Int                         -- ^ Identifiers of the user which will receive Telegram Premium
-    , text     :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    , text     :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
   | StorePaymentPurposePremiumGiftCodes -- ^ The user boosting a chat by creating Telegram Premium gift codes for other users
     { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
     , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
     , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
-    , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
   | StorePaymentPurposePremiumGiveaway -- ^ The user creating a Telegram Premium giveaway
     { parameters :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters

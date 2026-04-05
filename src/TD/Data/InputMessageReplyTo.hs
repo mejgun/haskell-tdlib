@@ -5,6 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputTextQuote as InputTextQuote
+import qualified Data.Text as T
 
 -- | Contains information about the message or the story to be replied
 data InputMessageReplyTo
@@ -12,12 +13,14 @@ data InputMessageReplyTo
     { message_id        :: Maybe Int                           -- ^ The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
     , quote             :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats
     , checklist_task_id :: Maybe Int                           -- ^ Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    , poll_option_id    :: Maybe T.Text                        -- ^ Identifier of the poll option in the message to be replied; pass an empty string if none
     }
   | InputMessageReplyToExternalMessage -- ^ Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
     { chat_id           :: Maybe Int                           -- ^ The identifier of the chat to which the message to be replied belongs
     , message_id        :: Maybe Int                           -- ^ The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     , quote             :: Maybe InputTextQuote.InputTextQuote -- ^ Quote from the message to be replied; pass null if none
     , checklist_task_id :: Maybe Int                           -- ^ Identifier of the checklist task in the message to be replied; pass 0 to reply to the whole message
+    , poll_option_id    :: Maybe T.Text                        -- ^ Identifier of the poll option in the message to be replied; pass an empty string if none
     }
   | InputMessageReplyToStory -- ^ Describes a story to be replied
     { story_poster_chat_id :: Maybe Int -- ^ The identifier of the poster of the story. Currently, stories can be replied only in the chat that posted the story; channel stories can't be replied
@@ -30,18 +33,21 @@ instance I.ShortShow InputMessageReplyTo where
     { message_id        = message_id_
     , quote             = quote_
     , checklist_task_id = checklist_task_id_
+    , poll_option_id    = poll_option_id_
     }
       = "InputMessageReplyToMessage"
         ++ I.cc
         [ "message_id"        `I.p` message_id_
         , "quote"             `I.p` quote_
         , "checklist_task_id" `I.p` checklist_task_id_
+        , "poll_option_id"    `I.p` poll_option_id_
         ]
   shortShow InputMessageReplyToExternalMessage
     { chat_id           = chat_id_
     , message_id        = message_id_
     , quote             = quote_
     , checklist_task_id = checklist_task_id_
+    , poll_option_id    = poll_option_id_
     }
       = "InputMessageReplyToExternalMessage"
         ++ I.cc
@@ -49,6 +55,7 @@ instance I.ShortShow InputMessageReplyTo where
         , "message_id"        `I.p` message_id_
         , "quote"             `I.p` quote_
         , "checklist_task_id" `I.p` checklist_task_id_
+        , "poll_option_id"    `I.p` poll_option_id_
         ]
   shortShow InputMessageReplyToStory
     { story_poster_chat_id = story_poster_chat_id_
@@ -76,10 +83,12 @@ instance AT.FromJSON InputMessageReplyTo where
         message_id_        <- o A..:?  "message_id"
         quote_             <- o A..:?  "quote"
         checklist_task_id_ <- o A..:?  "checklist_task_id"
+        poll_option_id_    <- o A..:?  "poll_option_id"
         pure $ InputMessageReplyToMessage
           { message_id        = message_id_
           , quote             = quote_
           , checklist_task_id = checklist_task_id_
+          , poll_option_id    = poll_option_id_
           }
       parseInputMessageReplyToExternalMessage :: A.Value -> AT.Parser InputMessageReplyTo
       parseInputMessageReplyToExternalMessage = A.withObject "InputMessageReplyToExternalMessage" $ \o -> do
@@ -87,11 +96,13 @@ instance AT.FromJSON InputMessageReplyTo where
         message_id_        <- o A..:?  "message_id"
         quote_             <- o A..:?  "quote"
         checklist_task_id_ <- o A..:?  "checklist_task_id"
+        poll_option_id_    <- o A..:?  "poll_option_id"
         pure $ InputMessageReplyToExternalMessage
           { chat_id           = chat_id_
           , message_id        = message_id_
           , quote             = quote_
           , checklist_task_id = checklist_task_id_
+          , poll_option_id    = poll_option_id_
           }
       parseInputMessageReplyToStory :: A.Value -> AT.Parser InputMessageReplyTo
       parseInputMessageReplyToStory = A.withObject "InputMessageReplyToStory" $ \o -> do
@@ -108,18 +119,21 @@ instance AT.ToJSON InputMessageReplyTo where
     { message_id        = message_id_
     , quote             = quote_
     , checklist_task_id = checklist_task_id_
+    , poll_option_id    = poll_option_id_
     }
       = A.object
         [ "@type"             A..= AT.String "inputMessageReplyToMessage"
         , "message_id"        A..= message_id_
         , "quote"             A..= quote_
         , "checklist_task_id" A..= checklist_task_id_
+        , "poll_option_id"    A..= poll_option_id_
         ]
   toJSON InputMessageReplyToExternalMessage
     { chat_id           = chat_id_
     , message_id        = message_id_
     , quote             = quote_
     , checklist_task_id = checklist_task_id_
+    , poll_option_id    = poll_option_id_
     }
       = A.object
         [ "@type"             A..= AT.String "inputMessageReplyToExternalMessage"
@@ -127,6 +141,7 @@ instance AT.ToJSON InputMessageReplyTo where
         , "message_id"        A..= message_id_
         , "quote"             A..= quote_
         , "checklist_task_id" A..= checklist_task_id_
+        , "poll_option_id"    A..= poll_option_id_
         ]
   toJSON InputMessageReplyToStory
     { story_poster_chat_id = story_poster_chat_id_

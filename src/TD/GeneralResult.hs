@@ -102,6 +102,7 @@ import qualified TD.Data.Error as Error
 import qualified TD.Data.FailedToAddMembers as FailedToAddMembers
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownloadedPrefixSize as FileDownloadedPrefixSize
+import qualified TD.Data.FixedText as FixedText
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.ForumTopic as ForumTopic
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
@@ -142,6 +143,7 @@ import qualified TD.Data.InlineQueryResults as InlineQueryResults
 import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.InviteGroupCallParticipantResult as InviteGroupCallParticipantResult
 import qualified TD.Data.JsonValue as JsonValue
+import qualified TD.Data.KeyboardButton as KeyboardButton
 import qualified TD.Data.LanguagePackInfo as LanguagePackInfo
 import qualified TD.Data.LanguagePackStringValue as LanguagePackStringValue
 import qualified TD.Data.LanguagePackStrings as LanguagePackStrings
@@ -189,6 +191,7 @@ import qualified TD.Data.PaymentForm as PaymentForm
 import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
 import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
+import qualified TD.Data.PollOptionProperties as PollOptionProperties
 import qualified TD.Data.PollVoters as PollVoters
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
 import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
@@ -376,6 +379,7 @@ data GeneralResult
     | FailedToAddMembers                 FailedToAddMembers.FailedToAddMembers
     | File                               File.File
     | FileDownloadedPrefixSize           FileDownloadedPrefixSize.FileDownloadedPrefixSize
+    | FixedText                          FixedText.FixedText
     | FormattedText                      FormattedText.FormattedText
     | ForumTopic                         ForumTopic.ForumTopic
     | ForumTopicInfo                     ForumTopicInfo.ForumTopicInfo
@@ -416,6 +420,7 @@ data GeneralResult
     | InternalLinkType                   InternalLinkType.InternalLinkType
     | InviteGroupCallParticipantResult   InviteGroupCallParticipantResult.InviteGroupCallParticipantResult
     | JsonValue                          JsonValue.JsonValue
+    | KeyboardButton                     KeyboardButton.KeyboardButton
     | LanguagePackInfo                   LanguagePackInfo.LanguagePackInfo
     | LanguagePackStringValue            LanguagePackStringValue.LanguagePackStringValue
     | LanguagePackStrings                LanguagePackStrings.LanguagePackStrings
@@ -463,6 +468,7 @@ data GeneralResult
     | PaymentReceipt                     PaymentReceipt.PaymentReceipt
     | PaymentResult                      PaymentResult.PaymentResult
     | PhoneNumberInfo                    PhoneNumberInfo.PhoneNumberInfo
+    | PollOptionProperties               PollOptionProperties.PollOptionProperties
     | PollVoters                         PollVoters.PollVoters
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
     | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
@@ -749,6 +755,8 @@ instance I.ShortShow GeneralResult where
     = "File" <> " (" <> I.shortShow v <> ")"
   shortShow (FileDownloadedPrefixSize v)
     = "FileDownloadedPrefixSize" <> " (" <> I.shortShow v <> ")"
+  shortShow (FixedText v)
+    = "FixedText" <> " (" <> I.shortShow v <> ")"
   shortShow (FormattedText v)
     = "FormattedText" <> " (" <> I.shortShow v <> ")"
   shortShow (ForumTopic v)
@@ -829,6 +837,8 @@ instance I.ShortShow GeneralResult where
     = "InviteGroupCallParticipantResult" <> " (" <> I.shortShow v <> ")"
   shortShow (JsonValue v)
     = "JsonValue" <> " (" <> I.shortShow v <> ")"
+  shortShow (KeyboardButton v)
+    = "KeyboardButton" <> " (" <> I.shortShow v <> ")"
   shortShow (LanguagePackInfo v)
     = "LanguagePackInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (LanguagePackStringValue v)
@@ -923,6 +933,8 @@ instance I.ShortShow GeneralResult where
     = "PaymentResult" <> " (" <> I.shortShow v <> ")"
   shortShow (PhoneNumberInfo v)
     = "PhoneNumberInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (PollOptionProperties v)
+    = "PollOptionProperties" <> " (" <> I.shortShow v <> ")"
   shortShow (PollVoters v)
     = "PollVoters" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumFeatures v)
@@ -1198,6 +1210,7 @@ instance T.FromJSON GeneralResult where
     <|> ( FailedToAddMembers                  <$> parseJSON v )
     <|> ( File                                <$> parseJSON v )
     <|> ( FileDownloadedPrefixSize            <$> parseJSON v )
+    <|> ( FixedText                           <$> parseJSON v )
     <|> ( FormattedText                       <$> parseJSON v )
     <|> ( ForumTopic                          <$> parseJSON v )
     <|> ( ForumTopicInfo                      <$> parseJSON v )
@@ -1238,6 +1251,7 @@ instance T.FromJSON GeneralResult where
     <|> ( InternalLinkType                    <$> parseJSON v )
     <|> ( InviteGroupCallParticipantResult    <$> parseJSON v )
     <|> ( JsonValue                           <$> parseJSON v )
+    <|> ( KeyboardButton                      <$> parseJSON v )
     <|> ( LanguagePackInfo                    <$> parseJSON v )
     <|> ( LanguagePackStringValue             <$> parseJSON v )
     <|> ( LanguagePackStrings                 <$> parseJSON v )
@@ -1285,6 +1299,7 @@ instance T.FromJSON GeneralResult where
     <|> ( PaymentReceipt                      <$> parseJSON v )
     <|> ( PaymentResult                       <$> parseJSON v )
     <|> ( PhoneNumberInfo                     <$> parseJSON v )
+    <|> ( PollOptionProperties                <$> parseJSON v )
     <|> ( PollVoters                          <$> parseJSON v )
     <|> ( PremiumFeatures                     <$> parseJSON v )
     <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )

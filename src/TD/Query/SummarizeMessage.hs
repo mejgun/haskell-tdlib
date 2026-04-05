@@ -13,7 +13,8 @@ data SummarizeMessage
   = SummarizeMessage
     { chat_id                    :: Maybe Int    -- ^ Identifier of the chat to which the message belongs
     , message_id                 :: Maybe Int    -- ^ Identifier of the message
-    , translate_to_language_code :: Maybe T.Text -- ^ Pass a language code to which the summary will be translated; may be empty if translation isn't needed. See translateText.to_language_code for the list of supported values
+    , translate_to_language_code :: Maybe T.Text -- ^ Pass a language code to which the summary will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
+    , tone                       :: Maybe T.Text -- ^ Tone of the summarization; see translateText.tone for the list of supported values
     }
   deriving (Eq, Show)
 
@@ -23,12 +24,14 @@ instance I.ShortShow SummarizeMessage where
       { chat_id                    = chat_id_
       , message_id                 = message_id_
       , translate_to_language_code = translate_to_language_code_
+      , tone                       = tone_
       }
         = "SummarizeMessage"
           ++ I.cc
           [ "chat_id"                    `I.p` chat_id_
           , "message_id"                 `I.p` message_id_
           , "translate_to_language_code" `I.p` translate_to_language_code_
+          , "tone"                       `I.p` tone_
           ]
 
 instance AT.ToJSON SummarizeMessage where
@@ -37,12 +40,14 @@ instance AT.ToJSON SummarizeMessage where
       { chat_id                    = chat_id_
       , message_id                 = message_id_
       , translate_to_language_code = translate_to_language_code_
+      , tone                       = tone_
       }
         = A.object
           [ "@type"                      A..= AT.String "summarizeMessage"
           , "chat_id"                    A..= chat_id_
           , "message_id"                 A..= message_id_
           , "translate_to_language_code" A..= translate_to_language_code_
+          , "tone"                       A..= tone_
           ]
 
 defaultSummarizeMessage :: SummarizeMessage
@@ -51,5 +56,6 @@ defaultSummarizeMessage =
     { chat_id                    = Nothing
     , message_id                 = Nothing
     , translate_to_language_code = Nothing
+    , tone                       = Nothing
     }
 

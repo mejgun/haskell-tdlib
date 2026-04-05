@@ -11,7 +11,7 @@ import qualified TD.Data.InputChecklistTask as InputChecklistTask
 
 data InputChecklist
   = InputChecklist -- ^ Describes a checklist to be sent
-    { title                         :: Maybe FormattedText.FormattedText             -- ^ Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities
+    { title                         :: Maybe FormattedText.FormattedText             -- ^ Title of the checklist; 1-getOption("checklist_title_length_max") characters. May contain only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities
     , tasks                         :: Maybe [InputChecklistTask.InputChecklistTask] -- ^ List of tasks in the checklist; 1-getOption("checklist_task_count_max") tasks
     , others_can_add_tasks          :: Maybe Bool                                    -- ^ True, if other users can add tasks to the list
     , others_can_mark_tasks_as_done :: Maybe Bool                                    -- ^ True, if other users can mark tasks as done or not done
