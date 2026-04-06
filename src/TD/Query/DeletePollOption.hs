@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Adds an option to a poll. Returns 'TD.Data.Ok.Ok'
+-- | Deletes an option from a poll. Returns 'TD.Data.Ok.Ok'
 data DeletePollOption
   = DeletePollOption
     { chat_id    :: Maybe Int    -- ^ Identifier of the chat to which the poll belongs
