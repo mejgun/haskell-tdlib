@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes rarity of an upgraded gift attribute
 data UpgradedGiftAttributeRarity
-  = UpgradedGiftAttributeRarityPerMille -- ^ The rarity is represented as the numeric frequence of the model
+  = UpgradedGiftAttributeRarityPerMille -- ^ The rarity is represented as the numeric frequency of the model
     { per_mille :: Maybe Int -- ^ The number of upgraded gifts that receive this attribute for each 1000 gifts upgraded; if 0, then it can be shown as "<0.1%"
     }
   | UpgradedGiftAttributeRarityUncommon -- ^ The attribute is uncommon

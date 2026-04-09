@@ -19,7 +19,7 @@ data FileType
   | FileTypeSecret -- ^ The file was sent to a secret chat (the file type is not known to the server)
   | FileTypeSecretThumbnail -- ^ The file is a thumbnail of a file from a secret chat
   | FileTypeSecure -- ^ The file is a file from Secure storage used for storing Telegram Passport files
-  | FileTypeSelfDestructingLivePhotoVideo -- ^ The file is a seld-destructing video for a live photo in a private chat
+  | FileTypeSelfDestructingLivePhotoVideo -- ^ The file is a self-destructing video for a live photo in a private chat
   | FileTypeSelfDestructingPhoto -- ^ The file is a self-destructing photo in a private chat
   | FileTypeSelfDestructingVideo -- ^ The file is a self-destructing video in a private chat
   | FileTypeSelfDestructingVideoNote -- ^ The file is a self-destructing video note in a private chat

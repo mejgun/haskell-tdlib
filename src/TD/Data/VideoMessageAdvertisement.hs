@@ -8,7 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.AdvertisementSponsor as AdvertisementSponsor
 
 data VideoMessageAdvertisement
-  = VideoMessageAdvertisement -- ^ Describes an advertisent to be shown while a video from a message is watched
+  = VideoMessageAdvertisement -- ^ Describes an advertisement to be shown while a video from a message is watched
     { unique_id            :: Maybe Int                                       -- ^ Unique identifier of this result
     , text                 :: Maybe T.Text                                    -- ^ Text of the advertisement
     , min_display_duration :: Maybe Int                                       -- ^ The minimum amount of time the advertisement must be displayed before it can be hidden by the user, in seconds

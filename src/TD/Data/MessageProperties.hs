@@ -33,7 +33,7 @@ data MessageProperties
     , can_get_message_thread                :: Maybe Bool -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
     , can_get_read_date                     :: Maybe Bool -- ^ True, if read date of the message can be received through getMessageReadDate
     , can_get_statistics                    :: Maybe Bool -- ^ True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
-    , can_get_video_advertisements          :: Maybe Bool -- ^ True, if advertisements for video of the message can be received though getVideoMessageAdvertisements
+    , can_get_video_advertisements          :: Maybe Bool -- ^ True, if advertisements for video of the message can be received through getVideoMessageAdvertisements
     , can_get_viewers                       :: Maybe Bool -- ^ True, if chat members already viewed the message can be received through getMessageViewers
     , can_mark_tasks_as_done                :: Maybe Bool -- ^ True, if tasks can be marked as done or not done in the message's checklist using markChecklistTasksAsDone if the current user has Telegram Premium subscription
     , can_recognize_speech                  :: Maybe Bool -- ^ True, if speech can be recognized for the message through recognizeSpeech

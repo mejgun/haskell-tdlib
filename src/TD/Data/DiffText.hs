@@ -10,7 +10,7 @@ import qualified TD.Data.DiffEntity as DiffEntity
 data DiffText
   = DiffText -- ^ A text with some changes highlighted
     { text     :: Maybe T.Text                  -- ^ The text
-    , entities :: Maybe [DiffEntity.DiffEntity] -- ^ Entities describing changes in the text. Entities doesn't mutually intersect with each other
+    , entities :: Maybe [DiffEntity.DiffEntity] -- ^ Entities describing changes in the text. Entities don't mutually intersect with each other
     }
   deriving (Eq, Show)
 

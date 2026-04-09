@@ -35,7 +35,7 @@ data AuthorizationState
   | AuthorizationStateWaitOtherDeviceConfirmation -- ^ The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
     { link :: Maybe T.Text -- ^ A tg:// URL for the QR code. The link will be updated frequently
     }
-  | AuthorizationStateWaitRegistration -- ^ The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
+  | AuthorizationStateWaitRegistration -- ^ The user is unregistered and needs to accept terms of service and enter their first name and last name to finish registration. Call registerUser to accept the terms of service and provide the data
     { terms_of_service :: Maybe TermsOfService.TermsOfService -- ^ Telegram terms of service
     }
   | AuthorizationStateWaitPassword -- ^ The user has been authorized, but needs to enter a 2-step verification password to start using the application. Call checkAuthenticationPassword to provide the password, or requestAuthenticationPasswordRecovery to recover the password, or deleteAccount to delete the account after a week

@@ -6,7 +6,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns promotional anumation for upgraded gifts. Returns 'TD.Data.Animation.Animation'
+-- | Returns promotional animation for upgraded gifts. Returns 'TD.Data.Animation.Animation'
 data GetUpgradedGiftsPromotionalAnimation
   = GetUpgradedGiftsPromotionalAnimation
   deriving (Eq, Show)
