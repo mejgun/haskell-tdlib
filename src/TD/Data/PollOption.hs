@@ -11,7 +11,7 @@ import qualified TD.Data.MessageSender as MessageSender
 
 data PollOption
   = PollOption -- ^ Describes one answer option of a poll
-    { _id              :: Maybe T.Text                        -- ^ Unique identifier of the option in the poll
+    { _id              :: Maybe T.Text                        -- ^ Unique identifier of the option in the poll; may be empty if yet unassigned
     , text             :: Maybe FormattedText.FormattedText   -- ^ Option text; 1-100 characters; may contain only custom emoji entities
     , media            :: Maybe MessageContent.MessageContent -- ^ Option media. Currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
     , voter_count      :: Maybe Int                           -- ^ Number of voters for this option, available only for closed or voted polls, or if the current user is the creator of the poll
