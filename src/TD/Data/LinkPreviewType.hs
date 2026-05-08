@@ -130,6 +130,9 @@ data LinkPreviewType
   | LinkPreviewTypeSupergroupBoost -- ^ The link is a link to boost a supergroup chat
     { _photo :: Maybe ChatPhoto.ChatPhoto -- ^ Photo of the chat; may be null
     }
+  | LinkPreviewTypeTextCompositionStyle -- ^ The link is a link to a text composition style
+    { custom_emoji_id :: Maybe Int -- ^ Identifier of the custom emoji corresponding to the style; 0 if none
+    }
   | LinkPreviewTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { documents :: Maybe [Document.Document]         -- ^ The list of files with theme description
     , settings  :: Maybe ThemeSettings.ThemeSettings -- ^ Settings for the cloud theme; may be null if unknown
@@ -402,6 +405,13 @@ instance I.ShortShow LinkPreviewType where
         ++ I.cc
         [ "_photo" `I.p` _photo_
         ]
+  shortShow LinkPreviewTypeTextCompositionStyle
+    { custom_emoji_id = custom_emoji_id_
+    }
+      = "LinkPreviewTypeTextCompositionStyle"
+        ++ I.cc
+        [ "custom_emoji_id" `I.p` custom_emoji_id_
+        ]
   shortShow LinkPreviewTypeTheme
     { documents = documents_
     , settings  = settings_
@@ -508,6 +518,7 @@ instance AT.FromJSON LinkPreviewType where
       "linkPreviewTypeStory"                   -> parseLinkPreviewTypeStory v
       "linkPreviewTypeStoryAlbum"              -> parseLinkPreviewTypeStoryAlbum v
       "linkPreviewTypeSupergroupBoost"         -> parseLinkPreviewTypeSupergroupBoost v
+      "linkPreviewTypeTextCompositionStyle"    -> parseLinkPreviewTypeTextCompositionStyle v
       "linkPreviewTypeTheme"                   -> parseLinkPreviewTypeTheme v
       "linkPreviewTypeUnsupported"             -> pure LinkPreviewTypeUnsupported
       "linkPreviewTypeUpgradedGift"            -> parseLinkPreviewTypeUpgradedGift v
@@ -721,6 +732,12 @@ instance AT.FromJSON LinkPreviewType where
         _photo_ <- o A..:?  "photo"
         pure $ LinkPreviewTypeSupergroupBoost
           { _photo = _photo_
+          }
+      parseLinkPreviewTypeTextCompositionStyle :: A.Value -> AT.Parser LinkPreviewType
+      parseLinkPreviewTypeTextCompositionStyle = A.withObject "LinkPreviewTypeTextCompositionStyle" $ \o -> do
+        custom_emoji_id_ <- fmap I.readInt64 <$> o A..:?  "custom_emoji_id"
+        pure $ LinkPreviewTypeTextCompositionStyle
+          { custom_emoji_id = custom_emoji_id_
           }
       parseLinkPreviewTypeTheme :: A.Value -> AT.Parser LinkPreviewType
       parseLinkPreviewTypeTheme = A.withObject "LinkPreviewTypeTheme" $ \o -> do

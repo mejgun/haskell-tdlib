@@ -13,7 +13,7 @@ data PollOption
   = PollOption -- ^ Describes one answer option of a poll
     { _id              :: Maybe T.Text                        -- ^ Unique identifier of the option in the poll; may be empty if yet unassigned
     , text             :: Maybe FormattedText.FormattedText   -- ^ Option text; 1-100 characters; may contain only custom emoji entities
-    , media            :: Maybe MessageContent.MessageContent -- ^ Option media. Currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
+    , media            :: Maybe MessageContent.MessageContent -- ^ Option media; may be null if none. If present, currently, can be only of the types messageAnimation, messageLocation, messagePhoto, messageSticker, messageVenue, or messageVideo without caption
     , voter_count      :: Maybe Int                           -- ^ Number of voters for this option, available only for closed or voted polls, or if the current user is the creator of the poll
     , vote_percentage  :: Maybe Int                           -- ^ The percentage of votes for this option; 0-100
     , recent_voter_ids :: Maybe [MessageSender.MessageSender] -- ^ Identifiers of recent voters for the option, if the poll is non-anonymous and poll results are available

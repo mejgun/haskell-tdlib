@@ -10,11 +10,11 @@ import qualified TD.Lib.Internal as I
 data ScopeNotificationSettings
   = ScopeNotificationSettings -- ^ Contains information about notification settings for several chats
     { mute_for                             :: Maybe Int  -- ^ Time left before notifications will be unmuted, in seconds
-    , sound_id                             :: Maybe Int  -- ^ Identifier of the notification sound to be played; 0 if sound is disabled
+    , sound_id                             :: Maybe Int  -- ^ Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound
     , show_preview                         :: Maybe Bool -- ^ True, if message content must be displayed in notifications
     , use_default_mute_stories             :: Maybe Bool -- ^ If true, story notifications are received only for the first 5 chats from topChatCategoryUsers regardless of the value of mute_stories
     , mute_stories                         :: Maybe Bool -- ^ True, if story notifications are disabled
-    , story_sound_id                       :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled
+    , story_sound_id                       :: Maybe Int  -- ^ Identifier of the notification sound to be played for stories; 0 if sound is disabled; pass -1 to use the app-dependent default sound
     , show_story_poster                    :: Maybe Bool -- ^ True, if the chat that posted a story must be displayed in notifications
     , disable_pinned_message_notifications :: Maybe Bool -- ^ True, if notifications for incoming pinned messages will be created as for an ordinary unread message
     , disable_mention_notifications        :: Maybe Bool -- ^ True, if notifications for messages with mentions will be created as for an ordinary unread message

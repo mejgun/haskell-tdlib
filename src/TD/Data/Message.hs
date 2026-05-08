@@ -37,6 +37,7 @@ data Message
     , is_paid_star_suggested_post :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     , is_paid_ton_suggested_post  :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     , contains_unread_mention     :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
+    , contains_unread_poll_votes  :: Maybe Bool                                            -- ^ True, if the message is a poll message with unread votes
     , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
     , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
     , forward_info                :: Maybe MessageForwardInfo.MessageForwardInfo           -- ^ Information about the initial message sender; may be null if none or unknown
@@ -51,6 +52,7 @@ data Message
     , self_destruct_in            :: Maybe Double                                          -- ^ Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     , auto_delete_in              :: Maybe Double                                          -- ^ Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     , via_bot_user_id             :: Maybe Int                                             -- ^ If non-zero, the user identifier of the inline bot through which this message was sent
+    , guest_bot_caller_id         :: Maybe MessageSender.MessageSender                     -- ^ The identifier of the user or chat which used a guest bot to send the message; may be null if none
     , sender_business_bot_user_id :: Maybe Int                                             -- ^ If non-zero, the user identifier of the business bot that sent this message
     , sender_boost_count          :: Maybe Int                                             -- ^ Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
     , sender_tag                  :: Maybe T.Text                                          -- ^ Tag of the sender of the message in the supergroup at the time the message was sent; may be empty if none or unknown. For messages sent in basic groups or supergroup administrators, the current custom title or tag must be used instead
@@ -81,6 +83,7 @@ instance I.ShortShow Message where
     , is_paid_star_suggested_post = is_paid_star_suggested_post_
     , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
     , contains_unread_mention     = contains_unread_mention_
+    , contains_unread_poll_votes  = contains_unread_poll_votes_
     , date                        = date_
     , edit_date                   = edit_date_
     , forward_info                = forward_info_
@@ -95,6 +98,7 @@ instance I.ShortShow Message where
     , self_destruct_in            = self_destruct_in_
     , auto_delete_in              = auto_delete_in_
     , via_bot_user_id             = via_bot_user_id_
+    , guest_bot_caller_id         = guest_bot_caller_id_
     , sender_business_bot_user_id = sender_business_bot_user_id_
     , sender_boost_count          = sender_boost_count_
     , sender_tag                  = sender_tag_
@@ -123,6 +127,7 @@ instance I.ShortShow Message where
         , "is_paid_star_suggested_post" `I.p` is_paid_star_suggested_post_
         , "is_paid_ton_suggested_post"  `I.p` is_paid_ton_suggested_post_
         , "contains_unread_mention"     `I.p` contains_unread_mention_
+        , "contains_unread_poll_votes"  `I.p` contains_unread_poll_votes_
         , "date"                        `I.p` date_
         , "edit_date"                   `I.p` edit_date_
         , "forward_info"                `I.p` forward_info_
@@ -137,6 +142,7 @@ instance I.ShortShow Message where
         , "self_destruct_in"            `I.p` self_destruct_in_
         , "auto_delete_in"              `I.p` auto_delete_in_
         , "via_bot_user_id"             `I.p` via_bot_user_id_
+        , "guest_bot_caller_id"         `I.p` guest_bot_caller_id_
         , "sender_business_bot_user_id" `I.p` sender_business_bot_user_id_
         , "sender_boost_count"          `I.p` sender_boost_count_
         , "sender_tag"                  `I.p` sender_tag_
@@ -175,6 +181,7 @@ instance AT.FromJSON Message where
         is_paid_star_suggested_post_ <- o A..:?                       "is_paid_star_suggested_post"
         is_paid_ton_suggested_post_  <- o A..:?                       "is_paid_ton_suggested_post"
         contains_unread_mention_     <- o A..:?                       "contains_unread_mention"
+        contains_unread_poll_votes_  <- o A..:?                       "contains_unread_poll_votes"
         date_                        <- o A..:?                       "date"
         edit_date_                   <- o A..:?                       "edit_date"
         forward_info_                <- o A..:?                       "forward_info"
@@ -189,6 +196,7 @@ instance AT.FromJSON Message where
         self_destruct_in_            <- o A..:?                       "self_destruct_in"
         auto_delete_in_              <- o A..:?                       "auto_delete_in"
         via_bot_user_id_             <- o A..:?                       "via_bot_user_id"
+        guest_bot_caller_id_         <- o A..:?                       "guest_bot_caller_id"
         sender_business_bot_user_id_ <- o A..:?                       "sender_business_bot_user_id"
         sender_boost_count_          <- o A..:?                       "sender_boost_count"
         sender_tag_                  <- o A..:?                       "sender_tag"
@@ -215,6 +223,7 @@ instance AT.FromJSON Message where
           , is_paid_star_suggested_post = is_paid_star_suggested_post_
           , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
           , contains_unread_mention     = contains_unread_mention_
+          , contains_unread_poll_votes  = contains_unread_poll_votes_
           , date                        = date_
           , edit_date                   = edit_date_
           , forward_info                = forward_info_
@@ -229,6 +238,7 @@ instance AT.FromJSON Message where
           , self_destruct_in            = self_destruct_in_
           , auto_delete_in              = auto_delete_in_
           , via_bot_user_id             = via_bot_user_id_
+          , guest_bot_caller_id         = guest_bot_caller_id_
           , sender_business_bot_user_id = sender_business_bot_user_id_
           , sender_boost_count          = sender_boost_count_
           , sender_tag                  = sender_tag_

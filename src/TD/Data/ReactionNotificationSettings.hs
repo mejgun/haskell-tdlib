@@ -13,7 +13,7 @@ data ReactionNotificationSettings
     { message_reaction_source :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of message reactions for which notifications are shown
     , story_reaction_source   :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of story reactions for which notifications are shown
     , poll_vote_source        :: Maybe ReactionNotificationSource.ReactionNotificationSource -- ^ Source of poll votes for which notifications are shown
-    , sound_id                :: Maybe Int                                                   -- ^ Identifier of the notification sound to be played; 0 if sound is disabled
+    , sound_id                :: Maybe Int                                                   -- ^ Identifier of the notification sound to be played; 0 if sound is disabled; pass -1 to use the app-dependent default sound
     , show_preview            :: Maybe Bool                                                  -- ^ True, if reaction sender and emoji must be displayed in notifications
     }
   deriving (Eq, Show)

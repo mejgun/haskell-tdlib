@@ -13,7 +13,7 @@ data PollType
   | PollTypeQuiz -- ^ A poll in quiz mode, which has predefined correct answers
     { correct_option_ids :: Maybe [Int]                         -- ^ Increasing list of 0-based identifiers of the correct answer options; empty for a yet unanswered poll
     , explanation        :: Maybe FormattedText.FormattedText   -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll
-    , explanation_media  :: Maybe MessageContent.MessageContent -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. Currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+    , explanation_media  :: Maybe MessageContent.MessageContent -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
     }
   deriving (Eq, Show)
 

@@ -16,8 +16,8 @@ import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Invoice as Invoice
-import qualified TD.Data.InputPollOption as InputPollOption
-import qualified TD.Data.InputPollType as InputPollType
+import {-# SOURCE #-} qualified TD.Data.InputPollOption as InputPollOption
+import {-# SOURCE #-} qualified TD.Data.InputPollType as InputPollType
 import qualified TD.Data.InputChecklist as InputChecklist
 import qualified TD.Data.MessageCopyOptions as MessageCopyOptions
 
@@ -145,11 +145,14 @@ data InputMessageContent
     }
   | InputMessagePoll -- ^ A message with a poll. Polls can't be sent to secret chats and channel direct messages chats. Polls can be sent to a private chat only if the chat is a chat with a bot or the Saved Messages chat
     { question                  :: Maybe FormattedText.FormattedText       -- ^ Poll question; 1-255 characters (up to 300 characters for bots). Only custom emoji entities are allowed to be added and only by Premium users
-    , options                   :: Maybe [InputPollOption.InputPollOption] -- ^ List of poll answer options; 2-getOption("poll_answer_count_max") options
+    , options                   :: Maybe [InputPollOption.InputPollOption] -- ^ List of poll answer options; 1-getOption("poll_answer_count_max") options
     , _description              :: Maybe FormattedText.FormattedText       -- ^ Poll description; pass null to use an empty description; 0-getOption("message_caption_length_max") characters
+    , media                     :: Maybe InputMessageContent               -- ^ Media attached to the poll; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto, inputMessageVenue, or inputMessageVideo without caption
     , is_anonymous              :: Maybe Bool                              -- ^ True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
     , allows_multiple_answers   :: Maybe Bool                              -- ^ True, if multiple answer options can be chosen simultaneously
     , allows_revoting           :: Maybe Bool                              -- ^ True, if the poll can be answered multiple times
+    , members_only              :: Maybe Bool                              -- ^ True, if only the users that are members of the chat for more than a day will be able to vote; for channel chats only
+    , country_codes             :: Maybe [T.Text]                          -- ^ The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be able to vote; for channel chats only. If empty, then all users can participate in the poll. There can be up to getOption("poll_country_count_max") chosen countries
     , shuffle_options           :: Maybe Bool                              -- ^ True, if poll options must be shown in a fixed random order
     , hide_results_until_closes :: Maybe Bool                              -- ^ True, if the poll results will appear only after the poll closes
     , _type                     :: Maybe InputPollType.InputPollType       -- ^ Type of the poll
@@ -440,9 +443,12 @@ instance I.ShortShow InputMessageContent where
     { question                  = question_
     , options                   = options_
     , _description              = _description_
+    , media                     = media_
     , is_anonymous              = is_anonymous_
     , allows_multiple_answers   = allows_multiple_answers_
     , allows_revoting           = allows_revoting_
+    , members_only              = members_only_
+    , country_codes             = country_codes_
     , shuffle_options           = shuffle_options_
     , hide_results_until_closes = hide_results_until_closes_
     , _type                     = _type_
@@ -455,9 +461,12 @@ instance I.ShortShow InputMessageContent where
         [ "question"                  `I.p` question_
         , "options"                   `I.p` options_
         , "_description"              `I.p` _description_
+        , "media"                     `I.p` media_
         , "is_anonymous"              `I.p` is_anonymous_
         , "allows_multiple_answers"   `I.p` allows_multiple_answers_
         , "allows_revoting"           `I.p` allows_revoting_
+        , "members_only"              `I.p` members_only_
+        , "country_codes"             `I.p` country_codes_
         , "shuffle_options"           `I.p` shuffle_options_
         , "hide_results_until_closes" `I.p` hide_results_until_closes_
         , "_type"                     `I.p` _type_
@@ -784,9 +793,12 @@ instance AT.FromJSON InputMessageContent where
         question_                  <- o A..:?  "question"
         options_                   <- o A..:?  "options"
         _description_              <- o A..:?  "description"
+        media_                     <- o A..:?  "media"
         is_anonymous_              <- o A..:?  "is_anonymous"
         allows_multiple_answers_   <- o A..:?  "allows_multiple_answers"
         allows_revoting_           <- o A..:?  "allows_revoting"
+        members_only_              <- o A..:?  "members_only"
+        country_codes_             <- o A..:?  "country_codes"
         shuffle_options_           <- o A..:?  "shuffle_options"
         hide_results_until_closes_ <- o A..:?  "hide_results_until_closes"
         _type_                     <- o A..:?  "type"
@@ -797,9 +809,12 @@ instance AT.FromJSON InputMessageContent where
           { question                  = question_
           , options                   = options_
           , _description              = _description_
+          , media                     = media_
           , is_anonymous              = is_anonymous_
           , allows_multiple_answers   = allows_multiple_answers_
           , allows_revoting           = allows_revoting_
+          , members_only              = members_only_
+          , country_codes             = country_codes_
           , shuffle_options           = shuffle_options_
           , hide_results_until_closes = hide_results_until_closes_
           , _type                     = _type_
@@ -1110,9 +1125,12 @@ instance AT.ToJSON InputMessageContent where
     { question                  = question_
     , options                   = options_
     , _description              = _description_
+    , media                     = media_
     , is_anonymous              = is_anonymous_
     , allows_multiple_answers   = allows_multiple_answers_
     , allows_revoting           = allows_revoting_
+    , members_only              = members_only_
+    , country_codes             = country_codes_
     , shuffle_options           = shuffle_options_
     , hide_results_until_closes = hide_results_until_closes_
     , _type                     = _type_
@@ -1125,9 +1143,12 @@ instance AT.ToJSON InputMessageContent where
         , "question"                  A..= question_
         , "options"                   A..= options_
         , "description"               A..= _description_
+        , "media"                     A..= media_
         , "is_anonymous"              A..= is_anonymous_
         , "allows_multiple_answers"   A..= allows_multiple_answers_
         , "allows_revoting"           A..= allows_revoting_
+        , "members_only"              A..= members_only_
+        , "country_codes"             A..= country_codes_
         , "shuffle_options"           A..= shuffle_options_
         , "hide_results_until_closes" A..= hide_results_until_closes_
         , "type"                      A..= _type_

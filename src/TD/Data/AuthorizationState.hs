@@ -16,6 +16,7 @@ data AuthorizationState
   | AuthorizationStateWaitPhoneNumber -- ^ TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication, getAuthenticationPasskeyParameters, or checkAuthenticationBotToken for other authentication options
   | AuthorizationStateWaitPremiumPurchase -- ^ The user must buy Telegram Premium as an in-store purchase to log in. Call checkAuthenticationPremiumPurchase and then setAuthenticationPremiumPurchaseTransaction
     { store_product_id      :: Maybe T.Text -- ^ Identifier of the store product that must be bought
+    , premium_day_count     :: Maybe Int    -- ^ Duration of the Telegram Premium subscription after the purchase; may be 0 if Telegram Premium subscription will not be granted
     , support_email_address :: Maybe T.Text -- ^ Email address to use for support if the user has issues with Telegram Premium purchase
     , support_email_subject :: Maybe T.Text -- ^ Subject for the email sent to the support email address
     }
@@ -57,12 +58,14 @@ instance I.ShortShow AuthorizationState where
       = "AuthorizationStateWaitPhoneNumber"
   shortShow AuthorizationStateWaitPremiumPurchase
     { store_product_id      = store_product_id_
+    , premium_day_count     = premium_day_count_
     , support_email_address = support_email_address_
     , support_email_subject = support_email_subject_
     }
       = "AuthorizationStateWaitPremiumPurchase"
         ++ I.cc
         [ "store_product_id"      `I.p` store_product_id_
+        , "premium_day_count"     `I.p` premium_day_count_
         , "support_email_address" `I.p` support_email_address_
         , "support_email_subject" `I.p` support_email_subject_
         ]
@@ -155,10 +158,12 @@ instance AT.FromJSON AuthorizationState where
       parseAuthorizationStateWaitPremiumPurchase :: A.Value -> AT.Parser AuthorizationState
       parseAuthorizationStateWaitPremiumPurchase = A.withObject "AuthorizationStateWaitPremiumPurchase" $ \o -> do
         store_product_id_      <- o A..:?  "store_product_id"
+        premium_day_count_     <- o A..:?  "premium_day_count"
         support_email_address_ <- o A..:?  "support_email_address"
         support_email_subject_ <- o A..:?  "support_email_subject"
         pure $ AuthorizationStateWaitPremiumPurchase
           { store_product_id      = store_product_id_
+          , premium_day_count     = premium_day_count_
           , support_email_address = support_email_address_
           , support_email_subject = support_email_subject_
           }

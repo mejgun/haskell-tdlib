@@ -23,6 +23,7 @@ data MessageProperties
     , can_be_replied_in_another_chat        :: Maybe Bool -- ^ True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
     , can_be_saved                          :: Maybe Bool -- ^ True, if content of the message can be saved locally
     , can_be_shared_in_story                :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage
+    , can_delete_reactions                  :: Maybe Bool -- ^ True, if the user can delete reactions of other users in the message using the method deleteMessageReactionsFromSender
     , can_edit_media                        :: Maybe Bool -- ^ True, if the message can be edited using the method editMessageMedia
     , can_edit_scheduling_state             :: Maybe Bool -- ^ True, if scheduling state of the message can be edited
     , can_edit_suggested_post_info          :: Maybe Bool -- ^ True, if another price or post send time can be suggested using addOffer
@@ -31,6 +32,7 @@ data MessageProperties
     , can_get_link                          :: Maybe Bool -- ^ True, if a link can be generated for the message using getMessageLink
     , can_get_media_timestamp_links         :: Maybe Bool -- ^ True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
     , can_get_message_thread                :: Maybe Bool -- ^ True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
+    , can_get_poll_vote_statistics          :: Maybe Bool -- ^ True, if the message is a poll and vote statistics are available through getPollVoteStatistics
     , can_get_read_date                     :: Maybe Bool -- ^ True, if read date of the message can be received through getMessageReadDate
     , can_get_statistics                    :: Maybe Bool -- ^ True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
     , can_get_video_advertisements          :: Maybe Bool -- ^ True, if advertisements for video of the message can be received through getVideoMessageAdvertisements
@@ -65,6 +67,7 @@ instance I.ShortShow MessageProperties where
     , can_be_replied_in_another_chat        = can_be_replied_in_another_chat_
     , can_be_saved                          = can_be_saved_
     , can_be_shared_in_story                = can_be_shared_in_story_
+    , can_delete_reactions                  = can_delete_reactions_
     , can_edit_media                        = can_edit_media_
     , can_edit_scheduling_state             = can_edit_scheduling_state_
     , can_edit_suggested_post_info          = can_edit_suggested_post_info_
@@ -73,6 +76,7 @@ instance I.ShortShow MessageProperties where
     , can_get_link                          = can_get_link_
     , can_get_media_timestamp_links         = can_get_media_timestamp_links_
     , can_get_message_thread                = can_get_message_thread_
+    , can_get_poll_vote_statistics          = can_get_poll_vote_statistics_
     , can_get_read_date                     = can_get_read_date_
     , can_get_statistics                    = can_get_statistics_
     , can_get_video_advertisements          = can_get_video_advertisements_
@@ -105,6 +109,7 @@ instance I.ShortShow MessageProperties where
         , "can_be_replied_in_another_chat"        `I.p` can_be_replied_in_another_chat_
         , "can_be_saved"                          `I.p` can_be_saved_
         , "can_be_shared_in_story"                `I.p` can_be_shared_in_story_
+        , "can_delete_reactions"                  `I.p` can_delete_reactions_
         , "can_edit_media"                        `I.p` can_edit_media_
         , "can_edit_scheduling_state"             `I.p` can_edit_scheduling_state_
         , "can_edit_suggested_post_info"          `I.p` can_edit_suggested_post_info_
@@ -113,6 +118,7 @@ instance I.ShortShow MessageProperties where
         , "can_get_link"                          `I.p` can_get_link_
         , "can_get_media_timestamp_links"         `I.p` can_get_media_timestamp_links_
         , "can_get_message_thread"                `I.p` can_get_message_thread_
+        , "can_get_poll_vote_statistics"          `I.p` can_get_poll_vote_statistics_
         , "can_get_read_date"                     `I.p` can_get_read_date_
         , "can_get_statistics"                    `I.p` can_get_statistics_
         , "can_get_video_advertisements"          `I.p` can_get_video_advertisements_
@@ -155,6 +161,7 @@ instance AT.FromJSON MessageProperties where
         can_be_replied_in_another_chat_        <- o A..:?  "can_be_replied_in_another_chat"
         can_be_saved_                          <- o A..:?  "can_be_saved"
         can_be_shared_in_story_                <- o A..:?  "can_be_shared_in_story"
+        can_delete_reactions_                  <- o A..:?  "can_delete_reactions"
         can_edit_media_                        <- o A..:?  "can_edit_media"
         can_edit_scheduling_state_             <- o A..:?  "can_edit_scheduling_state"
         can_edit_suggested_post_info_          <- o A..:?  "can_edit_suggested_post_info"
@@ -163,6 +170,7 @@ instance AT.FromJSON MessageProperties where
         can_get_link_                          <- o A..:?  "can_get_link"
         can_get_media_timestamp_links_         <- o A..:?  "can_get_media_timestamp_links"
         can_get_message_thread_                <- o A..:?  "can_get_message_thread"
+        can_get_poll_vote_statistics_          <- o A..:?  "can_get_poll_vote_statistics"
         can_get_read_date_                     <- o A..:?  "can_get_read_date"
         can_get_statistics_                    <- o A..:?  "can_get_statistics"
         can_get_video_advertisements_          <- o A..:?  "can_get_video_advertisements"
@@ -193,6 +201,7 @@ instance AT.FromJSON MessageProperties where
           , can_be_replied_in_another_chat        = can_be_replied_in_another_chat_
           , can_be_saved                          = can_be_saved_
           , can_be_shared_in_story                = can_be_shared_in_story_
+          , can_delete_reactions                  = can_delete_reactions_
           , can_edit_media                        = can_edit_media_
           , can_edit_scheduling_state             = can_edit_scheduling_state_
           , can_edit_suggested_post_info          = can_edit_suggested_post_info_
@@ -201,6 +210,7 @@ instance AT.FromJSON MessageProperties where
           , can_get_link                          = can_get_link_
           , can_get_media_timestamp_links         = can_get_media_timestamp_links_
           , can_get_message_thread                = can_get_message_thread_
+          , can_get_poll_vote_statistics          = can_get_poll_vote_statistics_
           , can_get_read_date                     = can_get_read_date_
           , can_get_statistics                    = can_get_statistics_
           , can_get_video_advertisements          = can_get_video_advertisements_

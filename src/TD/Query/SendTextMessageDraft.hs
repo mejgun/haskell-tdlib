@@ -14,7 +14,7 @@ data SendTextMessageDraft
     { chat_id        :: Maybe Int                         -- ^ Chat identifier
     , forum_topic_id :: Maybe Int                         -- ^ The forum topic identifier in which the message will be sent; pass 0 if none
     , draft_id       :: Maybe Int                         -- ^ Unique identifier of the draft
-    , text           :: Maybe FormattedText.FormattedText -- ^ Draft text of the message
+    , text           :: Maybe FormattedText.FormattedText -- ^ Draft text of the message; pass null to show a "Thinking..." placeholder
     }
   deriving (Eq, Show)
 

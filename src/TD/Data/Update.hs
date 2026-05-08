@@ -169,7 +169,13 @@ data Update
     { chat_id               :: Maybe Int                             -- ^ Chat identifier
     , message_id            :: Maybe Int                             -- ^ Message identifier
     , unread_reactions      :: Maybe [UnreadReaction.UnreadReaction] -- ^ The new list of unread reactions
-    , unread_reaction_count :: Maybe Int                             -- ^ The new number of messages with unread reactions left in the chat
+    , unread_reaction_count :: Maybe Int                             -- ^ The new number of messages with unread reactions in the chat
+    }
+  | UpdateMessageContainsUnreadPollVotes -- ^ Unread votes were added or removed from a poll message
+    { chat_id                    :: Maybe Int  -- ^ Chat identifier
+    , message_id                 :: Maybe Int  -- ^ Message identifier
+    , contains_unread_poll_votes :: Maybe Bool -- ^ True, if the message is a poll message with unread votes
+    , unread_poll_vote_count     :: Maybe Int  -- ^ The new number of messages with unread poll votes in the chat
     }
   | UpdateMessageFactCheck -- ^ A fact-check added to a message was changed
     { chat_id    :: Maybe Int                 -- ^ Chat identifier
@@ -786,6 +792,11 @@ data Update
     , result_id         :: Maybe T.Text            -- ^ Identifier of the chosen result
     , inline_message_id :: Maybe T.Text            -- ^ Identifier of the sent inline message, if known
     }
+  | UpdateNewGuestQuery -- ^ A new incoming guest query; for bots only
+    { _id                :: Maybe Int               -- ^ Unique query identifier
+    , message            :: Maybe Message.Message   -- ^ The message with the query
+    , reference_messages :: Maybe [Message.Message] -- ^ The list of reference messages
+    }
   | UpdateNewCallbackQuery -- ^ A new incoming callback query; for bots only
     { _id            :: Maybe Int                                       -- ^ Unique query identifier
     , sender_user_id :: Maybe Int                                       -- ^ Identifier of the user who sent the query
@@ -1007,6 +1018,19 @@ instance I.ShortShow Update where
         , "message_id"            `I.p` message_id_
         , "unread_reactions"      `I.p` unread_reactions_
         , "unread_reaction_count" `I.p` unread_reaction_count_
+        ]
+  shortShow UpdateMessageContainsUnreadPollVotes
+    { chat_id                    = chat_id_
+    , message_id                 = message_id_
+    , contains_unread_poll_votes = contains_unread_poll_votes_
+    , unread_poll_vote_count     = unread_poll_vote_count_
+    }
+      = "UpdateMessageContainsUnreadPollVotes"
+        ++ I.cc
+        [ "chat_id"                    `I.p` chat_id_
+        , "message_id"                 `I.p` message_id_
+        , "contains_unread_poll_votes" `I.p` contains_unread_poll_votes_
+        , "unread_poll_vote_count"     `I.p` unread_poll_vote_count_
         ]
   shortShow UpdateMessageFactCheck
     { chat_id    = chat_id_
@@ -2388,6 +2412,17 @@ instance I.ShortShow Update where
         , "result_id"         `I.p` result_id_
         , "inline_message_id" `I.p` inline_message_id_
         ]
+  shortShow UpdateNewGuestQuery
+    { _id                = _id_
+    , message            = message_
+    , reference_messages = reference_messages_
+    }
+      = "UpdateNewGuestQuery"
+        ++ I.cc
+        [ "_id"                `I.p` _id_
+        , "message"            `I.p` message_
+        , "reference_messages" `I.p` reference_messages_
+        ]
   shortShow UpdateNewCallbackQuery
     { _id            = _id_
     , sender_user_id = sender_user_id_
@@ -2616,6 +2651,7 @@ instance AT.FromJSON Update where
       "updateMessageContentOpened"                     -> parseUpdateMessageContentOpened v
       "updateMessageMentionRead"                       -> parseUpdateMessageMentionRead v
       "updateMessageUnreadReactions"                   -> parseUpdateMessageUnreadReactions v
+      "updateMessageContainsUnreadPollVotes"           -> parseUpdateMessageContainsUnreadPollVotes v
       "updateMessageFactCheck"                         -> parseUpdateMessageFactCheck v
       "updateMessageSuggestedPostInfo"                 -> parseUpdateMessageSuggestedPostInfo v
       "updateMessageLiveLocationViewed"                -> parseUpdateMessageLiveLocationViewed v
@@ -2766,6 +2802,7 @@ instance AT.FromJSON Update where
       "updateBusinessMessagesDeleted"                  -> parseUpdateBusinessMessagesDeleted v
       "updateNewInlineQuery"                           -> parseUpdateNewInlineQuery v
       "updateNewChosenInlineResult"                    -> parseUpdateNewChosenInlineResult v
+      "updateNewGuestQuery"                            -> parseUpdateNewGuestQuery v
       "updateNewCallbackQuery"                         -> parseUpdateNewCallbackQuery v
       "updateNewInlineCallbackQuery"                   -> parseUpdateNewInlineCallbackQuery v
       "updateNewBusinessCallbackQuery"                 -> parseUpdateNewBusinessCallbackQuery v
@@ -2894,6 +2931,18 @@ instance AT.FromJSON Update where
           , message_id            = message_id_
           , unread_reactions      = unread_reactions_
           , unread_reaction_count = unread_reaction_count_
+          }
+      parseUpdateMessageContainsUnreadPollVotes :: A.Value -> AT.Parser Update
+      parseUpdateMessageContainsUnreadPollVotes = A.withObject "UpdateMessageContainsUnreadPollVotes" $ \o -> do
+        chat_id_                    <- o A..:?  "chat_id"
+        message_id_                 <- o A..:?  "message_id"
+        contains_unread_poll_votes_ <- o A..:?  "contains_unread_poll_votes"
+        unread_poll_vote_count_     <- o A..:?  "unread_poll_vote_count"
+        pure $ UpdateMessageContainsUnreadPollVotes
+          { chat_id                    = chat_id_
+          , message_id                 = message_id_
+          , contains_unread_poll_votes = contains_unread_poll_votes_
+          , unread_poll_vote_count     = unread_poll_vote_count_
           }
       parseUpdateMessageFactCheck :: A.Value -> AT.Parser Update
       parseUpdateMessageFactCheck = A.withObject "UpdateMessageFactCheck" $ \o -> do
@@ -4124,6 +4173,16 @@ instance AT.FromJSON Update where
           , query             = query_
           , result_id         = result_id_
           , inline_message_id = inline_message_id_
+          }
+      parseUpdateNewGuestQuery :: A.Value -> AT.Parser Update
+      parseUpdateNewGuestQuery = A.withObject "UpdateNewGuestQuery" $ \o -> do
+        _id_                <- fmap I.readInt64 <$> o A..:?  "id"
+        message_            <- o A..:?                       "message"
+        reference_messages_ <- o A..:?                       "reference_messages"
+        pure $ UpdateNewGuestQuery
+          { _id                = _id_
+          , message            = message_
+          , reference_messages = reference_messages_
           }
       parseUpdateNewCallbackQuery :: A.Value -> AT.Parser Update
       parseUpdateNewCallbackQuery = A.withObject "UpdateNewCallbackQuery" $ \o -> do

@@ -25,6 +25,7 @@ import qualified TD.Data.Backgrounds as Backgrounds
 import qualified TD.Data.BankCardInfo as BankCardInfo
 import qualified TD.Data.BasicGroup as BasicGroup
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
+import qualified TD.Data.BotAccessSettings as BotAccessSettings
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotMediaPreview as BotMediaPreview
 import qualified TD.Data.BotMediaPreviewInfo as BotMediaPreviewInfo
@@ -139,6 +140,7 @@ import qualified TD.Data.GroupCallStreams as GroupCallStreams
 import qualified TD.Data.Hashtags as Hashtags
 import qualified TD.Data.HttpUrl as HttpUrl
 import qualified TD.Data.ImportedContacts as ImportedContacts
+import qualified TD.Data.InlineMessageId as InlineMessageId
 import qualified TD.Data.InlineQueryResults as InlineQueryResults
 import qualified TD.Data.InternalLinkType as InternalLinkType
 import qualified TD.Data.InviteGroupCallParticipantResult as InviteGroupCallParticipantResult
@@ -192,6 +194,7 @@ import qualified TD.Data.PaymentReceipt as PaymentReceipt
 import qualified TD.Data.PaymentResult as PaymentResult
 import qualified TD.Data.PhoneNumberInfo as PhoneNumberInfo
 import qualified TD.Data.PollOptionProperties as PollOptionProperties
+import qualified TD.Data.PollVoteStatistics as PollVoteStatistics
 import qualified TD.Data.PollVoters as PollVoters
 import qualified TD.Data.PremiumFeatures as PremiumFeatures
 import qualified TD.Data.PremiumGiftCodeInfo as PremiumGiftCodeInfo
@@ -220,7 +223,6 @@ import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
 import qualified TD.Data.Seconds as Seconds
 import qualified TD.Data.SecretChat as SecretChat
-import qualified TD.Data.SentWebAppMessage as SentWebAppMessage
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
 import qualified TD.Data.SponsoredChats as SponsoredChats
@@ -259,6 +261,8 @@ import qualified TD.Data.TestVectorIntObject as TestVectorIntObject
 import qualified TD.Data.TestVectorString as TestVectorString
 import qualified TD.Data.TestVectorStringObject as TestVectorStringObject
 import qualified TD.Data.Text as Text
+import qualified TD.Data.TextCompositionStyle as TextCompositionStyle
+import qualified TD.Data.TextCompositionStyleExample as TextCompositionStyleExample
 import qualified TD.Data.TextEntities as TextEntities
 import qualified TD.Data.TimeZones as TimeZones
 import qualified TD.Data.TonRevenueStatistics as TonRevenueStatistics
@@ -302,6 +306,7 @@ data GeneralResult
     | BankCardInfo                       BankCardInfo.BankCardInfo
     | BasicGroup                         BasicGroup.BasicGroup
     | BasicGroupFullInfo                 BasicGroupFullInfo.BasicGroupFullInfo
+    | BotAccessSettings                  BotAccessSettings.BotAccessSettings
     | BotCommands                        BotCommands.BotCommands
     | BotMediaPreview                    BotMediaPreview.BotMediaPreview
     | BotMediaPreviewInfo                BotMediaPreviewInfo.BotMediaPreviewInfo
@@ -416,6 +421,7 @@ data GeneralResult
     | Hashtags                           Hashtags.Hashtags
     | HttpUrl                            HttpUrl.HttpUrl
     | ImportedContacts                   ImportedContacts.ImportedContacts
+    | InlineMessageId                    InlineMessageId.InlineMessageId
     | InlineQueryResults                 InlineQueryResults.InlineQueryResults
     | InternalLinkType                   InternalLinkType.InternalLinkType
     | InviteGroupCallParticipantResult   InviteGroupCallParticipantResult.InviteGroupCallParticipantResult
@@ -469,6 +475,7 @@ data GeneralResult
     | PaymentResult                      PaymentResult.PaymentResult
     | PhoneNumberInfo                    PhoneNumberInfo.PhoneNumberInfo
     | PollOptionProperties               PollOptionProperties.PollOptionProperties
+    | PollVoteStatistics                 PollVoteStatistics.PollVoteStatistics
     | PollVoters                         PollVoters.PollVoters
     | PremiumFeatures                    PremiumFeatures.PremiumFeatures
     | PremiumGiftCodeInfo                PremiumGiftCodeInfo.PremiumGiftCodeInfo
@@ -497,7 +504,6 @@ data GeneralResult
     | ScopeNotificationSettings          ScopeNotificationSettings.ScopeNotificationSettings
     | Seconds                            Seconds.Seconds
     | SecretChat                         SecretChat.SecretChat
-    | SentWebAppMessage                  SentWebAppMessage.SentWebAppMessage
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
     | SponsoredChats                     SponsoredChats.SponsoredChats
@@ -536,6 +542,8 @@ data GeneralResult
     | TestVectorString                   TestVectorString.TestVectorString
     | TestVectorStringObject             TestVectorStringObject.TestVectorStringObject
     | Text                               Text.Text
+    | TextCompositionStyle               TextCompositionStyle.TextCompositionStyle
+    | TextCompositionStyleExample        TextCompositionStyleExample.TextCompositionStyleExample
     | TextEntities                       TextEntities.TextEntities
     | TimeZones                          TimeZones.TimeZones
     | TonRevenueStatistics               TonRevenueStatistics.TonRevenueStatistics
@@ -601,6 +609,8 @@ instance I.ShortShow GeneralResult where
     = "BasicGroup" <> " (" <> I.shortShow v <> ")"
   shortShow (BasicGroupFullInfo v)
     = "BasicGroupFullInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (BotAccessSettings v)
+    = "BotAccessSettings" <> " (" <> I.shortShow v <> ")"
   shortShow (BotCommands v)
     = "BotCommands" <> " (" <> I.shortShow v <> ")"
   shortShow (BotMediaPreview v)
@@ -829,6 +839,8 @@ instance I.ShortShow GeneralResult where
     = "HttpUrl" <> " (" <> I.shortShow v <> ")"
   shortShow (ImportedContacts v)
     = "ImportedContacts" <> " (" <> I.shortShow v <> ")"
+  shortShow (InlineMessageId v)
+    = "InlineMessageId" <> " (" <> I.shortShow v <> ")"
   shortShow (InlineQueryResults v)
     = "InlineQueryResults" <> " (" <> I.shortShow v <> ")"
   shortShow (InternalLinkType v)
@@ -935,6 +947,8 @@ instance I.ShortShow GeneralResult where
     = "PhoneNumberInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (PollOptionProperties v)
     = "PollOptionProperties" <> " (" <> I.shortShow v <> ")"
+  shortShow (PollVoteStatistics v)
+    = "PollVoteStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (PollVoters v)
     = "PollVoters" <> " (" <> I.shortShow v <> ")"
   shortShow (PremiumFeatures v)
@@ -991,8 +1005,6 @@ instance I.ShortShow GeneralResult where
     = "Seconds" <> " (" <> I.shortShow v <> ")"
   shortShow (SecretChat v)
     = "SecretChat" <> " (" <> I.shortShow v <> ")"
-  shortShow (SentWebAppMessage v)
-    = "SentWebAppMessage" <> " (" <> I.shortShow v <> ")"
   shortShow (Session v)
     = "Session" <> " (" <> I.shortShow v <> ")"
   shortShow (Sessions v)
@@ -1069,6 +1081,10 @@ instance I.ShortShow GeneralResult where
     = "TestVectorStringObject" <> " (" <> I.shortShow v <> ")"
   shortShow (Text v)
     = "Text" <> " (" <> I.shortShow v <> ")"
+  shortShow (TextCompositionStyle v)
+    = "TextCompositionStyle" <> " (" <> I.shortShow v <> ")"
+  shortShow (TextCompositionStyleExample v)
+    = "TextCompositionStyleExample" <> " (" <> I.shortShow v <> ")"
   shortShow (TextEntities v)
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
@@ -1133,6 +1149,7 @@ instance T.FromJSON GeneralResult where
     <|> ( BankCardInfo                        <$> parseJSON v )
     <|> ( BasicGroup                          <$> parseJSON v )
     <|> ( BasicGroupFullInfo                  <$> parseJSON v )
+    <|> ( BotAccessSettings                   <$> parseJSON v )
     <|> ( BotCommands                         <$> parseJSON v )
     <|> ( BotMediaPreview                     <$> parseJSON v )
     <|> ( BotMediaPreviewInfo                 <$> parseJSON v )
@@ -1247,6 +1264,7 @@ instance T.FromJSON GeneralResult where
     <|> ( Hashtags                            <$> parseJSON v )
     <|> ( HttpUrl                             <$> parseJSON v )
     <|> ( ImportedContacts                    <$> parseJSON v )
+    <|> ( InlineMessageId                     <$> parseJSON v )
     <|> ( InlineQueryResults                  <$> parseJSON v )
     <|> ( InternalLinkType                    <$> parseJSON v )
     <|> ( InviteGroupCallParticipantResult    <$> parseJSON v )
@@ -1300,6 +1318,7 @@ instance T.FromJSON GeneralResult where
     <|> ( PaymentResult                       <$> parseJSON v )
     <|> ( PhoneNumberInfo                     <$> parseJSON v )
     <|> ( PollOptionProperties                <$> parseJSON v )
+    <|> ( PollVoteStatistics                  <$> parseJSON v )
     <|> ( PollVoters                          <$> parseJSON v )
     <|> ( PremiumFeatures                     <$> parseJSON v )
     <|> ( PremiumGiftCodeInfo                 <$> parseJSON v )
@@ -1328,7 +1347,6 @@ instance T.FromJSON GeneralResult where
     <|> ( ScopeNotificationSettings           <$> parseJSON v )
     <|> ( Seconds                             <$> parseJSON v )
     <|> ( SecretChat                          <$> parseJSON v )
-    <|> ( SentWebAppMessage                   <$> parseJSON v )
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
     <|> ( SponsoredChats                      <$> parseJSON v )
@@ -1367,6 +1385,8 @@ instance T.FromJSON GeneralResult where
     <|> ( TestVectorString                    <$> parseJSON v )
     <|> ( TestVectorStringObject              <$> parseJSON v )
     <|> ( Text                                <$> parseJSON v )
+    <|> ( TextCompositionStyle                <$> parseJSON v )
+    <|> ( TextCompositionStyleExample         <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
     <|> ( TonRevenueStatistics                <$> parseJSON v )

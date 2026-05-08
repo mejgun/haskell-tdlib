@@ -12,6 +12,7 @@ data TopChatCategory
   | TopChatCategoryGroups -- ^ A category containing frequently used basic groups and supergroups
   | TopChatCategoryChannels -- ^ A category containing frequently used channels
   | TopChatCategoryInlineBots -- ^ A category containing frequently used chats with inline bots sorted by their usage in inline mode
+  | TopChatCategoryGuestBots -- ^ A category containing frequently used chats with bots, which were used as guest bots
   | TopChatCategoryWebAppBots -- ^ A category containing frequently used chats with bots, which Web Apps were opened
   | TopChatCategoryCalls -- ^ A category containing frequently used chats used for calls
   | TopChatCategoryForwardChats -- ^ A category containing frequently used chats used to forward messages
@@ -28,6 +29,8 @@ instance I.ShortShow TopChatCategory where
       = "TopChatCategoryChannels"
   shortShow TopChatCategoryInlineBots
       = "TopChatCategoryInlineBots"
+  shortShow TopChatCategoryGuestBots
+      = "TopChatCategoryGuestBots"
   shortShow TopChatCategoryWebAppBots
       = "TopChatCategoryWebAppBots"
   shortShow TopChatCategoryCalls
@@ -45,6 +48,7 @@ instance AT.FromJSON TopChatCategory where
       "topChatCategoryGroups"       -> pure TopChatCategoryGroups
       "topChatCategoryChannels"     -> pure TopChatCategoryChannels
       "topChatCategoryInlineBots"   -> pure TopChatCategoryInlineBots
+      "topChatCategoryGuestBots"    -> pure TopChatCategoryGuestBots
       "topChatCategoryWebAppBots"   -> pure TopChatCategoryWebAppBots
       "topChatCategoryCalls"        -> pure TopChatCategoryCalls
       "topChatCategoryForwardChats" -> pure TopChatCategoryForwardChats
@@ -72,6 +76,10 @@ instance AT.ToJSON TopChatCategory where
   toJSON TopChatCategoryInlineBots
       = A.object
         [ "@type" A..= AT.String "topChatCategoryInlineBots"
+        ]
+  toJSON TopChatCategoryGuestBots
+      = A.object
+        [ "@type" A..= AT.String "topChatCategoryGuestBots"
         ]
   toJSON TopChatCategoryWebAppBots
       = A.object

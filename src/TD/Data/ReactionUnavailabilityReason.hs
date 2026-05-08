@@ -9,6 +9,7 @@ import qualified TD.Lib.Internal as I
 data ReactionUnavailabilityReason
   = ReactionUnavailabilityReasonAnonymousAdministrator -- ^ The user is an anonymous administrator in the supergroup, but isn't a creator of it, so they can't vote on behalf of the supergroup
   | ReactionUnavailabilityReasonGuest -- ^ The user isn't a member of the supergroup and can't send messages and reactions there without joining
+  | ReactionUnavailabilityReasonRestricted -- ^ The user is restricted in the chat
   deriving (Eq, Show)
 
 instance I.ShortShow ReactionUnavailabilityReason where
@@ -16,6 +17,8 @@ instance I.ShortShow ReactionUnavailabilityReason where
       = "ReactionUnavailabilityReasonAnonymousAdministrator"
   shortShow ReactionUnavailabilityReasonGuest
       = "ReactionUnavailabilityReasonGuest"
+  shortShow ReactionUnavailabilityReasonRestricted
+      = "ReactionUnavailabilityReasonRestricted"
 
 instance AT.FromJSON ReactionUnavailabilityReason where
   parseJSON (AT.Object obj) = do
@@ -24,6 +27,7 @@ instance AT.FromJSON ReactionUnavailabilityReason where
     case t of
       "reactionUnavailabilityReasonAnonymousAdministrator" -> pure ReactionUnavailabilityReasonAnonymousAdministrator
       "reactionUnavailabilityReasonGuest"                  -> pure ReactionUnavailabilityReasonGuest
+      "reactionUnavailabilityReasonRestricted"             -> pure ReactionUnavailabilityReasonRestricted
       _                                                    -> mempty
     
   parseJSON _ = mempty

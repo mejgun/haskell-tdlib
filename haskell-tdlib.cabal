@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.17.0
+version:        2.1.18.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -80,6 +80,7 @@ library
       TD.Data.BasicGroupFullInfo
       TD.Data.Birthdate
       TD.Data.BlockList
+      TD.Data.BotAccessSettings
       TD.Data.BotCommand
       TD.Data.BotCommands
       TD.Data.BotCommandScope
@@ -337,6 +338,7 @@ library
       TD.Data.ImportedContacts
       TD.Data.InlineKeyboardButton
       TD.Data.InlineKeyboardButtonType
+      TD.Data.InlineMessageId
       TD.Data.InlineQueryResult
       TD.Data.InlineQueryResults
       TD.Data.InlineQueryResultsButton
@@ -498,7 +500,9 @@ library
       TD.Data.PollOptionProperties
       TD.Data.PollType
       TD.Data.PollVoter
+      TD.Data.PollVoteRestrictionReason
       TD.Data.PollVoters
+      TD.Data.PollVoteStatistics
       TD.Data.PremiumFeature
       TD.Data.PremiumFeaturePromotionAnimation
       TD.Data.PremiumFeatures
@@ -569,7 +573,6 @@ library
       TD.Data.SecretChat
       TD.Data.SecretChatState
       TD.Data.SentGift
-      TD.Data.SentWebAppMessage
       TD.Data.Session
       TD.Data.Sessions
       TD.Data.SessionType
@@ -659,6 +662,7 @@ library
       TD.Data.TestVectorStringObject
       TD.Data.Text
       TD.Data.TextCompositionStyle
+      TD.Data.TextCompositionStyleExample
       TD.Data.TextEntities
       TD.Data.TextEntity
       TD.Data.TextEntityType
@@ -767,10 +771,12 @@ library
       TD.Query.AddSavedNotificationSound
       TD.Query.AddStickerToSet
       TD.Query.AddStoryAlbumStories
+      TD.Query.AddTextCompositionStyle
       TD.Query.AllowBotToSendMessages
       TD.Query.AllowUnpaidMessagesFromUser
       TD.Query.AnswerCallbackQuery
       TD.Query.AnswerCustomQuery
+      TD.Query.AnswerGuestQuery
       TD.Query.AnswerInlineQuery
       TD.Query.AnswerPreCheckoutQuery
       TD.Query.AnswerShippingQuery
@@ -864,6 +870,7 @@ library
       TD.Query.CreateStoryAlbum
       TD.Query.CreateSupergroupChat
       TD.Query.CreateTemporaryPassword
+      TD.Query.CreateTextCompositionStyle
       TD.Query.CreateVideoChat
       TD.Query.DeclineGroupCallInvitation
       TD.Query.DeclineOauthRequest
@@ -871,6 +878,7 @@ library
       TD.Query.DecryptGroupCallData
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
+      TD.Query.DeleteAllRecentMessageReactionsFromSender
       TD.Query.DeleteAllRevokedChatInviteLinks
       TD.Query.DeleteBotMediaPreviews
       TD.Query.DeleteBusinessChatLink
@@ -895,6 +903,7 @@ library
       TD.Query.DeleteGroupCallMessages
       TD.Query.DeleteGroupCallMessagesBySender
       TD.Query.DeleteLanguagePack
+      TD.Query.DeleteMessageReactionsFromSender
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
       TD.Query.DeletePollOption
@@ -909,6 +918,7 @@ library
       TD.Query.DeleteStickerSet
       TD.Query.DeleteStory
       TD.Query.DeleteStoryAlbum
+      TD.Query.DeleteTextCompositionStyle
       TD.Query.Destroy
       TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
@@ -950,6 +960,7 @@ library
       TD.Query.EditStarSubscription
       TD.Query.EditStory
       TD.Query.EditStoryCover
+      TD.Query.EditTextCompositionStyle
       TD.Query.EditUserStarSubscription
       TD.Query.EnableProxy
       TD.Query.EncryptGroupCallData
@@ -988,7 +999,6 @@ library
       TD.Query.GetBotName
       TD.Query.GetBotSimilarBotCount
       TD.Query.GetBotSimilarBots
-      TD.Query.GetBotToken
       TD.Query.GetBusinessAccountStarAmount
       TD.Query.GetBusinessChatLinkInfo
       TD.Query.GetBusinessChatLinks
@@ -1132,6 +1142,8 @@ library
       TD.Query.GetLogTagVerbosityLevel
       TD.Query.GetLogVerbosityLevel
       TD.Query.GetMainWebApp
+      TD.Query.GetManagedBotAccessSettings
+      TD.Query.GetManagedBotToken
       TD.Query.GetMapThumbnailFile
       TD.Query.GetMarkdownText
       TD.Query.GetMe
@@ -1169,10 +1181,12 @@ library
       TD.Query.GetPasswordState
       TD.Query.GetPaymentForm
       TD.Query.GetPaymentReceipt
+      TD.Query.GetPersonalChatHistory
       TD.Query.GetPhoneNumberInfo
       TD.Query.GetPhoneNumberInfoSync
       TD.Query.GetPollOptionProperties
       TD.Query.GetPollVoters
+      TD.Query.GetPollVoteStatistics
       TD.Query.GetPreferredCountryLanguage
       TD.Query.GetPremiumFeatures
       TD.Query.GetPremiumGiftPaymentOptions
@@ -1246,6 +1260,7 @@ library
       TD.Query.GetSupportName
       TD.Query.GetSupportUser
       TD.Query.GetTemporaryPasswordState
+      TD.Query.GetTextCompositionStyleExample
       TD.Query.GetTextEntities
       TD.Query.GetThemedChatEmojiStatuses
       TD.Query.GetThemedEmojiStatuses
@@ -1371,6 +1386,7 @@ library
       TD.Query.RemoveSearchedForTag
       TD.Query.RemoveStickerFromSet
       TD.Query.RemoveStoryAlbumStories
+      TD.Query.RemoveTextCompositionStyle
       TD.Query.RemoveTopChat
       TD.Query.ReorderActiveUsernames
       TD.Query.ReorderBotActiveUsernames
@@ -1450,6 +1466,7 @@ library
       TD.Query.SearchStickerSet
       TD.Query.SearchStickerSets
       TD.Query.SearchStringsByPrefix
+      TD.Query.SearchTextCompositionStyle
       TD.Query.SearchUserByPhoneNumber
       TD.Query.SearchUserByToken
       TD.Query.SearchWebApp
@@ -1565,6 +1582,7 @@ library
       TD.Query.SetLogTagVerbosityLevel
       TD.Query.SetLogVerbosityLevel
       TD.Query.SetMainProfileTab
+      TD.Query.SetManagedBotAccessSettings
       TD.Query.SetMenuButton
       TD.Query.SetMessageFactCheck
       TD.Query.SetMessageReactions

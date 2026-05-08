@@ -148,7 +148,7 @@ data InternalLinkType
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRequestManagedBot -- ^ The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
     { manager_bot_username   :: Maybe T.Text -- ^ Username of the bot which will manage the new bot
-    , suggested_bot_username :: Maybe T.Text -- ^ Suggested username for the bot
+    , suggested_bot_username :: Maybe T.Text -- ^ Suggested username for the bot; always ends with "bot" case-insensitive
     , suggested_bot_name     :: Maybe T.Text -- ^ Suggested name for the bot; may be empty if not specified
     }
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
@@ -172,6 +172,9 @@ data InternalLinkType
   | InternalLinkTypeStoryAlbum -- ^ The link is a link to an album of stories. Call searchPublicChat with the given username, then call getStoryAlbumStories with the received chat identifier and the given story album identifier, then show the story album if received
     { story_album_owner_username :: Maybe T.Text -- ^ Username of the owner of the story album
     , story_album_id             :: Maybe Int    -- ^ Story album identifier
+    }
+  | InternalLinkTypeTextCompositionStyle -- ^ The link is a link to a text composition style. Call searchTextCompositionStyle with the given style name to get information about the style. If the style is found and the user wants to add it, then call addTextCompositionStyle
+    { style_name :: Maybe T.Text -- ^ Name of the style
     }
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
@@ -561,6 +564,13 @@ instance I.ShortShow InternalLinkType where
         [ "story_album_owner_username" `I.p` story_album_owner_username_
         , "story_album_id"             `I.p` story_album_id_
         ]
+  shortShow InternalLinkTypeTextCompositionStyle
+    { style_name = style_name_
+    }
+      = "InternalLinkTypeTextCompositionStyle"
+        ++ I.cc
+        [ "style_name" `I.p` style_name_
+        ]
   shortShow InternalLinkTypeTheme
     { theme_name = theme_name_
     }
@@ -679,6 +689,7 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeStickerSet"              -> parseInternalLinkTypeStickerSet v
       "internalLinkTypeStory"                   -> parseInternalLinkTypeStory v
       "internalLinkTypeStoryAlbum"              -> parseInternalLinkTypeStoryAlbum v
+      "internalLinkTypeTextCompositionStyle"    -> parseInternalLinkTypeTextCompositionStyle v
       "internalLinkTypeTheme"                   -> parseInternalLinkTypeTheme v
       "internalLinkTypeUnknownDeepLink"         -> parseInternalLinkTypeUnknownDeepLink v
       "internalLinkTypeUpgradedGift"            -> parseInternalLinkTypeUpgradedGift v
@@ -988,6 +999,12 @@ instance AT.FromJSON InternalLinkType where
         pure $ InternalLinkTypeStoryAlbum
           { story_album_owner_username = story_album_owner_username_
           , story_album_id             = story_album_id_
+          }
+      parseInternalLinkTypeTextCompositionStyle :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeTextCompositionStyle = A.withObject "InternalLinkTypeTextCompositionStyle" $ \o -> do
+        style_name_ <- o A..:?  "style_name"
+        pure $ InternalLinkTypeTextCompositionStyle
+          { style_name = style_name_
           }
       parseInternalLinkTypeTheme :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeTheme = A.withObject "InternalLinkTypeTheme" $ \o -> do
@@ -1420,6 +1437,13 @@ instance AT.ToJSON InternalLinkType where
         [ "@type"                      A..= AT.String "internalLinkTypeStoryAlbum"
         , "story_album_owner_username" A..= story_album_owner_username_
         , "story_album_id"             A..= story_album_id_
+        ]
+  toJSON InternalLinkTypeTextCompositionStyle
+    { style_name = style_name_
+    }
+      = A.object
+        [ "@type"      A..= AT.String "internalLinkTypeTextCompositionStyle"
+        , "style_name" A..= style_name_
         ]
   toJSON InternalLinkTypeTheme
     { theme_name = theme_name_
