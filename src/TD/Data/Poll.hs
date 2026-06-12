@@ -5,10 +5,10 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import {-# SOURCE #-} qualified TD.Data.PollOption as PollOption
+import qualified TD.Data.PollOption as PollOption
 import qualified TD.Data.MessageSender as MessageSender
 import qualified Data.Text as T
-import {-# SOURCE #-} qualified TD.Data.PollType as PollType
+import qualified TD.Data.PollType as PollType
 import qualified TD.Data.PollVoteRestrictionReason as PollVoteRestrictionReason
 
 data Poll
@@ -19,6 +19,7 @@ data Poll
     , total_voter_count       :: Maybe Int                                                 -- ^ Total number of voters, participating in the poll
     , recent_voter_ids        :: Maybe [MessageSender.MessageSender]                       -- ^ Identifiers of recent voters, if the poll is non-anonymous and poll results are available
     , can_get_voters          :: Maybe Bool                                                -- ^ True, if the current user can get voters in the poll using getPollVoters
+    , can_see_results         :: Maybe Bool                                                -- ^ True, if the current user can see results of the poll
     , is_anonymous            :: Maybe Bool                                                -- ^ True, if the poll is anonymous
     , allows_multiple_answers :: Maybe Bool                                                -- ^ True, if multiple answer options can be chosen simultaneously
     , allows_revoting         :: Maybe Bool                                                -- ^ True, if the poll can be answered multiple times
@@ -41,6 +42,7 @@ instance I.ShortShow Poll where
     , total_voter_count       = total_voter_count_
     , recent_voter_ids        = recent_voter_ids_
     , can_get_voters          = can_get_voters_
+    , can_see_results         = can_see_results_
     , is_anonymous            = is_anonymous_
     , allows_multiple_answers = allows_multiple_answers_
     , allows_revoting         = allows_revoting_
@@ -61,6 +63,7 @@ instance I.ShortShow Poll where
         , "total_voter_count"       `I.p` total_voter_count_
         , "recent_voter_ids"        `I.p` recent_voter_ids_
         , "can_get_voters"          `I.p` can_get_voters_
+        , "can_see_results"         `I.p` can_see_results_
         , "is_anonymous"            `I.p` is_anonymous_
         , "allows_multiple_answers" `I.p` allows_multiple_answers_
         , "allows_revoting"         `I.p` allows_revoting_
@@ -91,6 +94,7 @@ instance AT.FromJSON Poll where
         total_voter_count_       <- o A..:?                       "total_voter_count"
         recent_voter_ids_        <- o A..:?                       "recent_voter_ids"
         can_get_voters_          <- o A..:?                       "can_get_voters"
+        can_see_results_         <- o A..:?                       "can_see_results"
         is_anonymous_            <- o A..:?                       "is_anonymous"
         allows_multiple_answers_ <- o A..:?                       "allows_multiple_answers"
         allows_revoting_         <- o A..:?                       "allows_revoting"
@@ -109,6 +113,7 @@ instance AT.FromJSON Poll where
           , total_voter_count       = total_voter_count_
           , recent_voter_ids        = recent_voter_ids_
           , can_get_voters          = can_get_voters_
+          , can_see_results         = can_see_results_
           , is_anonymous            = is_anonymous_
           , allows_multiple_answers = allows_multiple_answers_
           , allows_revoting         = allows_revoting_

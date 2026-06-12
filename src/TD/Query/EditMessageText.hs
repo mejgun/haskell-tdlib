@@ -15,7 +15,7 @@ data EditMessageText
     { chat_id               :: Maybe Int                                     -- ^ The chat the message belongs to
     , message_id            :: Maybe Int                                     -- ^ Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none; for bots only
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     }
   deriving (Eq, Show)
 

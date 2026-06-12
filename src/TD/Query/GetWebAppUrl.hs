@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.WebAppOpenParameters as WebAppOpenParameters
 
--- | Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button. Returns 'TD.Data.HttpUrl.HttpUrl'
+-- | Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button. Returns 'TD.Data.WebAppUrl.WebAppUrl'
 data GetWebAppUrl
   = GetWebAppUrl
     { bot_user_id :: Maybe Int                                       -- ^ Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method

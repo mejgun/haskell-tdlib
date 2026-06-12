@@ -32,3 +32,17 @@ instance AT.FromJSON PageBlockVerticalAlignment where
     
   parseJSON _ = mempty
 
+instance AT.ToJSON PageBlockVerticalAlignment where
+  toJSON PageBlockVerticalAlignmentTop
+      = A.object
+        [ "@type" A..= AT.String "pageBlockVerticalAlignmentTop"
+        ]
+  toJSON PageBlockVerticalAlignmentMiddle
+      = A.object
+        [ "@type" A..= AT.String "pageBlockVerticalAlignmentMiddle"
+        ]
+  toJSON PageBlockVerticalAlignmentBottom
+      = A.object
+        [ "@type" A..= AT.String "pageBlockVerticalAlignmentBottom"
+        ]
+

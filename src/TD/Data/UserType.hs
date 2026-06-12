@@ -21,6 +21,7 @@ data UserType
     , is_inline                       :: Maybe Bool   -- ^ True, if the bot supports inline queries
     , inline_query_placeholder        :: Maybe T.Text -- ^ Placeholder for inline queries (displayed on the application input field)
     , supports_guest_queries          :: Maybe Bool   -- ^ True, if the bot can be queried by username from any non-secret chat
+    , is_guard                        :: Maybe Bool   -- ^ True, if the bot can be set as a guard bot in supergroup chats
     , need_location                   :: Maybe Bool   -- ^ True, if the location of the user is expected to be sent with every inline query to this bot
     , can_connect_to_business         :: Maybe Bool   -- ^ True, if the bot supports connection to user accounts for chat automation
     , can_be_added_to_attachment_menu :: Maybe Bool   -- ^ True, if the bot can be added to attachment or side menu
@@ -45,6 +46,7 @@ instance I.ShortShow UserType where
     , is_inline                       = is_inline_
     , inline_query_placeholder        = inline_query_placeholder_
     , supports_guest_queries          = supports_guest_queries_
+    , is_guard                        = is_guard_
     , need_location                   = need_location_
     , can_connect_to_business         = can_connect_to_business_
     , can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_
@@ -62,6 +64,7 @@ instance I.ShortShow UserType where
         , "is_inline"                       `I.p` is_inline_
         , "inline_query_placeholder"        `I.p` inline_query_placeholder_
         , "supports_guest_queries"          `I.p` supports_guest_queries_
+        , "is_guard"                        `I.p` is_guard_
         , "need_location"                   `I.p` need_location_
         , "can_connect_to_business"         `I.p` can_connect_to_business_
         , "can_be_added_to_attachment_menu" `I.p` can_be_added_to_attachment_menu_
@@ -94,6 +97,7 @@ instance AT.FromJSON UserType where
         is_inline_                       <- o A..:?  "is_inline"
         inline_query_placeholder_        <- o A..:?  "inline_query_placeholder"
         supports_guest_queries_          <- o A..:?  "supports_guest_queries"
+        is_guard_                        <- o A..:?  "is_guard"
         need_location_                   <- o A..:?  "need_location"
         can_connect_to_business_         <- o A..:?  "can_connect_to_business"
         can_be_added_to_attachment_menu_ <- o A..:?  "can_be_added_to_attachment_menu"
@@ -109,6 +113,7 @@ instance AT.FromJSON UserType where
           , is_inline                       = is_inline_
           , inline_query_placeholder        = inline_query_placeholder_
           , supports_guest_queries          = supports_guest_queries_
+          , is_guard                        = is_guard_
           , need_location                   = need_location_
           , can_connect_to_business         = can_connect_to_business_
           , can_be_added_to_attachment_menu = can_be_added_to_attachment_menu_

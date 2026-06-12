@@ -1,6 +1,6 @@
 module TD.Data.PageBlockListItem (PageBlockListItem) where
 
-import Data.Aeson.Types (FromJSON)
+import Data.Aeson.Types (FromJSON, ToJSON)
 import TD.Lib.Internal (ShortShow)
 
 data PageBlockListItem
@@ -13,4 +13,4 @@ instance ShortShow PageBlockListItem
 
 instance FromJSON PageBlockListItem
 
-
+instance ToJSON PageBlockListItem

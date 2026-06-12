@@ -7,12 +7,12 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import {-# SOURCE #-} qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.InputPollMedia as InputPollMedia
 
 data InputPollOption
   = InputPollOption -- ^ Describes one answer option of a poll to be created
-    { text  :: Maybe FormattedText.FormattedText             -- ^ Option text; 1-100 characters. Only custom emoji entities are allowed to be added and only by Premium users
-    , media :: Maybe InputMessageContent.InputMessageContent -- ^ Option media; pass null if none; ignored in addPollOption. Must be one of the following types: inputMessageAnimation, non-live inputMessageLocation, inputMessagePhoto, inputMessageSticker, inputMessageVenue, or inputMessageVideo without caption
+    { text  :: Maybe FormattedText.FormattedText   -- ^ Option text; 1-100 characters. Only custom emoji entities are allowed to be added and only by Premium users
+    , media :: Maybe InputPollMedia.InputPollMedia -- ^ Option media; pass null if none; ignored in addPollOption. Must be one of the following types: inputPollMediaAnimation, inputPollMediaLink, inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaSticker, inputPollMediaVenue, or inputPollMediaVideo without caption
     }
   deriving (Eq, Show)
 

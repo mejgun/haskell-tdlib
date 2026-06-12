@@ -34,7 +34,7 @@ import qualified TD.Data.BotMenuButton as BotMenuButton
 import qualified TD.Data.BusinessChatLink as BusinessChatLink
 import qualified TD.Data.BusinessChatLinkInfo as BusinessChatLinkInfo
 import qualified TD.Data.BusinessChatLinks as BusinessChatLinks
-import qualified TD.Data.BusinessConnectedBot as BusinessConnectedBot
+import qualified TD.Data.BusinessConnectedBotInfo as BusinessConnectedBotInfo
 import qualified TD.Data.BusinessConnection as BusinessConnection
 import qualified TD.Data.BusinessFeatures as BusinessFeatures
 import qualified TD.Data.BusinessMessage as BusinessMessage
@@ -67,6 +67,7 @@ import qualified TD.Data.ChatInviteLinkInfo as ChatInviteLinkInfo
 import qualified TD.Data.ChatInviteLinkMembers as ChatInviteLinkMembers
 import qualified TD.Data.ChatInviteLinks as ChatInviteLinks
 import qualified TD.Data.ChatJoinRequests as ChatJoinRequests
+import qualified TD.Data.ChatJoinResult as ChatJoinResult
 import qualified TD.Data.ChatLists as ChatLists
 import qualified TD.Data.ChatMember as ChatMember
 import qualified TD.Data.ChatMembers as ChatMembers
@@ -84,6 +85,7 @@ import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliateProgram
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
 import qualified TD.Data.Count as Count
 import qualified TD.Data.Countries as Countries
+import qualified TD.Data.CountryInfo as CountryInfo
 import qualified TD.Data.CraftGiftResult as CraftGiftResult
 import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
 import qualified TD.Data.CurrentWeather as CurrentWeather
@@ -218,6 +220,7 @@ import qualified TD.Data.ReportChatResult as ReportChatResult
 import qualified TD.Data.ReportSponsoredResult as ReportSponsoredResult
 import qualified TD.Data.ReportStoryResult as ReportStoryResult
 import qualified TD.Data.ResetPasswordResult as ResetPasswordResult
+import qualified TD.Data.RichMessage as RichMessage
 import qualified TD.Data.RtmpUrl as RtmpUrl
 import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
@@ -282,6 +285,8 @@ import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
 import qualified TD.Data.VideoMessageAdvertisements as VideoMessageAdvertisements
 import qualified TD.Data.WebAppInfo as WebAppInfo
+import qualified TD.Data.WebAppUrl as WebAppUrl
+import qualified TD.Data.WebBrowserType as WebBrowserType
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
 
 data GeneralResult
@@ -315,7 +320,7 @@ data GeneralResult
     | BusinessChatLink                   BusinessChatLink.BusinessChatLink
     | BusinessChatLinkInfo               BusinessChatLinkInfo.BusinessChatLinkInfo
     | BusinessChatLinks                  BusinessChatLinks.BusinessChatLinks
-    | BusinessConnectedBot               BusinessConnectedBot.BusinessConnectedBot
+    | BusinessConnectedBotInfo           BusinessConnectedBotInfo.BusinessConnectedBotInfo
     | BusinessConnection                 BusinessConnection.BusinessConnection
     | BusinessFeatures                   BusinessFeatures.BusinessFeatures
     | BusinessMessage                    BusinessMessage.BusinessMessage
@@ -348,6 +353,7 @@ data GeneralResult
     | ChatInviteLinkMembers              ChatInviteLinkMembers.ChatInviteLinkMembers
     | ChatInviteLinks                    ChatInviteLinks.ChatInviteLinks
     | ChatJoinRequests                   ChatJoinRequests.ChatJoinRequests
+    | ChatJoinResult                     ChatJoinResult.ChatJoinResult
     | ChatLists                          ChatLists.ChatLists
     | ChatMember                         ChatMember.ChatMember
     | ChatMembers                        ChatMembers.ChatMembers
@@ -365,6 +371,7 @@ data GeneralResult
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
     | Count                              Count.Count
     | Countries                          Countries.Countries
+    | CountryInfo                        CountryInfo.CountryInfo
     | CraftGiftResult                    CraftGiftResult.CraftGiftResult
     | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
     | CurrentWeather                     CurrentWeather.CurrentWeather
@@ -499,6 +506,7 @@ data GeneralResult
     | ReportSponsoredResult              ReportSponsoredResult.ReportSponsoredResult
     | ReportStoryResult                  ReportStoryResult.ReportStoryResult
     | ResetPasswordResult                ResetPasswordResult.ResetPasswordResult
+    | RichMessage                        RichMessage.RichMessage
     | RtmpUrl                            RtmpUrl.RtmpUrl
     | SavedMessagesTags                  SavedMessagesTags.SavedMessagesTags
     | ScopeNotificationSettings          ScopeNotificationSettings.ScopeNotificationSettings
@@ -563,6 +571,8 @@ data GeneralResult
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
     | VideoMessageAdvertisements         VideoMessageAdvertisements.VideoMessageAdvertisements
     | WebAppInfo                         WebAppInfo.WebAppInfo
+    | WebAppUrl                          WebAppUrl.WebAppUrl
+    | WebBrowserType                     WebBrowserType.WebBrowserType
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
  deriving (Eq, Show)
 
@@ -627,8 +637,8 @@ instance I.ShortShow GeneralResult where
     = "BusinessChatLinkInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessChatLinks v)
     = "BusinessChatLinks" <> " (" <> I.shortShow v <> ")"
-  shortShow (BusinessConnectedBot v)
-    = "BusinessConnectedBot" <> " (" <> I.shortShow v <> ")"
+  shortShow (BusinessConnectedBotInfo v)
+    = "BusinessConnectedBotInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessConnection v)
     = "BusinessConnection" <> " (" <> I.shortShow v <> ")"
   shortShow (BusinessFeatures v)
@@ -693,6 +703,8 @@ instance I.ShortShow GeneralResult where
     = "ChatInviteLinks" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatJoinRequests v)
     = "ChatJoinRequests" <> " (" <> I.shortShow v <> ")"
+  shortShow (ChatJoinResult v)
+    = "ChatJoinResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatLists v)
     = "ChatLists" <> " (" <> I.shortShow v <> ")"
   shortShow (ChatMember v)
@@ -727,6 +739,8 @@ instance I.ShortShow GeneralResult where
     = "Count" <> " (" <> I.shortShow v <> ")"
   shortShow (Countries v)
     = "Countries" <> " (" <> I.shortShow v <> ")"
+  shortShow (CountryInfo v)
+    = "CountryInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (CraftGiftResult v)
     = "CraftGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CreatedBasicGroupChat v)
@@ -995,6 +1009,8 @@ instance I.ShortShow GeneralResult where
     = "ReportStoryResult" <> " (" <> I.shortShow v <> ")"
   shortShow (ResetPasswordResult v)
     = "ResetPasswordResult" <> " (" <> I.shortShow v <> ")"
+  shortShow (RichMessage v)
+    = "RichMessage" <> " (" <> I.shortShow v <> ")"
   shortShow (RtmpUrl v)
     = "RtmpUrl" <> " (" <> I.shortShow v <> ")"
   shortShow (SavedMessagesTags v)
@@ -1123,6 +1139,10 @@ instance I.ShortShow GeneralResult where
     = "VideoMessageAdvertisements" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
     = "WebAppInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (WebAppUrl v)
+    = "WebAppUrl" <> " (" <> I.shortShow v <> ")"
+  shortShow (WebBrowserType v)
+    = "WebBrowserType" <> " (" <> I.shortShow v <> ")"
   shortShow (WebPageInstantView v)
     = "WebPageInstantView" <> " (" <> I.shortShow v <> ")"
 
@@ -1158,7 +1178,7 @@ instance T.FromJSON GeneralResult where
     <|> ( BusinessChatLink                    <$> parseJSON v )
     <|> ( BusinessChatLinkInfo                <$> parseJSON v )
     <|> ( BusinessChatLinks                   <$> parseJSON v )
-    <|> ( BusinessConnectedBot                <$> parseJSON v )
+    <|> ( BusinessConnectedBotInfo            <$> parseJSON v )
     <|> ( BusinessConnection                  <$> parseJSON v )
     <|> ( BusinessFeatures                    <$> parseJSON v )
     <|> ( BusinessMessage                     <$> parseJSON v )
@@ -1191,6 +1211,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ChatInviteLinkMembers               <$> parseJSON v )
     <|> ( ChatInviteLinks                     <$> parseJSON v )
     <|> ( ChatJoinRequests                    <$> parseJSON v )
+    <|> ( ChatJoinResult                      <$> parseJSON v )
     <|> ( ChatLists                           <$> parseJSON v )
     <|> ( ChatMember                          <$> parseJSON v )
     <|> ( ChatMembers                         <$> parseJSON v )
@@ -1208,6 +1229,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ConnectedWebsites                   <$> parseJSON v )
     <|> ( Count                               <$> parseJSON v )
     <|> ( Countries                           <$> parseJSON v )
+    <|> ( CountryInfo                         <$> parseJSON v )
     <|> ( CraftGiftResult                     <$> parseJSON v )
     <|> ( CreatedBasicGroupChat               <$> parseJSON v )
     <|> ( CurrentWeather                      <$> parseJSON v )
@@ -1342,6 +1364,7 @@ instance T.FromJSON GeneralResult where
     <|> ( ReportSponsoredResult               <$> parseJSON v )
     <|> ( ReportStoryResult                   <$> parseJSON v )
     <|> ( ResetPasswordResult                 <$> parseJSON v )
+    <|> ( RichMessage                         <$> parseJSON v )
     <|> ( RtmpUrl                             <$> parseJSON v )
     <|> ( SavedMessagesTags                   <$> parseJSON v )
     <|> ( ScopeNotificationSettings           <$> parseJSON v )
@@ -1406,4 +1429,6 @@ instance T.FromJSON GeneralResult where
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
     <|> ( VideoMessageAdvertisements          <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
+    <|> ( WebAppUrl                           <$> parseJSON v )
+    <|> ( WebBrowserType                      <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )

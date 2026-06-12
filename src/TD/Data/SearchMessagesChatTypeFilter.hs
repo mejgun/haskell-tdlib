@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Represents a filter for type of the chats in which to search messages
+-- | Represents a filter for type of the chats in which to search for messages
 data SearchMessagesChatTypeFilter
   = SearchMessagesChatTypeFilterPrivate -- ^ Returns only messages in private chats
   | SearchMessagesChatTypeFilterGroup -- ^ Returns only messages in basic group and supergroup chats

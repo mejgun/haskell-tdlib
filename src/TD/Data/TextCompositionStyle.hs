@@ -16,7 +16,7 @@ data TextCompositionStyle
     , is_creator      :: Maybe Bool                                                    -- ^ True, if the user is creator of the style
     , install_count   :: Maybe Int                                                     -- ^ Number of users that installed the style; for created custom styles only; 0 if unknown
     , prompt          :: Maybe T.Text                                                  -- ^ Prompt of the style; for created custom styles only
-    , creator_user_id :: Maybe Int                                                     -- ^ User identifier of the creator of the style; 0 if none of unknown
+    , creator_user_id :: Maybe Int                                                     -- ^ User identifier of the creator of the style; 0 if none or unknown
     , english_example :: Maybe TextCompositionStyleExample.TextCompositionStyleExample -- ^ Example of the style usage in English; may be null if unknown
     }
   deriving (Eq, Show)

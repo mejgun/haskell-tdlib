@@ -15,7 +15,7 @@ data EditInlineMessageText
   = EditInlineMessageText
     { inline_message_id     :: Maybe T.Text                                  -- ^ Inline message identifier
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     }
   deriving (Eq, Show)
 

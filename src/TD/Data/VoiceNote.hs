@@ -1,5 +1,7 @@
 module TD.Data.VoiceNote
-  (VoiceNote(..)) where
+  ( VoiceNote(..)    
+  , defaultVoiceNote 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -60,4 +62,31 @@ instance AT.FromJSON VoiceNote where
           , voice                     = voice_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON VoiceNote where
+  toJSON VoiceNote
+    { duration                  = duration_
+    , waveform                  = waveform_
+    , mime_type                 = mime_type_
+    , speech_recognition_result = speech_recognition_result_
+    , voice                     = voice_
+    }
+      = A.object
+        [ "@type"                     A..= AT.String "voiceNote"
+        , "duration"                  A..= duration_
+        , "waveform"                  A..= fmap I.writeBytes  waveform_
+        , "mime_type"                 A..= mime_type_
+        , "speech_recognition_result" A..= speech_recognition_result_
+        , "voice"                     A..= voice_
+        ]
+
+defaultVoiceNote :: VoiceNote
+defaultVoiceNote =
+  VoiceNote
+    { duration                  = Nothing
+    , waveform                  = Nothing
+    , mime_type                 = Nothing
+    , speech_recognition_result = Nothing
+    , voice                     = Nothing
+    }
 

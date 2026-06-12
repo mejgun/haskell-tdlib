@@ -74,3 +74,26 @@ instance AT.FromJSON SpeechRecognitionResult where
           }
   parseJSON _ = mempty
 
+instance AT.ToJSON SpeechRecognitionResult where
+  toJSON SpeechRecognitionResultPending
+    { partial_text = partial_text_
+    }
+      = A.object
+        [ "@type"        A..= AT.String "speechRecognitionResultPending"
+        , "partial_text" A..= partial_text_
+        ]
+  toJSON SpeechRecognitionResultText
+    { text = text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "speechRecognitionResultText"
+        , "text"  A..= text_
+        ]
+  toJSON SpeechRecognitionResultError
+    { _error = _error_
+    }
+      = A.object
+        [ "@type" A..= AT.String "speechRecognitionResultError"
+        , "error" A..= _error_
+        ]
+

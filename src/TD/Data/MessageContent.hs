@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.LinkPreview as LinkPreview
 import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
+import qualified TD.Data.RichMessage as RichMessage
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.Audio as Audio
 import qualified TD.Data.Document as Document
@@ -18,6 +19,7 @@ import qualified TD.Data.AlternativeVideo as AlternativeVideo
 import qualified TD.Data.VideoStoryboard as VideoStoryboard
 import qualified TD.Data.VideoNote as VideoNote
 import qualified TD.Data.VoiceNote as VoiceNote
+import qualified TD.Data.LiveLocation as LiveLocation
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
@@ -25,7 +27,8 @@ import qualified TD.Data.AnimatedEmoji as AnimatedEmoji
 import qualified Data.Text as T
 import qualified TD.Data.DiceStickers as DiceStickers
 import qualified TD.Data.Game as Game
-import {-# SOURCE #-} qualified TD.Data.Poll as Poll
+import qualified TD.Data.Poll as Poll
+import qualified TD.Data.PollMedia as PollMedia
 import qualified TD.Data.Checklist as Checklist
 import qualified TD.Data.ProductInfo as ProductInfo
 import qualified TD.Data.CallDiscardReason as CallDiscardReason
@@ -61,6 +64,9 @@ data MessageContent
     { text                 :: Maybe FormattedText.FormattedText           -- ^ Text of the message
     , link_preview         :: Maybe LinkPreview.LinkPreview               -- ^ A link preview attached to the message; may be null
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options which were used for generation of the link preview; may be null if default options were used
+    }
+  | MessageRichMessage -- ^ A rich message; the message can have multiple media of the same type, all of which must be shown in the corresponding profile tab
+    { message :: Maybe RichMessage.RichMessage -- ^ The rich message
     }
   | MessageAnimation -- ^ An animation message (GIF-style).
     { animation                :: Maybe Animation.Animation         -- ^ The animation description
@@ -120,12 +126,12 @@ data MessageContent
   | MessageExpiredVideo -- ^ A self-destructed video message
   | MessageExpiredVideoNote -- ^ A self-destructed video note message
   | MessageExpiredVoiceNote -- ^ A self-destructed voice note message
+  | MessageLiveLocation -- ^ A message with a live location
+    { location   :: Maybe LiveLocation.LiveLocation -- ^ The current location
+    , expires_in :: Maybe Int                       -- ^ Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
+    }
   | MessageLocation -- ^ A message with a location
-    { location               :: Maybe Location.Location -- ^ The location description
-    , live_period            :: Maybe Int               -- ^ Time relative to the message send date, for which the location can be updated, in seconds; if 0x7FFFFFFF, then location can be updated forever
-    , expires_in             :: Maybe Int               -- ^ Left time for which the location can be updated, in seconds. If 0, then the location can't be updated anymore. The update updateMessageContent is not sent when this field changes
-    , heading                :: Maybe Int               -- ^ For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-    , proximity_alert_radius :: Maybe Int               -- ^ For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only to the message sender
+    { _location :: Maybe Location.Location -- ^ The location
     }
   | MessageVenue -- ^ A message with information about a venue
     { venue :: Maybe Venue.Venue -- ^ The venue description
@@ -150,7 +156,7 @@ data MessageContent
   | MessagePoll -- ^ A message with a poll
     { poll           :: Maybe Poll.Poll                   -- ^ Information about the poll
     , description    :: Maybe FormattedText.FormattedText -- ^ Description of the poll
-    , _media         :: Maybe MessageContent              -- ^ Media attached to the poll; may be null if none. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+    , _media         :: Maybe PollMedia.PollMedia         -- ^ Media attached to the poll; may be null if none. If present, currently, can be only of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
     , can_add_option :: Maybe Bool                        -- ^ True, if an option can be added to the poll using addPollOption
     }
   | MessageStakeDice -- ^ A stake dice message. The dice value is randomly generated by the server
@@ -565,6 +571,13 @@ instance I.ShortShow MessageContent where
         , "link_preview"         `I.p` link_preview_
         , "link_preview_options" `I.p` link_preview_options_
         ]
+  shortShow MessageRichMessage
+    { message = message_
+    }
+      = "MessageRichMessage"
+        ++ I.cc
+        [ "message" `I.p` message_
+        ]
   shortShow MessageAnimation
     { animation                = animation_
     , caption                  = caption_
@@ -690,20 +703,21 @@ instance I.ShortShow MessageContent where
       = "MessageExpiredVideoNote"
   shortShow MessageExpiredVoiceNote
       = "MessageExpiredVoiceNote"
+  shortShow MessageLiveLocation
+    { location   = location_
+    , expires_in = expires_in_
+    }
+      = "MessageLiveLocation"
+        ++ I.cc
+        [ "location"   `I.p` location_
+        , "expires_in" `I.p` expires_in_
+        ]
   shortShow MessageLocation
-    { location               = location_
-    , live_period            = live_period_
-    , expires_in             = expires_in_
-    , heading                = heading_
-    , proximity_alert_radius = proximity_alert_radius_
+    { _location = _location_
     }
       = "MessageLocation"
         ++ I.cc
-        [ "location"               `I.p` location_
-        , "live_period"            `I.p` live_period_
-        , "expires_in"             `I.p` expires_in_
-        , "heading"                `I.p` heading_
-        , "proximity_alert_radius" `I.p` proximity_alert_radius_
+        [ "_location" `I.p` _location_
         ]
   shortShow MessageVenue
     { venue = venue_
@@ -1639,6 +1653,7 @@ instance AT.FromJSON MessageContent where
 
     case t of
       "messageText"                                    -> parseMessageText v
+      "messageRichMessage"                             -> parseMessageRichMessage v
       "messageAnimation"                               -> parseMessageAnimation v
       "messageAudio"                                   -> parseMessageAudio v
       "messageDocument"                                -> parseMessageDocument v
@@ -1652,6 +1667,7 @@ instance AT.FromJSON MessageContent where
       "messageExpiredVideo"                            -> pure MessageExpiredVideo
       "messageExpiredVideoNote"                        -> pure MessageExpiredVideoNote
       "messageExpiredVoiceNote"                        -> pure MessageExpiredVoiceNote
+      "messageLiveLocation"                            -> parseMessageLiveLocation v
       "messageLocation"                                -> parseMessageLocation v
       "messageVenue"                                   -> parseMessageVenue v
       "messageContact"                                 -> parseMessageContact v
@@ -1750,6 +1766,12 @@ instance AT.FromJSON MessageContent where
           { text                 = text_
           , link_preview         = link_preview_
           , link_preview_options = link_preview_options_
+          }
+      parseMessageRichMessage :: A.Value -> AT.Parser MessageContent
+      parseMessageRichMessage = A.withObject "MessageRichMessage" $ \o -> do
+        message_ <- o A..:?  "message"
+        pure $ MessageRichMessage
+          { message = message_
           }
       parseMessageAnimation :: A.Value -> AT.Parser MessageContent
       parseMessageAnimation = A.withObject "MessageAnimation" $ \o -> do
@@ -1859,19 +1881,19 @@ instance AT.FromJSON MessageContent where
           , caption     = caption_
           , is_listened = is_listened_
           }
+      parseMessageLiveLocation :: A.Value -> AT.Parser MessageContent
+      parseMessageLiveLocation = A.withObject "MessageLiveLocation" $ \o -> do
+        location_   <- o A..:?  "location"
+        expires_in_ <- o A..:?  "expires_in"
+        pure $ MessageLiveLocation
+          { location   = location_
+          , expires_in = expires_in_
+          }
       parseMessageLocation :: A.Value -> AT.Parser MessageContent
       parseMessageLocation = A.withObject "MessageLocation" $ \o -> do
-        location_               <- o A..:?  "location"
-        live_period_            <- o A..:?  "live_period"
-        expires_in_             <- o A..:?  "expires_in"
-        heading_                <- o A..:?  "heading"
-        proximity_alert_radius_ <- o A..:?  "proximity_alert_radius"
+        _location_ <- o A..:?  "location"
         pure $ MessageLocation
-          { location               = location_
-          , live_period            = live_period_
-          , expires_in             = expires_in_
-          , heading                = heading_
-          , proximity_alert_radius = proximity_alert_radius_
+          { _location = _location_
           }
       parseMessageVenue :: A.Value -> AT.Parser MessageContent
       parseMessageVenue = A.withObject "MessageVenue" $ \o -> do

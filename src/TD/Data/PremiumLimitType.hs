@@ -16,6 +16,7 @@ data PremiumLimitType
   | PremiumLimitTypeChatFolderChosenChatCount -- ^ The maximum number of pinned and always included, or always excluded chats in a chat folder
   | PremiumLimitTypePinnedArchivedChatCount -- ^ The maximum number of pinned chats in the archive chat list
   | PremiumLimitTypePinnedSavedMessagesTopicCount -- ^ The maximum number of pinned Saved Messages topics
+  | PremiumLimitTypeMessageTextLength -- ^ The maximum length of text of sent messages
   | PremiumLimitTypeCaptionLength -- ^ The maximum length of sent media caption
   | PremiumLimitTypeBioLength -- ^ The maximum length of the user's bio
   | PremiumLimitTypeChatFolderInviteLinkCount -- ^ The maximum number of invite links for a chat folder
@@ -49,6 +50,8 @@ instance I.ShortShow PremiumLimitType where
       = "PremiumLimitTypePinnedArchivedChatCount"
   shortShow PremiumLimitTypePinnedSavedMessagesTopicCount
       = "PremiumLimitTypePinnedSavedMessagesTopicCount"
+  shortShow PremiumLimitTypeMessageTextLength
+      = "PremiumLimitTypeMessageTextLength"
   shortShow PremiumLimitTypeCaptionLength
       = "PremiumLimitTypeCaptionLength"
   shortShow PremiumLimitTypeBioLength
@@ -88,6 +91,7 @@ instance AT.FromJSON PremiumLimitType where
       "premiumLimitTypeChatFolderChosenChatCount"       -> pure PremiumLimitTypeChatFolderChosenChatCount
       "premiumLimitTypePinnedArchivedChatCount"         -> pure PremiumLimitTypePinnedArchivedChatCount
       "premiumLimitTypePinnedSavedMessagesTopicCount"   -> pure PremiumLimitTypePinnedSavedMessagesTopicCount
+      "premiumLimitTypeMessageTextLength"               -> pure PremiumLimitTypeMessageTextLength
       "premiumLimitTypeCaptionLength"                   -> pure PremiumLimitTypeCaptionLength
       "premiumLimitTypeBioLength"                       -> pure PremiumLimitTypeBioLength
       "premiumLimitTypeChatFolderInviteLinkCount"       -> pure PremiumLimitTypeChatFolderInviteLinkCount
@@ -140,6 +144,10 @@ instance AT.ToJSON PremiumLimitType where
   toJSON PremiumLimitTypePinnedSavedMessagesTopicCount
       = A.object
         [ "@type" A..= AT.String "premiumLimitTypePinnedSavedMessagesTopicCount"
+        ]
+  toJSON PremiumLimitTypeMessageTextLength
+      = A.object
+        [ "@type" A..= AT.String "premiumLimitTypeMessageTextLength"
         ]
   toJSON PremiumLimitTypeCaptionLength
       = A.object

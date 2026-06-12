@@ -5,15 +5,15 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import {-# SOURCE #-} qualified TD.Data.MessageContent as MessageContent
+import qualified TD.Data.PollMedia as PollMedia
 
 -- | Describes the type of poll
 data PollType
   = PollTypeRegular -- ^ A regular poll
   | PollTypeQuiz -- ^ A poll in quiz mode, which has predefined correct answers
-    { correct_option_ids :: Maybe [Int]                         -- ^ Increasing list of 0-based identifiers of the correct answer options; empty for a yet unanswered poll
-    , explanation        :: Maybe FormattedText.FormattedText   -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll
-    , explanation_media  :: Maybe MessageContent.MessageContent -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. If present, currently, can be only of the types messageAnimation, messageAudio, messageDocument, messageLocation, messagePhoto, messageVenue, or messageVideo without caption
+    { correct_option_ids :: Maybe [Int]                       -- ^ Increasing list of 0-based identifiers of the correct answer options; empty for a yet unanswered poll
+    , explanation        :: Maybe FormattedText.FormattedText -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; empty for a yet unanswered poll
+    , explanation_media  :: Maybe PollMedia.PollMedia         -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; may be null if none or the poll is unanswered yet. If present, currently, can be only of the types pollMediaAnimation, pollMediaAudio, pollMediaDocument, pollMediaLocation, pollMediaPhoto, pollMediaVenue, or pollMediaVideo
     }
   deriving (Eq, Show)
 

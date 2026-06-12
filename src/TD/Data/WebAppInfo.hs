@@ -4,12 +4,12 @@ module TD.Data.WebAppInfo
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.WebAppUrl as WebAppUrl
 
 data WebAppInfo
   = WebAppInfo -- ^ Contains information about a Web App
-    { launch_id :: Maybe Int    -- ^ Unique identifier for the Web App launch
-    , url       :: Maybe T.Text -- ^ A Web App URL to open in a web view
+    { launch_id :: Maybe Int                 -- ^ Unique identifier for the Web App launch
+    , url       :: Maybe WebAppUrl.WebAppUrl -- ^ The Web App URL to open in a web view
     }
   deriving (Eq, Show)
 

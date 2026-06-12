@@ -13,7 +13,7 @@ data EditQuickReplyMessage
   = EditQuickReplyMessage
     { shortcut_id           :: Maybe Int                                     -- ^ Unique identifier of the quick reply shortcut with the message
     , message_id            :: Maybe Int                                     -- ^ Identifier of the message
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageText, or inputMessageVideo
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageChecklist, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageText, or inputMessageVideo
     }
   deriving (Eq, Show)
 

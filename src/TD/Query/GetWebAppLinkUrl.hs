@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.WebAppOpenParameters as WebAppOpenParameters
 
--- | Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked. Returns 'TD.Data.HttpUrl.HttpUrl'
+-- | Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked. Returns 'TD.Data.WebAppUrl.WebAppUrl'
 data GetWebAppLinkUrl
   = GetWebAppLinkUrl
     { chat_id            :: Maybe Int                                       -- ^ Identifier of the chat in which the link was clicked; pass 0 if none

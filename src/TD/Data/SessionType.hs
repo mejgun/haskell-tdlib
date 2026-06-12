@@ -5,86 +5,53 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Represents the type of session
+-- | Describes type of user session
 data SessionType
-  = SessionTypeAndroid -- ^ The session is running on an Android device
-  | SessionTypeApple -- ^ The session is running on a generic Apple device
-  | SessionTypeBrave -- ^ The session is running on the Brave browser
-  | SessionTypeChrome -- ^ The session is running on the Chrome browser
-  | SessionTypeEdge -- ^ The session is running on the Edge browser
-  | SessionTypeFirefox -- ^ The session is running on the Firefox browser
-  | SessionTypeIpad -- ^ The session is running on an iPad device
-  | SessionTypeIphone -- ^ The session is running on an iPhone device
-  | SessionTypeLinux -- ^ The session is running on a Linux device
-  | SessionTypeMac -- ^ The session is running on a Mac device
-  | SessionTypeOpera -- ^ The session is running on the Opera browser
-  | SessionTypeSafari -- ^ The session is running on the Safari browser
-  | SessionTypeUbuntu -- ^ The session is running on an Ubuntu device
-  | SessionTypeUnknown -- ^ The session is running on an unknown type of device
-  | SessionTypeVivaldi -- ^ The session is running on the Vivaldi browser
-  | SessionTypeWindows -- ^ The session is running on a Windows device
-  | SessionTypeXbox -- ^ The session is running on an Xbox console
+  = SessionTypeDevice -- ^ A regular session from a device
+    { session_id :: Maybe Int -- ^ Unique identifier of the session. Use terminateSession to terminate it or confirmSession to confirm it if it isn't confirmed yet
+    }
+  | SessionTypeConnectedBot -- ^ A business bot connected to the current user's account
+    { bot_user_id :: Maybe Int -- ^ User identifier of the bot. Use deleteBusinessConnectedBot to remove it or confirmBusinessConnectedBot to confirm it if it isn't confirmed yet
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow SessionType where
-  shortShow SessionTypeAndroid
-      = "SessionTypeAndroid"
-  shortShow SessionTypeApple
-      = "SessionTypeApple"
-  shortShow SessionTypeBrave
-      = "SessionTypeBrave"
-  shortShow SessionTypeChrome
-      = "SessionTypeChrome"
-  shortShow SessionTypeEdge
-      = "SessionTypeEdge"
-  shortShow SessionTypeFirefox
-      = "SessionTypeFirefox"
-  shortShow SessionTypeIpad
-      = "SessionTypeIpad"
-  shortShow SessionTypeIphone
-      = "SessionTypeIphone"
-  shortShow SessionTypeLinux
-      = "SessionTypeLinux"
-  shortShow SessionTypeMac
-      = "SessionTypeMac"
-  shortShow SessionTypeOpera
-      = "SessionTypeOpera"
-  shortShow SessionTypeSafari
-      = "SessionTypeSafari"
-  shortShow SessionTypeUbuntu
-      = "SessionTypeUbuntu"
-  shortShow SessionTypeUnknown
-      = "SessionTypeUnknown"
-  shortShow SessionTypeVivaldi
-      = "SessionTypeVivaldi"
-  shortShow SessionTypeWindows
-      = "SessionTypeWindows"
-  shortShow SessionTypeXbox
-      = "SessionTypeXbox"
+  shortShow SessionTypeDevice
+    { session_id = session_id_
+    }
+      = "SessionTypeDevice"
+        ++ I.cc
+        [ "session_id" `I.p` session_id_
+        ]
+  shortShow SessionTypeConnectedBot
+    { bot_user_id = bot_user_id_
+    }
+      = "SessionTypeConnectedBot"
+        ++ I.cc
+        [ "bot_user_id" `I.p` bot_user_id_
+        ]
 
 instance AT.FromJSON SessionType where
-  parseJSON (AT.Object obj) = do
+  parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "sessionTypeAndroid" -> pure SessionTypeAndroid
-      "sessionTypeApple"   -> pure SessionTypeApple
-      "sessionTypeBrave"   -> pure SessionTypeBrave
-      "sessionTypeChrome"  -> pure SessionTypeChrome
-      "sessionTypeEdge"    -> pure SessionTypeEdge
-      "sessionTypeFirefox" -> pure SessionTypeFirefox
-      "sessionTypeIpad"    -> pure SessionTypeIpad
-      "sessionTypeIphone"  -> pure SessionTypeIphone
-      "sessionTypeLinux"   -> pure SessionTypeLinux
-      "sessionTypeMac"     -> pure SessionTypeMac
-      "sessionTypeOpera"   -> pure SessionTypeOpera
-      "sessionTypeSafari"  -> pure SessionTypeSafari
-      "sessionTypeUbuntu"  -> pure SessionTypeUbuntu
-      "sessionTypeUnknown" -> pure SessionTypeUnknown
-      "sessionTypeVivaldi" -> pure SessionTypeVivaldi
-      "sessionTypeWindows" -> pure SessionTypeWindows
-      "sessionTypeXbox"    -> pure SessionTypeXbox
-      _                    -> mempty
+      "sessionTypeDevice"       -> parseSessionTypeDevice v
+      "sessionTypeConnectedBot" -> parseSessionTypeConnectedBot v
+      _                         -> mempty
     
+    where
+      parseSessionTypeDevice :: A.Value -> AT.Parser SessionType
+      parseSessionTypeDevice = A.withObject "SessionTypeDevice" $ \o -> do
+        session_id_ <- fmap I.readInt64 <$> o A..:?  "session_id"
+        pure $ SessionTypeDevice
+          { session_id = session_id_
+          }
+      parseSessionTypeConnectedBot :: A.Value -> AT.Parser SessionType
+      parseSessionTypeConnectedBot = A.withObject "SessionTypeConnectedBot" $ \o -> do
+        bot_user_id_ <- o A..:?  "bot_user_id"
+        pure $ SessionTypeConnectedBot
+          { bot_user_id = bot_user_id_
+          }
   parseJSON _ = mempty
 

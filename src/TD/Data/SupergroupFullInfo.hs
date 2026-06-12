@@ -49,6 +49,7 @@ data SupergroupFullInfo
     , custom_emoji_sticker_set_id      :: Maybe Int                             -- ^ Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
     , location                         :: Maybe ChatLocation.ChatLocation       -- ^ Location to which the supergroup is connected; may be null if none
     , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink   -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
+    , guard_bot_user_id                :: Maybe Int                             -- ^ User identifier of the guard bot in the group; for chat administrators only
     , bot_commands                     :: Maybe [BotCommands.BotCommands]       -- ^ List of commands of bots in the group
     , bot_verification                 :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
     , main_profile_tab                 :: Maybe ProfileTab.ProfileTab           -- ^ The main tab chosen by the administrators of the channel; may be null if not chosen manually
@@ -94,6 +95,7 @@ instance I.ShortShow SupergroupFullInfo where
     , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
     , location                         = location_
     , invite_link                      = invite_link_
+    , guard_bot_user_id                = guard_bot_user_id_
     , bot_commands                     = bot_commands_
     , bot_verification                 = bot_verification_
     , main_profile_tab                 = main_profile_tab_
@@ -137,6 +139,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "custom_emoji_sticker_set_id"      `I.p` custom_emoji_sticker_set_id_
         , "location"                         `I.p` location_
         , "invite_link"                      `I.p` invite_link_
+        , "guard_bot_user_id"                `I.p` guard_bot_user_id_
         , "bot_commands"                     `I.p` bot_commands_
         , "bot_verification"                 `I.p` bot_verification_
         , "main_profile_tab"                 `I.p` main_profile_tab_
@@ -190,6 +193,7 @@ instance AT.FromJSON SupergroupFullInfo where
         custom_emoji_sticker_set_id_      <- fmap I.readInt64 <$> o A..:?  "custom_emoji_sticker_set_id"
         location_                         <- o A..:?                       "location"
         invite_link_                      <- o A..:?                       "invite_link"
+        guard_bot_user_id_                <- o A..:?                       "guard_bot_user_id"
         bot_commands_                     <- o A..:?                       "bot_commands"
         bot_verification_                 <- o A..:?                       "bot_verification"
         main_profile_tab_                 <- o A..:?                       "main_profile_tab"
@@ -231,6 +235,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , custom_emoji_sticker_set_id      = custom_emoji_sticker_set_id_
           , location                         = location_
           , invite_link                      = invite_link_
+          , guard_bot_user_id                = guard_bot_user_id_
           , bot_commands                     = bot_commands_
           , bot_verification                 = bot_verification_
           , main_profile_tab                 = main_profile_tab_

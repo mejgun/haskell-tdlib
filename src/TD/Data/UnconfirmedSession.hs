@@ -4,28 +4,29 @@ module TD.Data.UnconfirmedSession
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
+import qualified TD.Data.SessionType as SessionType
 import qualified Data.Text as T
 
 data UnconfirmedSession
   = UnconfirmedSession -- ^ Contains information about an unconfirmed session
-    { _id          :: Maybe Int    -- ^ Session identifier
-    , log_in_date  :: Maybe Int    -- ^ Point in time (Unix timestamp) when the user has logged in
-    , device_model :: Maybe T.Text -- ^ Model of the device that was used for the session creation, as provided by the application
-    , location     :: Maybe T.Text -- ^ A human-readable description of the location from which the session was created, based on the IP address
+    { _type        :: Maybe SessionType.SessionType -- ^ Session type
+    , date         :: Maybe Int                     -- ^ Point in time (Unix timestamp) when the user has logged in or the business bot was connected
+    , device_model :: Maybe T.Text                  -- ^ Model of the device that was used for the session creation, as provided by the application
+    , location     :: Maybe T.Text                  -- ^ A human-readable description of the location from which the session was created, based on the IP address
     }
   deriving (Eq, Show)
 
 instance I.ShortShow UnconfirmedSession where
   shortShow UnconfirmedSession
-    { _id          = _id_
-    , log_in_date  = log_in_date_
+    { _type        = _type_
+    , date         = date_
     , device_model = device_model_
     , location     = location_
     }
       = "UnconfirmedSession"
         ++ I.cc
-        [ "_id"          `I.p` _id_
-        , "log_in_date"  `I.p` log_in_date_
+        [ "_type"        `I.p` _type_
+        , "date"         `I.p` date_
         , "device_model" `I.p` device_model_
         , "location"     `I.p` location_
         ]
@@ -41,13 +42,13 @@ instance AT.FromJSON UnconfirmedSession where
     where
       parseUnconfirmedSession :: A.Value -> AT.Parser UnconfirmedSession
       parseUnconfirmedSession = A.withObject "UnconfirmedSession" $ \o -> do
-        _id_          <- fmap I.readInt64 <$> o A..:?  "id"
-        log_in_date_  <- o A..:?                       "log_in_date"
-        device_model_ <- o A..:?                       "device_model"
-        location_     <- o A..:?                       "location"
+        _type_        <- o A..:?  "type"
+        date_         <- o A..:?  "date"
+        device_model_ <- o A..:?  "device_model"
+        location_     <- o A..:?  "location"
         pure $ UnconfirmedSession
-          { _id          = _id_
-          , log_in_date  = log_in_date_
+          { _type        = _type_
+          , date         = date_
           , device_model = device_model_
           , location     = location_
           }

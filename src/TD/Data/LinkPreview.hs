@@ -12,7 +12,7 @@ data LinkPreview
   = LinkPreview -- ^ Describes a link preview
     { url                          :: Maybe T.Text                          -- ^ Original URL of the link
     , display_url                  :: Maybe T.Text                          -- ^ URL to display
-    , site_name                    :: Maybe T.Text                          -- ^ Short name of the site (e.g., Google Docs, App Store)
+    , site_name                    :: Maybe T.Text                          -- ^ Short name of the website (e.g., Google Docs, App Store)
     , title                        :: Maybe T.Text                          -- ^ Title of the content
     , description                  :: Maybe FormattedText.FormattedText     -- ^ Description of the content
     , author                       :: Maybe T.Text                          -- ^ Author of the content

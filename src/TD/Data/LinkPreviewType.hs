@@ -33,7 +33,7 @@ data LinkPreviewType
   | LinkPreviewTypeApp -- ^ The link is a link to an app at App Store or Google Play
     { photo :: Maybe Photo.Photo -- ^ Photo for the app
     }
-  | LinkPreviewTypeArticle -- ^ The link is a link to a web site
+  | LinkPreviewTypeArticle -- ^ The link is a link to a website
     { photo :: Maybe Photo.Photo -- ^ Article's main photo; may be null
     }
   | LinkPreviewTypeAudio -- ^ The link is a link to an audio

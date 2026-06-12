@@ -1,5 +1,7 @@
 module TD.Data.PageBlockCaption
-  (PageBlockCaption(..)) where
+  ( PageBlockCaption(..)    
+  , defaultPageBlockCaption 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -9,7 +11,7 @@ import qualified TD.Data.RichText as RichText
 data PageBlockCaption
   = PageBlockCaption -- ^ Contains a caption of another block
     { text   :: Maybe RichText.RichText -- ^ Content of the caption
-    , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>)
+    , credit :: Maybe RichText.RichText -- ^ Block credit (like HTML tag <cite>); may be null if none
     }
   deriving (Eq, Show)
 
@@ -42,4 +44,22 @@ instance AT.FromJSON PageBlockCaption where
           , credit = credit_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON PageBlockCaption where
+  toJSON PageBlockCaption
+    { text   = text_
+    , credit = credit_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "pageBlockCaption"
+        , "text"   A..= text_
+        , "credit" A..= credit_
+        ]
+
+defaultPageBlockCaption :: PageBlockCaption
+defaultPageBlockCaption =
+  PageBlockCaption
+    { text   = Nothing
+    , credit = Nothing
+    }
 

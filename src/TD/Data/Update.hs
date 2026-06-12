@@ -46,7 +46,6 @@ import qualified TD.Data.Notification as Notification
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified TD.Data.NotificationGroup as NotificationGroup
 import qualified TD.Data.ChatAction as ChatAction
-import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.User as User
 import qualified TD.Data.BasicGroup as BasicGroup
@@ -67,6 +66,7 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.GiftAuctionState as GiftAuctionState
 import qualified TD.Data.UserPrivacySetting as UserPrivacySetting
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
+import qualified TD.Data.ChatJoinRequestResult as ChatJoinRequestResult
 import qualified TD.Data.Story as Story
 import qualified TD.Data.CanPostStoryResult as CanPostStoryResult
 import qualified TD.Data.ChatActiveStories as ChatActiveStories
@@ -79,6 +79,7 @@ import qualified TD.Data.Background as Background
 import qualified TD.Data.EmojiChatTheme as EmojiChatTheme
 import qualified TD.Data.AccentColor as AccentColor
 import qualified TD.Data.ProfileAccentColor as ProfileAccentColor
+import qualified TD.Data.WebBrowserSettings as WebBrowserSettings
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
 import qualified TD.Data.AgeVerificationParameters as AgeVerificationParameters
@@ -428,11 +429,11 @@ data Update
     , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender performing the action
     , action    :: Maybe ChatAction.ChatAction       -- ^ The action
     }
-  | UpdatePendingTextMessage -- ^ A new pending text message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
-    { chat_id        :: Maybe Int                         -- ^ Chat identifier
-    , forum_topic_id :: Maybe Int                         -- ^ The forum topic identifier in which the message will be sent; 0 if none
-    , draft_id       :: Maybe Int                         -- ^ Unique identifier of the message draft within the message thread
-    , text           :: Maybe FormattedText.FormattedText -- ^ Text of the pending message
+  | UpdatePendingMessage -- ^ A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+    { chat_id        :: Maybe Int                           -- ^ Chat identifier
+    , forum_topic_id :: Maybe Int                           -- ^ The forum topic identifier in which the message will be sent; 0 if none
+    , draft_id       :: Maybe Int                           -- ^ Unique identifier of the message draft within the message thread
+    , content        :: Maybe MessageContent.MessageContent -- ^ Content of the message; always of the type messageText or messageRichMessage
     }
   | UpdateUserStatus -- ^ The user went online or offline
     { user_id :: Maybe Int                   -- ^ User identifier
@@ -580,6 +581,11 @@ data Update
     , marked_as_unread_count         :: Maybe Int               -- ^ Total number of chats marked as unread
     , marked_as_unread_unmuted_count :: Maybe Int               -- ^ Total number of unmuted chats marked as unread
     }
+  | UpdateChatJoinResult -- ^ A join request from the user was completed
+    { query_id :: Maybe Int                                         -- ^ Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+    , chat_id  :: Maybe Int                                         -- ^ Identifier of the joined chat, or 0 if the request wasn't approved
+    , result   :: Maybe ChatJoinRequestResult.ChatJoinRequestResult -- ^ Result of the join
+    }
   | UpdateStory -- ^ A story was changed
     { story :: Maybe Story.Story -- ^ The new information about the story
     }
@@ -653,6 +659,9 @@ data Update
     { _colors                    :: Maybe [ProfileAccentColor.ProfileAccentColor] -- ^ Information about supported colors
     , available_accent_color_ids :: Maybe [Int]                                   -- ^ The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order
     }
+  | UpdateWebBrowserSettings -- ^ Web browser settings have been updated
+    { settings :: Maybe WebBrowserSettings.WebBrowserSettings -- ^ New settings
+    }
   | UpdateLanguagePackStrings -- ^ Some language pack strings have been updated
     { localization_target :: Maybe T.Text                                  -- ^ Localization target to which the language pack belongs
     , language_pack_id    :: Maybe T.Text                                  -- ^ Identifier of the updated language pack
@@ -675,7 +684,8 @@ data Update
     , terms_of_service    :: Maybe TermsOfService.TermsOfService -- ^ The new terms of service
     }
   | UpdateUnconfirmedSession -- ^ The first unconfirmed session has changed
-    { session :: Maybe UnconfirmedSession.UnconfirmedSession -- ^ The unconfirmed session; may be null if none
+    { session                   :: Maybe UnconfirmedSession.UnconfirmedSession -- ^ The unconfirmed session; may be null if none
+    , unconfirmed_session_count :: Maybe Int                                   -- ^ The total number of unconfirmed sessions
     }
   | UpdateAttachmentMenuBots -- ^ The list of bots added to attachment or side menu has changed
     { bots :: Maybe [AttachmentMenuBot.AttachmentMenuBot] -- ^ The new list of bots. The bots must not be shown on scheduled messages screen
@@ -758,8 +768,8 @@ data Update
     { close_birthday_users :: Maybe [CloseBirthdayUser.CloseBirthdayUser] -- ^ List of contact users with close birthday
     }
   | UpdateAutosaveSettings -- ^ Autosave settings for some type of chats were updated
-    { _scope   :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Type of chats for which autosave settings were updated
-    , settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ The new autosave settings; may be null if the settings are reset to default
+    { _scope    :: Maybe AutosaveSettingsScope.AutosaveSettingsScope -- ^ Type of chats for which autosave settings were updated
+    , _settings :: Maybe ScopeAutosaveSettings.ScopeAutosaveSettings -- ^ The new autosave settings; may be null if the settings are reset to default
     }
   | UpdateBusinessConnection -- ^ A business connection has changed; for bots only
     { connection :: Maybe BusinessConnection.BusinessConnection -- ^ New data about the connection
@@ -871,6 +881,7 @@ data Update
     , request      :: Maybe ChatJoinRequest.ChatJoinRequest -- ^ Join request
     , user_chat_id :: Maybe Int                             -- ^ Chat identifier of the private chat with the user
     , invite_link  :: Maybe ChatInviteLink.ChatInviteLink   -- ^ The invite link, which was used to send join request; may be null
+    , query_id     :: Maybe Int                             -- ^ Identifier of the join request query, which can be used in answerChatJoinRequestQuery; 0 if none
     }
   | UpdateChatBoost -- ^ A chat boost has changed; for bots only
     { chat_id :: Maybe Int                 -- ^ Chat identifier
@@ -1592,18 +1603,18 @@ instance I.ShortShow Update where
         , "sender_id" `I.p` sender_id_
         , "action"    `I.p` action_
         ]
-  shortShow UpdatePendingTextMessage
+  shortShow UpdatePendingMessage
     { chat_id        = chat_id_
     , forum_topic_id = forum_topic_id_
     , draft_id       = draft_id_
-    , text           = text_
+    , content        = content_
     }
-      = "UpdatePendingTextMessage"
+      = "UpdatePendingMessage"
         ++ I.cc
         [ "chat_id"        `I.p` chat_id_
         , "forum_topic_id" `I.p` forum_topic_id_
         , "draft_id"       `I.p` draft_id_
-        , "text"           `I.p` text_
+        , "content"        `I.p` content_
         ]
   shortShow UpdateUserStatus
     { user_id = user_id_
@@ -1932,6 +1943,17 @@ instance I.ShortShow Update where
         , "marked_as_unread_count"         `I.p` marked_as_unread_count_
         , "marked_as_unread_unmuted_count" `I.p` marked_as_unread_unmuted_count_
         ]
+  shortShow UpdateChatJoinResult
+    { query_id = query_id_
+    , chat_id  = chat_id_
+    , result   = result_
+    }
+      = "UpdateChatJoinResult"
+        ++ I.cc
+        [ "query_id" `I.p` query_id_
+        , "chat_id"  `I.p` chat_id_
+        , "result"   `I.p` result_
+        ]
   shortShow UpdateStory
     { story = story_
     }
@@ -2098,6 +2120,13 @@ instance I.ShortShow Update where
         [ "_colors"                    `I.p` _colors_
         , "available_accent_color_ids" `I.p` available_accent_color_ids_
         ]
+  shortShow UpdateWebBrowserSettings
+    { settings = settings_
+    }
+      = "UpdateWebBrowserSettings"
+        ++ I.cc
+        [ "settings" `I.p` settings_
+        ]
   shortShow UpdateLanguagePackStrings
     { localization_target = localization_target_
     , language_pack_id    = language_pack_id_
@@ -2146,11 +2175,13 @@ instance I.ShortShow Update where
         , "terms_of_service"    `I.p` terms_of_service_
         ]
   shortShow UpdateUnconfirmedSession
-    { session = session_
+    { session                   = session_
+    , unconfirmed_session_count = unconfirmed_session_count_
     }
       = "UpdateUnconfirmedSession"
         ++ I.cc
-        [ "session" `I.p` session_
+        [ "session"                   `I.p` session_
+        , "unconfirmed_session_count" `I.p` unconfirmed_session_count_
         ]
   shortShow UpdateAttachmentMenuBots
     { bots = bots_
@@ -2336,13 +2367,13 @@ instance I.ShortShow Update where
         [ "close_birthday_users" `I.p` close_birthday_users_
         ]
   shortShow UpdateAutosaveSettings
-    { _scope   = _scope_
-    , settings = settings_
+    { _scope    = _scope_
+    , _settings = _settings_
     }
       = "UpdateAutosaveSettings"
         ++ I.cc
-        [ "_scope"   `I.p` _scope_
-        , "settings" `I.p` settings_
+        [ "_scope"    `I.p` _scope_
+        , "_settings" `I.p` _settings_
         ]
   shortShow UpdateBusinessConnection
     { connection = connection_
@@ -2577,6 +2608,7 @@ instance I.ShortShow Update where
     , request      = request_
     , user_chat_id = user_chat_id_
     , invite_link  = invite_link_
+    , query_id     = query_id_
     }
       = "UpdateNewChatJoinRequest"
         ++ I.cc
@@ -2584,6 +2616,7 @@ instance I.ShortShow Update where
         , "request"      `I.p` request_
         , "user_chat_id" `I.p` user_chat_id_
         , "invite_link"  `I.p` invite_link_
+        , "query_id"     `I.p` query_id_
         ]
   shortShow UpdateChatBoost
     { chat_id = chat_id_
@@ -2710,7 +2743,7 @@ instance AT.FromJSON Update where
       "updateHavePendingNotifications"                 -> parseUpdateHavePendingNotifications v
       "updateDeleteMessages"                           -> parseUpdateDeleteMessages v
       "updateChatAction"                               -> parseUpdateChatAction v
-      "updatePendingTextMessage"                       -> parseUpdatePendingTextMessage v
+      "updatePendingMessage"                           -> parseUpdatePendingMessage v
       "updateUserStatus"                               -> parseUpdateUserStatus v
       "updateUser"                                     -> parseUpdateUser v
       "updateBasicGroup"                               -> parseUpdateBasicGroup v
@@ -2746,6 +2779,7 @@ instance AT.FromJSON Update where
       "updateUserPrivacySettingRules"                  -> parseUpdateUserPrivacySettingRules v
       "updateUnreadMessageCount"                       -> parseUpdateUnreadMessageCount v
       "updateUnreadChatCount"                          -> parseUpdateUnreadChatCount v
+      "updateChatJoinResult"                           -> parseUpdateChatJoinResult v
       "updateStory"                                    -> parseUpdateStory v
       "updateStoryDeleted"                             -> parseUpdateStoryDeleted v
       "updateStoryPostSucceeded"                       -> parseUpdateStoryPostSucceeded v
@@ -2766,6 +2800,7 @@ instance AT.FromJSON Update where
       "updateEmojiChatThemes"                          -> parseUpdateEmojiChatThemes v
       "updateAccentColors"                             -> parseUpdateAccentColors v
       "updateProfileAccentColors"                      -> parseUpdateProfileAccentColors v
+      "updateWebBrowserSettings"                       -> parseUpdateWebBrowserSettings v
       "updateLanguagePackStrings"                      -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                          -> parseUpdateConnectionState v
       "updateFreezeState"                              -> parseUpdateFreezeState v
@@ -3446,17 +3481,17 @@ instance AT.FromJSON Update where
           , sender_id = sender_id_
           , action    = action_
           }
-      parseUpdatePendingTextMessage :: A.Value -> AT.Parser Update
-      parseUpdatePendingTextMessage = A.withObject "UpdatePendingTextMessage" $ \o -> do
+      parseUpdatePendingMessage :: A.Value -> AT.Parser Update
+      parseUpdatePendingMessage = A.withObject "UpdatePendingMessage" $ \o -> do
         chat_id_        <- o A..:?                       "chat_id"
         forum_topic_id_ <- o A..:?                       "forum_topic_id"
         draft_id_       <- fmap I.readInt64 <$> o A..:?  "draft_id"
-        text_           <- o A..:?                       "text"
-        pure $ UpdatePendingTextMessage
+        content_        <- o A..:?                       "content"
+        pure $ UpdatePendingMessage
           { chat_id        = chat_id_
           , forum_topic_id = forum_topic_id_
           , draft_id       = draft_id_
-          , text           = text_
+          , content        = content_
           }
       parseUpdateUserStatus :: A.Value -> AT.Parser Update
       parseUpdateUserStatus = A.withObject "UpdateUserStatus" $ \o -> do
@@ -3750,6 +3785,16 @@ instance AT.FromJSON Update where
           , marked_as_unread_count         = marked_as_unread_count_
           , marked_as_unread_unmuted_count = marked_as_unread_unmuted_count_
           }
+      parseUpdateChatJoinResult :: A.Value -> AT.Parser Update
+      parseUpdateChatJoinResult = A.withObject "UpdateChatJoinResult" $ \o -> do
+        query_id_ <- fmap I.readInt64 <$> o A..:?  "query_id"
+        chat_id_  <- o A..:?                       "chat_id"
+        result_   <- o A..:?                       "result"
+        pure $ UpdateChatJoinResult
+          { query_id = query_id_
+          , chat_id  = chat_id_
+          , result   = result_
+          }
       parseUpdateStory :: A.Value -> AT.Parser Update
       parseUpdateStory = A.withObject "UpdateStory" $ \o -> do
         story_ <- o A..:?  "story"
@@ -3896,6 +3941,12 @@ instance AT.FromJSON Update where
           { _colors                    = _colors_
           , available_accent_color_ids = available_accent_color_ids_
           }
+      parseUpdateWebBrowserSettings :: A.Value -> AT.Parser Update
+      parseUpdateWebBrowserSettings = A.withObject "UpdateWebBrowserSettings" $ \o -> do
+        settings_ <- o A..:?  "settings"
+        pure $ UpdateWebBrowserSettings
+          { settings = settings_
+          }
       parseUpdateLanguagePackStrings :: A.Value -> AT.Parser Update
       parseUpdateLanguagePackStrings = A.withObject "UpdateLanguagePackStrings" $ \o -> do
         localization_target_ <- o A..:?  "localization_target"
@@ -3940,9 +3991,11 @@ instance AT.FromJSON Update where
           }
       parseUpdateUnconfirmedSession :: A.Value -> AT.Parser Update
       parseUpdateUnconfirmedSession = A.withObject "UpdateUnconfirmedSession" $ \o -> do
-        session_ <- o A..:?  "session"
+        session_                   <- o A..:?  "session"
+        unconfirmed_session_count_ <- o A..:?  "unconfirmed_session_count"
         pure $ UpdateUnconfirmedSession
-          { session = session_
+          { session                   = session_
+          , unconfirmed_session_count = unconfirmed_session_count_
           }
       parseUpdateAttachmentMenuBots :: A.Value -> AT.Parser Update
       parseUpdateAttachmentMenuBots = A.withObject "UpdateAttachmentMenuBots" $ \o -> do
@@ -4106,11 +4159,11 @@ instance AT.FromJSON Update where
           }
       parseUpdateAutosaveSettings :: A.Value -> AT.Parser Update
       parseUpdateAutosaveSettings = A.withObject "UpdateAutosaveSettings" $ \o -> do
-        _scope_   <- o A..:?  "scope"
-        settings_ <- o A..:?  "settings"
+        _scope_    <- o A..:?  "scope"
+        _settings_ <- o A..:?  "settings"
         pure $ UpdateAutosaveSettings
-          { _scope   = _scope_
-          , settings = settings_
+          { _scope    = _scope_
+          , _settings = _settings_
           }
       parseUpdateBusinessConnection :: A.Value -> AT.Parser Update
       parseUpdateBusinessConnection = A.withObject "UpdateBusinessConnection" $ \o -> do
@@ -4324,15 +4377,17 @@ instance AT.FromJSON Update where
           }
       parseUpdateNewChatJoinRequest :: A.Value -> AT.Parser Update
       parseUpdateNewChatJoinRequest = A.withObject "UpdateNewChatJoinRequest" $ \o -> do
-        chat_id_      <- o A..:?  "chat_id"
-        request_      <- o A..:?  "request"
-        user_chat_id_ <- o A..:?  "user_chat_id"
-        invite_link_  <- o A..:?  "invite_link"
+        chat_id_      <- o A..:?                       "chat_id"
+        request_      <- o A..:?                       "request"
+        user_chat_id_ <- o A..:?                       "user_chat_id"
+        invite_link_  <- o A..:?                       "invite_link"
+        query_id_     <- fmap I.readInt64 <$> o A..:?  "query_id"
         pure $ UpdateNewChatJoinRequest
           { chat_id      = chat_id_
           , request      = request_
           , user_chat_id = user_chat_id_
           , invite_link  = invite_link_
+          , query_id     = query_id_
           }
       parseUpdateChatBoost :: A.Value -> AT.Parser Update
       parseUpdateChatBoost = A.withObject "UpdateChatBoost" $ \o -> do

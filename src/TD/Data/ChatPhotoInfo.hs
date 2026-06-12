@@ -1,5 +1,7 @@
 module TD.Data.ChatPhotoInfo
-  (ChatPhotoInfo(..)) where
+  ( ChatPhotoInfo(..)    
+  , defaultChatPhotoInfo 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -58,4 +60,31 @@ instance AT.FromJSON ChatPhotoInfo where
           , is_personal   = is_personal_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON ChatPhotoInfo where
+  toJSON ChatPhotoInfo
+    { small         = small_
+    , big           = big_
+    , minithumbnail = minithumbnail_
+    , has_animation = has_animation_
+    , is_personal   = is_personal_
+    }
+      = A.object
+        [ "@type"         A..= AT.String "chatPhotoInfo"
+        , "small"         A..= small_
+        , "big"           A..= big_
+        , "minithumbnail" A..= minithumbnail_
+        , "has_animation" A..= has_animation_
+        , "is_personal"   A..= is_personal_
+        ]
+
+defaultChatPhotoInfo :: ChatPhotoInfo
+defaultChatPhotoInfo =
+  ChatPhotoInfo
+    { small         = Nothing
+    , big           = Nothing
+    , minithumbnail = Nothing
+    , has_animation = Nothing
+    , is_personal   = Nothing
+    }
 

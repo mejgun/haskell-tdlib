@@ -9,7 +9,7 @@ import qualified TD.Data.InternalLinkType as InternalLinkType
 
 data WebPageInstantView
   = WebPageInstantView -- ^ Describes an instant view page for a web page
-    { page_blocks   :: Maybe [PageBlock.PageBlock]             -- ^ Content of the instant view page
+    { blocks        :: Maybe [PageBlock.PageBlock]             -- ^ Content of the instant view page
     , view_count    :: Maybe Int                               -- ^ Number of the instant view views; 0 if unknown
     , version       :: Maybe Int                               -- ^ Version of the instant view; currently, can be 1 or 2
     , is_rtl        :: Maybe Bool                              -- ^ True, if the instant view must be shown from right to left
@@ -20,7 +20,7 @@ data WebPageInstantView
 
 instance I.ShortShow WebPageInstantView where
   shortShow WebPageInstantView
-    { page_blocks   = page_blocks_
+    { blocks        = blocks_
     , view_count    = view_count_
     , version       = version_
     , is_rtl        = is_rtl_
@@ -29,7 +29,7 @@ instance I.ShortShow WebPageInstantView where
     }
       = "WebPageInstantView"
         ++ I.cc
-        [ "page_blocks"   `I.p` page_blocks_
+        [ "blocks"        `I.p` blocks_
         , "view_count"    `I.p` view_count_
         , "version"       `I.p` version_
         , "is_rtl"        `I.p` is_rtl_
@@ -48,14 +48,14 @@ instance AT.FromJSON WebPageInstantView where
     where
       parseWebPageInstantView :: A.Value -> AT.Parser WebPageInstantView
       parseWebPageInstantView = A.withObject "WebPageInstantView" $ \o -> do
-        page_blocks_   <- o A..:?  "page_blocks"
+        blocks_        <- o A..:?  "blocks"
         view_count_    <- o A..:?  "view_count"
         version_       <- o A..:?  "version"
         is_rtl_        <- o A..:?  "is_rtl"
         is_full_       <- o A..:?  "is_full"
         feedback_link_ <- o A..:?  "feedback_link"
         pure $ WebPageInstantView
-          { page_blocks   = page_blocks_
+          { blocks        = blocks_
           , view_count    = view_count_
           , version       = version_
           , is_rtl        = is_rtl_

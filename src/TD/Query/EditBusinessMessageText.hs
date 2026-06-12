@@ -17,7 +17,7 @@ data EditBusinessMessageText
     , chat_id                :: Maybe Int                                     -- ^ The chat the message belongs to
     , message_id             :: Maybe Int                                     -- ^ Identifier of the message
     , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none
-    , input_message_content  :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText
+    , input_message_content  :: Maybe InputMessageContent.InputMessageContent -- ^ New text content of the message. Must be of type inputMessageText or inputMessageRichMessage
     }
   deriving (Eq, Show)
 

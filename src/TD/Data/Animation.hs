@@ -1,5 +1,7 @@
 module TD.Data.Animation
-  (Animation(..)) where
+  ( Animation(..)    
+  , defaultAnimation 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -16,7 +18,7 @@ data Animation
     , height        :: Maybe Int                         -- ^ Height of the animation
     , file_name     :: Maybe T.Text                      -- ^ Original name of the file; as defined by the sender
     , mime_type     :: Maybe T.Text                      -- ^ MIME type of the file, usually "image/gif" or "video/mp4"
-    , has_stickers  :: Maybe Bool                        -- ^ True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
+    , has_stickers  :: Maybe Bool                        -- ^ True, if stickers were added to the animation. The list of corresponding sticker sets can be received using getAttachedStickerSets
     , minithumbnail :: Maybe Minithumbnail.Minithumbnail -- ^ Animation minithumbnail; may be null
     , thumbnail     :: Maybe Thumbnail.Thumbnail         -- ^ Animation thumbnail in JPEG or MPEG4 format; may be null
     , animation     :: Maybe File.File                   -- ^ File containing the animation
@@ -80,4 +82,43 @@ instance AT.FromJSON Animation where
           , animation     = animation_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON Animation where
+  toJSON Animation
+    { duration      = duration_
+    , width         = width_
+    , height        = height_
+    , file_name     = file_name_
+    , mime_type     = mime_type_
+    , has_stickers  = has_stickers_
+    , minithumbnail = minithumbnail_
+    , thumbnail     = thumbnail_
+    , animation     = animation_
+    }
+      = A.object
+        [ "@type"         A..= AT.String "animation"
+        , "duration"      A..= duration_
+        , "width"         A..= width_
+        , "height"        A..= height_
+        , "file_name"     A..= file_name_
+        , "mime_type"     A..= mime_type_
+        , "has_stickers"  A..= has_stickers_
+        , "minithumbnail" A..= minithumbnail_
+        , "thumbnail"     A..= thumbnail_
+        , "animation"     A..= animation_
+        ]
+
+defaultAnimation :: Animation
+defaultAnimation =
+  Animation
+    { duration      = Nothing
+    , width         = Nothing
+    , height        = Nothing
+    , file_name     = Nothing
+    , mime_type     = Nothing
+    , has_stickers  = Nothing
+    , minithumbnail = Nothing
+    , thumbnail     = Nothing
+    , animation     = Nothing
+    }
 

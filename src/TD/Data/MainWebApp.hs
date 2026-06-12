@@ -4,12 +4,12 @@ module TD.Data.MainWebApp
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified Data.Text as T
+import qualified TD.Data.WebAppUrl as WebAppUrl
 import qualified TD.Data.WebAppOpenMode as WebAppOpenMode
 
 data MainWebApp
   = MainWebApp -- ^ Contains information about the main Web App of a bot
-    { url  :: Maybe T.Text                        -- ^ URL of the Web App to open
+    { url  :: Maybe WebAppUrl.WebAppUrl           -- ^ URL of the Web App to open
     , mode :: Maybe WebAppOpenMode.WebAppOpenMode -- ^ The mode in which the Web App must be opened
     }
   deriving (Eq, Show)

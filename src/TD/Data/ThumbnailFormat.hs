@@ -48,3 +48,33 @@ instance AT.FromJSON ThumbnailFormat where
     
   parseJSON _ = mempty
 
+instance AT.ToJSON ThumbnailFormat where
+  toJSON ThumbnailFormatJpeg
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatJpeg"
+        ]
+  toJSON ThumbnailFormatGif
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatGif"
+        ]
+  toJSON ThumbnailFormatMpeg4
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatMpeg4"
+        ]
+  toJSON ThumbnailFormatPng
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatPng"
+        ]
+  toJSON ThumbnailFormatTgs
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatTgs"
+        ]
+  toJSON ThumbnailFormatWebm
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatWebm"
+        ]
+  toJSON ThumbnailFormatWebp
+      = A.object
+        [ "@type" A..= AT.String "thumbnailFormatWebp"
+        ]
+

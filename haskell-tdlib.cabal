@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.20.0
+version:        2.1.21.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -101,6 +101,7 @@ library
       TD.Data.BusinessChatLinkInfo
       TD.Data.BusinessChatLinks
       TD.Data.BusinessConnectedBot
+      TD.Data.BusinessConnectedBotInfo
       TD.Data.BusinessConnection
       TD.Data.BusinessFeature
       TD.Data.BusinessFeaturePromotionAnimation
@@ -167,8 +168,10 @@ library
       TD.Data.ChatInviteLinks
       TD.Data.ChatInviteLinkSubscriptionInfo
       TD.Data.ChatJoinRequest
+      TD.Data.ChatJoinRequestResult
       TD.Data.ChatJoinRequests
       TD.Data.ChatJoinRequestsInfo
+      TD.Data.ChatJoinResult
       TD.Data.ChatList
       TD.Data.ChatLists
       TD.Data.ChatLocation
@@ -239,6 +242,7 @@ library
       TD.Data.Document
       TD.Data.DownloadedFileCounts
       TD.Data.DraftMessage
+      TD.Data.DraftMessageContent
       TD.Data.EmailAddressAuthentication
       TD.Data.EmailAddressAuthenticationCodeInfo
       TD.Data.EmailAddressResetState
@@ -343,6 +347,8 @@ library
       TD.Data.InlineQueryResults
       TD.Data.InlineQueryResultsButton
       TD.Data.InlineQueryResultsButtonType
+      TD.Data.InputAnimation
+      TD.Data.InputAudio
       TD.Data.InputBackground
       TD.Data.InputBusinessChatLink
       TD.Data.InputBusinessStartPage
@@ -352,6 +358,7 @@ library
       TD.Data.InputChecklist
       TD.Data.InputChecklistTask
       TD.Data.InputCredentials
+      TD.Data.InputDocument
       TD.Data.InputFile
       TD.Data.InputGroupCall
       TD.Data.InputIdentityDocument
@@ -365,8 +372,11 @@ library
       TD.Data.InputPassportElementError
       TD.Data.InputPassportElementErrorSource
       TD.Data.InputPersonalDocument
+      TD.Data.InputPhoto
+      TD.Data.InputPollMedia
       TD.Data.InputPollOption
       TD.Data.InputPollType
+      TD.Data.InputRichMessage
       TD.Data.InputSticker
       TD.Data.InputStoryArea
       TD.Data.InputStoryAreas
@@ -375,6 +385,7 @@ library
       TD.Data.InputSuggestedPostInfo
       TD.Data.InputTextQuote
       TD.Data.InputThumbnail
+      TD.Data.InputVideo
       TD.Data.InternalLinkType
       TD.Data.InviteGroupCallParticipantResult
       TD.Data.InviteLinkChatType
@@ -393,6 +404,7 @@ library
       TD.Data.LinkPreviewAlbumMedia
       TD.Data.LinkPreviewOptions
       TD.Data.LinkPreviewType
+      TD.Data.LiveLocation
       TD.Data.LiveStoryDonors
       TD.Data.LocalFile
       TD.Data.LocalizationTargetInfo
@@ -496,6 +508,7 @@ library
       TD.Data.PhotoSize
       TD.Data.Point
       TD.Data.Poll
+      TD.Data.PollMedia
       TD.Data.PollOption
       TD.Data.PollOptionProperties
       TD.Data.PollType
@@ -558,6 +571,8 @@ library
       TD.Data.ResetPasswordResult
       TD.Data.RestrictionInfo
       TD.Data.RevenueWithdrawalState
+      TD.Data.RichMessage
+      TD.Data.RichMessageSource
       TD.Data.RichText
       TD.Data.RtmpUrl
       TD.Data.SavedCredentials
@@ -567,6 +582,7 @@ library
       TD.Data.SavedMessagesTopicType
       TD.Data.ScopeAutosaveSettings
       TD.Data.ScopeNotificationSettings
+      TD.Data.SearchChatTypeFilter
       TD.Data.SearchMessagesChatTypeFilter
       TD.Data.SearchMessagesFilter
       TD.Data.Seconds
@@ -574,6 +590,7 @@ library
       TD.Data.SecretChatState
       TD.Data.SentGift
       TD.Data.Session
+      TD.Data.SessionDeviceType
       TD.Data.Sessions
       TD.Data.SessionType
       TD.Data.SettingsSection
@@ -732,6 +749,10 @@ library
       TD.Data.WebAppInfo
       TD.Data.WebAppOpenMode
       TD.Data.WebAppOpenParameters
+      TD.Data.WebAppUrl
+      TD.Data.WebBrowserSettings
+      TD.Data.WebBrowserType
+      TD.Data.WebDomainException
       TD.Data.WebPageInstantView
       TD.GeneralResult
       TD.Lib
@@ -772,9 +793,11 @@ library
       TD.Query.AddStickerToSet
       TD.Query.AddStoryAlbumStories
       TD.Query.AddTextCompositionStyle
+      TD.Query.AddWebBrowserSettingsException
       TD.Query.AllowBotToSendMessages
       TD.Query.AllowUnpaidMessagesFromUser
       TD.Query.AnswerCallbackQuery
+      TD.Query.AnswerChatJoinRequestQuery
       TD.Query.AnswerCustomQuery
       TD.Query.AnswerGuestQuery
       TD.Query.AnswerInlineQuery
@@ -801,6 +824,7 @@ library
       TD.Query.CanTransferOwnership
       TD.Query.ChangeImportedContacts
       TD.Query.ChangeStickerSet
+      TD.Query.ChangeWebBrowserSettings
       TD.Query.CheckAuthenticationBotToken
       TD.Query.CheckAuthenticationCode
       TD.Query.CheckAuthenticationEmailCode
@@ -808,6 +832,7 @@ library
       TD.Query.CheckAuthenticationPassword
       TD.Query.CheckAuthenticationPasswordRecoveryCode
       TD.Query.CheckAuthenticationPremiumPurchase
+      TD.Query.CheckAuthenticationWebToken
       TD.Query.CheckBotUsername
       TD.Query.CheckChatFolderInviteLink
       TD.Query.CheckChatInviteLink
@@ -845,6 +870,7 @@ library
       TD.Query.CommitPendingLiveStoryReactions
       TD.Query.CommitPendingPaidMessageReactions
       TD.Query.ComposeTextWithAi
+      TD.Query.ConfirmBusinessConnectedBot
       TD.Query.ConfirmQrCodeAuthentication
       TD.Query.ConfirmSession
       TD.Query.ConnectAffiliateProgram
@@ -1064,6 +1090,7 @@ library
       TD.Query.GetConnectedWebsites
       TD.Query.GetContacts
       TD.Query.GetCountries
+      TD.Query.GetCountry
       TD.Query.GetCountryCode
       TD.Query.GetCountryFlagEmoji
       TD.Query.GetCreatedPublicChats
@@ -1099,6 +1126,7 @@ library
       TD.Query.GetForumTopicHistory
       TD.Query.GetForumTopicLink
       TD.Query.GetForumTopics
+      TD.Query.GetFullRichMessage
       TD.Query.GetGameHighScores
       TD.Query.GetGiftAuctionAcquiredGifts
       TD.Query.GetGiftAuctionState
@@ -1129,6 +1157,7 @@ library
       TD.Query.GetLanguagePackString
       TD.Query.GetLanguagePackStrings
       TD.Query.GetLinkPreview
+      TD.Query.GetLinkWebBrowserType
       TD.Query.GetLiveStoryAvailableMessageSenders
       TD.Query.GetLiveStoryRtmpUrl
       TD.Query.GetLiveStoryStreamer
@@ -1362,6 +1391,7 @@ library
       TD.Query.RegisterDevice
       TD.Query.RegisterUser
       TD.Query.RemoveAllFilesFromDownloads
+      TD.Query.RemoveAllWebBrowserSettingsExceptions
       TD.Query.RemoveBusinessConnectedBotFromChat
       TD.Query.RemoveChatActionBar
       TD.Query.RemoveContacts
@@ -1388,6 +1418,7 @@ library
       TD.Query.RemoveStoryAlbumStories
       TD.Query.RemoveTextCompositionStyle
       TD.Query.RemoveTopChat
+      TD.Query.RemoveWebBrowserSettingsException
       TD.Query.ReorderActiveUsernames
       TD.Query.ReorderBotActiveUsernames
       TD.Query.ReorderBotMediaPreviews
@@ -1495,6 +1526,7 @@ library
       TD.Query.SendPhoneNumberFirebaseSms
       TD.Query.SendQuickReplyShortcutMessages
       TD.Query.SendResoldGift
+      TD.Query.SendRichMessageDraft
       TD.Query.SendTextMessageDraft
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData

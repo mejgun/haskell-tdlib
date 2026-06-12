@@ -10,7 +10,7 @@ import qualified TD.Data.BusinessRecipients as BusinessRecipients
 import qualified TD.Data.BusinessBotRights as BusinessBotRights
 
 data BusinessConnectedBot
-  = BusinessConnectedBot -- ^ Describes a bot connected to a business account
+  = BusinessConnectedBot -- ^ Describes a business bot connected to an account
     { bot_user_id :: Maybe Int                                   -- ^ User identifier of the bot
     , recipients  :: Maybe BusinessRecipients.BusinessRecipients -- ^ Private chats that will be accessible to the bot
     , rights      :: Maybe BusinessBotRights.BusinessBotRights   -- ^ Rights of the bot

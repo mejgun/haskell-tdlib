@@ -4,29 +4,29 @@ module TD.Data.Session
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.SessionType as SessionType
+import qualified TD.Data.SessionDeviceType as SessionDeviceType
 import qualified Data.Text as T
 
 data Session
   = Session -- ^ Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
-    { _id                     :: Maybe Int                     -- ^ Session identifier
-    , is_current              :: Maybe Bool                    -- ^ True, if this session is the current session
-    , is_password_pending     :: Maybe Bool                    -- ^ True, if a 2-step verification password is needed to complete authorization of the session
-    , is_unconfirmed          :: Maybe Bool                    -- ^ True, if the session wasn't confirmed from another session
-    , can_accept_secret_chats :: Maybe Bool                    -- ^ True, if incoming secret chats can be accepted by the session
-    , can_accept_calls        :: Maybe Bool                    -- ^ True, if incoming calls can be accepted by the session
-    , _type                   :: Maybe SessionType.SessionType -- ^ Session type based on the system and application version, which can be used to display a corresponding icon
-    , api_id                  :: Maybe Int                     -- ^ Telegram API identifier, as provided by the application
-    , application_name        :: Maybe T.Text                  -- ^ Name of the application, as provided by the application
-    , application_version     :: Maybe T.Text                  -- ^ The version of the application, as provided by the application
-    , is_official_application :: Maybe Bool                    -- ^ True, if the application is an official application or uses the api_id of an official application
-    , device_model            :: Maybe T.Text                  -- ^ Model of the device the application has been run or is running on, as provided by the application
-    , platform                :: Maybe T.Text                  -- ^ Operating system the application has been run or is running on, as provided by the application
-    , system_version          :: Maybe T.Text                  -- ^ Version of the operating system the application has been run or is running on, as provided by the application
-    , log_in_date             :: Maybe Int                     -- ^ Point in time (Unix timestamp) when the user has logged in
-    , last_active_date        :: Maybe Int                     -- ^ Point in time (Unix timestamp) when the session was last used
-    , ip_address              :: Maybe T.Text                  -- ^ IP address from which the session was created, in human-readable format
-    , location                :: Maybe T.Text                  -- ^ A human-readable description of the location from which the session was created, based on the IP address
+    { _id                     :: Maybe Int                                 -- ^ Session identifier
+    , is_current              :: Maybe Bool                                -- ^ True, if this session is the current session
+    , is_password_pending     :: Maybe Bool                                -- ^ True, if a 2-step verification password is needed to complete authorization of the session
+    , is_unconfirmed          :: Maybe Bool                                -- ^ True, if the session wasn't confirmed from another session
+    , can_accept_secret_chats :: Maybe Bool                                -- ^ True, if incoming secret chats can be accepted by the session
+    , can_accept_calls        :: Maybe Bool                                -- ^ True, if incoming calls can be accepted by the session
+    , device_type             :: Maybe SessionDeviceType.SessionDeviceType -- ^ Session device type based on the system and application version, which can be used to display a corresponding icon
+    , api_id                  :: Maybe Int                                 -- ^ Telegram API identifier, as provided by the application
+    , application_name        :: Maybe T.Text                              -- ^ Name of the application, as provided by the application
+    , application_version     :: Maybe T.Text                              -- ^ The version of the application, as provided by the application
+    , is_official_application :: Maybe Bool                                -- ^ True, if the application is an official application or uses the api_id of an official application
+    , device_model            :: Maybe T.Text                              -- ^ Model of the device the application has been run or is running on, as provided by the application
+    , platform                :: Maybe T.Text                              -- ^ Operating system the application has been run or is running on, as provided by the application
+    , system_version          :: Maybe T.Text                              -- ^ Version of the operating system the application has been run or is running on, as provided by the application
+    , log_in_date             :: Maybe Int                                 -- ^ Point in time (Unix timestamp) when the user has logged in
+    , last_active_date        :: Maybe Int                                 -- ^ Point in time (Unix timestamp) when the session was last used
+    , ip_address              :: Maybe T.Text                              -- ^ IP address from which the session was created, in human-readable format
+    , location                :: Maybe T.Text                              -- ^ A human-readable description of the location from which the session was created, based on the IP address
     }
   deriving (Eq, Show)
 
@@ -38,7 +38,7 @@ instance I.ShortShow Session where
     , is_unconfirmed          = is_unconfirmed_
     , can_accept_secret_chats = can_accept_secret_chats_
     , can_accept_calls        = can_accept_calls_
-    , _type                   = _type_
+    , device_type             = device_type_
     , api_id                  = api_id_
     , application_name        = application_name_
     , application_version     = application_version_
@@ -59,7 +59,7 @@ instance I.ShortShow Session where
         , "is_unconfirmed"          `I.p` is_unconfirmed_
         , "can_accept_secret_chats" `I.p` can_accept_secret_chats_
         , "can_accept_calls"        `I.p` can_accept_calls_
-        , "_type"                   `I.p` _type_
+        , "device_type"             `I.p` device_type_
         , "api_id"                  `I.p` api_id_
         , "application_name"        `I.p` application_name_
         , "application_version"     `I.p` application_version_
@@ -90,7 +90,7 @@ instance AT.FromJSON Session where
         is_unconfirmed_          <- o A..:?                       "is_unconfirmed"
         can_accept_secret_chats_ <- o A..:?                       "can_accept_secret_chats"
         can_accept_calls_        <- o A..:?                       "can_accept_calls"
-        _type_                   <- o A..:?                       "type"
+        device_type_             <- o A..:?                       "device_type"
         api_id_                  <- o A..:?                       "api_id"
         application_name_        <- o A..:?                       "application_name"
         application_version_     <- o A..:?                       "application_version"
@@ -109,7 +109,7 @@ instance AT.FromJSON Session where
           , is_unconfirmed          = is_unconfirmed_
           , can_accept_secret_chats = can_accept_secret_chats_
           , can_accept_calls        = can_accept_calls_
-          , _type                   = _type_
+          , device_type             = device_type_
           , api_id                  = api_id_
           , application_name        = application_name_
           , application_version     = application_version_

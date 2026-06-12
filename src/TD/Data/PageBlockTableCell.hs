@@ -1,5 +1,7 @@
 module TD.Data.PageBlockTableCell
-  (PageBlockTableCell(..)) where
+  ( PageBlockTableCell(..)    
+  , defaultPageBlockTableCell 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -64,4 +66,34 @@ instance AT.FromJSON PageBlockTableCell where
           , valign    = valign_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON PageBlockTableCell where
+  toJSON PageBlockTableCell
+    { text      = text_
+    , is_header = is_header_
+    , colspan   = colspan_
+    , rowspan   = rowspan_
+    , align     = align_
+    , valign    = valign_
+    }
+      = A.object
+        [ "@type"     A..= AT.String "pageBlockTableCell"
+        , "text"      A..= text_
+        , "is_header" A..= is_header_
+        , "colspan"   A..= colspan_
+        , "rowspan"   A..= rowspan_
+        , "align"     A..= align_
+        , "valign"    A..= valign_
+        ]
+
+defaultPageBlockTableCell :: PageBlockTableCell
+defaultPageBlockTableCell =
+  PageBlockTableCell
+    { text      = Nothing
+    , is_header = Nothing
+    , colspan   = Nothing
+    , rowspan   = Nothing
+    , align     = Nothing
+    , valign    = Nothing
+    }
 

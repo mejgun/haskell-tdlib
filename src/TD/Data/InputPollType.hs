@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
-import {-# SOURCE #-} qualified TD.Data.InputMessageContent as InputMessageContent
+import qualified TD.Data.InputPollMedia as InputPollMedia
 
 -- | Describes the type of poll to send
 data InputPollType
@@ -13,9 +13,9 @@ data InputPollType
     { allow_adding_options :: Maybe Bool -- ^ True, if answer options can be added to the poll after creation; not supported in channel chats and for anonymous polls
     }
   | InputPollTypeQuiz -- ^ A poll in quiz mode, which has predefined correct answers
-    { correct_option_ids :: Maybe [Int]                                   -- ^ Increasing list of 0-based identifiers of the correct answer options; must be non-empty
-    , explanation        :: Maybe FormattedText.FormattedText             -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds
-    , explanation_media  :: Maybe InputMessageContent.InputMessageContent -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, non-live inputMessageLocation, inputMessagePhoto, inputMessageVenue, or inputMessageVideo without caption
+    { correct_option_ids :: Maybe [Int]                         -- ^ Increasing list of 0-based identifiers of the correct answer options; must be non-empty
+    , explanation        :: Maybe FormattedText.FormattedText   -- ^ Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds
+    , explanation_media  :: Maybe InputPollMedia.InputPollMedia -- ^ Media that is shown when the user chooses an incorrect answer or taps on the lamp icon; pass null if none. Must be one of the following types: inputPollMediaAnimation, inputPollMediaAudio, inputPollMediaDocument, inputPollMediaLocation, inputPollMediaPhoto, inputPollMediaVenue, or inputPollMediaVideo without caption
     }
   deriving (Eq, Show)
 
