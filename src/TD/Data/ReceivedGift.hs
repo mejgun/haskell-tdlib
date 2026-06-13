@@ -33,7 +33,7 @@ data ReceivedGift
     , next_resale_date                 :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     , export_date                      :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     , prepaid_upgrade_hash             :: Maybe T.Text                      -- ^ If non-empty, then the user can pay for an upgrade of the gift using buyGiftUpgrade
-    , craft_date                       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+    , craft_date                       :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     }
   deriving (Eq, Show)
 

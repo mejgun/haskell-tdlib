@@ -24,10 +24,10 @@ data Gift
     , auction_info            :: Maybe GiftAuction.GiftAuction               -- ^ Information about the auction on which the gift can be purchased; may be null if the gift can be purchased directly
     , next_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be sent next time by the current user; may be 0 or a date in the past. If the date is in the future, then call canSendGift to get the reason, why the gift can't be sent now
     , user_limits             :: Maybe GiftPurchaseLimits.GiftPurchaseLimits -- ^ Number of times the gift can be purchased by the current user; may be null if not limited
-    , overall_limits          :: Maybe GiftPurchaseLimits.GiftPurchaseLimits -- ^ Number of times the gift can be purchased all users; may be null if not limited
+    , overall_limits          :: Maybe GiftPurchaseLimits.GiftPurchaseLimits -- ^ Number of times the gift can be purchased by all users; may be null if not limited
     , background              :: Maybe GiftBackground.GiftBackground         -- ^ Background of the gift
-    , first_send_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
-    , last_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
+    , first_send_date         :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was sent for the first time; for sold out gifts only
+    , last_send_date          :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift was sent for the last time; for sold out gifts only
     }
   deriving (Eq, Show)
 

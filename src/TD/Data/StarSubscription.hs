@@ -14,7 +14,7 @@ data StarSubscription
     , chat_id         :: Maybe Int                                             -- ^ Identifier of the chat that is subscribed
     , expiration_date :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the subscription will expire or expired
     , is_canceled     :: Maybe Bool                                            -- ^ True, if the subscription was canceled
-    , is_expiring     :: Maybe Bool                                            -- ^ True, if the subscription expires soon and there are no enough Telegram Stars on the user's balance to extend it
+    , is_expiring     :: Maybe Bool                                            -- ^ True, if the subscription expires soon and there aren't enough Telegram Stars on the user's balance to extend it
     , pricing         :: Maybe StarSubscriptionPricing.StarSubscriptionPricing -- ^ The subscription plan
     , _type           :: Maybe StarSubscriptionType.StarSubscriptionType       -- ^ Type of the subscription
     }

@@ -33,7 +33,7 @@ data Story
     , can_toggle_is_posted_to_chat_page :: Maybe Bool                                      -- ^ True, if the story's is_posted_to_chat_page value can be changed
     , can_get_statistics                :: Maybe Bool                                      -- ^ True, if the story statistics are available through getStoryStatistics
     , can_get_interactions              :: Maybe Bool                                      -- ^ True, if interactions with the story can be received through getStoryInteractions
-    , has_expired_viewers               :: Maybe Bool                                      -- ^ True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+    , has_expired_viewers               :: Maybe Bool                                      -- ^ True, if users who viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
     , repost_info                       :: Maybe StoryRepostInfo.StoryRepostInfo           -- ^ Information about the original story; may be null if the story wasn't reposted
     , interaction_info                  :: Maybe StoryInteractionInfo.StoryInteractionInfo -- ^ Information about interactions with the story; may be null if the story isn't owned or there were no interactions
     , chosen_reaction_type              :: Maybe ReactionType.ReactionType                 -- ^ Type of the chosen reaction; may be null if none

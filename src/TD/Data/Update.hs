@@ -561,7 +561,7 @@ data Update
   | UpdateGiftAuctionState -- ^ State of a gift auction was updated
     { state :: Maybe GiftAuctionState.GiftAuctionState -- ^ New state of the auction
     }
-  | UpdateActiveGiftAuctions -- ^ The list of auctions in which participate the current user has changed
+  | UpdateActiveGiftAuctions -- ^ The list of auctions in which the current user participates has changed
     { states :: Maybe [GiftAuctionState.GiftAuctionState] -- ^ New states of the auctions
     }
   | UpdateUserPrivacySettingRules -- ^ Some privacy setting rules have been changed
@@ -582,7 +582,7 @@ data Update
     , marked_as_unread_unmuted_count :: Maybe Int               -- ^ Total number of unmuted chats marked as unread
     }
   | UpdateChatJoinResult -- ^ A join request from the user was completed
-    { query_id :: Maybe Int                                         -- ^ Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is stiil open, then it must be closed
+    { query_id :: Maybe Int                                         -- ^ Identifier of the join request query as received in chatJoinResultGuardBotApprovalRequired. If the corresponding Web App is still open, then it must be closed
     , chat_id  :: Maybe Int                                         -- ^ Identifier of the joined chat, or 0 if the request wasn't approved
     , result   :: Maybe ChatJoinRequestResult.ChatJoinRequestResult -- ^ Result of the join
     }
@@ -676,7 +676,7 @@ data Update
     , deletion_date :: Maybe Int    -- ^ Point in time (Unix timestamp) when the account will be deleted and can't be unfrozen; 0 if the account isn't frozen
     , appeal_link   :: Maybe T.Text -- ^ The link to open to send an appeal to unfreeze the account
     }
-  | UpdateAgeVerificationParameters -- ^ The parameters for age verification of the current user's account has changed
+  | UpdateAgeVerificationParameters -- ^ The parameters for age verification of the current user's account have changed
     { parameters :: Maybe AgeVerificationParameters.AgeVerificationParameters -- ^ Parameters for the age verification; may be null if age verification isn't needed
     }
   | UpdateTermsOfService -- ^ New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
@@ -730,7 +730,7 @@ data Update
   | UpdateTonRevenueStatus -- ^ The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
     { __status :: Maybe TonRevenueStatus.TonRevenueStatus -- ^ New Toncoin revenue status
     }
-  | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription has changed
+  | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription have changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
     , weekly_count       :: Maybe Int -- ^ The total number of allowed speech recognitions per week; 0 if none
     , left_count         :: Maybe Int -- ^ Number of left speech recognition attempts this week
@@ -750,7 +750,7 @@ data Update
     , message_id :: Maybe Int             -- ^ Message identifier
     , sticker    :: Maybe Sticker.Sticker -- ^ The animated sticker to be played
     }
-  | UpdateAnimationSearchParameters -- ^ The parameters of animation search through getOption("animation_search_bot_username") bot has changed
+  | UpdateAnimationSearchParameters -- ^ The parameters of animation search through getOption("animation_search_bot_username") bot have changed
     { provider :: Maybe T.Text   -- ^ Name of the animation search provider
     , emojis   :: Maybe [T.Text] -- ^ The new list of emojis suggested for searching
     }
@@ -761,7 +761,7 @@ data Update
     { added_actions   :: Maybe [SuggestedAction.SuggestedAction] -- ^ Added suggested actions
     , removed_actions :: Maybe [SuggestedAction.SuggestedAction] -- ^ Removed suggested actions
     }
-  | UpdateSpeedLimitNotification -- ^ Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+  | UpdateSpeedLimitNotification -- ^ Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a file being downloaded or uploaded is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
     { is_upload :: Maybe Bool -- ^ True, if upload speed was limited; false, if download speed was limited
     }
   | UpdateContactCloseBirthdays -- ^ The list of contacts that had birthdays recently or will have birthday soon has changed

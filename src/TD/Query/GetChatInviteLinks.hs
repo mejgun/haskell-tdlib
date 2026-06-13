@@ -13,7 +13,7 @@ data GetChatInviteLinks
   = GetChatInviteLinks
     { chat_id            :: Maybe Int    -- ^ Chat identifier
     , creator_user_id    :: Maybe Int    -- ^ User identifier of a chat administrator. Must be an identifier of the current user for non-owner
-    , is_revoked         :: Maybe Bool   -- ^ Pass true if revoked links needs to be returned instead of active or expired
+    , is_revoked         :: Maybe Bool   -- ^ Pass true if revoked links need to be returned instead of active or expired
     , offset_date        :: Maybe Int    -- ^ Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
     , offset_invite_link :: Maybe T.Text -- ^ Invite link starting after which to return invite links; use empty string to get results from the beginning
     , limit              :: Maybe Int    -- ^ The maximum number of invite links to return; up to 100

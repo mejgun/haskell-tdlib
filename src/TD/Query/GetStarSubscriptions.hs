@@ -11,7 +11,7 @@ import qualified Data.Text as T
 -- | Returns the list of Telegram Star subscriptions for the current user. Returns 'TD.Data.StarSubscriptions.StarSubscriptions'
 data GetStarSubscriptions
   = GetStarSubscriptions
-    { only_expiring :: Maybe Bool   -- ^ Pass true to receive only expiring subscriptions for which there are no enough Telegram Stars to extend
+    { only_expiring :: Maybe Bool   -- ^ Pass true to receive only expiring subscriptions for which there aren't enough Telegram Stars to extend
     , offset        :: Maybe T.Text -- ^ Offset of the first subscription to return as received from the previous request; use empty string to get the first chunk of results
     }
   deriving (Eq, Show)

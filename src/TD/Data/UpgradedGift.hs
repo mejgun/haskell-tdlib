@@ -24,7 +24,7 @@ data UpgradedGift
     , total_upgraded_count        :: Maybe Int                                                     -- ^ Total number of gifts that were upgraded from the same gift
     , max_upgraded_count          :: Maybe Int                                                     -- ^ The maximum number of gifts that can be upgraded from the same gift
     , is_burned                   :: Maybe Bool                                                    -- ^ True, if the gift was used to craft another gift
-    , is_crafted                  :: Maybe Bool                                                    -- ^ True, if the gift was craft from another gifts
+    , is_crafted                  :: Maybe Bool                                                    -- ^ True, if the gift was crafted from other gifts
     , is_premium                  :: Maybe Bool                                                    -- ^ True, if the original gift could have been bought only by Telegram Premium subscribers
     , is_theme_available          :: Maybe Bool                                                    -- ^ True, if the gift can be used to set a theme in a chat
     , used_theme_chat_id          :: Maybe Int                                                     -- ^ Identifier of the chat for which the gift is used to set a theme; 0 if none or the gift isn't owned by the current user

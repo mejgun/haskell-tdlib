@@ -420,7 +420,7 @@ data MessageContent
     , transaction_id   :: Maybe T.Text          -- ^ Identifier of the transaction for Toncoin credit; for receiver only
     , sticker          :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
-  | MessageGiveawayPrizeStars -- ^ A Telegram Stars were received by the current user from a giveaway
+  | MessageGiveawayPrizeStars -- ^ Telegram Stars were received by the current user from a giveaway
     { star_count          :: Maybe Int             -- ^ Number of Telegram Stars that were received
     , transaction_id      :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars credit
     , boosted_chat_id     :: Maybe Int             -- ^ Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
@@ -463,7 +463,7 @@ data MessageContent
     , next_transfer_date               :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to another owner; can be in the past; 0 if the gift can be transferred immediately or transfer isn't possible; only for the receiver of the gift
     , next_resale_date                 :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be resold to another user; can be in the past; 0 if the gift can't be resold; only for the receiver of the gift
     , export_date                      :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
-    , craft_date                       :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift can be in the past; only for the receiver of the gift
+    , craft_date                       :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     }
   | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
     { gift        :: Maybe Gift.Gift                             -- ^ The gift
@@ -503,7 +503,7 @@ data MessageContent
     { checklist_message_id :: Maybe Int                           -- ^ Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     , tasks                :: Maybe [ChecklistTask.ChecklistTask] -- ^ List of tasks added to the checklist
     }
-  | MessageSuggestedPostApprovalFailed -- ^ Approval of suggested post has failed, because the user which proposed the post had no enough funds
+  | MessageSuggestedPostApprovalFailed -- ^ Approval of suggested post has failed, because the user who proposed the post didn't have enough funds
     { suggested_post_message_id :: Maybe Int                                   -- ^ Identifier of the message with the suggested post; may be 0 or an identifier of a deleted message
     , _price                    :: Maybe SuggestedPostPrice.SuggestedPostPrice -- ^ Price of the suggested post
     }

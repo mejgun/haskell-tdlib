@@ -14,7 +14,7 @@ data UploadStickerFile
   = UploadStickerFile
     { user_id        :: Maybe Int                         -- ^ Sticker file owner; ignored for regular users
     , sticker_format :: Maybe StickerFormat.StickerFormat -- ^ Sticker format
-    , sticker        :: Maybe InputFile.InputFile         -- ^ File file to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    , sticker        :: Maybe InputFile.InputFile         -- ^ File to upload; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
     }
   deriving (Eq, Show)
 

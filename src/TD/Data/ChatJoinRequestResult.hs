@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 -- | Describes result of a chat join request
 data ChatJoinRequestResult
   = ChatJoinRequestResultApproved -- ^ The request was approved
-  | ChatJoinRequestResultDeclined -- ^ The request was decline
+  | ChatJoinRequestResultDeclined -- ^ The request was declined
   | ChatJoinRequestResultQueued -- ^ The request was postponed without a decision
   deriving (Eq, Show)
 

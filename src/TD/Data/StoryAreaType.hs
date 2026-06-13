@@ -19,7 +19,7 @@ data StoryAreaType
   | StoryAreaTypeVenue -- ^ An area pointing to a venue
     { venue :: Maybe Venue.Venue -- ^ Information about the venue
     }
-  | StoryAreaTypeSuggestedReaction -- ^ An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked
+  | StoryAreaTypeSuggestedReaction -- ^ An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the area is clicked
     { reaction_type :: Maybe ReactionType.ReactionType -- ^ Type of the reaction
     , total_count   :: Maybe Int                       -- ^ Number of times the reaction was added
     , is_dark       :: Maybe Bool                      -- ^ True, if reaction has a dark background

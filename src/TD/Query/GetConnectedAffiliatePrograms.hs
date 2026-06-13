@@ -12,7 +12,7 @@ import qualified Data.Text as T
 -- | Returns affiliate programs that were connected to the given affiliate. Returns 'TD.Data.ConnectedAffiliatePrograms.ConnectedAffiliatePrograms'
 data GetConnectedAffiliatePrograms
   = GetConnectedAffiliatePrograms
-    { affiliate :: Maybe AffiliateType.AffiliateType -- ^ The affiliate to which the affiliate program were connected
+    { affiliate :: Maybe AffiliateType.AffiliateType -- ^ The affiliate to which the affiliate programs were connected
     , offset    :: Maybe T.Text                      -- ^ Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
     , limit     :: Maybe Int                         -- ^ The maximum number of affiliate programs to return
     }

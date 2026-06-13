@@ -11,7 +11,7 @@ import qualified TD.Data.Photo as Photo
 data StarSubscriptionType
   = StarSubscriptionTypeChannel -- ^ Describes a subscription to a channel chat
     { can_reuse   :: Maybe Bool   -- ^ True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
-    , invite_link :: Maybe T.Text -- ^ The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
+    , invite_link :: Maybe T.Text -- ^ The invite link that can be used to renew the subscription if it has expired; may be empty if the link isn't available anymore
     }
   | StarSubscriptionTypeBot -- ^ Describes a subscription in a bot or a business account
     { is_canceled_by_bot :: Maybe Bool        -- ^ True, if the subscription was canceled by the bot and can't be extended

@@ -12,7 +12,7 @@ data BusinessGreetingMessageSettings
   = BusinessGreetingMessageSettings -- ^ Describes settings for greeting messages that are automatically sent by a Telegram Business account as response to incoming messages in an inactive private chat
     { shortcut_id     :: Maybe Int                                   -- ^ Unique quick reply shortcut identifier for the greeting messages
     , recipients      :: Maybe BusinessRecipients.BusinessRecipients -- ^ Chosen recipients of the greeting messages
-    , inactivity_days :: Maybe Int                                   -- ^ The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28
+    , inactivity_days :: Maybe Int                                   -- ^ The number of days after which a chat will be considered as inactive; currently, must be one of 7, 14, 21, or 28
     }
   deriving (Eq, Show)
 

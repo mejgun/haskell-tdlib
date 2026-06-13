@@ -16,7 +16,7 @@ data AutoDownloadSettings
     , video_upload_bitrate     :: Maybe Int  -- ^ The maximum suggested bitrate for uploaded videos, in kbit/s
     , preload_large_videos     :: Maybe Bool -- ^ True, if the beginning of video files needs to be preloaded for instant playback
     , preload_next_audio       :: Maybe Bool -- ^ True, if the next audio track needs to be preloaded while the user is listening to an audio file
-    , preload_stories          :: Maybe Bool -- ^ True, if stories needs to be preloaded
+    , preload_stories          :: Maybe Bool -- ^ True, if stories need to be preloaded
     , use_less_data_for_calls  :: Maybe Bool -- ^ True, if "use less data for calls" option needs to be enabled
     }
   deriving (Eq, Show)
