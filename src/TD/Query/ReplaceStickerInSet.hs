@@ -8,15 +8,15 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.InputFile as InputFile
-import qualified TD.Data.InputSticker as InputSticker
+import qualified TD.Data.NewSticker as NewSticker
 
 -- | Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet. Returns 'TD.Data.Ok.Ok'
 data ReplaceStickerInSet
   = ReplaceStickerInSet
-    { user_id     :: Maybe Int                       -- ^ Sticker set owner; ignored for regular users
-    , name        :: Maybe T.Text                    -- ^ Sticker set name. The sticker set must be owned by the current user
-    , old_sticker :: Maybe InputFile.InputFile       -- ^ Sticker to remove from the set
-    , new_sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to add to the set
+    { user_id     :: Maybe Int                   -- ^ Sticker set owner; ignored for regular users
+    , name        :: Maybe T.Text                -- ^ Sticker set name. The sticker set must be owned by the current user
+    , old_sticker :: Maybe InputFile.InputFile   -- ^ Sticker to remove from the set
+    , new_sticker :: Maybe NewSticker.NewSticker -- ^ Sticker to add to the set
     }
   deriving (Eq, Show)
 

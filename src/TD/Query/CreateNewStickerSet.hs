@@ -8,18 +8,18 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.StickerType as StickerType
-import qualified TD.Data.InputSticker as InputSticker
+import qualified TD.Data.NewSticker as NewSticker
 
 -- | Creates a new sticker set. Returns the newly created sticker set. Returns 'TD.Data.StickerSet.StickerSet'
 data CreateNewStickerSet
   = CreateNewStickerSet
-    { user_id          :: Maybe Int                         -- ^ Sticker set owner; ignored for regular users
-    , title            :: Maybe T.Text                      -- ^ Sticker set title; 1-64 characters
-    , name             :: Maybe T.Text                      -- ^ Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically
-    , sticker_type     :: Maybe StickerType.StickerType     -- ^ Type of the stickers in the set
-    , needs_repainting :: Maybe Bool                        -- ^ Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
-    , stickers         :: Maybe [InputSticker.InputSticker] -- ^ List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
-    , source           :: Maybe T.Text                      -- ^ Source of the sticker set; may be empty if unknown
+    { user_id          :: Maybe Int                     -- ^ Sticker set owner; ignored for regular users
+    , title            :: Maybe T.Text                  -- ^ Sticker set title; 1-64 characters
+    , name             :: Maybe T.Text                  -- ^ Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically
+    , sticker_type     :: Maybe StickerType.StickerType -- ^ Type of the stickers in the set
+    , needs_repainting :: Maybe Bool                    -- ^ Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
+    , stickers         :: Maybe [NewSticker.NewSticker] -- ^ List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+    , source           :: Maybe T.Text                  -- ^ Source of the sticker set; may be empty if unknown
     }
   deriving (Eq, Show)
 

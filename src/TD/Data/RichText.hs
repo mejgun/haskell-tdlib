@@ -28,6 +28,15 @@ data RichText
   | RichTextSpoiler -- ^ A spoilered rich text
     { _text :: Maybe RichText -- ^ Text
     }
+  | RichTextSubscript -- ^ A subscript rich text
+    { _text :: Maybe RichText -- ^ Text
+    }
+  | RichTextSuperscript -- ^ A superscript rich text
+    { _text :: Maybe RichText -- ^ Text
+    }
+  | RichTextMarked -- ^ A marked rich text
+    { _text :: Maybe RichText -- ^ Text
+    }
   | RichTextDateTime -- ^ A date and time
     { _text           :: Maybe RichText                                      -- ^ Original text
     , unix_time       :: Maybe Int                                           -- ^ Point in time (Unix timestamp) representing the date and time
@@ -44,6 +53,10 @@ data RichText
   | RichTextCashtag -- ^ A cashtag
     { _text   :: Maybe RichText -- ^ Text
     , cashtag :: Maybe T.Text   -- ^ The cashtag
+    }
+  | RichTextBankCardNumber -- ^ A bank card number
+    { _text            :: Maybe RichText -- ^ Text
+    , bank_card_number :: Maybe T.Text   -- ^ The number of the bank card
     }
   | RichTextBotCommand -- ^ A bot command
     { _text       :: Maybe RichText -- ^ Text
@@ -65,19 +78,6 @@ data RichText
     { _text         :: Maybe RichText -- ^ Text
     , email_address :: Maybe T.Text   -- ^ Email address
     }
-  | RichTextBankCardNumber -- ^ A bank card number
-    { _text            :: Maybe RichText -- ^ Text
-    , bank_card_number :: Maybe T.Text   -- ^ The number of the bank card
-    }
-  | RichTextSubscript -- ^ A subscript rich text
-    { _text :: Maybe RichText -- ^ Text
-    }
-  | RichTextSuperscript -- ^ A superscript rich text
-    { _text :: Maybe RichText -- ^ Text
-    }
-  | RichTextMarked -- ^ A marked rich text
-    { _text :: Maybe RichText -- ^ Text
-    }
   | RichTextPhoneNumber -- ^ A rich text phone number
     { _text        :: Maybe RichText -- ^ Text
     , phone_number :: Maybe T.Text   -- ^ Phone number
@@ -93,6 +93,10 @@ data RichText
     }
   | RichTextMathematicalExpression -- ^ A mathematical expression
     { expression :: Maybe T.Text -- ^ The expression in LaTeX format
+    }
+  | RichTextDiff -- ^ A rich text replacing another rich text; not supported in inputRichMessage
+    { _text    :: Maybe RichText -- ^ Text
+    , old_text :: Maybe RichText -- ^ The old text
     }
   | RichTextReference -- ^ A reference
     { name  :: Maybe T.Text   -- ^ Reference name
@@ -159,6 +163,27 @@ instance I.ShortShow RichText where
         ++ I.cc
         [ "_text" `I.p` _text_
         ]
+  shortShow RichTextSubscript
+    { _text = _text_
+    }
+      = "RichTextSubscript"
+        ++ I.cc
+        [ "_text" `I.p` _text_
+        ]
+  shortShow RichTextSuperscript
+    { _text = _text_
+    }
+      = "RichTextSuperscript"
+        ++ I.cc
+        [ "_text" `I.p` _text_
+        ]
+  shortShow RichTextMarked
+    { _text = _text_
+    }
+      = "RichTextMarked"
+        ++ I.cc
+        [ "_text" `I.p` _text_
+        ]
   shortShow RichTextDateTime
     { _text           = _text_
     , unix_time       = unix_time_
@@ -196,6 +221,15 @@ instance I.ShortShow RichText where
         ++ I.cc
         [ "_text"   `I.p` _text_
         , "cashtag" `I.p` cashtag_
+        ]
+  shortShow RichTextBankCardNumber
+    { _text            = _text_
+    , bank_card_number = bank_card_number_
+    }
+      = "RichTextBankCardNumber"
+        ++ I.cc
+        [ "_text"            `I.p` _text_
+        , "bank_card_number" `I.p` bank_card_number_
         ]
   shortShow RichTextBotCommand
     { _text       = _text_
@@ -242,36 +276,6 @@ instance I.ShortShow RichText where
         [ "_text"         `I.p` _text_
         , "email_address" `I.p` email_address_
         ]
-  shortShow RichTextBankCardNumber
-    { _text            = _text_
-    , bank_card_number = bank_card_number_
-    }
-      = "RichTextBankCardNumber"
-        ++ I.cc
-        [ "_text"            `I.p` _text_
-        , "bank_card_number" `I.p` bank_card_number_
-        ]
-  shortShow RichTextSubscript
-    { _text = _text_
-    }
-      = "RichTextSubscript"
-        ++ I.cc
-        [ "_text" `I.p` _text_
-        ]
-  shortShow RichTextSuperscript
-    { _text = _text_
-    }
-      = "RichTextSuperscript"
-        ++ I.cc
-        [ "_text" `I.p` _text_
-        ]
-  shortShow RichTextMarked
-    { _text = _text_
-    }
-      = "RichTextMarked"
-        ++ I.cc
-        [ "_text" `I.p` _text_
-        ]
   shortShow RichTextPhoneNumber
     { _text        = _text_
     , phone_number = phone_number_
@@ -307,6 +311,15 @@ instance I.ShortShow RichText where
       = "RichTextMathematicalExpression"
         ++ I.cc
         [ "expression" `I.p` expression_
+        ]
+  shortShow RichTextDiff
+    { _text    = _text_
+    , old_text = old_text_
+    }
+      = "RichTextDiff"
+        ++ I.cc
+        [ "_text"    `I.p` _text_
+        , "old_text" `I.p` old_text_
         ]
   shortShow RichTextReference
     { name  = name_
@@ -365,23 +378,24 @@ instance AT.FromJSON RichText where
       "richTextUnderline"              -> parseRichTextUnderline v
       "richTextStrikethrough"          -> parseRichTextStrikethrough v
       "richTextSpoiler"                -> parseRichTextSpoiler v
+      "richTextSubscript"              -> parseRichTextSubscript v
+      "richTextSuperscript"            -> parseRichTextSuperscript v
+      "richTextMarked"                 -> parseRichTextMarked v
       "richTextDateTime"               -> parseRichTextDateTime v
       "richTextMention"                -> parseRichTextMention v
       "richTextHashtag"                -> parseRichTextHashtag v
       "richTextCashtag"                -> parseRichTextCashtag v
+      "richTextBankCardNumber"         -> parseRichTextBankCardNumber v
       "richTextBotCommand"             -> parseRichTextBotCommand v
       "richTextFixed"                  -> parseRichTextFixed v
       "richTextMentionName"            -> parseRichTextMentionName v
       "richTextUrl"                    -> parseRichTextUrl v
       "richTextEmailAddress"           -> parseRichTextEmailAddress v
-      "richTextBankCardNumber"         -> parseRichTextBankCardNumber v
-      "richTextSubscript"              -> parseRichTextSubscript v
-      "richTextSuperscript"            -> parseRichTextSuperscript v
-      "richTextMarked"                 -> parseRichTextMarked v
       "richTextPhoneNumber"            -> parseRichTextPhoneNumber v
       "richTextCustomEmoji"            -> parseRichTextCustomEmoji v
       "richTextIcon"                   -> parseRichTextIcon v
       "richTextMathematicalExpression" -> parseRichTextMathematicalExpression v
+      "richTextDiff"                   -> parseRichTextDiff v
       "richTextReference"              -> parseRichTextReference v
       "richTextReferenceLink"          -> parseRichTextReferenceLink v
       "richTextAnchor"                 -> parseRichTextAnchor v
@@ -426,6 +440,24 @@ instance AT.FromJSON RichText where
         pure $ RichTextSpoiler
           { _text = _text_
           }
+      parseRichTextSubscript :: A.Value -> AT.Parser RichText
+      parseRichTextSubscript = A.withObject "RichTextSubscript" $ \o -> do
+        _text_ <- o A..:?  "text"
+        pure $ RichTextSubscript
+          { _text = _text_
+          }
+      parseRichTextSuperscript :: A.Value -> AT.Parser RichText
+      parseRichTextSuperscript = A.withObject "RichTextSuperscript" $ \o -> do
+        _text_ <- o A..:?  "text"
+        pure $ RichTextSuperscript
+          { _text = _text_
+          }
+      parseRichTextMarked :: A.Value -> AT.Parser RichText
+      parseRichTextMarked = A.withObject "RichTextMarked" $ \o -> do
+        _text_ <- o A..:?  "text"
+        pure $ RichTextMarked
+          { _text = _text_
+          }
       parseRichTextDateTime :: A.Value -> AT.Parser RichText
       parseRichTextDateTime = A.withObject "RichTextDateTime" $ \o -> do
         _text_           <- o A..:?  "text"
@@ -459,6 +491,14 @@ instance AT.FromJSON RichText where
         pure $ RichTextCashtag
           { _text   = _text_
           , cashtag = cashtag_
+          }
+      parseRichTextBankCardNumber :: A.Value -> AT.Parser RichText
+      parseRichTextBankCardNumber = A.withObject "RichTextBankCardNumber" $ \o -> do
+        _text_            <- o A..:?  "text"
+        bank_card_number_ <- o A..:?  "bank_card_number"
+        pure $ RichTextBankCardNumber
+          { _text            = _text_
+          , bank_card_number = bank_card_number_
           }
       parseRichTextBotCommand :: A.Value -> AT.Parser RichText
       parseRichTextBotCommand = A.withObject "RichTextBotCommand" $ \o -> do
@@ -500,32 +540,6 @@ instance AT.FromJSON RichText where
           { _text         = _text_
           , email_address = email_address_
           }
-      parseRichTextBankCardNumber :: A.Value -> AT.Parser RichText
-      parseRichTextBankCardNumber = A.withObject "RichTextBankCardNumber" $ \o -> do
-        _text_            <- o A..:?  "text"
-        bank_card_number_ <- o A..:?  "bank_card_number"
-        pure $ RichTextBankCardNumber
-          { _text            = _text_
-          , bank_card_number = bank_card_number_
-          }
-      parseRichTextSubscript :: A.Value -> AT.Parser RichText
-      parseRichTextSubscript = A.withObject "RichTextSubscript" $ \o -> do
-        _text_ <- o A..:?  "text"
-        pure $ RichTextSubscript
-          { _text = _text_
-          }
-      parseRichTextSuperscript :: A.Value -> AT.Parser RichText
-      parseRichTextSuperscript = A.withObject "RichTextSuperscript" $ \o -> do
-        _text_ <- o A..:?  "text"
-        pure $ RichTextSuperscript
-          { _text = _text_
-          }
-      parseRichTextMarked :: A.Value -> AT.Parser RichText
-      parseRichTextMarked = A.withObject "RichTextMarked" $ \o -> do
-        _text_ <- o A..:?  "text"
-        pure $ RichTextMarked
-          { _text = _text_
-          }
       parseRichTextPhoneNumber :: A.Value -> AT.Parser RichText
       parseRichTextPhoneNumber = A.withObject "RichTextPhoneNumber" $ \o -> do
         _text_        <- o A..:?  "text"
@@ -557,6 +571,14 @@ instance AT.FromJSON RichText where
         expression_ <- o A..:?  "expression"
         pure $ RichTextMathematicalExpression
           { expression = expression_
+          }
+      parseRichTextDiff :: A.Value -> AT.Parser RichText
+      parseRichTextDiff = A.withObject "RichTextDiff" $ \o -> do
+        _text_    <- o A..:?  "text"
+        old_text_ <- o A..:?  "old_text"
+        pure $ RichTextDiff
+          { _text    = _text_
+          , old_text = old_text_
           }
       parseRichTextReference :: A.Value -> AT.Parser RichText
       parseRichTextReference = A.withObject "RichTextReference" $ \o -> do
@@ -643,6 +665,27 @@ instance AT.ToJSON RichText where
         [ "@type" A..= AT.String "richTextSpoiler"
         , "text"  A..= _text_
         ]
+  toJSON RichTextSubscript
+    { _text = _text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "richTextSubscript"
+        , "text"  A..= _text_
+        ]
+  toJSON RichTextSuperscript
+    { _text = _text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "richTextSuperscript"
+        , "text"  A..= _text_
+        ]
+  toJSON RichTextMarked
+    { _text = _text_
+    }
+      = A.object
+        [ "@type" A..= AT.String "richTextMarked"
+        , "text"  A..= _text_
+        ]
   toJSON RichTextDateTime
     { _text           = _text_
     , unix_time       = unix_time_
@@ -680,6 +723,15 @@ instance AT.ToJSON RichText where
         [ "@type"   A..= AT.String "richTextCashtag"
         , "text"    A..= _text_
         , "cashtag" A..= cashtag_
+        ]
+  toJSON RichTextBankCardNumber
+    { _text            = _text_
+    , bank_card_number = bank_card_number_
+    }
+      = A.object
+        [ "@type"            A..= AT.String "richTextBankCardNumber"
+        , "text"             A..= _text_
+        , "bank_card_number" A..= bank_card_number_
         ]
   toJSON RichTextBotCommand
     { _text       = _text_
@@ -726,36 +778,6 @@ instance AT.ToJSON RichText where
         , "text"          A..= _text_
         , "email_address" A..= email_address_
         ]
-  toJSON RichTextBankCardNumber
-    { _text            = _text_
-    , bank_card_number = bank_card_number_
-    }
-      = A.object
-        [ "@type"            A..= AT.String "richTextBankCardNumber"
-        , "text"             A..= _text_
-        , "bank_card_number" A..= bank_card_number_
-        ]
-  toJSON RichTextSubscript
-    { _text = _text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "richTextSubscript"
-        , "text"  A..= _text_
-        ]
-  toJSON RichTextSuperscript
-    { _text = _text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "richTextSuperscript"
-        , "text"  A..= _text_
-        ]
-  toJSON RichTextMarked
-    { _text = _text_
-    }
-      = A.object
-        [ "@type" A..= AT.String "richTextMarked"
-        , "text"  A..= _text_
-        ]
   toJSON RichTextPhoneNumber
     { _text        = _text_
     , phone_number = phone_number_
@@ -791,6 +813,15 @@ instance AT.ToJSON RichText where
       = A.object
         [ "@type"      A..= AT.String "richTextMathematicalExpression"
         , "expression" A..= expression_
+        ]
+  toJSON RichTextDiff
+    { _text    = _text_
+    , old_text = old_text_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "richTextDiff"
+        , "text"     A..= _text_
+        , "old_text" A..= old_text_
         ]
   toJSON RichTextReference
     { name  = name_

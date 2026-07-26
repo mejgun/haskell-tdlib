@@ -19,7 +19,7 @@ data MessageProperties
     , can_be_forwarded                      :: Maybe Bool -- ^ True, if the message can be forwarded using inputMessageForwarded or forwardMessages without copy options
     , can_be_paid                           :: Maybe Bool -- ^ True, if the message can be paid using inputInvoiceMessage
     , can_be_pinned                         :: Maybe Bool -- ^ True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
-    , can_be_replied                        :: Maybe Bool -- ^ True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage
+    , can_be_replied                        :: Maybe Bool -- ^ True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage. Ephemeral messages can be replied only by other ephemeral messages
     , can_be_replied_in_another_chat        :: Maybe Bool -- ^ True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
     , can_be_saved                          :: Maybe Bool -- ^ True, if content of the message can be saved locally
     , can_be_shared_in_story                :: Maybe Bool -- ^ True, if the message can be shared in a story using inputStoryAreaTypeMessage

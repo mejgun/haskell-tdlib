@@ -38,7 +38,7 @@ data SettingsSection
   | SettingsSectionMyStars -- ^ The Telegram Star balance and transaction section
     { subsection :: Maybe T.Text -- ^ Subsection of the section; may be one of "", "top-up", "stats", "gift", "earn"
     }
-  | SettingsSectionMyToncoins -- ^ The Toncoin balance and transaction section
+  | SettingsSectionMyGrams -- ^ The TON Gram balance and transaction section
   | SettingsSectionNotifications -- ^ The notification settings section
     { subsection :: Maybe T.Text -- ^ Subsection of the section; may be one of "", "accounts", "private-chats", "private-chats/edit", "private-chats/show", "private-chats/preview", "private-chats/sound", "private-chats/add-exception", "private-chats/delete-exceptions", "private-chats/light-color", "private-chats/vibrate", "private-chats/priority", "groups", "groups/edit", "groups/show", "groups/preview", "groups/sound", "groups/add-exception", "groups/delete-exceptions", "groups/light-color", "groups/vibrate", "groups/priority", "channels", "channels/edit", "channels/show", "channels/preview", "channels/sound", "channels/add-exception", "channels/delete-exceptions", "channels/light-color", "channels/vibrate", "channels/priority", "stories", "stories/new", "stories/important", "stories/show-sender", "stories/sound", "stories/add-exception", "stories/delete-exceptions", "stories/light-color", "stories/vibrate", "stories/priority", "reactions", "reactions/messages", "reactions/stories", "reactions/show-sender", "reactions/sound", "reactions/light-color", "reactions/vibrate", "reactions/priority", "in-app-sounds", "in-app-vibrate", "in-app-preview", "in-chat-sounds", "in-app-popup", "lock-screen-names", "include-channels", "include-muted-chats", "count-unread-messages", "new-contacts", "pinned-messages", "reset", "web"
     }
@@ -129,8 +129,8 @@ instance I.ShortShow SettingsSection where
         ++ I.cc
         [ "subsection" `I.p` subsection_
         ]
-  shortShow SettingsSectionMyToncoins
-      = "SettingsSectionMyToncoins"
+  shortShow SettingsSectionMyGrams
+      = "SettingsSectionMyGrams"
   shortShow SettingsSectionNotifications
     { subsection = subsection_
     }
@@ -190,7 +190,7 @@ instance AT.FromJSON SettingsSection where
       "settingsSectionInAppBrowser"       -> parseSettingsSectionInAppBrowser v
       "settingsSectionLanguage"           -> parseSettingsSectionLanguage v
       "settingsSectionMyStars"            -> parseSettingsSectionMyStars v
-      "settingsSectionMyToncoins"         -> pure SettingsSectionMyToncoins
+      "settingsSectionMyGrams"            -> pure SettingsSectionMyGrams
       "settingsSectionNotifications"      -> parseSettingsSectionNotifications v
       "settingsSectionPowerSaving"        -> parseSettingsSectionPowerSaving v
       "settingsSectionPremium"            -> pure SettingsSectionPremium
@@ -364,9 +364,9 @@ instance AT.ToJSON SettingsSection where
         [ "@type"      A..= AT.String "settingsSectionMyStars"
         , "subsection" A..= subsection_
         ]
-  toJSON SettingsSectionMyToncoins
+  toJSON SettingsSectionMyGrams
       = A.object
-        [ "@type" A..= AT.String "settingsSectionMyToncoins"
+        [ "@type" A..= AT.String "settingsSectionMyGrams"
         ]
   toJSON SettingsSectionNotifications
     { subsection = subsection_

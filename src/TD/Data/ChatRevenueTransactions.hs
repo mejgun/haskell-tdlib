@@ -9,7 +9,7 @@ import qualified Data.Text as T
 
 data ChatRevenueTransactions
   = ChatRevenueTransactions -- ^ Contains a list of chat revenue transactions
-    { ton_amount   :: Maybe Int                                             -- ^ The amount of owned Toncoins; in the smallest units of the cryptocurrency
+    { gram_amount  :: Maybe Int                                             -- ^ The amount of owned TON Grams; in the smallest units of the cryptocurrency
     , transactions :: Maybe [ChatRevenueTransaction.ChatRevenueTransaction] -- ^ List of transactions
     , next_offset  :: Maybe T.Text                                          -- ^ The offset for the next request. If empty, then there are no more results
     }
@@ -17,13 +17,13 @@ data ChatRevenueTransactions
 
 instance I.ShortShow ChatRevenueTransactions where
   shortShow ChatRevenueTransactions
-    { ton_amount   = ton_amount_
+    { gram_amount  = gram_amount_
     , transactions = transactions_
     , next_offset  = next_offset_
     }
       = "ChatRevenueTransactions"
         ++ I.cc
-        [ "ton_amount"   `I.p` ton_amount_
+        [ "gram_amount"  `I.p` gram_amount_
         , "transactions" `I.p` transactions_
         , "next_offset"  `I.p` next_offset_
         ]
@@ -39,11 +39,11 @@ instance AT.FromJSON ChatRevenueTransactions where
     where
       parseChatRevenueTransactions :: A.Value -> AT.Parser ChatRevenueTransactions
       parseChatRevenueTransactions = A.withObject "ChatRevenueTransactions" $ \o -> do
-        ton_amount_   <- o A..:?  "ton_amount"
+        gram_amount_  <- o A..:?  "gram_amount"
         transactions_ <- o A..:?  "transactions"
         next_offset_  <- o A..:?  "next_offset"
         pure $ ChatRevenueTransactions
-          { ton_amount   = ton_amount_
+          { gram_amount  = gram_amount_
           , transactions = transactions_
           , next_offset  = next_offset_
           }

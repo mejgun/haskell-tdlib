@@ -8,30 +8,30 @@ import qualified Data.Text as T
 import qualified TD.Data.TonTransactionType as TonTransactionType
 
 data TonTransaction
-  = TonTransaction -- ^ Represents a transaction changing the amount of owned Toncoins
-    { _id        :: Maybe T.Text                                -- ^ Unique identifier of the transaction
-    , ton_amount :: Maybe Int                                   -- ^ The amount of added owned Toncoins; negative for outgoing transactions
-    , is_refund  :: Maybe Bool                                  -- ^ True, if the transaction is a refund of a previous transaction
-    , date       :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the transaction was completed
-    , _type      :: Maybe TonTransactionType.TonTransactionType -- ^ Type of the transaction
+  = TonTransaction -- ^ Represents a transaction changing the amount of owned TON Grams
+    { _id         :: Maybe T.Text                                -- ^ Unique identifier of the transaction
+    , gram_amount :: Maybe Int                                   -- ^ The amount of added owned Grams, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    , is_refund   :: Maybe Bool                                  -- ^ True, if the transaction is a refund of a previous transaction
+    , date        :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the transaction was completed
+    , _type       :: Maybe TonTransactionType.TonTransactionType -- ^ Type of the transaction
     }
   deriving (Eq, Show)
 
 instance I.ShortShow TonTransaction where
   shortShow TonTransaction
-    { _id        = _id_
-    , ton_amount = ton_amount_
-    , is_refund  = is_refund_
-    , date       = date_
-    , _type      = _type_
+    { _id         = _id_
+    , gram_amount = gram_amount_
+    , is_refund   = is_refund_
+    , date        = date_
+    , _type       = _type_
     }
       = "TonTransaction"
         ++ I.cc
-        [ "_id"        `I.p` _id_
-        , "ton_amount" `I.p` ton_amount_
-        , "is_refund"  `I.p` is_refund_
-        , "date"       `I.p` date_
-        , "_type"      `I.p` _type_
+        [ "_id"         `I.p` _id_
+        , "gram_amount" `I.p` gram_amount_
+        , "is_refund"   `I.p` is_refund_
+        , "date"        `I.p` date_
+        , "_type"       `I.p` _type_
         ]
 
 instance AT.FromJSON TonTransaction where
@@ -45,17 +45,17 @@ instance AT.FromJSON TonTransaction where
     where
       parseTonTransaction :: A.Value -> AT.Parser TonTransaction
       parseTonTransaction = A.withObject "TonTransaction" $ \o -> do
-        _id_        <- o A..:?  "id"
-        ton_amount_ <- o A..:?  "ton_amount"
-        is_refund_  <- o A..:?  "is_refund"
-        date_       <- o A..:?  "date"
-        _type_      <- o A..:?  "type"
+        _id_         <- o A..:?  "id"
+        gram_amount_ <- o A..:?  "gram_amount"
+        is_refund_   <- o A..:?  "is_refund"
+        date_        <- o A..:?  "date"
+        _type_       <- o A..:?  "type"
         pure $ TonTransaction
-          { _id        = _id_
-          , ton_amount = ton_amount_
-          , is_refund  = is_refund_
-          , date       = date_
-          , _type      = _type_
+          { _id         = _id_
+          , gram_amount = gram_amount_
+          , is_refund   = is_refund_
+          , date        = date_
+          , _type       = _type_
           }
   parseJSON _ = mempty
 

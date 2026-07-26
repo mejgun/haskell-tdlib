@@ -25,6 +25,7 @@ data Message
   = Message -- ^ Describes a message
     { _id                         :: Maybe Int                                             -- ^ Message identifier; unique for the chat to which the message belongs
     , sender_id                   :: Maybe MessageSender.MessageSender                     -- ^ Identifier of the sender of the message
+    , receiver_id                 :: Maybe MessageSender.MessageSender                     -- ^ Identifier of the user or the chat which received the ephemeral message; may be null. Always null for non-ephemeral messages
     , chat_id                     :: Maybe Int                                             -- ^ Chat identifier
     , sending_state               :: Maybe MessageSendingState.MessageSendingState         -- ^ The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
     , scheduling_state            :: Maybe MessageSchedulingState.MessageSchedulingState   -- ^ The scheduling state of the message; may be null if the message isn't scheduled
@@ -35,11 +36,11 @@ data Message
     , has_timestamped_media       :: Maybe Bool                                            -- ^ True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     , is_channel_post             :: Maybe Bool                                            -- ^ True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
     , is_paid_star_suggested_post :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Telegram Stars; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
-    , is_paid_ton_suggested_post  :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in Toncoins; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
+    , is_paid_gram_suggested_post :: Maybe Bool                                            -- ^ True, if the message is a suggested channel post which was paid in TON Grams; a warning must be shown if the message is deleted in less than getOption("suggested_post_lifetime_min") seconds after sending
     , contains_unread_mention     :: Maybe Bool                                            -- ^ True, if the message contains an unread mention for the current user
     , contains_unread_poll_votes  :: Maybe Bool                                            -- ^ True, if the message is a poll message with unread votes
     , date                        :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
-    , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
+    , edit_date                   :: Maybe Int                                             -- ^ Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages. If getOption("show_message_edit_date_by_default") is true, then the date must be shown along with the message instead of the date when the message was sent
     , forward_info                :: Maybe MessageForwardInfo.MessageForwardInfo           -- ^ Information about the initial message sender; may be null if none or unknown
     , import_info                 :: Maybe MessageImportInfo.MessageImportInfo             -- ^ Information about the initial message for messages created with importMessages; may be null if the message isn't imported
     , interaction_info            :: Maybe MessageInteractionInfo.MessageInteractionInfo   -- ^ Information about interactions with the message; may be null if none
@@ -64,6 +65,7 @@ data Message
     , summary_language_code       :: Maybe T.Text                                          -- ^ IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
     , content                     :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
     , reply_markup                :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
+    , ephemeral_message_id        :: Maybe Int                                             -- ^ Unique identifier of the ephemeral message if the message is ephemeral; for bots only
     }
   deriving (Eq, Show)
 
@@ -71,6 +73,7 @@ instance I.ShortShow Message where
   shortShow Message
     { _id                         = _id_
     , sender_id                   = sender_id_
+    , receiver_id                 = receiver_id_
     , chat_id                     = chat_id_
     , sending_state               = sending_state_
     , scheduling_state            = scheduling_state_
@@ -81,7 +84,7 @@ instance I.ShortShow Message where
     , has_timestamped_media       = has_timestamped_media_
     , is_channel_post             = is_channel_post_
     , is_paid_star_suggested_post = is_paid_star_suggested_post_
-    , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
+    , is_paid_gram_suggested_post = is_paid_gram_suggested_post_
     , contains_unread_mention     = contains_unread_mention_
     , contains_unread_poll_votes  = contains_unread_poll_votes_
     , date                        = date_
@@ -110,11 +113,13 @@ instance I.ShortShow Message where
     , summary_language_code       = summary_language_code_
     , content                     = content_
     , reply_markup                = reply_markup_
+    , ephemeral_message_id        = ephemeral_message_id_
     }
       = "Message"
         ++ I.cc
         [ "_id"                         `I.p` _id_
         , "sender_id"                   `I.p` sender_id_
+        , "receiver_id"                 `I.p` receiver_id_
         , "chat_id"                     `I.p` chat_id_
         , "sending_state"               `I.p` sending_state_
         , "scheduling_state"            `I.p` scheduling_state_
@@ -125,7 +130,7 @@ instance I.ShortShow Message where
         , "has_timestamped_media"       `I.p` has_timestamped_media_
         , "is_channel_post"             `I.p` is_channel_post_
         , "is_paid_star_suggested_post" `I.p` is_paid_star_suggested_post_
-        , "is_paid_ton_suggested_post"  `I.p` is_paid_ton_suggested_post_
+        , "is_paid_gram_suggested_post" `I.p` is_paid_gram_suggested_post_
         , "contains_unread_mention"     `I.p` contains_unread_mention_
         , "contains_unread_poll_votes"  `I.p` contains_unread_poll_votes_
         , "date"                        `I.p` date_
@@ -154,6 +159,7 @@ instance I.ShortShow Message where
         , "summary_language_code"       `I.p` summary_language_code_
         , "content"                     `I.p` content_
         , "reply_markup"                `I.p` reply_markup_
+        , "ephemeral_message_id"        `I.p` ephemeral_message_id_
         ]
 
 instance AT.FromJSON Message where
@@ -169,6 +175,7 @@ instance AT.FromJSON Message where
       parseMessage = A.withObject "Message" $ \o -> do
         _id_                         <- o A..:?                       "id"
         sender_id_                   <- o A..:?                       "sender_id"
+        receiver_id_                 <- o A..:?                       "receiver_id"
         chat_id_                     <- o A..:?                       "chat_id"
         sending_state_               <- o A..:?                       "sending_state"
         scheduling_state_            <- o A..:?                       "scheduling_state"
@@ -179,7 +186,7 @@ instance AT.FromJSON Message where
         has_timestamped_media_       <- o A..:?                       "has_timestamped_media"
         is_channel_post_             <- o A..:?                       "is_channel_post"
         is_paid_star_suggested_post_ <- o A..:?                       "is_paid_star_suggested_post"
-        is_paid_ton_suggested_post_  <- o A..:?                       "is_paid_ton_suggested_post"
+        is_paid_gram_suggested_post_ <- o A..:?                       "is_paid_gram_suggested_post"
         contains_unread_mention_     <- o A..:?                       "contains_unread_mention"
         contains_unread_poll_votes_  <- o A..:?                       "contains_unread_poll_votes"
         date_                        <- o A..:?                       "date"
@@ -208,9 +215,11 @@ instance AT.FromJSON Message where
         summary_language_code_       <- o A..:?                       "summary_language_code"
         content_                     <- o A..:?                       "content"
         reply_markup_                <- o A..:?                       "reply_markup"
+        ephemeral_message_id_        <- o A..:?                       "ephemeral_message_id"
         pure $ Message
           { _id                         = _id_
           , sender_id                   = sender_id_
+          , receiver_id                 = receiver_id_
           , chat_id                     = chat_id_
           , sending_state               = sending_state_
           , scheduling_state            = scheduling_state_
@@ -221,7 +230,7 @@ instance AT.FromJSON Message where
           , has_timestamped_media       = has_timestamped_media_
           , is_channel_post             = is_channel_post_
           , is_paid_star_suggested_post = is_paid_star_suggested_post_
-          , is_paid_ton_suggested_post  = is_paid_ton_suggested_post_
+          , is_paid_gram_suggested_post = is_paid_gram_suggested_post_
           , contains_unread_mention     = contains_unread_mention_
           , contains_unread_poll_votes  = contains_unread_poll_votes_
           , date                        = date_
@@ -250,6 +259,7 @@ instance AT.FromJSON Message where
           , summary_language_code       = summary_language_code_
           , content                     = content_
           , reply_markup                = reply_markup_
+          , ephemeral_message_id        = ephemeral_message_id_
           }
   parseJSON _ = mempty
 

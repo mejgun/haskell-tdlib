@@ -14,7 +14,7 @@ data SendRichMessageDraft
     { chat_id        :: Maybe Int                               -- ^ Chat identifier
     , forum_topic_id :: Maybe Int                               -- ^ The forum topic identifier in which the message will be sent; pass 0 if none
     , draft_id       :: Maybe Int                               -- ^ Unique identifier of the draft
-    , message        :: Maybe InputRichMessage.InputRichMessage -- ^ Draft of the message
+    , message        :: Maybe InputRichMessage.InputRichMessage -- ^ Draft of the message; file upload isn't supported
     }
   deriving (Eq, Show)
 

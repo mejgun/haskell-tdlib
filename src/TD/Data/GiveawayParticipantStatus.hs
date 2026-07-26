@@ -16,7 +16,7 @@ data GiveawayParticipantStatus
   | GiveawayParticipantStatusAdministrator -- ^ The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
     { chat_id :: Maybe Int -- ^ Identifier of the chat administered by the user
     }
-  | GiveawayParticipantStatusDisallowedCountry -- ^ The user can't participate in the giveaway, because they phone number is from a disallowed country
+  | GiveawayParticipantStatusDisallowedCountry -- ^ The user can't participate in the giveaway, because their phone number is from a disallowed country
     { user_country_code :: Maybe T.Text -- ^ A two-letter ISO 3166-1 alpha-2 country code of the user's country
     }
   deriving (Eq, Show)

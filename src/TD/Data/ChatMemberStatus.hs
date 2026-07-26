@@ -13,7 +13,7 @@ data ChatMemberStatus
     { is_anonymous :: Maybe Bool -- ^ True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     , is_member    :: Maybe Bool -- ^ True, if the user is a member of the chat
     }
-  | ChatMemberStatusAdministrator -- ^ The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
+  | ChatMemberStatusAdministrator -- ^ The user is a member of the chat and has some additional privileges. In basic groups, administrators have all applicable rights. In supergroups and channels, any subset of the rights can be chosen for an administrator
     { can_be_edited :: Maybe Bool                                            -- ^ True, if the current user can edit the administrator privileges for the called user
     , rights        :: Maybe ChatAdministratorRights.ChatAdministratorRights -- ^ Rights of the administrator
     }

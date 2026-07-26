@@ -15,6 +15,7 @@ import qualified TD.Data.ProfileTab as ProfileTab
 data SupergroupFullInfo
   = SupergroupFullInfo -- ^ Contains full information about a supergroup or channel
     { photo                            :: Maybe ChatPhoto.ChatPhoto             -- ^ Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
+    , community_id                     :: Maybe Int                             -- ^ Identifier of the community to which the corresponding chat was added
     , description                      :: Maybe T.Text                          -- ^ Supergroup or channel description
     , member_count                     :: Maybe Int                             -- ^ Number of members in the supergroup or channel; 0 if unknown
     , administrator_count              :: Maybe Int                             -- ^ Number of privileged users in the supergroup or channel; 0 if unknown
@@ -61,6 +62,7 @@ data SupergroupFullInfo
 instance I.ShortShow SupergroupFullInfo where
   shortShow SupergroupFullInfo
     { photo                            = photo_
+    , community_id                     = community_id_
     , description                      = description_
     , member_count                     = member_count_
     , administrator_count              = administrator_count_
@@ -105,6 +107,7 @@ instance I.ShortShow SupergroupFullInfo where
       = "SupergroupFullInfo"
         ++ I.cc
         [ "photo"                            `I.p` photo_
+        , "community_id"                     `I.p` community_id_
         , "description"                      `I.p` description_
         , "member_count"                     `I.p` member_count_
         , "administrator_count"              `I.p` administrator_count_
@@ -159,6 +162,7 @@ instance AT.FromJSON SupergroupFullInfo where
       parseSupergroupFullInfo :: A.Value -> AT.Parser SupergroupFullInfo
       parseSupergroupFullInfo = A.withObject "SupergroupFullInfo" $ \o -> do
         photo_                            <- o A..:?                       "photo"
+        community_id_                     <- o A..:?                       "community_id"
         description_                      <- o A..:?                       "description"
         member_count_                     <- o A..:?                       "member_count"
         administrator_count_              <- o A..:?                       "administrator_count"
@@ -201,6 +205,7 @@ instance AT.FromJSON SupergroupFullInfo where
         upgraded_from_max_message_id_     <- o A..:?                       "upgraded_from_max_message_id"
         pure $ SupergroupFullInfo
           { photo                            = photo_
+          , community_id                     = community_id_
           , description                      = description_
           , member_count                     = member_count_
           , administrator_count              = administrator_count_

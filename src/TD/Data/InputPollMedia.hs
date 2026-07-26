@@ -10,8 +10,7 @@ import qualified TD.Data.InputDocument as InputDocument
 import qualified Data.Text as T
 import qualified TD.Data.Location as Location
 import qualified TD.Data.InputPhoto as InputPhoto
-import qualified TD.Data.InputFile as InputFile
-import qualified TD.Data.InputThumbnail as InputThumbnail
+import qualified TD.Data.InputSticker as InputSticker
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.InputVideo as InputVideo
 
@@ -36,10 +35,7 @@ data InputPollMedia
     { photo :: Maybe InputPhoto.InputPhoto -- ^ Photo to be sent
     }
   | InputPollMediaSticker -- ^ A sticker
-    { sticker   :: Maybe InputFile.InputFile           -- ^ Sticker to be sent
-    , thumbnail :: Maybe InputThumbnail.InputThumbnail -- ^ Sticker thumbnail; pass null to skip thumbnail uploading
-    , width     :: Maybe Int                           -- ^ Sticker width
-    , height    :: Maybe Int                           -- ^ Sticker height
+    { sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to be sent
     }
   | InputPollMediaVenue -- ^ A venue
     { venue :: Maybe Venue.Venue -- ^ Venue to send
@@ -93,17 +89,11 @@ instance I.ShortShow InputPollMedia where
         [ "photo" `I.p` photo_
         ]
   shortShow InputPollMediaSticker
-    { sticker   = sticker_
-    , thumbnail = thumbnail_
-    , width     = width_
-    , height    = height_
+    { sticker = sticker_
     }
       = "InputPollMediaSticker"
         ++ I.cc
-        [ "sticker"   `I.p` sticker_
-        , "thumbnail" `I.p` thumbnail_
-        , "width"     `I.p` width_
-        , "height"    `I.p` height_
+        [ "sticker" `I.p` sticker_
         ]
   shortShow InputPollMediaVenue
     { venue = venue_
@@ -175,15 +165,9 @@ instance AT.FromJSON InputPollMedia where
           }
       parseInputPollMediaSticker :: A.Value -> AT.Parser InputPollMedia
       parseInputPollMediaSticker = A.withObject "InputPollMediaSticker" $ \o -> do
-        sticker_   <- o A..:?  "sticker"
-        thumbnail_ <- o A..:?  "thumbnail"
-        width_     <- o A..:?  "width"
-        height_    <- o A..:?  "height"
+        sticker_ <- o A..:?  "sticker"
         pure $ InputPollMediaSticker
-          { sticker   = sticker_
-          , thumbnail = thumbnail_
-          , width     = width_
-          , height    = height_
+          { sticker = sticker_
           }
       parseInputPollMediaVenue :: A.Value -> AT.Parser InputPollMedia
       parseInputPollMediaVenue = A.withObject "InputPollMediaVenue" $ \o -> do
@@ -243,17 +227,11 @@ instance AT.ToJSON InputPollMedia where
         , "photo" A..= photo_
         ]
   toJSON InputPollMediaSticker
-    { sticker   = sticker_
-    , thumbnail = thumbnail_
-    , width     = width_
-    , height    = height_
+    { sticker = sticker_
     }
       = A.object
-        [ "@type"     A..= AT.String "inputPollMediaSticker"
-        , "sticker"   A..= sticker_
-        , "thumbnail" A..= thumbnail_
-        , "width"     A..= width_
-        , "height"    A..= height_
+        [ "@type"   A..= AT.String "inputPollMediaSticker"
+        , "sticker" A..= sticker_
         ]
   toJSON InputPollMediaVenue
     { venue = venue_

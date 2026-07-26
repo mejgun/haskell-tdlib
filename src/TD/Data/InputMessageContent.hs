@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
-import qualified TD.Data.InputRichMessage as InputRichMessage
+import {-# SOURCE #-} qualified TD.Data.InputRichMessage as InputRichMessage
 import qualified TD.Data.InputAnimation as InputAnimation
 import qualified TD.Data.InputAudio as InputAudio
 import qualified TD.Data.InputDocument as InputDocument
@@ -14,15 +14,16 @@ import qualified TD.Data.InputPaidMedia as InputPaidMedia
 import qualified Data.Text as T
 import qualified TD.Data.InputPhoto as InputPhoto
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
-import qualified TD.Data.InputFile as InputFile
-import qualified TD.Data.InputThumbnail as InputThumbnail
+import qualified TD.Data.InputSticker as InputSticker
 import qualified TD.Data.InputVideo as InputVideo
-import qualified Data.ByteString as BS
+import qualified TD.Data.InputVideoNote as InputVideoNote
+import qualified TD.Data.InputVoiceNote as InputVoiceNote
 import qualified TD.Data.LiveLocation as LiveLocation
 import qualified TD.Data.Location as Location
 import qualified TD.Data.Venue as Venue
 import qualified TD.Data.Contact as Contact
 import qualified TD.Data.Invoice as Invoice
+import qualified Data.ByteString as BS
 import qualified TD.Data.InputPollOption as InputPollOption
 import qualified TD.Data.InputPollMedia as InputPollMedia
 import qualified TD.Data.InputPollType as InputPollType
@@ -69,11 +70,8 @@ data InputMessageContent
     , has_spoiler              :: Maybe Bool                                            -- ^ True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageSticker -- ^ A sticker message
-    { sticker   :: Maybe InputFile.InputFile           -- ^ Sticker to be sent
-    , thumbnail :: Maybe InputThumbnail.InputThumbnail -- ^ Sticker thumbnail; pass null to skip thumbnail uploading
-    , width     :: Maybe Int                           -- ^ Sticker width
-    , height    :: Maybe Int                           -- ^ Sticker height
-    , emoji     :: Maybe T.Text                        -- ^ Emoji used to choose the sticker
+    { sticker :: Maybe InputSticker.InputSticker -- ^ Sticker to be sent
+    , emoji   :: Maybe T.Text                    -- ^ Emoji used to choose the sticker
     }
   | InputMessageVideo -- ^ A video message
     { video                    :: Maybe InputVideo.InputVideo                           -- ^ Video to be sent
@@ -83,16 +81,11 @@ data InputMessageContent
     , has_spoiler              :: Maybe Bool                                            -- ^ True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     }
   | InputMessageVideoNote -- ^ A video note message
-    { video_note         :: Maybe InputFile.InputFile                             -- ^ Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle
-    , thumbnail          :: Maybe InputThumbnail.InputThumbnail                   -- ^ Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
-    , duration           :: Maybe Int                                             -- ^ Duration of the video, in seconds; 0-60
-    , _length            :: Maybe Int                                             -- ^ Video width and height; must be positive and not greater than 640
+    { video_note         :: Maybe InputVideoNote.InputVideoNote                   -- ^ Video note to be sent
     , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Video note self-destruct type; may be null if none; pass null if none; private chats only
     }
   | InputMessageVoiceNote -- ^ A voice note message
-    { voice_note         :: Maybe InputFile.InputFile                             -- ^ Voice note to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio
-    , duration           :: Maybe Int                                             -- ^ Duration of the voice note, in seconds
-    , waveform           :: Maybe BS.ByteString                                   -- ^ Waveform representation of the voice note in 5-bit format
+    { voice_note         :: Maybe InputVoiceNote.InputVoiceNote                   -- ^ Voice note to be sent
     , caption            :: Maybe FormattedText.FormattedText                     -- ^ Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
     , self_destruct_type :: Maybe MessageSelfDestructType.MessageSelfDestructType -- ^ Voice note self-destruct type; may be null if none; pass null if none; private chats only
     }
@@ -149,9 +142,9 @@ data InputMessageContent
     , is_closed                 :: Maybe Bool                              -- ^ True, if the poll needs to be sent already closed; for bots only
     }
   | InputMessageStakeDice -- ^ A stake dice message
-    { state_hash           :: Maybe T.Text -- ^ Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
-    , stake_toncoin_amount :: Maybe Int    -- ^ The Toncoin amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
-    , clear_draft          :: Maybe Bool   -- ^ Pass true to delete message draft in the chat
+    { state_hash        :: Maybe T.Text -- ^ Hash of the stake dice state. The state hash can be used only if it was received recently enough. Otherwise, a new state must be requested using getStakeDiceState
+    , stake_gram_amount :: Maybe Int    -- ^ The TON Gram amount that will be staked; in the smallest units of the currency. Must be in the range getOption("stake_dice_stake_amount_min")-getOption("stake_dice_stake_amount_max")
+    , clear_draft       :: Maybe Bool   -- ^ Pass true to delete message draft in the chat
     }
   | InputMessageStory -- ^ A message with a forwarded story. Stories can't be forwarded to secret chats. A story can be forwarded only if story.can_be_forwarded
     { story_poster_chat_id :: Maybe Int -- ^ Identifier of the chat that posted the story
@@ -253,19 +246,13 @@ instance I.ShortShow InputMessageContent where
         , "has_spoiler"              `I.p` has_spoiler_
         ]
   shortShow InputMessageSticker
-    { sticker   = sticker_
-    , thumbnail = thumbnail_
-    , width     = width_
-    , height    = height_
-    , emoji     = emoji_
+    { sticker = sticker_
+    , emoji   = emoji_
     }
       = "InputMessageSticker"
         ++ I.cc
-        [ "sticker"   `I.p` sticker_
-        , "thumbnail" `I.p` thumbnail_
-        , "width"     `I.p` width_
-        , "height"    `I.p` height_
-        , "emoji"     `I.p` emoji_
+        [ "sticker" `I.p` sticker_
+        , "emoji"   `I.p` emoji_
         ]
   shortShow InputMessageVideo
     { video                    = video_
@@ -284,31 +271,21 @@ instance I.ShortShow InputMessageContent where
         ]
   shortShow InputMessageVideoNote
     { video_note         = video_note_
-    , thumbnail          = thumbnail_
-    , duration           = duration_
-    , _length            = _length_
     , self_destruct_type = self_destruct_type_
     }
       = "InputMessageVideoNote"
         ++ I.cc
         [ "video_note"         `I.p` video_note_
-        , "thumbnail"          `I.p` thumbnail_
-        , "duration"           `I.p` duration_
-        , "_length"            `I.p` _length_
         , "self_destruct_type" `I.p` self_destruct_type_
         ]
   shortShow InputMessageVoiceNote
     { voice_note         = voice_note_
-    , duration           = duration_
-    , waveform           = waveform_
     , caption            = caption_
     , self_destruct_type = self_destruct_type_
     }
       = "InputMessageVoiceNote"
         ++ I.cc
         [ "voice_note"         `I.p` voice_note_
-        , "duration"           `I.p` duration_
-        , "waveform"           `I.p` waveform_
         , "caption"            `I.p` caption_
         , "self_destruct_type" `I.p` self_destruct_type_
         ]
@@ -425,15 +402,15 @@ instance I.ShortShow InputMessageContent where
         , "is_closed"                 `I.p` is_closed_
         ]
   shortShow InputMessageStakeDice
-    { state_hash           = state_hash_
-    , stake_toncoin_amount = stake_toncoin_amount_
-    , clear_draft          = clear_draft_
+    { state_hash        = state_hash_
+    , stake_gram_amount = stake_gram_amount_
+    , clear_draft       = clear_draft_
     }
       = "InputMessageStakeDice"
         ++ I.cc
-        [ "state_hash"           `I.p` state_hash_
-        , "stake_toncoin_amount" `I.p` stake_toncoin_amount_
-        , "clear_draft"          `I.p` clear_draft_
+        [ "state_hash"        `I.p` state_hash_
+        , "stake_gram_amount" `I.p` stake_gram_amount_
+        , "clear_draft"       `I.p` clear_draft_
         ]
   shortShow InputMessageStory
     { story_poster_chat_id = story_poster_chat_id_
@@ -576,17 +553,11 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageSticker :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageSticker = A.withObject "InputMessageSticker" $ \o -> do
-        sticker_   <- o A..:?  "sticker"
-        thumbnail_ <- o A..:?  "thumbnail"
-        width_     <- o A..:?  "width"
-        height_    <- o A..:?  "height"
-        emoji_     <- o A..:?  "emoji"
+        sticker_ <- o A..:?  "sticker"
+        emoji_   <- o A..:?  "emoji"
         pure $ InputMessageSticker
-          { sticker   = sticker_
-          , thumbnail = thumbnail_
-          , width     = width_
-          , height    = height_
-          , emoji     = emoji_
+          { sticker = sticker_
+          , emoji   = emoji_
           }
       parseInputMessageVideo :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVideo = A.withObject "InputMessageVideo" $ \o -> do
@@ -605,28 +576,18 @@ instance AT.FromJSON InputMessageContent where
       parseInputMessageVideoNote :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVideoNote = A.withObject "InputMessageVideoNote" $ \o -> do
         video_note_         <- o A..:?  "video_note"
-        thumbnail_          <- o A..:?  "thumbnail"
-        duration_           <- o A..:?  "duration"
-        _length_            <- o A..:?  "length"
         self_destruct_type_ <- o A..:?  "self_destruct_type"
         pure $ InputMessageVideoNote
           { video_note         = video_note_
-          , thumbnail          = thumbnail_
-          , duration           = duration_
-          , _length            = _length_
           , self_destruct_type = self_destruct_type_
           }
       parseInputMessageVoiceNote :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageVoiceNote = A.withObject "InputMessageVoiceNote" $ \o -> do
-        voice_note_         <- o A..:?                       "voice_note"
-        duration_           <- o A..:?                       "duration"
-        waveform_           <- fmap I.readBytes <$> o A..:?  "waveform"
-        caption_            <- o A..:?                       "caption"
-        self_destruct_type_ <- o A..:?                       "self_destruct_type"
+        voice_note_         <- o A..:?  "voice_note"
+        caption_            <- o A..:?  "caption"
+        self_destruct_type_ <- o A..:?  "self_destruct_type"
         pure $ InputMessageVoiceNote
           { voice_note         = voice_note_
-          , duration           = duration_
-          , waveform           = waveform_
           , caption            = caption_
           , self_destruct_type = self_destruct_type_
           }
@@ -736,13 +697,13 @@ instance AT.FromJSON InputMessageContent where
           }
       parseInputMessageStakeDice :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageStakeDice = A.withObject "InputMessageStakeDice" $ \o -> do
-        state_hash_           <- o A..:?  "state_hash"
-        stake_toncoin_amount_ <- o A..:?  "stake_toncoin_amount"
-        clear_draft_          <- o A..:?  "clear_draft"
+        state_hash_        <- o A..:?  "state_hash"
+        stake_gram_amount_ <- o A..:?  "stake_gram_amount"
+        clear_draft_       <- o A..:?  "clear_draft"
         pure $ InputMessageStakeDice
-          { state_hash           = state_hash_
-          , stake_toncoin_amount = stake_toncoin_amount_
-          , clear_draft          = clear_draft_
+          { state_hash        = state_hash_
+          , stake_gram_amount = stake_gram_amount_
+          , clear_draft       = clear_draft_
           }
       parseInputMessageStory :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageStory = A.withObject "InputMessageStory" $ \o -> do
@@ -859,19 +820,13 @@ instance AT.ToJSON InputMessageContent where
         , "has_spoiler"              A..= has_spoiler_
         ]
   toJSON InputMessageSticker
-    { sticker   = sticker_
-    , thumbnail = thumbnail_
-    , width     = width_
-    , height    = height_
-    , emoji     = emoji_
+    { sticker = sticker_
+    , emoji   = emoji_
     }
       = A.object
-        [ "@type"     A..= AT.String "inputMessageSticker"
-        , "sticker"   A..= sticker_
-        , "thumbnail" A..= thumbnail_
-        , "width"     A..= width_
-        , "height"    A..= height_
-        , "emoji"     A..= emoji_
+        [ "@type"   A..= AT.String "inputMessageSticker"
+        , "sticker" A..= sticker_
+        , "emoji"   A..= emoji_
         ]
   toJSON InputMessageVideo
     { video                    = video_
@@ -890,31 +845,21 @@ instance AT.ToJSON InputMessageContent where
         ]
   toJSON InputMessageVideoNote
     { video_note         = video_note_
-    , thumbnail          = thumbnail_
-    , duration           = duration_
-    , _length            = _length_
     , self_destruct_type = self_destruct_type_
     }
       = A.object
         [ "@type"              A..= AT.String "inputMessageVideoNote"
         , "video_note"         A..= video_note_
-        , "thumbnail"          A..= thumbnail_
-        , "duration"           A..= duration_
-        , "length"             A..= _length_
         , "self_destruct_type" A..= self_destruct_type_
         ]
   toJSON InputMessageVoiceNote
     { voice_note         = voice_note_
-    , duration           = duration_
-    , waveform           = waveform_
     , caption            = caption_
     , self_destruct_type = self_destruct_type_
     }
       = A.object
         [ "@type"              A..= AT.String "inputMessageVoiceNote"
         , "voice_note"         A..= voice_note_
-        , "duration"           A..= duration_
-        , "waveform"           A..= fmap I.writeBytes  waveform_
         , "caption"            A..= caption_
         , "self_destruct_type" A..= self_destruct_type_
         ]
@@ -1031,15 +976,15 @@ instance AT.ToJSON InputMessageContent where
         , "is_closed"                 A..= is_closed_
         ]
   toJSON InputMessageStakeDice
-    { state_hash           = state_hash_
-    , stake_toncoin_amount = stake_toncoin_amount_
-    , clear_draft          = clear_draft_
+    { state_hash        = state_hash_
+    , stake_gram_amount = stake_gram_amount_
+    , clear_draft       = clear_draft_
     }
       = A.object
-        [ "@type"                A..= AT.String "inputMessageStakeDice"
-        , "state_hash"           A..= state_hash_
-        , "stake_toncoin_amount" A..= stake_toncoin_amount_
-        , "clear_draft"          A..= clear_draft_
+        [ "@type"             A..= AT.String "inputMessageStakeDice"
+        , "state_hash"        A..= state_hash_
+        , "stake_gram_amount" A..= stake_gram_amount_
+        , "clear_draft"       A..= clear_draft_
         ]
   toJSON InputMessageStory
     { story_poster_chat_id = story_poster_chat_id_

@@ -8,13 +8,13 @@ import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.RevenueWithdrawalState as RevenueWithdrawalState
 import qualified TD.Data.UpgradedGift as UpgradedGift
 
--- | Describes type of transaction with Toncoins
+-- | Describes type of transaction with TON Grams
 data TonTransactionType
-  = TonTransactionTypeFragmentDeposit -- ^ The transaction is a deposit of Toncoins from Fragment
+  = TonTransactionTypeFragmentDeposit -- ^ The transaction is a deposit of Grams from Fragment
     { is_gift :: Maybe Bool            -- ^ True, if the transaction is a gift from another user
     , sticker :: Maybe Sticker.Sticker -- ^ The sticker to be shown in the transaction information; may be null if unknown
     }
-  | TonTransactionTypeFragmentWithdrawal -- ^ The transaction is a withdrawal of earned Toncoins to Fragment
+  | TonTransactionTypeFragmentWithdrawal -- ^ The transaction is a withdrawal of earned Grams to Fragment
     { withdrawal_state :: Maybe RevenueWithdrawalState.RevenueWithdrawalState -- ^ State of the withdrawal; may be null for refunds from Fragment
     }
   | TonTransactionTypeSuggestedPostPayment -- ^ The transaction is a payment for a suggested post
@@ -28,11 +28,11 @@ data TonTransactionType
     , gift    :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
     }
   | TonTransactionTypeUpgradedGiftSale -- ^ The transaction is a sale of an upgraded gift
-    { user_id                   :: Maybe Int                       -- ^ Identifier of the user who bought the gift
-    , gift                      :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
-    , commission_per_mille      :: Maybe Int                       -- ^ The number of Toncoins received by the Telegram for each 1000 Toncoins received by the seller of the gift
-    , commission_toncoin_amount :: Maybe Int                       -- ^ The Toncoin amount that was received by the Telegram; in the smallest units of the currency
-    , via_offer                 :: Maybe Bool                      -- ^ True, if the gift was sold through a purchase offer
+    { user_id                :: Maybe Int                       -- ^ Identifier of the user who bought the gift
+    , gift                   :: Maybe UpgradedGift.UpgradedGift -- ^ The gift
+    , commission_per_mille   :: Maybe Int                       -- ^ The number of Grams received by the Telegram for each 1000 Grams received by the seller of the gift
+    , commission_gram_amount :: Maybe Int                       -- ^ The Gram amount that was received by the Telegram; in the smallest units of the currency
+    , via_offer              :: Maybe Bool                      -- ^ True, if the gift was sold through a purchase offer
     }
   | TonTransactionTypeStakeDiceStake -- ^ The transaction is a payment for stake dice throw
   | TonTransactionTypeStakeDicePayout -- ^ The transaction is a payment for successful stake dice throw
@@ -80,19 +80,19 @@ instance I.ShortShow TonTransactionType where
         , "gift"    `I.p` gift_
         ]
   shortShow TonTransactionTypeUpgradedGiftSale
-    { user_id                   = user_id_
-    , gift                      = gift_
-    , commission_per_mille      = commission_per_mille_
-    , commission_toncoin_amount = commission_toncoin_amount_
-    , via_offer                 = via_offer_
+    { user_id                = user_id_
+    , gift                   = gift_
+    , commission_per_mille   = commission_per_mille_
+    , commission_gram_amount = commission_gram_amount_
+    , via_offer              = via_offer_
     }
       = "TonTransactionTypeUpgradedGiftSale"
         ++ I.cc
-        [ "user_id"                   `I.p` user_id_
-        , "gift"                      `I.p` gift_
-        , "commission_per_mille"      `I.p` commission_per_mille_
-        , "commission_toncoin_amount" `I.p` commission_toncoin_amount_
-        , "via_offer"                 `I.p` via_offer_
+        [ "user_id"                `I.p` user_id_
+        , "gift"                   `I.p` gift_
+        , "commission_per_mille"   `I.p` commission_per_mille_
+        , "commission_gram_amount" `I.p` commission_gram_amount_
+        , "via_offer"              `I.p` via_offer_
         ]
   shortShow TonTransactionTypeStakeDiceStake
       = "TonTransactionTypeStakeDiceStake"
@@ -154,17 +154,17 @@ instance AT.FromJSON TonTransactionType where
           }
       parseTonTransactionTypeUpgradedGiftSale :: A.Value -> AT.Parser TonTransactionType
       parseTonTransactionTypeUpgradedGiftSale = A.withObject "TonTransactionTypeUpgradedGiftSale" $ \o -> do
-        user_id_                   <- o A..:?  "user_id"
-        gift_                      <- o A..:?  "gift"
-        commission_per_mille_      <- o A..:?  "commission_per_mille"
-        commission_toncoin_amount_ <- o A..:?  "commission_toncoin_amount"
-        via_offer_                 <- o A..:?  "via_offer"
+        user_id_                <- o A..:?  "user_id"
+        gift_                   <- o A..:?  "gift"
+        commission_per_mille_   <- o A..:?  "commission_per_mille"
+        commission_gram_amount_ <- o A..:?  "commission_gram_amount"
+        via_offer_              <- o A..:?  "via_offer"
         pure $ TonTransactionTypeUpgradedGiftSale
-          { user_id                   = user_id_
-          , gift                      = gift_
-          , commission_per_mille      = commission_per_mille_
-          , commission_toncoin_amount = commission_toncoin_amount_
-          , via_offer                 = via_offer_
+          { user_id                = user_id_
+          , gift                   = gift_
+          , commission_per_mille   = commission_per_mille_
+          , commission_gram_amount = commission_gram_amount_
+          , via_offer              = via_offer_
           }
   parseJSON _ = mempty
 

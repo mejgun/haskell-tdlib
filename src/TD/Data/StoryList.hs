@@ -8,7 +8,7 @@ import qualified TD.Lib.Internal as I
 -- | Describes a list of stories
 data StoryList
   = StoryListMain -- ^ The list of stories, shown in the main chat list and folder chat lists
-  | StoryListArchive -- ^ The list of stories, shown in the Arvhive chat list
+  | StoryListArchive -- ^ The list of stories, shown in the Archive chat list
   deriving (Eq, Show)
 
 instance I.ShortShow StoryList where

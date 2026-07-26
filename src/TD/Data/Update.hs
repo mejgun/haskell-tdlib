@@ -46,6 +46,7 @@ import qualified TD.Data.Notification as Notification
 import qualified TD.Data.NotificationGroupType as NotificationGroupType
 import qualified TD.Data.NotificationGroup as NotificationGroup
 import qualified TD.Data.ChatAction as ChatAction
+import qualified TD.Data.Community as Community
 import qualified TD.Data.UserStatus as UserStatus
 import qualified TD.Data.User as User
 import qualified TD.Data.BasicGroup as BasicGroup
@@ -92,7 +93,7 @@ import qualified TD.Data.SavedMessagesTags as SavedMessagesTags
 import qualified TD.Data.StarAmount as StarAmount
 import qualified TD.Data.ChatRevenueAmount as ChatRevenueAmount
 import qualified TD.Data.StarRevenueStatus as StarRevenueStatus
-import qualified TD.Data.TonRevenueStatus as TonRevenueStatus
+import qualified TD.Data.GramRevenueStatus as GramRevenueStatus
 import qualified TD.Data.GroupCallMessageLevel as GroupCallMessageLevel
 import qualified TD.Data.StakeDiceState as StakeDiceState
 import qualified TD.Data.Sticker as Sticker
@@ -435,6 +436,9 @@ data Update
     , draft_id       :: Maybe Int                           -- ^ Unique identifier of the message draft within the message thread
     , content        :: Maybe MessageContent.MessageContent -- ^ Content of the message; always of the type messageText or messageRichMessage
     }
+  | UpdateCommunity -- ^ Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
+    { community :: Maybe Community.Community -- ^ New data about the community
+    }
   | UpdateUserStatus -- ^ The user went online or offline
     { user_id :: Maybe Int                   -- ^ User identifier
     , status  :: Maybe UserStatus.UserStatus -- ^ New status of the user
@@ -716,8 +720,8 @@ data Update
   | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
     { star_amount :: Maybe StarAmount.StarAmount -- ^ The new amount of owned Telegram Stars
     }
-  | UpdateOwnedTonCount -- ^ The number of Toncoins owned by the current user has changed
-    { ton_amount :: Maybe Int -- ^ The new amount of owned Toncoins; in the smallest units of the cryptocurrency
+  | UpdateOwnedGramCount -- ^ The number of TON Grams owned by the current user has changed
+    { gram_amount :: Maybe Int -- ^ The new amount of owned Grams; in the smallest units of the cryptocurrency
     }
   | UpdateChatRevenueAmount -- ^ The revenue earned from sponsored messages in a chat has changed. If chat revenue screen is opened, then getChatRevenueTransactions may be called to fetch new transactions
     { chat_id        :: Maybe Int                                 -- ^ Identifier of the chat
@@ -727,8 +731,8 @@ data Update
     { owner_id :: Maybe MessageSender.MessageSender         -- ^ Identifier of the owner of the Telegram Stars
     , _status  :: Maybe StarRevenueStatus.StarRevenueStatus -- ^ New Telegram Star revenue status
     }
-  | UpdateTonRevenueStatus -- ^ The Toncoin revenue earned by the current user has changed. If Toncoin transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
-    { __status :: Maybe TonRevenueStatus.TonRevenueStatus -- ^ New Toncoin revenue status
+  | UpdateGramRevenueStatus -- ^ The TON Gram revenue earned by the current user has changed. If Gram transaction screen of the chat is opened, then getTonTransactions may be called to fetch new transactions
+    { __status :: Maybe GramRevenueStatus.GramRevenueStatus -- ^ New Gram revenue status
     }
   | UpdateSpeechRecognitionTrial -- ^ The parameters of speech recognition without Telegram Premium subscription have changed
     { max_media_duration :: Maybe Int -- ^ The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
@@ -852,6 +856,13 @@ data Update
     { _id     :: Maybe Int    -- ^ The query identifier
     , __data  :: Maybe T.Text -- ^ JSON-serialized query data
     , timeout :: Maybe Int    -- ^ Query timeout
+    }
+  | UpdateUserSubscription -- ^ Subscription of a user to the bot was changed; for bots only
+    { user_id           :: Maybe Int    -- ^ Identifier of the user
+    , _payload          :: Maybe T.Text -- ^ Bot-specified subscription invoice payload
+    , is_canceled       :: Maybe Bool   -- ^ True, if the subscription was canceled
+    , is_restored       :: Maybe Bool   -- ^ True, if the subscription was restored
+    , is_payment_failed :: Maybe Bool   -- ^ True, if the payment for the subscription has failed
     }
   | UpdatePoll -- ^ A poll was updated; for bots only
     { poll :: Maybe Poll.Poll -- ^ New data about the poll
@@ -1616,6 +1627,13 @@ instance I.ShortShow Update where
         , "draft_id"       `I.p` draft_id_
         , "content"        `I.p` content_
         ]
+  shortShow UpdateCommunity
+    { community = community_
+    }
+      = "UpdateCommunity"
+        ++ I.cc
+        [ "community" `I.p` community_
+        ]
   shortShow UpdateUserStatus
     { user_id = user_id_
     , status  = status_
@@ -2250,12 +2268,12 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "star_amount" `I.p` star_amount_
         ]
-  shortShow UpdateOwnedTonCount
-    { ton_amount = ton_amount_
+  shortShow UpdateOwnedGramCount
+    { gram_amount = gram_amount_
     }
-      = "UpdateOwnedTonCount"
+      = "UpdateOwnedGramCount"
         ++ I.cc
-        [ "ton_amount" `I.p` ton_amount_
+        [ "gram_amount" `I.p` gram_amount_
         ]
   shortShow UpdateChatRevenueAmount
     { chat_id        = chat_id_
@@ -2275,10 +2293,10 @@ instance I.ShortShow Update where
         [ "owner_id" `I.p` owner_id_
         , "_status"  `I.p` _status_
         ]
-  shortShow UpdateTonRevenueStatus
+  shortShow UpdateGramRevenueStatus
     { __status = __status_
     }
-      = "UpdateTonRevenueStatus"
+      = "UpdateGramRevenueStatus"
         ++ I.cc
         [ "__status" `I.p` __status_
         ]
@@ -2553,6 +2571,21 @@ instance I.ShortShow Update where
         , "__data"  `I.p` __data_
         , "timeout" `I.p` timeout_
         ]
+  shortShow UpdateUserSubscription
+    { user_id           = user_id_
+    , _payload          = _payload_
+    , is_canceled       = is_canceled_
+    , is_restored       = is_restored_
+    , is_payment_failed = is_payment_failed_
+    }
+      = "UpdateUserSubscription"
+        ++ I.cc
+        [ "user_id"           `I.p` user_id_
+        , "_payload"          `I.p` _payload_
+        , "is_canceled"       `I.p` is_canceled_
+        , "is_restored"       `I.p` is_restored_
+        , "is_payment_failed" `I.p` is_payment_failed_
+        ]
   shortShow UpdatePoll
     { poll = poll_
     }
@@ -2744,6 +2777,7 @@ instance AT.FromJSON Update where
       "updateDeleteMessages"                           -> parseUpdateDeleteMessages v
       "updateChatAction"                               -> parseUpdateChatAction v
       "updatePendingMessage"                           -> parseUpdatePendingMessage v
+      "updateCommunity"                                -> parseUpdateCommunity v
       "updateUserStatus"                               -> parseUpdateUserStatus v
       "updateUser"                                     -> parseUpdateUser v
       "updateBasicGroup"                               -> parseUpdateBasicGroup v
@@ -2816,10 +2850,10 @@ instance AT.FromJSON Update where
       "updateSavedMessagesTags"                        -> parseUpdateSavedMessagesTags v
       "updateActiveLiveLocationMessages"               -> parseUpdateActiveLiveLocationMessages v
       "updateOwnedStarCount"                           -> parseUpdateOwnedStarCount v
-      "updateOwnedTonCount"                            -> parseUpdateOwnedTonCount v
+      "updateOwnedGramCount"                           -> parseUpdateOwnedGramCount v
       "updateChatRevenueAmount"                        -> parseUpdateChatRevenueAmount v
       "updateStarRevenueStatus"                        -> parseUpdateStarRevenueStatus v
-      "updateTonRevenueStatus"                         -> parseUpdateTonRevenueStatus v
+      "updateGramRevenueStatus"                        -> parseUpdateGramRevenueStatus v
       "updateSpeechRecognitionTrial"                   -> parseUpdateSpeechRecognitionTrial v
       "updateGroupCallMessageLevels"                   -> parseUpdateGroupCallMessageLevels v
       "updateDiceEmojis"                               -> parseUpdateDiceEmojis v
@@ -2845,6 +2879,7 @@ instance AT.FromJSON Update where
       "updateNewPreCheckoutQuery"                      -> parseUpdateNewPreCheckoutQuery v
       "updateNewCustomEvent"                           -> parseUpdateNewCustomEvent v
       "updateNewCustomQuery"                           -> parseUpdateNewCustomQuery v
+      "updateUserSubscription"                         -> parseUpdateUserSubscription v
       "updatePoll"                                     -> parseUpdatePoll v
       "updatePollAnswer"                               -> parseUpdatePollAnswer v
       "updateManagedBot"                               -> parseUpdateManagedBot v
@@ -3493,6 +3528,12 @@ instance AT.FromJSON Update where
           , draft_id       = draft_id_
           , content        = content_
           }
+      parseUpdateCommunity :: A.Value -> AT.Parser Update
+      parseUpdateCommunity = A.withObject "UpdateCommunity" $ \o -> do
+        community_ <- o A..:?  "community"
+        pure $ UpdateCommunity
+          { community = community_
+          }
       parseUpdateUserStatus :: A.Value -> AT.Parser Update
       parseUpdateUserStatus = A.withObject "UpdateUserStatus" $ \o -> do
         user_id_ <- o A..:?  "user_id"
@@ -4055,11 +4096,11 @@ instance AT.FromJSON Update where
         pure $ UpdateOwnedStarCount
           { star_amount = star_amount_
           }
-      parseUpdateOwnedTonCount :: A.Value -> AT.Parser Update
-      parseUpdateOwnedTonCount = A.withObject "UpdateOwnedTonCount" $ \o -> do
-        ton_amount_ <- o A..:?  "ton_amount"
-        pure $ UpdateOwnedTonCount
-          { ton_amount = ton_amount_
+      parseUpdateOwnedGramCount :: A.Value -> AT.Parser Update
+      parseUpdateOwnedGramCount = A.withObject "UpdateOwnedGramCount" $ \o -> do
+        gram_amount_ <- o A..:?  "gram_amount"
+        pure $ UpdateOwnedGramCount
+          { gram_amount = gram_amount_
           }
       parseUpdateChatRevenueAmount :: A.Value -> AT.Parser Update
       parseUpdateChatRevenueAmount = A.withObject "UpdateChatRevenueAmount" $ \o -> do
@@ -4077,10 +4118,10 @@ instance AT.FromJSON Update where
           { owner_id = owner_id_
           , _status  = _status_
           }
-      parseUpdateTonRevenueStatus :: A.Value -> AT.Parser Update
-      parseUpdateTonRevenueStatus = A.withObject "UpdateTonRevenueStatus" $ \o -> do
+      parseUpdateGramRevenueStatus :: A.Value -> AT.Parser Update
+      parseUpdateGramRevenueStatus = A.withObject "UpdateGramRevenueStatus" $ \o -> do
         __status_ <- o A..:?  "status"
-        pure $ UpdateTonRevenueStatus
+        pure $ UpdateGramRevenueStatus
           { __status = __status_
           }
       parseUpdateSpeechRecognitionTrial :: A.Value -> AT.Parser Update
@@ -4328,6 +4369,20 @@ instance AT.FromJSON Update where
           { _id     = _id_
           , __data  = __data_
           , timeout = timeout_
+          }
+      parseUpdateUserSubscription :: A.Value -> AT.Parser Update
+      parseUpdateUserSubscription = A.withObject "UpdateUserSubscription" $ \o -> do
+        user_id_           <- o A..:?  "user_id"
+        _payload_          <- o A..:?  "payload"
+        is_canceled_       <- o A..:?  "is_canceled"
+        is_restored_       <- o A..:?  "is_restored"
+        is_payment_failed_ <- o A..:?  "is_payment_failed"
+        pure $ UpdateUserSubscription
+          { user_id           = user_id_
+          , _payload          = _payload_
+          , is_canceled       = is_canceled_
+          , is_restored       = is_restored_
+          , is_payment_failed = is_payment_failed_
           }
       parseUpdatePoll :: A.Value -> AT.Parser Update
       parseUpdatePoll = A.withObject "UpdatePoll" $ \o -> do

@@ -11,7 +11,7 @@ import qualified TD.Data.RestrictionInfo as RestrictionInfo
 import qualified TD.Data.ActiveStoryState as ActiveStoryState
 
 data Supergroup
-  = Supergroup -- ^ Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
+  = Supergroup -- ^ Represents a supergroup or channel with zero or more members (subscribers in the case of channels)
     { _id                                   :: Maybe Int                                   -- ^ Supergroup or channel identifier
     , usernames                             :: Maybe Usernames.Usernames                   -- ^ Usernames of the supergroup or channel; may be null
     , date                                  :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
@@ -26,7 +26,7 @@ data Supergroup
     , join_to_send_messages                 :: Maybe Bool                                  -- ^ True, if users need to join the supergroup before they can send messages. May be false only for discussion supergroups and channel direct messages groups
     , join_by_request                       :: Maybe Bool                                  -- ^ True, if all users directly joining the supergroup need to be approved by supergroup administrators
     , is_slow_mode_enabled                  :: Maybe Bool                                  -- ^ True, if the slow mode is enabled in the supergroup
-    , is_channel                            :: Maybe Bool                                  -- ^ True, if the supergroup is a channel
+    , is_channel                            :: Maybe Bool                                  -- ^ True, if the supergroup is a channel, which can have an unlimited number of subscribers, but only administrators can post there and see the list of subscribers
     , is_broadcast_group                    :: Maybe Bool                                  -- ^ True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     , is_forum                              :: Maybe Bool                                  -- ^ True, if the supergroup is a forum with topics
     , is_direct_messages_group              :: Maybe Bool                                  -- ^ True, if the supergroup is a direct message group for a channel chat

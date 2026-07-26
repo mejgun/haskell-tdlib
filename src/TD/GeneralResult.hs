@@ -133,6 +133,7 @@ import qualified TD.Data.GiftUpgradeVariants as GiftUpgradeVariants
 import qualified TD.Data.GiftsForCrafting as GiftsForCrafting
 import qualified TD.Data.GiftsForResale as GiftsForResale
 import qualified TD.Data.GiveawayInfo as GiveawayInfo
+import qualified TD.Data.GramRevenueStatistics as GramRevenueStatistics
 import qualified TD.Data.GroupCall as GroupCall
 import qualified TD.Data.GroupCallId as GroupCallId
 import qualified TD.Data.GroupCallInfo as GroupCallInfo
@@ -268,7 +269,6 @@ import qualified TD.Data.TextCompositionStyle as TextCompositionStyle
 import qualified TD.Data.TextCompositionStyleExample as TextCompositionStyleExample
 import qualified TD.Data.TextEntities as TextEntities
 import qualified TD.Data.TimeZones as TimeZones
-import qualified TD.Data.TonRevenueStatistics as TonRevenueStatistics
 import qualified TD.Data.TonTransactions as TonTransactions
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
@@ -419,6 +419,7 @@ data GeneralResult
     | GiftsForCrafting                   GiftsForCrafting.GiftsForCrafting
     | GiftsForResale                     GiftsForResale.GiftsForResale
     | GiveawayInfo                       GiveawayInfo.GiveawayInfo
+    | GramRevenueStatistics              GramRevenueStatistics.GramRevenueStatistics
     | GroupCall                          GroupCall.GroupCall
     | GroupCallId                        GroupCallId.GroupCallId
     | GroupCallInfo                      GroupCallInfo.GroupCallInfo
@@ -554,7 +555,6 @@ data GeneralResult
     | TextCompositionStyleExample        TextCompositionStyleExample.TextCompositionStyleExample
     | TextEntities                       TextEntities.TextEntities
     | TimeZones                          TimeZones.TimeZones
-    | TonRevenueStatistics               TonRevenueStatistics.TonRevenueStatistics
     | TonTransactions                    TonTransactions.TonTransactions
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
@@ -835,6 +835,8 @@ instance I.ShortShow GeneralResult where
     = "GiftsForResale" <> " (" <> I.shortShow v <> ")"
   shortShow (GiveawayInfo v)
     = "GiveawayInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (GramRevenueStatistics v)
+    = "GramRevenueStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCall v)
     = "GroupCall" <> " (" <> I.shortShow v <> ")"
   shortShow (GroupCallId v)
@@ -1105,8 +1107,6 @@ instance I.ShortShow GeneralResult where
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
     = "TimeZones" <> " (" <> I.shortShow v <> ")"
-  shortShow (TonRevenueStatistics v)
-    = "TonRevenueStatistics" <> " (" <> I.shortShow v <> ")"
   shortShow (TonTransactions v)
     = "TonTransactions" <> " (" <> I.shortShow v <> ")"
   shortShow (TrendingStickerSets v)
@@ -1277,6 +1277,7 @@ instance T.FromJSON GeneralResult where
     <|> ( GiftsForCrafting                    <$> parseJSON v )
     <|> ( GiftsForResale                      <$> parseJSON v )
     <|> ( GiveawayInfo                        <$> parseJSON v )
+    <|> ( GramRevenueStatistics               <$> parseJSON v )
     <|> ( GroupCall                           <$> parseJSON v )
     <|> ( GroupCallId                         <$> parseJSON v )
     <|> ( GroupCallInfo                       <$> parseJSON v )
@@ -1412,7 +1413,6 @@ instance T.FromJSON GeneralResult where
     <|> ( TextCompositionStyleExample         <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
-    <|> ( TonRevenueStatistics                <$> parseJSON v )
     <|> ( TonTransactions                     <$> parseJSON v )
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )

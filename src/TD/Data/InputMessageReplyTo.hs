@@ -26,6 +26,9 @@ data InputMessageReplyTo
     { story_poster_chat_id :: Maybe Int -- ^ The identifier of the poster of the story. Currently, stories can be replied only in the chat that posted the story; channel stories can't be replied
     , story_id             :: Maybe Int -- ^ The identifier of the story
     }
+  | InputMessageReplyToEphemeralMessage -- ^ Describes an ephemeral message to be replied; for bots only
+    { ephemeral_message_id :: Maybe Int -- ^ The identifier of the ephemeral message to be replied
+    }
   deriving (Eq, Show)
 
 instance I.ShortShow InputMessageReplyTo where
@@ -66,16 +69,24 @@ instance I.ShortShow InputMessageReplyTo where
         [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         ]
+  shortShow InputMessageReplyToEphemeralMessage
+    { ephemeral_message_id = ephemeral_message_id_
+    }
+      = "InputMessageReplyToEphemeralMessage"
+        ++ I.cc
+        [ "ephemeral_message_id" `I.p` ephemeral_message_id_
+        ]
 
 instance AT.FromJSON InputMessageReplyTo where
   parseJSON v@(AT.Object obj) = do
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "inputMessageReplyToMessage"         -> parseInputMessageReplyToMessage v
-      "inputMessageReplyToExternalMessage" -> parseInputMessageReplyToExternalMessage v
-      "inputMessageReplyToStory"           -> parseInputMessageReplyToStory v
-      _                                    -> mempty
+      "inputMessageReplyToMessage"          -> parseInputMessageReplyToMessage v
+      "inputMessageReplyToExternalMessage"  -> parseInputMessageReplyToExternalMessage v
+      "inputMessageReplyToStory"            -> parseInputMessageReplyToStory v
+      "inputMessageReplyToEphemeralMessage" -> parseInputMessageReplyToEphemeralMessage v
+      _                                     -> mempty
     
     where
       parseInputMessageReplyToMessage :: A.Value -> AT.Parser InputMessageReplyTo
@@ -111,6 +122,12 @@ instance AT.FromJSON InputMessageReplyTo where
         pure $ InputMessageReplyToStory
           { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
+          }
+      parseInputMessageReplyToEphemeralMessage :: A.Value -> AT.Parser InputMessageReplyTo
+      parseInputMessageReplyToEphemeralMessage = A.withObject "InputMessageReplyToEphemeralMessage" $ \o -> do
+        ephemeral_message_id_ <- o A..:?  "ephemeral_message_id"
+        pure $ InputMessageReplyToEphemeralMessage
+          { ephemeral_message_id = ephemeral_message_id_
           }
   parseJSON _ = mempty
 
@@ -151,5 +168,12 @@ instance AT.ToJSON InputMessageReplyTo where
         [ "@type"                A..= AT.String "inputMessageReplyToStory"
         , "story_poster_chat_id" A..= story_poster_chat_id_
         , "story_id"             A..= story_id_
+        ]
+  toJSON InputMessageReplyToEphemeralMessage
+    { ephemeral_message_id = ephemeral_message_id_
+    }
+      = A.object
+        [ "@type"                A..= AT.String "inputMessageReplyToEphemeralMessage"
+        , "ephemeral_message_id" A..= ephemeral_message_id_
         ]
 

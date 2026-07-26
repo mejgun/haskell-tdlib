@@ -8,22 +8,22 @@ import qualified TD.Data.TonTransaction as TonTransaction
 import qualified Data.Text as T
 
 data TonTransactions
-  = TonTransactions -- ^ Represents a list of Toncoin transactions
-    { ton_amount   :: Maybe Int                             -- ^ The total amount of owned Toncoins
-    , transactions :: Maybe [TonTransaction.TonTransaction] -- ^ List of Toncoin transactions
+  = TonTransactions -- ^ Represents a list of TON Gram transactions
+    { gram_amount  :: Maybe Int                             -- ^ The total amount of owned Grams, in the smallest units of the cryptocurrency
+    , transactions :: Maybe [TonTransaction.TonTransaction] -- ^ List of Gram transactions
     , next_offset  :: Maybe T.Text                          -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)
 
 instance I.ShortShow TonTransactions where
   shortShow TonTransactions
-    { ton_amount   = ton_amount_
+    { gram_amount  = gram_amount_
     , transactions = transactions_
     , next_offset  = next_offset_
     }
       = "TonTransactions"
         ++ I.cc
-        [ "ton_amount"   `I.p` ton_amount_
+        [ "gram_amount"  `I.p` gram_amount_
         , "transactions" `I.p` transactions_
         , "next_offset"  `I.p` next_offset_
         ]
@@ -39,11 +39,11 @@ instance AT.FromJSON TonTransactions where
     where
       parseTonTransactions :: A.Value -> AT.Parser TonTransactions
       parseTonTransactions = A.withObject "TonTransactions" $ \o -> do
-        ton_amount_   <- o A..:?  "ton_amount"
+        gram_amount_  <- o A..:?  "gram_amount"
         transactions_ <- o A..:?  "transactions"
         next_offset_  <- o A..:?  "next_offset"
         pure $ TonTransactions
-          { ton_amount   = ton_amount_
+          { gram_amount  = gram_amount_
           , transactions = transactions_
           , next_offset  = next_offset_
           }

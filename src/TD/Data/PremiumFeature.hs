@@ -35,6 +35,7 @@ data PremiumFeature
   | PremiumFeaturePaidMessages -- ^ The ability to require a payment for incoming messages in new chats
   | PremiumFeatureProtectPrivateChatContent -- ^ The ability to enable content protection in private chats
   | PremiumFeatureTextComposition -- ^ The ability to compose text with AI
+  | PremiumFeatureRichMessages -- ^ The ability to send rich messages
   deriving (Eq, Show)
 
 instance I.ShortShow PremiumFeature where
@@ -94,6 +95,8 @@ instance I.ShortShow PremiumFeature where
       = "PremiumFeatureProtectPrivateChatContent"
   shortShow PremiumFeatureTextComposition
       = "PremiumFeatureTextComposition"
+  shortShow PremiumFeatureRichMessages
+      = "PremiumFeatureRichMessages"
 
 instance AT.FromJSON PremiumFeature where
   parseJSON (AT.Object obj) = do
@@ -128,6 +131,7 @@ instance AT.FromJSON PremiumFeature where
       "premiumFeaturePaidMessages"              -> pure PremiumFeaturePaidMessages
       "premiumFeatureProtectPrivateChatContent" -> pure PremiumFeatureProtectPrivateChatContent
       "premiumFeatureTextComposition"           -> pure PremiumFeatureTextComposition
+      "premiumFeatureRichMessages"              -> pure PremiumFeatureRichMessages
       _                                         -> mempty
     
   parseJSON _ = mempty
@@ -244,5 +248,9 @@ instance AT.ToJSON PremiumFeature where
   toJSON PremiumFeatureTextComposition
       = A.object
         [ "@type" A..= AT.String "premiumFeatureTextComposition"
+        ]
+  toJSON PremiumFeatureRichMessages
+      = A.object
+        [ "@type" A..= AT.String "premiumFeatureRichMessages"
         ]
 

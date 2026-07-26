@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.22.0
+version:        2.1.23.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -212,6 +212,10 @@ library
       TD.Data.ClosedVectorPath
       TD.Data.CollectibleItemInfo
       TD.Data.CollectibleItemType
+      TD.Data.Community
+      TD.Data.CommunityAdministratorRights
+      TD.Data.CommunityMemberStatus
+      TD.Data.CommunityPermissions
       TD.Data.ConnectedAffiliateProgram
       TD.Data.ConnectedAffiliatePrograms
       TD.Data.ConnectedWebsite
@@ -320,6 +324,8 @@ library
       TD.Data.GiveawayParameters
       TD.Data.GiveawayParticipantStatus
       TD.Data.GiveawayPrize
+      TD.Data.GramRevenueStatistics
+      TD.Data.GramRevenueStatus
       TD.Data.GroupCall
       TD.Data.GroupCallDataChannel
       TD.Data.GroupCallId
@@ -366,6 +372,8 @@ library
       TD.Data.InputInvoice
       TD.Data.InputMessageContent
       TD.Data.InputMessageReplyTo
+      TD.Data.InputPageBlock
+      TD.Data.InputPageBlockListItem
       TD.Data.InputPaidMedia
       TD.Data.InputPaidMediaType
       TD.Data.InputPassportElement
@@ -377,6 +385,7 @@ library
       TD.Data.InputPollOption
       TD.Data.InputPollType
       TD.Data.InputRichMessage
+      TD.Data.InputRichMessageMedia
       TD.Data.InputSticker
       TD.Data.InputStoryArea
       TD.Data.InputStoryAreas
@@ -386,6 +395,8 @@ library
       TD.Data.InputTextQuote
       TD.Data.InputThumbnail
       TD.Data.InputVideo
+      TD.Data.InputVideoNote
+      TD.Data.InputVoiceNote
       TD.Data.InternalLinkType
       TD.Data.InviteGroupCallParticipantResult
       TD.Data.InviteLinkChatType
@@ -458,6 +469,7 @@ library
       TD.Data.NetworkStatisticsEntry
       TD.Data.NetworkType
       TD.Data.NewChatPrivacySettings
+      TD.Data.NewSticker
       TD.Data.Notification
       TD.Data.NotificationGroup
       TD.Data.NotificationGroupType
@@ -694,8 +706,6 @@ library
       TD.Data.TMeUrl
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
-      TD.Data.TonRevenueStatistics
-      TD.Data.TonRevenueStatus
       TD.Data.TonTransaction
       TD.Data.TonTransactions
       TD.Data.TonTransactionType
@@ -869,6 +879,7 @@ library
       TD.Query.CloseWebApp
       TD.Query.CommitPendingLiveStoryReactions
       TD.Query.CommitPendingPaidMessageReactions
+      TD.Query.ComposeRichMessageWithAi
       TD.Query.ComposeTextWithAi
       TD.Query.ConfirmBusinessConnectedBot
       TD.Query.ConfirmQrCodeAuthentication
@@ -892,6 +903,7 @@ library
       TD.Query.CreateNewStickerSet
       TD.Query.CreateNewSupergroupChat
       TD.Query.CreatePrivateChat
+      TD.Query.CreateRichMessageWithAi
       TD.Query.CreateSecretChat
       TD.Query.CreateStoryAlbum
       TD.Query.CreateSupergroupChat
@@ -923,6 +935,7 @@ library
       TD.Query.DeleteDefaultBackground
       TD.Query.DeleteDirectMessagesChatTopicHistory
       TD.Query.DeleteDirectMessagesChatTopicMessagesByDate
+      TD.Query.DeleteEphemeralMessage
       TD.Query.DeleteFile
       TD.Query.DeleteForumTopic
       TD.Query.DeleteGiftCollection
@@ -968,6 +981,7 @@ library
       TD.Query.EditChatInviteLink
       TD.Query.EditChatSubscriptionInviteLink
       TD.Query.EditCustomLanguagePackInfo
+      TD.Query.EditEphemeralMessage
       TD.Query.EditForumTopic
       TD.Query.EditInlineMessageCaption
       TD.Query.EditInlineMessageLiveLocation
@@ -994,6 +1008,7 @@ library
       TD.Query.EndGroupCallRecording
       TD.Query.EndGroupCallScreenSharing
       TD.Query.FinishFileGeneration
+      TD.Query.FixRichMessageWithAi
       TD.Query.FixTextWithAi
       TD.Query.ForwardMessages
       TD.Query.GetAccountTtl
@@ -1135,6 +1150,8 @@ library
       TD.Query.GetGiftsForCrafting
       TD.Query.GetGiftUpgradePreview
       TD.Query.GetGiveawayInfo
+      TD.Query.GetGramRevenueStatistics
+      TD.Query.GetGramWithdrawalUrl
       TD.Query.GetGreetingStickers
       TD.Query.GetGrossingWebAppBots
       TD.Query.GetGroupCall
@@ -1142,6 +1159,7 @@ library
       TD.Query.GetGroupCallStreams
       TD.Query.GetGroupCallStreamSegment
       TD.Query.GetGroupsInCommon
+      TD.Query.GetGuardBotWebAppUrl
       TD.Query.GetImportedContactCount
       TD.Query.GetInactiveSupergroupChats
       TD.Query.GetInlineGameHighScores
@@ -1295,9 +1313,7 @@ library
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTimeZones
-      TD.Query.GetTonRevenueStatistics
       TD.Query.GetTonTransactions
-      TD.Query.GetTonWithdrawalUrl
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUpgradedGift
@@ -1513,6 +1529,7 @@ library
       TD.Query.SendChatAction
       TD.Query.SendCustomRequest
       TD.Query.SendEmailAddressVerificationCode
+      TD.Query.SendEphemeralMessage
       TD.Query.SendGift
       TD.Query.SendGiftPurchaseOffer
       TD.Query.SendGroupCallMessage
@@ -1742,7 +1759,9 @@ library
       TD.Query.TransferBusinessAccountStars
       TD.Query.TransferChatOwnership
       TD.Query.TransferGift
+      TD.Query.TranslateMessageRichMessage
       TD.Query.TranslateMessageText
+      TD.Query.TranslateRichMessage
       TD.Query.TranslateText
       TD.Query.UnpinAllChatMessages
       TD.Query.UnpinAllDirectMessagesChatTopicMessages

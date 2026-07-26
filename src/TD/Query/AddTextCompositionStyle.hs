@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles has been reached. Returns 'TD.Data.Ok.Ok'
+-- | Adds a custom text composition style to the list of used by the user styles. May return an error with a message "TONES_SAVED_TOO_MANY" if the maximum number of added custom styles getOption("added_text_composition_style_count_max") has been reached. Returns 'TD.Data.Ok.Ok'
 data AddTextCompositionStyle
   = AddTextCompositionStyle
     { name :: Maybe T.Text -- ^ Name of the style

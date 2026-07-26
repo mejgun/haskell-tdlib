@@ -21,6 +21,7 @@ data UserFullInfo
     { personal_photo                               :: Maybe ChatPhoto.ChatPhoto             -- ^ User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
     , photo                                        :: Maybe ChatPhoto.ChatPhoto             -- ^ User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo
     , public_photo                                 :: Maybe ChatPhoto.ChatPhoto             -- ^ User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos
+    , community_id                                 :: Maybe Int                             -- ^ Identifier of the community to which chat with the bot was added; for bots only
     , block_list                                   :: Maybe BlockList.BlockList             -- ^ Block list to which the user is added; may be null if none
     , can_be_called                                :: Maybe Bool                            -- ^ True, if the user can be called
     , supports_video_calls                         :: Maybe Bool                            -- ^ True, if a video call can be created with the user
@@ -57,6 +58,7 @@ instance I.ShortShow UserFullInfo where
     { personal_photo                               = personal_photo_
     , photo                                        = photo_
     , public_photo                                 = public_photo_
+    , community_id                                 = community_id_
     , block_list                                   = block_list_
     , can_be_called                                = can_be_called_
     , supports_video_calls                         = supports_video_calls_
@@ -91,6 +93,7 @@ instance I.ShortShow UserFullInfo where
         [ "personal_photo"                               `I.p` personal_photo_
         , "photo"                                        `I.p` photo_
         , "public_photo"                                 `I.p` public_photo_
+        , "community_id"                                 `I.p` community_id_
         , "block_list"                                   `I.p` block_list_
         , "can_be_called"                                `I.p` can_be_called_
         , "supports_video_calls"                         `I.p` supports_video_calls_
@@ -135,6 +138,7 @@ instance AT.FromJSON UserFullInfo where
         personal_photo_                               <- o A..:?  "personal_photo"
         photo_                                        <- o A..:?  "photo"
         public_photo_                                 <- o A..:?  "public_photo"
+        community_id_                                 <- o A..:?  "community_id"
         block_list_                                   <- o A..:?  "block_list"
         can_be_called_                                <- o A..:?  "can_be_called"
         supports_video_calls_                         <- o A..:?  "supports_video_calls"
@@ -167,6 +171,7 @@ instance AT.FromJSON UserFullInfo where
           { personal_photo                               = personal_photo_
           , photo                                        = photo_
           , public_photo                                 = public_photo_
+          , community_id                                 = community_id_
           , block_list                                   = block_list_
           , can_be_called                                = can_be_called_
           , supports_video_calls                         = supports_video_calls_

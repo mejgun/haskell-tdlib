@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously. Returns 'TD.Data.Text.Text'
+-- | Returns an emoji for the flag of the given country. Returns an empty string on failure. Can be called synchronously. Returns 'TD.Data.Text.Text'
 data GetCountryFlagEmoji
   = GetCountryFlagEmoji
     { country_code :: Maybe T.Text -- ^ A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
