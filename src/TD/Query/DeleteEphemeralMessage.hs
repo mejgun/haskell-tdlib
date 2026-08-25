@@ -12,7 +12,7 @@ data DeleteEphemeralMessage
   = DeleteEphemeralMessage
     { chat_id              :: Maybe Int -- ^ Chat identifier
     , receiver_user_id     :: Maybe Int -- ^ Identifier of the user who received the message
-    , ephemeral_message_id :: Maybe Int -- ^ Identifiers of the message to be deleted
+    , ephemeral_message_id :: Maybe Int -- ^ Identifier of the message to be deleted
     }
   deriving (Eq, Show)
 

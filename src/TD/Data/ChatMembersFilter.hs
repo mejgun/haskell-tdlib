@@ -11,7 +11,7 @@ data ChatMembersFilter
   = ChatMembersFilterContacts -- ^ Returns contacts of the user
   | ChatMembersFilterAdministrators -- ^ Returns the owner and administrators
   | ChatMembersFilterMembers -- ^ Returns all chat members, including restricted chat members
-  | ChatMembersFilterMention -- ^ Returns users which can be mentioned in the chat
+  | ChatMembersFilterMention -- ^ Returns users who can be mentioned in the chat
     { topic_id :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the users will be mentioned; pass null if none
     }
   | ChatMembersFilterRestricted -- ^ Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup

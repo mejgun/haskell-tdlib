@@ -23,10 +23,12 @@ data ReplyMarkup
     , resize_keyboard         :: Maybe Bool                              -- ^ True, if the application needs to resize the keyboard vertically
     , one_time                :: Maybe Bool                              -- ^ True, if the application needs to hide the keyboard after use
     , is_personal             :: Maybe Bool                              -- ^ True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
+    , force_reply             :: Maybe Bool                              -- ^ True, if the keyboard must force reply to the message with the keyboard
     , input_field_placeholder :: Maybe T.Text                            -- ^ If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
     }
   | ReplyMarkupInlineKeyboard -- ^ Contains an inline keyboard layout
-    { _rows :: Maybe [[InlineKeyboardButton.InlineKeyboardButton]] -- ^ A list of rows of inline keyboard buttons
+    { _rows       :: Maybe [[InlineKeyboardButton.InlineKeyboardButton]] -- ^ A list of rows of inline keyboard buttons
+    , force_reply :: Maybe Bool                                          -- ^ True, if a reply to the message must be forced when the message is received
     }
   deriving (Eq, Show)
 
@@ -53,6 +55,7 @@ instance I.ShortShow ReplyMarkup where
     , resize_keyboard         = resize_keyboard_
     , one_time                = one_time_
     , is_personal             = is_personal_
+    , force_reply             = force_reply_
     , input_field_placeholder = input_field_placeholder_
     }
       = "ReplyMarkupShowKeyboard"
@@ -62,14 +65,17 @@ instance I.ShortShow ReplyMarkup where
         , "resize_keyboard"         `I.p` resize_keyboard_
         , "one_time"                `I.p` one_time_
         , "is_personal"             `I.p` is_personal_
+        , "force_reply"             `I.p` force_reply_
         , "input_field_placeholder" `I.p` input_field_placeholder_
         ]
   shortShow ReplyMarkupInlineKeyboard
-    { _rows = _rows_
+    { _rows       = _rows_
+    , force_reply = force_reply_
     }
       = "ReplyMarkupInlineKeyboard"
         ++ I.cc
-        [ "_rows" `I.p` _rows_
+        [ "_rows"       `I.p` _rows_
+        , "force_reply" `I.p` force_reply_
         ]
 
 instance AT.FromJSON ReplyMarkup where
@@ -105,6 +111,7 @@ instance AT.FromJSON ReplyMarkup where
         resize_keyboard_         <- o A..:?  "resize_keyboard"
         one_time_                <- o A..:?  "one_time"
         is_personal_             <- o A..:?  "is_personal"
+        force_reply_             <- o A..:?  "force_reply"
         input_field_placeholder_ <- o A..:?  "input_field_placeholder"
         pure $ ReplyMarkupShowKeyboard
           { rows                    = rows_
@@ -112,13 +119,16 @@ instance AT.FromJSON ReplyMarkup where
           , resize_keyboard         = resize_keyboard_
           , one_time                = one_time_
           , is_personal             = is_personal_
+          , force_reply             = force_reply_
           , input_field_placeholder = input_field_placeholder_
           }
       parseReplyMarkupInlineKeyboard :: A.Value -> AT.Parser ReplyMarkup
       parseReplyMarkupInlineKeyboard = A.withObject "ReplyMarkupInlineKeyboard" $ \o -> do
-        _rows_ <- o A..:?  "rows"
+        _rows_       <- o A..:?  "rows"
+        force_reply_ <- o A..:?  "force_reply"
         pure $ ReplyMarkupInlineKeyboard
-          { _rows = _rows_
+          { _rows       = _rows_
+          , force_reply = force_reply_
           }
   parseJSON _ = mempty
 
@@ -145,6 +155,7 @@ instance AT.ToJSON ReplyMarkup where
     , resize_keyboard         = resize_keyboard_
     , one_time                = one_time_
     , is_personal             = is_personal_
+    , force_reply             = force_reply_
     , input_field_placeholder = input_field_placeholder_
     }
       = A.object
@@ -154,13 +165,16 @@ instance AT.ToJSON ReplyMarkup where
         , "resize_keyboard"         A..= resize_keyboard_
         , "one_time"                A..= one_time_
         , "is_personal"             A..= is_personal_
+        , "force_reply"             A..= force_reply_
         , "input_field_placeholder" A..= input_field_placeholder_
         ]
   toJSON ReplyMarkupInlineKeyboard
-    { _rows = _rows_
+    { _rows       = _rows_
+    , force_reply = force_reply_
     }
       = A.object
-        [ "@type" A..= AT.String "replyMarkupInlineKeyboard"
-        , "rows"  A..= _rows_
+        [ "@type"       A..= AT.String "replyMarkupInlineKeyboard"
+        , "rows"        A..= _rows_
+        , "force_reply" A..= force_reply_
         ]
 

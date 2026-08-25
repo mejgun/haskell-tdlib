@@ -12,7 +12,7 @@ import qualified Data.Text as T
 data SetChatMemberTag
   = SetChatMemberTag
     { chat_id :: Maybe Int    -- ^ Chat identifier
-    , user_id :: Maybe Int    -- ^ Identifier of the user, which tag is changed. Chats can't have member tags
+    , user_id :: Maybe Int    -- ^ Identifier of the user whose tag is changed. Chats can't have member tags
     , tag     :: Maybe T.Text -- ^ The new tag of the member in the chat; 0-16 characters without emoji
     }
   deriving (Eq, Show)

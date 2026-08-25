@@ -9,7 +9,7 @@ import qualified TD.Data.GiveawayPrize as GiveawayPrize
 data PrepaidGiveaway
   = PrepaidGiveaway -- ^ Describes a prepaid giveaway
     { _id          :: Maybe Int                         -- ^ Unique identifier of the prepaid giveaway
-    , winner_count :: Maybe Int                         -- ^ Number of users which will receive giveaway prize
+    , winner_count :: Maybe Int                         -- ^ Number of users who will receive giveaway prize
     , prize        :: Maybe GiveawayPrize.GiveawayPrize -- ^ Prize of the giveaway
     , boost_count  :: Maybe Int                         -- ^ The number of boosts received by the chat from the giveaway; for Telegram Star giveaways only
     , payment_date :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the giveaway was paid

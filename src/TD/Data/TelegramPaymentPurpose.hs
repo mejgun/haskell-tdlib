@@ -13,7 +13,7 @@ data TelegramPaymentPurpose
   = TelegramPaymentPurposePremiumGift -- ^ The user gifting Telegram Premium to another user
     { currency    :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency, or "XTR" for payments in Telegram Stars
     , amount      :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
-    , user_id     :: Maybe Int                         -- ^ Identifier of the user which will receive Telegram Premium
+    , user_id     :: Maybe Int                         -- ^ Identifier of the user who will receive Telegram Premium
     , month_count :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the user
     , text        :: Maybe FormattedText.FormattedText -- ^ Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
@@ -21,7 +21,7 @@ data TelegramPaymentPurpose
     { boosted_chat_id :: Maybe Int                         -- ^ Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
     , currency        :: Maybe T.Text                      -- ^ ISO 4217 currency code of the payment currency
     , amount          :: Maybe Int                         -- ^ Paid amount, in the smallest units of the currency
-    , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users which can activate the gift codes
+    , user_ids        :: Maybe [Int]                       -- ^ Identifiers of the users who can activate the gift codes
     , month_count     :: Maybe Int                         -- ^ Number of months the Telegram Premium subscription will be active for the users
     , text            :: Maybe FormattedText.FormattedText -- ^ Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed
     }
@@ -29,7 +29,7 @@ data TelegramPaymentPurpose
     { parameters   :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
     , currency     :: Maybe T.Text                                -- ^ ISO 4217 currency code of the payment currency
     , amount       :: Maybe Int                                   -- ^ Paid amount, in the smallest units of the currency
-    , winner_count :: Maybe Int                                   -- ^ Number of users which will be able to activate the gift codes
+    , winner_count :: Maybe Int                                   -- ^ Number of users who will be able to activate the gift codes
     , month_count  :: Maybe Int                                   -- ^ Number of months the Telegram Premium subscription will be active for the users
     }
   | TelegramPaymentPurposeStars -- ^ The user buying Telegram Stars

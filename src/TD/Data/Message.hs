@@ -19,6 +19,7 @@ import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.Text as T
 import qualified TD.Data.RestrictionInfo as RestrictionInfo
 import qualified TD.Data.MessageContent as MessageContent
+import qualified TD.Data.EphemeralMessageContent as EphemeralMessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 
 data Message
@@ -64,8 +65,10 @@ data Message
     , restriction_info            :: Maybe RestrictionInfo.RestrictionInfo                 -- ^ Information about the restrictions that must be applied to the message content; may be null if none
     , summary_language_code       :: Maybe T.Text                                          -- ^ IETF language tag of the message language on which it can be summarized; empty if summary isn't available for the message
     , content                     :: Maybe MessageContent.MessageContent                   -- ^ Content of the message
+    , ephemeral_content           :: Maybe EphemeralMessageContent.EphemeralMessageContent -- ^ Content of the message, which is visible only to the current user and must be shown instead of the regular content; may be null if none
     , reply_markup                :: Maybe ReplyMarkup.ReplyMarkup                         -- ^ Reply markup for the message; may be null if none
     , ephemeral_message_id        :: Maybe Int                                             -- ^ Unique identifier of the ephemeral message if the message is ephemeral; for bots only
+    , chat_instance               :: Maybe Int                                             -- ^ Identifier that uniquely corresponds to the chat to which the message was sent; for bots only
     }
   deriving (Eq, Show)
 
@@ -112,8 +115,10 @@ instance I.ShortShow Message where
     , restriction_info            = restriction_info_
     , summary_language_code       = summary_language_code_
     , content                     = content_
+    , ephemeral_content           = ephemeral_content_
     , reply_markup                = reply_markup_
     , ephemeral_message_id        = ephemeral_message_id_
+    , chat_instance               = chat_instance_
     }
       = "Message"
         ++ I.cc
@@ -158,8 +163,10 @@ instance I.ShortShow Message where
         , "restriction_info"            `I.p` restriction_info_
         , "summary_language_code"       `I.p` summary_language_code_
         , "content"                     `I.p` content_
+        , "ephemeral_content"           `I.p` ephemeral_content_
         , "reply_markup"                `I.p` reply_markup_
         , "ephemeral_message_id"        `I.p` ephemeral_message_id_
+        , "chat_instance"               `I.p` chat_instance_
         ]
 
 instance AT.FromJSON Message where
@@ -214,8 +221,10 @@ instance AT.FromJSON Message where
         restriction_info_            <- o A..:?                       "restriction_info"
         summary_language_code_       <- o A..:?                       "summary_language_code"
         content_                     <- o A..:?                       "content"
+        ephemeral_content_           <- o A..:?                       "ephemeral_content"
         reply_markup_                <- o A..:?                       "reply_markup"
         ephemeral_message_id_        <- o A..:?                       "ephemeral_message_id"
+        chat_instance_               <- fmap I.readInt64 <$> o A..:?  "chat_instance"
         pure $ Message
           { _id                         = _id_
           , sender_id                   = sender_id_
@@ -258,8 +267,10 @@ instance AT.FromJSON Message where
           , restriction_info            = restriction_info_
           , summary_language_code       = summary_language_code_
           , content                     = content_
+          , ephemeral_content           = ephemeral_content_
           , reply_markup                = reply_markup_
           , ephemeral_message_id        = ephemeral_message_id_
+          , chat_instance               = chat_instance_
           }
   parseJSON _ = mempty
 

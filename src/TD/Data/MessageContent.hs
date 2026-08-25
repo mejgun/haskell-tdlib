@@ -256,6 +256,9 @@ data MessageContent
     }
   | MessageChatJoinByLink -- ^ A new member joined the chat via an invite link
   | MessageChatJoinByRequest -- ^ A new member was accepted to the chat by an administrator
+  | MessageChatJoinFromCommunity -- ^ A new member joined the chat from a community
+    { community_id :: Maybe Int -- ^ Identifier of the community from which the user joined the chat
+    }
   | MessageChatDeleteMember -- ^ A chat member was deleted
     { user_id :: Maybe Int -- ^ User identifier of the deleted chat member
     }
@@ -320,7 +323,8 @@ data MessageContent
     , score           :: Maybe Int -- ^ New score
     }
   | MessageManagedBotCreated -- ^ A bot managed by another bot was created by the user
-    { bot_user_id :: Maybe Int -- ^ User identifier of the created bot
+    { bot_user_id         :: Maybe Int -- ^ User identifier of the created bot
+    , manager_bot_user_id :: Maybe Int -- ^ Identifier of the bot which will manage the new bot
     }
   | MessagePaymentSuccessful -- ^ A payment has been sent to a bot or a business account
     { invoice_chat_id         :: Maybe Int    -- ^ Identifier of the chat, containing the corresponding invoice message
@@ -383,7 +387,7 @@ data MessageContent
     }
   | MessageGiveaway -- ^ A giveaway
     { parameters   :: Maybe GiveawayParameters.GiveawayParameters -- ^ Giveaway parameters
-    , winner_count :: Maybe Int                                   -- ^ Number of users which will receive Telegram Premium subscription gift codes
+    , winner_count :: Maybe Int                                   -- ^ Number of users who will receive Telegram Premium subscription gift codes
     , prize        :: Maybe GiveawayPrize.GiveawayPrize           -- ^ Prize of the giveaway
     , sticker      :: Maybe Sticker.Sticker                       -- ^ A sticker to be shown in the message; may be null if unknown
     }
@@ -417,7 +421,7 @@ data MessageContent
     , transaction_id        :: Maybe T.Text          -- ^ Identifier of the transaction for Telegram Stars purchase; for receiver only
     , sticker               :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
-  | MessageGiftedTon -- ^ TON Grams were gifted to a user
+  | MessageGiftedGrams -- ^ TON Grams were gifted to a user
     { gifter_user_id   :: Maybe Int             -- ^ The identifier of a user who gifted Grams; 0 if the gift was anonymous or is outgoing
     , receiver_user_id :: Maybe Int             -- ^ The identifier of a user who received Grams; 0 if the gift is incoming
     , gram_amount      :: Maybe Int             -- ^ The received Gram amount, in the smallest units of the cryptocurrency
@@ -459,6 +463,8 @@ data MessageContent
     , receiver_id                      :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
     , origin                           :: Maybe UpgradedGiftOrigin.UpgradedGiftOrigin -- ^ Origin of the upgraded gift
     , received_gift_id                 :: Maybe T.Text                                -- ^ Unique identifier of the received gift for the current user; only for the receiver of the gift
+    , text                             :: Maybe FormattedText.FormattedText           -- ^ Message added to the gift
+    , is_private                       :: Maybe Bool                                  -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
     , is_saved                         :: Maybe Bool                                  -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     , can_be_transferred               :: Maybe Bool                                  -- ^ True, if the gift can be transferred to another owner; only for the receiver of the gift
     , was_transferred                  :: Maybe Bool                                  -- ^ True, if the gift has already been transferred to another owner; only for the receiver of the gift
@@ -530,7 +536,7 @@ data MessageContent
     , reason                    :: Maybe SuggestedPostRefundReason.SuggestedPostRefundReason -- ^ Reason of the refund
     }
   | MessageContactRegistered -- ^ A contact has registered with Telegram
-  | MessageUsersShared -- ^ The current user shared users, which were requested by the bot
+  | MessageUsersShared -- ^ The current user shared users who were requested by the bot
     { users     :: Maybe [SharedUser.SharedUser] -- ^ The shared users
     , button_id :: Maybe Int                     -- ^ Identifier of the keyboard button with the request
     }
@@ -996,6 +1002,13 @@ instance I.ShortShow MessageContent where
       = "MessageChatJoinByLink"
   shortShow MessageChatJoinByRequest
       = "MessageChatJoinByRequest"
+  shortShow MessageChatJoinFromCommunity
+    { community_id = community_id_
+    }
+      = "MessageChatJoinFromCommunity"
+        ++ I.cc
+        [ "community_id" `I.p` community_id_
+        ]
   shortShow MessageChatDeleteMember
     { user_id = user_id_
     }
@@ -1140,11 +1153,13 @@ instance I.ShortShow MessageContent where
         , "score"           `I.p` score_
         ]
   shortShow MessageManagedBotCreated
-    { bot_user_id = bot_user_id_
+    { bot_user_id         = bot_user_id_
+    , manager_bot_user_id = manager_bot_user_id_
     }
       = "MessageManagedBotCreated"
         ++ I.cc
-        [ "bot_user_id" `I.p` bot_user_id_
+        [ "bot_user_id"         `I.p` bot_user_id_
+        , "manager_bot_user_id" `I.p` manager_bot_user_id_
         ]
   shortShow MessagePaymentSuccessful
     { invoice_chat_id         = invoice_chat_id_
@@ -1346,14 +1361,14 @@ instance I.ShortShow MessageContent where
         , "transaction_id"        `I.p` transaction_id_
         , "sticker"               `I.p` sticker_
         ]
-  shortShow MessageGiftedTon
+  shortShow MessageGiftedGrams
     { gifter_user_id   = gifter_user_id_
     , receiver_user_id = receiver_user_id_
     , gram_amount      = gram_amount_
     , transaction_id   = transaction_id_
     , sticker          = sticker_
     }
-      = "MessageGiftedTon"
+      = "MessageGiftedGrams"
         ++ I.cc
         [ "gifter_user_id"   `I.p` gifter_user_id_
         , "receiver_user_id" `I.p` receiver_user_id_
@@ -1427,6 +1442,8 @@ instance I.ShortShow MessageContent where
     , receiver_id                      = receiver_id_
     , origin                           = origin_
     , received_gift_id                 = received_gift_id_
+    , text                             = text_
+    , is_private                       = is_private_
     , is_saved                         = is_saved_
     , can_be_transferred               = can_be_transferred_
     , was_transferred                  = was_transferred_
@@ -1444,6 +1461,8 @@ instance I.ShortShow MessageContent where
         , "receiver_id"                      `I.p` receiver_id_
         , "origin"                           `I.p` origin_
         , "received_gift_id"                 `I.p` received_gift_id_
+        , "text"                             `I.p` text_
+        , "is_private"                       `I.p` is_private_
         , "is_saved"                         `I.p` is_saved_
         , "can_be_transferred"               `I.p` can_be_transferred_
         , "was_transferred"                  `I.p` was_transferred_
@@ -1712,6 +1731,7 @@ instance AT.FromJSON MessageContent where
       "messageChatAddMembers"                          -> parseMessageChatAddMembers v
       "messageChatJoinByLink"                          -> pure MessageChatJoinByLink
       "messageChatJoinByRequest"                       -> pure MessageChatJoinByRequest
+      "messageChatJoinFromCommunity"                   -> parseMessageChatJoinFromCommunity v
       "messageChatDeleteMember"                        -> parseMessageChatDeleteMember v
       "messageChatAddedToCommunity"                    -> parseMessageChatAddedToCommunity v
       "messageChatRemovedFromCommunity"                -> pure MessageChatRemovedFromCommunity
@@ -1742,7 +1762,7 @@ instance AT.FromJSON MessageContent where
       "messageGiveawayCompleted"                       -> parseMessageGiveawayCompleted v
       "messageGiveawayWinners"                         -> parseMessageGiveawayWinners v
       "messageGiftedStars"                             -> parseMessageGiftedStars v
-      "messageGiftedTon"                               -> parseMessageGiftedTon v
+      "messageGiftedGrams"                             -> parseMessageGiftedGrams v
       "messageGiveawayPrizeStars"                      -> parseMessageGiveawayPrizeStars v
       "messageGift"                                    -> parseMessageGift v
       "messageUpgradedGift"                            -> parseMessageUpgradedGift v
@@ -2150,6 +2170,12 @@ instance AT.FromJSON MessageContent where
         pure $ MessageChatAddMembers
           { member_user_ids = member_user_ids_
           }
+      parseMessageChatJoinFromCommunity :: A.Value -> AT.Parser MessageContent
+      parseMessageChatJoinFromCommunity = A.withObject "MessageChatJoinFromCommunity" $ \o -> do
+        community_id_ <- o A..:?  "community_id"
+        pure $ MessageChatJoinFromCommunity
+          { community_id = community_id_
+          }
       parseMessageChatDeleteMember :: A.Value -> AT.Parser MessageContent
       parseMessageChatDeleteMember = A.withObject "MessageChatDeleteMember" $ \o -> do
         user_id_ <- o A..:?  "user_id"
@@ -2274,9 +2300,11 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageManagedBotCreated :: A.Value -> AT.Parser MessageContent
       parseMessageManagedBotCreated = A.withObject "MessageManagedBotCreated" $ \o -> do
-        bot_user_id_ <- o A..:?  "bot_user_id"
+        bot_user_id_         <- o A..:?  "bot_user_id"
+        manager_bot_user_id_ <- o A..:?  "manager_bot_user_id"
         pure $ MessageManagedBotCreated
-          { bot_user_id = bot_user_id_
+          { bot_user_id         = bot_user_id_
+          , manager_bot_user_id = manager_bot_user_id_
           }
       parseMessagePaymentSuccessful :: A.Value -> AT.Parser MessageContent
       parseMessagePaymentSuccessful = A.withObject "MessagePaymentSuccessful" $ \o -> do
@@ -2468,14 +2496,14 @@ instance AT.FromJSON MessageContent where
           , transaction_id        = transaction_id_
           , sticker               = sticker_
           }
-      parseMessageGiftedTon :: A.Value -> AT.Parser MessageContent
-      parseMessageGiftedTon = A.withObject "MessageGiftedTon" $ \o -> do
+      parseMessageGiftedGrams :: A.Value -> AT.Parser MessageContent
+      parseMessageGiftedGrams = A.withObject "MessageGiftedGrams" $ \o -> do
         gifter_user_id_   <- o A..:?  "gifter_user_id"
         receiver_user_id_ <- o A..:?  "receiver_user_id"
         gram_amount_      <- o A..:?  "gram_amount"
         transaction_id_   <- o A..:?  "transaction_id"
         sticker_          <- o A..:?  "sticker"
-        pure $ MessageGiftedTon
+        pure $ MessageGiftedGrams
           { gifter_user_id   = gifter_user_id_
           , receiver_user_id = receiver_user_id_
           , gram_amount      = gram_amount_
@@ -2547,6 +2575,8 @@ instance AT.FromJSON MessageContent where
         receiver_id_                      <- o A..:?  "receiver_id"
         origin_                           <- o A..:?  "origin"
         received_gift_id_                 <- o A..:?  "received_gift_id"
+        text_                             <- o A..:?  "text"
+        is_private_                       <- o A..:?  "is_private"
         is_saved_                         <- o A..:?  "is_saved"
         can_be_transferred_               <- o A..:?  "can_be_transferred"
         was_transferred_                  <- o A..:?  "was_transferred"
@@ -2562,6 +2592,8 @@ instance AT.FromJSON MessageContent where
           , receiver_id                      = receiver_id_
           , origin                           = origin_
           , received_gift_id                 = received_gift_id_
+          , text                             = text_
+          , is_private                       = is_private_
           , is_saved                         = is_saved_
           , can_be_transferred               = can_be_transferred_
           , was_transferred                  = was_transferred_

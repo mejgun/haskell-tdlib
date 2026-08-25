@@ -11,7 +11,7 @@ data MessageOrigin
   = MessageOriginUser -- ^ The message was originally sent by a known user
     { sender_user_id :: Maybe Int -- ^ Identifier of the user who originally sent the message
     }
-  | MessageOriginHiddenUser -- ^ The message was originally sent by a user, which is hidden by their privacy settings
+  | MessageOriginHiddenUser -- ^ The message was originally sent by a user who is hidden by their privacy settings
     { sender_name :: Maybe T.Text -- ^ Name of the sender
     }
   | MessageOriginChat -- ^ The message was originally sent on behalf of a chat

@@ -12,7 +12,7 @@ data Passkey
     , name                          :: Maybe T.Text -- ^ Name of the passkey
     , addition_date                 :: Maybe Int    -- ^ Point in time (Unix timestamp) when the passkey was added
     , last_usage_date               :: Maybe Int    -- ^ Point in time (Unix timestamp) when the passkey was used last time; 0 if never
-    , software_icon_custom_emoji_id :: Maybe Int    -- ^ Identifier of the custom emoji that is used as the icon of the software, which created the passkey; 0 if unknown
+    , software_icon_custom_emoji_id :: Maybe Int    -- ^ Identifier of the custom emoji that is used as the icon of the software that created the passkey; 0 if unknown
     }
   deriving (Eq, Show)
 

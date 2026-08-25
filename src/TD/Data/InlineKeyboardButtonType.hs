@@ -13,7 +13,7 @@ data InlineKeyboardButtonType
   = InlineKeyboardButtonTypeUrl -- ^ A button that opens a specified URL
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button
     }
-  | InlineKeyboardButtonTypeLoginUrl -- ^ A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
+  | InlineKeyboardButtonTypeLoginUrl -- ^ A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo; not supported in ephemeral messages
     { url          :: Maybe T.Text -- ^ An HTTP URL to pass to getLoginUrlInfo
     , _id          :: Maybe Int    -- ^ Unique button identifier
     , forward_text :: Maybe T.Text -- ^ If non-empty, new text of the button in forwarded messages
@@ -39,6 +39,7 @@ data InlineKeyboardButtonType
   | InlineKeyboardButtonTypeCopyText -- ^ A button that copies specified text to clipboard
     { text :: Maybe T.Text -- ^ The text to copy to clipboard
     }
+  | InlineKeyboardButtonTypeDisabled -- ^ A disabled button
   deriving (Eq, Show)
 
 instance I.ShortShow InlineKeyboardButtonType where
@@ -108,6 +109,8 @@ instance I.ShortShow InlineKeyboardButtonType where
         ++ I.cc
         [ "text" `I.p` text_
         ]
+  shortShow InlineKeyboardButtonTypeDisabled
+      = "InlineKeyboardButtonTypeDisabled"
 
 instance AT.FromJSON InlineKeyboardButtonType where
   parseJSON v@(AT.Object obj) = do
@@ -124,6 +127,7 @@ instance AT.FromJSON InlineKeyboardButtonType where
       "inlineKeyboardButtonTypeBuy"                  -> pure InlineKeyboardButtonTypeBuy
       "inlineKeyboardButtonTypeUser"                 -> parseInlineKeyboardButtonTypeUser v
       "inlineKeyboardButtonTypeCopyText"             -> parseInlineKeyboardButtonTypeCopyText v
+      "inlineKeyboardButtonTypeDisabled"             -> pure InlineKeyboardButtonTypeDisabled
       _                                              -> mempty
     
     where
@@ -253,5 +257,9 @@ instance AT.ToJSON InlineKeyboardButtonType where
       = A.object
         [ "@type" A..= AT.String "inlineKeyboardButtonTypeCopyText"
         , "text"  A..= text_
+        ]
+  toJSON InlineKeyboardButtonTypeDisabled
+      = A.object
+        [ "@type" A..= AT.String "inlineKeyboardButtonTypeDisabled"
         ]
 

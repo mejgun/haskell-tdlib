@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.LinkPreviewOptions as LinkPreviewOptions
 import qualified TD.Data.RichMessage as RichMessage
+import qualified TD.Data.InputRichMessage as InputRichMessage
 import qualified Data.Text as T
 import qualified TD.Data.MessageSelfDestructType as MessageSelfDestructType
 import qualified Data.ByteString as BS
@@ -18,7 +19,10 @@ data DraftMessageContent
     , link_preview_options :: Maybe LinkPreviewOptions.LinkPreviewOptions -- ^ Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
     }
   | DraftMessageContentRichMessage -- ^ A rich message draft; not supported in setChatDraftMessage
-    { message :: Maybe RichMessage.RichMessage -- ^ The rich message; the message must not have not yet uploaded media
+    { message :: Maybe RichMessage.RichMessage -- ^ The rich message
+    }
+  | DraftMessageContentInputRichMessage -- ^ A rich message draft; only for setChatDraftMessage
+    { _message :: Maybe InputRichMessage.InputRichMessage -- ^ The rich message
     }
   | DraftMessageContentVideoNote -- ^ A video note message draft
     { file_path          :: Maybe T.Text                                          -- ^ Path to the file with the video note
@@ -50,6 +54,13 @@ instance I.ShortShow DraftMessageContent where
       = "DraftMessageContentRichMessage"
         ++ I.cc
         [ "message" `I.p` message_
+        ]
+  shortShow DraftMessageContentInputRichMessage
+    { _message = _message_
+    }
+      = "DraftMessageContentInputRichMessage"
+        ++ I.cc
+        [ "_message" `I.p` _message_
         ]
   shortShow DraftMessageContentVideoNote
     { file_path          = file_path_
@@ -83,11 +94,12 @@ instance AT.FromJSON DraftMessageContent where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "draftMessageContentText"        -> parseDraftMessageContentText v
-      "draftMessageContentRichMessage" -> parseDraftMessageContentRichMessage v
-      "draftMessageContentVideoNote"   -> parseDraftMessageContentVideoNote v
-      "draftMessageContentVoiceNote"   -> parseDraftMessageContentVoiceNote v
-      _                                -> mempty
+      "draftMessageContentText"             -> parseDraftMessageContentText v
+      "draftMessageContentRichMessage"      -> parseDraftMessageContentRichMessage v
+      "draftMessageContentInputRichMessage" -> parseDraftMessageContentInputRichMessage v
+      "draftMessageContentVideoNote"        -> parseDraftMessageContentVideoNote v
+      "draftMessageContentVoiceNote"        -> parseDraftMessageContentVoiceNote v
+      _                                     -> mempty
     
     where
       parseDraftMessageContentText :: A.Value -> AT.Parser DraftMessageContent
@@ -103,6 +115,12 @@ instance AT.FromJSON DraftMessageContent where
         message_ <- o A..:?  "message"
         pure $ DraftMessageContentRichMessage
           { message = message_
+          }
+      parseDraftMessageContentInputRichMessage :: A.Value -> AT.Parser DraftMessageContent
+      parseDraftMessageContentInputRichMessage = A.withObject "DraftMessageContentInputRichMessage" $ \o -> do
+        _message_ <- o A..:?  "message"
+        pure $ DraftMessageContentInputRichMessage
+          { _message = _message_
           }
       parseDraftMessageContentVideoNote :: A.Value -> AT.Parser DraftMessageContent
       parseDraftMessageContentVideoNote = A.withObject "DraftMessageContentVideoNote" $ \o -> do
@@ -146,6 +164,13 @@ instance AT.ToJSON DraftMessageContent where
       = A.object
         [ "@type"   A..= AT.String "draftMessageContentRichMessage"
         , "message" A..= message_
+        ]
+  toJSON DraftMessageContentInputRichMessage
+    { _message = _message_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "draftMessageContentInputRichMessage"
+        , "message" A..= _message_
         ]
   toJSON DraftMessageContentVideoNote
     { file_path          = file_path_

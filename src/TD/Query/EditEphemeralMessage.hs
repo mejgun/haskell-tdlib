@@ -9,14 +9,14 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Edits the text, caption or reply markup of an ephemeral message sent by the bot; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Edits the text, media, or reply markup of an ephemeral message sent by the bot; for bots only. Returns 'TD.Data.Ok.Ok'
 data EditEphemeralMessage
   = EditEphemeralMessage
     { chat_id               :: Maybe Int                                     -- ^ The chat the message belongs to
     , receiver_user_id      :: Maybe Int                                     -- ^ Identifier of the user who received the message
     , ephemeral_message_id  :: Maybe Int                                     -- ^ Identifier of the ephemeral message
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message; pass null to edit only reply markup. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
     }
   deriving (Eq, Show)
 

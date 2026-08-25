@@ -11,6 +11,7 @@ data ButtonStyle
   | ButtonStylePrimary -- ^ The button has dark blue color
   | ButtonStyleDanger -- ^ The button has red color
   | ButtonStyleSuccess -- ^ The button has green color
+  | ButtonStyleLink -- ^ The button must be shown as a link. The style is allowed only for callback buttons in inlineButton
   deriving (Eq, Show)
 
 instance I.ShortShow ButtonStyle where
@@ -22,6 +23,8 @@ instance I.ShortShow ButtonStyle where
       = "ButtonStyleDanger"
   shortShow ButtonStyleSuccess
       = "ButtonStyleSuccess"
+  shortShow ButtonStyleLink
+      = "ButtonStyleLink"
 
 instance AT.FromJSON ButtonStyle where
   parseJSON (AT.Object obj) = do
@@ -32,6 +35,7 @@ instance AT.FromJSON ButtonStyle where
       "buttonStylePrimary" -> pure ButtonStylePrimary
       "buttonStyleDanger"  -> pure ButtonStyleDanger
       "buttonStyleSuccess" -> pure ButtonStyleSuccess
+      "buttonStyleLink"    -> pure ButtonStyleLink
       _                    -> mempty
     
   parseJSON _ = mempty
@@ -52,5 +56,9 @@ instance AT.ToJSON ButtonStyle where
   toJSON ButtonStyleSuccess
       = A.object
         [ "@type" A..= AT.String "buttonStyleSuccess"
+        ]
+  toJSON ButtonStyleLink
+      = A.object
+        [ "@type" A..= AT.String "buttonStyleLink"
         ]
 

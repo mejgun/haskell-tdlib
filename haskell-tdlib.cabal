@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.39.1.
+-- This file has been generated from package.yaml by hpack version 0.39.6.
 --
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.23.0
+version:        2.1.24.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -214,6 +214,9 @@ library
       TD.Data.CollectibleItemType
       TD.Data.Community
       TD.Data.CommunityAdministratorRights
+      TD.Data.CommunityChat
+      TD.Data.CommunityFullInfo
+      TD.Data.CommunityId
       TD.Data.CommunityMemberStatus
       TD.Data.CommunityPermissions
       TD.Data.ConnectedAffiliateProgram
@@ -265,6 +268,7 @@ library
       TD.Data.EmojiStatusType
       TD.Data.EncryptedCredentials
       TD.Data.EncryptedPassportElement
+      TD.Data.EphemeralMessageContent
       TD.Data.Error
       TD.Data.FactCheck
       TD.Data.FailedToAddMember
@@ -346,6 +350,7 @@ library
       TD.Data.IdentityDocument
       TD.Data.ImportedContact
       TD.Data.ImportedContacts
+      TD.Data.InlineButton
       TD.Data.InlineKeyboardButton
       TD.Data.InlineKeyboardButtonType
       TD.Data.InlineMessageId
@@ -764,6 +769,7 @@ library
       TD.Data.WebBrowserType
       TD.Data.WebDomainException
       TD.Data.WebPageInstantView
+      TD.Data.WelcomeMessage
       TD.GeneralResult
       TD.Lib
       TD.Lib.Internal
@@ -776,6 +782,7 @@ library
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
       TD.Query.AddChatToList
+      TD.Query.AddChatWelcomeMessage
       TD.Query.AddChecklistTasks
       TD.Query.AddContact
       TD.Query.AddCustomServerLanguagePack
@@ -894,6 +901,7 @@ library
       TD.Query.CreateChatFolderInviteLink
       TD.Query.CreateChatInviteLink
       TD.Query.CreateChatSubscriptionInviteLink
+      TD.Query.CreateCommunity
       TD.Query.CreateForumTopic
       TD.Query.CreateGiftCollection
       TD.Query.CreateGroupCall
@@ -916,6 +924,7 @@ library
       TD.Query.DecryptGroupCallData
       TD.Query.DeleteAccount
       TD.Query.DeleteAllCallMessages
+      TD.Query.DeleteAllChatWelcomeMessages
       TD.Query.DeleteAllRecentMessageReactionsFromSender
       TD.Query.DeleteAllRevokedChatInviteLinks
       TD.Query.DeleteBotMediaPreviews
@@ -931,6 +940,7 @@ library
       TD.Query.DeleteChatMessagesByDate
       TD.Query.DeleteChatMessagesBySender
       TD.Query.DeleteChatReplyMarkup
+      TD.Query.DeleteChatWelcomeMessage
       TD.Query.DeleteCommands
       TD.Query.DeleteDefaultBackground
       TD.Query.DeleteDirectMessagesChatTopicHistory
@@ -942,6 +952,7 @@ library
       TD.Query.DeleteGroupCallMessages
       TD.Query.DeleteGroupCallMessagesBySender
       TD.Query.DeleteLanguagePack
+      TD.Query.DeleteMessageEphemeralContent
       TD.Query.DeleteMessageReactionsFromSender
       TD.Query.DeleteMessages
       TD.Query.DeletePassportElement
@@ -976,12 +987,15 @@ library
       TD.Query.EditBusinessMessageReplyMarkup
       TD.Query.EditBusinessMessageText
       TD.Query.EditBusinessStory
+      TD.Query.EditCallbackQueryMessage
       TD.Query.EditChatFolder
       TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
       TD.Query.EditChatSubscriptionInviteLink
+      TD.Query.EditChatWelcomeMessage
       TD.Query.EditCustomLanguagePackInfo
       TD.Query.EditEphemeralMessage
+      TD.Query.EditEphemeralMessageCaption
       TD.Query.EditForumTopic
       TD.Query.EditInlineMessageCaption
       TD.Query.EditInlineMessageLiveLocation
@@ -1359,6 +1373,8 @@ library
       TD.Query.ListenToAudio
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
+      TD.Query.LoadChatWelcomeMessages
+      TD.Query.LoadCommunityFullInfo
       TD.Query.LoadDirectMessagesChatTopics
       TD.Query.LoadGroupCallParticipants
       TD.Query.LoadQuickReplyShortcutMessages
@@ -1603,6 +1619,7 @@ library
       TD.Query.SetChatTitle
       TD.Query.SetCloseFriends
       TD.Query.SetCommands
+      TD.Query.SetCommunityName
       TD.Query.SetCustomEmojiStickerSetThumbnail
       TD.Query.SetCustomLanguagePack
       TD.Query.SetCustomLanguagePackString
@@ -1692,6 +1709,7 @@ library
       TD.Query.StartLiveStory
       TD.Query.StartScheduledVideoChat
       TD.Query.StopBusinessPoll
+      TD.Query.StopPendingMessage
       TD.Query.StopPoll
       TD.Query.SuggestUserBirthdate
       TD.Query.SuggestUserProfilePhoto

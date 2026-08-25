@@ -10,6 +10,7 @@ import {-# SOURCE #-} qualified TD.Data.PageBlockListItem as PageBlockListItem
 import qualified TD.Data.Animation as Animation
 import qualified TD.Data.PageBlockCaption as PageBlockCaption
 import qualified TD.Data.Audio as Audio
+import qualified TD.Data.Document as Document
 import qualified TD.Data.Photo as Photo
 import qualified TD.Data.Video as Video
 import qualified TD.Data.VoiceNote as VoiceNote
@@ -17,6 +18,8 @@ import qualified TD.Data.ChatPhotoInfo as ChatPhotoInfo
 import qualified TD.Data.PageBlockTableCell as PageBlockTableCell
 import qualified TD.Data.PageBlockRelatedArticle as PageBlockRelatedArticle
 import qualified TD.Data.Location as Location
+import qualified TD.Data.InlineButton as InlineButton
+import qualified TD.Data.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 
 -- | Describes a block of an instant view for a web page or a block of a rich message
 data PageBlock
@@ -70,6 +73,10 @@ data PageBlock
     { blocks :: Maybe [PageBlock]       -- ^ Quote blocks
     , credit :: Maybe RichText.RichText -- ^ Quote credit; may be null if none
     }
+  | PageBlockExpandableBlockQuote -- ^ An expandable block quote
+    { text   :: Maybe RichText.RichText -- ^ Text of the quote
+    , credit :: Maybe RichText.RichText -- ^ Quote credit; may be null if none
+    }
   | PageBlockPullQuote -- ^ A pull quote
     { text   :: Maybe RichText.RichText -- ^ Quote text
     , credit :: Maybe RichText.RichText -- ^ Quote credit; may be null if none
@@ -81,8 +88,12 @@ data PageBlock
     , has_spoiler   :: Maybe Bool                              -- ^ True, if the animation preview must be covered by a spoiler animation
     }
   | PageBlockAudio -- ^ An audio file
-    { audio   :: Maybe Audio.Audio                       -- ^ Audio file; may be null
+    { audio   :: Maybe Audio.Audio                       -- ^ Audio file
     , caption :: Maybe PageBlockCaption.PageBlockCaption -- ^ Audio file caption; may be null if none
+    }
+  | PageBlockDocument -- ^ A general file
+    { document :: Maybe Document.Document                 -- ^ The file
+    , caption  :: Maybe PageBlockCaption.PageBlockCaption -- ^ File caption; may be null if none
     }
   | PageBlockPhoto -- ^ A photo
     { photo       :: Maybe Photo.Photo                       -- ^ Photo file; may be null
@@ -98,7 +109,7 @@ data PageBlock
     , has_spoiler   :: Maybe Bool                              -- ^ True, if the video preview must be covered by a spoiler animation
     }
   | PageBlockVoiceNote -- ^ A voice note
-    { voice_note :: Maybe VoiceNote.VoiceNote               -- ^ Voice note; may be null
+    { voice_note :: Maybe VoiceNote.VoiceNote               -- ^ Voice note
     , caption    :: Maybe PageBlockCaption.PageBlockCaption -- ^ Voice note caption; may be null if none
     }
   | PageBlockCover -- ^ A page cover; instant view only
@@ -141,6 +152,7 @@ data PageBlock
     , cells       :: Maybe [[PageBlockTableCell.PageBlockTableCell]] -- ^ Table cells
     , is_bordered :: Maybe Bool                                      -- ^ True, if the table is bordered
     , is_striped  :: Maybe Bool                                      -- ^ True, if the table is striped
+    , is_compact  :: Maybe Bool                                      -- ^ True, if table cells must have smaller indents
     }
   | PageBlockDetails -- ^ A collapsible block
     { header  :: Maybe RichText.RichText -- ^ Always visible heading for the block
@@ -158,6 +170,11 @@ data PageBlock
     , height   :: Maybe Int                               -- ^ Map height
     , caption  :: Maybe PageBlockCaption.PageBlockCaption -- ^ Block caption; may be null if none
     }
+  | PageBlockButtonRow -- ^ A list of buttons shown in a row
+    { buttons :: Maybe [InlineButton.InlineButton]                               -- ^ The buttons
+    , align   :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment -- ^ Horizontal alignment of the buttons; may be null if the buttons must be shown full-width
+    }
+  | PageBlockUnsupported -- ^ Represents a block unsupported by the current application version
   deriving (Eq, Show)
 
 instance I.ShortShow PageBlock where
@@ -276,6 +293,15 @@ instance I.ShortShow PageBlock where
         [ "blocks" `I.p` blocks_
         , "credit" `I.p` credit_
         ]
+  shortShow PageBlockExpandableBlockQuote
+    { text   = text_
+    , credit = credit_
+    }
+      = "PageBlockExpandableBlockQuote"
+        ++ I.cc
+        [ "text"   `I.p` text_
+        , "credit" `I.p` credit_
+        ]
   shortShow PageBlockPullQuote
     { text   = text_
     , credit = credit_
@@ -306,6 +332,15 @@ instance I.ShortShow PageBlock where
         ++ I.cc
         [ "audio"   `I.p` audio_
         , "caption" `I.p` caption_
+        ]
+  shortShow PageBlockDocument
+    { document = document_
+    , caption  = caption_
+    }
+      = "PageBlockDocument"
+        ++ I.cc
+        [ "document" `I.p` document_
+        , "caption"  `I.p` caption_
         ]
   shortShow PageBlockPhoto
     { photo       = photo_
@@ -425,6 +460,7 @@ instance I.ShortShow PageBlock where
     , cells       = cells_
     , is_bordered = is_bordered_
     , is_striped  = is_striped_
+    , is_compact  = is_compact_
     }
       = "PageBlockTable"
         ++ I.cc
@@ -432,6 +468,7 @@ instance I.ShortShow PageBlock where
         , "cells"       `I.p` cells_
         , "is_bordered" `I.p` is_bordered_
         , "is_striped"  `I.p` is_striped_
+        , "is_compact"  `I.p` is_compact_
         ]
   shortShow PageBlockDetails
     { header  = header_
@@ -468,6 +505,17 @@ instance I.ShortShow PageBlock where
         , "height"   `I.p` height_
         , "caption"  `I.p` caption_
         ]
+  shortShow PageBlockButtonRow
+    { buttons = buttons_
+    , align   = align_
+    }
+      = "PageBlockButtonRow"
+        ++ I.cc
+        [ "buttons" `I.p` buttons_
+        , "align"   `I.p` align_
+        ]
+  shortShow PageBlockUnsupported
+      = "PageBlockUnsupported"
 
 instance AT.FromJSON PageBlock where
   parseJSON v@(AT.Object obj) = do
@@ -490,9 +538,11 @@ instance AT.FromJSON PageBlock where
       "pageBlockAnchor"                 -> parsePageBlockAnchor v
       "pageBlockList"                   -> parsePageBlockList v
       "pageBlockBlockQuote"             -> parsePageBlockBlockQuote v
+      "pageBlockExpandableBlockQuote"   -> parsePageBlockExpandableBlockQuote v
       "pageBlockPullQuote"              -> parsePageBlockPullQuote v
       "pageBlockAnimation"              -> parsePageBlockAnimation v
       "pageBlockAudio"                  -> parsePageBlockAudio v
+      "pageBlockDocument"               -> parsePageBlockDocument v
       "pageBlockPhoto"                  -> parsePageBlockPhoto v
       "pageBlockVideo"                  -> parsePageBlockVideo v
       "pageBlockVoiceNote"              -> parsePageBlockVoiceNote v
@@ -506,6 +556,8 @@ instance AT.FromJSON PageBlock where
       "pageBlockDetails"                -> parsePageBlockDetails v
       "pageBlockRelatedArticles"        -> parsePageBlockRelatedArticles v
       "pageBlockMap"                    -> parsePageBlockMap v
+      "pageBlockButtonRow"              -> parsePageBlockButtonRow v
+      "pageBlockUnsupported"            -> pure PageBlockUnsupported
       _                                 -> mempty
     
     where
@@ -607,6 +659,14 @@ instance AT.FromJSON PageBlock where
           { blocks = blocks_
           , credit = credit_
           }
+      parsePageBlockExpandableBlockQuote :: A.Value -> AT.Parser PageBlock
+      parsePageBlockExpandableBlockQuote = A.withObject "PageBlockExpandableBlockQuote" $ \o -> do
+        text_   <- o A..:?  "text"
+        credit_ <- o A..:?  "credit"
+        pure $ PageBlockExpandableBlockQuote
+          { text   = text_
+          , credit = credit_
+          }
       parsePageBlockPullQuote :: A.Value -> AT.Parser PageBlock
       parsePageBlockPullQuote = A.withObject "PageBlockPullQuote" $ \o -> do
         text_   <- o A..:?  "text"
@@ -634,6 +694,14 @@ instance AT.FromJSON PageBlock where
         pure $ PageBlockAudio
           { audio   = audio_
           , caption = caption_
+          }
+      parsePageBlockDocument :: A.Value -> AT.Parser PageBlock
+      parsePageBlockDocument = A.withObject "PageBlockDocument" $ \o -> do
+        document_ <- o A..:?  "document"
+        caption_  <- o A..:?  "caption"
+        pure $ PageBlockDocument
+          { document = document_
+          , caption  = caption_
           }
       parsePageBlockPhoto :: A.Value -> AT.Parser PageBlock
       parsePageBlockPhoto = A.withObject "PageBlockPhoto" $ \o -> do
@@ -745,11 +813,13 @@ instance AT.FromJSON PageBlock where
         cells_       <- o A..:?  "cells"
         is_bordered_ <- o A..:?  "is_bordered"
         is_striped_  <- o A..:?  "is_striped"
+        is_compact_  <- o A..:?  "is_compact"
         pure $ PageBlockTable
           { _caption    = _caption_
           , cells       = cells_
           , is_bordered = is_bordered_
           , is_striped  = is_striped_
+          , is_compact  = is_compact_
           }
       parsePageBlockDetails :: A.Value -> AT.Parser PageBlock
       parsePageBlockDetails = A.withObject "PageBlockDetails" $ \o -> do
@@ -782,6 +852,14 @@ instance AT.FromJSON PageBlock where
           , width    = width_
           , height   = height_
           , caption  = caption_
+          }
+      parsePageBlockButtonRow :: A.Value -> AT.Parser PageBlock
+      parsePageBlockButtonRow = A.withObject "PageBlockButtonRow" $ \o -> do
+        buttons_ <- o A..:?  "buttons"
+        align_   <- o A..:?  "align"
+        pure $ PageBlockButtonRow
+          { buttons = buttons_
+          , align   = align_
           }
   parseJSON _ = mempty
 
@@ -903,6 +981,15 @@ instance AT.ToJSON PageBlock where
         , "blocks" A..= blocks_
         , "credit" A..= credit_
         ]
+  toJSON PageBlockExpandableBlockQuote
+    { text   = text_
+    , credit = credit_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "pageBlockExpandableBlockQuote"
+        , "text"   A..= text_
+        , "credit" A..= credit_
+        ]
   toJSON PageBlockPullQuote
     { text   = text_
     , credit = credit_
@@ -933,6 +1020,15 @@ instance AT.ToJSON PageBlock where
         [ "@type"   A..= AT.String "pageBlockAudio"
         , "audio"   A..= audio_
         , "caption" A..= caption_
+        ]
+  toJSON PageBlockDocument
+    { document = document_
+    , caption  = caption_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "pageBlockDocument"
+        , "document" A..= document_
+        , "caption"  A..= caption_
         ]
   toJSON PageBlockPhoto
     { photo       = photo_
@@ -1052,6 +1148,7 @@ instance AT.ToJSON PageBlock where
     , cells       = cells_
     , is_bordered = is_bordered_
     , is_striped  = is_striped_
+    , is_compact  = is_compact_
     }
       = A.object
         [ "@type"       A..= AT.String "pageBlockTable"
@@ -1059,6 +1156,7 @@ instance AT.ToJSON PageBlock where
         , "cells"       A..= cells_
         , "is_bordered" A..= is_bordered_
         , "is_striped"  A..= is_striped_
+        , "is_compact"  A..= is_compact_
         ]
   toJSON PageBlockDetails
     { header  = header_
@@ -1094,5 +1192,18 @@ instance AT.ToJSON PageBlock where
         , "width"    A..= width_
         , "height"   A..= height_
         , "caption"  A..= caption_
+        ]
+  toJSON PageBlockButtonRow
+    { buttons = buttons_
+    , align   = align_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "pageBlockButtonRow"
+        , "buttons" A..= buttons_
+        , "align"   A..= align_
+        ]
+  toJSON PageBlockUnsupported
+      = A.object
+        [ "@type" A..= AT.String "pageBlockUnsupported"
         ]
 

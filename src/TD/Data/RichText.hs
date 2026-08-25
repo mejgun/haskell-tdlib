@@ -7,6 +7,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.DateTimeFormattingType as DateTimeFormattingType
 import qualified TD.Data.Document as Document
+import {-# SOURCE #-} qualified TD.Data.InlineButton as InlineButton
 
 -- | Describes a formatted text object
 data RichText
@@ -93,6 +94,9 @@ data RichText
     }
   | RichTextMathematicalExpression -- ^ A mathematical expression
     { expression :: Maybe T.Text -- ^ The expression in LaTeX format
+    }
+  | RichTextButton -- ^ A button
+    { button :: Maybe InlineButton.InlineButton -- ^ The button
     }
   | RichTextDiff -- ^ A rich text replacing another rich text; not supported in inputRichMessage
     { _text    :: Maybe RichText -- ^ Text
@@ -312,6 +316,13 @@ instance I.ShortShow RichText where
         ++ I.cc
         [ "expression" `I.p` expression_
         ]
+  shortShow RichTextButton
+    { button = button_
+    }
+      = "RichTextButton"
+        ++ I.cc
+        [ "button" `I.p` button_
+        ]
   shortShow RichTextDiff
     { _text    = _text_
     , old_text = old_text_
@@ -395,6 +406,7 @@ instance AT.FromJSON RichText where
       "richTextCustomEmoji"            -> parseRichTextCustomEmoji v
       "richTextIcon"                   -> parseRichTextIcon v
       "richTextMathematicalExpression" -> parseRichTextMathematicalExpression v
+      "richTextButton"                 -> parseRichTextButton v
       "richTextDiff"                   -> parseRichTextDiff v
       "richTextReference"              -> parseRichTextReference v
       "richTextReferenceLink"          -> parseRichTextReferenceLink v
@@ -571,6 +583,12 @@ instance AT.FromJSON RichText where
         expression_ <- o A..:?  "expression"
         pure $ RichTextMathematicalExpression
           { expression = expression_
+          }
+      parseRichTextButton :: A.Value -> AT.Parser RichText
+      parseRichTextButton = A.withObject "RichTextButton" $ \o -> do
+        button_ <- o A..:?  "button"
+        pure $ RichTextButton
+          { button = button_
           }
       parseRichTextDiff :: A.Value -> AT.Parser RichText
       parseRichTextDiff = A.withObject "RichTextDiff" $ \o -> do
@@ -813,6 +831,13 @@ instance AT.ToJSON RichText where
       = A.object
         [ "@type"      A..= AT.String "richTextMathematicalExpression"
         , "expression" A..= expression_
+        ]
+  toJSON RichTextButton
+    { button = button_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "richTextButton"
+        , "button" A..= button_
         ]
   toJSON RichTextDiff
     { _text    = _text_

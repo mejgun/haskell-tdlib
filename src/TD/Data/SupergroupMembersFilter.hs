@@ -10,7 +10,7 @@ import qualified TD.Data.MessageTopic as MessageTopic
 -- | Specifies the kind of chat members to return in getSupergroupMembers
 data SupergroupMembersFilter
   = SupergroupMembersFilterRecent -- ^ Returns recently active users in reverse chronological order
-  | SupergroupMembersFilterContacts -- ^ Returns contacts of the user, which are members of the supergroup or channel
+  | SupergroupMembersFilterContacts -- ^ Returns contacts of the current user who are members of the supergroup or channel
     { query :: Maybe T.Text -- ^ Query to search for
     }
   | SupergroupMembersFilterAdministrators -- ^ Returns the owner and administrators
@@ -23,7 +23,7 @@ data SupergroupMembersFilter
   | SupergroupMembersFilterBanned -- ^ Returns users banned from the supergroup or channel; can be used only by administrators
     { query :: Maybe T.Text -- ^ Query to search for
     }
-  | SupergroupMembersFilterMention -- ^ Returns users which can be mentioned in the supergroup
+  | SupergroupMembersFilterMention -- ^ Returns users who can be mentioned in the supergroup
     { query    :: Maybe T.Text                    -- ^ Query to search for
     , topic_id :: Maybe MessageTopic.MessageTopic -- ^ Identifier of the topic in which the users will be mentioned; pass null if none
     }

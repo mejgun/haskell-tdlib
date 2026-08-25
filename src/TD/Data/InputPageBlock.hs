@@ -10,11 +10,14 @@ import {-# SOURCE #-} qualified TD.Data.InputPageBlockListItem as InputPageBlock
 import qualified TD.Data.InputAnimation as InputAnimation
 import qualified TD.Data.PageBlockCaption as PageBlockCaption
 import qualified TD.Data.InputAudio as InputAudio
+import qualified TD.Data.InputDocument as InputDocument
 import qualified TD.Data.InputPhoto as InputPhoto
 import qualified TD.Data.InputVideo as InputVideo
 import qualified TD.Data.InputVoiceNote as InputVoiceNote
 import qualified TD.Data.PageBlockTableCell as PageBlockTableCell
 import qualified TD.Data.Location as Location
+import qualified TD.Data.InlineButton as InlineButton
+import qualified TD.Data.PageBlockHorizontalAlignment as PageBlockHorizontalAlignment
 
 -- | Describes a block of a rich message to send
 data InputPageBlock
@@ -49,6 +52,10 @@ data InputPageBlock
     { blocks :: Maybe [InputPageBlock]  -- ^ Quote blocks
     , credit :: Maybe RichText.RichText -- ^ Quote credit; pass null if none
     }
+  | InputPageBlockExpandableBlockQuote -- ^ An expandable block quote
+    { text   :: Maybe RichText.RichText -- ^ Quote text
+    , credit :: Maybe RichText.RichText -- ^ Quote credit; pass null if none
+    }
   | InputPageBlockPullQuote -- ^ A pull quote
     { text   :: Maybe RichText.RichText -- ^ Quote text
     , credit :: Maybe RichText.RichText -- ^ Quote credit; pass null if none
@@ -61,6 +68,10 @@ data InputPageBlock
   | InputPageBlockAudio -- ^ An audio file
     { audio   :: Maybe InputAudio.InputAudio             -- ^ The audio to be sent
     , caption :: Maybe PageBlockCaption.PageBlockCaption -- ^ Audio file caption; pass null if none
+    }
+  | InputPageBlockDocument -- ^ A general file
+    { document :: Maybe InputDocument.InputDocument       -- ^ The file to be sent
+    , caption  :: Maybe PageBlockCaption.PageBlockCaption -- ^ File caption; pass null if none
     }
   | InputPageBlockPhoto -- ^ A photo
     { photo       :: Maybe InputPhoto.InputPhoto             -- ^ The photo to be sent
@@ -87,8 +98,9 @@ data InputPageBlock
   | InputPageBlockTable -- ^ A table
     { _caption    :: Maybe RichText.RichText                         -- ^ Table caption
     , cells       :: Maybe [[PageBlockTableCell.PageBlockTableCell]] -- ^ Table cells
-    , is_bordered :: Maybe Bool                                      -- ^ True, if the table is bordered
-    , is_striped  :: Maybe Bool                                      -- ^ True, if the table is striped
+    , is_bordered :: Maybe Bool                                      -- ^ Pass true if the table is bordered
+    , is_striped  :: Maybe Bool                                      -- ^ Pass true if the table is striped
+    , is_compact  :: Maybe Bool                                      -- ^ Pass true if table cells must have smaller indents
     }
   | InputPageBlockDetails -- ^ A collapsible block
     { header  :: Maybe RichText.RichText -- ^ Always visible heading for the block
@@ -101,6 +113,10 @@ data InputPageBlock
     , width    :: Maybe Int                               -- ^ Map width; 0-10000
     , height   :: Maybe Int                               -- ^ Map height; 0-10000
     , caption  :: Maybe PageBlockCaption.PageBlockCaption -- ^ Block caption; pass null if none
+    }
+  | InputPageBlockButtonRow -- ^ A list of buttons shown in a row
+    { buttons :: Maybe [InlineButton.InlineButton]                               -- ^ The buttons
+    , align   :: Maybe PageBlockHorizontalAlignment.PageBlockHorizontalAlignment -- ^ Horizontal alignment of the buttons; pass null if the buttons must be shown full-width
     }
   deriving (Eq, Show)
 
@@ -176,6 +192,15 @@ instance I.ShortShow InputPageBlock where
         [ "blocks" `I.p` blocks_
         , "credit" `I.p` credit_
         ]
+  shortShow InputPageBlockExpandableBlockQuote
+    { text   = text_
+    , credit = credit_
+    }
+      = "InputPageBlockExpandableBlockQuote"
+        ++ I.cc
+        [ "text"   `I.p` text_
+        , "credit" `I.p` credit_
+        ]
   shortShow InputPageBlockPullQuote
     { text   = text_
     , credit = credit_
@@ -204,6 +229,15 @@ instance I.ShortShow InputPageBlock where
         ++ I.cc
         [ "audio"   `I.p` audio_
         , "caption" `I.p` caption_
+        ]
+  shortShow InputPageBlockDocument
+    { document = document_
+    , caption  = caption_
+    }
+      = "InputPageBlockDocument"
+        ++ I.cc
+        [ "document" `I.p` document_
+        , "caption"  `I.p` caption_
         ]
   shortShow InputPageBlockPhoto
     { photo       = photo_
@@ -259,6 +293,7 @@ instance I.ShortShow InputPageBlock where
     , cells       = cells_
     , is_bordered = is_bordered_
     , is_striped  = is_striped_
+    , is_compact  = is_compact_
     }
       = "InputPageBlockTable"
         ++ I.cc
@@ -266,6 +301,7 @@ instance I.ShortShow InputPageBlock where
         , "cells"       `I.p` cells_
         , "is_bordered" `I.p` is_bordered_
         , "is_striped"  `I.p` is_striped_
+        , "is_compact"  `I.p` is_compact_
         ]
   shortShow InputPageBlockDetails
     { header  = header_
@@ -293,6 +329,15 @@ instance I.ShortShow InputPageBlock where
         , "height"   `I.p` height_
         , "caption"  `I.p` caption_
         ]
+  shortShow InputPageBlockButtonRow
+    { buttons = buttons_
+    , align   = align_
+    }
+      = "InputPageBlockButtonRow"
+        ++ I.cc
+        [ "buttons" `I.p` buttons_
+        , "align"   `I.p` align_
+        ]
 
 instance AT.FromJSON InputPageBlock where
   parseJSON v@(AT.Object obj) = do
@@ -309,9 +354,11 @@ instance AT.FromJSON InputPageBlock where
       "inputPageBlockAnchor"                 -> parseInputPageBlockAnchor v
       "inputPageBlockList"                   -> parseInputPageBlockList v
       "inputPageBlockBlockQuote"             -> parseInputPageBlockBlockQuote v
+      "inputPageBlockExpandableBlockQuote"   -> parseInputPageBlockExpandableBlockQuote v
       "inputPageBlockPullQuote"              -> parseInputPageBlockPullQuote v
       "inputPageBlockAnimation"              -> parseInputPageBlockAnimation v
       "inputPageBlockAudio"                  -> parseInputPageBlockAudio v
+      "inputPageBlockDocument"               -> parseInputPageBlockDocument v
       "inputPageBlockPhoto"                  -> parseInputPageBlockPhoto v
       "inputPageBlockVideo"                  -> parseInputPageBlockVideo v
       "inputPageBlockVoiceNote"              -> parseInputPageBlockVoiceNote v
@@ -320,6 +367,7 @@ instance AT.FromJSON InputPageBlock where
       "inputPageBlockTable"                  -> parseInputPageBlockTable v
       "inputPageBlockDetails"                -> parseInputPageBlockDetails v
       "inputPageBlockMap"                    -> parseInputPageBlockMap v
+      "inputPageBlockButtonRow"              -> parseInputPageBlockButtonRow v
       _                                      -> mempty
     
     where
@@ -383,6 +431,14 @@ instance AT.FromJSON InputPageBlock where
           { blocks = blocks_
           , credit = credit_
           }
+      parseInputPageBlockExpandableBlockQuote :: A.Value -> AT.Parser InputPageBlock
+      parseInputPageBlockExpandableBlockQuote = A.withObject "InputPageBlockExpandableBlockQuote" $ \o -> do
+        text_   <- o A..:?  "text"
+        credit_ <- o A..:?  "credit"
+        pure $ InputPageBlockExpandableBlockQuote
+          { text   = text_
+          , credit = credit_
+          }
       parseInputPageBlockPullQuote :: A.Value -> AT.Parser InputPageBlock
       parseInputPageBlockPullQuote = A.withObject "InputPageBlockPullQuote" $ \o -> do
         text_   <- o A..:?  "text"
@@ -408,6 +464,14 @@ instance AT.FromJSON InputPageBlock where
         pure $ InputPageBlockAudio
           { audio   = audio_
           , caption = caption_
+          }
+      parseInputPageBlockDocument :: A.Value -> AT.Parser InputPageBlock
+      parseInputPageBlockDocument = A.withObject "InputPageBlockDocument" $ \o -> do
+        document_ <- o A..:?  "document"
+        caption_  <- o A..:?  "caption"
+        pure $ InputPageBlockDocument
+          { document = document_
+          , caption  = caption_
           }
       parseInputPageBlockPhoto :: A.Value -> AT.Parser InputPageBlock
       parseInputPageBlockPhoto = A.withObject "InputPageBlockPhoto" $ \o -> do
@@ -459,11 +523,13 @@ instance AT.FromJSON InputPageBlock where
         cells_       <- o A..:?  "cells"
         is_bordered_ <- o A..:?  "is_bordered"
         is_striped_  <- o A..:?  "is_striped"
+        is_compact_  <- o A..:?  "is_compact"
         pure $ InputPageBlockTable
           { _caption    = _caption_
           , cells       = cells_
           , is_bordered = is_bordered_
           , is_striped  = is_striped_
+          , is_compact  = is_compact_
           }
       parseInputPageBlockDetails :: A.Value -> AT.Parser InputPageBlock
       parseInputPageBlockDetails = A.withObject "InputPageBlockDetails" $ \o -> do
@@ -488,6 +554,14 @@ instance AT.FromJSON InputPageBlock where
           , width    = width_
           , height   = height_
           , caption  = caption_
+          }
+      parseInputPageBlockButtonRow :: A.Value -> AT.Parser InputPageBlock
+      parseInputPageBlockButtonRow = A.withObject "InputPageBlockButtonRow" $ \o -> do
+        buttons_ <- o A..:?  "buttons"
+        align_   <- o A..:?  "align"
+        pure $ InputPageBlockButtonRow
+          { buttons = buttons_
+          , align   = align_
           }
   parseJSON _ = mempty
 
@@ -565,6 +639,15 @@ instance AT.ToJSON InputPageBlock where
         , "blocks" A..= blocks_
         , "credit" A..= credit_
         ]
+  toJSON InputPageBlockExpandableBlockQuote
+    { text   = text_
+    , credit = credit_
+    }
+      = A.object
+        [ "@type"  A..= AT.String "inputPageBlockExpandableBlockQuote"
+        , "text"   A..= text_
+        , "credit" A..= credit_
+        ]
   toJSON InputPageBlockPullQuote
     { text   = text_
     , credit = credit_
@@ -593,6 +676,15 @@ instance AT.ToJSON InputPageBlock where
         [ "@type"   A..= AT.String "inputPageBlockAudio"
         , "audio"   A..= audio_
         , "caption" A..= caption_
+        ]
+  toJSON InputPageBlockDocument
+    { document = document_
+    , caption  = caption_
+    }
+      = A.object
+        [ "@type"    A..= AT.String "inputPageBlockDocument"
+        , "document" A..= document_
+        , "caption"  A..= caption_
         ]
   toJSON InputPageBlockPhoto
     { photo       = photo_
@@ -648,6 +740,7 @@ instance AT.ToJSON InputPageBlock where
     , cells       = cells_
     , is_bordered = is_bordered_
     , is_striped  = is_striped_
+    , is_compact  = is_compact_
     }
       = A.object
         [ "@type"       A..= AT.String "inputPageBlockTable"
@@ -655,6 +748,7 @@ instance AT.ToJSON InputPageBlock where
         , "cells"       A..= cells_
         , "is_bordered" A..= is_bordered_
         , "is_striped"  A..= is_striped_
+        , "is_compact"  A..= is_compact_
         ]
   toJSON InputPageBlockDetails
     { header  = header_
@@ -681,5 +775,14 @@ instance AT.ToJSON InputPageBlock where
         , "width"    A..= width_
         , "height"   A..= height_
         , "caption"  A..= caption_
+        ]
+  toJSON InputPageBlockButtonRow
+    { buttons = buttons_
+    , align   = align_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "inputPageBlockButtonRow"
+        , "buttons" A..= buttons_
+        , "align"   A..= align_
         ]
 

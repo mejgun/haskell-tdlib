@@ -14,7 +14,7 @@ data SetChatDraftMessage
   = SetChatDraftMessage
     { chat_id       :: Maybe Int                       -- ^ Chat identifier
     , topic_id      :: Maybe MessageTopic.MessageTopic -- ^ Topic in which the draft will be changed; pass null to change the draft for the chat itself
-    , draft_message :: Maybe DraftMessage.DraftMessage -- ^ New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored
+    , draft_message :: Maybe DraftMessage.DraftMessage -- ^ New draft message; pass null to remove the draft
     }
   deriving (Eq, Show)
 

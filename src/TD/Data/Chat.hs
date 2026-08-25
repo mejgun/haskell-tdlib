@@ -47,6 +47,7 @@ data Chat
     , is_marked_as_unread                :: Maybe Bool                                              -- ^ True, if the chat is marked as unread
     , view_as_topics                     :: Maybe Bool                                              -- ^ True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats"
     , has_scheduled_messages             :: Maybe Bool                                              -- ^ True, if the chat has scheduled messages
+    , has_welcome_messages               :: Maybe Bool                                              -- ^ True, if the chat has welcome messages; for chat administrators with can_change_info administrator right only
     , can_be_deleted_only_for_self       :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
     , can_be_deleted_for_all_users       :: Maybe Bool                                              -- ^ True, if the chat messages can be deleted for all users
     , can_be_reported                    :: Maybe Bool                                              -- ^ True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
@@ -95,6 +96,7 @@ instance I.ShortShow Chat where
     , is_marked_as_unread                = is_marked_as_unread_
     , view_as_topics                     = view_as_topics_
     , has_scheduled_messages             = has_scheduled_messages_
+    , has_welcome_messages               = has_welcome_messages_
     , can_be_deleted_only_for_self       = can_be_deleted_only_for_self_
     , can_be_deleted_for_all_users       = can_be_deleted_for_all_users_
     , can_be_reported                    = can_be_reported_
@@ -141,6 +143,7 @@ instance I.ShortShow Chat where
         , "is_marked_as_unread"                `I.p` is_marked_as_unread_
         , "view_as_topics"                     `I.p` view_as_topics_
         , "has_scheduled_messages"             `I.p` has_scheduled_messages_
+        , "has_welcome_messages"               `I.p` has_welcome_messages_
         , "can_be_deleted_only_for_self"       `I.p` can_be_deleted_only_for_self_
         , "can_be_deleted_for_all_users"       `I.p` can_be_deleted_for_all_users_
         , "can_be_reported"                    `I.p` can_be_reported_
@@ -197,6 +200,7 @@ instance AT.FromJSON Chat where
         is_marked_as_unread_                <- o A..:?                       "is_marked_as_unread"
         view_as_topics_                     <- o A..:?                       "view_as_topics"
         has_scheduled_messages_             <- o A..:?                       "has_scheduled_messages"
+        has_welcome_messages_               <- o A..:?                       "has_welcome_messages"
         can_be_deleted_only_for_self_       <- o A..:?                       "can_be_deleted_only_for_self"
         can_be_deleted_for_all_users_       <- o A..:?                       "can_be_deleted_for_all_users"
         can_be_reported_                    <- o A..:?                       "can_be_reported"
@@ -241,6 +245,7 @@ instance AT.FromJSON Chat where
           , is_marked_as_unread                = is_marked_as_unread_
           , view_as_topics                     = view_as_topics_
           , has_scheduled_messages             = has_scheduled_messages_
+          , has_welcome_messages               = has_welcome_messages_
           , can_be_deleted_only_for_self       = can_be_deleted_only_for_self_
           , can_be_deleted_for_all_users       = can_be_deleted_for_all_users_
           , can_be_reported                    = can_be_reported_

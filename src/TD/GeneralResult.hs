@@ -80,6 +80,7 @@ import qualified TD.Data.Chats as Chats
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
 import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
+import qualified TD.Data.CommunityId as CommunityId
 import qualified TD.Data.ConnectedAffiliateProgram as ConnectedAffiliateProgram
 import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliatePrograms
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
@@ -366,6 +367,7 @@ data GeneralResult
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
     | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
+    | CommunityId                        CommunityId.CommunityId
     | ConnectedAffiliateProgram          ConnectedAffiliateProgram.ConnectedAffiliateProgram
     | ConnectedAffiliatePrograms         ConnectedAffiliatePrograms.ConnectedAffiliatePrograms
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
@@ -729,6 +731,8 @@ instance I.ShortShow GeneralResult where
     = "CheckStickerSetNameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CollectibleItemInfo v)
     = "CollectibleItemInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (CommunityId v)
+    = "CommunityId" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedAffiliateProgram v)
     = "ConnectedAffiliateProgram" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedAffiliatePrograms v)
@@ -1224,6 +1228,7 @@ instance T.FromJSON GeneralResult where
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
     <|> ( CollectibleItemInfo                 <$> parseJSON v )
+    <|> ( CommunityId                         <$> parseJSON v )
     <|> ( ConnectedAffiliateProgram           <$> parseJSON v )
     <|> ( ConnectedAffiliatePrograms          <$> parseJSON v )
     <|> ( ConnectedWebsites                   <$> parseJSON v )

@@ -8,6 +8,7 @@ import qualified TD.Data.AuthorizationState as AuthorizationState
 import qualified TD.Data.Message as Message
 import qualified TD.Data.Error as Error
 import qualified TD.Data.MessageContent as MessageContent
+import qualified TD.Data.EphemeralMessageContent as EphemeralMessageContent
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.MessageInteractionInfo as MessageInteractionInfo
 import qualified TD.Data.UnreadReaction as UnreadReaction
@@ -38,6 +39,7 @@ import qualified TD.Data.DirectMessagesChatTopic as DirectMessagesChatTopic
 import qualified TD.Data.MessageTopic as MessageTopic
 import qualified TD.Data.QuickReplyShortcut as QuickReplyShortcut
 import qualified TD.Data.QuickReplyMessage as QuickReplyMessage
+import qualified TD.Data.WelcomeMessage as WelcomeMessage
 import qualified TD.Data.ForumTopicInfo as ForumTopicInfo
 import qualified TD.Data.NotificationSettingsScope as NotificationSettingsScope
 import qualified TD.Data.ScopeNotificationSettings as ScopeNotificationSettings
@@ -55,6 +57,7 @@ import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.UserFullInfo as UserFullInfo
 import qualified TD.Data.BasicGroupFullInfo as BasicGroupFullInfo
 import qualified TD.Data.SupergroupFullInfo as SupergroupFullInfo
+import qualified TD.Data.CommunityFullInfo as CommunityFullInfo
 import qualified TD.Data.File as File
 import qualified TD.Data.FileDownload as FileDownload
 import qualified TD.Data.DownloadedFileCounts as DownloadedFileCounts
@@ -141,6 +144,11 @@ data Update
     { chat_id     :: Maybe Int                           -- ^ Chat identifier
     , message_id  :: Maybe Int                           -- ^ Message identifier
     , new_content :: Maybe MessageContent.MessageContent -- ^ New message content
+    }
+  | UpdateMessageEphemeralContent -- ^ The message ephemeral content has changed
+    { chat_id           :: Maybe Int                                             -- ^ Chat identifier
+    , message_id        :: Maybe Int                                             -- ^ Message identifier
+    , ephemeral_content :: Maybe EphemeralMessageContent.EphemeralMessageContent -- ^ New ephemeral content of the message; may be null if none
     }
   | UpdateMessageEdited -- ^ A message was edited. Changes in the message content will come in a separate updateMessageContent
     { chat_id      :: Maybe Int                     -- ^ Chat identifier
@@ -339,6 +347,10 @@ data Update
     { chat_id                :: Maybe Int  -- ^ Chat identifier
     , has_scheduled_messages :: Maybe Bool -- ^ New value of has_scheduled_messages
     }
+  | UpdateChatHasWelcomeMessages -- ^ A chat's has_welcome_messages field has changed
+    { chat_id              :: Maybe Int  -- ^ Chat identifier
+    , has_welcome_messages :: Maybe Bool -- ^ New value of has_welcome_messages
+    }
   | UpdateChatFolders -- ^ The list of chat folders or a chat folder has changed
     { chat_folders            :: Maybe [ChatFolderInfo.ChatFolderInfo] -- ^ The new list of chat folders
     , main_chat_list_position :: Maybe Int                             -- ^ Position of the main chat list among chat folders, 0-based
@@ -374,6 +386,10 @@ data Update
   | UpdateQuickReplyShortcutMessages -- ^ The list of quick reply shortcut messages has changed
     { shortcut_id :: Maybe Int                                   -- ^ The identifier of the shortcut
     , messages    :: Maybe [QuickReplyMessage.QuickReplyMessage] -- ^ The new list of quick reply messages for the shortcut in order from the first to the last sent
+    }
+  | UpdateChatWelcomeMessages -- ^ The list of welcome messages of a chat has changed
+    { chat_id   :: Maybe Int                             -- ^ The identifier of the chat
+    , _messages :: Maybe [WelcomeMessage.WelcomeMessage] -- ^ The new list of welcome messages of the chat in the order from the first to the last sent
     }
   | UpdateForumTopicInfo -- ^ Basic information about a topic in a forum chat was changed
     { info :: Maybe ForumTopicInfo.ForumTopicInfo -- ^ New information about the topic
@@ -430,11 +446,18 @@ data Update
     , sender_id :: Maybe MessageSender.MessageSender -- ^ Identifier of a message sender performing the action
     , action    :: Maybe ChatAction.ChatAction       -- ^ The action
     }
-  | UpdatePendingMessage -- ^ A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id, and be deleted whenever any incoming message from the bot in the message thread is received
+  | UpdatePendingMessage -- ^ A new pending text or rich message was received in a chat with a bot. The message must be shown in the chat for at most getOption("pending_text_message_period") seconds, replace any other pending message with the same draft_id with animation, and be deleted whenever any incoming message or a pending message with another draft_id is received in the message thread
     { chat_id        :: Maybe Int                           -- ^ Chat identifier
     , forum_topic_id :: Maybe Int                           -- ^ The forum topic identifier in which the message will be sent; 0 if none
     , draft_id       :: Maybe Int                           -- ^ Unique identifier of the message draft within the message thread
+    , can_stop       :: Maybe Bool                          -- ^ True, if a button that calls stopPendingMessage to stop further message generation must be shown
+    , keep_on_stop   :: Maybe Bool                          -- ^ True, if the pending message must not be automatically deleted when the user presses the Stop button
     , content        :: Maybe MessageContent.MessageContent -- ^ Content of the message; always of the type messageText or messageRichMessage
+    }
+  | UpdateStopMessageDraft -- ^ A message draft generation was stopped by the user
+    { chat_id        :: Maybe Int -- ^ Chat identifier
+    , forum_topic_id :: Maybe Int -- ^ The forum topic identifier of the message draft
+    , draft_id       :: Maybe Int -- ^ Identifier of the message draft within the message thread
     }
   | UpdateCommunity -- ^ Some data of a community has changed. This update is guaranteed to come before the community identifier is returned to the application
     { community :: Maybe Community.Community -- ^ New data about the community
@@ -467,6 +490,10 @@ data Update
     { supergroup_id        :: Maybe Int                                   -- ^ Identifier of the supergroup or channel
     , supergroup_full_info :: Maybe SupergroupFullInfo.SupergroupFullInfo -- ^ New full information about the supergroup
     }
+  | UpdateCommunityFullInfo -- ^ Some data in communityFullInfo has been changed
+    { community_id        :: Maybe Int                                 -- ^ Identifier of the community
+    , community_full_info :: Maybe CommunityFullInfo.CommunityFullInfo -- ^ New full information about the community
+    }
   | UpdateServiceNotification -- ^ A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     { __type  :: Maybe T.Text                        -- ^ Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
     , content :: Maybe MessageContent.MessageContent -- ^ Notification content
@@ -483,7 +510,7 @@ data Update
     { generation_id    :: Maybe Int    -- ^ Unique identifier for the generation process
     , original_path    :: Maybe T.Text -- ^ The original path specified by the application in inputFileGenerated
     , destination_path :: Maybe T.Text -- ^ The path to a file that must be created and where the new file must be generated by the application. If the application has no access to the path, it can use writeGeneratedFilePart to generate the file
-    , conversion       :: Maybe T.Text -- ^ If the conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application. Otherwise, this is the conversion specified by the application in inputFileGenerated
+    , conversion       :: Maybe T.Text -- ^ If the conversion is "#url#", then original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application. Otherwise, this is the conversion specified by the application in inputFileGenerated
     }
   | UpdateFileGenerationStop -- ^ File generation is no longer needed
     { generation_id :: Maybe Int -- ^ Unique identifier for the generation process
@@ -715,7 +742,7 @@ data Update
     , tags                    :: Maybe SavedMessagesTags.SavedMessagesTags -- ^ The new tags
     }
   | UpdateActiveLiveLocationMessages -- ^ The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
-    { _messages :: Maybe [Message.Message] -- ^ The list of messages with active live locations
+    { __messages :: Maybe [Message.Message] -- ^ The list of messages with active live locations
     }
   | UpdateOwnedStarCount -- ^ The number of Telegram Stars owned by the current user has changed
     { star_amount :: Maybe StarAmount.StarAmount -- ^ The new amount of owned Telegram Stars
@@ -972,6 +999,17 @@ instance I.ShortShow Update where
         [ "chat_id"     `I.p` chat_id_
         , "message_id"  `I.p` message_id_
         , "new_content" `I.p` new_content_
+        ]
+  shortShow UpdateMessageEphemeralContent
+    { chat_id           = chat_id_
+    , message_id        = message_id_
+    , ephemeral_content = ephemeral_content_
+    }
+      = "UpdateMessageEphemeralContent"
+        ++ I.cc
+        [ "chat_id"           `I.p` chat_id_
+        , "message_id"        `I.p` message_id_
+        , "ephemeral_content" `I.p` ephemeral_content_
         ]
   shortShow UpdateMessageEdited
     { chat_id      = chat_id_
@@ -1412,6 +1450,15 @@ instance I.ShortShow Update where
         [ "chat_id"                `I.p` chat_id_
         , "has_scheduled_messages" `I.p` has_scheduled_messages_
         ]
+  shortShow UpdateChatHasWelcomeMessages
+    { chat_id              = chat_id_
+    , has_welcome_messages = has_welcome_messages_
+    }
+      = "UpdateChatHasWelcomeMessages"
+        ++ I.cc
+        [ "chat_id"              `I.p` chat_id_
+        , "has_welcome_messages" `I.p` has_welcome_messages_
+        ]
   shortShow UpdateChatFolders
     { chat_folders            = chat_folders_
     , main_chat_list_position = main_chat_list_position_
@@ -1493,6 +1540,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "shortcut_id" `I.p` shortcut_id_
         , "messages"    `I.p` messages_
+        ]
+  shortShow UpdateChatWelcomeMessages
+    { chat_id   = chat_id_
+    , _messages = _messages_
+    }
+      = "UpdateChatWelcomeMessages"
+        ++ I.cc
+        [ "chat_id"   `I.p` chat_id_
+        , "_messages" `I.p` _messages_
         ]
   shortShow UpdateForumTopicInfo
     { info = info_
@@ -1618,6 +1674,8 @@ instance I.ShortShow Update where
     { chat_id        = chat_id_
     , forum_topic_id = forum_topic_id_
     , draft_id       = draft_id_
+    , can_stop       = can_stop_
+    , keep_on_stop   = keep_on_stop_
     , content        = content_
     }
       = "UpdatePendingMessage"
@@ -1625,7 +1683,20 @@ instance I.ShortShow Update where
         [ "chat_id"        `I.p` chat_id_
         , "forum_topic_id" `I.p` forum_topic_id_
         , "draft_id"       `I.p` draft_id_
+        , "can_stop"       `I.p` can_stop_
+        , "keep_on_stop"   `I.p` keep_on_stop_
         , "content"        `I.p` content_
+        ]
+  shortShow UpdateStopMessageDraft
+    { chat_id        = chat_id_
+    , forum_topic_id = forum_topic_id_
+    , draft_id       = draft_id_
+    }
+      = "UpdateStopMessageDraft"
+        ++ I.cc
+        [ "chat_id"        `I.p` chat_id_
+        , "forum_topic_id" `I.p` forum_topic_id_
+        , "draft_id"       `I.p` draft_id_
         ]
   shortShow UpdateCommunity
     { community = community_
@@ -1697,6 +1768,15 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "supergroup_id"        `I.p` supergroup_id_
         , "supergroup_full_info" `I.p` supergroup_full_info_
+        ]
+  shortShow UpdateCommunityFullInfo
+    { community_id        = community_id_
+    , community_full_info = community_full_info_
+    }
+      = "UpdateCommunityFullInfo"
+        ++ I.cc
+        [ "community_id"        `I.p` community_id_
+        , "community_full_info" `I.p` community_full_info_
         ]
   shortShow UpdateServiceNotification
     { __type  = __type_
@@ -2255,11 +2335,11 @@ instance I.ShortShow Update where
         , "tags"                    `I.p` tags_
         ]
   shortShow UpdateActiveLiveLocationMessages
-    { _messages = _messages_
+    { __messages = __messages_
     }
       = "UpdateActiveLiveLocationMessages"
         ++ I.cc
-        [ "_messages" `I.p` _messages_
+        [ "__messages" `I.p` __messages_
         ]
   shortShow UpdateOwnedStarCount
     { star_amount = star_amount_
@@ -2711,6 +2791,7 @@ instance AT.FromJSON Update where
       "updateMessageSendSucceeded"                     -> parseUpdateMessageSendSucceeded v
       "updateMessageSendFailed"                        -> parseUpdateMessageSendFailed v
       "updateMessageContent"                           -> parseUpdateMessageContent v
+      "updateMessageEphemeralContent"                  -> parseUpdateMessageEphemeralContent v
       "updateMessageEdited"                            -> parseUpdateMessageEdited v
       "updateMessageIsPinned"                          -> parseUpdateMessageIsPinned v
       "updateMessageInteractionInfo"                   -> parseUpdateMessageInteractionInfo v
@@ -2756,6 +2837,7 @@ instance AT.FromJSON Update where
       "updateChatViewAsTopics"                         -> parseUpdateChatViewAsTopics v
       "updateChatBlockList"                            -> parseUpdateChatBlockList v
       "updateChatHasScheduledMessages"                 -> parseUpdateChatHasScheduledMessages v
+      "updateChatHasWelcomeMessages"                   -> parseUpdateChatHasWelcomeMessages v
       "updateChatFolders"                              -> parseUpdateChatFolders v
       "updateChatOnlineMemberCount"                    -> parseUpdateChatOnlineMemberCount v
       "updateSavedMessagesTopic"                       -> parseUpdateSavedMessagesTopic v
@@ -2766,6 +2848,7 @@ instance AT.FromJSON Update where
       "updateQuickReplyShortcutDeleted"                -> parseUpdateQuickReplyShortcutDeleted v
       "updateQuickReplyShortcuts"                      -> parseUpdateQuickReplyShortcuts v
       "updateQuickReplyShortcutMessages"               -> parseUpdateQuickReplyShortcutMessages v
+      "updateChatWelcomeMessages"                      -> parseUpdateChatWelcomeMessages v
       "updateForumTopicInfo"                           -> parseUpdateForumTopicInfo v
       "updateForumTopic"                               -> parseUpdateForumTopic v
       "updateScopeNotificationSettings"                -> parseUpdateScopeNotificationSettings v
@@ -2777,6 +2860,7 @@ instance AT.FromJSON Update where
       "updateDeleteMessages"                           -> parseUpdateDeleteMessages v
       "updateChatAction"                               -> parseUpdateChatAction v
       "updatePendingMessage"                           -> parseUpdatePendingMessage v
+      "updateStopMessageDraft"                         -> parseUpdateStopMessageDraft v
       "updateCommunity"                                -> parseUpdateCommunity v
       "updateUserStatus"                               -> parseUpdateUserStatus v
       "updateUser"                                     -> parseUpdateUser v
@@ -2786,6 +2870,7 @@ instance AT.FromJSON Update where
       "updateUserFullInfo"                             -> parseUpdateUserFullInfo v
       "updateBasicGroupFullInfo"                       -> parseUpdateBasicGroupFullInfo v
       "updateSupergroupFullInfo"                       -> parseUpdateSupergroupFullInfo v
+      "updateCommunityFullInfo"                        -> parseUpdateCommunityFullInfo v
       "updateServiceNotification"                      -> parseUpdateServiceNotification v
       "updateNewOauthRequest"                          -> parseUpdateNewOauthRequest v
       "updateFile"                                     -> parseUpdateFile v
@@ -2939,6 +3024,16 @@ instance AT.FromJSON Update where
           { chat_id     = chat_id_
           , message_id  = message_id_
           , new_content = new_content_
+          }
+      parseUpdateMessageEphemeralContent :: A.Value -> AT.Parser Update
+      parseUpdateMessageEphemeralContent = A.withObject "UpdateMessageEphemeralContent" $ \o -> do
+        chat_id_           <- o A..:?  "chat_id"
+        message_id_        <- o A..:?  "message_id"
+        ephemeral_content_ <- o A..:?  "ephemeral_content"
+        pure $ UpdateMessageEphemeralContent
+          { chat_id           = chat_id_
+          , message_id        = message_id_
+          , ephemeral_content = ephemeral_content_
           }
       parseUpdateMessageEdited :: A.Value -> AT.Parser Update
       parseUpdateMessageEdited = A.withObject "UpdateMessageEdited" $ \o -> do
@@ -3334,6 +3429,14 @@ instance AT.FromJSON Update where
           { chat_id                = chat_id_
           , has_scheduled_messages = has_scheduled_messages_
           }
+      parseUpdateChatHasWelcomeMessages :: A.Value -> AT.Parser Update
+      parseUpdateChatHasWelcomeMessages = A.withObject "UpdateChatHasWelcomeMessages" $ \o -> do
+        chat_id_              <- o A..:?  "chat_id"
+        has_welcome_messages_ <- o A..:?  "has_welcome_messages"
+        pure $ UpdateChatHasWelcomeMessages
+          { chat_id              = chat_id_
+          , has_welcome_messages = has_welcome_messages_
+          }
       parseUpdateChatFolders :: A.Value -> AT.Parser Update
       parseUpdateChatFolders = A.withObject "UpdateChatFolders" $ \o -> do
         chat_folders_            <- o A..:?  "chat_folders"
@@ -3405,6 +3508,14 @@ instance AT.FromJSON Update where
         pure $ UpdateQuickReplyShortcutMessages
           { shortcut_id = shortcut_id_
           , messages    = messages_
+          }
+      parseUpdateChatWelcomeMessages :: A.Value -> AT.Parser Update
+      parseUpdateChatWelcomeMessages = A.withObject "UpdateChatWelcomeMessages" $ \o -> do
+        chat_id_   <- o A..:?  "chat_id"
+        _messages_ <- o A..:?  "messages"
+        pure $ UpdateChatWelcomeMessages
+          { chat_id   = chat_id_
+          , _messages = _messages_
           }
       parseUpdateForumTopicInfo :: A.Value -> AT.Parser Update
       parseUpdateForumTopicInfo = A.withObject "UpdateForumTopicInfo" $ \o -> do
@@ -3521,12 +3632,26 @@ instance AT.FromJSON Update where
         chat_id_        <- o A..:?                       "chat_id"
         forum_topic_id_ <- o A..:?                       "forum_topic_id"
         draft_id_       <- fmap I.readInt64 <$> o A..:?  "draft_id"
+        can_stop_       <- o A..:?                       "can_stop"
+        keep_on_stop_   <- o A..:?                       "keep_on_stop"
         content_        <- o A..:?                       "content"
         pure $ UpdatePendingMessage
           { chat_id        = chat_id_
           , forum_topic_id = forum_topic_id_
           , draft_id       = draft_id_
+          , can_stop       = can_stop_
+          , keep_on_stop   = keep_on_stop_
           , content        = content_
+          }
+      parseUpdateStopMessageDraft :: A.Value -> AT.Parser Update
+      parseUpdateStopMessageDraft = A.withObject "UpdateStopMessageDraft" $ \o -> do
+        chat_id_        <- o A..:?                       "chat_id"
+        forum_topic_id_ <- o A..:?                       "forum_topic_id"
+        draft_id_       <- fmap I.readInt64 <$> o A..:?  "draft_id"
+        pure $ UpdateStopMessageDraft
+          { chat_id        = chat_id_
+          , forum_topic_id = forum_topic_id_
+          , draft_id       = draft_id_
           }
       parseUpdateCommunity :: A.Value -> AT.Parser Update
       parseUpdateCommunity = A.withObject "UpdateCommunity" $ \o -> do
@@ -3589,6 +3714,14 @@ instance AT.FromJSON Update where
         pure $ UpdateSupergroupFullInfo
           { supergroup_id        = supergroup_id_
           , supergroup_full_info = supergroup_full_info_
+          }
+      parseUpdateCommunityFullInfo :: A.Value -> AT.Parser Update
+      parseUpdateCommunityFullInfo = A.withObject "UpdateCommunityFullInfo" $ \o -> do
+        community_id_        <- o A..:?  "community_id"
+        community_full_info_ <- o A..:?  "community_full_info"
+        pure $ UpdateCommunityFullInfo
+          { community_id        = community_id_
+          , community_full_info = community_full_info_
           }
       parseUpdateServiceNotification :: A.Value -> AT.Parser Update
       parseUpdateServiceNotification = A.withObject "UpdateServiceNotification" $ \o -> do
@@ -4086,9 +4219,9 @@ instance AT.FromJSON Update where
           }
       parseUpdateActiveLiveLocationMessages :: A.Value -> AT.Parser Update
       parseUpdateActiveLiveLocationMessages = A.withObject "UpdateActiveLiveLocationMessages" $ \o -> do
-        _messages_ <- o A..:?  "messages"
+        __messages_ <- o A..:?  "messages"
         pure $ UpdateActiveLiveLocationMessages
-          { _messages = _messages_
+          { __messages = __messages_
           }
       parseUpdateOwnedStarCount :: A.Value -> AT.Parser Update
       parseUpdateOwnedStarCount = A.withObject "UpdateOwnedStarCount" $ \o -> do

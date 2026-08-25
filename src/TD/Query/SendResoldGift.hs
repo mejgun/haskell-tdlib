@@ -9,49 +9,62 @@ import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 import qualified TD.Data.MessageSender as MessageSender
 import qualified TD.Data.GiftResalePrice as GiftResalePrice
+import qualified TD.Data.FormattedText as FormattedText
 
 -- | Sends an upgraded gift that is available for resale to another user or channel chat; gifts already owned by the current user must be transferred using transferGift and can't be passed to the method. Returns 'TD.Data.GiftResaleResult.GiftResaleResult'
 data SendResoldGift
   = SendResoldGift
-    { gift_name :: Maybe T.Text                          -- ^ Name of the upgraded gift to send
-    , owner_id  :: Maybe MessageSender.MessageSender     -- ^ Identifier of the user or the channel chat that will receive the gift
-    , price     :: Maybe GiftResalePrice.GiftResalePrice -- ^ The price that the user agreed to pay for the gift
+    { gift_name  :: Maybe T.Text                          -- ^ Name of the upgraded gift to send
+    , owner_id   :: Maybe MessageSender.MessageSender     -- ^ Identifier of the user or the channel chat that will receive the gift
+    , price      :: Maybe GiftResalePrice.GiftResalePrice -- ^ The price that the user agreed to pay for the gift
+    , text       :: Maybe FormattedText.FormattedText     -- ^ Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, and DateTime entities are allowed. Must be empty if the receiver enabled paid messages and the price of the gift is less than the price of a paid message to the user
+    , is_private :: Maybe Bool                            -- ^ Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     }
   deriving (Eq, Show)
 
 instance I.ShortShow SendResoldGift where
   shortShow
     SendResoldGift
-      { gift_name = gift_name_
-      , owner_id  = owner_id_
-      , price     = price_
+      { gift_name  = gift_name_
+      , owner_id   = owner_id_
+      , price      = price_
+      , text       = text_
+      , is_private = is_private_
       }
         = "SendResoldGift"
           ++ I.cc
-          [ "gift_name" `I.p` gift_name_
-          , "owner_id"  `I.p` owner_id_
-          , "price"     `I.p` price_
+          [ "gift_name"  `I.p` gift_name_
+          , "owner_id"   `I.p` owner_id_
+          , "price"      `I.p` price_
+          , "text"       `I.p` text_
+          , "is_private" `I.p` is_private_
           ]
 
 instance AT.ToJSON SendResoldGift where
   toJSON
     SendResoldGift
-      { gift_name = gift_name_
-      , owner_id  = owner_id_
-      , price     = price_
+      { gift_name  = gift_name_
+      , owner_id   = owner_id_
+      , price      = price_
+      , text       = text_
+      , is_private = is_private_
       }
         = A.object
-          [ "@type"     A..= AT.String "sendResoldGift"
-          , "gift_name" A..= gift_name_
-          , "owner_id"  A..= owner_id_
-          , "price"     A..= price_
+          [ "@type"      A..= AT.String "sendResoldGift"
+          , "gift_name"  A..= gift_name_
+          , "owner_id"   A..= owner_id_
+          , "price"      A..= price_
+          , "text"       A..= text_
+          , "is_private" A..= is_private_
           ]
 
 defaultSendResoldGift :: SendResoldGift
 defaultSendResoldGift =
   SendResoldGift
-    { gift_name = Nothing
-    , owner_id  = Nothing
-    , price     = Nothing
+    { gift_name  = Nothing
+    , owner_id   = Nothing
+    , price      = Nothing
+    , text       = Nothing
+    , is_private = Nothing
     }
 

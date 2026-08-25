@@ -76,7 +76,7 @@ data PushMessageContent
     { month_count :: Maybe Int -- ^ Number of months the Telegram Premium subscription will be active after code activation
     }
   | PushMessageContentGiveaway -- ^ A message with a giveaway
-    { winner_count :: Maybe Int                         -- ^ Number of users which will receive giveaway prizes; 0 for pinned message
+    { winner_count :: Maybe Int                         -- ^ Number of users who will receive giveaway prizes; 0 for pinned message
     , prize        :: Maybe GiveawayPrize.GiveawayPrize -- ^ Prize of the giveaway; may be null for pinned message
     , is_pinned    :: Maybe Bool                        -- ^ True, if the message is a pinned message with the specified content
     }
