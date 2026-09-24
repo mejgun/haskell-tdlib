@@ -142,7 +142,7 @@ data ChatEventAction
     , new_profile_accent_color_id            :: Maybe Int -- ^ New identifier of chat's profile accent color; -1 if none
     , new_profile_background_custom_emoji_id :: Maybe Int -- ^ New identifier of the custom emoji; 0 if none
     }
-  | ChatEventHasProtectedContentToggled -- ^ The has_protected_content setting of a channel was toggled
+  | ChatEventHasProtectedContentToggled -- ^ The has_protected_content setting of a chat was toggled
     { has_protected_content :: Maybe Bool -- ^ New value of has_protected_content
     }
   | ChatEventInvitesToggled -- ^ The can_invite_users permission of a supergroup chat was toggled
@@ -190,7 +190,7 @@ data ChatEventAction
     { participant_id :: Maybe MessageSender.MessageSender -- ^ Identifier of the affected group call participant
     , volume_level   :: Maybe Int                         -- ^ New value of volume_level; 1-20000 in hundreds of percents
     }
-  | ChatEventIsForumToggled -- ^ The is_forum setting of a channel was toggled
+  | ChatEventIsForumToggled -- ^ The is_forum setting of a supergroup was toggled
     { is_forum :: Maybe Bool -- ^ New value of is_forum
     }
   | ChatEventForumTopicCreated -- ^ A new forum topic was created
