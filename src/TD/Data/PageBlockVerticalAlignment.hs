@@ -5,7 +5,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Describes a Vertical alignment of a table cell content
+-- | Describes a vertical alignment of a table cell content
 data PageBlockVerticalAlignment
   = PageBlockVerticalAlignmentTop -- ^ The content must be top-aligned
   | PageBlockVerticalAlignmentMiddle -- ^ The content must be middle-aligned

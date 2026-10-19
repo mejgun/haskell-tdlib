@@ -15,7 +15,7 @@ data ReceivedGift
     , sender_id                        :: Maybe MessageSender.MessageSender -- ^ Identifier of a user or a chat that sent the gift; may be null if unknown
     , text                             :: Maybe FormattedText.FormattedText -- ^ Message added to the gift
     , unique_gift_number               :: Maybe Int                         -- ^ Unique number of the gift among gifts upgraded from the same gift after upgrade; 0 if yet unassigned
-    , is_private                       :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them
+    , is_private                       :: Maybe Bool                        -- ^ True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone is able to see them
     , is_saved                         :: Maybe Bool                        -- ^ True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
     , is_pinned                        :: Maybe Bool                        -- ^ True, if the gift is pinned to the top of the chat's profile page
     , can_be_upgraded                  :: Maybe Bool                        -- ^ True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift

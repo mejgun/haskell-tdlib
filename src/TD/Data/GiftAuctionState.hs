@@ -8,7 +8,7 @@ import qualified TD.Data.Gift as Gift
 import qualified TD.Data.AuctionState as AuctionState
 
 data GiftAuctionState
-  = GiftAuctionState -- ^ Represent auction state of a gift
+  = GiftAuctionState -- ^ Represents auction state of a gift
     { gift  :: Maybe Gift.Gift                 -- ^ The gift
     , state :: Maybe AuctionState.AuctionState -- ^ Auction state of the gift
     }

@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.TransactionDirection as TransactionDirection
 import qualified Data.Text as T
 
--- | Returns the list of TON blockchain transactions of the current user. Returns 'TD.Data.TonTransactions.TonTransactions'
+-- | Returns the list of TON Gram transactions of the current user. Returns 'TD.Data.TonTransactions.TonTransactions'
 data GetTonTransactions
   = GetTonTransactions
     { direction :: Maybe TransactionDirection.TransactionDirection -- ^ Direction of the transactions to receive; pass null to get all transactions

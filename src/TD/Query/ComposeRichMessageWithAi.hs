@@ -14,7 +14,7 @@ data ComposeRichMessageWithAi
   = ComposeRichMessageWithAi
     { message                    :: Maybe InputRichMessage.InputRichMessage -- ^ The original message
     , translate_to_language_code :: Maybe T.Text                            -- ^ Pass a language code to which the text will be translated; pass an empty string if translation isn't needed. See translateText.to_language_code for the list of supported values
-    , style_name                 :: Maybe T.Text                            -- ^ Name of the style of the resulted text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
+    , style_name                 :: Maybe T.Text                            -- ^ Name of the style of the resulting text; handle updateTextCompositionStyles to get the list of supported styles; pass an empty string to keep the current style of the text or if a custom prompt is used
     , custom_prompt              :: Maybe T.Text                            -- ^ Custom prompt that will be used instead of style_name; 0-getOption("text_composition_style_prompt_length_max") characters
     , add_emojis                 :: Maybe Bool                              -- ^ Pass true to add emoji to the text
     }

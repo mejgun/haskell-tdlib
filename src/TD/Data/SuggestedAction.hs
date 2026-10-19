@@ -13,6 +13,7 @@ data SuggestedAction
   | SuggestedActionCheckPassword -- ^ Suggests the user to check whether they still remember their 2-step verification password
   | SuggestedActionCheckPhoneNumber -- ^ Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
   | SuggestedActionViewChecksHint -- ^ Suggests the user to view a hint about the meaning of one and two check marks on sent messages
+  | SuggestedActionViewFirstTonWalletTransferHint -- ^ Suggests the user to view a hint about receiving of the first TON wallet transfer
   | SuggestedActionConvertToBroadcastGroup -- ^ Suggests the user to convert specified supergroup to a broadcast group
     { supergroup_id :: Maybe Int -- ^ Supergroup identifier
     }
@@ -50,6 +51,8 @@ instance I.ShortShow SuggestedAction where
       = "SuggestedActionCheckPhoneNumber"
   shortShow SuggestedActionViewChecksHint
       = "SuggestedActionViewChecksHint"
+  shortShow SuggestedActionViewFirstTonWalletTransferHint
+      = "SuggestedActionViewFirstTonWalletTransferHint"
   shortShow SuggestedActionConvertToBroadcastGroup
     { supergroup_id = supergroup_id_
     }
@@ -113,24 +116,25 @@ instance AT.FromJSON SuggestedAction where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "suggestedActionEnableArchiveAndMuteNewChats" -> pure SuggestedActionEnableArchiveAndMuteNewChats
-      "suggestedActionCheckPassword"                -> pure SuggestedActionCheckPassword
-      "suggestedActionCheckPhoneNumber"             -> pure SuggestedActionCheckPhoneNumber
-      "suggestedActionViewChecksHint"               -> pure SuggestedActionViewChecksHint
-      "suggestedActionConvertToBroadcastGroup"      -> parseSuggestedActionConvertToBroadcastGroup v
-      "suggestedActionSetPassword"                  -> parseSuggestedActionSetPassword v
-      "suggestedActionUpgradePremium"               -> pure SuggestedActionUpgradePremium
-      "suggestedActionRestorePremium"               -> pure SuggestedActionRestorePremium
-      "suggestedActionSubscribeToAnnualPremium"     -> pure SuggestedActionSubscribeToAnnualPremium
-      "suggestedActionGiftPremiumForChristmas"      -> pure SuggestedActionGiftPremiumForChristmas
-      "suggestedActionSetBirthdate"                 -> pure SuggestedActionSetBirthdate
-      "suggestedActionSetProfilePhoto"              -> pure SuggestedActionSetProfilePhoto
-      "suggestedActionExtendPremium"                -> parseSuggestedActionExtendPremium v
-      "suggestedActionExtendStarSubscriptions"      -> pure SuggestedActionExtendStarSubscriptions
-      "suggestedActionCustom"                       -> parseSuggestedActionCustom v
-      "suggestedActionSetLoginEmailAddress"         -> parseSuggestedActionSetLoginEmailAddress v
-      "suggestedActionAddLoginPasskey"              -> pure SuggestedActionAddLoginPasskey
-      _                                             -> mempty
+      "suggestedActionEnableArchiveAndMuteNewChats"   -> pure SuggestedActionEnableArchiveAndMuteNewChats
+      "suggestedActionCheckPassword"                  -> pure SuggestedActionCheckPassword
+      "suggestedActionCheckPhoneNumber"               -> pure SuggestedActionCheckPhoneNumber
+      "suggestedActionViewChecksHint"                 -> pure SuggestedActionViewChecksHint
+      "suggestedActionViewFirstTonWalletTransferHint" -> pure SuggestedActionViewFirstTonWalletTransferHint
+      "suggestedActionConvertToBroadcastGroup"        -> parseSuggestedActionConvertToBroadcastGroup v
+      "suggestedActionSetPassword"                    -> parseSuggestedActionSetPassword v
+      "suggestedActionUpgradePremium"                 -> pure SuggestedActionUpgradePremium
+      "suggestedActionRestorePremium"                 -> pure SuggestedActionRestorePremium
+      "suggestedActionSubscribeToAnnualPremium"       -> pure SuggestedActionSubscribeToAnnualPremium
+      "suggestedActionGiftPremiumForChristmas"        -> pure SuggestedActionGiftPremiumForChristmas
+      "suggestedActionSetBirthdate"                   -> pure SuggestedActionSetBirthdate
+      "suggestedActionSetProfilePhoto"                -> pure SuggestedActionSetProfilePhoto
+      "suggestedActionExtendPremium"                  -> parseSuggestedActionExtendPremium v
+      "suggestedActionExtendStarSubscriptions"        -> pure SuggestedActionExtendStarSubscriptions
+      "suggestedActionCustom"                         -> parseSuggestedActionCustom v
+      "suggestedActionSetLoginEmailAddress"           -> parseSuggestedActionSetLoginEmailAddress v
+      "suggestedActionAddLoginPasskey"                -> pure SuggestedActionAddLoginPasskey
+      _                                               -> mempty
     
     where
       parseSuggestedActionConvertToBroadcastGroup :: A.Value -> AT.Parser SuggestedAction
@@ -187,6 +191,10 @@ instance AT.ToJSON SuggestedAction where
   toJSON SuggestedActionViewChecksHint
       = A.object
         [ "@type" A..= AT.String "suggestedActionViewChecksHint"
+        ]
+  toJSON SuggestedActionViewFirstTonWalletTransferHint
+      = A.object
+        [ "@type" A..= AT.String "suggestedActionViewFirstTonWalletTransferHint"
         ]
   toJSON SuggestedActionConvertToBroadcastGroup
     { supergroup_id = supergroup_id_

@@ -9,7 +9,7 @@ import qualified TD.Data.UpgradedGiftBackdrop as UpgradedGiftBackdrop
 data UpgradedGiftBackdropCount
   = UpgradedGiftBackdropCount -- ^ Describes a backdrop of an upgraded gift
     { backdrop    :: Maybe UpgradedGiftBackdrop.UpgradedGiftBackdrop -- ^ The backdrop
-    , total_count :: Maybe Int                                       -- ^ Total number of gifts with the symbol
+    , total_count :: Maybe Int                                       -- ^ Total number of gifts with the backdrop
     }
   deriving (Eq, Show)
 

@@ -13,7 +13,7 @@ data GroupCallMessageLevel
     , max_custom_emoji_count :: Maybe Int -- ^ The maximum allowed number of custom emoji in the message text
     , first_color            :: Maybe Int -- ^ The first color used to show the message text in the RGB format
     , second_color           :: Maybe Int -- ^ The second color used to show the message text in the RGB format
-    , background_color       :: Maybe Int -- ^ Background color for the message the RGB format
+    , background_color       :: Maybe Int -- ^ Background color for the message in the RGB format
     }
   deriving (Eq, Show)
 

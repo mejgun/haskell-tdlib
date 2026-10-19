@@ -24,7 +24,7 @@ data InputInlineQueryResult
     , video_width           :: Maybe Int                                     -- ^ Width of the video
     , video_height          :: Maybe Int                                     -- ^ Height of the video
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAnimation, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultArticle -- ^ Represents a link to an article or web page
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -35,7 +35,7 @@ data InputInlineQueryResult
     , thumbnail_width       :: Maybe Int                                     -- ^ Thumbnail width, if known
     , thumbnail_height      :: Maybe Int                                     -- ^ Thumbnail height, if known
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultAudio -- ^ Represents a link to an MP3 audio file
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -44,7 +44,7 @@ data InputInlineQueryResult
     , audio_url             :: Maybe T.Text                                  -- ^ The URL of the audio file
     , audio_duration        :: Maybe Int                                     -- ^ Audio file duration, in seconds
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageAudio, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultContact -- ^ Represents a user contact
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -53,7 +53,7 @@ data InputInlineQueryResult
     , thumbnail_width       :: Maybe Int                                     -- ^ Thumbnail width, if known
     , thumbnail_height      :: Maybe Int                                     -- ^ Thumbnail height, if known
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultDocument -- ^ Represents a link to a file
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -65,7 +65,7 @@ data InputInlineQueryResult
     , thumbnail_width       :: Maybe Int                                     -- ^ Width of the thumbnail
     , thumbnail_height      :: Maybe Int                                     -- ^ Height of the thumbnail
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageDocument, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultGame -- ^ Represents a game
     { _id             :: Maybe T.Text                  -- ^ Unique identifier of the query result
@@ -81,7 +81,7 @@ data InputInlineQueryResult
     , thumbnail_width       :: Maybe Int                                     -- ^ Thumbnail width, if known
     , thumbnail_height      :: Maybe Int                                     -- ^ Thumbnail height, if known
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultPhoto -- ^ Represents link to a JPEG image
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -92,7 +92,7 @@ data InputInlineQueryResult
     , photo_width           :: Maybe Int                                     -- ^ Width of the photo
     , photo_height          :: Maybe Int                                     -- ^ Height of the photo
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessagePhoto, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultSticker -- ^ Represents a link to a WEBP, TGS, or WEBM sticker
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -101,7 +101,7 @@ data InputInlineQueryResult
     , sticker_width         :: Maybe Int                                     -- ^ Width of the sticker
     , sticker_height        :: Maybe Int                                     -- ^ Height of the sticker
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageSticker, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultVenue -- ^ Represents information about a venue
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -110,7 +110,7 @@ data InputInlineQueryResult
     , thumbnail_width       :: Maybe Int                                     -- ^ Thumbnail width, if known
     , thumbnail_height      :: Maybe Int                                     -- ^ Thumbnail height, if known
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultVideo -- ^ Represents a link to a page containing an embedded video player or a video file
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -123,7 +123,7 @@ data InputInlineQueryResult
     , video_height          :: Maybe Int                                     -- ^ Height of the video
     , video_duration        :: Maybe Int                                     -- ^ Video duration, in seconds
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVideo, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   | InputInlineQueryResultVoiceNote -- ^ Represents a link to an opus-encoded audio file within an OGG container, single channel audio
     { _id                   :: Maybe T.Text                                  -- ^ Unique identifier of the query result
@@ -131,7 +131,7 @@ data InputInlineQueryResult
     , voice_note_url        :: Maybe T.Text                                  -- ^ The URL of the voice note file
     , voice_note_duration   :: Maybe Int                                     -- ^ Duration of the voice note, in seconds
     , reply_markup          :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
-    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue or inputMessageContact
+    , input_message_content :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageRichMessage, inputMessageVoiceNote, inputMessageInvoice, inputMessageLiveLocation, inputMessageLocation, inputMessageVenue, or inputMessageContact
     }
   deriving (Eq, Show)
 

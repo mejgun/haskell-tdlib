@@ -36,7 +36,7 @@ data TelegramPaymentPurpose
     { currency   :: Maybe T.Text -- ^ ISO 4217 currency code of the payment currency
     , amount     :: Maybe Int    -- ^ Paid amount, in the smallest units of the currency
     , star_count :: Maybe Int    -- ^ Number of bought Telegram Stars
-    , chat_id    :: Maybe Int    -- ^ Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none
+    , chat_id    :: Maybe Int    -- ^ Identifier of the chat that is supposed to receive the Telegram Stars; pass 0 if none. If non-zero and getOption("star_top_up_disabled"), then the payment isn't allowed and the user can't buy Telegram Stars in this place
     }
   | TelegramPaymentPurposeGiftedStars -- ^ The user buying Telegram Stars for other users
     { user_id    :: Maybe Int    -- ^ Identifier of the user to which Telegram Stars are gifted

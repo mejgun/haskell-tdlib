@@ -13,7 +13,7 @@ data EncryptedPassportElement
   = EncryptedPassportElement -- ^ Contains information about an encrypted Telegram Passport element; for bots only
     { _type        :: Maybe PassportElementType.PassportElementType -- ^ Type of Telegram Passport element
     , _data        :: Maybe BS.ByteString                           -- ^ Encrypted JSON-encoded data about the user
-    , front_side   :: Maybe DatedFile.DatedFile                     -- ^ The front side of an identity document
+    , front_side   :: Maybe DatedFile.DatedFile                     -- ^ The front side of an identity document; may be null if the element isn't an identity document
     , reverse_side :: Maybe DatedFile.DatedFile                     -- ^ The reverse side of an identity document; may be null
     , selfie       :: Maybe DatedFile.DatedFile                     -- ^ Selfie with the document; may be null
     , translation  :: Maybe [DatedFile.DatedFile]                   -- ^ List of files containing a certified English translation of the document

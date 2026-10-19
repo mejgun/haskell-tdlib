@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.KeyboardButtonSource as KeyboardButtonSource
 
--- | Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot. Returns 'TD.Data.Ok.Ok'
+-- | Shares users after pressing a keyboardButtonTypeRequestUsers or keyboardButtonTypeRequestManagedBot button with the bot. Returns 'TD.Data.Ok.Ok'
 data ShareUsersWithBot
   = ShareUsersWithBot
     { source          :: Maybe KeyboardButtonSource.KeyboardButtonSource -- ^ Source of the button

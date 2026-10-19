@@ -11,7 +11,7 @@ import qualified TD.Lib.Internal as I
 data ProcessChatHasProtectedContentDisableRequest
   = ProcessChatHasProtectedContentDisableRequest
     { chat_id            :: Maybe Int  -- ^ Chat identifier
-    , request_message_id :: Maybe Int  -- ^ Identifier of the message with the request. The message must be incoming and has content of the type messageChatHasProtectedContentDisableRequested
+    , request_message_id :: Maybe Int  -- ^ Identifier of the message with the request. The message must be incoming and have content of the type messageChatHasProtectedContentDisableRequested
     , approve            :: Maybe Bool -- ^ Pass true to approve the request; pass false to reject the request
     }
   deriving (Eq, Show)

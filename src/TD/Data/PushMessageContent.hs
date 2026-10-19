@@ -80,6 +80,14 @@ data PushMessageContent
     , prize        :: Maybe GiveawayPrize.GiveawayPrize -- ^ Prize of the giveaway; may be null for pinned message
     , is_pinned    :: Maybe Bool                        -- ^ True, if the message is a pinned message with the specified content
     }
+  | PushMessageContentTonWalletTransfer -- ^ A message with a TON wallet transfer
+    { sender_user_id :: Maybe Int    -- ^ Sender of the transfer; 0 if unknown
+    , amount         :: Maybe T.Text -- ^ String representation of the received amount
+    , comment        :: Maybe T.Text -- ^ Comment added to the transaction if it is public
+    }
+  | PushMessageContentTonConnectRequest -- ^ A message with a request from a dApp was received through TON Connect
+    { dapp_name :: Maybe T.Text -- ^ Name of the dApp; may be empty if unknown
+    }
   | PushMessageContentGift -- ^ A message with a gift
     { star_count         :: Maybe Int  -- ^ Number of Telegram Stars that sender paid for the gift
     , is_prepaid_upgrade :: Maybe Bool -- ^ True, if the message is about prepaid upgrade of the gift by another user instead of actual receiving of a new gift
@@ -165,7 +173,7 @@ data PushMessageContent
   | PushMessageContentPollOptionAdded -- ^ An option was added to a poll
     { text :: Maybe T.Text -- ^ Text of the option
     }
-  | PushMessageContentMessageForwards -- ^ A forwarded messages
+  | PushMessageContentMessageForwards -- ^ Forwarded messages
     { total_count :: Maybe Int -- ^ Number of forwarded messages
     }
   | PushMessageContentMediaAlbum -- ^ A media album
@@ -318,6 +326,24 @@ instance I.ShortShow PushMessageContent where
         [ "winner_count" `I.p` winner_count_
         , "prize"        `I.p` prize_
         , "is_pinned"    `I.p` is_pinned_
+        ]
+  shortShow PushMessageContentTonWalletTransfer
+    { sender_user_id = sender_user_id_
+    , amount         = amount_
+    , comment        = comment_
+    }
+      = "PushMessageContentTonWalletTransfer"
+        ++ I.cc
+        [ "sender_user_id" `I.p` sender_user_id_
+        , "amount"         `I.p` amount_
+        , "comment"        `I.p` comment_
+        ]
+  shortShow PushMessageContentTonConnectRequest
+    { dapp_name = dapp_name_
+    }
+      = "PushMessageContentTonConnectRequest"
+        ++ I.cc
+        [ "dapp_name" `I.p` dapp_name_
         ]
   shortShow PushMessageContentGift
     { star_count         = star_count_
@@ -552,6 +578,8 @@ instance AT.FromJSON PushMessageContent where
       "pushMessageContentPoll"                        -> parsePushMessageContentPoll v
       "pushMessageContentPremiumGiftCode"             -> parsePushMessageContentPremiumGiftCode v
       "pushMessageContentGiveaway"                    -> parsePushMessageContentGiveaway v
+      "pushMessageContentTonWalletTransfer"           -> parsePushMessageContentTonWalletTransfer v
+      "pushMessageContentTonConnectRequest"           -> parsePushMessageContentTonConnectRequest v
       "pushMessageContentGift"                        -> parsePushMessageContentGift v
       "pushMessageContentUpgradedGift"                -> parsePushMessageContentUpgradedGift v
       "pushMessageContentScreenshotTaken"             -> pure PushMessageContentScreenshotTaken
@@ -711,6 +739,22 @@ instance AT.FromJSON PushMessageContent where
           { winner_count = winner_count_
           , prize        = prize_
           , is_pinned    = is_pinned_
+          }
+      parsePushMessageContentTonWalletTransfer :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentTonWalletTransfer = A.withObject "PushMessageContentTonWalletTransfer" $ \o -> do
+        sender_user_id_ <- o A..:?  "sender_user_id"
+        amount_         <- o A..:?  "amount"
+        comment_        <- o A..:?  "comment"
+        pure $ PushMessageContentTonWalletTransfer
+          { sender_user_id = sender_user_id_
+          , amount         = amount_
+          , comment        = comment_
+          }
+      parsePushMessageContentTonConnectRequest :: A.Value -> AT.Parser PushMessageContent
+      parsePushMessageContentTonConnectRequest = A.withObject "PushMessageContentTonConnectRequest" $ \o -> do
+        dapp_name_ <- o A..:?  "dapp_name"
+        pure $ PushMessageContentTonConnectRequest
+          { dapp_name = dapp_name_
           }
       parsePushMessageContentGift :: A.Value -> AT.Parser PushMessageContent
       parsePushMessageContentGift = A.withObject "PushMessageContentGift" $ \o -> do

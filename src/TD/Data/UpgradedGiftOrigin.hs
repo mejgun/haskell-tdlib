@@ -15,7 +15,7 @@ data UpgradedGiftOrigin
   | UpgradedGiftOriginResale -- ^ The gift was bought from another user
     { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid for the gift
     }
-  | UpgradedGiftOriginBlockchain -- ^ The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold or withdrawn to blockchain
+  | UpgradedGiftOriginBlockchain -- ^ The gift was assigned from blockchain and isn't owned by the current user. The gift can't be transferred, resold, or withdrawn to blockchain
   | UpgradedGiftOriginPrepaidUpgrade -- ^ The sender or receiver of the message has paid for upgrade of the gift, which has been completed
   | UpgradedGiftOriginOffer -- ^ The gift was bought through an offer
     { price :: Maybe GiftResalePrice.GiftResalePrice -- ^ Price paid for the gift

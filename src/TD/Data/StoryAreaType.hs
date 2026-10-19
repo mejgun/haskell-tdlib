@@ -29,7 +29,7 @@ data StoryAreaType
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
-  | StoryAreaTypeLink -- ^ An area pointing to a HTTP or tg:// link
+  | StoryAreaTypeLink -- ^ An area pointing to an HTTP or tg:// link
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the area is clicked
     }
   | StoryAreaTypeWeather -- ^ An area with information about weather

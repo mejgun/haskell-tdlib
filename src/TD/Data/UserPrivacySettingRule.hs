@@ -14,7 +14,7 @@ data UserPrivacySettingRule
   | UserPrivacySettingRuleAllowUsers -- ^ A rule to allow certain specified users to do something
     { user_ids :: Maybe [Int] -- ^ The user identifiers, total number of users in all rules must not exceed 1000
     }
-  | UserPrivacySettingRuleAllowChatMembers -- ^ A rule to allow all members of certain specified basic groups and supergroups to doing something
+  | UserPrivacySettingRuleAllowChatMembers -- ^ A rule to allow all members of certain specified basic groups and supergroups to do something
     { chat_ids :: Maybe [Int] -- ^ The chat identifiers, total number of chats in all rules must not exceed 20
     }
   | UserPrivacySettingRuleRestrictAll -- ^ A rule to restrict all users from doing something

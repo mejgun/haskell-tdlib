@@ -10,7 +10,7 @@ import qualified TD.Lib.Internal as I
 -- | Returns the full version of a rich message. Returns 'TD.Data.RichMessage.RichMessage'
 data GetFullRichMessage
   = GetFullRichMessage
-    { chat_id    :: Maybe Int -- ^ Identifier of the chat the messages belong to
+    { chat_id    :: Maybe Int -- ^ Identifier of the chat the message belongs to
     , message_id :: Maybe Int -- ^ Identifier of the message
     }
   deriving (Eq, Show)

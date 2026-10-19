@@ -8,10 +8,11 @@ import qualified Data.Text as T
 
 data Usernames
   = Usernames -- ^ Describes usernames assigned to a user, a supergroup, or a channel
-    { active_usernames      :: Maybe [T.Text] -- ^ List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames or reorderSupergroupActiveUsernames
+    { active_usernames      :: Maybe [T.Text] -- ^ List of active usernames; the first one must be shown as the primary username. The order of active usernames can be changed with reorderActiveUsernames, reorderBotActiveUsernames, or reorderSupergroupActiveUsernames
     , disabled_usernames    :: Maybe [T.Text] -- ^ List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
     , editable_username     :: Maybe T.Text   -- ^ Active or disabled username, which may be changed with setUsername or setSupergroupUsername
     , collectible_usernames :: Maybe [T.Text] -- ^ Collectible usernames that were purchased at https://fragment.com and can be passed to getCollectibleItemInfo for more details
+    , secondary_username    :: Maybe T.Text   -- ^ Secondary non-collectible username. Currently, must be non-empty only for bot accounts. Can't be used in toggleBotUsernameIsActive; use addBotSecondaryUsername or deleteBotSecondaryUsername to edit it. If the username is disabled, then Telegram Premium subscription is required to re-enable it
     }
   deriving (Eq, Show)
 
@@ -21,6 +22,7 @@ instance I.ShortShow Usernames where
     , disabled_usernames    = disabled_usernames_
     , editable_username     = editable_username_
     , collectible_usernames = collectible_usernames_
+    , secondary_username    = secondary_username_
     }
       = "Usernames"
         ++ I.cc
@@ -28,6 +30,7 @@ instance I.ShortShow Usernames where
         , "disabled_usernames"    `I.p` disabled_usernames_
         , "editable_username"     `I.p` editable_username_
         , "collectible_usernames" `I.p` collectible_usernames_
+        , "secondary_username"    `I.p` secondary_username_
         ]
 
 instance AT.FromJSON Usernames where
@@ -45,11 +48,13 @@ instance AT.FromJSON Usernames where
         disabled_usernames_    <- o A..:?  "disabled_usernames"
         editable_username_     <- o A..:?  "editable_username"
         collectible_usernames_ <- o A..:?  "collectible_usernames"
+        secondary_username_    <- o A..:?  "secondary_username"
         pure $ Usernames
           { active_usernames      = active_usernames_
           , disabled_usernames    = disabled_usernames_
           , editable_username     = editable_username_
           , collectible_usernames = collectible_usernames_
+          , secondary_username    = secondary_username_
           }
   parseJSON _ = mempty
 

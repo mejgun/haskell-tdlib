@@ -8,7 +8,7 @@ import qualified TD.Data.PaidReactor as PaidReactor
 
 data LiveStoryDonors
   = LiveStoryDonors -- ^ Contains a list of users and chats that spend most money on paid messages and reactions in a live story
-    { total_star_count :: Maybe Int                       -- ^ Total amount of spend Telegram Stars
+    { total_star_count :: Maybe Int                       -- ^ Total amount of spent Telegram Stars
     , top_donors       :: Maybe [PaidReactor.PaidReactor] -- ^ List of top donors in the live story
     }
   deriving (Eq, Show)

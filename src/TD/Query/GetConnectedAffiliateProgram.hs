@@ -11,7 +11,7 @@ import qualified TD.Data.AffiliateType as AffiliateType
 -- | Returns an affiliate program that was connected to the given affiliate by identifier of the bot that created the program. Returns 'TD.Data.ConnectedAffiliateProgram.ConnectedAffiliateProgram'
 data GetConnectedAffiliateProgram
   = GetConnectedAffiliateProgram
-    { affiliate   :: Maybe AffiliateType.AffiliateType -- ^ The affiliate to which the affiliate program will be connected
+    { affiliate   :: Maybe AffiliateType.AffiliateType -- ^ The affiliate to which the affiliate program is connected
     , bot_user_id :: Maybe Int                         -- ^ Identifier of the bot that created the program
     }
   deriving (Eq, Show)

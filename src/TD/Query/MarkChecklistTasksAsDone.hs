@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Adds tasks of a checklist in a message as done or not done. Returns 'TD.Data.Ok.Ok'
+-- | Marks tasks of a checklist in a message as done or not done. Returns 'TD.Data.Ok.Ok'
 data MarkChecklistTasksAsDone
   = MarkChecklistTasksAsDone
     { chat_id                     :: Maybe Int   -- ^ Identifier of the chat with the message

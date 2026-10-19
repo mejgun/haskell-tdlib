@@ -70,12 +70,12 @@ data StarTransactionType
   | StarTransactionTypeBotSubscriptionPurchase -- ^ The transaction is a purchase of a subscription from a bot or a business account by the current user; relevant for regular users only
     { user_id             :: Maybe Int                     -- ^ Identifier of the bot or the business account user who created the subscription link
     , subscription_period :: Maybe Int                     -- ^ The number of seconds between consecutive Telegram Star debitings
-    , product_info        :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought subscription
+    , product_info        :: Maybe ProductInfo.ProductInfo -- ^ Information about the bought subscription; may be null if no information about the subscription is available
     }
   | StarTransactionTypeBotSubscriptionSale -- ^ The transaction is a sale of a subscription by the bot; relevant for bots only
     { user_id             :: Maybe Int                         -- ^ Identifier of the user who bought the subscription
     , subscription_period :: Maybe Int                         -- ^ The number of seconds between consecutive Telegram Star debitings
-    , product_info        :: Maybe ProductInfo.ProductInfo     -- ^ Information about the bought subscription
+    , product_info        :: Maybe ProductInfo.ProductInfo     -- ^ Information about the bought subscription; may be null if no information about the subscription is available
     , invoice_payload     :: Maybe BS.ByteString               -- ^ Invoice payload
     , affiliate           :: Maybe AffiliateInfo.AffiliateInfo -- ^ Information about the affiliate which received commission from the transaction; may be null if none
     }
@@ -159,7 +159,7 @@ data StarTransactionType
     , commission_per_mille   :: Maybe Int                         -- ^ The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
     , commission_star_amount :: Maybe StarAmount.StarAmount       -- ^ The Telegram Star amount that was received by Telegram; can be negative for refunds
     }
-  | StarTransactionTypePaidGroupCallReactionSend -- ^ The transaction is a sending of a paid group reaction; relevant for regular users only
+  | StarTransactionTypePaidGroupCallReactionSend -- ^ The transaction is a sending of a paid group call reaction; relevant for regular users only
     { chat_id :: Maybe Int -- ^ Identifier of the chat that received the payment
     }
   | StarTransactionTypePaidGroupCallReactionReceive -- ^ The transaction is a receiving of a paid group call reaction; relevant for regular users and channel chats only

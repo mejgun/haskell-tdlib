@@ -111,7 +111,7 @@ data LinkPreviewType
     { photo :: Maybe Photo.Photo -- ^ The photo
     }
   | LinkPreviewTypePremiumGiftCode -- ^ The link is a link to a Telegram Premium gift code
-  | LinkPreviewTypeRequestManagedBot -- ^ The link is a link to a dialog for creating of a managed bot
+  | LinkPreviewTypeRequestManagedBot -- ^ The link is a link to a dialog for creating a managed bot
   | LinkPreviewTypeShareableChatFolder -- ^ The link is a link to a shareable chat folder
   | LinkPreviewTypeSticker -- ^ The link is a link to a sticker
     { sticker :: Maybe Sticker.Sticker -- ^ The sticker. It can be an arbitrary WEBP image and can have dimensions bigger than 512

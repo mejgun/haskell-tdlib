@@ -19,7 +19,7 @@ data PremiumSource
     { feature :: Maybe PremiumFeature.PremiumFeature -- ^ The used feature
     }
   | PremiumSourceBusinessFeature -- ^ A user tried to use a Business feature
-    { _feature :: Maybe BusinessFeature.BusinessFeature -- ^ The used feature; pass null if none specific feature was used
+    { _feature :: Maybe BusinessFeature.BusinessFeature -- ^ The used feature; pass null if no specific feature was used
     }
   | PremiumSourceStoryFeature -- ^ A user tried to use a Premium story feature
     { __feature :: Maybe PremiumStoryFeature.PremiumStoryFeature -- ^ The used feature

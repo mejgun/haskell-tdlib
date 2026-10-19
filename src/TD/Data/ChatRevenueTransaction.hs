@@ -8,7 +8,7 @@ import qualified Data.Text as T
 import qualified TD.Data.ChatRevenueTransactionType as ChatRevenueTransactionType
 
 data ChatRevenueTransaction
-  = ChatRevenueTransaction -- ^ Contains a chat revenue transactions
+  = ChatRevenueTransaction -- ^ Contains a chat revenue transaction
     { cryptocurrency        :: Maybe T.Text                                                -- ^ Cryptocurrency in which revenue is calculated
     , cryptocurrency_amount :: Maybe Int                                                   -- ^ The withdrawn amount, in the smallest units of the cryptocurrency
     , _type                 :: Maybe ChatRevenueTransactionType.ChatRevenueTransactionType -- ^ Type of the transaction

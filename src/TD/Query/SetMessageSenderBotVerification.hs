@@ -7,14 +7,14 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified TD.Data.MessageSender as MessageSender
-import qualified Data.Text as T
+import qualified TD.Data.FormattedText as FormattedText
 
 -- | Changes the verification status of a user or a chat by an owned bot. Returns 'TD.Data.Ok.Ok'
 data SetMessageSenderBotVerification
   = SetMessageSenderBotVerification
     { bot_user_id        :: Maybe Int                         -- ^ Identifier of the owned bot, which will verify the user or the chat
     , verified_id        :: Maybe MessageSender.MessageSender -- ^ Identifier of the user or the supergroup or channel chat, which will be verified by the bot
-    , custom_description :: Maybe T.Text                      -- ^ Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
+    , custom_description :: Maybe FormattedText.FormattedText -- ^ Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max") characters. Only TextUrl entities are supported. If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
     }
   deriving (Eq, Show)
 

@@ -7,7 +7,7 @@ import qualified TD.Lib.Internal as I
 
 -- | Describes type of Saved Messages topic
 data SavedMessagesTopicType
-  = SavedMessagesTopicTypeMyNotes -- ^ Topic containing messages sent by the current user of forwarded from an unknown chat
+  = SavedMessagesTopicTypeMyNotes -- ^ Topic containing messages sent by the current user or forwarded from an unknown chat
   | SavedMessagesTopicTypeAuthorHidden -- ^ Topic containing messages forwarded from a user with hidden privacy
   | SavedMessagesTopicTypeSavedFromChat -- ^ Topic containing messages forwarded from a specific chat
     { chat_id :: Maybe Int -- ^ Identifier of the chat

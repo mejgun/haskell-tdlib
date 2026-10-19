@@ -12,7 +12,7 @@ data SetPollAnswer
   = SetPollAnswer
     { chat_id    :: Maybe Int   -- ^ Identifier of the chat to which the poll belongs
     , message_id :: Maybe Int   -- ^ Identifier of the message containing the poll
-    , option_ids :: Maybe [Int] -- ^ 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
+    , option_ids :: Maybe [Int] -- ^ 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only if the poll allows multiple answers
     }
   deriving (Eq, Show)
 

@@ -17,7 +17,7 @@ data EditBusinessMessageMedia
     , chat_id                :: Maybe Int                                     -- ^ The chat the message belongs to
     , message_id             :: Maybe Int                                     -- ^ Identifier of the message
     , reply_markup           :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none; for bots only
-    , input_message_content  :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+    , input_message_content  :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, or inputMessageVideo
     }
   deriving (Eq, Show)
 

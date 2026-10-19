@@ -12,7 +12,7 @@ data GetMessageAvailableReactions
   = GetMessageAvailableReactions
     { chat_id    :: Maybe Int -- ^ Identifier of the chat to which the message belongs
     , message_id :: Maybe Int -- ^ Identifier of the message
-    , row_size   :: Maybe Int -- ^ Number of reaction per row, 5-25
+    , row_size   :: Maybe Int -- ^ Number of reactions per row, 5-25
     }
   deriving (Eq, Show)
 

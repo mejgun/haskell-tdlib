@@ -13,8 +13,8 @@ import qualified Data.Text as T
 data AnswerChatJoinRequestQuery
   = AnswerChatJoinRequestQuery
     { query_id :: Maybe Int                                         -- ^ Identifier of the query
-    , result   :: Maybe ChatJoinRequestResult.ChatJoinRequestResult -- ^ The result
-    , url      :: Maybe T.Text                                      -- ^ URL of the Web App to open
+    , result   :: Maybe ChatJoinRequestResult.ChatJoinRequestResult -- ^ The result; must be null if a URL is passed
+    , url      :: Maybe T.Text                                      -- ^ URL of the Web App to open; must be empty if a result is passed
     }
   deriving (Eq, Show)
 

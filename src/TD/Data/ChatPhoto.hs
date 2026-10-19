@@ -14,7 +14,7 @@ data ChatPhoto
     { _id             :: Maybe Int                                 -- ^ Unique photo identifier
     , added_date      :: Maybe Int                                 -- ^ Point in time (Unix timestamp) when the photo has been added
     , minithumbnail   :: Maybe Minithumbnail.Minithumbnail         -- ^ Photo minithumbnail; may be null
-    , sizes           :: Maybe [PhotoSize.PhotoSize]               -- ^ Available variants of the photo in JPEG format, in different size
+    , sizes           :: Maybe [PhotoSize.PhotoSize]               -- ^ Available variants of the photo in JPEG format, in different sizes
     , animation       :: Maybe AnimatedChatPhoto.AnimatedChatPhoto -- ^ A big (up to 1280x1280) animated variant of the photo in MPEG4 format; may be null
     , small_animation :: Maybe AnimatedChatPhoto.AnimatedChatPhoto -- ^ A small (160x160) animated variant of the photo in MPEG4 format; may be null even if the big animation is available
     , sticker         :: Maybe ChatPhotoSticker.ChatPhotoSticker   -- ^ Sticker-based version of the chat photo; may be null

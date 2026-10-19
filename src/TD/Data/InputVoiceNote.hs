@@ -10,7 +10,7 @@ import qualified TD.Data.InputFile as InputFile
 import qualified Data.ByteString as BS
 
 data InputVoiceNote
-  = InputVoiceNote -- ^ A video note to be sent
+  = InputVoiceNote -- ^ A voice note to be sent
     { voice_note :: Maybe InputFile.InputFile -- ^ Voice note file to be sent. The voice note must be encoded with the Opus codec and stored inside an OGG container with a single audio channel, or be in MP3 or M4A format as regular audio
     , duration   :: Maybe Int                 -- ^ Duration of the voice note, in seconds
     , waveform   :: Maybe BS.ByteString       -- ^ Waveform representation of the voice note in 5-bit format

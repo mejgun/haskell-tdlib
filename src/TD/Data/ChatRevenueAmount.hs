@@ -12,7 +12,7 @@ data ChatRevenueAmount
     , total_amount       :: Maybe Int    -- ^ Total amount of the cryptocurrency earned, in the smallest units of the cryptocurrency
     , balance_amount     :: Maybe Int    -- ^ Amount of the cryptocurrency that isn't withdrawn yet, in the smallest units of the cryptocurrency
     , available_amount   :: Maybe Int    -- ^ Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency
-    , withdrawal_enabled :: Maybe Bool   -- ^ True, if Telegram Stars can be withdrawn now or later
+    , withdrawal_enabled :: Maybe Bool   -- ^ True, if the cryptocurrency can be withdrawn now or later
     }
   deriving (Eq, Show)
 

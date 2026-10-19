@@ -42,6 +42,7 @@ import qualified Data.ByteString as BS
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.GiveawayParameters as GiveawayParameters
 import qualified TD.Data.GiveawayPrize as GiveawayPrize
+import qualified TD.Data.TonConnectRequestState as TonConnectRequestState
 import qualified TD.Data.Gift as Gift
 import qualified TD.Data.UpgradedGift as UpgradedGift
 import qualified TD.Data.UpgradedGiftOrigin as UpgradedGiftOrigin
@@ -191,7 +192,7 @@ data MessageContent
     , discard_reason :: Maybe CallDiscardReason.CallDiscardReason -- ^ Reason why the call was discarded
     , duration       :: Maybe Int                                 -- ^ Call duration, in seconds
     }
-  | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call become active or missed, then the call screen must be hidden
+  | MessageGroupCall -- ^ A message with information about a group call not bound to a chat. If the message is incoming, the call isn't active, isn't missed, and has no duration, and getOption("can_accept_calls") is true, then incoming call screen must be shown to the user. Use getGroupCallParticipants to show current group call participants on the screen. Use joinGroupCall to accept the call or declineGroupCallInvitation to decline it. If the call becomes active or missed, then the call screen must be hidden
     { unique_id             :: Maybe Int                           -- ^ Persistent unique group call identifier
     , is_active             :: Maybe Bool                          -- ^ True, if the call is active, i.e. the called user joined the call
     , was_missed            :: Maybe Bool                          -- ^ True, if the called user missed or declined the call
@@ -238,7 +239,7 @@ data MessageContent
     }
   | MessageChatDeletePhoto -- ^ A deleted chat photo
   | MessageChatOwnerLeft -- ^ The owner of the chat has left
-    { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who will become the new owner of the chat if the previous owner isn't return; 0 if none
+    { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who will become the new owner of the chat if the previous owner doesn't return; 0 if none
     }
   | MessageChatOwnerChanged -- ^ The owner of the chat has changed
     { new_owner_user_id :: Maybe Int -- ^ Identifier of the user who is the new owner of the chat
@@ -436,6 +437,21 @@ data MessageContent
     , is_unclaimed        :: Maybe Bool            -- ^ True, if the corresponding winner wasn't chosen and the Telegram Stars were received by the owner of the boosted chat
     , sticker             :: Maybe Sticker.Sticker -- ^ A sticker to be shown in the message; may be null if unknown
     }
+  | MessageTonWalletTransfer -- ^ Represents a transfer with the TON wallet of the current user
+    { sender_user_id       :: Maybe Int    -- ^ Sender of the transfer; 0 if unknown
+    , transaction_id       :: Maybe T.Text -- ^ Unique identifier of the transaction; may be empty if the transfer isn't sent yet. Use getTonWalletTransaction to get additional information about the transaction
+    , peer_address         :: Maybe T.Text -- ^ Address in the TON blockchain of the transaction peer
+    , amount               :: Maybe Int    -- ^ The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    , comment              :: Maybe T.Text -- ^ Comment added to the transaction
+    , is_comment_encrypted :: Maybe Bool   -- ^ True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
+    }
+  | MessageTonConnectRequest -- ^ A request from a dApp was received through TON Connect
+    { session_id :: Maybe Int                                           -- ^ Unique identifier of the TON Connect session
+    , state      :: Maybe TonConnectRequestState.TonConnectRequestState -- ^ State of the request
+    , dapp_name  :: Maybe T.Text                                        -- ^ Name of the dApp; may be empty if unknown
+    , topic      :: Maybe T.Text                                        -- ^ Topic of the request; may be empty if none
+    , trace_id   :: Maybe T.Text                                        -- ^ Identifier to trace the request; may be empty if none
+    }
   | MessageGift -- ^ A regular gift was received or sent by the current user, or the current user was notified about a channel gift
     { gift                       :: Maybe Gift.Gift                   -- ^ The gift
     , sender_id                  :: Maybe MessageSender.MessageSender -- ^ Sender of the gift; may be null for outgoing messages about prepaid upgrade of gifts from unknown users
@@ -475,7 +491,7 @@ data MessageContent
     , export_date                      :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; can be in the past; 0 if NFT export isn't possible; only for the receiver of the gift
     , craft_date                       :: Maybe Int                                   -- ^ Point in time (Unix timestamp) when the gift can be used to craft another gift; can be in the past; only for the receiver of the gift
     }
-  | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade or transfer were refunded
+  | MessageRefundedUpgradedGift -- ^ A gift which purchase, upgrade, or transfer were refunded
     { gift        :: Maybe Gift.Gift                             -- ^ The gift
     , sender_id   :: Maybe MessageSender.MessageSender           -- ^ Sender of the gift
     , receiver_id :: Maybe MessageSender.MessageSender           -- ^ Receiver of the gift
@@ -483,7 +499,7 @@ data MessageContent
     }
   | MessageUpgradedGiftPurchaseOffer -- ^ An offer to purchase an upgraded gift was sent or received
     { _gift           :: Maybe UpgradedGift.UpgradedGift                     -- ^ The gift
-    , state           :: Maybe GiftPurchaseOfferState.GiftPurchaseOfferState -- ^ State of the offer
+    , _state          :: Maybe GiftPurchaseOfferState.GiftPurchaseOfferState -- ^ State of the offer
     , price           :: Maybe GiftResalePrice.GiftResalePrice               -- ^ The proposed price
     , expiration_date :: Maybe Int                                           -- ^ Point in time (Unix timestamp) when the offer will expire or has expired
     }
@@ -1393,6 +1409,38 @@ instance I.ShortShow MessageContent where
         , "is_unclaimed"        `I.p` is_unclaimed_
         , "sticker"             `I.p` sticker_
         ]
+  shortShow MessageTonWalletTransfer
+    { sender_user_id       = sender_user_id_
+    , transaction_id       = transaction_id_
+    , peer_address         = peer_address_
+    , amount               = amount_
+    , comment              = comment_
+    , is_comment_encrypted = is_comment_encrypted_
+    }
+      = "MessageTonWalletTransfer"
+        ++ I.cc
+        [ "sender_user_id"       `I.p` sender_user_id_
+        , "transaction_id"       `I.p` transaction_id_
+        , "peer_address"         `I.p` peer_address_
+        , "amount"               `I.p` amount_
+        , "comment"              `I.p` comment_
+        , "is_comment_encrypted" `I.p` is_comment_encrypted_
+        ]
+  shortShow MessageTonConnectRequest
+    { session_id = session_id_
+    , state      = state_
+    , dapp_name  = dapp_name_
+    , topic      = topic_
+    , trace_id   = trace_id_
+    }
+      = "MessageTonConnectRequest"
+        ++ I.cc
+        [ "session_id" `I.p` session_id_
+        , "state"      `I.p` state_
+        , "dapp_name"  `I.p` dapp_name_
+        , "topic"      `I.p` topic_
+        , "trace_id"   `I.p` trace_id_
+        ]
   shortShow MessageGift
     { gift                       = gift_
     , sender_id                  = sender_id_
@@ -1488,14 +1536,14 @@ instance I.ShortShow MessageContent where
         ]
   shortShow MessageUpgradedGiftPurchaseOffer
     { _gift           = _gift_
-    , state           = state_
+    , _state          = _state_
     , price           = price_
     , expiration_date = expiration_date_
     }
       = "MessageUpgradedGiftPurchaseOffer"
         ++ I.cc
         [ "_gift"           `I.p` _gift_
-        , "state"           `I.p` state_
+        , "_state"          `I.p` _state_
         , "price"           `I.p` price_
         , "expiration_date" `I.p` expiration_date_
         ]
@@ -1764,6 +1812,8 @@ instance AT.FromJSON MessageContent where
       "messageGiftedStars"                             -> parseMessageGiftedStars v
       "messageGiftedGrams"                             -> parseMessageGiftedGrams v
       "messageGiveawayPrizeStars"                      -> parseMessageGiveawayPrizeStars v
+      "messageTonWalletTransfer"                       -> parseMessageTonWalletTransfer v
+      "messageTonConnectRequest"                       -> parseMessageTonConnectRequest v
       "messageGift"                                    -> parseMessageGift v
       "messageUpgradedGift"                            -> parseMessageUpgradedGift v
       "messageRefundedUpgradedGift"                    -> parseMessageRefundedUpgradedGift v
@@ -2526,6 +2576,36 @@ instance AT.FromJSON MessageContent where
           , is_unclaimed        = is_unclaimed_
           , sticker             = sticker_
           }
+      parseMessageTonWalletTransfer :: A.Value -> AT.Parser MessageContent
+      parseMessageTonWalletTransfer = A.withObject "MessageTonWalletTransfer" $ \o -> do
+        sender_user_id_       <- o A..:?  "sender_user_id"
+        transaction_id_       <- o A..:?  "transaction_id"
+        peer_address_         <- o A..:?  "peer_address"
+        amount_               <- o A..:?  "amount"
+        comment_              <- o A..:?  "comment"
+        is_comment_encrypted_ <- o A..:?  "is_comment_encrypted"
+        pure $ MessageTonWalletTransfer
+          { sender_user_id       = sender_user_id_
+          , transaction_id       = transaction_id_
+          , peer_address         = peer_address_
+          , amount               = amount_
+          , comment              = comment_
+          , is_comment_encrypted = is_comment_encrypted_
+          }
+      parseMessageTonConnectRequest :: A.Value -> AT.Parser MessageContent
+      parseMessageTonConnectRequest = A.withObject "MessageTonConnectRequest" $ \o -> do
+        session_id_ <- fmap I.readInt64 <$> o A..:?  "session_id"
+        state_      <- o A..:?                       "state"
+        dapp_name_  <- o A..:?                       "dapp_name"
+        topic_      <- o A..:?                       "topic"
+        trace_id_   <- o A..:?                       "trace_id"
+        pure $ MessageTonConnectRequest
+          { session_id = session_id_
+          , state      = state_
+          , dapp_name  = dapp_name_
+          , topic      = topic_
+          , trace_id   = trace_id_
+          }
       parseMessageGift :: A.Value -> AT.Parser MessageContent
       parseMessageGift = A.withObject "MessageGift" $ \o -> do
         gift_                       <- o A..:?  "gift"
@@ -2619,12 +2699,12 @@ instance AT.FromJSON MessageContent where
       parseMessageUpgradedGiftPurchaseOffer :: A.Value -> AT.Parser MessageContent
       parseMessageUpgradedGiftPurchaseOffer = A.withObject "MessageUpgradedGiftPurchaseOffer" $ \o -> do
         _gift_           <- o A..:?  "gift"
-        state_           <- o A..:?  "state"
+        _state_          <- o A..:?  "state"
         price_           <- o A..:?  "price"
         expiration_date_ <- o A..:?  "expiration_date"
         pure $ MessageUpgradedGiftPurchaseOffer
           { _gift           = _gift_
-          , state           = state_
+          , _state          = _state_
           , price           = price_
           , expiration_date = expiration_date_
           }

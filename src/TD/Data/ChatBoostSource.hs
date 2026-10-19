@@ -14,7 +14,7 @@ data ChatBoostSource
     }
   | ChatBoostSourceGiveaway -- ^ The chat created a giveaway
     { user_id             :: Maybe Int    -- ^ Identifier of a user who won in the giveaway; 0 if none
-    , gift_code           :: Maybe T.Text -- ^ The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
+    , gift_code           :: Maybe T.Text -- ^ The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveaways only
     , star_count          :: Maybe Int    -- ^ Number of Telegram Stars distributed among winners of the giveaway
     , giveaway_message_id :: Maybe Int    -- ^ Identifier of the corresponding giveaway message; can be an identifier of a deleted message
     , is_unclaimed        :: Maybe Bool   -- ^ True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants

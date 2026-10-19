@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified Data.ByteString as BS
 import qualified Data.Text as T
 
--- | Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported. Returns 'TD.Data.ReportChatResult.ReportChatResult'
+-- | Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, if chat.can_be_reported, or if messageProperties.can_report_chat. Returns 'TD.Data.ReportChatResult.ReportChatResult'
 data ReportChat
   = ReportChat
     { chat_id     :: Maybe Int           -- ^ Chat identifier

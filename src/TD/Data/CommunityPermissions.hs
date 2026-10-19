@@ -1,5 +1,7 @@
 module TD.Data.CommunityPermissions
-  (CommunityPermissions(..)) where
+  ( CommunityPermissions(..)    
+  , defaultCommunityPermissions 
+  ) where
 
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
@@ -36,4 +38,19 @@ instance AT.FromJSON CommunityPermissions where
           { can_edit_chat_list = can_edit_chat_list_
           }
   parseJSON _ = mempty
+
+instance AT.ToJSON CommunityPermissions where
+  toJSON CommunityPermissions
+    { can_edit_chat_list = can_edit_chat_list_
+    }
+      = A.object
+        [ "@type"              A..= AT.String "communityPermissions"
+        , "can_edit_chat_list" A..= can_edit_chat_list_
+        ]
+
+defaultCommunityPermissions :: CommunityPermissions
+defaultCommunityPermissions =
+  CommunityPermissions
+    { can_edit_chat_list = Nothing
+    }
 

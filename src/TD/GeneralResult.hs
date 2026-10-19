@@ -80,6 +80,7 @@ import qualified TD.Data.Chats as Chats
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
 import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
+import qualified TD.Data.CommunityFullInfo as CommunityFullInfo
 import qualified TD.Data.CommunityId as CommunityId
 import qualified TD.Data.ConnectedAffiliateProgram as ConnectedAffiliateProgram
 import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliatePrograms
@@ -89,6 +90,8 @@ import qualified TD.Data.Countries as Countries
 import qualified TD.Data.CountryInfo as CountryInfo
 import qualified TD.Data.CraftGiftResult as CraftGiftResult
 import qualified TD.Data.CreatedBasicGroupChat as CreatedBasicGroupChat
+import qualified TD.Data.Currencies as Currencies
+import qualified TD.Data.CurrencyExchangeRates as CurrencyExchangeRates
 import qualified TD.Data.CurrentWeather as CurrentWeather
 import qualified TD.Data.CustomRequestResult as CustomRequestResult
 import qualified TD.Data.Data as Data
@@ -183,6 +186,11 @@ import qualified TD.Data.NotificationSound as NotificationSound
 import qualified TD.Data.NotificationSounds as NotificationSounds
 import qualified TD.Data.OauthLinkInfo as OauthLinkInfo
 import qualified TD.Data.Ok as Ok
+import qualified TD.Data.OnRampPaymentAvailability as OnRampPaymentAvailability
+import qualified TD.Data.OnRampPaymentLimits as OnRampPaymentLimits
+import qualified TD.Data.OnRampPaymentQuote as OnRampPaymentQuote
+import qualified TD.Data.OnRampPaymentSession as OnRampPaymentSession
+import qualified TD.Data.OnRampProviders as OnRampProviders
 import qualified TD.Data.OptionValue as OptionValue
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.Outline as Outline
@@ -270,7 +278,18 @@ import qualified TD.Data.TextCompositionStyle as TextCompositionStyle
 import qualified TD.Data.TextCompositionStyleExample as TextCompositionStyleExample
 import qualified TD.Data.TextEntities as TextEntities
 import qualified TD.Data.TimeZones as TimeZones
+import qualified TD.Data.TonCenterStreamingApiUrl as TonCenterStreamingApiUrl
+import qualified TD.Data.TonConnectChallenge as TonConnectChallenge
+import qualified TD.Data.TonConnectRequests as TonConnectRequests
+import qualified TD.Data.TonConnectSession as TonConnectSession
+import qualified TD.Data.TonConnectSessionEventId as TonConnectSessionEventId
+import qualified TD.Data.TonConnectSessions as TonConnectSessions
+import qualified TD.Data.TonNfts as TonNfts
 import qualified TD.Data.TonTransactions as TonTransactions
+import qualified TD.Data.TonWalletOwnershipProofChallenge as TonWalletOwnershipProofChallenge
+import qualified TD.Data.TonWalletTransaction as TonWalletTransaction
+import qualified TD.Data.TonWalletTransactions as TonWalletTransactions
+import qualified TD.Data.TonWalletTransferResult as TonWalletTransferResult
 import qualified TD.Data.TrendingStickerSets as TrendingStickerSets
 import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
@@ -282,9 +301,12 @@ import qualified TD.Data.UserFullInfo as UserFullInfo
 import qualified TD.Data.UserLink as UserLink
 import qualified TD.Data.UserPrivacySettingRules as UserPrivacySettingRules
 import qualified TD.Data.UserSupportInfo as UserSupportInfo
+import qualified TD.Data.UserTonWalletAddress as UserTonWalletAddress
+import qualified TD.Data.UserTonWalletAddresses as UserTonWalletAddresses
 import qualified TD.Data.Users as Users
 import qualified TD.Data.ValidatedOrderInfo as ValidatedOrderInfo
 import qualified TD.Data.VideoMessageAdvertisements as VideoMessageAdvertisements
+import qualified TD.Data.WalletBotBalance as WalletBotBalance
 import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebAppUrl as WebAppUrl
 import qualified TD.Data.WebBrowserType as WebBrowserType
@@ -367,6 +389,7 @@ data GeneralResult
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
     | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
+    | CommunityFullInfo                  CommunityFullInfo.CommunityFullInfo
     | CommunityId                        CommunityId.CommunityId
     | ConnectedAffiliateProgram          ConnectedAffiliateProgram.ConnectedAffiliateProgram
     | ConnectedAffiliatePrograms         ConnectedAffiliatePrograms.ConnectedAffiliatePrograms
@@ -376,6 +399,8 @@ data GeneralResult
     | CountryInfo                        CountryInfo.CountryInfo
     | CraftGiftResult                    CraftGiftResult.CraftGiftResult
     | CreatedBasicGroupChat              CreatedBasicGroupChat.CreatedBasicGroupChat
+    | Currencies                         Currencies.Currencies
+    | CurrencyExchangeRates              CurrencyExchangeRates.CurrencyExchangeRates
     | CurrentWeather                     CurrentWeather.CurrentWeather
     | CustomRequestResult                CustomRequestResult.CustomRequestResult
     | Data                               Data.Data
@@ -470,6 +495,11 @@ data GeneralResult
     | NotificationSounds                 NotificationSounds.NotificationSounds
     | OauthLinkInfo                      OauthLinkInfo.OauthLinkInfo
     | Ok                                 Ok.Ok
+    | OnRampPaymentAvailability          OnRampPaymentAvailability.OnRampPaymentAvailability
+    | OnRampPaymentLimits                OnRampPaymentLimits.OnRampPaymentLimits
+    | OnRampPaymentQuote                 OnRampPaymentQuote.OnRampPaymentQuote
+    | OnRampPaymentSession               OnRampPaymentSession.OnRampPaymentSession
+    | OnRampProviders                    OnRampProviders.OnRampProviders
     | OptionValue                        OptionValue.OptionValue
     | OrderInfo                          OrderInfo.OrderInfo
     | Outline                            Outline.Outline
@@ -557,7 +587,18 @@ data GeneralResult
     | TextCompositionStyleExample        TextCompositionStyleExample.TextCompositionStyleExample
     | TextEntities                       TextEntities.TextEntities
     | TimeZones                          TimeZones.TimeZones
+    | TonCenterStreamingApiUrl           TonCenterStreamingApiUrl.TonCenterStreamingApiUrl
+    | TonConnectChallenge                TonConnectChallenge.TonConnectChallenge
+    | TonConnectRequests                 TonConnectRequests.TonConnectRequests
+    | TonConnectSession                  TonConnectSession.TonConnectSession
+    | TonConnectSessionEventId           TonConnectSessionEventId.TonConnectSessionEventId
+    | TonConnectSessions                 TonConnectSessions.TonConnectSessions
+    | TonNfts                            TonNfts.TonNfts
     | TonTransactions                    TonTransactions.TonTransactions
+    | TonWalletOwnershipProofChallenge   TonWalletOwnershipProofChallenge.TonWalletOwnershipProofChallenge
+    | TonWalletTransaction               TonWalletTransaction.TonWalletTransaction
+    | TonWalletTransactions              TonWalletTransactions.TonWalletTransactions
+    | TonWalletTransferResult            TonWalletTransferResult.TonWalletTransferResult
     | TrendingStickerSets                TrendingStickerSets.TrendingStickerSets
     | Update                             Update.Update
     | Updates                            Updates.Updates
@@ -569,9 +610,12 @@ data GeneralResult
     | UserLink                           UserLink.UserLink
     | UserPrivacySettingRules            UserPrivacySettingRules.UserPrivacySettingRules
     | UserSupportInfo                    UserSupportInfo.UserSupportInfo
+    | UserTonWalletAddress               UserTonWalletAddress.UserTonWalletAddress
+    | UserTonWalletAddresses             UserTonWalletAddresses.UserTonWalletAddresses
     | Users                              Users.Users
     | ValidatedOrderInfo                 ValidatedOrderInfo.ValidatedOrderInfo
     | VideoMessageAdvertisements         VideoMessageAdvertisements.VideoMessageAdvertisements
+    | WalletBotBalance                   WalletBotBalance.WalletBotBalance
     | WebAppInfo                         WebAppInfo.WebAppInfo
     | WebAppUrl                          WebAppUrl.WebAppUrl
     | WebBrowserType                     WebBrowserType.WebBrowserType
@@ -731,6 +775,8 @@ instance I.ShortShow GeneralResult where
     = "CheckStickerSetNameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CollectibleItemInfo v)
     = "CollectibleItemInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (CommunityFullInfo v)
+    = "CommunityFullInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (CommunityId v)
     = "CommunityId" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedAffiliateProgram v)
@@ -749,6 +795,10 @@ instance I.ShortShow GeneralResult where
     = "CraftGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CreatedBasicGroupChat v)
     = "CreatedBasicGroupChat" <> " (" <> I.shortShow v <> ")"
+  shortShow (Currencies v)
+    = "Currencies" <> " (" <> I.shortShow v <> ")"
+  shortShow (CurrencyExchangeRates v)
+    = "CurrencyExchangeRates" <> " (" <> I.shortShow v <> ")"
   shortShow (CurrentWeather v)
     = "CurrentWeather" <> " (" <> I.shortShow v <> ")"
   shortShow (CustomRequestResult v)
@@ -937,6 +987,16 @@ instance I.ShortShow GeneralResult where
     = "OauthLinkInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (Ok v)
     = "Ok" <> " (" <> I.shortShow v <> ")"
+  shortShow (OnRampPaymentAvailability v)
+    = "OnRampPaymentAvailability" <> " (" <> I.shortShow v <> ")"
+  shortShow (OnRampPaymentLimits v)
+    = "OnRampPaymentLimits" <> " (" <> I.shortShow v <> ")"
+  shortShow (OnRampPaymentQuote v)
+    = "OnRampPaymentQuote" <> " (" <> I.shortShow v <> ")"
+  shortShow (OnRampPaymentSession v)
+    = "OnRampPaymentSession" <> " (" <> I.shortShow v <> ")"
+  shortShow (OnRampProviders v)
+    = "OnRampProviders" <> " (" <> I.shortShow v <> ")"
   shortShow (OptionValue v)
     = "OptionValue" <> " (" <> I.shortShow v <> ")"
   shortShow (OrderInfo v)
@@ -1111,8 +1171,30 @@ instance I.ShortShow GeneralResult where
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
     = "TimeZones" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonCenterStreamingApiUrl v)
+    = "TonCenterStreamingApiUrl" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonConnectChallenge v)
+    = "TonConnectChallenge" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonConnectRequests v)
+    = "TonConnectRequests" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonConnectSession v)
+    = "TonConnectSession" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonConnectSessionEventId v)
+    = "TonConnectSessionEventId" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonConnectSessions v)
+    = "TonConnectSessions" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonNfts v)
+    = "TonNfts" <> " (" <> I.shortShow v <> ")"
   shortShow (TonTransactions v)
     = "TonTransactions" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletOwnershipProofChallenge v)
+    = "TonWalletOwnershipProofChallenge" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletTransaction v)
+    = "TonWalletTransaction" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletTransactions v)
+    = "TonWalletTransactions" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletTransferResult v)
+    = "TonWalletTransferResult" <> " (" <> I.shortShow v <> ")"
   shortShow (TrendingStickerSets v)
     = "TrendingStickerSets" <> " (" <> I.shortShow v <> ")"
   shortShow (Update v)
@@ -1135,12 +1217,18 @@ instance I.ShortShow GeneralResult where
     = "UserPrivacySettingRules" <> " (" <> I.shortShow v <> ")"
   shortShow (UserSupportInfo v)
     = "UserSupportInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (UserTonWalletAddress v)
+    = "UserTonWalletAddress" <> " (" <> I.shortShow v <> ")"
+  shortShow (UserTonWalletAddresses v)
+    = "UserTonWalletAddresses" <> " (" <> I.shortShow v <> ")"
   shortShow (Users v)
     = "Users" <> " (" <> I.shortShow v <> ")"
   shortShow (ValidatedOrderInfo v)
     = "ValidatedOrderInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (VideoMessageAdvertisements v)
     = "VideoMessageAdvertisements" <> " (" <> I.shortShow v <> ")"
+  shortShow (WalletBotBalance v)
+    = "WalletBotBalance" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppInfo v)
     = "WebAppInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (WebAppUrl v)
@@ -1228,6 +1316,7 @@ instance T.FromJSON GeneralResult where
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
     <|> ( CollectibleItemInfo                 <$> parseJSON v )
+    <|> ( CommunityFullInfo                   <$> parseJSON v )
     <|> ( CommunityId                         <$> parseJSON v )
     <|> ( ConnectedAffiliateProgram           <$> parseJSON v )
     <|> ( ConnectedAffiliatePrograms          <$> parseJSON v )
@@ -1237,6 +1326,8 @@ instance T.FromJSON GeneralResult where
     <|> ( CountryInfo                         <$> parseJSON v )
     <|> ( CraftGiftResult                     <$> parseJSON v )
     <|> ( CreatedBasicGroupChat               <$> parseJSON v )
+    <|> ( Currencies                          <$> parseJSON v )
+    <|> ( CurrencyExchangeRates               <$> parseJSON v )
     <|> ( CurrentWeather                      <$> parseJSON v )
     <|> ( CustomRequestResult                 <$> parseJSON v )
     <|> ( Data                                <$> parseJSON v )
@@ -1331,6 +1422,11 @@ instance T.FromJSON GeneralResult where
     <|> ( NotificationSounds                  <$> parseJSON v )
     <|> ( OauthLinkInfo                       <$> parseJSON v )
     <|> ( Ok                                  <$> parseJSON v )
+    <|> ( OnRampPaymentAvailability           <$> parseJSON v )
+    <|> ( OnRampPaymentLimits                 <$> parseJSON v )
+    <|> ( OnRampPaymentQuote                  <$> parseJSON v )
+    <|> ( OnRampPaymentSession                <$> parseJSON v )
+    <|> ( OnRampProviders                     <$> parseJSON v )
     <|> ( OptionValue                         <$> parseJSON v )
     <|> ( OrderInfo                           <$> parseJSON v )
     <|> ( Outline                             <$> parseJSON v )
@@ -1418,7 +1514,18 @@ instance T.FromJSON GeneralResult where
     <|> ( TextCompositionStyleExample         <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
+    <|> ( TonCenterStreamingApiUrl            <$> parseJSON v )
+    <|> ( TonConnectChallenge                 <$> parseJSON v )
+    <|> ( TonConnectRequests                  <$> parseJSON v )
+    <|> ( TonConnectSession                   <$> parseJSON v )
+    <|> ( TonConnectSessionEventId            <$> parseJSON v )
+    <|> ( TonConnectSessions                  <$> parseJSON v )
+    <|> ( TonNfts                             <$> parseJSON v )
     <|> ( TonTransactions                     <$> parseJSON v )
+    <|> ( TonWalletOwnershipProofChallenge    <$> parseJSON v )
+    <|> ( TonWalletTransaction                <$> parseJSON v )
+    <|> ( TonWalletTransactions               <$> parseJSON v )
+    <|> ( TonWalletTransferResult             <$> parseJSON v )
     <|> ( TrendingStickerSets                 <$> parseJSON v )
     <|> ( Update                              <$> parseJSON v )
     <|> ( Updates                             <$> parseJSON v )
@@ -1430,9 +1537,12 @@ instance T.FromJSON GeneralResult where
     <|> ( UserLink                            <$> parseJSON v )
     <|> ( UserPrivacySettingRules             <$> parseJSON v )
     <|> ( UserSupportInfo                     <$> parseJSON v )
+    <|> ( UserTonWalletAddress                <$> parseJSON v )
+    <|> ( UserTonWalletAddresses              <$> parseJSON v )
     <|> ( Users                               <$> parseJSON v )
     <|> ( ValidatedOrderInfo                  <$> parseJSON v )
     <|> ( VideoMessageAdvertisements          <$> parseJSON v )
+    <|> ( WalletBotBalance                    <$> parseJSON v )
     <|> ( WebAppInfo                          <$> parseJSON v )
     <|> ( WebAppUrl                           <$> parseJSON v )
     <|> ( WebBrowserType                      <$> parseJSON v )

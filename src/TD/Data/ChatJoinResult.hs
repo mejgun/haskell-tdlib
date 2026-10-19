@@ -10,7 +10,7 @@ data ChatJoinResult
   = ChatJoinResultSuccess -- ^ The chat was joined successfully
     { chat_id :: Maybe Int -- ^ Identifier of the chat
     }
-  | ChatJoinResultRequestSent -- ^ The join request was sent and have to be approved by administrators of the chat
+  | ChatJoinResultRequestSent -- ^ The join request was sent and has to be approved by administrators of the chat
   | ChatJoinResultGuardBotApprovalRequired -- ^ An approval from a guard bot through a Web App is required to join the chat
     { bot_user_id :: Maybe Int -- ^ Identifier of the guard bot
     , query_id    :: Maybe Int -- ^ Unique identifier of the join request, which will be used in getGuardBotWebAppUrl and updateChatJoinResult

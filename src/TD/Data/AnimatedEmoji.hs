@@ -14,6 +14,7 @@ data AnimatedEmoji
     , sticker_height   :: Maybe Int             -- ^ Expected height of the sticker, which can be used if the sticker is null
     , fitzpatrick_type :: Maybe Int             -- ^ Emoji modifier fitzpatrick type; 0-6; 0 if none
     , sound            :: Maybe File.File       -- ^ File containing the sound to be played when the sticker is clicked; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container
+    , is_regular_emoji :: Maybe Bool            -- ^ True, if the emoji is a regular emoji
     }
   deriving (Eq, Show)
 
@@ -24,6 +25,7 @@ instance I.ShortShow AnimatedEmoji where
     , sticker_height   = sticker_height_
     , fitzpatrick_type = fitzpatrick_type_
     , sound            = sound_
+    , is_regular_emoji = is_regular_emoji_
     }
       = "AnimatedEmoji"
         ++ I.cc
@@ -32,6 +34,7 @@ instance I.ShortShow AnimatedEmoji where
         , "sticker_height"   `I.p` sticker_height_
         , "fitzpatrick_type" `I.p` fitzpatrick_type_
         , "sound"            `I.p` sound_
+        , "is_regular_emoji" `I.p` is_regular_emoji_
         ]
 
 instance AT.FromJSON AnimatedEmoji where
@@ -50,12 +53,14 @@ instance AT.FromJSON AnimatedEmoji where
         sticker_height_   <- o A..:?  "sticker_height"
         fitzpatrick_type_ <- o A..:?  "fitzpatrick_type"
         sound_            <- o A..:?  "sound"
+        is_regular_emoji_ <- o A..:?  "is_regular_emoji"
         pure $ AnimatedEmoji
           { sticker          = sticker_
           , sticker_width    = sticker_width_
           , sticker_height   = sticker_height_
           , fitzpatrick_type = fitzpatrick_type_
           , sound            = sound_
+          , is_regular_emoji = is_regular_emoji_
           }
   parseJSON _ = mempty
 

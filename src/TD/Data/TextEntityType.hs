@@ -17,6 +17,7 @@ data TextEntityType
   | TextEntityTypeEmailAddress -- ^ An email address
   | TextEntityTypePhoneNumber -- ^ A phone number
   | TextEntityTypeBankCardNumber -- ^ A bank card number. The getBankCardInfo method can be used to get information about the bank card
+  | TextEntityTypeTonAddress -- ^ An address in the TON blockchain
   | TextEntityTypeBold -- ^ A bold text
   | TextEntityTypeItalic -- ^ An italic text
   | TextEntityTypeUnderline -- ^ An underlined text
@@ -32,7 +33,7 @@ data TextEntityType
   | TextEntityTypeTextUrl -- ^ A text description shown instead of a raw URL
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the link is clicked
     }
-  | TextEntityTypeMentionName -- ^ A text shows instead of a raw mention of the user (e.g., when the user has no username)
+  | TextEntityTypeMentionName -- ^ A text shown instead of a raw mention of the user (e.g., when the user has no username)
     { user_id :: Maybe Int -- ^ Identifier of the mentioned user
     }
   | TextEntityTypeCustomEmoji -- ^ A custom emoji. The text behind a custom emoji must be an emoji. Only premium users can use premium custom emoji
@@ -64,6 +65,8 @@ instance I.ShortShow TextEntityType where
       = "TextEntityTypePhoneNumber"
   shortShow TextEntityTypeBankCardNumber
       = "TextEntityTypeBankCardNumber"
+  shortShow TextEntityTypeTonAddress
+      = "TextEntityTypeTonAddress"
   shortShow TextEntityTypeBold
       = "TextEntityTypeBold"
   shortShow TextEntityTypeItalic
@@ -140,6 +143,7 @@ instance AT.FromJSON TextEntityType where
       "textEntityTypeEmailAddress"         -> pure TextEntityTypeEmailAddress
       "textEntityTypePhoneNumber"          -> pure TextEntityTypePhoneNumber
       "textEntityTypeBankCardNumber"       -> pure TextEntityTypeBankCardNumber
+      "textEntityTypeTonAddress"           -> pure TextEntityTypeTonAddress
       "textEntityTypeBold"                 -> pure TextEntityTypeBold
       "textEntityTypeItalic"               -> pure TextEntityTypeItalic
       "textEntityTypeUnderline"            -> pure TextEntityTypeUnderline
@@ -230,6 +234,10 @@ instance AT.ToJSON TextEntityType where
   toJSON TextEntityTypeBankCardNumber
       = A.object
         [ "@type" A..= AT.String "textEntityTypeBankCardNumber"
+        ]
+  toJSON TextEntityTypeTonAddress
+      = A.object
+        [ "@type" A..= AT.String "textEntityTypeTonAddress"
         ]
   toJSON TextEntityTypeBold
       = A.object

@@ -12,7 +12,7 @@ data ChatRevenueStatistics
     { revenue_by_hour_graph :: Maybe StatisticalGraph.StatisticalGraph   -- ^ A graph containing amount of revenue in a given hour
     , revenue_graph         :: Maybe StatisticalGraph.StatisticalGraph   -- ^ A graph containing amount of revenue
     , revenue_amount        :: Maybe ChatRevenueAmount.ChatRevenueAmount -- ^ Amount of earned revenue
-    , usd_rate              :: Maybe Double                              -- ^ Current conversion rate of the cryptocurrency in which revenue is calculated to USD
+    , usd_rate              :: Maybe Double                              -- ^ Current exchange rate of the cryptocurrency in which revenue is calculated to USD
     }
   deriving (Eq, Show)
 

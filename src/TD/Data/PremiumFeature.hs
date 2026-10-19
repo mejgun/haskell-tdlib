@@ -20,7 +20,7 @@ data PremiumFeature
   | PremiumFeatureEmojiStatus -- ^ The ability to show an emoji status along with the user's name
   | PremiumFeatureAnimatedProfilePhoto -- ^ Profile photo animation on message and chat screens
   | PremiumFeatureForumTopicIcon -- ^ The ability to set a custom emoji as a forum topic icon
-  | PremiumFeatureAppIcons -- ^ Allowed to set a premium application icons
+  | PremiumFeatureAppIcons -- ^ Allowed to set premium application icons
   | PremiumFeatureRealTimeChatTranslation -- ^ Allowed to translate chat messages real-time
   | PremiumFeatureUpgradedStories -- ^ Allowed to use many additional features for stories
   | PremiumFeatureChatBoost -- ^ The ability to boost chats

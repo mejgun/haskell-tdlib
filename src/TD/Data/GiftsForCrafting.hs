@@ -12,7 +12,7 @@ data GiftsForCrafting
   = GiftsForCrafting -- ^ Represents a list of gifts received by a user or a chat
     { total_count                         :: Maybe Int                                                                         -- ^ The total number of received gifts
     , gifts                               :: Maybe [ReceivedGift.ReceivedGift]                                                 -- ^ The list of gifts
-    , attribute_persistence_probabilities :: Maybe [AttributeCraftPersistenceProbability.AttributeCraftPersistenceProbability] -- ^ The 4 objects that describe probabilities of the crafted gift to have the backdrop or symbol of one of the original gifts for the cases when 1, 2, 3 or 4 gifts are used in the craft correspondingly
+    , attribute_persistence_probabilities :: Maybe [AttributeCraftPersistenceProbability.AttributeCraftPersistenceProbability] -- ^ The 4 objects that describe probabilities of the crafted gift to have the backdrop or symbol of one of the original gifts for the cases when 1-4 gifts are used in the craft correspondingly
     , next_offset                         :: Maybe T.Text                                                                      -- ^ The offset for the next request. If empty, then there are no more results
     }
   deriving (Eq, Show)

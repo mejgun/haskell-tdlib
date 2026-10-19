@@ -11,7 +11,7 @@ data GramRevenueStatistics
   = GramRevenueStatistics -- ^ A detailed statistics about TON Grams earned by the current user
     { revenue_by_day_graph :: Maybe StatisticalGraph.StatisticalGraph   -- ^ A graph containing amount of revenue in a given day
     , status               :: Maybe GramRevenueStatus.GramRevenueStatus -- ^ Amount of earned revenue
-    , usd_rate             :: Maybe Double                              -- ^ Current conversion rate of nanogram to USD cents
+    , usd_rate             :: Maybe Double                              -- ^ Current exchange rate of nanogram to USD cents
     }
   deriving (Eq, Show)
 

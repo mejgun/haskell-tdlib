@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color. Returns 'TD.Data.Ok.Ok'
+-- | Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to set a custom emoji sticker set. Returns 'TD.Data.Ok.Ok'
 data SetSupergroupCustomEmojiStickerSet
   = SetSupergroupCustomEmojiStickerSet
     { supergroup_id               :: Maybe Int -- ^ Identifier of the supergroup

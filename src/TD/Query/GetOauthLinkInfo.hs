@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest to process the link. Returns 'TD.Data.OauthLinkInfo.OauthLinkInfo'
+-- | Returns information about an OAuth deep link. Use checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest to process the link. Returns 'TD.Data.OauthLinkInfo.OauthLinkInfo'
 data GetOauthLinkInfo
   = GetOauthLinkInfo
     { url           :: Maybe T.Text -- ^ URL of the link

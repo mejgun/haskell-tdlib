@@ -13,7 +13,7 @@ data CreateBot
   = CreateBot
     { manager_bot_user_id :: Maybe Int    -- ^ Identifier of the bot that will manage the created bot
     , name                :: Maybe T.Text -- ^ Name of the bot; 1-64 characters
-    , username            :: Maybe T.Text -- ^ Username of the bot. The username must end with "bot". Use checkBotUsername to find whether the name is suitable
+    , username            :: Maybe T.Text -- ^ Username of the bot. The username must end with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive. Use checkBotUsername to find whether the name is suitable. If the username doesn't end with "bot", then the current user must have Telegram Premium subscription, the chosen username will be assigned as secondary and an additional regular username ending with "bot" will be automatically assigned to the created bot
     , via_link            :: Maybe Bool   -- ^ Pass true if the bot is created from an internalLinkTypeRequestManagedBot link
     }
   deriving (Eq, Show)

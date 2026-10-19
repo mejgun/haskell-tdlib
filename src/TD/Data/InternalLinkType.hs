@@ -12,10 +12,12 @@ import qualified TD.Data.FormattedText as FormattedText
 import qualified TD.Data.StoryContentType as StoryContentType
 import qualified TD.Data.Proxy as Proxy
 import qualified TD.Data.SettingsSection as SettingsSection
+import qualified TD.Data.TonConnectConnectRequest as TonConnectConnectRequest
+import qualified TD.Data.TonWalletTransferReceiver as TonWalletTransferReceiver
 
 -- | Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
 data InternalLinkType
-  = InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+  = InternalLinkTypeAttachmentMenuBot -- ^ The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     { target_chat  :: Maybe TargetChat.TargetChat -- ^ Target chat to be opened
     , bot_username :: Maybe T.Text                -- ^ Username of the bot
     , url          :: Maybe T.Text                -- ^ URL to be passed to openWebApp
@@ -114,7 +116,7 @@ data InternalLinkType
   | InternalLinkTypeNewStory -- ^ The link is a link to open the story posting interface
     { content_type :: Maybe StoryContentType.StoryContentType -- ^ The type of the content of the story to post; may be null if unspecified
     }
-  | InternalLinkTypeOauth -- ^ The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest or declineOauthRequest
+  | InternalLinkTypeOauth -- ^ The link is an OAuth link. Call getOauthLinkInfo with the given URL to process the link if the link was received from outside of the application; otherwise, ignore it. After getOauthLinkInfo, show the user confirmation dialog and process it with checkOauthRequestMatchCode, acceptOauthRequest, or declineOauthRequest
     { url :: Maybe T.Text -- ^ URL to be passed to getOauthLinkInfo
     }
   | InternalLinkTypePassportDataRequest -- ^ The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
@@ -148,7 +150,7 @@ data InternalLinkType
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRequestManagedBot -- ^ The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
     { manager_bot_username   :: Maybe T.Text -- ^ Username of the bot which will manage the new bot
-    , suggested_bot_username :: Maybe T.Text -- ^ Suggested username for the bot; always ends with "bot" case-insensitive
+    , suggested_bot_username :: Maybe T.Text -- ^ Suggested username for the bot; always ends with "bot" or a string from updateAllowedBotUsernamePremiumSuffixes case-insensitive
     , suggested_bot_name     :: Maybe T.Text -- ^ Suggested name for the bot; may be empty if not specified
     }
   | InternalLinkTypeRestorePurchases -- ^ The link forces restore of App Store purchases when opened. For official iOS application only
@@ -179,6 +181,18 @@ data InternalLinkType
   | InternalLinkTypeTheme -- ^ The link is a link to a cloud theme. TDLib has no theme support yet
     { theme_name :: Maybe T.Text -- ^ Name of the theme
     }
+  | InternalLinkTypeTonConnect -- ^ The link is a universal TON Connect link
+    { version         :: Maybe Int                                               -- ^ TON Connect version
+    , dapp_client_id  :: Maybe T.Text                                            -- ^ Hex-encoded public X25519 key of the dApp
+    , connect_request :: Maybe TonConnectConnectRequest.TonConnectConnectRequest -- ^ TON Connect connect request
+    , return_strategy :: Maybe T.Text                                            -- ^ Request return strategy; one of "back", "none", or a URL to open
+    , rpc_request     :: Maybe T.Text                                            -- ^ Embedded RPC request represented as base64url-encoded JSON
+    , trace_id        :: Maybe T.Text                                            -- ^ Identifier to trace the connection request
+    }
+  | InternalLinkTypeTonWalletTransfer -- ^ The link is a link for sending Grams from the user's TON wallet
+    { receiver    :: Maybe TonWalletTransferReceiver.TonWalletTransferReceiver -- ^ Chosen receiver of the transfer; may be null if none
+    , gram_amount :: Maybe Int                                                 -- ^ The pre-filled amount of TON Grams to send; in the smallest units of the cryptocurrency
+    }
   | InternalLinkTypeUnknownDeepLink -- ^ The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     { link :: Maybe T.Text -- ^ Link to be passed to getDeepLinkInfo
     }
@@ -198,7 +212,7 @@ data InternalLinkType
     , invite_hash    :: Maybe T.Text -- ^ If non-empty, invite hash to be used to join the video chat without being muted by administrators
     , is_live_stream :: Maybe Bool   -- ^ True, if the video chat is expected to be a live stream in a channel or a broadcast group
     }
-  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+  | InternalLinkTypeWebApp -- ^ The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accepts the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
     { bot_username       :: Maybe T.Text                        -- ^ Username of the bot that owns the Web App
     , web_app_short_name :: Maybe T.Text                        -- ^ Short name of the Web App
     , start_parameter    :: Maybe T.Text                        -- ^ Start parameter to be passed to getWebAppLinkUrl
@@ -578,6 +592,32 @@ instance I.ShortShow InternalLinkType where
         ++ I.cc
         [ "theme_name" `I.p` theme_name_
         ]
+  shortShow InternalLinkTypeTonConnect
+    { version         = version_
+    , dapp_client_id  = dapp_client_id_
+    , connect_request = connect_request_
+    , return_strategy = return_strategy_
+    , rpc_request     = rpc_request_
+    , trace_id        = trace_id_
+    }
+      = "InternalLinkTypeTonConnect"
+        ++ I.cc
+        [ "version"         `I.p` version_
+        , "dapp_client_id"  `I.p` dapp_client_id_
+        , "connect_request" `I.p` connect_request_
+        , "return_strategy" `I.p` return_strategy_
+        , "rpc_request"     `I.p` rpc_request_
+        , "trace_id"        `I.p` trace_id_
+        ]
+  shortShow InternalLinkTypeTonWalletTransfer
+    { receiver    = receiver_
+    , gram_amount = gram_amount_
+    }
+      = "InternalLinkTypeTonWalletTransfer"
+        ++ I.cc
+        [ "receiver"    `I.p` receiver_
+        , "gram_amount" `I.p` gram_amount_
+        ]
   shortShow InternalLinkTypeUnknownDeepLink
     { link = link_
     }
@@ -691,6 +731,8 @@ instance AT.FromJSON InternalLinkType where
       "internalLinkTypeStoryAlbum"              -> parseInternalLinkTypeStoryAlbum v
       "internalLinkTypeTextCompositionStyle"    -> parseInternalLinkTypeTextCompositionStyle v
       "internalLinkTypeTheme"                   -> parseInternalLinkTypeTheme v
+      "internalLinkTypeTonConnect"              -> parseInternalLinkTypeTonConnect v
+      "internalLinkTypeTonWalletTransfer"       -> parseInternalLinkTypeTonWalletTransfer v
       "internalLinkTypeUnknownDeepLink"         -> parseInternalLinkTypeUnknownDeepLink v
       "internalLinkTypeUpgradedGift"            -> parseInternalLinkTypeUpgradedGift v
       "internalLinkTypeUserPhoneNumber"         -> parseInternalLinkTypeUserPhoneNumber v
@@ -1011,6 +1053,30 @@ instance AT.FromJSON InternalLinkType where
         theme_name_ <- o A..:?  "theme_name"
         pure $ InternalLinkTypeTheme
           { theme_name = theme_name_
+          }
+      parseInternalLinkTypeTonConnect :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeTonConnect = A.withObject "InternalLinkTypeTonConnect" $ \o -> do
+        version_         <- o A..:?  "version"
+        dapp_client_id_  <- o A..:?  "dapp_client_id"
+        connect_request_ <- o A..:?  "connect_request"
+        return_strategy_ <- o A..:?  "return_strategy"
+        rpc_request_     <- o A..:?  "rpc_request"
+        trace_id_        <- o A..:?  "trace_id"
+        pure $ InternalLinkTypeTonConnect
+          { version         = version_
+          , dapp_client_id  = dapp_client_id_
+          , connect_request = connect_request_
+          , return_strategy = return_strategy_
+          , rpc_request     = rpc_request_
+          , trace_id        = trace_id_
+          }
+      parseInternalLinkTypeTonWalletTransfer :: A.Value -> AT.Parser InternalLinkType
+      parseInternalLinkTypeTonWalletTransfer = A.withObject "InternalLinkTypeTonWalletTransfer" $ \o -> do
+        receiver_    <- o A..:?  "receiver"
+        gram_amount_ <- o A..:?  "gram_amount"
+        pure $ InternalLinkTypeTonWalletTransfer
+          { receiver    = receiver_
+          , gram_amount = gram_amount_
           }
       parseInternalLinkTypeUnknownDeepLink :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUnknownDeepLink = A.withObject "InternalLinkTypeUnknownDeepLink" $ \o -> do
@@ -1451,6 +1517,32 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"      A..= AT.String "internalLinkTypeTheme"
         , "theme_name" A..= theme_name_
+        ]
+  toJSON InternalLinkTypeTonConnect
+    { version         = version_
+    , dapp_client_id  = dapp_client_id_
+    , connect_request = connect_request_
+    , return_strategy = return_strategy_
+    , rpc_request     = rpc_request_
+    , trace_id        = trace_id_
+    }
+      = A.object
+        [ "@type"           A..= AT.String "internalLinkTypeTonConnect"
+        , "version"         A..= version_
+        , "dapp_client_id"  A..= dapp_client_id_
+        , "connect_request" A..= connect_request_
+        , "return_strategy" A..= return_strategy_
+        , "rpc_request"     A..= rpc_request_
+        , "trace_id"        A..= trace_id_
+        ]
+  toJSON InternalLinkTypeTonWalletTransfer
+    { receiver    = receiver_
+    , gram_amount = gram_amount_
+    }
+      = A.object
+        [ "@type"       A..= AT.String "internalLinkTypeTonWalletTransfer"
+        , "receiver"    A..= receiver_
+        , "gram_amount" A..= gram_amount_
         ]
   toJSON InternalLinkTypeUnknownDeepLink
     { link = link_

@@ -16,7 +16,7 @@ data InputStoryAreaType
     , address  :: Maybe LocationAddress.LocationAddress -- ^ Address of the location; pass null if unknown
     }
   | InputStoryAreaTypeFoundVenue -- ^ An area pointing to a venue found by the bot getOption("venue_search_bot_username")
-    { query_id  :: Maybe Int    -- ^ Identifier of the inline query, used to found the venue
+    { query_id  :: Maybe Int    -- ^ Identifier of the inline query, used to find the venue
     , result_id :: Maybe T.Text -- ^ Identifier of the inline query result
     }
   | InputStoryAreaTypePreviousVenue -- ^ An area pointing to a venue already added to the story
@@ -32,7 +32,7 @@ data InputStoryAreaType
     { chat_id    :: Maybe Int -- ^ Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
     , message_id :: Maybe Int -- ^ Identifier of the message. Use messageProperties.can_be_shared_in_story to check whether the message is suitable
     }
-  | InputStoryAreaTypeLink -- ^ An area pointing to a HTTP or tg:// link
+  | InputStoryAreaTypeLink -- ^ An area pointing to an HTTP or tg:// link
     { url :: Maybe T.Text -- ^ HTTP or tg:// URL to be opened when the area is clicked
     }
   | InputStoryAreaTypeWeather -- ^ An area with information about weather

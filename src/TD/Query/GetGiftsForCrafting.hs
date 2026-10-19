@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns upgraded gifts of the current user who can be used to craft another gifts. Returns 'TD.Data.GiftsForCrafting.GiftsForCrafting'
+-- | Returns upgraded gifts of the current user, which can be used to craft other gifts. Returns 'TD.Data.GiftsForCrafting.GiftsForCrafting'
 data GetGiftsForCrafting
   = GetGiftsForCrafting
     { regular_gift_id :: Maybe Int    -- ^ Identifier of the regular gift that will be used for crafting

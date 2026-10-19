@@ -8,7 +8,7 @@ import qualified TD.Data.AffiliateProgramInfo as AffiliateProgramInfo
 
 data FoundAffiliateProgram
   = FoundAffiliateProgram -- ^ Describes a found affiliate program
-    { bot_user_id :: Maybe Int                                       -- ^ User identifier of the bot created the program
+    { bot_user_id :: Maybe Int                                       -- ^ User identifier of the bot that created the program
     , info        :: Maybe AffiliateProgramInfo.AffiliateProgramInfo -- ^ Information about the affiliate program
     }
   deriving (Eq, Show)

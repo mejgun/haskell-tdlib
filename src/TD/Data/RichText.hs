@@ -59,6 +59,10 @@ data RichText
     { _text            :: Maybe RichText -- ^ Text
     , bank_card_number :: Maybe T.Text   -- ^ The number of the bank card
     }
+  | RichTextTonAddress -- ^ An address in the TON blockchain
+    { _text   :: Maybe RichText -- ^ Text
+    , address :: Maybe T.Text   -- ^ The address
+    }
   | RichTextBotCommand -- ^ A bot command
     { _text       :: Maybe RichText -- ^ Text
     , bot_command :: Maybe T.Text   -- ^ The bot command
@@ -88,7 +92,7 @@ data RichText
     , alternative_text :: Maybe T.Text -- ^ Alternative text for the custom emoji
     }
   | RichTextIcon -- ^ A small image inside the text; instant view only
-    { document :: Maybe Document.Document -- ^ The image represented as a document. The image can be in GIF, JPEG or PNG format
+    { document :: Maybe Document.Document -- ^ The image represented as a document. The image can be in GIF, JPEG, or PNG format
     , width    :: Maybe Int               -- ^ Width of a bounding box in which the image must be shown; 0 if unknown
     , height   :: Maybe Int               -- ^ Height of a bounding box in which the image must be shown; 0 if unknown
     }
@@ -234,6 +238,15 @@ instance I.ShortShow RichText where
         ++ I.cc
         [ "_text"            `I.p` _text_
         , "bank_card_number" `I.p` bank_card_number_
+        ]
+  shortShow RichTextTonAddress
+    { _text   = _text_
+    , address = address_
+    }
+      = "RichTextTonAddress"
+        ++ I.cc
+        [ "_text"   `I.p` _text_
+        , "address" `I.p` address_
         ]
   shortShow RichTextBotCommand
     { _text       = _text_
@@ -397,6 +410,7 @@ instance AT.FromJSON RichText where
       "richTextHashtag"                -> parseRichTextHashtag v
       "richTextCashtag"                -> parseRichTextCashtag v
       "richTextBankCardNumber"         -> parseRichTextBankCardNumber v
+      "richTextTonAddress"             -> parseRichTextTonAddress v
       "richTextBotCommand"             -> parseRichTextBotCommand v
       "richTextFixed"                  -> parseRichTextFixed v
       "richTextMentionName"            -> parseRichTextMentionName v
@@ -511,6 +525,14 @@ instance AT.FromJSON RichText where
         pure $ RichTextBankCardNumber
           { _text            = _text_
           , bank_card_number = bank_card_number_
+          }
+      parseRichTextTonAddress :: A.Value -> AT.Parser RichText
+      parseRichTextTonAddress = A.withObject "RichTextTonAddress" $ \o -> do
+        _text_   <- o A..:?  "text"
+        address_ <- o A..:?  "address"
+        pure $ RichTextTonAddress
+          { _text   = _text_
+          , address = address_
           }
       parseRichTextBotCommand :: A.Value -> AT.Parser RichText
       parseRichTextBotCommand = A.withObject "RichTextBotCommand" $ \o -> do
@@ -750,6 +772,15 @@ instance AT.ToJSON RichText where
         [ "@type"            A..= AT.String "richTextBankCardNumber"
         , "text"             A..= _text_
         , "bank_card_number" A..= bank_card_number_
+        ]
+  toJSON RichTextTonAddress
+    { _text   = _text_
+    , address = address_
+    }
+      = A.object
+        [ "@type"   A..= AT.String "richTextTonAddress"
+        , "text"    A..= _text_
+        , "address" A..= address_
         ]
   toJSON RichTextBotCommand
     { _text       = _text_

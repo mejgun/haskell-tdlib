@@ -10,7 +10,7 @@ import qualified TD.Data.AffiliateProgramParameters as AffiliateProgramParameter
 data ConnectedAffiliateProgram
   = ConnectedAffiliateProgram -- ^ Describes an affiliate program that was connected to an affiliate
     { url                :: Maybe T.Text                                                -- ^ The link that can be used to refer users if the program is still active
-    , bot_user_id        :: Maybe Int                                                   -- ^ User identifier of the bot created the program
+    , bot_user_id        :: Maybe Int                                                   -- ^ User identifier of the bot that created the program
     , parameters         :: Maybe AffiliateProgramParameters.AffiliateProgramParameters -- ^ The parameters of the affiliate program
     , connection_date    :: Maybe Int                                                   -- ^ Point in time (Unix timestamp) when the affiliate program was connected
     , is_disconnected    :: Maybe Bool                                                  -- ^ True, if the program was canceled by the bot, or disconnected by the chat owner and isn't available anymore

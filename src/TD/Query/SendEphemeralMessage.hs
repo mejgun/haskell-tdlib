@@ -22,7 +22,7 @@ data SendEphemeralMessage
     , reply_to                       :: Maybe InputMessageReplyTo.InputMessageReplyTo -- ^ Information about the message to be replied; pass null if none. The message can be an incoming ephemeral message
     , protect_content                :: Maybe Bool                                    -- ^ Pass true if the content of the message must be protected from forwarding and saving; for bots only
     , sending_id                     :: Maybe Int                                     -- ^ Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
-    , only_preview                   :: Maybe Bool                                    -- ^ Pass true to get a fake message instead of actually sending them
+    , only_preview                   :: Maybe Bool                                    -- ^ Pass true to get a fake message instead of actually sending it
     , reply_markup                   :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ Markup for replying to the message; pass null if none; for bots only
     , input_message_content          :: Maybe InputMessageContent.InputMessageContent -- ^ The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     }

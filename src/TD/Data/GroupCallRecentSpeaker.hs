@@ -9,7 +9,7 @@ import qualified TD.Data.MessageSender as MessageSender
 data GroupCallRecentSpeaker
   = GroupCallRecentSpeaker -- ^ Describes a recently speaking participant in a group call
     { participant_id :: Maybe MessageSender.MessageSender -- ^ Group call participant identifier
-    , is_speaking    :: Maybe Bool                        -- ^ True, is the user has spoken recently
+    , is_speaking    :: Maybe Bool                        -- ^ True, if the user has spoken recently
     }
   deriving (Eq, Show)
 

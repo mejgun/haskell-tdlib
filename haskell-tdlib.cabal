@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.25.0
+version:        2.1.26.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -230,6 +230,9 @@ library
       TD.Data.CountryInfo
       TD.Data.CraftGiftResult
       TD.Data.CreatedBasicGroupChat
+      TD.Data.Currencies
+      TD.Data.CurrencyExchangeRate
+      TD.Data.CurrencyExchangeRates
       TD.Data.CurrentWeather
       TD.Data.CustomRequestResult
       TD.Data.Data
@@ -484,6 +487,13 @@ library
       TD.Data.NotificationType
       TD.Data.OauthLinkInfo
       TD.Data.Ok
+      TD.Data.OnRampPaymentAvailability
+      TD.Data.OnRampPaymentLimits
+      TD.Data.OnRampPaymentMethod
+      TD.Data.OnRampPaymentQuote
+      TD.Data.OnRampPaymentSession
+      TD.Data.OnRampProvider
+      TD.Data.OnRampProviders
       TD.Data.OptionValue
       TD.Data.OrderInfo
       TD.Data.Outline
@@ -711,9 +721,35 @@ library
       TD.Data.TMeUrl
       TD.Data.TMeUrls
       TD.Data.TMeUrlType
+      TD.Data.TonCenterApiRequestType
+      TD.Data.TonCenterStreamingApiUrl
+      TD.Data.TonConnectChallenge
+      TD.Data.TonConnectConnectItem
+      TD.Data.TonConnectConnectRequest
+      TD.Data.TonConnectManifest
+      TD.Data.TonConnectRequest
+      TD.Data.TonConnectRequests
+      TD.Data.TonConnectRequestState
+      TD.Data.TonConnectSession
+      TD.Data.TonConnectSessionEventId
+      TD.Data.TonConnectSessions
+      TD.Data.TonConnectSessionState
+      TD.Data.TonNft
+      TD.Data.TonNftAttribute
+      TD.Data.TonNfts
       TD.Data.TonTransaction
       TD.Data.TonTransactions
       TD.Data.TonTransactionType
+      TD.Data.TonWalletGaslessTransfersInfo
+      TD.Data.TonWalletOwnershipProof
+      TD.Data.TonWalletOwnershipProofChallenge
+      TD.Data.TonWalletState
+      TD.Data.TonWalletTransaction
+      TD.Data.TonWalletTransactions
+      TD.Data.TonWalletTransactionState
+      TD.Data.TonWalletTransactionType
+      TD.Data.TonWalletTransferReceiver
+      TD.Data.TonWalletTransferResult
       TD.Data.TopChatCategory
       TD.Data.TransactionDirection
       TD.Data.TrendingStickerSets
@@ -748,6 +784,8 @@ library
       TD.Data.Users
       TD.Data.UserStatus
       TD.Data.UserSupportInfo
+      TD.Data.UserTonWalletAddress
+      TD.Data.UserTonWalletAddresses
       TD.Data.UserType
       TD.Data.ValidatedOrderInfo
       TD.Data.VectorPathCommand
@@ -760,6 +798,7 @@ library
       TD.Data.VideoNote
       TD.Data.VideoStoryboard
       TD.Data.VoiceNote
+      TD.Data.WalletBotBalance
       TD.Data.WebApp
       TD.Data.WebAppInfo
       TD.Data.WebAppOpenMode
@@ -778,6 +817,7 @@ library
       TD.Query.AcceptTermsOfService
       TD.Query.ActivateStoryStealthMode
       TD.Query.AddBotMediaPreview
+      TD.Query.AddBotSecondaryUsername
       TD.Query.AddChatFolderByInviteLink
       TD.Query.AddChatMember
       TD.Query.AddChatMembers
@@ -820,6 +860,7 @@ library
       TD.Query.AnswerInlineQuery
       TD.Query.AnswerPreCheckoutQuery
       TD.Query.AnswerShippingQuery
+      TD.Query.AnswerTonConnectRequest
       TD.Query.AnswerWebAppQuery
       TD.Query.ApplyPremiumGiftCode
       TD.Query.ApproveSuggestedPost
@@ -864,7 +905,9 @@ library
       TD.Query.CheckQuickReplyShortcutName
       TD.Query.CheckRecoveryEmailAddressCode
       TD.Query.CheckStickerSetName
+      TD.Query.CheckWalletBotBalance
       TD.Query.CheckWebAppFileDownload
+      TD.Query.ClaimTonConnectRequest
       TD.Query.CleanFileName
       TD.Query.ClearAllDraftMessages
       TD.Query.ClearAutosaveSettingsExceptions
@@ -910,6 +953,7 @@ library
       TD.Query.CreateNewSecretChat
       TD.Query.CreateNewStickerSet
       TD.Query.CreateNewSupergroupChat
+      TD.Query.CreateOnRampPaymentSession
       TD.Query.CreatePrivateChat
       TD.Query.CreateRichMessageWithAi
       TD.Query.CreateSecretChat
@@ -917,6 +961,8 @@ library
       TD.Query.CreateSupergroupChat
       TD.Query.CreateTemporaryPassword
       TD.Query.CreateTextCompositionStyle
+      TD.Query.CreateTonConnectSession
+      TD.Query.CreateUserTonWallet
       TD.Query.CreateVideoChat
       TD.Query.DeclineGroupCallInvitation
       TD.Query.DeclineOauthRequest
@@ -928,6 +974,7 @@ library
       TD.Query.DeleteAllRecentMessageReactionsFromSender
       TD.Query.DeleteAllRevokedChatInviteLinks
       TD.Query.DeleteBotMediaPreviews
+      TD.Query.DeleteBotSecondaryUsername
       TD.Query.DeleteBusinessChatLink
       TD.Query.DeleteBusinessConnectedBot
       TD.Query.DeleteBusinessMessages
@@ -942,6 +989,7 @@ library
       TD.Query.DeleteChatReplyMarkup
       TD.Query.DeleteChatWelcomeMessage
       TD.Query.DeleteCommands
+      TD.Query.DeleteCommunity
       TD.Query.DeleteDefaultBackground
       TD.Query.DeleteDirectMessagesChatTopicHistory
       TD.Query.DeleteDirectMessagesChatTopicMessagesByDate
@@ -969,13 +1017,18 @@ library
       TD.Query.DeleteStory
       TD.Query.DeleteStoryAlbum
       TD.Query.DeleteTextCompositionStyle
+      TD.Query.DeleteTonWallet
       TD.Query.Destroy
       TD.Query.DisableAllSupergroupUsernames
       TD.Query.DisableProxy
+      TD.Query.DisableTonWalletBackup
+      TD.Query.DisableTonWalletBackupWithProof
       TD.Query.DiscardCall
       TD.Query.DisconnectAffiliateProgram
       TD.Query.DisconnectAllWebsites
+      TD.Query.DisconnectTonConnectSession
       TD.Query.DisconnectWebsite
+      TD.Query.DismissWebToken
       TD.Query.DownloadFile
       TD.Query.DropGiftOriginalDetails
       TD.Query.EditBotMediaPreview
@@ -987,7 +1040,6 @@ library
       TD.Query.EditBusinessMessageReplyMarkup
       TD.Query.EditBusinessMessageText
       TD.Query.EditBusinessStory
-      TD.Query.EditCallbackQueryMessage
       TD.Query.EditChatFolder
       TD.Query.EditChatFolderInviteLink
       TD.Query.EditChatInviteLink
@@ -1017,6 +1069,7 @@ library
       TD.Query.EditTextCompositionStyle
       TD.Query.EditUserStarSubscription
       TD.Query.EnableProxy
+      TD.Query.EnableTonWalletBackup
       TD.Query.EncryptGroupCallData
       TD.Query.EndGroupCall
       TD.Query.EndGroupCallRecording
@@ -1027,6 +1080,7 @@ library
       TD.Query.ForwardMessages
       TD.Query.GetAccountTtl
       TD.Query.GetActiveSessions
+      TD.Query.GetAddressTonWallet
       TD.Query.GetAllPassportElements
       TD.Query.GetAllStickerEmojis
       TD.Query.GetAnimatedEmoji
@@ -1114,6 +1168,7 @@ library
       TD.Query.GetCloseFriends
       TD.Query.GetCollectibleItemInfo
       TD.Query.GetCommands
+      TD.Query.GetCommunityFullInfo
       TD.Query.GetConnectedAffiliateProgram
       TD.Query.GetConnectedAffiliatePrograms
       TD.Query.GetConnectedWebsites
@@ -1123,6 +1178,7 @@ library
       TD.Query.GetCountryCode
       TD.Query.GetCountryFlagEmoji
       TD.Query.GetCreatedPublicChats
+      TD.Query.GetCurrencyExchangeRates
       TD.Query.GetCurrentState
       TD.Query.GetCurrentWeather
       TD.Query.GetCustomEmojiReactionAnimations
@@ -1231,6 +1287,11 @@ library
       TD.Query.GetNetworkStatistics
       TD.Query.GetNewChatPrivacySettings
       TD.Query.GetOauthLinkInfo
+      TD.Query.GetOnRampPaymentAvailability
+      TD.Query.GetOnRampPaymentLimits
+      TD.Query.GetOnRampPaymentQuote
+      TD.Query.GetOnRampProviderBaseCurrencies
+      TD.Query.GetOnRampProviders
       TD.Query.GetOption
       TD.Query.GetOwnedBots
       TD.Query.GetOwnedStickerSets
@@ -1327,7 +1388,18 @@ library
       TD.Query.GetThemedEmojiStatuses
       TD.Query.GetThemeParametersJsonString
       TD.Query.GetTimeZones
+      TD.Query.GetTonCenterStreamingApiUrl
+      TD.Query.GetTonConnectDAppPendingRequests
+      TD.Query.GetTonConnectSessionNextEventId
+      TD.Query.GetTonConnectSessionPendingRequests
+      TD.Query.GetTonConnectSessions
       TD.Query.GetTonTransactions
+      TD.Query.GetTonWalletNfts
+      TD.Query.GetTonWalletOwnershipProofChallenge
+      TD.Query.GetTonWalletSecretPhrase
+      TD.Query.GetTonWalletTransaction
+      TD.Query.GetTonWalletTransactionByMsgHash
+      TD.Query.GetTonWalletTransactions
       TD.Query.GetTopChats
       TD.Query.GetTrendingStickerSets
       TD.Query.GetUpgradedGift
@@ -1344,6 +1416,7 @@ library
       TD.Query.GetUserProfileAudios
       TD.Query.GetUserProfilePhotos
       TD.Query.GetUserSupportInfo
+      TD.Query.GetUserTonWalletAddresses
       TD.Query.GetVideoChatAvailableParticipants
       TD.Query.GetVideoChatInviteLink
       TD.Query.GetVideoChatRtmpUrl
@@ -1374,12 +1447,13 @@ library
       TD.Query.LoadActiveStories
       TD.Query.LoadChats
       TD.Query.LoadChatWelcomeMessages
-      TD.Query.LoadCommunityFullInfo
       TD.Query.LoadDirectMessagesChatTopics
       TD.Query.LoadGroupCallParticipants
       TD.Query.LoadQuickReplyShortcutMessages
       TD.Query.LoadQuickReplyShortcuts
       TD.Query.LoadSavedMessagesTopics
+      TD.Query.LoadTonWalletGaslessTransfersInfo
+      TD.Query.LoadTonWalletState
       TD.Query.LogOut
       TD.Query.MarkChecklistTasksAsDone
       TD.Query.OpenBotSimilarBot
@@ -1465,7 +1539,9 @@ library
       TD.Query.ReplaceLiveStoryRtmpUrl
       TD.Query.ReplacePrimaryChatInviteLink
       TD.Query.ReplaceStickerInSet
+      TD.Query.ReplaceTonWallet
       TD.Query.ReplaceVideoChatRtmpUrl
+      TD.Query.ReplyToCallbackQueryWithEphemeralMessage
       TD.Query.ReportAuthenticationCodeMissing
       TD.Query.ReportChat
       TD.Query.ReportChatPhoto
@@ -1561,6 +1637,9 @@ library
       TD.Query.SendResoldGift
       TD.Query.SendRichMessageDraft
       TD.Query.SendTextMessageDraft
+      TD.Query.SendTonCenterApiRequest
+      TD.Query.SendTonConnectSessionConnectResult
+      TD.Query.SendTonWalletTransfer
       TD.Query.SendWebAppCustomRequest
       TD.Query.SendWebAppData
       TD.Query.SetAccentColor
@@ -1620,6 +1699,8 @@ library
       TD.Query.SetCloseFriends
       TD.Query.SetCommands
       TD.Query.SetCommunityName
+      TD.Query.SetCommunityPermissions
+      TD.Query.SetCommunityPhoto
       TD.Query.SetCustomEmojiStickerSetThumbnail
       TD.Query.SetCustomLanguagePack
       TD.Query.SetCustomLanguagePackString
@@ -1692,6 +1773,7 @@ library
       TD.Query.SetSupergroupUnrestrictBoostCount
       TD.Query.SetSupergroupUsername
       TD.Query.SetTdlibParameters
+      TD.Query.SetTonConnectSessionWalletClientId
       TD.Query.SetUpgradedGiftColors
       TD.Query.SetUserEmojiStatus
       TD.Query.SetUsername
