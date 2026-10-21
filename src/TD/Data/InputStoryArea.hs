@@ -6,12 +6,12 @@ module TD.Data.InputStoryArea
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.StoryAreaPosition as StoryAreaPosition
+import qualified TD.Data.AreaPosition as AreaPosition
 import qualified TD.Data.InputStoryAreaType as InputStoryAreaType
 
 data InputStoryArea
   = InputStoryArea -- ^ Describes a clickable rectangle area on a story media to be added
-    { position :: Maybe StoryAreaPosition.StoryAreaPosition   -- ^ Position of the area
+    { position :: Maybe AreaPosition.AreaPosition             -- ^ Position of the area
     , _type    :: Maybe InputStoryAreaType.InputStoryAreaType -- ^ Type of the area
     }
   deriving (Eq, Show)

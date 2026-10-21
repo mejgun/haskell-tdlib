@@ -20,6 +20,7 @@ data ReceivedGift
     , is_pinned                        :: Maybe Bool                        -- ^ True, if the gift is pinned to the top of the chat's profile page
     , can_be_upgraded                  :: Maybe Bool                        -- ^ True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift
     , can_be_transferred               :: Maybe Bool                        -- ^ True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift
+    , can_be_deleted                   :: Maybe Bool                        -- ^ True, if the gift is a regular gift that can be deleted using deleteGift; only for the receiver of the gift
     , was_refunded                     :: Maybe Bool                        -- ^ True, if the gift was refunded and isn't available anymore
     , date                             :: Maybe Int                         -- ^ Point in time (Unix timestamp) when the gift was sent
     , gift                             :: Maybe SentGift.SentGift           -- ^ The gift
@@ -48,6 +49,7 @@ instance I.ShortShow ReceivedGift where
     , is_pinned                        = is_pinned_
     , can_be_upgraded                  = can_be_upgraded_
     , can_be_transferred               = can_be_transferred_
+    , can_be_deleted                   = can_be_deleted_
     , was_refunded                     = was_refunded_
     , date                             = date_
     , gift                             = gift_
@@ -74,6 +76,7 @@ instance I.ShortShow ReceivedGift where
         , "is_pinned"                        `I.p` is_pinned_
         , "can_be_upgraded"                  `I.p` can_be_upgraded_
         , "can_be_transferred"               `I.p` can_be_transferred_
+        , "can_be_deleted"                   `I.p` can_be_deleted_
         , "was_refunded"                     `I.p` was_refunded_
         , "date"                             `I.p` date_
         , "gift"                             `I.p` gift_
@@ -110,6 +113,7 @@ instance AT.FromJSON ReceivedGift where
         is_pinned_                        <- o A..:?  "is_pinned"
         can_be_upgraded_                  <- o A..:?  "can_be_upgraded"
         can_be_transferred_               <- o A..:?  "can_be_transferred"
+        can_be_deleted_                   <- o A..:?  "can_be_deleted"
         was_refunded_                     <- o A..:?  "was_refunded"
         date_                             <- o A..:?  "date"
         gift_                             <- o A..:?  "gift"
@@ -134,6 +138,7 @@ instance AT.FromJSON ReceivedGift where
           , is_pinned                        = is_pinned_
           , can_be_upgraded                  = can_be_upgraded_
           , can_be_transferred               = can_be_transferred_
+          , can_be_deleted                   = can_be_deleted_
           , was_refunded                     = was_refunded_
           , date                             = date_
           , gift                             = gift_

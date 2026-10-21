@@ -16,7 +16,7 @@ data PageBlockListItem
     , has_checkbox :: Maybe Bool                  -- ^ True, if the item has a checkbox
     , is_checked   :: Maybe Bool                  -- ^ True, if the item is checked
     , value        :: Maybe Int                   -- ^ Value of the item; 0 for unordered lists
-    , _type        :: Maybe T.Text                -- ^ Type of the item numbering type; must be one of "a" for lowercase letters, "A" for uppercase letters, "i" for lowercase Roman numerals, "I" for uppercase Roman numerals, "1" for decimal numbers, or empty for unordered lists
+    , _type        :: Maybe T.Text                -- ^ Type of item numbering; must be one of "a" for lowercase letters, "A" for uppercase letters, "i" for lowercase Roman numerals, "I" for uppercase Roman numerals, "1" for decimal numbers, or an empty string for unordered lists
     }
   deriving (Eq, Show)
 

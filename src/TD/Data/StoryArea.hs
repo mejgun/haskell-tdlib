@@ -4,13 +4,13 @@ module TD.Data.StoryArea
 import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
-import qualified TD.Data.StoryAreaPosition as StoryAreaPosition
+import qualified TD.Data.AreaPosition as AreaPosition
 import qualified TD.Data.StoryAreaType as StoryAreaType
 
 data StoryArea
   = StoryArea -- ^ Describes a clickable rectangle area on a story media
-    { position :: Maybe StoryAreaPosition.StoryAreaPosition -- ^ Position of the area
-    , _type    :: Maybe StoryAreaType.StoryAreaType         -- ^ Type of the area
+    { position :: Maybe AreaPosition.AreaPosition   -- ^ Position of the area
+    , _type    :: Maybe StoryAreaType.StoryAreaType -- ^ Type of the area
     }
   deriving (Eq, Show)
 

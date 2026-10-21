@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
 data TemporaryPasswordState
-  = TemporaryPasswordState -- ^ Returns information about the availability of a temporary password, which can be used for payments
+  = TemporaryPasswordState -- ^ Contains information about the availability of a temporary password, which can be used for payments and withdrawal of upgraded gifts
     { has_password :: Maybe Bool -- ^ True, if a temporary password is available
     , valid_for    :: Maybe Int  -- ^ Time left before the temporary password expires, in seconds
     }

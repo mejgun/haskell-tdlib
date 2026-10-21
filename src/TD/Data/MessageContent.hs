@@ -467,6 +467,7 @@ data MessageContent
     , is_saved                   :: Maybe Bool                        -- ^ True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
     , is_prepaid_upgrade         :: Maybe Bool                        -- ^ True, if the message is about prepaid upgrade of the gift by another user
     , can_be_upgraded            :: Maybe Bool                        -- ^ True, if the gift can be upgraded to a unique gift; only for the receiver of the gift
+    , can_be_deleted             :: Maybe Bool                        -- ^ True, if the gift can be deleted using deleteGift; only for the receiver of the gift
     , was_converted              :: Maybe Bool                        -- ^ True, if the gift was converted to Telegram Stars; only for the receiver of the gift
     , was_upgraded               :: Maybe Bool                        -- ^ True, if the gift was upgraded to a unique gift
     , was_refunded               :: Maybe Bool                        -- ^ True, if the gift was refunded and isn't available anymore
@@ -520,6 +521,7 @@ data MessageContent
     { is_enabled              :: Maybe Bool -- ^ True, if direct messages group was enabled for the channel; false otherwise
     , paid_message_star_count :: Maybe Int  -- ^ The new number of Telegram Stars that must be paid by non-administrator users of the channel chat for each message sent to the direct messages group; 0 if the direct messages group was disabled or the messages are free
     }
+  | MessageUnpaidMessagesAllowedByLink -- ^ The sender of the message used a link of the other user, which allows sending unpaid messages to the user
   | MessageChecklistTasksDone -- ^ Some tasks from a checklist were marked as done or not done
     { checklist_message_id        :: Maybe Int   -- ^ Identifier of the message with the checklist; may be 0 or an identifier of a deleted message
     , marked_as_done_task_ids     :: Maybe [Int] -- ^ Identifiers of tasks that were marked as done
@@ -1456,6 +1458,7 @@ instance I.ShortShow MessageContent where
     , is_saved                   = is_saved_
     , is_prepaid_upgrade         = is_prepaid_upgrade_
     , can_be_upgraded            = can_be_upgraded_
+    , can_be_deleted             = can_be_deleted_
     , was_converted              = was_converted_
     , was_upgraded               = was_upgraded_
     , was_refunded               = was_refunded_
@@ -1478,6 +1481,7 @@ instance I.ShortShow MessageContent where
         , "is_saved"                   `I.p` is_saved_
         , "is_prepaid_upgrade"         `I.p` is_prepaid_upgrade_
         , "can_be_upgraded"            `I.p` can_be_upgraded_
+        , "can_be_deleted"             `I.p` can_be_deleted_
         , "was_converted"              `I.p` was_converted_
         , "was_upgraded"               `I.p` was_upgraded_
         , "was_refunded"               `I.p` was_refunded_
@@ -1585,6 +1589,8 @@ instance I.ShortShow MessageContent where
         [ "is_enabled"              `I.p` is_enabled_
         , "paid_message_star_count" `I.p` paid_message_star_count_
         ]
+  shortShow MessageUnpaidMessagesAllowedByLink
+      = "MessageUnpaidMessagesAllowedByLink"
   shortShow MessageChecklistTasksDone
     { checklist_message_id        = checklist_message_id_
     , marked_as_done_task_ids     = marked_as_done_task_ids_
@@ -1822,6 +1828,7 @@ instance AT.FromJSON MessageContent where
       "messagePaidMessagesRefunded"                    -> parseMessagePaidMessagesRefunded v
       "messagePaidMessagePriceChanged"                 -> parseMessagePaidMessagePriceChanged v
       "messageDirectMessagePriceChanged"               -> parseMessageDirectMessagePriceChanged v
+      "messageUnpaidMessagesAllowedByLink"             -> pure MessageUnpaidMessagesAllowedByLink
       "messageChecklistTasksDone"                      -> parseMessageChecklistTasksDone v
       "messageChecklistTasksAdded"                     -> parseMessageChecklistTasksAdded v
       "messageSuggestedPostApprovalFailed"             -> parseMessageSuggestedPostApprovalFailed v
@@ -2622,6 +2629,7 @@ instance AT.FromJSON MessageContent where
         is_saved_                   <- o A..:?  "is_saved"
         is_prepaid_upgrade_         <- o A..:?  "is_prepaid_upgrade"
         can_be_upgraded_            <- o A..:?  "can_be_upgraded"
+        can_be_deleted_             <- o A..:?  "can_be_deleted"
         was_converted_              <- o A..:?  "was_converted"
         was_upgraded_               <- o A..:?  "was_upgraded"
         was_refunded_               <- o A..:?  "was_refunded"
@@ -2642,6 +2650,7 @@ instance AT.FromJSON MessageContent where
           , is_saved                   = is_saved_
           , is_prepaid_upgrade         = is_prepaid_upgrade_
           , can_be_upgraded            = can_be_upgraded_
+          , can_be_deleted             = can_be_deleted_
           , was_converted              = was_converted_
           , was_upgraded               = was_upgraded_
           , was_refunded               = was_refunded_

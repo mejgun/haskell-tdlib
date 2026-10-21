@@ -216,6 +216,7 @@ import qualified TD.Data.PremiumLimit as PremiumLimit
 import qualified TD.Data.PremiumState as PremiumState
 import qualified TD.Data.PreparedInlineMessage as PreparedInlineMessage
 import qualified TD.Data.PreparedInlineMessageId as PreparedInlineMessageId
+import qualified TD.Data.ProfileShareThemeBackdrops as ProfileShareThemeBackdrops
 import qualified TD.Data.PublicForwards as PublicForwards
 import qualified TD.Data.PublicPostSearchLimits as PublicPostSearchLimits
 import qualified TD.Data.PushReceiverId as PushReceiverId
@@ -286,7 +287,9 @@ import qualified TD.Data.TonConnectSessionEventId as TonConnectSessionEventId
 import qualified TD.Data.TonConnectSessions as TonConnectSessions
 import qualified TD.Data.TonNfts as TonNfts
 import qualified TD.Data.TonTransactions as TonTransactions
+import qualified TD.Data.TonWalletCard as TonWalletCard
 import qualified TD.Data.TonWalletOwnershipProofChallenge as TonWalletOwnershipProofChallenge
+import qualified TD.Data.TonWalletSecretPhrase as TonWalletSecretPhrase
 import qualified TD.Data.TonWalletTransaction as TonWalletTransaction
 import qualified TD.Data.TonWalletTransactions as TonWalletTransactions
 import qualified TD.Data.TonWalletTransferResult as TonWalletTransferResult
@@ -295,6 +298,8 @@ import qualified TD.Data.Update as Update
 import qualified TD.Data.Updates as Updates
 import qualified TD.Data.UpgradeGiftResult as UpgradeGiftResult
 import qualified TD.Data.UpgradedGift as UpgradedGift
+import qualified TD.Data.UpgradedGiftCollectionNames as UpgradedGiftCollectionNames
+import qualified TD.Data.UpgradedGiftDepositInfo as UpgradedGiftDepositInfo
 import qualified TD.Data.UpgradedGiftValueInfo as UpgradedGiftValueInfo
 import qualified TD.Data.User as User
 import qualified TD.Data.UserFullInfo as UserFullInfo
@@ -525,6 +530,7 @@ data GeneralResult
     | PremiumState                       PremiumState.PremiumState
     | PreparedInlineMessage              PreparedInlineMessage.PreparedInlineMessage
     | PreparedInlineMessageId            PreparedInlineMessageId.PreparedInlineMessageId
+    | ProfileShareThemeBackdrops         ProfileShareThemeBackdrops.ProfileShareThemeBackdrops
     | PublicForwards                     PublicForwards.PublicForwards
     | PublicPostSearchLimits             PublicPostSearchLimits.PublicPostSearchLimits
     | PushReceiverId                     PushReceiverId.PushReceiverId
@@ -595,7 +601,9 @@ data GeneralResult
     | TonConnectSessions                 TonConnectSessions.TonConnectSessions
     | TonNfts                            TonNfts.TonNfts
     | TonTransactions                    TonTransactions.TonTransactions
+    | TonWalletCard                      TonWalletCard.TonWalletCard
     | TonWalletOwnershipProofChallenge   TonWalletOwnershipProofChallenge.TonWalletOwnershipProofChallenge
+    | TonWalletSecretPhrase              TonWalletSecretPhrase.TonWalletSecretPhrase
     | TonWalletTransaction               TonWalletTransaction.TonWalletTransaction
     | TonWalletTransactions              TonWalletTransactions.TonWalletTransactions
     | TonWalletTransferResult            TonWalletTransferResult.TonWalletTransferResult
@@ -604,6 +612,8 @@ data GeneralResult
     | Updates                            Updates.Updates
     | UpgradeGiftResult                  UpgradeGiftResult.UpgradeGiftResult
     | UpgradedGift                       UpgradedGift.UpgradedGift
+    | UpgradedGiftCollectionNames        UpgradedGiftCollectionNames.UpgradedGiftCollectionNames
+    | UpgradedGiftDepositInfo            UpgradedGiftDepositInfo.UpgradedGiftDepositInfo
     | UpgradedGiftValueInfo              UpgradedGiftValueInfo.UpgradedGiftValueInfo
     | User                               User.User
     | UserFullInfo                       UserFullInfo.UserFullInfo
@@ -1047,6 +1057,8 @@ instance I.ShortShow GeneralResult where
     = "PreparedInlineMessage" <> " (" <> I.shortShow v <> ")"
   shortShow (PreparedInlineMessageId v)
     = "PreparedInlineMessageId" <> " (" <> I.shortShow v <> ")"
+  shortShow (ProfileShareThemeBackdrops v)
+    = "ProfileShareThemeBackdrops" <> " (" <> I.shortShow v <> ")"
   shortShow (PublicForwards v)
     = "PublicForwards" <> " (" <> I.shortShow v <> ")"
   shortShow (PublicPostSearchLimits v)
@@ -1187,8 +1199,12 @@ instance I.ShortShow GeneralResult where
     = "TonNfts" <> " (" <> I.shortShow v <> ")"
   shortShow (TonTransactions v)
     = "TonTransactions" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletCard v)
+    = "TonWalletCard" <> " (" <> I.shortShow v <> ")"
   shortShow (TonWalletOwnershipProofChallenge v)
     = "TonWalletOwnershipProofChallenge" <> " (" <> I.shortShow v <> ")"
+  shortShow (TonWalletSecretPhrase v)
+    = "TonWalletSecretPhrase" <> " (" <> I.shortShow v <> ")"
   shortShow (TonWalletTransaction v)
     = "TonWalletTransaction" <> " (" <> I.shortShow v <> ")"
   shortShow (TonWalletTransactions v)
@@ -1205,6 +1221,10 @@ instance I.ShortShow GeneralResult where
     = "UpgradeGiftResult" <> " (" <> I.shortShow v <> ")"
   shortShow (UpgradedGift v)
     = "UpgradedGift" <> " (" <> I.shortShow v <> ")"
+  shortShow (UpgradedGiftCollectionNames v)
+    = "UpgradedGiftCollectionNames" <> " (" <> I.shortShow v <> ")"
+  shortShow (UpgradedGiftDepositInfo v)
+    = "UpgradedGiftDepositInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (UpgradedGiftValueInfo v)
     = "UpgradedGiftValueInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (User v)
@@ -1452,6 +1472,7 @@ instance T.FromJSON GeneralResult where
     <|> ( PremiumState                        <$> parseJSON v )
     <|> ( PreparedInlineMessage               <$> parseJSON v )
     <|> ( PreparedInlineMessageId             <$> parseJSON v )
+    <|> ( ProfileShareThemeBackdrops          <$> parseJSON v )
     <|> ( PublicForwards                      <$> parseJSON v )
     <|> ( PublicPostSearchLimits              <$> parseJSON v )
     <|> ( PushReceiverId                      <$> parseJSON v )
@@ -1522,7 +1543,9 @@ instance T.FromJSON GeneralResult where
     <|> ( TonConnectSessions                  <$> parseJSON v )
     <|> ( TonNfts                             <$> parseJSON v )
     <|> ( TonTransactions                     <$> parseJSON v )
+    <|> ( TonWalletCard                       <$> parseJSON v )
     <|> ( TonWalletOwnershipProofChallenge    <$> parseJSON v )
+    <|> ( TonWalletSecretPhrase               <$> parseJSON v )
     <|> ( TonWalletTransaction                <$> parseJSON v )
     <|> ( TonWalletTransactions               <$> parseJSON v )
     <|> ( TonWalletTransferResult             <$> parseJSON v )
@@ -1531,6 +1554,8 @@ instance T.FromJSON GeneralResult where
     <|> ( Updates                             <$> parseJSON v )
     <|> ( UpgradeGiftResult                   <$> parseJSON v )
     <|> ( UpgradedGift                        <$> parseJSON v )
+    <|> ( UpgradedGiftCollectionNames         <$> parseJSON v )
+    <|> ( UpgradedGiftDepositInfo             <$> parseJSON v )
     <|> ( UpgradedGiftValueInfo               <$> parseJSON v )
     <|> ( User                                <$> parseJSON v )
     <|> ( UserFullInfo                        <$> parseJSON v )

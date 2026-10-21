@@ -25,6 +25,11 @@ data TonWalletTransactionType
     , comment              :: Maybe T.Text        -- ^ Comment added to the transaction
     , is_comment_encrypted :: Maybe Bool          -- ^ True, if the comment is encrypted and must be decrypted using the user's private key
     }
+  | TonWalletTransactionTypeTelegramGiftTransfer -- ^ A Telegram gift was minted as a TON NFT or was transferred from Telegram to the wallet or back; peer details aren't available for the transaction
+    { nft         :: Maybe TonNft.TonNft -- ^ The minted or transferred NFT
+    , is_outgoing :: Maybe Bool          -- ^ True, if the transfer is from the wallet to Telegram
+    , is_saved    :: Maybe Bool          -- ^ True, if the gift was displayed on the current user's profile page before or after the transfer
+    }
   | TonWalletTransactionTypeKeyChange -- ^ Change of the wallet key
   deriving (Eq, Show)
 
@@ -64,6 +69,17 @@ instance I.ShortShow TonWalletTransactionType where
         , "comment"              `I.p` comment_
         , "is_comment_encrypted" `I.p` is_comment_encrypted_
         ]
+  shortShow TonWalletTransactionTypeTelegramGiftTransfer
+    { nft         = nft_
+    , is_outgoing = is_outgoing_
+    , is_saved    = is_saved_
+    }
+      = "TonWalletTransactionTypeTelegramGiftTransfer"
+        ++ I.cc
+        [ "nft"         `I.p` nft_
+        , "is_outgoing" `I.p` is_outgoing_
+        , "is_saved"    `I.p` is_saved_
+        ]
   shortShow TonWalletTransactionTypeKeyChange
       = "TonWalletTransactionTypeKeyChange"
 
@@ -72,11 +88,12 @@ instance AT.FromJSON TonWalletTransactionType where
     t <- obj A..: "@type" :: AT.Parser String
 
     case t of
-      "tonWalletTransactionTypeOnRampDeposit" -> parseTonWalletTransactionTypeOnRampDeposit v
-      "tonWalletTransactionTypeTransfer"      -> parseTonWalletTransactionTypeTransfer v
-      "tonWalletTransactionTypeNftTransfer"   -> parseTonWalletTransactionTypeNftTransfer v
-      "tonWalletTransactionTypeKeyChange"     -> pure TonWalletTransactionTypeKeyChange
-      _                                       -> mempty
+      "tonWalletTransactionTypeOnRampDeposit"        -> parseTonWalletTransactionTypeOnRampDeposit v
+      "tonWalletTransactionTypeTransfer"             -> parseTonWalletTransactionTypeTransfer v
+      "tonWalletTransactionTypeNftTransfer"          -> parseTonWalletTransactionTypeNftTransfer v
+      "tonWalletTransactionTypeTelegramGiftTransfer" -> parseTonWalletTransactionTypeTelegramGiftTransfer v
+      "tonWalletTransactionTypeKeyChange"            -> pure TonWalletTransactionTypeKeyChange
+      _                                              -> mempty
     
     where
       parseTonWalletTransactionTypeOnRampDeposit :: A.Value -> AT.Parser TonWalletTransactionType
@@ -110,6 +127,16 @@ instance AT.FromJSON TonWalletTransactionType where
           , is_outgoing          = is_outgoing_
           , comment              = comment_
           , is_comment_encrypted = is_comment_encrypted_
+          }
+      parseTonWalletTransactionTypeTelegramGiftTransfer :: A.Value -> AT.Parser TonWalletTransactionType
+      parseTonWalletTransactionTypeTelegramGiftTransfer = A.withObject "TonWalletTransactionTypeTelegramGiftTransfer" $ \o -> do
+        nft_         <- o A..:?  "nft"
+        is_outgoing_ <- o A..:?  "is_outgoing"
+        is_saved_    <- o A..:?  "is_saved"
+        pure $ TonWalletTransactionTypeTelegramGiftTransfer
+          { nft         = nft_
+          , is_outgoing = is_outgoing_
+          , is_saved    = is_saved_
           }
   parseJSON _ = mempty
 

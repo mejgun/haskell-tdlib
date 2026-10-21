@@ -143,9 +143,10 @@ data InternalLinkType
     { proxy :: Maybe Proxy.Proxy -- ^ The proxy; may be null if the proxy is unsupported, in which case an alert can be shown to the user
     }
   | InternalLinkTypePublicChat -- ^ The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
-    { chat_username :: Maybe T.Text -- ^ Username of the chat
-    , draft_text    :: Maybe T.Text -- ^ Draft text for message to send in the chat
-    , open_profile  :: Maybe Bool   -- ^ True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
+    { chat_username         :: Maybe T.Text -- ^ Username of the chat
+    , draft_text            :: Maybe T.Text -- ^ Draft text for message to send in the chat
+    , open_profile          :: Maybe Bool   -- ^ True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
+    , unpaid_messages_token :: Maybe T.Text -- ^ Token, which allows the current user to send unpaid messages; may be empty if none. If the token isn't empty and the chat is a private chat with a regular user, then call applyUnpaidMessagesToken with the user and the token
     }
   | InternalLinkTypeQrCodeAuthentication -- ^ The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
   | InternalLinkTypeRequestManagedBot -- ^ The link is a link to a dialog for creating of a managed bot. Call searchPublicChat with the given manager bot username. If the chat is found, the chat is a chat with a bot and the bot has can_manage_bots == true, then show bot creation confirmation dialog with the given suggested_bot_username and suggested_bot_name. If user agrees, call createBot with via_link == true to create the bot
@@ -200,12 +201,14 @@ data InternalLinkType
     { name :: Maybe T.Text -- ^ Name of the unique gift
     }
   | InternalLinkTypeUserPhoneNumber -- ^ The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
-    { phone_number :: Maybe T.Text -- ^ Phone number of the user
-    , draft_text   :: Maybe T.Text -- ^ Draft text for message to send in the chat
-    , open_profile :: Maybe Bool   -- ^ True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
+    { phone_number          :: Maybe T.Text -- ^ Phone number of the user
+    , draft_text            :: Maybe T.Text -- ^ Draft text for message to send in the chat
+    , open_profile          :: Maybe Bool   -- ^ True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
+    , unpaid_messages_token :: Maybe T.Text -- ^ Token, which allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
     }
   | InternalLinkTypeUserToken -- ^ The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
-    { token :: Maybe T.Text -- ^ The token
+    { token                 :: Maybe T.Text -- ^ The token
+    , unpaid_messages_token :: Maybe T.Text -- ^ Token, which allows the current user to send unpaid messages to the user; may be empty if none. If the token isn't empty and the user is found, then call applyUnpaidMessagesToken with the user and the token
     }
   | InternalLinkTypeVideoChat -- ^ The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinVideoChat with the given invite hash to process the link
     { chat_username  :: Maybe T.Text -- ^ Username of the chat with the video chat
@@ -506,15 +509,17 @@ instance I.ShortShow InternalLinkType where
         [ "proxy" `I.p` proxy_
         ]
   shortShow InternalLinkTypePublicChat
-    { chat_username = chat_username_
-    , draft_text    = draft_text_
-    , open_profile  = open_profile_
+    { chat_username         = chat_username_
+    , draft_text            = draft_text_
+    , open_profile          = open_profile_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = "InternalLinkTypePublicChat"
         ++ I.cc
-        [ "chat_username" `I.p` chat_username_
-        , "draft_text"    `I.p` draft_text_
-        , "open_profile"  `I.p` open_profile_
+        [ "chat_username"         `I.p` chat_username_
+        , "draft_text"            `I.p` draft_text_
+        , "open_profile"          `I.p` open_profile_
+        , "unpaid_messages_token" `I.p` unpaid_messages_token_
         ]
   shortShow InternalLinkTypeQrCodeAuthentication
       = "InternalLinkTypeQrCodeAuthentication"
@@ -633,22 +638,26 @@ instance I.ShortShow InternalLinkType where
         [ "name" `I.p` name_
         ]
   shortShow InternalLinkTypeUserPhoneNumber
-    { phone_number = phone_number_
-    , draft_text   = draft_text_
-    , open_profile = open_profile_
+    { phone_number          = phone_number_
+    , draft_text            = draft_text_
+    , open_profile          = open_profile_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = "InternalLinkTypeUserPhoneNumber"
         ++ I.cc
-        [ "phone_number" `I.p` phone_number_
-        , "draft_text"   `I.p` draft_text_
-        , "open_profile" `I.p` open_profile_
+        [ "phone_number"          `I.p` phone_number_
+        , "draft_text"            `I.p` draft_text_
+        , "open_profile"          `I.p` open_profile_
+        , "unpaid_messages_token" `I.p` unpaid_messages_token_
         ]
   shortShow InternalLinkTypeUserToken
-    { token = token_
+    { token                 = token_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = "InternalLinkTypeUserToken"
         ++ I.cc
-        [ "token" `I.p` token_
+        [ "token"                 `I.p` token_
+        , "unpaid_messages_token" `I.p` unpaid_messages_token_
         ]
   shortShow InternalLinkTypeVideoChat
     { chat_username  = chat_username_
@@ -986,13 +995,15 @@ instance AT.FromJSON InternalLinkType where
           }
       parseInternalLinkTypePublicChat :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypePublicChat = A.withObject "InternalLinkTypePublicChat" $ \o -> do
-        chat_username_ <- o A..:?  "chat_username"
-        draft_text_    <- o A..:?  "draft_text"
-        open_profile_  <- o A..:?  "open_profile"
+        chat_username_         <- o A..:?  "chat_username"
+        draft_text_            <- o A..:?  "draft_text"
+        open_profile_          <- o A..:?  "open_profile"
+        unpaid_messages_token_ <- o A..:?  "unpaid_messages_token"
         pure $ InternalLinkTypePublicChat
-          { chat_username = chat_username_
-          , draft_text    = draft_text_
-          , open_profile  = open_profile_
+          { chat_username         = chat_username_
+          , draft_text            = draft_text_
+          , open_profile          = open_profile_
+          , unpaid_messages_token = unpaid_messages_token_
           }
       parseInternalLinkTypeRequestManagedBot :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeRequestManagedBot = A.withObject "InternalLinkTypeRequestManagedBot" $ \o -> do
@@ -1092,19 +1103,23 @@ instance AT.FromJSON InternalLinkType where
           }
       parseInternalLinkTypeUserPhoneNumber :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserPhoneNumber = A.withObject "InternalLinkTypeUserPhoneNumber" $ \o -> do
-        phone_number_ <- o A..:?  "phone_number"
-        draft_text_   <- o A..:?  "draft_text"
-        open_profile_ <- o A..:?  "open_profile"
+        phone_number_          <- o A..:?  "phone_number"
+        draft_text_            <- o A..:?  "draft_text"
+        open_profile_          <- o A..:?  "open_profile"
+        unpaid_messages_token_ <- o A..:?  "unpaid_messages_token"
         pure $ InternalLinkTypeUserPhoneNumber
-          { phone_number = phone_number_
-          , draft_text   = draft_text_
-          , open_profile = open_profile_
+          { phone_number          = phone_number_
+          , draft_text            = draft_text_
+          , open_profile          = open_profile_
+          , unpaid_messages_token = unpaid_messages_token_
           }
       parseInternalLinkTypeUserToken :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeUserToken = A.withObject "InternalLinkTypeUserToken" $ \o -> do
-        token_ <- o A..:?  "token"
+        token_                 <- o A..:?  "token"
+        unpaid_messages_token_ <- o A..:?  "unpaid_messages_token"
         pure $ InternalLinkTypeUserToken
-          { token = token_
+          { token                 = token_
+          , unpaid_messages_token = unpaid_messages_token_
           }
       parseInternalLinkTypeVideoChat :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeVideoChat = A.withObject "InternalLinkTypeVideoChat" $ \o -> do
@@ -1424,15 +1439,17 @@ instance AT.ToJSON InternalLinkType where
         , "proxy" A..= proxy_
         ]
   toJSON InternalLinkTypePublicChat
-    { chat_username = chat_username_
-    , draft_text    = draft_text_
-    , open_profile  = open_profile_
+    { chat_username         = chat_username_
+    , draft_text            = draft_text_
+    , open_profile          = open_profile_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = A.object
-        [ "@type"         A..= AT.String "internalLinkTypePublicChat"
-        , "chat_username" A..= chat_username_
-        , "draft_text"    A..= draft_text_
-        , "open_profile"  A..= open_profile_
+        [ "@type"                 A..= AT.String "internalLinkTypePublicChat"
+        , "chat_username"         A..= chat_username_
+        , "draft_text"            A..= draft_text_
+        , "open_profile"          A..= open_profile_
+        , "unpaid_messages_token" A..= unpaid_messages_token_
         ]
   toJSON InternalLinkTypeQrCodeAuthentication
       = A.object
@@ -1559,22 +1576,26 @@ instance AT.ToJSON InternalLinkType where
         , "name"  A..= name_
         ]
   toJSON InternalLinkTypeUserPhoneNumber
-    { phone_number = phone_number_
-    , draft_text   = draft_text_
-    , open_profile = open_profile_
+    { phone_number          = phone_number_
+    , draft_text            = draft_text_
+    , open_profile          = open_profile_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = A.object
-        [ "@type"        A..= AT.String "internalLinkTypeUserPhoneNumber"
-        , "phone_number" A..= phone_number_
-        , "draft_text"   A..= draft_text_
-        , "open_profile" A..= open_profile_
+        [ "@type"                 A..= AT.String "internalLinkTypeUserPhoneNumber"
+        , "phone_number"          A..= phone_number_
+        , "draft_text"            A..= draft_text_
+        , "open_profile"          A..= open_profile_
+        , "unpaid_messages_token" A..= unpaid_messages_token_
         ]
   toJSON InternalLinkTypeUserToken
-    { token = token_
+    { token                 = token_
+    , unpaid_messages_token = unpaid_messages_token_
     }
       = A.object
-        [ "@type" A..= AT.String "internalLinkTypeUserToken"
-        , "token" A..= token_
+        [ "@type"                 A..= AT.String "internalLinkTypeUserToken"
+        , "token"                 A..= token_
+        , "unpaid_messages_token" A..= unpaid_messages_token_
         ]
   toJSON InternalLinkTypeVideoChat
     { chat_username  = chat_username_

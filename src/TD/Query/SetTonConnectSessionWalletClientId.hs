@@ -8,7 +8,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session. Returns 'TD.Data.TonConnectChallenge.TonConnectChallenge'
+-- | Sets wallet_client_id for a pending TON Connect session. Then, sendTonConnectSessionConnectResult must be used to accept or reject the session. If the session was created for an OAuth request, then acceptOauthRequest must be used instead. Returns 'TD.Data.TonConnectChallenge.TonConnectChallenge'
 data SetTonConnectSessionWalletClientId
   = SetTonConnectSessionWalletClientId
     { session_id       :: Maybe Int    -- ^ Unique identifier of the session

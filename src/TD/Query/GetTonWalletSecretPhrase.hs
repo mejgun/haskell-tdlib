@@ -7,7 +7,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Returns the secret phrase of the user's TON wallet as a space separated list of words. Works only if tonWalletState.can_export_phrase is true. Returns 'TD.Data.Text.Text'
+-- | Returns the secret phrase of the user's TON wallet. Works only if tonWalletState.can_export_phrase is true. Returns 'TD.Data.TonWalletSecretPhrase.TonWalletSecretPhrase'
 data GetTonWalletSecretPhrase
   = GetTonWalletSecretPhrase
     { password :: Maybe T.Text -- ^ Password of the current user; pass an empty string unless receive an error with a message "PASSWORD_MISSING" for a passwordless request

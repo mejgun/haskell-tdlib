@@ -11,51 +11,53 @@ import qualified TD.Data.ChatInviteLink as ChatInviteLink
 import qualified TD.Data.BotCommands as BotCommands
 import qualified TD.Data.BotVerification as BotVerification
 import qualified TD.Data.ProfileTab as ProfileTab
+import qualified TD.Data.ProfileShareTheme as ProfileShareTheme
 
 data SupergroupFullInfo
   = SupergroupFullInfo -- ^ Contains full information about a supergroup or channel
-    { photo                            :: Maybe ChatPhoto.ChatPhoto             -- ^ Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
-    , community_id                     :: Maybe Int                             -- ^ Identifier of the community to which the corresponding chat was added
-    , description                      :: Maybe T.Text                          -- ^ Supergroup or channel description
-    , member_count                     :: Maybe Int                             -- ^ Number of members in the supergroup or channel; 0 if unknown
-    , administrator_count              :: Maybe Int                             -- ^ Number of privileged users in the supergroup or channel; 0 if unknown
-    , restricted_count                 :: Maybe Int                             -- ^ Number of restricted users in the supergroup; 0 if unknown
-    , banned_count                     :: Maybe Int                             -- ^ Number of users banned from chat; 0 if unknown
-    , linked_chat_id                   :: Maybe Int                             -- ^ Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
-    , direct_messages_chat_id          :: Maybe Int                             -- ^ Chat identifier of a direct messages group for the channel, or a channel, for which the supergroup is the designated direct messages group; 0 if none
-    , slow_mode_delay                  :: Maybe Int                             -- ^ Delay between consecutive sent messages for non-administrator supergroup members, in seconds
-    , slow_mode_delay_expires_in       :: Maybe Double                          -- ^ Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
-    , can_enable_paid_messages         :: Maybe Bool                            -- ^ True, if paid messages can be enabled in the supergroup chat; for supergroup only
-    , can_enable_paid_reaction         :: Maybe Bool                            -- ^ True, if paid reaction can be enabled in the channel chat; for channels only
-    , can_get_members                  :: Maybe Bool                            -- ^ True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
-    , has_hidden_members               :: Maybe Bool                            -- ^ True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
-    , can_hide_members                 :: Maybe Bool                            -- ^ True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
-    , can_set_sticker_set              :: Maybe Bool                            -- ^ True, if the supergroup sticker set can be changed
-    , can_set_location                 :: Maybe Bool                            -- ^ True, if the supergroup location can be changed
-    , can_get_statistics               :: Maybe Bool                            -- ^ True, if the supergroup or channel statistics are available
-    , can_get_revenue_statistics       :: Maybe Bool                            -- ^ True, if the supergroup or channel revenue statistics are available
-    , can_get_star_revenue_statistics  :: Maybe Bool                            -- ^ True, if the supergroup or channel Telegram Star revenue statistics are available
-    , can_send_gift                    :: Maybe Bool                            -- ^ True, if the user can send a gift to the supergroup or channel using sendGift or transferGift
-    , can_toggle_aggressive_anti_spam  :: Maybe Bool                            -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
-    , is_all_history_available         :: Maybe Bool                            -- ^ True, if new chat members will have access to old messages. In public, discussion, or forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
-    , can_have_sponsored_messages      :: Maybe Bool                            -- ^ True, if the chat can have sponsored messages. The value of this field is only available to the owner of the chat
-    , has_aggressive_anti_spam_enabled :: Maybe Bool                            -- ^ True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
-    , has_paid_media_allowed           :: Maybe Bool                            -- ^ True, if paid media can be sent and forwarded to the channel chat; for channels only
-    , has_pinned_stories               :: Maybe Bool                            -- ^ True, if the supergroup or channel has pinned stories
-    , gift_count                       :: Maybe Int                             -- ^ Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
-    , my_boost_count                   :: Maybe Int                             -- ^ Number of times the current user boosted the supergroup or channel
-    , unrestrict_boost_count           :: Maybe Int                             -- ^ Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
-    , outgoing_paid_message_star_count :: Maybe Int                             -- ^ Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup
-    , sticker_set_id                   :: Maybe Int                             -- ^ Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
-    , custom_emoji_sticker_set_id      :: Maybe Int                             -- ^ Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
-    , location                         :: Maybe ChatLocation.ChatLocation       -- ^ Location to which the supergroup is connected; may be null if none
-    , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink   -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
-    , guard_bot_user_id                :: Maybe Int                             -- ^ User identifier of the guard bot in the group; for chat administrators only
-    , bot_commands                     :: Maybe [BotCommands.BotCommands]       -- ^ List of commands of bots in the group
-    , bot_verification                 :: Maybe BotVerification.BotVerification -- ^ Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
-    , main_profile_tab                 :: Maybe ProfileTab.ProfileTab           -- ^ The main tab chosen by the administrators of the channel; may be null if not chosen manually
-    , upgraded_from_basic_group_id     :: Maybe Int                             -- ^ Identifier of the basic group from which supergroup was upgraded; 0 if none
-    , upgraded_from_max_message_id     :: Maybe Int                             -- ^ Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
+    { photo                            :: Maybe ChatPhoto.ChatPhoto                 -- ^ Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo
+    , community_id                     :: Maybe Int                                 -- ^ Identifier of the community to which the corresponding chat was added
+    , description                      :: Maybe T.Text                              -- ^ Supergroup or channel description
+    , member_count                     :: Maybe Int                                 -- ^ Number of members in the supergroup or channel; 0 if unknown
+    , administrator_count              :: Maybe Int                                 -- ^ Number of privileged users in the supergroup or channel; 0 if unknown
+    , restricted_count                 :: Maybe Int                                 -- ^ Number of restricted users in the supergroup; 0 if unknown
+    , banned_count                     :: Maybe Int                                 -- ^ Number of users banned from chat; 0 if unknown
+    , linked_chat_id                   :: Maybe Int                                 -- ^ Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
+    , direct_messages_chat_id          :: Maybe Int                                 -- ^ Chat identifier of a direct messages group for the channel, or a channel, for which the supergroup is the designated direct messages group; 0 if none
+    , slow_mode_delay                  :: Maybe Int                                 -- ^ Delay between consecutive sent messages for non-administrator supergroup members, in seconds
+    , slow_mode_delay_expires_in       :: Maybe Double                              -- ^ Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
+    , can_enable_paid_messages         :: Maybe Bool                                -- ^ True, if paid messages can be enabled in the supergroup chat; for supergroup only
+    , can_enable_paid_reaction         :: Maybe Bool                                -- ^ True, if paid reaction can be enabled in the channel chat; for channels only
+    , can_get_members                  :: Maybe Bool                                -- ^ True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
+    , has_hidden_members               :: Maybe Bool                                -- ^ True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
+    , can_hide_members                 :: Maybe Bool                                -- ^ True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
+    , can_set_sticker_set              :: Maybe Bool                                -- ^ True, if the supergroup sticker set can be changed
+    , can_set_location                 :: Maybe Bool                                -- ^ True, if the supergroup location can be changed
+    , can_get_statistics               :: Maybe Bool                                -- ^ True, if the supergroup or channel statistics are available
+    , can_get_revenue_statistics       :: Maybe Bool                                -- ^ True, if the supergroup or channel revenue statistics are available
+    , can_get_star_revenue_statistics  :: Maybe Bool                                -- ^ True, if the supergroup or channel Telegram Star revenue statistics are available
+    , can_send_gift                    :: Maybe Bool                                -- ^ True, if the user can send a gift to the supergroup or channel using sendGift or transferGift
+    , can_toggle_aggressive_anti_spam  :: Maybe Bool                                -- ^ True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
+    , is_all_history_available         :: Maybe Bool                                -- ^ True, if new chat members will have access to old messages. In public, discussion, or forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
+    , can_have_sponsored_messages      :: Maybe Bool                                -- ^ True, if the chat can have sponsored messages. The value of this field is only available to the owner of the chat
+    , has_aggressive_anti_spam_enabled :: Maybe Bool                                -- ^ True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
+    , has_paid_media_allowed           :: Maybe Bool                                -- ^ True, if paid media can be sent and forwarded to the channel chat; for channels only
+    , has_pinned_stories               :: Maybe Bool                                -- ^ True, if the supergroup or channel has pinned stories
+    , gift_count                       :: Maybe Int                                 -- ^ Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
+    , my_boost_count                   :: Maybe Int                                 -- ^ Number of times the current user boosted the supergroup or channel
+    , unrestrict_boost_count           :: Maybe Int                                 -- ^ Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
+    , outgoing_paid_message_star_count :: Maybe Int                                 -- ^ Number of Telegram Stars that must be paid by the current user for each sent message to the supergroup
+    , sticker_set_id                   :: Maybe Int                                 -- ^ Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
+    , custom_emoji_sticker_set_id      :: Maybe Int                                 -- ^ Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
+    , location                         :: Maybe ChatLocation.ChatLocation           -- ^ Location to which the supergroup is connected; may be null if none
+    , invite_link                      :: Maybe ChatInviteLink.ChatInviteLink       -- ^ Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
+    , guard_bot_user_id                :: Maybe Int                                 -- ^ User identifier of the guard bot in the group; for chat administrators only
+    , bot_commands                     :: Maybe [BotCommands.BotCommands]           -- ^ List of commands of bots in the group
+    , bot_verification                 :: Maybe BotVerification.BotVerification     -- ^ Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown
+    , main_profile_tab                 :: Maybe ProfileTab.ProfileTab               -- ^ The main tab chosen by the administrators of the channel; may be null if not chosen manually
+    , share_theme                      :: Maybe ProfileShareTheme.ProfileShareTheme -- ^ Theme of the screen for sharing a link to the supergroup or the channel; may be null if the default theme is used
+    , upgraded_from_basic_group_id     :: Maybe Int                                 -- ^ Identifier of the basic group from which supergroup was upgraded; 0 if none
+    , upgraded_from_max_message_id     :: Maybe Int                                 -- ^ Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
     }
   deriving (Eq, Show)
 
@@ -101,6 +103,7 @@ instance I.ShortShow SupergroupFullInfo where
     , bot_commands                     = bot_commands_
     , bot_verification                 = bot_verification_
     , main_profile_tab                 = main_profile_tab_
+    , share_theme                      = share_theme_
     , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
     , upgraded_from_max_message_id     = upgraded_from_max_message_id_
     }
@@ -146,6 +149,7 @@ instance I.ShortShow SupergroupFullInfo where
         , "bot_commands"                     `I.p` bot_commands_
         , "bot_verification"                 `I.p` bot_verification_
         , "main_profile_tab"                 `I.p` main_profile_tab_
+        , "share_theme"                      `I.p` share_theme_
         , "upgraded_from_basic_group_id"     `I.p` upgraded_from_basic_group_id_
         , "upgraded_from_max_message_id"     `I.p` upgraded_from_max_message_id_
         ]
@@ -201,6 +205,7 @@ instance AT.FromJSON SupergroupFullInfo where
         bot_commands_                     <- o A..:?                       "bot_commands"
         bot_verification_                 <- o A..:?                       "bot_verification"
         main_profile_tab_                 <- o A..:?                       "main_profile_tab"
+        share_theme_                      <- o A..:?                       "share_theme"
         upgraded_from_basic_group_id_     <- o A..:?                       "upgraded_from_basic_group_id"
         upgraded_from_max_message_id_     <- o A..:?                       "upgraded_from_max_message_id"
         pure $ SupergroupFullInfo
@@ -244,6 +249,7 @@ instance AT.FromJSON SupergroupFullInfo where
           , bot_commands                     = bot_commands_
           , bot_verification                 = bot_verification_
           , main_profile_tab                 = main_profile_tab_
+          , share_theme                      = share_theme_
           , upgraded_from_basic_group_id     = upgraded_from_basic_group_id_
           , upgraded_from_max_message_id     = upgraded_from_max_message_id_
           }

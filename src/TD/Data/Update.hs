@@ -86,6 +86,7 @@ import qualified TD.Data.ProfileAccentColor as ProfileAccentColor
 import qualified TD.Data.WebBrowserSettings as WebBrowserSettings
 import qualified TD.Data.LanguagePackString as LanguagePackString
 import qualified TD.Data.ConnectionState as ConnectionState
+import qualified TD.Data.WebProxyCarrier as WebProxyCarrier
 import qualified TD.Data.AgeVerificationParameters as AgeVerificationParameters
 import qualified TD.Data.TermsOfService as TermsOfService
 import qualified TD.Data.UnconfirmedSession as UnconfirmedSession
@@ -706,6 +707,16 @@ data Update
     }
   | UpdateConnectionState -- ^ The connection state has changed. This update must be used only to show a human-readable description of the connection state
     { _state :: Maybe ConnectionState.ConnectionState -- ^ The new connection state
+    }
+  | UpdateWebProxyCarrierOpened -- ^ A web proxy carrier must be opened as described in webProxyCarrier. Messages passed by the page to the bridge object must be passed to processWebProxyCarrierMessage. Failures of the carrier must be reported with reportWebProxyCarrierError
+    { carrier :: Maybe WebProxyCarrier.WebProxyCarrier -- ^ The carrier
+    }
+  | UpdateWebProxyCarrierData -- ^ Data must be delivered as an ArrayBuffer to the page of a web proxy carrier through the onmessage function of the bridge object, in the order of the updates
+    { carrier_id :: Maybe Int           -- ^ Identifier of the carrier
+    , _data      :: Maybe BS.ByteString -- ^ The data to deliver
+    }
+  | UpdateWebProxyCarrierClosed -- ^ A web proxy carrier must be closed. If the page has passed any message to the bridge object, then the application must deliver the string {"t":"close"} to the page, so that it can end its relay session, and destroy the web view shortly after, for example, in 200 milliseconds; otherwise, the web view must be destroyed immediately. Messages from the carrier received after this update must be ignored
+    { carrier_id :: Maybe Int -- ^ Identifier of the carrier
     }
   | UpdateFreezeState -- ^ The freeze state of the current user's account has changed
     { is_frozen     :: Maybe Bool   -- ^ True, if the account is frozen
@@ -2268,6 +2279,29 @@ instance I.ShortShow Update where
         ++ I.cc
         [ "_state" `I.p` _state_
         ]
+  shortShow UpdateWebProxyCarrierOpened
+    { carrier = carrier_
+    }
+      = "UpdateWebProxyCarrierOpened"
+        ++ I.cc
+        [ "carrier" `I.p` carrier_
+        ]
+  shortShow UpdateWebProxyCarrierData
+    { carrier_id = carrier_id_
+    , _data      = _data_
+    }
+      = "UpdateWebProxyCarrierData"
+        ++ I.cc
+        [ "carrier_id" `I.p` carrier_id_
+        , "_data"      `I.p` _data_
+        ]
+  shortShow UpdateWebProxyCarrierClosed
+    { carrier_id = carrier_id_
+    }
+      = "UpdateWebProxyCarrierClosed"
+        ++ I.cc
+        [ "carrier_id" `I.p` carrier_id_
+        ]
   shortShow UpdateFreezeState
     { is_frozen     = is_frozen_
     , freezing_date = freezing_date_
@@ -2976,6 +3010,9 @@ instance AT.FromJSON Update where
       "updateWebBrowserSettings"                           -> parseUpdateWebBrowserSettings v
       "updateLanguagePackStrings"                          -> parseUpdateLanguagePackStrings v
       "updateConnectionState"                              -> parseUpdateConnectionState v
+      "updateWebProxyCarrierOpened"                        -> parseUpdateWebProxyCarrierOpened v
+      "updateWebProxyCarrierData"                          -> parseUpdateWebProxyCarrierData v
+      "updateWebProxyCarrierClosed"                        -> parseUpdateWebProxyCarrierClosed v
       "updateFreezeState"                                  -> parseUpdateFreezeState v
       "updateAgeVerificationParameters"                    -> parseUpdateAgeVerificationParameters v
       "updateTermsOfService"                               -> parseUpdateTermsOfService v
@@ -4200,6 +4237,26 @@ instance AT.FromJSON Update where
         _state_ <- o A..:?  "state"
         pure $ UpdateConnectionState
           { _state = _state_
+          }
+      parseUpdateWebProxyCarrierOpened :: A.Value -> AT.Parser Update
+      parseUpdateWebProxyCarrierOpened = A.withObject "UpdateWebProxyCarrierOpened" $ \o -> do
+        carrier_ <- o A..:?  "carrier"
+        pure $ UpdateWebProxyCarrierOpened
+          { carrier = carrier_
+          }
+      parseUpdateWebProxyCarrierData :: A.Value -> AT.Parser Update
+      parseUpdateWebProxyCarrierData = A.withObject "UpdateWebProxyCarrierData" $ \o -> do
+        carrier_id_ <- o A..:?                       "carrier_id"
+        _data_      <- fmap I.readBytes <$> o A..:?  "data"
+        pure $ UpdateWebProxyCarrierData
+          { carrier_id = carrier_id_
+          , _data      = _data_
+          }
+      parseUpdateWebProxyCarrierClosed :: A.Value -> AT.Parser Update
+      parseUpdateWebProxyCarrierClosed = A.withObject "UpdateWebProxyCarrierClosed" $ \o -> do
+        carrier_id_ <- o A..:?  "carrier_id"
+        pure $ UpdateWebProxyCarrierClosed
+          { carrier_id = carrier_id_
           }
       parseUpdateFreezeState :: A.Value -> AT.Parser Update
       parseUpdateFreezeState = A.withObject "UpdateFreezeState" $ \o -> do

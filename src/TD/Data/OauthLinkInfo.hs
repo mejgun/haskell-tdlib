@@ -16,6 +16,10 @@ data OauthLinkInfo
     , bot_user_id                 :: Maybe Int      -- ^ User identifier of a bot linked with the website
     , request_write_access        :: Maybe Bool     -- ^ True, if the user must be asked for the permission to the bot to send them messages
     , request_phone_number_access :: Maybe Bool     -- ^ True, if the user must be asked for the permission to share their phone number
+    , request_ton_wallet_access   :: Maybe Bool     -- ^ True, if access to the user's TON wallet is requested by the app. If true and the user agrees to give access, then use createTonConnectSession with dapp_client_id and ton_connect_manifest_url to create the TON Connect session, then setTonConnectSessionWalletClientId, then create a tonWalletOwnershipProof for the given domain with the payload ton_proof_payload, and then pass all data to acceptOauthRequest in the parameter ton_connect_connect_data
+    , dapp_client_id              :: Maybe T.Text   -- ^ Hex-encoded public X25519 key of the dApp; may be empty if TON wallet access wasn't requested
+    , ton_connect_manifest_url    :: Maybe T.Text   -- ^ URL of the TON Connect manifest of the dApp; may be empty if TON wallet access wasn't requested
+    , ton_proof_payload           :: Maybe T.Text   -- ^ Payload for TON wallet ownership proof; may be empty if TON wallet access wasn't requested
     , browser                     :: Maybe T.Text   -- ^ The version of a browser used for the authorization
     , platform                    :: Maybe T.Text   -- ^ Operating system the browser is running on
     , ip_address                  :: Maybe T.Text   -- ^ IP address from which the authorization is performed, in human-readable format
@@ -35,6 +39,10 @@ instance I.ShortShow OauthLinkInfo where
     , bot_user_id                 = bot_user_id_
     , request_write_access        = request_write_access_
     , request_phone_number_access = request_phone_number_access_
+    , request_ton_wallet_access   = request_ton_wallet_access_
+    , dapp_client_id              = dapp_client_id_
+    , ton_connect_manifest_url    = ton_connect_manifest_url_
+    , ton_proof_payload           = ton_proof_payload_
     , browser                     = browser_
     , platform                    = platform_
     , ip_address                  = ip_address_
@@ -52,6 +60,10 @@ instance I.ShortShow OauthLinkInfo where
         , "bot_user_id"                 `I.p` bot_user_id_
         , "request_write_access"        `I.p` request_write_access_
         , "request_phone_number_access" `I.p` request_phone_number_access_
+        , "request_ton_wallet_access"   `I.p` request_ton_wallet_access_
+        , "dapp_client_id"              `I.p` dapp_client_id_
+        , "ton_connect_manifest_url"    `I.p` ton_connect_manifest_url_
+        , "ton_proof_payload"           `I.p` ton_proof_payload_
         , "browser"                     `I.p` browser_
         , "platform"                    `I.p` platform_
         , "ip_address"                  `I.p` ip_address_
@@ -79,6 +91,10 @@ instance AT.FromJSON OauthLinkInfo where
         bot_user_id_                 <- o A..:?  "bot_user_id"
         request_write_access_        <- o A..:?  "request_write_access"
         request_phone_number_access_ <- o A..:?  "request_phone_number_access"
+        request_ton_wallet_access_   <- o A..:?  "request_ton_wallet_access"
+        dapp_client_id_              <- o A..:?  "dapp_client_id"
+        ton_connect_manifest_url_    <- o A..:?  "ton_connect_manifest_url"
+        ton_proof_payload_           <- o A..:?  "ton_proof_payload"
         browser_                     <- o A..:?  "browser"
         platform_                    <- o A..:?  "platform"
         ip_address_                  <- o A..:?  "ip_address"
@@ -94,6 +110,10 @@ instance AT.FromJSON OauthLinkInfo where
           , bot_user_id                 = bot_user_id_
           , request_write_access        = request_write_access_
           , request_phone_number_access = request_phone_number_access_
+          , request_ton_wallet_access   = request_ton_wallet_access_
+          , dapp_client_id              = dapp_client_id_
+          , ton_connect_manifest_url    = ton_connect_manifest_url_
+          , ton_proof_payload           = ton_proof_payload_
           , browser                     = browser_
           , platform                    = platform_
           , ip_address                  = ip_address_

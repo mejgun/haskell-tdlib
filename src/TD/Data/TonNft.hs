@@ -10,6 +10,7 @@ import qualified TD.Data.Document as Document
 import qualified TD.Data.Sticker as Sticker
 import qualified TD.Data.TonNftAttribute as TonNftAttribute
 import qualified TD.Data.JsonValue as JsonValue
+import qualified TD.Data.UpgradedGift as UpgradedGift
 
 data TonNft
   = TonNft -- ^ Represents an NFT in the TON blockchain
@@ -25,6 +26,7 @@ data TonNft
     , sticker            :: Maybe Sticker.Sticker                   -- ^ Sticker of the NFT; may be null if none
     , attributes         :: Maybe [TonNftAttribute.TonNftAttribute] -- ^ Attributes of the NFT
     , extra              :: Maybe JsonValue.JsonValue               -- ^ Additional data about the NFT; may be null if none
+    , gift               :: Maybe UpgradedGift.UpgradedGift         -- ^ The upgraded gift corresponding to the NFT; may be null if none. Information about the owner of the gift isn't available. Original details of the gift are available only to the sender and the receiver of the original gift
     }
   deriving (Eq, Show)
 
@@ -42,6 +44,7 @@ instance I.ShortShow TonNft where
     , sticker            = sticker_
     , attributes         = attributes_
     , extra              = extra_
+    , gift               = gift_
     }
       = "TonNft"
         ++ I.cc
@@ -57,6 +60,7 @@ instance I.ShortShow TonNft where
         , "sticker"            `I.p` sticker_
         , "attributes"         `I.p` attributes_
         , "extra"              `I.p` extra_
+        , "gift"               `I.p` gift_
         ]
 
 instance AT.FromJSON TonNft where
@@ -82,6 +86,7 @@ instance AT.FromJSON TonNft where
         sticker_            <- o A..:?  "sticker"
         attributes_         <- o A..:?  "attributes"
         extra_              <- o A..:?  "extra"
+        gift_               <- o A..:?  "gift"
         pure $ TonNft
           { collection_address = collection_address_
           , address            = address_
@@ -95,6 +100,7 @@ instance AT.FromJSON TonNft where
           , sticker            = sticker_
           , attributes         = attributes_
           , extra              = extra_
+          , gift               = gift_
           }
   parseJSON _ = mempty
 

@@ -6,7 +6,7 @@ import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 import qualified Data.Text as T
 
--- | Describes type of a request to TON Center API
+-- | Describes a type of request to the TON Center API
 data TonCenterApiRequestType
   = TonCenterApiRequestTypeGet -- ^ A GET request
     { query :: Maybe T.Text -- ^ URL-encoded query of the request
