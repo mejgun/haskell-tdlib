@@ -114,6 +114,8 @@ import qualified TD.Data.BusinessMessage as BusinessMessage
 import qualified TD.Data.Location as Location
 import qualified TD.Data.ChatType as ChatType
 import qualified TD.Data.CallbackQueryPayload as CallbackQueryPayload
+import qualified TD.Data.WidgetQueryType as WidgetQueryType
+import qualified TD.Data.TonWalletCard as TonWalletCard
 import qualified TD.Data.Address as Address
 import qualified TD.Data.OrderInfo as OrderInfo
 import qualified TD.Data.Poll as Poll
@@ -796,6 +798,10 @@ data Update
     , left_count         :: Maybe Int -- ^ Number of left speech recognition attempts this week
     , next_reset_date    :: Maybe Int -- ^ Point in time (Unix timestamp) when the weekly number of tries will reset; 0 if unknown
     }
+  | UpdateSpeechRecognitionInFile -- ^ Speech in an audio file was partially recognized. The final result will be returned by the corresponding recognizeSpeechInFile request
+    { recognition_id :: Maybe Int    -- ^ Identifier of the speech recognition as specified in recognizeSpeechInFile
+    , partial_text   :: Maybe T.Text -- ^ Partially recognized text
+    }
   | UpdateGroupCallMessageLevels -- ^ The levels of live story group call messages have changed
     { levels :: Maybe [GroupCallMessageLevel.GroupCallMessageLevel] -- ^ New description of the levels in decreasing order of groupCallMessageLevel.min_star_count
     }
@@ -889,6 +895,37 @@ data Update
     , __message      :: Maybe BusinessMessage.BusinessMessage           -- ^ The message from the business account from which the query originated
     , chat_instance  :: Maybe Int                                       -- ^ An identifier uniquely corresponding to the chat a message was sent to
     , payload        :: Maybe CallbackQueryPayload.CallbackQueryPayload -- ^ Query payload
+    }
+  | UpdateNewWidgetQuery -- ^ A new incoming widget query; for bots only
+    { _id            :: Maybe Int                             -- ^ Unique query identifier
+    , sender_user_id :: Maybe Int                             -- ^ Identifier of the user who sent the query
+    , chat_id        :: Maybe Int                             -- ^ Identifier of the chat where the query was sent
+    , message_id     :: Maybe Int                             -- ^ Identifier of the message from which the query originated
+    , chat_instance  :: Maybe Int                             -- ^ Identifier that uniquely corresponds to the chat to which the message was sent
+    , _chat_type     :: Maybe T.Text                          -- ^ Type of the chat to which the message was sent
+    , query_type     :: Maybe WidgetQueryType.WidgetQueryType -- ^ Type of the query
+    , _data          :: Maybe BS.ByteString                   -- ^ Data of the query
+    , widget_id      :: Maybe Int                             -- ^ Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+    , wallet_card    :: Maybe TonWalletCard.TonWalletCard     -- ^ TON wallet card of the user who sent the query; may be null if none
+    }
+  | UpdateNewInlineWidgetQuery -- ^ A new incoming widget query from a message sent via a bot; for bots only
+    { _id               :: Maybe Int                             -- ^ Unique query identifier
+    , sender_user_id    :: Maybe Int                             -- ^ Identifier of the user who sent the query
+    , inline_message_id :: Maybe T.Text                          -- ^ Identifier of the inline message from which the query originated
+    , chat_instance     :: Maybe Int                             -- ^ Identifier that uniquely corresponds to the chat to which the message was sent
+    , _chat_type        :: Maybe T.Text                          -- ^ Type of the chat to which the message was sent
+    , query_type        :: Maybe WidgetQueryType.WidgetQueryType -- ^ Type of the query
+    , _data             :: Maybe BS.ByteString                   -- ^ Data of the query
+    , widget_id         :: Maybe Int                             -- ^ Identifier of the shared widget from which the query originated; 0 if the widget isn't shared
+    , wallet_card       :: Maybe TonWalletCard.TonWalletCard     -- ^ TON wallet card of the user who sent the query; may be null if none
+    }
+  | UpdateNewWidgetCopyQuery -- ^ A new incoming widget query from a copy of a shared widget; for bots only
+    { _id            :: Maybe Int                             -- ^ Unique query identifier
+    , sender_user_id :: Maybe Int                             -- ^ Identifier of the user who sent the query
+    , query_type     :: Maybe WidgetQueryType.WidgetQueryType -- ^ Type of the query
+    , _data          :: Maybe BS.ByteString                   -- ^ Data of the query
+    , widget_id      :: Maybe Int                             -- ^ Identifier of the shared widget from which the query originated
+    , wallet_card    :: Maybe TonWalletCard.TonWalletCard     -- ^ TON wallet card of the user who sent the query; may be null if none
     }
   | UpdateNewShippingQuery -- ^ A new incoming shipping query; for bots only. Only for invoices with flexible price
     { _id              :: Maybe Int             -- ^ Unique query identifier
@@ -2480,6 +2517,15 @@ instance I.ShortShow Update where
         , "left_count"         `I.p` left_count_
         , "next_reset_date"    `I.p` next_reset_date_
         ]
+  shortShow UpdateSpeechRecognitionInFile
+    { recognition_id = recognition_id_
+    , partial_text   = partial_text_
+    }
+      = "UpdateSpeechRecognitionInFile"
+        ++ I.cc
+        [ "recognition_id" `I.p` recognition_id_
+        , "partial_text"   `I.p` partial_text_
+        ]
   shortShow UpdateGroupCallMessageLevels
     { levels = levels_
     }
@@ -2687,6 +2733,71 @@ instance I.ShortShow Update where
         , "__message"      `I.p` __message_
         , "chat_instance"  `I.p` chat_instance_
         , "payload"        `I.p` payload_
+        ]
+  shortShow UpdateNewWidgetQuery
+    { _id            = _id_
+    , sender_user_id = sender_user_id_
+    , chat_id        = chat_id_
+    , message_id     = message_id_
+    , chat_instance  = chat_instance_
+    , _chat_type     = _chat_type_
+    , query_type     = query_type_
+    , _data          = _data_
+    , widget_id      = widget_id_
+    , wallet_card    = wallet_card_
+    }
+      = "UpdateNewWidgetQuery"
+        ++ I.cc
+        [ "_id"            `I.p` _id_
+        , "sender_user_id" `I.p` sender_user_id_
+        , "chat_id"        `I.p` chat_id_
+        , "message_id"     `I.p` message_id_
+        , "chat_instance"  `I.p` chat_instance_
+        , "_chat_type"     `I.p` _chat_type_
+        , "query_type"     `I.p` query_type_
+        , "_data"          `I.p` _data_
+        , "widget_id"      `I.p` widget_id_
+        , "wallet_card"    `I.p` wallet_card_
+        ]
+  shortShow UpdateNewInlineWidgetQuery
+    { _id               = _id_
+    , sender_user_id    = sender_user_id_
+    , inline_message_id = inline_message_id_
+    , chat_instance     = chat_instance_
+    , _chat_type        = _chat_type_
+    , query_type        = query_type_
+    , _data             = _data_
+    , widget_id         = widget_id_
+    , wallet_card       = wallet_card_
+    }
+      = "UpdateNewInlineWidgetQuery"
+        ++ I.cc
+        [ "_id"               `I.p` _id_
+        , "sender_user_id"    `I.p` sender_user_id_
+        , "inline_message_id" `I.p` inline_message_id_
+        , "chat_instance"     `I.p` chat_instance_
+        , "_chat_type"        `I.p` _chat_type_
+        , "query_type"        `I.p` query_type_
+        , "_data"             `I.p` _data_
+        , "widget_id"         `I.p` widget_id_
+        , "wallet_card"       `I.p` wallet_card_
+        ]
+  shortShow UpdateNewWidgetCopyQuery
+    { _id            = _id_
+    , sender_user_id = sender_user_id_
+    , query_type     = query_type_
+    , _data          = _data_
+    , widget_id      = widget_id_
+    , wallet_card    = wallet_card_
+    }
+      = "UpdateNewWidgetCopyQuery"
+        ++ I.cc
+        [ "_id"            `I.p` _id_
+        , "sender_user_id" `I.p` sender_user_id_
+        , "query_type"     `I.p` query_type_
+        , "_data"          `I.p` _data_
+        , "widget_id"      `I.p` widget_id_
+        , "wallet_card"    `I.p` wallet_card_
         ]
   shortShow UpdateNewShippingQuery
     { _id              = _id_
@@ -3035,6 +3146,7 @@ instance AT.FromJSON Update where
       "updateStarRevenueStatus"                            -> parseUpdateStarRevenueStatus v
       "updateGramRevenueStatus"                            -> parseUpdateGramRevenueStatus v
       "updateSpeechRecognitionTrial"                       -> parseUpdateSpeechRecognitionTrial v
+      "updateSpeechRecognitionInFile"                      -> parseUpdateSpeechRecognitionInFile v
       "updateGroupCallMessageLevels"                       -> parseUpdateGroupCallMessageLevels v
       "updateDiceEmojis"                                   -> parseUpdateDiceEmojis v
       "updateStakeDiceState"                               -> parseUpdateStakeDiceState v
@@ -3055,6 +3167,9 @@ instance AT.FromJSON Update where
       "updateNewCallbackQuery"                             -> parseUpdateNewCallbackQuery v
       "updateNewInlineCallbackQuery"                       -> parseUpdateNewInlineCallbackQuery v
       "updateNewBusinessCallbackQuery"                     -> parseUpdateNewBusinessCallbackQuery v
+      "updateNewWidgetQuery"                               -> parseUpdateNewWidgetQuery v
+      "updateNewInlineWidgetQuery"                         -> parseUpdateNewInlineWidgetQuery v
+      "updateNewWidgetCopyQuery"                           -> parseUpdateNewWidgetCopyQuery v
       "updateNewShippingQuery"                             -> parseUpdateNewShippingQuery v
       "updateNewPreCheckoutQuery"                          -> parseUpdateNewPreCheckoutQuery v
       "updateNewCustomEvent"                               -> parseUpdateNewCustomEvent v
@@ -4414,6 +4529,14 @@ instance AT.FromJSON Update where
           , left_count         = left_count_
           , next_reset_date    = next_reset_date_
           }
+      parseUpdateSpeechRecognitionInFile :: A.Value -> AT.Parser Update
+      parseUpdateSpeechRecognitionInFile = A.withObject "UpdateSpeechRecognitionInFile" $ \o -> do
+        recognition_id_ <- fmap I.readInt64 <$> o A..:?  "recognition_id"
+        partial_text_   <- o A..:?                       "partial_text"
+        pure $ UpdateSpeechRecognitionInFile
+          { recognition_id = recognition_id_
+          , partial_text   = partial_text_
+          }
       parseUpdateGroupCallMessageLevels :: A.Value -> AT.Parser Update
       parseUpdateGroupCallMessageLevels = A.withObject "UpdateGroupCallMessageLevels" $ \o -> do
         levels_ <- o A..:?  "levels"
@@ -4601,6 +4724,68 @@ instance AT.FromJSON Update where
           , __message      = __message_
           , chat_instance  = chat_instance_
           , payload        = payload_
+          }
+      parseUpdateNewWidgetQuery :: A.Value -> AT.Parser Update
+      parseUpdateNewWidgetQuery = A.withObject "UpdateNewWidgetQuery" $ \o -> do
+        _id_            <- fmap I.readInt64 <$> o A..:?  "id"
+        sender_user_id_ <- o A..:?                       "sender_user_id"
+        chat_id_        <- o A..:?                       "chat_id"
+        message_id_     <- o A..:?                       "message_id"
+        chat_instance_  <- fmap I.readInt64 <$> o A..:?  "chat_instance"
+        _chat_type_     <- o A..:?                       "chat_type"
+        query_type_     <- o A..:?                       "query_type"
+        _data_          <- fmap I.readBytes <$> o A..:?  "data"
+        widget_id_      <- fmap I.readInt64 <$> o A..:?  "widget_id"
+        wallet_card_    <- o A..:?                       "wallet_card"
+        pure $ UpdateNewWidgetQuery
+          { _id            = _id_
+          , sender_user_id = sender_user_id_
+          , chat_id        = chat_id_
+          , message_id     = message_id_
+          , chat_instance  = chat_instance_
+          , _chat_type     = _chat_type_
+          , query_type     = query_type_
+          , _data          = _data_
+          , widget_id      = widget_id_
+          , wallet_card    = wallet_card_
+          }
+      parseUpdateNewInlineWidgetQuery :: A.Value -> AT.Parser Update
+      parseUpdateNewInlineWidgetQuery = A.withObject "UpdateNewInlineWidgetQuery" $ \o -> do
+        _id_               <- fmap I.readInt64 <$> o A..:?  "id"
+        sender_user_id_    <- o A..:?                       "sender_user_id"
+        inline_message_id_ <- o A..:?                       "inline_message_id"
+        chat_instance_     <- fmap I.readInt64 <$> o A..:?  "chat_instance"
+        _chat_type_        <- o A..:?                       "chat_type"
+        query_type_        <- o A..:?                       "query_type"
+        _data_             <- fmap I.readBytes <$> o A..:?  "data"
+        widget_id_         <- fmap I.readInt64 <$> o A..:?  "widget_id"
+        wallet_card_       <- o A..:?                       "wallet_card"
+        pure $ UpdateNewInlineWidgetQuery
+          { _id               = _id_
+          , sender_user_id    = sender_user_id_
+          , inline_message_id = inline_message_id_
+          , chat_instance     = chat_instance_
+          , _chat_type        = _chat_type_
+          , query_type        = query_type_
+          , _data             = _data_
+          , widget_id         = widget_id_
+          , wallet_card       = wallet_card_
+          }
+      parseUpdateNewWidgetCopyQuery :: A.Value -> AT.Parser Update
+      parseUpdateNewWidgetCopyQuery = A.withObject "UpdateNewWidgetCopyQuery" $ \o -> do
+        _id_            <- fmap I.readInt64 <$> o A..:?  "id"
+        sender_user_id_ <- o A..:?                       "sender_user_id"
+        query_type_     <- o A..:?                       "query_type"
+        _data_          <- fmap I.readBytes <$> o A..:?  "data"
+        widget_id_      <- fmap I.readInt64 <$> o A..:?  "widget_id"
+        wallet_card_    <- o A..:?                       "wallet_card"
+        pure $ UpdateNewWidgetCopyQuery
+          { _id            = _id_
+          , sender_user_id = sender_user_id_
+          , query_type     = query_type_
+          , _data          = _data_
+          , widget_id      = widget_id_
+          , wallet_card    = wallet_card_
           }
       parseUpdateNewShippingQuery :: A.Value -> AT.Parser Update
       parseUpdateNewShippingQuery = A.withObject "UpdateNewShippingQuery" $ \o -> do

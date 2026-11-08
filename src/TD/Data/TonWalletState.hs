@@ -53,7 +53,7 @@ instance AT.FromJSON TonWalletState where
       parseTonWalletState = A.withObject "TonWalletState" $ \o -> do
         address_           <- o A..:?                       "address"
         public_key_        <- fmap I.readBytes <$> o A..:?  "public_key"
-        gram_amount_       <- o A..:?                       "gram_amount"
+        gram_amount_       <- fmap I.readInt64 <$> o A..:?  "gram_amount"
         is_being_created_  <- o A..:?                       "is_being_created"
         is_backup_enabled_ <- o A..:?                       "is_backup_enabled"
         can_enable_backup_ <- o A..:?                       "can_enable_backup"

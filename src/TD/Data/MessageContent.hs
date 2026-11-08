@@ -172,6 +172,19 @@ data MessageContent
     , story_id             :: Maybe Int  -- ^ Story identifier
     , via_mention          :: Maybe Bool -- ^ True, if the story was automatically forwarded because of a mention of the user
     }
+  | MessageWidget -- ^ A message with an HTML widget
+    { width                       :: Maybe Int                         -- ^ Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+    , height                      :: Maybe Int                         -- ^ Height of the widget; 0 if the height of the widget isn't fixed
+    , html                        :: Maybe T.Text                      -- ^ HTML code of the widget
+    , public_data                 :: Maybe T.Text                      -- ^ Public data of the widget
+    , chat_data                   :: Maybe T.Text                      -- ^ Data of the widget, which is specific to the chat
+    , widget_id                   :: Maybe Int                         -- ^ Identifier of the shared widget; 0 if the widget isn't shared
+    , caption                     :: Maybe FormattedText.FormattedText -- ^ Widget caption
+    , show_caption_above_media    :: Maybe Bool                        -- ^ True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    , is_copy                     :: Maybe Bool                        -- ^ True, if the message is a copy of the widget
+    , can_send_queries            :: Maybe Bool                        -- ^ True, if the widget can send queries to the bot
+    , can_send_background_queries :: Maybe Bool                        -- ^ True, if the widget can send queries to the bot in the background
+    }
   | MessageChecklist -- ^ A message with a checklist
     { list :: Maybe Checklist.Checklist -- ^ The checklist description
     }
@@ -441,7 +454,7 @@ data MessageContent
     { sender_user_id       :: Maybe Int    -- ^ Sender of the transfer; 0 if unknown
     , transaction_id       :: Maybe T.Text -- ^ Unique identifier of the transaction; may be empty if the transfer isn't sent yet. Use getTonWalletTransaction to get additional information about the transaction
     , peer_address         :: Maybe T.Text -- ^ Address in the TON blockchain of the transaction peer
-    , amount               :: Maybe Int    -- ^ The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
+    , _amount              :: Maybe Int    -- ^ The amount of received cryptocurrency, in the smallest units of the cryptocurrency; negative for outgoing transactions
     , comment              :: Maybe T.Text -- ^ Comment added to the transaction
     , is_comment_encrypted :: Maybe Bool   -- ^ True, if the comment is encrypted and must be decrypted using the receiver's or sender's private key
     }
@@ -830,6 +843,33 @@ instance I.ShortShow MessageContent where
         [ "story_poster_chat_id" `I.p` story_poster_chat_id_
         , "story_id"             `I.p` story_id_
         , "via_mention"          `I.p` via_mention_
+        ]
+  shortShow MessageWidget
+    { width                       = width_
+    , height                      = height_
+    , html                        = html_
+    , public_data                 = public_data_
+    , chat_data                   = chat_data_
+    , widget_id                   = widget_id_
+    , caption                     = caption_
+    , show_caption_above_media    = show_caption_above_media_
+    , is_copy                     = is_copy_
+    , can_send_queries            = can_send_queries_
+    , can_send_background_queries = can_send_background_queries_
+    }
+      = "MessageWidget"
+        ++ I.cc
+        [ "width"                       `I.p` width_
+        , "height"                      `I.p` height_
+        , "html"                        `I.p` html_
+        , "public_data"                 `I.p` public_data_
+        , "chat_data"                   `I.p` chat_data_
+        , "widget_id"                   `I.p` widget_id_
+        , "caption"                     `I.p` caption_
+        , "show_caption_above_media"    `I.p` show_caption_above_media_
+        , "is_copy"                     `I.p` is_copy_
+        , "can_send_queries"            `I.p` can_send_queries_
+        , "can_send_background_queries" `I.p` can_send_background_queries_
         ]
   shortShow MessageChecklist
     { list = list_
@@ -1415,7 +1455,7 @@ instance I.ShortShow MessageContent where
     { sender_user_id       = sender_user_id_
     , transaction_id       = transaction_id_
     , peer_address         = peer_address_
-    , amount               = amount_
+    , _amount              = _amount_
     , comment              = comment_
     , is_comment_encrypted = is_comment_encrypted_
     }
@@ -1424,7 +1464,7 @@ instance I.ShortShow MessageContent where
         [ "sender_user_id"       `I.p` sender_user_id_
         , "transaction_id"       `I.p` transaction_id_
         , "peer_address"         `I.p` peer_address_
-        , "amount"               `I.p` amount_
+        , "_amount"              `I.p` _amount_
         , "comment"              `I.p` comment_
         , "is_comment_encrypted" `I.p` is_comment_encrypted_
         ]
@@ -1763,6 +1803,7 @@ instance AT.FromJSON MessageContent where
       "messagePoll"                                    -> parseMessagePoll v
       "messageStakeDice"                               -> parseMessageStakeDice v
       "messageStory"                                   -> parseMessageStory v
+      "messageWidget"                                  -> parseMessageWidget v
       "messageChecklist"                               -> parseMessageChecklist v
       "messageInvoice"                                 -> parseMessageInvoice v
       "messageCall"                                    -> parseMessageCall v
@@ -2062,6 +2103,32 @@ instance AT.FromJSON MessageContent where
           { story_poster_chat_id = story_poster_chat_id_
           , story_id             = story_id_
           , via_mention          = via_mention_
+          }
+      parseMessageWidget :: A.Value -> AT.Parser MessageContent
+      parseMessageWidget = A.withObject "MessageWidget" $ \o -> do
+        width_                       <- o A..:?                       "width"
+        height_                      <- o A..:?                       "height"
+        html_                        <- o A..:?                       "html"
+        public_data_                 <- o A..:?                       "public_data"
+        chat_data_                   <- o A..:?                       "chat_data"
+        widget_id_                   <- fmap I.readInt64 <$> o A..:?  "widget_id"
+        caption_                     <- o A..:?                       "caption"
+        show_caption_above_media_    <- o A..:?                       "show_caption_above_media"
+        is_copy_                     <- o A..:?                       "is_copy"
+        can_send_queries_            <- o A..:?                       "can_send_queries"
+        can_send_background_queries_ <- o A..:?                       "can_send_background_queries"
+        pure $ MessageWidget
+          { width                       = width_
+          , height                      = height_
+          , html                        = html_
+          , public_data                 = public_data_
+          , chat_data                   = chat_data_
+          , widget_id                   = widget_id_
+          , caption                     = caption_
+          , show_caption_above_media    = show_caption_above_media_
+          , is_copy                     = is_copy_
+          , can_send_queries            = can_send_queries_
+          , can_send_background_queries = can_send_background_queries_
           }
       parseMessageChecklist :: A.Value -> AT.Parser MessageContent
       parseMessageChecklist = A.withObject "MessageChecklist" $ \o -> do
@@ -2585,17 +2652,17 @@ instance AT.FromJSON MessageContent where
           }
       parseMessageTonWalletTransfer :: A.Value -> AT.Parser MessageContent
       parseMessageTonWalletTransfer = A.withObject "MessageTonWalletTransfer" $ \o -> do
-        sender_user_id_       <- o A..:?  "sender_user_id"
-        transaction_id_       <- o A..:?  "transaction_id"
-        peer_address_         <- o A..:?  "peer_address"
-        amount_               <- o A..:?  "amount"
-        comment_              <- o A..:?  "comment"
-        is_comment_encrypted_ <- o A..:?  "is_comment_encrypted"
+        sender_user_id_       <- o A..:?                       "sender_user_id"
+        transaction_id_       <- o A..:?                       "transaction_id"
+        peer_address_         <- o A..:?                       "peer_address"
+        _amount_              <- fmap I.readInt64 <$> o A..:?  "amount"
+        comment_              <- o A..:?                       "comment"
+        is_comment_encrypted_ <- o A..:?                       "is_comment_encrypted"
         pure $ MessageTonWalletTransfer
           { sender_user_id       = sender_user_id_
           , transaction_id       = transaction_id_
           , peer_address         = peer_address_
-          , amount               = amount_
+          , _amount              = _amount_
           , comment              = comment_
           , is_comment_encrypted = is_comment_encrypted_
           }

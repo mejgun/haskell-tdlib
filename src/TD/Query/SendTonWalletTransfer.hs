@@ -63,7 +63,7 @@ instance AT.ToJSON SendTonWalletTransfer where
           [ "@type"                 A..= AT.String "sendTonWalletTransfer"
           , "user_id"               A..= user_id_
           , "address"               A..= address_
-          , "amount"                A..= amount_
+          , "amount"                A..= fmap I.writeInt64  amount_
           , "comment"               A..= comment_
           , "is_comment_encrypted"  A..= is_comment_encrypted_
           , "sending_id"            A..= sending_id_

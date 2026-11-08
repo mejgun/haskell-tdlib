@@ -17,7 +17,7 @@ data ChatPermissions
     , can_send_video_notes    :: Maybe Bool -- ^ True, if the user can send video notes
     , can_send_voice_notes    :: Maybe Bool -- ^ True, if the user can send voice notes
     , can_send_polls          :: Maybe Bool -- ^ True, if the user can send polls and checklists
-    , can_send_other_messages :: Maybe Bool -- ^ True, if the user can send animations, games, stickers, and dice and use inline bots
+    , can_send_other_messages :: Maybe Bool -- ^ True, if the user can send animations, games, stickers, widgets, and dice and use inline bots
     , can_add_link_previews   :: Maybe Bool -- ^ True, if the user may add a link preview to their messages
     , can_react_to_messages   :: Maybe Bool -- ^ True, if the user can react to messages
     , can_edit_tag            :: Maybe Bool -- ^ True, if the user may change the tag of self

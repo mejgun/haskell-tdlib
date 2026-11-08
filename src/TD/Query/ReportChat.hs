@@ -14,7 +14,7 @@ data ReportChat
   = ReportChat
     { chat_id     :: Maybe Int           -- ^ Chat identifier
     , option_id   :: Maybe BS.ByteString -- ^ Option identifier chosen by the user; leave empty for the initial request
-    , message_ids :: Maybe [Int]         -- ^ Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported
+    , message_ids :: Maybe [Int]         -- ^ Identifiers of reported messages. Use messageProperties.can_report_chat to check whether the message can be reported. Ephemeral messages must be reported separately
     , text        :: Maybe T.Text        -- ^ Additional report details if asked by the server; 0-1024 characters; leave empty for the initial request
     }
   deriving (Eq, Show)

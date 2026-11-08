@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           haskell-tdlib
-version:        2.1.28.0
+version:        2.1.29.0
 synopsis:       Binding to the Telegram Database Library
 description:    Please see the README on GitHub at <https://github.com/mejgun/haskell-tdlib>
 category:       Network
@@ -213,11 +213,15 @@ library
       TD.Data.ClosedVectorPath
       TD.Data.CollectibleItemInfo
       TD.Data.CollectibleItemType
+      TD.Data.Communities
       TD.Data.Community
+      TD.Data.CommunityAddChatRequest
+      TD.Data.CommunityAddChatRequests
       TD.Data.CommunityAdministratorRights
       TD.Data.CommunityChat
       TD.Data.CommunityFullInfo
       TD.Data.CommunityId
+      TD.Data.CommunityMemberChats
       TD.Data.CommunityMemberStatus
       TD.Data.CommunityPermissions
       TD.Data.ConnectedAffiliateProgram
@@ -631,6 +635,7 @@ library
       TD.Data.SharedChat
       TD.Data.SharedUser
       TD.Data.ShippingOption
+      TD.Data.SpeechRecognitionLanguages
       TD.Data.SpeechRecognitionResult
       TD.Data.SponsoredChat
       TD.Data.SponsoredChats
@@ -718,6 +723,8 @@ library
       TD.Data.TextEntityType
       TD.Data.TextParseMode
       TD.Data.TextQuote
+      TD.Data.TextRange
+      TD.Data.TextRanges
       TD.Data.ThemeParameters
       TD.Data.ThemeSettings
       TD.Data.Thumbnail
@@ -824,6 +831,10 @@ library
       TD.Data.WebProxyCarrierError
       TD.Data.WebProxyCarrierMessage
       TD.Data.WelcomeMessage
+      TD.Data.WidgetPublicData
+      TD.Data.WidgetQueryAnswer
+      TD.Data.WidgetQueryType
+      TD.Data.WidgetQueryWallet
       TD.GeneralResult
       TD.Lib
       TD.Lib.Internal
@@ -839,6 +850,7 @@ library
       TD.Query.AddChatToList
       TD.Query.AddChatWelcomeMessage
       TD.Query.AddChecklistTasks
+      TD.Query.AddCommunityChat
       TD.Query.AddContact
       TD.Query.AddCustomServerLanguagePack
       TD.Query.AddFavoriteSticker
@@ -877,6 +889,7 @@ library
       TD.Query.AnswerShippingQuery
       TD.Query.AnswerTonConnectRequest
       TD.Query.AnswerWebAppQuery
+      TD.Query.AnswerWidgetQuery
       TD.Query.ApplyPremiumGiftCode
       TD.Query.ApplyUnpaidMessagesToken
       TD.Query.ApproveSuggestedPost
@@ -1072,6 +1085,7 @@ library
       TD.Query.EditInlineMessageMedia
       TD.Query.EditInlineMessageReplyMarkup
       TD.Query.EditInlineMessageText
+      TD.Query.EditInlineMessageWidgetData
       TD.Query.EditMessageCaption
       TD.Query.EditMessageChecklist
       TD.Query.EditMessageLiveLocation
@@ -1079,13 +1093,16 @@ library
       TD.Query.EditMessageReplyMarkup
       TD.Query.EditMessageSchedulingState
       TD.Query.EditMessageText
+      TD.Query.EditMessageWidgetData
       TD.Query.EditProxy
       TD.Query.EditQuickReplyMessage
       TD.Query.EditStarSubscription
       TD.Query.EditStory
       TD.Query.EditStoryCover
+      TD.Query.EditStoryMusic
       TD.Query.EditTextCompositionStyle
       TD.Query.EditUserStarSubscription
+      TD.Query.EditWidgetData
       TD.Query.EnableProxy
       TD.Query.EnableTonWalletBackup
       TD.Query.EncryptGroupCallData
@@ -1093,6 +1110,8 @@ library
       TD.Query.EndGroupCallRecording
       TD.Query.EndGroupCallScreenSharing
       TD.Query.FinishFileGeneration
+      TD.Query.FixRecognizedRichMessageWithAi
+      TD.Query.FixRecognizedTextWithAi
       TD.Query.FixRichMessageWithAi
       TD.Query.FixTextWithAi
       TD.Query.ForwardMessages
@@ -1186,7 +1205,9 @@ library
       TD.Query.GetCloseFriends
       TD.Query.GetCollectibleItemInfo
       TD.Query.GetCommands
+      TD.Query.GetCommunityAddChatRequests
       TD.Query.GetCommunityFullInfo
+      TD.Query.GetCommunityMemberChats
       TD.Query.GetConnectedAffiliateProgram
       TD.Query.GetConnectedAffiliatePrograms
       TD.Query.GetConnectedWebsites
@@ -1256,6 +1277,7 @@ library
       TD.Query.GetInstalledStickerSets
       TD.Query.GetInternalLink
       TD.Query.GetInternalLinkType
+      TD.Query.GetJoinedCommunities
       TD.Query.GetJsonString
       TD.Query.GetJsonValue
       TD.Query.GetKeywordEmojis
@@ -1366,6 +1388,7 @@ library
       TD.Query.GetSearchedForTags
       TD.Query.GetSearchSponsoredChats
       TD.Query.GetSecretChat
+      TD.Query.GetSpeechRecognitionLanguages
       TD.Query.GetStakeDiceState
       TD.Query.GetStarAdAccountUrl
       TD.Query.GetStarGiftPaymentOptions
@@ -1393,6 +1416,7 @@ library
       TD.Query.GetStoryStatistics
       TD.Query.GetSuggestedFileName
       TD.Query.GetSuggestedStickerSetName
+      TD.Query.GetSuitableCommunityChats
       TD.Query.GetSuitableDiscussionChats
       TD.Query.GetSuitablePersonalChats
       TD.Query.GetSupergroup
@@ -1402,6 +1426,7 @@ library
       TD.Query.GetSupportUser
       TD.Query.GetTemporaryPasswordState
       TD.Query.GetTextCompositionStyleExample
+      TD.Query.GetTextEmojiRanges
       TD.Query.GetTextEntities
       TD.Query.GetThemedChatEmojiStatuses
       TD.Query.GetThemedEmojiStatuses
@@ -1446,6 +1471,8 @@ library
       TD.Query.GetWebAppPlaceholder
       TD.Query.GetWebAppUrl
       TD.Query.GetWebPageInstantView
+      TD.Query.GetWidgetPublicData
+      TD.Query.GetWidgetQueryAnswer
       TD.Query.GiftPremiumWithStars
       TD.Query.HideContactCloseBirthdays
       TD.Query.HideSuggestedAction
@@ -1497,6 +1524,8 @@ library
       TD.Query.ProcessChatHasProtectedContentDisableRequest
       TD.Query.ProcessChatJoinRequest
       TD.Query.ProcessChatJoinRequests
+      TD.Query.ProcessCommunityAddChatRequest
+      TD.Query.ProcessCommunityAddChatRequests
       TD.Query.ProcessGiftPurchaseOffer
       TD.Query.ProcessPushNotification
       TD.Query.ProcessWebProxyCarrierMessage
@@ -1513,6 +1542,7 @@ library
       TD.Query.ReaddQuickReplyShortcutMessages
       TD.Query.ReadFilePart
       TD.Query.RecognizeSpeech
+      TD.Query.RecognizeSpeechInFile
       TD.Query.RecoverAuthenticationPassword
       TD.Query.RecoverPassword
       TD.Query.RefundStarPayment
@@ -1522,6 +1552,7 @@ library
       TD.Query.RemoveAllWebBrowserSettingsExceptions
       TD.Query.RemoveBusinessConnectedBotFromChat
       TD.Query.RemoveChatActionBar
+      TD.Query.RemoveCommunityChat
       TD.Query.RemoveContacts
       TD.Query.RemoveFavoriteSticker
       TD.Query.RemoveFileFromDownloads
@@ -1722,6 +1753,7 @@ library
       TD.Query.SetCloseFriends
       TD.Query.SetCommands
       TD.Query.SetCommunityName
+      TD.Query.SetCommunityNotificationSettings
       TD.Query.SetCommunityPermissions
       TD.Query.SetCommunityPhoto
       TD.Query.SetCustomEmojiStickerSetThumbnail
@@ -1850,6 +1882,8 @@ library
       TD.Query.ToggleChatIsPinned
       TD.Query.ToggleChatIsTranslatable
       TD.Query.ToggleChatViewAsTopics
+      TD.Query.ToggleCommunityAreChatsCollapsed
+      TD.Query.ToggleCommunityMemberIsBanned
       TD.Query.ToggleDirectMessagesChatTopicCanSendUnpaidMessages
       TD.Query.ToggleDownloadIsPaused
       TD.Query.ToggleForumTopicIsClosed

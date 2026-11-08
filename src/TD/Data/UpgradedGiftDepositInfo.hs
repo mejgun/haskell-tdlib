@@ -41,7 +41,7 @@ instance AT.FromJSON UpgradedGiftDepositInfo where
       parseUpgradedGiftDepositInfo = A.withObject "UpgradedGiftDepositInfo" $ \o -> do
         nft_address_ <- o A..:?                       "nft_address"
         payload_     <- fmap I.readBytes <$> o A..:?  "payload"
-        gram_amount_ <- o A..:?                       "gram_amount"
+        gram_amount_ <- fmap I.readInt64 <$> o A..:?  "gram_amount"
         pure $ UpgradedGiftDepositInfo
           { nft_address = nft_address_
           , payload     = payload_

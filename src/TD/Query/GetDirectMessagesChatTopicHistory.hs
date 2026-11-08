@@ -7,7 +7,7 @@ import qualified Data.Aeson as A
 import qualified Data.Aeson.Types as AT
 import qualified TD.Lib.Internal as I
 
--- | Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). Returns 'TD.Data.Messages.Messages'
+-- | Returns messages in the topic in a channel direct messages chat administered by the current user. The messages are returned in reverse chronological order (i.e., in order of decreasing message.id). Returns 'TD.Data.Messages.Messages'
 data GetDirectMessagesChatTopicHistory
   = GetDirectMessagesChatTopicHistory
     { chat_id         :: Maybe Int -- ^ Chat identifier of the channel direct messages chat

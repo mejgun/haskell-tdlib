@@ -98,18 +98,18 @@ instance AT.FromJSON TonWalletTransactionType where
     where
       parseTonWalletTransactionTypeOnRampDeposit :: A.Value -> AT.Parser TonWalletTransactionType
       parseTonWalletTransactionTypeOnRampDeposit = A.withObject "TonWalletTransactionTypeOnRampDeposit" $ \o -> do
-        amount_        <- o A..:?  "amount"
-        provider_name_ <- o A..:?  "provider_name"
+        amount_        <- fmap I.readInt64 <$> o A..:?  "amount"
+        provider_name_ <- o A..:?                       "provider_name"
         pure $ TonWalletTransactionTypeOnRampDeposit
           { amount        = amount_
           , provider_name = provider_name_
           }
       parseTonWalletTransactionTypeTransfer :: A.Value -> AT.Parser TonWalletTransactionType
       parseTonWalletTransactionTypeTransfer = A.withObject "TonWalletTransactionTypeTransfer" $ \o -> do
-        amount_               <- o A..:?  "amount"
-        is_gasless_           <- o A..:?  "is_gasless"
-        comment_              <- o A..:?  "comment"
-        is_comment_encrypted_ <- o A..:?  "is_comment_encrypted"
+        amount_               <- fmap I.readInt64 <$> o A..:?  "amount"
+        is_gasless_           <- o A..:?                       "is_gasless"
+        comment_              <- o A..:?                       "comment"
+        is_comment_encrypted_ <- o A..:?                       "is_comment_encrypted"
         pure $ TonWalletTransactionTypeTransfer
           { amount               = amount_
           , is_gasless           = is_gasless_

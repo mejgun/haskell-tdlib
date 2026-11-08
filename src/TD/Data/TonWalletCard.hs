@@ -42,10 +42,10 @@ instance AT.FromJSON TonWalletCard where
     where
       parseTonWalletCard :: A.Value -> AT.Parser TonWalletCard
       parseTonWalletCard = A.withObject "TonWalletCard" $ \o -> do
-        address_                <- o A..:?  "address"
-        gram_amount_            <- o A..:?  "gram_amount"
-        stickers_               <- o A..:?  "stickers"
-        background_nft_address_ <- o A..:?  "background_nft_address"
+        address_                <- o A..:?                       "address"
+        gram_amount_            <- fmap I.readInt64 <$> o A..:?  "gram_amount"
+        stickers_               <- o A..:?                       "stickers"
+        background_nft_address_ <- o A..:?                       "background_nft_address"
         pure $ TonWalletCard
           { address                = address_
           , gram_amount            = gram_amount_

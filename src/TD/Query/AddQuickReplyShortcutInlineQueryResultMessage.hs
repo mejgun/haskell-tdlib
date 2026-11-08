@@ -15,7 +15,7 @@ data AddQuickReplyShortcutInlineQueryResultMessage
     , reply_to_message_id :: Maybe Int    -- ^ Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
     , query_id            :: Maybe Int    -- ^ Identifier of the inline query
     , result_id           :: Maybe T.Text -- ^ Identifier of the inline query result
-    , hide_via_bot        :: Maybe Bool   -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+    , hide_via_bot        :: Maybe Bool   -- ^ Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username") and getOption("photo_search_bot_username")
     }
   deriving (Eq, Show)
 

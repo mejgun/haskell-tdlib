@@ -153,6 +153,23 @@ data InputMessageContent
   | InputMessageChecklist -- ^ A message with a checklist. Checklists can't be sent to secret chats, channel chats and channel direct messages chats; for Telegram Premium users only
     { checklist :: Maybe InputChecklist.InputChecklist -- ^ The checklist to send
     }
+  | InputMessageWidget -- ^ A message with an HTML widget; for bots only
+    { width                    :: Maybe Int                         -- ^ Width of the widget; 0 if the widget must occupy the whole width of the message bubble
+    , height                   :: Maybe Int                         -- ^ Height of the widget; 0 if the height of the widget isn't fixed
+    , html                     :: Maybe T.Text                      -- ^ HTML code of the widget; 1-32768 bytes; must not exceed 4096 bytes when compressed by zlib with the maximal compression level
+    , public_data              :: Maybe T.Text                      -- ^ Public data of the widget, which will be available in copies and forwards of the message
+    , chat_data                :: Maybe T.Text                      -- ^ Data of the widget, which is specific to the chat
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    , allow_queries            :: Maybe Bool                        -- ^ Pass true to allow the widget to send queries to the bot
+    , is_shared                :: Maybe Bool                        -- ^ Pass true to create a shared widget, which can be sent again by its identifier
+    }
+  | InputMessageSharedWidget -- ^ A message with an existing shared widget; for bots only
+    { widget_id                :: Maybe Int                         -- ^ Identifier of the shared widget
+    , chat_data                :: Maybe T.Text                      -- ^ Data of the widget, which is specific to the chat
+    , caption                  :: Maybe FormattedText.FormattedText -- ^ Widget caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+    , show_caption_above_media :: Maybe Bool                        -- ^ True, if the caption must be shown above the widget; otherwise, the caption must be shown below the widget
+    }
   | InputMessageForwarded -- ^ A forwarded message
     { from_chat_id                  :: Maybe Int                                   -- ^ Identifier for the chat this forwarded message came from
     , message_id                    :: Maybe Int                                   -- ^ Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
@@ -428,6 +445,42 @@ instance I.ShortShow InputMessageContent where
         ++ I.cc
         [ "checklist" `I.p` checklist_
         ]
+  shortShow InputMessageWidget
+    { width                    = width_
+    , height                   = height_
+    , html                     = html_
+    , public_data              = public_data_
+    , chat_data                = chat_data_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , allow_queries            = allow_queries_
+    , is_shared                = is_shared_
+    }
+      = "InputMessageWidget"
+        ++ I.cc
+        [ "width"                    `I.p` width_
+        , "height"                   `I.p` height_
+        , "html"                     `I.p` html_
+        , "public_data"              `I.p` public_data_
+        , "chat_data"                `I.p` chat_data_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        , "allow_queries"            `I.p` allow_queries_
+        , "is_shared"                `I.p` is_shared_
+        ]
+  shortShow InputMessageSharedWidget
+    { widget_id                = widget_id_
+    , chat_data                = chat_data_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    }
+      = "InputMessageSharedWidget"
+        ++ I.cc
+        [ "widget_id"                `I.p` widget_id_
+        , "chat_data"                `I.p` chat_data_
+        , "caption"                  `I.p` caption_
+        , "show_caption_above_media" `I.p` show_caption_above_media_
+        ]
   shortShow InputMessageForwarded
     { from_chat_id                  = from_chat_id_
     , message_id                    = message_id_
@@ -473,6 +526,8 @@ instance AT.FromJSON InputMessageContent where
       "inputMessageStakeDice"    -> parseInputMessageStakeDice v
       "inputMessageStory"        -> parseInputMessageStory v
       "inputMessageChecklist"    -> parseInputMessageChecklist v
+      "inputMessageWidget"       -> parseInputMessageWidget v
+      "inputMessageSharedWidget" -> parseInputMessageSharedWidget v
       "inputMessageForwarded"    -> parseInputMessageForwarded v
       _                          -> mempty
     
@@ -718,6 +773,40 @@ instance AT.FromJSON InputMessageContent where
         checklist_ <- o A..:?  "checklist"
         pure $ InputMessageChecklist
           { checklist = checklist_
+          }
+      parseInputMessageWidget :: A.Value -> AT.Parser InputMessageContent
+      parseInputMessageWidget = A.withObject "InputMessageWidget" $ \o -> do
+        width_                    <- o A..:?  "width"
+        height_                   <- o A..:?  "height"
+        html_                     <- o A..:?  "html"
+        public_data_              <- o A..:?  "public_data"
+        chat_data_                <- o A..:?  "chat_data"
+        caption_                  <- o A..:?  "caption"
+        show_caption_above_media_ <- o A..:?  "show_caption_above_media"
+        allow_queries_            <- o A..:?  "allow_queries"
+        is_shared_                <- o A..:?  "is_shared"
+        pure $ InputMessageWidget
+          { width                    = width_
+          , height                   = height_
+          , html                     = html_
+          , public_data              = public_data_
+          , chat_data                = chat_data_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
+          , allow_queries            = allow_queries_
+          , is_shared                = is_shared_
+          }
+      parseInputMessageSharedWidget :: A.Value -> AT.Parser InputMessageContent
+      parseInputMessageSharedWidget = A.withObject "InputMessageSharedWidget" $ \o -> do
+        widget_id_                <- fmap I.readInt64 <$> o A..:?  "widget_id"
+        chat_data_                <- o A..:?                       "chat_data"
+        caption_                  <- o A..:?                       "caption"
+        show_caption_above_media_ <- o A..:?                       "show_caption_above_media"
+        pure $ InputMessageSharedWidget
+          { widget_id                = widget_id_
+          , chat_data                = chat_data_
+          , caption                  = caption_
+          , show_caption_above_media = show_caption_above_media_
           }
       parseInputMessageForwarded :: A.Value -> AT.Parser InputMessageContent
       parseInputMessageForwarded = A.withObject "InputMessageForwarded" $ \o -> do
@@ -1001,6 +1090,42 @@ instance AT.ToJSON InputMessageContent where
       = A.object
         [ "@type"     A..= AT.String "inputMessageChecklist"
         , "checklist" A..= checklist_
+        ]
+  toJSON InputMessageWidget
+    { width                    = width_
+    , height                   = height_
+    , html                     = html_
+    , public_data              = public_data_
+    , chat_data                = chat_data_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    , allow_queries            = allow_queries_
+    , is_shared                = is_shared_
+    }
+      = A.object
+        [ "@type"                    A..= AT.String "inputMessageWidget"
+        , "width"                    A..= width_
+        , "height"                   A..= height_
+        , "html"                     A..= html_
+        , "public_data"              A..= public_data_
+        , "chat_data"                A..= chat_data_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
+        , "allow_queries"            A..= allow_queries_
+        , "is_shared"                A..= is_shared_
+        ]
+  toJSON InputMessageSharedWidget
+    { widget_id                = widget_id_
+    , chat_data                = chat_data_
+    , caption                  = caption_
+    , show_caption_above_media = show_caption_above_media_
+    }
+      = A.object
+        [ "@type"                    A..= AT.String "inputMessageSharedWidget"
+        , "widget_id"                A..= fmap I.writeInt64  widget_id_
+        , "chat_data"                A..= chat_data_
+        , "caption"                  A..= caption_
+        , "show_caption_above_media" A..= show_caption_above_media_
         ]
   toJSON InputMessageForwarded
     { from_chat_id                  = from_chat_id_

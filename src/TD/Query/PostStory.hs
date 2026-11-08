@@ -9,6 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.InputStoryContent as InputStoryContent
 import qualified TD.Data.InputStoryAreas as InputStoryAreas
 import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.InputAudio as InputAudio
 import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 import qualified TD.Data.StoryFullId as StoryFullId
 
@@ -19,6 +20,7 @@ data PostStory
     , content                :: Maybe InputStoryContent.InputStoryContent       -- ^ Content of the story
     , areas                  :: Maybe InputStoryAreas.InputStoryAreas           -- ^ Clickable rectangle areas to be shown on the story media; pass null if none
     , caption                :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
+    , music                  :: Maybe InputAudio.InputAudio                     -- ^ Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
     , privacy_settings       :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     , album_ids              :: Maybe [Int]                                     -- ^ Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
     , active_period          :: Maybe Int                                       -- ^ Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
@@ -35,6 +37,7 @@ instance I.ShortShow PostStory where
       , content                = content_
       , areas                  = areas_
       , caption                = caption_
+      , music                  = music_
       , privacy_settings       = privacy_settings_
       , album_ids              = album_ids_
       , active_period          = active_period_
@@ -48,6 +51,7 @@ instance I.ShortShow PostStory where
           , "content"                `I.p` content_
           , "areas"                  `I.p` areas_
           , "caption"                `I.p` caption_
+          , "music"                  `I.p` music_
           , "privacy_settings"       `I.p` privacy_settings_
           , "album_ids"              `I.p` album_ids_
           , "active_period"          `I.p` active_period_
@@ -63,6 +67,7 @@ instance AT.ToJSON PostStory where
       , content                = content_
       , areas                  = areas_
       , caption                = caption_
+      , music                  = music_
       , privacy_settings       = privacy_settings_
       , album_ids              = album_ids_
       , active_period          = active_period_
@@ -76,6 +81,7 @@ instance AT.ToJSON PostStory where
           , "content"                A..= content_
           , "areas"                  A..= areas_
           , "caption"                A..= caption_
+          , "music"                  A..= music_
           , "privacy_settings"       A..= privacy_settings_
           , "album_ids"              A..= album_ids_
           , "active_period"          A..= active_period_
@@ -91,6 +97,7 @@ defaultPostStory =
     , content                = Nothing
     , areas                  = Nothing
     , caption                = Nothing
+    , music                  = Nothing
     , privacy_settings       = Nothing
     , album_ids              = Nothing
     , active_period          = Nothing

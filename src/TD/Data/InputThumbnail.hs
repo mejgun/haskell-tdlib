@@ -10,7 +10,7 @@ import qualified TD.Data.InputFile as InputFile
 
 data InputThumbnail
   = InputThumbnail -- ^ A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
-    { thumbnail :: Maybe InputFile.InputFile -- ^ Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+    { thumbnail :: Maybe InputFile.InputFile -- ^ Thumbnail file to send. Sending thumbnails by inputFileId or inputFileRemote is currently not supported
     , width     :: Maybe Int                 -- ^ Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
     , height    :: Maybe Int                 -- ^ Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
     }

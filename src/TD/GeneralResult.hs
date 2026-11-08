@@ -80,8 +80,11 @@ import qualified TD.Data.Chats as Chats
 import qualified TD.Data.CheckChatUsernameResult as CheckChatUsernameResult
 import qualified TD.Data.CheckStickerSetNameResult as CheckStickerSetNameResult
 import qualified TD.Data.CollectibleItemInfo as CollectibleItemInfo
+import qualified TD.Data.Communities as Communities
+import qualified TD.Data.CommunityAddChatRequests as CommunityAddChatRequests
 import qualified TD.Data.CommunityFullInfo as CommunityFullInfo
 import qualified TD.Data.CommunityId as CommunityId
+import qualified TD.Data.CommunityMemberChats as CommunityMemberChats
 import qualified TD.Data.ConnectedAffiliateProgram as ConnectedAffiliateProgram
 import qualified TD.Data.ConnectedAffiliatePrograms as ConnectedAffiliatePrograms
 import qualified TD.Data.ConnectedWebsites as ConnectedWebsites
@@ -239,6 +242,7 @@ import qualified TD.Data.Seconds as Seconds
 import qualified TD.Data.SecretChat as SecretChat
 import qualified TD.Data.Session as Session
 import qualified TD.Data.Sessions as Sessions
+import qualified TD.Data.SpeechRecognitionLanguages as SpeechRecognitionLanguages
 import qualified TD.Data.SponsoredChats as SponsoredChats
 import qualified TD.Data.SponsoredMessages as SponsoredMessages
 import qualified TD.Data.StakeDiceState as StakeDiceState
@@ -278,6 +282,7 @@ import qualified TD.Data.Text as Text
 import qualified TD.Data.TextCompositionStyle as TextCompositionStyle
 import qualified TD.Data.TextCompositionStyleExample as TextCompositionStyleExample
 import qualified TD.Data.TextEntities as TextEntities
+import qualified TD.Data.TextRanges as TextRanges
 import qualified TD.Data.TimeZones as TimeZones
 import qualified TD.Data.TonCenterStreamingApiUrl as TonCenterStreamingApiUrl
 import qualified TD.Data.TonConnectChallenge as TonConnectChallenge
@@ -316,6 +321,8 @@ import qualified TD.Data.WebAppInfo as WebAppInfo
 import qualified TD.Data.WebAppUrl as WebAppUrl
 import qualified TD.Data.WebBrowserType as WebBrowserType
 import qualified TD.Data.WebPageInstantView as WebPageInstantView
+import qualified TD.Data.WidgetPublicData as WidgetPublicData
+import qualified TD.Data.WidgetQueryAnswer as WidgetQueryAnswer
 
 data GeneralResult
     = AccountTtl                         AccountTtl.AccountTtl
@@ -394,8 +401,11 @@ data GeneralResult
     | CheckChatUsernameResult            CheckChatUsernameResult.CheckChatUsernameResult
     | CheckStickerSetNameResult          CheckStickerSetNameResult.CheckStickerSetNameResult
     | CollectibleItemInfo                CollectibleItemInfo.CollectibleItemInfo
+    | Communities                        Communities.Communities
+    | CommunityAddChatRequests           CommunityAddChatRequests.CommunityAddChatRequests
     | CommunityFullInfo                  CommunityFullInfo.CommunityFullInfo
     | CommunityId                        CommunityId.CommunityId
+    | CommunityMemberChats               CommunityMemberChats.CommunityMemberChats
     | ConnectedAffiliateProgram          ConnectedAffiliateProgram.ConnectedAffiliateProgram
     | ConnectedAffiliatePrograms         ConnectedAffiliatePrograms.ConnectedAffiliatePrograms
     | ConnectedWebsites                  ConnectedWebsites.ConnectedWebsites
@@ -553,6 +563,7 @@ data GeneralResult
     | SecretChat                         SecretChat.SecretChat
     | Session                            Session.Session
     | Sessions                           Sessions.Sessions
+    | SpeechRecognitionLanguages         SpeechRecognitionLanguages.SpeechRecognitionLanguages
     | SponsoredChats                     SponsoredChats.SponsoredChats
     | SponsoredMessages                  SponsoredMessages.SponsoredMessages
     | StakeDiceState                     StakeDiceState.StakeDiceState
@@ -592,6 +603,7 @@ data GeneralResult
     | TextCompositionStyle               TextCompositionStyle.TextCompositionStyle
     | TextCompositionStyleExample        TextCompositionStyleExample.TextCompositionStyleExample
     | TextEntities                       TextEntities.TextEntities
+    | TextRanges                         TextRanges.TextRanges
     | TimeZones                          TimeZones.TimeZones
     | TonCenterStreamingApiUrl           TonCenterStreamingApiUrl.TonCenterStreamingApiUrl
     | TonConnectChallenge                TonConnectChallenge.TonConnectChallenge
@@ -630,6 +642,8 @@ data GeneralResult
     | WebAppUrl                          WebAppUrl.WebAppUrl
     | WebBrowserType                     WebBrowserType.WebBrowserType
     | WebPageInstantView                 WebPageInstantView.WebPageInstantView
+    | WidgetPublicData                   WidgetPublicData.WidgetPublicData
+    | WidgetQueryAnswer                  WidgetQueryAnswer.WidgetQueryAnswer
  deriving (Eq, Show)
 
 instance I.ShortShow GeneralResult where
@@ -785,10 +799,16 @@ instance I.ShortShow GeneralResult where
     = "CheckStickerSetNameResult" <> " (" <> I.shortShow v <> ")"
   shortShow (CollectibleItemInfo v)
     = "CollectibleItemInfo" <> " (" <> I.shortShow v <> ")"
+  shortShow (Communities v)
+    = "Communities" <> " (" <> I.shortShow v <> ")"
+  shortShow (CommunityAddChatRequests v)
+    = "CommunityAddChatRequests" <> " (" <> I.shortShow v <> ")"
   shortShow (CommunityFullInfo v)
     = "CommunityFullInfo" <> " (" <> I.shortShow v <> ")"
   shortShow (CommunityId v)
     = "CommunityId" <> " (" <> I.shortShow v <> ")"
+  shortShow (CommunityMemberChats v)
+    = "CommunityMemberChats" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedAffiliateProgram v)
     = "ConnectedAffiliateProgram" <> " (" <> I.shortShow v <> ")"
   shortShow (ConnectedAffiliatePrograms v)
@@ -1103,6 +1123,8 @@ instance I.ShortShow GeneralResult where
     = "Session" <> " (" <> I.shortShow v <> ")"
   shortShow (Sessions v)
     = "Sessions" <> " (" <> I.shortShow v <> ")"
+  shortShow (SpeechRecognitionLanguages v)
+    = "SpeechRecognitionLanguages" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredChats v)
     = "SponsoredChats" <> " (" <> I.shortShow v <> ")"
   shortShow (SponsoredMessages v)
@@ -1181,6 +1203,8 @@ instance I.ShortShow GeneralResult where
     = "TextCompositionStyleExample" <> " (" <> I.shortShow v <> ")"
   shortShow (TextEntities v)
     = "TextEntities" <> " (" <> I.shortShow v <> ")"
+  shortShow (TextRanges v)
+    = "TextRanges" <> " (" <> I.shortShow v <> ")"
   shortShow (TimeZones v)
     = "TimeZones" <> " (" <> I.shortShow v <> ")"
   shortShow (TonCenterStreamingApiUrl v)
@@ -1257,6 +1281,10 @@ instance I.ShortShow GeneralResult where
     = "WebBrowserType" <> " (" <> I.shortShow v <> ")"
   shortShow (WebPageInstantView v)
     = "WebPageInstantView" <> " (" <> I.shortShow v <> ")"
+  shortShow (WidgetPublicData v)
+    = "WidgetPublicData" <> " (" <> I.shortShow v <> ")"
+  shortShow (WidgetQueryAnswer v)
+    = "WidgetQueryAnswer" <> " (" <> I.shortShow v <> ")"
 
 instance T.FromJSON GeneralResult where
  parseJSON v =
@@ -1336,8 +1364,11 @@ instance T.FromJSON GeneralResult where
     <|> ( CheckChatUsernameResult             <$> parseJSON v )
     <|> ( CheckStickerSetNameResult           <$> parseJSON v )
     <|> ( CollectibleItemInfo                 <$> parseJSON v )
+    <|> ( Communities                         <$> parseJSON v )
+    <|> ( CommunityAddChatRequests            <$> parseJSON v )
     <|> ( CommunityFullInfo                   <$> parseJSON v )
     <|> ( CommunityId                         <$> parseJSON v )
+    <|> ( CommunityMemberChats                <$> parseJSON v )
     <|> ( ConnectedAffiliateProgram           <$> parseJSON v )
     <|> ( ConnectedAffiliatePrograms          <$> parseJSON v )
     <|> ( ConnectedWebsites                   <$> parseJSON v )
@@ -1495,6 +1526,7 @@ instance T.FromJSON GeneralResult where
     <|> ( SecretChat                          <$> parseJSON v )
     <|> ( Session                             <$> parseJSON v )
     <|> ( Sessions                            <$> parseJSON v )
+    <|> ( SpeechRecognitionLanguages          <$> parseJSON v )
     <|> ( SponsoredChats                      <$> parseJSON v )
     <|> ( SponsoredMessages                   <$> parseJSON v )
     <|> ( StakeDiceState                      <$> parseJSON v )
@@ -1534,6 +1566,7 @@ instance T.FromJSON GeneralResult where
     <|> ( TextCompositionStyle                <$> parseJSON v )
     <|> ( TextCompositionStyleExample         <$> parseJSON v )
     <|> ( TextEntities                        <$> parseJSON v )
+    <|> ( TextRanges                          <$> parseJSON v )
     <|> ( TimeZones                           <$> parseJSON v )
     <|> ( TonCenterStreamingApiUrl            <$> parseJSON v )
     <|> ( TonConnectChallenge                 <$> parseJSON v )
@@ -1572,3 +1605,5 @@ instance T.FromJSON GeneralResult where
     <|> ( WebAppUrl                           <$> parseJSON v )
     <|> ( WebBrowserType                      <$> parseJSON v )
     <|> ( WebPageInstantView                  <$> parseJSON v )
+    <|> ( WidgetPublicData                    <$> parseJSON v )
+    <|> ( WidgetQueryAnswer                   <$> parseJSON v )

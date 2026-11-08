@@ -12,6 +12,7 @@ import qualified TD.Data.StoryPrivacySettings as StoryPrivacySettings
 import qualified TD.Data.StoryContent as StoryContent
 import qualified TD.Data.StoryArea as StoryArea
 import qualified TD.Data.FormattedText as FormattedText
+import qualified TD.Data.Audio as Audio
 
 data Story
   = Story -- ^ Represents a story
@@ -41,6 +42,7 @@ data Story
     , content                           :: Maybe StoryContent.StoryContent                 -- ^ Content of the story
     , areas                             :: Maybe [StoryArea.StoryArea]                     -- ^ Clickable areas to be shown on the story content
     , caption                           :: Maybe FormattedText.FormattedText               -- ^ Caption of the story
+    , music                             :: Maybe Audio.Audio                               -- ^ Music attached to the story; may be null if none
     , album_ids                         :: Maybe [Int]                                     -- ^ Identifiers of story albums to which the story is added; only for manageable stories
     }
   deriving (Eq, Show)
@@ -73,6 +75,7 @@ instance I.ShortShow Story where
     , content                           = content_
     , areas                             = areas_
     , caption                           = caption_
+    , music                             = music_
     , album_ids                         = album_ids_
     }
       = "Story"
@@ -103,6 +106,7 @@ instance I.ShortShow Story where
         , "content"                           `I.p` content_
         , "areas"                             `I.p` areas_
         , "caption"                           `I.p` caption_
+        , "music"                             `I.p` music_
         , "album_ids"                         `I.p` album_ids_
         ]
 
@@ -143,6 +147,7 @@ instance AT.FromJSON Story where
         content_                           <- o A..:?  "content"
         areas_                             <- o A..:?  "areas"
         caption_                           <- o A..:?  "caption"
+        music_                             <- o A..:?  "music"
         album_ids_                         <- o A..:?  "album_ids"
         pure $ Story
           { _id                               = _id_
@@ -171,6 +176,7 @@ instance AT.FromJSON Story where
           , content                           = content_
           , areas                             = areas_
           , caption                           = caption_
+          , music                             = music_
           , album_ids                         = album_ids_
           }
   parseJSON _ = mempty

@@ -15,10 +15,6 @@ data InputStoryAreaType
     { location :: Maybe Location.Location               -- ^ The location
     , address  :: Maybe LocationAddress.LocationAddress -- ^ Address of the location; pass null if unknown
     }
-  | InputStoryAreaTypeFoundVenue -- ^ An area pointing to a venue found by the bot getOption("venue_search_bot_username")
-    { query_id  :: Maybe Int    -- ^ Identifier of the inline query, used to find the venue
-    , result_id :: Maybe T.Text -- ^ Identifier of the inline query result
-    }
   | InputStoryAreaTypePreviousVenue -- ^ An area pointing to a venue already added to the story
     { venue_provider :: Maybe T.Text -- ^ Provider of the venue
     , venue_id       :: Maybe T.Text -- ^ Identifier of the venue in the provider database
@@ -54,15 +50,6 @@ instance I.ShortShow InputStoryAreaType where
         ++ I.cc
         [ "location" `I.p` location_
         , "address"  `I.p` address_
-        ]
-  shortShow InputStoryAreaTypeFoundVenue
-    { query_id  = query_id_
-    , result_id = result_id_
-    }
-      = "InputStoryAreaTypeFoundVenue"
-        ++ I.cc
-        [ "query_id"  `I.p` query_id_
-        , "result_id" `I.p` result_id_
         ]
   shortShow InputStoryAreaTypePreviousVenue
     { venue_provider = venue_provider_
@@ -125,7 +112,6 @@ instance AT.FromJSON InputStoryAreaType where
 
     case t of
       "inputStoryAreaTypeLocation"          -> parseInputStoryAreaTypeLocation v
-      "inputStoryAreaTypeFoundVenue"        -> parseInputStoryAreaTypeFoundVenue v
       "inputStoryAreaTypePreviousVenue"     -> parseInputStoryAreaTypePreviousVenue v
       "inputStoryAreaTypeSuggestedReaction" -> parseInputStoryAreaTypeSuggestedReaction v
       "inputStoryAreaTypeMessage"           -> parseInputStoryAreaTypeMessage v
@@ -142,14 +128,6 @@ instance AT.FromJSON InputStoryAreaType where
         pure $ InputStoryAreaTypeLocation
           { location = location_
           , address  = address_
-          }
-      parseInputStoryAreaTypeFoundVenue :: A.Value -> AT.Parser InputStoryAreaType
-      parseInputStoryAreaTypeFoundVenue = A.withObject "InputStoryAreaTypeFoundVenue" $ \o -> do
-        query_id_  <- fmap I.readInt64 <$> o A..:?  "query_id"
-        result_id_ <- o A..:?                       "result_id"
-        pure $ InputStoryAreaTypeFoundVenue
-          { query_id  = query_id_
-          , result_id = result_id_
           }
       parseInputStoryAreaTypePreviousVenue :: A.Value -> AT.Parser InputStoryAreaType
       parseInputStoryAreaTypePreviousVenue = A.withObject "InputStoryAreaTypePreviousVenue" $ \o -> do
@@ -210,15 +188,6 @@ instance AT.ToJSON InputStoryAreaType where
         [ "@type"    A..= AT.String "inputStoryAreaTypeLocation"
         , "location" A..= location_
         , "address"  A..= address_
-        ]
-  toJSON InputStoryAreaTypeFoundVenue
-    { query_id  = query_id_
-    , result_id = result_id_
-    }
-      = A.object
-        [ "@type"     A..= AT.String "inputStoryAreaTypeFoundVenue"
-        , "query_id"  A..= fmap I.writeInt64  query_id_
-        , "result_id" A..= result_id_
         ]
   toJSON InputStoryAreaTypePreviousVenue
     { venue_provider = venue_provider_

@@ -55,14 +55,14 @@ instance AT.FromJSON TonWalletTransaction where
     where
       parseTonWalletTransaction :: A.Value -> AT.Parser TonWalletTransaction
       parseTonWalletTransaction = A.withObject "TonWalletTransaction" $ \o -> do
-        _id_          <- o A..:?  "id"
-        peer_address_ <- o A..:?  "peer_address"
-        peer_user_id_ <- o A..:?  "peer_user_id"
-        peer_domain_  <- o A..:?  "peer_domain"
-        date_         <- o A..:?  "date"
-        fee_amount_   <- o A..:?  "fee_amount"
-        state_        <- o A..:?  "state"
-        _type_        <- o A..:?  "type"
+        _id_          <- o A..:?                       "id"
+        peer_address_ <- o A..:?                       "peer_address"
+        peer_user_id_ <- o A..:?                       "peer_user_id"
+        peer_domain_  <- o A..:?                       "peer_domain"
+        date_         <- o A..:?                       "date"
+        fee_amount_   <- fmap I.readInt64 <$> o A..:?  "fee_amount"
+        state_        <- o A..:?                       "state"
+        _type_        <- o A..:?                       "type"
         pure $ TonWalletTransaction
           { _id          = _id_
           , peer_address = peer_address_

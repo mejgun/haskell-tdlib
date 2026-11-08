@@ -39,9 +39,9 @@ instance AT.FromJSON TonWalletTransactions where
     where
       parseTonWalletTransactions :: A.Value -> AT.Parser TonWalletTransactions
       parseTonWalletTransactions = A.withObject "TonWalletTransactions" $ \o -> do
-        gram_amount_  <- o A..:?  "gram_amount"
-        transactions_ <- o A..:?  "transactions"
-        next_offset_  <- o A..:?  "next_offset"
+        gram_amount_  <- fmap I.readInt64 <$> o A..:?  "gram_amount"
+        transactions_ <- o A..:?                       "transactions"
+        next_offset_  <- o A..:?                       "next_offset"
         pure $ TonWalletTransactions
           { gram_amount  = gram_amount_
           , transactions = transactions_

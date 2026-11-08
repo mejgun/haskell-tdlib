@@ -34,6 +34,7 @@ data Supergroup
     , verification_status                   :: Maybe VerificationStatus.VerificationStatus -- ^ Information about verification status of the supergroup or channel; may be null if none
     , has_direct_messages_group             :: Maybe Bool                                  -- ^ True, if the channel has direct messages group
     , has_forum_tabs                        :: Maybe Bool                                  -- ^ True, if the supergroup is a forum, which topics are shown in the same way as in channel direct messages groups
+    , has_forum_sidebar                     :: Maybe Bool                                  -- ^ True, if the supergroup is a forum, which topics are shown in a sidebar. If true, then has_forum_tabs is false
     , restriction_info                      :: Maybe RestrictionInfo.RestrictionInfo       -- ^ Information about the restrictions that must be applied to the corresponding supergroup or channel chat; may be null if none
     , paid_message_star_count               :: Maybe Int                                   -- ^ Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
     , active_story_state                    :: Maybe ActiveStoryState.ActiveStoryState     -- ^ State of active stories of the supergroup or channel; may be null if there are no active stories
@@ -64,6 +65,7 @@ instance I.ShortShow Supergroup where
     , verification_status                   = verification_status_
     , has_direct_messages_group             = has_direct_messages_group_
     , has_forum_tabs                        = has_forum_tabs_
+    , has_forum_sidebar                     = has_forum_sidebar_
     , restriction_info                      = restriction_info_
     , paid_message_star_count               = paid_message_star_count_
     , active_story_state                    = active_story_state_
@@ -92,6 +94,7 @@ instance I.ShortShow Supergroup where
         , "verification_status"                   `I.p` verification_status_
         , "has_direct_messages_group"             `I.p` has_direct_messages_group_
         , "has_forum_tabs"                        `I.p` has_forum_tabs_
+        , "has_forum_sidebar"                     `I.p` has_forum_sidebar_
         , "restriction_info"                      `I.p` restriction_info_
         , "paid_message_star_count"               `I.p` paid_message_star_count_
         , "active_story_state"                    `I.p` active_story_state_
@@ -130,6 +133,7 @@ instance AT.FromJSON Supergroup where
         verification_status_                   <- o A..:?  "verification_status"
         has_direct_messages_group_             <- o A..:?  "has_direct_messages_group"
         has_forum_tabs_                        <- o A..:?  "has_forum_tabs"
+        has_forum_sidebar_                     <- o A..:?  "has_forum_sidebar"
         restriction_info_                      <- o A..:?  "restriction_info"
         paid_message_star_count_               <- o A..:?  "paid_message_star_count"
         active_story_state_                    <- o A..:?  "active_story_state"
@@ -156,6 +160,7 @@ instance AT.FromJSON Supergroup where
           , verification_status                   = verification_status_
           , has_direct_messages_group             = has_direct_messages_group_
           , has_forum_tabs                        = has_forum_tabs_
+          , has_forum_sidebar                     = has_forum_sidebar_
           , restriction_info                      = restriction_info_
           , paid_message_star_count               = paid_message_star_count_
           , active_story_state                    = active_story_state_

@@ -16,6 +16,7 @@ data UserType
     , can_read_all_group_messages     :: Maybe Bool   -- ^ True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
     , has_main_web_app                :: Maybe Bool   -- ^ True, if the bot has the main Web App
     , has_topics                      :: Maybe Bool   -- ^ True, if the bot has topics
+    , has_topic_sidebar               :: Maybe Bool   -- ^ True, if the bot has topics, which are shown in a sidebar
     , allows_users_to_create_topics   :: Maybe Bool   -- ^ True, if users can create and delete topics in the chat with the bot
     , can_manage_bots                 :: Maybe Bool   -- ^ True, if the bot can manage other bots
     , is_inline                       :: Maybe Bool   -- ^ True, if the bot supports inline queries
@@ -41,6 +42,7 @@ instance I.ShortShow UserType where
     , can_read_all_group_messages     = can_read_all_group_messages_
     , has_main_web_app                = has_main_web_app_
     , has_topics                      = has_topics_
+    , has_topic_sidebar               = has_topic_sidebar_
     , allows_users_to_create_topics   = allows_users_to_create_topics_
     , can_manage_bots                 = can_manage_bots_
     , is_inline                       = is_inline_
@@ -59,6 +61,7 @@ instance I.ShortShow UserType where
         , "can_read_all_group_messages"     `I.p` can_read_all_group_messages_
         , "has_main_web_app"                `I.p` has_main_web_app_
         , "has_topics"                      `I.p` has_topics_
+        , "has_topic_sidebar"               `I.p` has_topic_sidebar_
         , "allows_users_to_create_topics"   `I.p` allows_users_to_create_topics_
         , "can_manage_bots"                 `I.p` can_manage_bots_
         , "is_inline"                       `I.p` is_inline_
@@ -92,6 +95,7 @@ instance AT.FromJSON UserType where
         can_read_all_group_messages_     <- o A..:?  "can_read_all_group_messages"
         has_main_web_app_                <- o A..:?  "has_main_web_app"
         has_topics_                      <- o A..:?  "has_topics"
+        has_topic_sidebar_               <- o A..:?  "has_topic_sidebar"
         allows_users_to_create_topics_   <- o A..:?  "allows_users_to_create_topics"
         can_manage_bots_                 <- o A..:?  "can_manage_bots"
         is_inline_                       <- o A..:?  "is_inline"
@@ -108,6 +112,7 @@ instance AT.FromJSON UserType where
           , can_read_all_group_messages     = can_read_all_group_messages_
           , has_main_web_app                = has_main_web_app_
           , has_topics                      = has_topics_
+          , has_topic_sidebar               = has_topic_sidebar_
           , allows_users_to_create_topics   = allows_users_to_create_topics_
           , can_manage_bots                 = can_manage_bots_
           , is_inline                       = is_inline_

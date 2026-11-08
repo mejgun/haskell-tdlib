@@ -16,7 +16,7 @@ data ReplyToCallbackQueryWithEphemeralMessage
     , replace_callback_query_message :: Maybe Bool                                    -- ^ Pass true if the ephemeral message must replace the message from which the callback query originated
     , protect_content                :: Maybe Bool                                    -- ^ Pass true if the content of the message must be protected from forwarding and saving
     , reply_markup                   :: Maybe ReplyMarkup.ReplyMarkup                 -- ^ The new message reply markup; pass null if none
-    , input_message_content          :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote
+    , input_message_content          :: Maybe InputMessageContent.InputMessageContent -- ^ New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto, inputMessageRichMessage, inputMessageSticker, inputMessageVideo, inputMessageVideoNote, inputMessageVoiceNote, inputMessageLocation, inputMessageVenue, inputMessageContact
     }
   deriving (Eq, Show)
 

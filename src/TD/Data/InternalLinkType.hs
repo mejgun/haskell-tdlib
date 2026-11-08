@@ -1083,8 +1083,8 @@ instance AT.FromJSON InternalLinkType where
           }
       parseInternalLinkTypeTonWalletTransfer :: A.Value -> AT.Parser InternalLinkType
       parseInternalLinkTypeTonWalletTransfer = A.withObject "InternalLinkTypeTonWalletTransfer" $ \o -> do
-        receiver_    <- o A..:?  "receiver"
-        gram_amount_ <- o A..:?  "gram_amount"
+        receiver_    <- o A..:?                       "receiver"
+        gram_amount_ <- fmap I.readInt64 <$> o A..:?  "gram_amount"
         pure $ InternalLinkTypeTonWalletTransfer
           { receiver    = receiver_
           , gram_amount = gram_amount_
@@ -1559,7 +1559,7 @@ instance AT.ToJSON InternalLinkType where
       = A.object
         [ "@type"       A..= AT.String "internalLinkTypeTonWalletTransfer"
         , "receiver"    A..= receiver_
-        , "gram_amount" A..= gram_amount_
+        , "gram_amount" A..= fmap I.writeInt64  gram_amount_
         ]
   toJSON InternalLinkTypeUnknownDeepLink
     { link = link_

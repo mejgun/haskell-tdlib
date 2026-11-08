@@ -11,35 +11,38 @@ import qualified TD.Data.CommunityPermissions as CommunityPermissions
 
 data Community
   = Community -- ^ Represents a community consisting of supergroup chats, channel chats and chats with bots
-    { _id         :: Maybe Int                                         -- ^ Community identifier
-    , have_access :: Maybe Bool                                        -- ^ If false, the community is inaccessible, and the only information known about the community is inside this class. Identifier of the community can't be passed to any method
-    , name        :: Maybe T.Text                                      -- ^ Community name
-    , photo       :: Maybe ChatPhotoInfo.ChatPhotoInfo                 -- ^ Community photo; may be null
-    , date        :: Maybe Int                                         -- ^ Point in time (Unix timestamp) when the community was joined, or the point in time when the community was created, in case the user is not a member of any chat in the community
-    , status      :: Maybe CommunityMemberStatus.CommunityMemberStatus -- ^ Status of the current user in the community
-    , permissions :: Maybe CommunityPermissions.CommunityPermissions   -- ^ Actions that non-administrator community members are allowed to take in the community
+    { _id                 :: Maybe Int                                         -- ^ Community identifier
+    , have_access         :: Maybe Bool                                        -- ^ If false, the community is inaccessible, and the only information known about the community is inside this class. Identifier of the community can't be passed to any method
+    , name                :: Maybe T.Text                                      -- ^ Community name
+    , photo               :: Maybe ChatPhotoInfo.ChatPhotoInfo                 -- ^ Community photo; may be null
+    , date                :: Maybe Int                                         -- ^ Point in time (Unix timestamp) when the community was joined, or the point in time when the community was created, in case the user is not a member of any chat in the community
+    , status              :: Maybe CommunityMemberStatus.CommunityMemberStatus -- ^ Status of the current user in the community
+    , permissions         :: Maybe CommunityPermissions.CommunityPermissions   -- ^ Actions that non-administrator community members are allowed to take in the community
+    , are_chats_collapsed :: Maybe Bool                                        -- ^ True, if all chats of the community are collapsed into one entry in the chat list
     }
   deriving (Eq, Show)
 
 instance I.ShortShow Community where
   shortShow Community
-    { _id         = _id_
-    , have_access = have_access_
-    , name        = name_
-    , photo       = photo_
-    , date        = date_
-    , status      = status_
-    , permissions = permissions_
+    { _id                 = _id_
+    , have_access         = have_access_
+    , name                = name_
+    , photo               = photo_
+    , date                = date_
+    , status              = status_
+    , permissions         = permissions_
+    , are_chats_collapsed = are_chats_collapsed_
     }
       = "Community"
         ++ I.cc
-        [ "_id"         `I.p` _id_
-        , "have_access" `I.p` have_access_
-        , "name"        `I.p` name_
-        , "photo"       `I.p` photo_
-        , "date"        `I.p` date_
-        , "status"      `I.p` status_
-        , "permissions" `I.p` permissions_
+        [ "_id"                 `I.p` _id_
+        , "have_access"         `I.p` have_access_
+        , "name"                `I.p` name_
+        , "photo"               `I.p` photo_
+        , "date"                `I.p` date_
+        , "status"              `I.p` status_
+        , "permissions"         `I.p` permissions_
+        , "are_chats_collapsed" `I.p` are_chats_collapsed_
         ]
 
 instance AT.FromJSON Community where
@@ -53,21 +56,23 @@ instance AT.FromJSON Community where
     where
       parseCommunity :: A.Value -> AT.Parser Community
       parseCommunity = A.withObject "Community" $ \o -> do
-        _id_         <- o A..:?  "id"
-        have_access_ <- o A..:?  "have_access"
-        name_        <- o A..:?  "name"
-        photo_       <- o A..:?  "photo"
-        date_        <- o A..:?  "date"
-        status_      <- o A..:?  "status"
-        permissions_ <- o A..:?  "permissions"
+        _id_                 <- o A..:?  "id"
+        have_access_         <- o A..:?  "have_access"
+        name_                <- o A..:?  "name"
+        photo_               <- o A..:?  "photo"
+        date_                <- o A..:?  "date"
+        status_              <- o A..:?  "status"
+        permissions_         <- o A..:?  "permissions"
+        are_chats_collapsed_ <- o A..:?  "are_chats_collapsed"
         pure $ Community
-          { _id         = _id_
-          , have_access = have_access_
-          , name        = name_
-          , photo       = photo_
-          , date        = date_
-          , status      = status_
-          , permissions = permissions_
+          { _id                 = _id_
+          , have_access         = have_access_
+          , name                = name_
+          , photo               = photo_
+          , date                = date_
+          , status              = status_
+          , permissions         = permissions_
+          , are_chats_collapsed = are_chats_collapsed_
           }
   parseJSON _ = mempty
 
