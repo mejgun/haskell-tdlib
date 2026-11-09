@@ -9,7 +9,7 @@ import qualified TD.Lib.Internal as I
 import qualified TD.Data.ReplyMarkup as ReplyMarkup
 import qualified TD.Data.InputMessageContent as InputMessageContent
 
--- | Replies to a callback query with an ephemeral message; for bots only. Returns 'TD.Data.Ok.Ok'
+-- | Replies to a callback query with an ephemeral message; for bots only. Returns the sent message. Returns 'TD.Data.Message.Message'
 data ReplyToCallbackQueryWithEphemeralMessage
   = ReplyToCallbackQueryWithEphemeralMessage
     { callback_query_id              :: Maybe Int                                     -- ^ Identifier of the callback query

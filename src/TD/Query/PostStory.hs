@@ -20,7 +20,7 @@ data PostStory
     , content                :: Maybe InputStoryContent.InputStoryContent       -- ^ Content of the story
     , areas                  :: Maybe InputStoryAreas.InputStoryAreas           -- ^ Clickable rectangle areas to be shown on the story media; pass null if none
     , caption                :: Maybe FormattedText.FormattedText               -- ^ Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption")
-    , music                  :: Maybe InputAudio.InputAudio                     -- ^ Music to be attached to the story; pass null if none. The music can be up to 60 seconds long
+    , music                  :: Maybe InputAudio.InputAudio                     -- ^ Music to be attached to the story; pass null if none. The music can be up to 60 seconds long. The bot getOption("audio_search_bot_username") can be used to find the music files
     , privacy_settings       :: Maybe StoryPrivacySettings.StoryPrivacySettings -- ^ The privacy settings for the story; ignored for stories posted on behalf of supergroup and channel chats
     , album_ids              :: Maybe [Int]                                     -- ^ Identifiers of story albums to which the story will be added upon posting. An album can have up to getOption("story_album_size_max") stories
     , active_period          :: Maybe Int                                       -- ^ Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
